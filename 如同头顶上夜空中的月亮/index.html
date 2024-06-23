@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="网络安全,黑客,JAVA安全,代码审计,渗透测试,入侵,SRC,扫描,WEB安全,移动安全,PHP">
+    <meta name="description" content="蓝骨, langu.xyz">
+    <meta name="author" content="langu_xyz">
+    
+        <title>
+            
+                如同头顶上夜空中的月亮 |
+                    
+                        langu_xyz
+        </title>
+        
+<link rel="stylesheet" href="/css/style.css">
+
+            <link rel="shortcut icon" href="/images/logo.jpeg">
+                
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+                    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"blog.langu.xyz","root":"/","language":"zh","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/logo.jpeg","favicon":"/images/logo.jpeg","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/shamo.jpg","description":"XYZ(无限未来)"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+
+                    <script>
+                        var _hmt = _hmt || [];
+                        (function() {
+                          var hm = document.createElement("script");
+                          hm.src = "https://hm.baidu.com/hm.js?1cd6e64ff252acf24b707985fcec8850";
+                          var s = document.getElementsByTagName("script")[0]; 
+                          s.parentNode.insertBefore(hm, s);
+                        })();
+                        </script>
+                        
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="langu_xyz" type="application/atom+xml">
+</head>
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                    <a class="logo-title" href="/">
+                        langu_xyz
+                    </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class="" href="/" >
+                                HOME
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class="" href="/tags/THINK/" >
+                                THINK
+                            </a>
+                        </li>
+                        
+                            
+                                <li class="menu-item search search-popup-trigger">
+                                    <i class="fas fa-search"></i>
+                                </li>
+                                
+                                
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                    
+                        <div class="icon-item menu-bar">
+                            <div class="menu-bar-middle"></div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/" >
+                        HOME
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/tags/THINK/" >
+                        THINK
+                    </a>
+                </li>
+                
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">如同头顶上夜空中的月亮</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/logo.jpeg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">langu_xyz</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2023-12-15 20:00:00
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E8%83%A1%E6%80%9D%E4%B9%B1%E6%83%B3/">胡思乱想</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/THINK/">THINK</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.4k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>4 Mins</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>这大抵是今年最后一篇文章了</p>
+<p>想了想，还是决定再写一写精神世界的彷徨</p>
+<p>回顾了下历史文章，今年断断续续也更新了十次，其中绝大多数是在谈一些虚无</p>
+<p>不过讽刺的是，今年大部分的精力还是都交给了庸常的世界</p>
+<p>但要是让我从今年读过的书里挑几本推荐给大家</p>
+<p>我会选择年初的第一本《孤帆重洋》和这周刚重温过的《月亮与六便士》，一本关乎勇气，一本关乎精神</p>
+<p>为什么是这两本而不是某本金融圣经呢</p>
+<p>在前边有写过一篇关于周期的小短文</p>
+<p>当下的我们正处于周期转换的节点，甚至可能是周期中的下行阶段</p>
+<p>弥漫着焦虑</p>
+<p>勉强算是幸运，搭上了末班车，尚可温饱</p>
+<p>但也不止一次在深夜焦虑未来</p>
+<p>一直以来，低物欲的我对于钱没有太多的概念，但是从众偏见和社会认同倾向会潜移默化我们每一个人</p>
+<p>从人本位变成金本位</p>
+<p>以房子为例，从金本位的角度，最近四五年买房的几乎都成了操盘手中的接盘者</p>
+<p>做了下简单的推演，从金本位的角度，降低杠杆或许是利益最大化的方式</p>
+<p>但如果从人的角度来看呢，漂泊了那么久，一处固有居所多带来的舒适与安全感对于在外的游子来说，是无法用金钱衡量的</p>
+<p>当现实与理想发生碰撞，有多少次都忘记了头顶上夜空中的那颗月亮</p>
+<p>人生的哲学意义是什么</p>
+<p>有一个回答是“探索世界和自我的真相、寻找改变自我和世界的路径”</p>
+<p>这也是为什么读的书大多是金融类的</p>
+<p>因为探索这个世界，“投机”是天底下最好玩的游戏</p>
+<p>不关乎盈利亏损</p>
+<p>交易市场是人类社会中最大的战场，当身处其中，就要与全球的金融巨鳄、政治团体以及无数的“散户”，还有那无处不在的黑天鹅、灰犀牛</p>
+<p>与天斗、与人斗、与己斗，虽然自己绝大时候都处于败方</p>
+<p>但最令人兴奋的也莫过于每一次的失利，暴露出自己人性和思考上的弱点，更进一步的认识自己和世界</p>
+<p>在几年前一篇短文中，写到自己对人生观有了一些认知</p>
+<p>在整个人生范围内，知道自己的所求，知道自己的存在意义，并为之去追寻。这个前提在于“价值观”多元，知道什么事情对自己重要，而如何让“价值观”多元，则需要“世界观”的丰富。学习的越多、知道的越多、见识的越多，则越丰富，也就对自己的“人生观”更清晰</p>
+<p>但知易行难，知行太难合一</p>
+<p>此刻的你走在正确的路上吗？</p>
+<p>是要平凡安稳的过一生还是想要一场终生难忘的非凡经历</p>
+<p>在哪里生活，和谁在一起，从事什么职业，是否已经有了答案</p>
+<p>每一种生活方式都是何其的艰难</p>
+<p>对于我们大多数人来说，离开学校的那一刻，便已置身旷野，虽有无限可能，但是经常徒步的人都会知道，没有路的时候才是最难的</p>
+<p>倘若能看到一条路迹，大多会选择沿着走下去</p>
+<p>这条路迹可能叫职级、也可能叫结婚生子</p>
+<p>不是说这条路不通，而是是否已经想清楚，是自己认真的选择还是迷茫的从众</p>
+<p>永远不要失去浪漫的能力啊</p>
+<p>难道你要放弃寻找那个可以照亮你人生的人了吗</p>
+<p>就像老李写的词“从来不想独身，却又预感晚婚，我在等，世上唯一契合灵魂”</p>
+<p>一颗善良灵魂</p>
+<p>未来不迎，当时不杂，既过不恋</p>
+<p>曾老的这句话让我想了整整三年，仍做不到专注当下</p>
+<p>就如同龙文章说的那句“我只想做事，我只想让事情是它本该有的那个样子”</p>
+<p>一贫如洗或是家财万贯，就交予“命”吧</p>
+<p>忘了谁说过这样一句话</p>
+<p>人的一辈子其实很长，但是人的一辈子也很短，不确定的人生是未知的充满无限乐趣的漫长的人生，而确定的没有任何意思的人生则是短暂的一生</p>
+<p>有些人相信命运，有些人不信。我既相信，也不信。</p>
+<p>有时候我们就像绑在线上的木偶，被几只无形的手操纵着。</p>
+<p>然而，可以肯定的是，我们不是注定要被牵着走的。我们可以自己抓起线来，在每个交叉路口调整方向，踏上通往未知的小径。</p>
+<p>人间有春色无疆，也有苦酒若干，每个人都会经历祛魅的过程，每个人也都需要有起身走向大航海的美好期望</p>
+<p>无论怎么样</p>
+<p>要记得在庸常的物质生活之上，也有更为迷人的精神世界，这个世界如同头顶上夜空中的月亮，它不耀眼，释放着宁静又平和的光辉</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：如同头顶上夜空中的月亮</li>
+        <li>Post author：langu_xyz</li>
+        <li>Create time：2023-12-15 20:00:00</li>
+        <li>
+            Post link：https://blog.langu.xyz/如同头顶上夜空中的月亮/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/%E6%88%91%E7%94%A8%E5%B0%BD%E4%B8%80%E7%94%9F%E5%8F%AA%E8%83%BD%E7%9C%8B%E5%88%B0%E4%BD%A0%E7%9A%84%E8%BD%AE%E5%BB%93/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">我用尽一生只能看到你的轮廓</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/Balance%EF%BC%9A%E5%9F%BA%E4%BA%8EBodyBattery%E7%9A%84%E7%B2%BE%E5%8A%9B%E7%AE%A1%E7%90%86/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Balance：基于BodyBattery的精力管理</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>&nbsp;-&nbsp;
+            
+            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a target="_blank" rel="noopener" href="//langu.xyz">AboutME:langu_xyz</a>
+        </div>
+        <!--
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        -->
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

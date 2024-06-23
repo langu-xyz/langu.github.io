@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="网络安全,黑客,JAVA安全,代码审计,渗透测试,入侵,SRC,扫描,WEB安全,移动安全,PHP">
+    <meta name="description" content="蓝骨, langu.xyz">
+    <meta name="author" content="langu_xyz">
+    
+        <title>
+            
+                关于XDR的一点笔记 |
+                    
+                        langu_xyz
+        </title>
+        
+<link rel="stylesheet" href="/css/style.css">
+
+            <link rel="shortcut icon" href="/images/logo.jpeg">
+                
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+                    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"blog.langu.xyz","root":"/","language":"zh","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/logo.jpeg","favicon":"/images/logo.jpeg","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/shamo.jpg","description":"XYZ(无限未来)"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+
+                    <script>
+                        var _hmt = _hmt || [];
+                        (function() {
+                          var hm = document.createElement("script");
+                          hm.src = "https://hm.baidu.com/hm.js?1cd6e64ff252acf24b707985fcec8850";
+                          var s = document.getElementsByTagName("script")[0]; 
+                          s.parentNode.insertBefore(hm, s);
+                        })();
+                        </script>
+                        
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="langu_xyz" type="application/atom+xml">
+</head>
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                    <a class="logo-title" href="/">
+                        langu_xyz
+                    </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class="" href="/" >
+                                HOME
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class="" href="/tags/THINK/" >
+                                THINK
+                            </a>
+                        </li>
+                        
+                            
+                                <li class="menu-item search search-popup-trigger">
+                                    <i class="fas fa-search"></i>
+                                </li>
+                                
+                                
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                    
+                        <div class="icon-item menu-bar">
+                            <div class="menu-bar-middle"></div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/" >
+                        HOME
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/tags/THINK/" >
+                        THINK
+                    </a>
+                </li>
+                
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">关于XDR的一点笔记</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/logo.jpeg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">langu_xyz</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2022-05-27 21:00:00
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%AE%89%E5%85%A8%E5%BB%BA%E8%AE%BE/">安全建设</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/THINK/">THINK</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.9k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>6 Mins</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>面对攻击者日益先进的战术、技术和程序(TTPs)，仍是一场艰难的战斗。随着大量新且隐蔽的攻击方法出现，我们除了威胁预防外，更需要新的策略和战术去检测和响应。</p>
+<p>当我们的安全团队努力防止针对我们组织的攻击成功时，必须面对一个事实：没有绝对安全的系统，威胁终会到来。</p>
+<p>XDR将EDR、UEBA、NTA、下一代防病毒软件和其他工具的所有功能整合到一个解决方案中，以提供最佳安全性。</p>
+<p>“X”代表任何数据源，无论是网络、端点还是云，重点是通过自动化强制乘以安全运营团队每个成员的生产力。最终目标是确保该类别的产品减少检测和应对威胁的平均时间，而无需增加团队中其他地方的精力。</p>
+<p>如果在自己的环境中不能像攻击者那样灵活，那么就很难有效的防御攻击。</p>
+<p>XDR必须具有跨整个环境的可见性和检测功能，并继承来自端点、网络、云环境的遥测技术。</p>
+<p>通过结合威胁情报来让自己具备应对未知攻击的能力。</p>
+<p>XDR的必要功能：</p>
+<pre><code>1. 支持任意来源的数据输入，一个真正的XDR将允许任何数据与威胁活动相关联
+2. 可扩展的存储和计算能力
+3. 更高更准确的自动化/跨数据分析，自动映射ATT&amp;CK框架，支持分析师进行深入分析
+4. 快速/简单部署
+5. 可视/可理解
+</code></pre>
+<p>十个关键的XDR能力(来自paloalto):</p>
+<pre><code>1. 一流的端点威胁防护能力
+2. 灵活的端点保护能力套件（例如主机防火墙、漏洞评估、磁盘加密、设备控制等）
+3. 跨数据源的扩展可见性
+4. 简化调查，减少时间和降低误报
+5. 通过机器学习来分析
+6. 提供协调一致的反应能力
+7. 安全任务自动化
+8. 独立的测试和验证
+9. 快速的产品升级和优化
+10. 降低安全成本
+</code></pre>
+<p>XDR用例：<br>    与UEBA的解决场景大同小异，可以参考这篇文章<a href="https://blog.langu.xyz/2022/03/15/UEBA(%E7%94%A8%E6%88%B7%E5%92%8C%E5%AE%9E%E4%BD%93%E8%A1%8C%E4%B8%BA%E5%88%86%E6%9E%90)%E5%8F%AF%E4%BB%A5%E7%94%A8%E6%9D%A5%E5%81%9A%E4%BB%80%E4%B9%88%EF%BC%88%E5%8D%81%E5%A4%A7%E5%9C%BA%E6%99%AF%EF%BC%89/">《UEBA(用户和实体行为分析)可以用来做什么（十大场景）》</a></p>
+<p>XDR趋势推动的主要原因：</p>
+<pre><code>1. 分布式企业资产 + 重新定义的边界 + 云/业务转型的成功 = 攻击向量和攻击技术的爆发增长
+2. 范围狭窄的安全解决方案在孤岛中运行
+3. SIEM 经常遭受范围蔓延的困扰，导致复杂的解决方案面临部署挑战
+</code></pre>
+<p>XDR的主要优势应该具备：</p>
+<pre><code>1. 提高检测、保护、响应能力
+2. 提高效率
+3. 省钱
+</code></pre>
+<p>如何提高protection能力：</p>
+<p>•    立即在组件安全产品之间共享本地威胁情报，以有效阻止所有组件的威胁。此外，在多种不同的检测方法（例如网络和端点）中利用外部获得的威胁情报</p>
+<p>•    将来自多个组件的弱信号组合成更强的恶意信号</p>
+<p>•    通过自动关联和确认警报来减少错过的警报</p>
+<p>•    集成相关数据，以实现更快、更准确的警报分类诊断</p>
+<p>•    通过加权指导提供集中配置和硬化功能，以帮助确定活动的优先次序</p>
+<p>如何提高安全运营人员的效率：</p>
+<p>•    将大量警报流转换为需要手动调查的少且准确的事件</p>
+<p>•    提供具有所有安全组件必要上下文的集成事件响应选项，以快速解决警报</p>
+<p>•    提供超出基础设施控制点（即网络和端点）的响应选项</p>
+<p>•    为重复性任务提供自动化能力</p>
+<p>•    通过跨安全组件提供共同的管理和工作流程体验，减少培训和升级支持</p>
+<p>•    提供可用和高质量的检测内容，无需调优</p>
+<p><img lazyload src="/images/loading.svg" data-src="1.png"></p>
+<p>XDR的三大支柱：</p>
+<pre><code>Front-End：
+
+    1. 生成遥测数据
+    2. 执行响应动作或增强安全控制
+
+Back-End：
+
+    1. 从传感器收集和关联数据
+    2. 执行威胁检测
+    3. 自动化告警、事件分类
+    4. 加速事件调查
+    5. 自动化响应检测到的威胁
+
+Content
+
+    以威胁为中心的规范性工作流程
+    1. API connectors
+    2. 解析器
+    3. 检测规则和模型
+    4. 调查和响应指导
+    5. MITRE ATT&amp;CK测绘
+    6. 响应行动和剧本
+    7. 报告
+</code></pre>
+<p><img lazyload src="/images/loading.svg" data-src="2.png"></p>
+<p>XDR的事件处理流程：</p>
+<pre><code>1. 从关键数据源生成安全遥测数据
+2. 将攻击遥测数据关联到一个事件时间线
+3. 自动化根因分析
+4. 借助全面的事件上下文加速威胁狩猎
+5. 推荐应对措施
+</code></pre>
+<p>以威胁为中心的统包式威胁检测、调查和响应 (TDIR) 工作流程：</p>
+<pre><code>收集：
+
+    预定义数据源
+
+检测：
+
+    基于行为的威胁检测
+    观察列表
+    MITRE 映射
+
+分类：
+
+    告警优先级
+    上下文收集和完善
+    自动创建案例
+
+调查：
+
+    为所有实体预构建事件时间表
+    自动化Q&amp;A
+
+响应：
+
+    统包剧本
+    定义事件类型
+    事件检查列表
+</code></pre>
+<p><img lazyload src="/images/loading.svg" data-src="3.png"></p>
+<p>XDR检测案例(Exabeam检测横向移动)：</p>
+<pre><code>数据源：
+
+    登录和访问资产
+    认证和访问管理
+    VPN和零信任网络接入
+    网络接入、分析和监控
+    EDR/EPP日志
+    操作系统日志
+
+检测规则类型：
+
+    Pass the ticket 
+    Pass the hash 
+    远程访问活动异常
+    网络连接和流量异常
+
+MITRE技术：
+
+    T1090: Proxy
+    T1205: Traffic signaling 
+    T1219:  Remote access software
+    T1071: Application layer protocol 
+    T1021: Remote services         
+    T1078: Valid accounts         
+    T1550: Use alternate authentication material 
+
+调查工具：
+
+    威胁猎人保存搜索结果
+    智能时间线
+    调查checklist指南
+
+响应动作：
+
+    邮件通知相关人
+    添加用户和资产到观察列表
+    对事件涉及的用户进行屏蔽、暂停或限制
+    重置凭证/授权
+    通过多因素认证重新身份验证
+    隔离系统
+</code></pre>
+<p><img lazyload src="/images/loading.svg" data-src="4.png"></p>
+<p>SIEM是目前有效的威胁探测和响应工具之一，SIEM的未来是XDR。</p>
+<p>SIEM的价值：</p>
+<pre><code>1. 高级检测，可用于检测特定类型的安全事件
+2. 安全操作， 可用于不同的威胁检测和响应用例
+3. 安全集成，充当其它安全应用的集成平台，如UEBA、SOAR等
+4. 可见性，为整个组织的事件数据提供可见性、合规性和报告
+5. …
+</code></pre>
+<p>SIEM面临的最大挑战：</p>
+<pre><code>1. 软件授权昂贵
+2. 维护和运营SIEM基础设施的成本很高，且需要很多资源和时间
+3. SIEM可以有效的检测已知威胁，但是对于未知威胁却不太有效
+4. SIEM更适合有经验的网络安全分析师使用
+5. SIEM基础设施部署需要复杂而漫长的部署周期
+6. …
+</code></pre>
+<p>XDR与零信任</p>
+<p>XDR 可以发挥关键作用，充当集成端到端零信任架构的中枢神经系统， 它在整个网络和环境中提供实时可见性和警报，监控核心策略的执行，提供上下文洞察力，并授权团队在需要时采取快速行动。</p>
+<p>XDR的风险：</p>
+<pre><code>就目前而言，XDR仍是一个新兴的待验证的安全产品，大量的优势仍然存在某些特定案例或者PPT上。
+</code></pre>
+<p>SOAPA(    security operations and analytics platform architecture)</p>
+<p>一个为规模、集成、高级分析和过程自动化而构建的架构。（ESG提出）</p>
+<p><img lazyload src="/images/loading.svg" data-src="5.png"></p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：关于XDR的一点笔记</li>
+        <li>Post author：langu_xyz</li>
+        <li>Create time：2022-05-27 21:00:00</li>
+        <li>
+            Post link：https://blog.langu.xyz/关于XDR的一点笔记/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/%E4%BB%A5%E6%94%BB%E9%98%B2%E5%AF%B9%E6%8A%97%E4%B8%BA%E6%A0%B8%E5%BF%83%E2%80%94%E5%A6%82%E4%BD%95%E9%98%B2%E5%BE%A1%E7%BD%91%E7%BB%9C%E9%92%93%E9%B1%BC(%E6%9D%A5%E8%87%AA%E5%9B%BD%E5%AE%B6%E5%8F%8D%E8%AF%88%E7%9A%84%E5%90%AF%E7%A4%BA)/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">以攻防对抗为核心—如何防御网络钓鱼(来自国家反诈的启示)</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/%E9%9B%B6%E4%BF%A1%E4%BB%BB%E4%B8%8B%E7%9A%84%E7%94%A8%E6%88%B7%E8%AE%BF%E9%97%AE/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">零信任下的用户访问</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>&nbsp;-&nbsp;
+            
+            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a target="_blank" rel="noopener" href="//langu.xyz">AboutME:langu_xyz</a>
+        </div>
+        <!--
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        -->
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="网络安全,黑客,JAVA安全,代码审计,渗透测试,入侵,SRC,扫描,WEB安全,移动安全,PHP">
+    <meta name="description" content="蓝骨, langu.xyz">
+    <meta name="author" content="langu_xyz">
+    
+        <title>
+            
+                Linux系统加固 |
+                    
+                        langu_xyz
+        </title>
+        
+<link rel="stylesheet" href="/css/style.css">
+
+            <link rel="shortcut icon" href="/images/logo.jpeg">
+                
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+                    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"blog.langu.xyz","root":"/","language":"zh","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/logo.jpeg","favicon":"/images/logo.jpeg","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/shamo.jpg","description":"XYZ(无限未来)"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+
+                    <script>
+                        var _hmt = _hmt || [];
+                        (function() {
+                          var hm = document.createElement("script");
+                          hm.src = "https://hm.baidu.com/hm.js?1cd6e64ff252acf24b707985fcec8850";
+                          var s = document.getElementsByTagName("script")[0]; 
+                          s.parentNode.insertBefore(hm, s);
+                        })();
+                        </script>
+                        
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="langu_xyz" type="application/atom+xml">
+</head>
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                    <a class="logo-title" href="/">
+                        langu_xyz
+                    </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class="" href="/" >
+                                HOME
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class="" href="/tags/THINK/" >
+                                THINK
+                            </a>
+                        </li>
+                        
+                            
+                                <li class="menu-item search search-popup-trigger">
+                                    <i class="fas fa-search"></i>
+                                </li>
+                                
+                                
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                    
+                        <div class="icon-item menu-bar">
+                            <div class="menu-bar-middle"></div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/" >
+                        HOME
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/tags/THINK/" >
+                        THINK
+                    </a>
+                </li>
+                
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">Linux系统加固</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/logo.jpeg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">langu_xyz</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2016-09-01 21:00:00
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/">安全技术</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/dev/">dev</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>649 Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>2 Mins</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h3 id="为空口令用户设置密码"><a href="#为空口令用户设置密码" class="headerlink" title="为空口令用户设置密码"></a>为空口令用户设置密码</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/passwd</span><br><span class="line">    注册名：口令：用户标识号：组标识号：用户名：用户主目录：命令解释程序 </span><br><span class="line">    查看是否存在空口令用户（X为存在密码，*为被封禁）</span><br><span class="line">passwd 空口令用户名</span><br></pre></td></tr></table></figure>
+<h3 id="缺省密码长度限制"><a href="#缺省密码长度限制" class="headerlink" title="缺省密码长度限制"></a>缺省密码长度限制</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/login.defs </span><br><span class="line">查看PASS_MIN_LEN选项值</span><br><span class="line">PASS_MIN_LEN  8</span><br><span class="line">设置密码长度最短为8</span><br></pre></td></tr></table></figure>
+<h3 id="缺省密码生存周期限制"><a href="#缺省密码生存周期限制" class="headerlink" title="缺省密码生存周期限制"></a>缺省密码生存周期限制</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/login.defs </span><br><span class="line">PASS_MAX_DAYS 90</span><br><span class="line">PASS_MIN_DAYS 0</span><br><span class="line">设置帐户口令的生存期不长于90 天</span><br></pre></td></tr></table></figure>
+<h3 id="口令过期提醒"><a href="#口令过期提醒" class="headerlink" title="口令过期提醒"></a>口令过期提醒</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/login.defs</span><br><span class="line">PASS_WARN_AGE 7</span><br><span class="line">口令到期前多少天开始通知用户口令即将到期</span><br></pre></td></tr></table></figure>
+<h3 id="限制超级管理员远程登录"><a href="#限制超级管理员远程登录" class="headerlink" title="限制超级管理员远程登录"></a>限制超级管理员远程登录</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/ssh/sshd_config</span><br><span class="line">把PermitRootLogin yes修改为no</span><br><span class="line">service sshd restart</span><br><span class="line">重启sshd服务</span><br><span class="line">如果遇到sshd: unrecognized service错误</span><br><span class="line">尝试一下service ssh restart</span><br><span class="line">用ps -ef | grep sshd查看一下服务是否启动</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="为不同的管理员分配不同的账户"><a href="#为不同的管理员分配不同的账户" class="headerlink" title="为不同的管理员分配不同的账户"></a>为不同的管理员分配不同的账户</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/passwd</span><br><span class="line">useradd username</span><br><span class="line">passwd password</span><br><span class="line">增加新用户</span><br><span class="line">chmod 777 目录</span><br></pre></td></tr></table></figure>
+<h3 id="去除不需要的帐号、修改默认帐号的shell变量"><a href="#去除不需要的帐号、修改默认帐号的shell变量" class="headerlink" title="去除不需要的帐号、修改默认帐号的shell变量"></a>去除不需要的帐号、修改默认帐号的shell变量</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/passwd</span><br><span class="line">cat /etc/shadow</span><br><span class="line">删除不需要的账户</span><br><span class="line">userdel username</span><br><span class="line">groupdel username</span><br><span class="line"></span><br><span class="line">设置shell</span><br><span class="line">usermod -s /dev/hull username</span><br></pre></td></tr></table></figure>
+<h3 id="对系统账号进行登陆限制"><a href="#对系统账号进行登陆限制" class="headerlink" title="对系统账号进行登陆限制"></a>对系统账号进行登陆限制</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">禁止某用户登陆</span><br><span class="line">example：</span><br><span class="line">bin:x:2:2:bin:/bin:/bin/bash</span><br><span class="line">=&gt;</span><br><span class="line">bin:x:2:2:bin:/bin:/bin/nologin</span><br><span class="line">禁用bin用户登陆</span><br><span class="line"></span><br><span class="line">touch /etc/nologin</span><br><span class="line">禁止除root以外所有用户登陆</span><br><span class="line">建议禁掉的用户：daemon   bin  sys  adm  lp   uucp   nuucp  smmsp等</span><br></pre></td></tr></table></figure>
+<h3 id="设置关键目录的权限"><a href="#设置关键目录的权限" class="headerlink" title="设置关键目录的权限"></a>设置关键目录的权限</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">关键目录：</span><br><span class="line">chmod 644 /etc/passwd </span><br><span class="line">chmod 600 /etc/shadow </span><br><span class="line">chmod 644 /etc/group</span><br></pre></td></tr></table></figure>
+<h3 id="设置目录权限"><a href="#设置目录权限" class="headerlink" title="设置目录权限"></a>设置目录权限</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ls -l查看权限</span><br><span class="line">权限前边的ld为d是目录文件,l是链接文件</span><br><span class="line">chmod -R 750 /etc/init.d/*</span><br></pre></td></tr></table></figure>
+<h3 id="设置关键文件的属性"><a href="#设置关键文件的属性" class="headerlink" title="设置关键文件的属性"></a>设置关键文件的属性</h3><h3 id="禁止ping"><a href="#禁止ping" class="headerlink" title="禁止ping"></a>禁止ping</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># echo 1 &gt; /proc/sys/net/ipv4/icmp_echo_ignore_all 开启</span><br><span class="line"># echo 0 &gt; /proc/sys/net/ipv4/icmp_echo_ignore_all  关闭</span><br></pre></td></tr></table></figure>
+<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; iptables -F   #清空所有的链</span><br><span class="line">&gt; iptables -X  #清空所有自定义的链</span><br></pre></td></tr></table></figure>
+<h3 id="关掉全部端口"><a href="#关掉全部端口" class="headerlink" title="关掉全部端口"></a>关掉全部端口</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; iptables -P INPUT DROP</span><br><span class="line">&gt; iptables -P OUTPUT DROP</span><br></pre></td></tr></table></figure>
+<h3 id="开启端口第一步"><a href="#开启端口第一步" class="headerlink" title="开启端口第一步"></a>开启端口第一步</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">iptables -A INPUT -p icmp --icmp-type any -j ACCEPT</span><br><span class="line">允许icmp包进入</span><br><span class="line">iptables -A INPUT -s localhost -d localhost -j ACCEPT</span><br><span class="line">允许本地的数据包</span><br><span class="line">iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT</span><br><span class="line">允许已经建立和相关的数据包进入</span><br><span class="line">iptables -A OUTPUT -p icmp --icmp any -j ACCEPT</span><br><span class="line">允许icmp包出去</span><br><span class="line">iptables -A OUTPUT -s localhost -d localhost -j ACCEPT</span><br><span class="line">允许本地数据包</span><br><span class="line">iptables -A OUTPUT -m state --state ESTABLISHED,RELATED -j ACCEPT</span><br><span class="line">允许已经建立和相关的数据包出去</span><br></pre></td></tr></table></figure>
+<h3 id="关闭端口号"><a href="#关闭端口号" class="headerlink" title="关闭端口号"></a>关闭端口号</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">iptables -I INPUT -i eth0 -p tcp --dport 81 -j DROP</span><br><span class="line">iptables -I OUTPUT -o eth0 -p tcp --sport 81 -j DROP</span><br></pre></td></tr></table></figure>
+<h3 id="打开端口号"><a href="#打开端口号" class="headerlink" title="打开端口号"></a>打开端口号</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">iptables -I INPUT -i eth0 -p tcp --dport 81 -j ACCEPT</span><br><span class="line">iptables  -I OUTPUT -o eth0 -p tcp --sport 81 -j ACCEPT</span><br></pre></td></tr></table></figure>
+
+
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：Linux系统加固</li>
+        <li>Post author：langu_xyz</li>
+        <li>Create time：2016-09-01 21:00:00</li>
+        <li>
+            Post link：https://blog.langu.xyz/Linux系统加固/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/PHP%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1TIPS/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">PHP代码审计TIPS</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/%E9%95%BF%E7%94%9F%E5%89%91%E4%B8%8E%E5%AD%94%E9%9B%80%E7%BF%8E/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">长生剑与孔雀翎</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>&nbsp;-&nbsp;
+            
+            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a target="_blank" rel="noopener" href="//langu.xyz">AboutME:langu_xyz</a>
+        </div>
+        <!--
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        -->
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E7%A9%BA%E5%8F%A3%E4%BB%A4%E7%94%A8%E6%88%B7%E8%AE%BE%E7%BD%AE%E5%AF%86%E7%A0%81"><span class="nav-text">为空口令用户设置密码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%BA%E7%9C%81%E5%AF%86%E7%A0%81%E9%95%BF%E5%BA%A6%E9%99%90%E5%88%B6"><span class="nav-text">缺省密码长度限制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%BA%E7%9C%81%E5%AF%86%E7%A0%81%E7%94%9F%E5%AD%98%E5%91%A8%E6%9C%9F%E9%99%90%E5%88%B6"><span class="nav-text">缺省密码生存周期限制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%A3%E4%BB%A4%E8%BF%87%E6%9C%9F%E6%8F%90%E9%86%92"><span class="nav-text">口令过期提醒</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%99%90%E5%88%B6%E8%B6%85%E7%BA%A7%E7%AE%A1%E7%90%86%E5%91%98%E8%BF%9C%E7%A8%8B%E7%99%BB%E5%BD%95"><span class="nav-text">限制超级管理员远程登录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%B8%8D%E5%90%8C%E7%9A%84%E7%AE%A1%E7%90%86%E5%91%98%E5%88%86%E9%85%8D%E4%B8%8D%E5%90%8C%E7%9A%84%E8%B4%A6%E6%88%B7"><span class="nav-text">为不同的管理员分配不同的账户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%BB%E9%99%A4%E4%B8%8D%E9%9C%80%E8%A6%81%E7%9A%84%E5%B8%90%E5%8F%B7%E3%80%81%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E5%B8%90%E5%8F%B7%E7%9A%84shell%E5%8F%98%E9%87%8F"><span class="nav-text">去除不需要的帐号、修改默认帐号的shell变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E7%B3%BB%E7%BB%9F%E8%B4%A6%E5%8F%B7%E8%BF%9B%E8%A1%8C%E7%99%BB%E9%99%86%E9%99%90%E5%88%B6"><span class="nav-text">对系统账号进行登陆限制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E5%85%B3%E9%94%AE%E7%9B%AE%E5%BD%95%E7%9A%84%E6%9D%83%E9%99%90"><span class="nav-text">设置关键目录的权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E7%9B%AE%E5%BD%95%E6%9D%83%E9%99%90"><span class="nav-text">设置目录权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E5%85%B3%E9%94%AE%E6%96%87%E4%BB%B6%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="nav-text">设置关键文件的属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A6%81%E6%AD%A2ping"><span class="nav-text">禁止ping</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E6%8E%89%E5%85%A8%E9%83%A8%E7%AB%AF%E5%8F%A3"><span class="nav-text">关掉全部端口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E5%90%AF%E7%AB%AF%E5%8F%A3%E7%AC%AC%E4%B8%80%E6%AD%A5"><span class="nav-text">开启端口第一步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E9%97%AD%E7%AB%AF%E5%8F%A3%E5%8F%B7"><span class="nav-text">关闭端口号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%93%E5%BC%80%E7%AB%AF%E5%8F%A3%E5%8F%B7"><span class="nav-text">打开端口号</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

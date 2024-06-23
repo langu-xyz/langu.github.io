@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="网络安全,黑客,JAVA安全,代码审计,渗透测试,入侵,SRC,扫描,WEB安全,移动安全,PHP">
+    <meta name="description" content="蓝骨, langu.xyz">
+    <meta name="author" content="langu_xyz">
+    
+        <title>
+            
+                Support Vector Machines（SVM） |
+                    
+                        langu_xyz
+        </title>
+        
+<link rel="stylesheet" href="/css/style.css">
+
+            <link rel="shortcut icon" href="/images/logo.jpeg">
+                
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+                    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"blog.langu.xyz","root":"/","language":"zh","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/logo.jpeg","favicon":"/images/logo.jpeg","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/shamo.jpg","description":"XYZ(无限未来)"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+
+                    <script>
+                        var _hmt = _hmt || [];
+                        (function() {
+                          var hm = document.createElement("script");
+                          hm.src = "https://hm.baidu.com/hm.js?1cd6e64ff252acf24b707985fcec8850";
+                          var s = document.getElementsByTagName("script")[0]; 
+                          s.parentNode.insertBefore(hm, s);
+                        })();
+                        </script>
+                        
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="langu_xyz" type="application/atom+xml">
+</head>
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                    <a class="logo-title" href="/">
+                        langu_xyz
+                    </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class="" href="/" >
+                                HOME
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class="" href="/tags/THINK/" >
+                                THINK
+                            </a>
+                        </li>
+                        
+                            
+                                <li class="menu-item search search-popup-trigger">
+                                    <i class="fas fa-search"></i>
+                                </li>
+                                
+                                
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                    
+                        <div class="icon-item menu-bar">
+                            <div class="menu-bar-middle"></div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/" >
+                        HOME
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/tags/THINK/" >
+                        THINK
+                    </a>
+                </li>
+                
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">Support Vector Machines（SVM）</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/logo.jpeg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">langu_xyz</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2019-07-22 21:00:00
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%AE%89%E5%85%A8%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">安全数据分析</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/ML/">ML</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>3.2k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>17 Mins</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h4 id="0x01-SVM"><a href="#0x01-SVM" class="headerlink" title="0x01 SVM"></a>0x01 SVM</h4><p>实现算法：序列最小优化（SMO）</p>
+<p>支持向量：离分割超平面最近的那些点</p>
+<p>优点：</p>
+<ul>
+<li>范化错误率低</li>
+<li>计算开销不大</li>
+<li>结果易解释</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>对参数调节和核函数的选择敏感</li>
+<li>原始分类器需要修改才能处理多分类问题</li>
+</ul>
+<p>适用数据类型：</p>
+<ul>
+<li>数值型</li>
+<li>标称型</li>
+</ul>
+<h4 id="0x02-SMO"><a href="#0x02-SMO" class="headerlink" title="0x02 SMO"></a>0x02 SMO</h4><p>将大优化问题分解为多个小优化问题来求解</p>
+<p>目标是求出一系列alpha和b，一旦求出了这些alpha，就很容易计算出权重向量w并得到分隔超平面</p>
+<p>工作原理是:每次循环中选择两个alpha进行优化处理。一旦找到一对合适的alpha，那么就增大其中一个同时减小另一个</p>
+<ul>
+<li>简化版实现</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line">def selectJrand(i, m):</span><br><span class="line">    &#x27;&#x27;&#x27;</span><br><span class="line">    在某个区间范围内随机选择一个整数</span><br><span class="line">    :param i: 第i个alpha的下标</span><br><span class="line">    :param m: 所有alpha的数目</span><br><span class="line">    :return:</span><br><span class="line">    &#x27;&#x27;&#x27;</span><br><span class="line">    j=i</span><br><span class="line">    while (j==i):</span><br><span class="line">        j = int(random.uniform(0, m))</span><br><span class="line">    return j</span><br><span class="line"></span><br><span class="line">def clipAlpha(aj, H, L):</span><br><span class="line">    &#x27;&#x27;&#x27;</span><br><span class="line">    用于调整大于H或小于L的alpha值</span><br><span class="line">    :param aj:</span><br><span class="line">    :param H:</span><br><span class="line">    :param L:</span><br><span class="line">    :return:</span><br><span class="line">    &#x27;&#x27;&#x27;</span><br><span class="line">    if aj &gt; H: </span><br><span class="line">        aj = H</span><br><span class="line">    if L &gt; aj:</span><br><span class="line">        aj = L</span><br><span class="line">    return aj</span><br><span class="line"></span><br><span class="line">def smoSimple(dataMatIn, classLabels, C, toler, maxIter):</span><br><span class="line">    &#x27;&#x27;&#x27;</span><br><span class="line"></span><br><span class="line">    :param dataMatIn:数据集</span><br><span class="line">    :param classLabels:类别标签</span><br><span class="line">    :param C:常数C</span><br><span class="line">    :param toler:容错率</span><br><span class="line">    :param maxIter:退出前的最大循环次数</span><br><span class="line">    :return:</span><br><span class="line">    &#x27;&#x27;&#x27;</span><br><span class="line">    dataMatrix = mat(dataMatIn)</span><br><span class="line">    labelMat = mat(classLabels).transpose()</span><br><span class="line">    b = 0</span><br><span class="line">    m, n = shape(dataMatrix)</span><br><span class="line">    alphas = mat(zeros((m, 1)))</span><br><span class="line">    iter = 0 #记录循环次数</span><br><span class="line">    while (iter &lt; maxIter):</span><br><span class="line">        alphaPairsChanged = 0 #用于记录alpha是否优化</span><br><span class="line">        for i in range(m):</span><br><span class="line">            fXi = float(multiply(alphas, labelMat).T*(dataMatrix*dataMatrix[i, :].T)) + b #预测的类别</span><br><span class="line">            Ei = fXi - float(labelMat[i])#预测和实际的误差</span><br><span class="line">            #如果误差过大，则进行优化</span><br><span class="line">            if ((labelMat[i]*Ei &lt; -toler) and (alphas[i] &lt; C)) or ((labelMat[i]*Ei &gt; toler) and (alphas[i] &gt; 0)):</span><br><span class="line">                j = selectJrand(i, m) #随机选择第二个alpha值</span><br><span class="line">                fXj = float(multiply(alphas, labelMat).T*(dataMatrix*dataMatrix[j, :].T)) + b #预测类别</span><br><span class="line">                Ej = fXj - float(labelMat[j]) #误差</span><br><span class="line">                alphaIold = alphas[i].copy()</span><br><span class="line">                alphaJold = alphas[j].copy()</span><br><span class="line">                #计算L和H</span><br><span class="line">                if (labelMat[i] != labelMat[j]):</span><br><span class="line">                    L = max(0, alphas[j] - alphas[i])</span><br><span class="line">                    H = min(C, C + alphas[j] - alphas[i])</span><br><span class="line">                else:</span><br><span class="line">                    L = max(0, alphas[j] + alphas[i] - C)</span><br><span class="line">                    H = min(C, alphas[j] + alphas[i])</span><br><span class="line">                if L==H:</span><br><span class="line">                    print(&quot;L==H&quot;)</span><br><span class="line">                    continue</span><br><span class="line">                eta = 2.0 * dataMatrix[i, :]*dataMatrix[j, :].T - dataMatrix[i, :]*dataMatrix[i, :].T - dataMatrix[j, :]*dataMatrix[j, :].T #最优修改量</span><br><span class="line">                if eta &gt;= 0:</span><br><span class="line">                    print(&quot;eta&gt;=0&quot;)</span><br><span class="line">                    continue</span><br><span class="line">                alphas[j] -= labelMat[j]*(Ei - Ej)/eta</span><br><span class="line">                alphas[j] = clipAlpha(alphas[j], H, L)</span><br><span class="line">                if (abs(alphas[j] - alphaJold) &lt; 0.00001):</span><br><span class="line">                    print(&quot;j not moving enough&quot;)</span><br><span class="line">                    continue</span><br><span class="line">                alphas[i] += labelMat[j]*labelMat[i]*(alphaJold - alphas[j])#修改i，修改量和j相同，方向相反</span><br><span class="line">                #设置常数项</span><br><span class="line">                b1 = b - Ei - labelMat[i]*(alphas[i]-alphaIold)*dataMatrix[i, :]*dataMatrix[i, :].T - labelMat[j]*(alphas[j]-alphaJold)*dataMatrix[i, :]*dataMatrix[j, :].T</span><br><span class="line">                b2 = b - Ej - labelMat[i]*(alphas[i]-alphaIold)*dataMatrix[i, :]*dataMatrix[j, :].T - labelMat[j]*(alphas[j]-alphaJold)*dataMatrix[j, :]*dataMatrix[j, :].T</span><br><span class="line">                if (0 &lt; alphas[i]) and (C &gt; alphas[i]):</span><br><span class="line">                    b = b1</span><br><span class="line">                elif (0 &lt; alphas[j]) and (C &gt; alphas[j]):</span><br><span class="line">                    b = b2</span><br><span class="line">                else:</span><br><span class="line">                    b = (b1 + b2)/2.0</span><br><span class="line">                alphaPairsChanged += 1</span><br><span class="line">                print(&quot;iter: %d i:%d, pairs changed %d&quot; % (iter, i, alphaPairsChanged))</span><br><span class="line">        if (alphaPairsChanged == 0):</span><br><span class="line">            iter += 1</span><br><span class="line">        else:</span><br><span class="line">            iter = 0</span><br><span class="line">        print(&quot;iteration number: %d&quot; % iter)</span><br><span class="line">    return b, alphas</span><br></pre></td></tr></table></figure>
+
+<p><img lazyload src="/images/loading.svg" data-src="15384703252463.jpg"></p>
+<p>找出哪些点是支持向量</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for i in range(100):</span><br><span class="line">    if alphas[i] &gt; 0.0:</span><br><span class="line">        print(dateArr[i], labelArr[i])</span><br></pre></td></tr></table></figure>
+
+<p><img lazyload src="/images/loading.svg" data-src="15384704640833.jpg"></p>
+<ul>
+<li>完整版实现</li>
+</ul>
+<p><img lazyload src="/images/loading.svg" data-src="15384717843165.jpg"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br></pre></td><td class="code"><pre><span class="line">class optStruct:</span><br><span class="line">    def __init__(self, dataMatIn, classLabels, C, toler, kTup):  # Initialize the structure with the parameters</span><br><span class="line">        self.X = dataMatIn</span><br><span class="line">        self.labelMat = classLabels</span><br><span class="line">        self.C = C</span><br><span class="line">        self.tol = toler</span><br><span class="line">        self.m = shape(dataMatIn)[0]</span><br><span class="line">        self.alphas = mat(zeros((self.m, 1)))</span><br><span class="line">        self.b = 0</span><br><span class="line">        self.eCache = mat(zeros((self.m, 2))) #first column is valid flag</span><br><span class="line">        self.K = mat(zeros((self.m, self.m)))</span><br><span class="line">        for i in range(self.m):</span><br><span class="line">            self.K[:, i] = kernelTrans(self.X, self.X[i, :], kTup)</span><br><span class="line">        </span><br><span class="line">def calcEk(oS, k):</span><br><span class="line">    &#x27;&#x27;&#x27;</span><br><span class="line">    计算E值并返回</span><br><span class="line">    :param oS:</span><br><span class="line">    :param k:</span><br><span class="line">    :return:</span><br><span class="line">    &#x27;&#x27;&#x27;</span><br><span class="line">    fXk = float(multiply(oS.alphas, oS.labelMat).T*oS.K[:, k] + oS.b)</span><br><span class="line">    Ek = fXk - float(oS.labelMat[k])</span><br><span class="line">    return Ek</span><br><span class="line">        </span><br><span class="line">def selectJ(i, oS, Ei):</span><br><span class="line">    &#x27;&#x27;&#x27;</span><br><span class="line">    选择第二个alpha</span><br><span class="line">    :param i:</span><br><span class="line">    :param oS:</span><br><span class="line">    :param Ei:</span><br><span class="line">    :return:</span><br><span class="line">    &#x27;&#x27;&#x27;</span><br><span class="line">    maxK = -1</span><br><span class="line">    maxDeltaE = 0</span><br><span class="line">    Ej = 0</span><br><span class="line">    oS.eCache[i] = [1, Ei]</span><br><span class="line">    validEcacheList = nonzero(oS.eCache[:, 0].A)[0]</span><br><span class="line">    if (len(validEcacheList)) &gt; 1:</span><br><span class="line">        for k in validEcacheList:</span><br><span class="line">            if k == i:</span><br><span class="line">                continue</span><br><span class="line">            Ek = calcEk(oS, k)</span><br><span class="line">            deltaE = abs(Ei - Ek)</span><br><span class="line">            if (deltaE &gt; maxDeltaE):</span><br><span class="line">                maxK = k</span><br><span class="line">                maxDeltaE = deltaE</span><br><span class="line">                Ej = Ek</span><br><span class="line">        return maxK, Ej</span><br><span class="line">    else:</span><br><span class="line">        j = selectJrand(i, oS.m)</span><br><span class="line">        Ej = calcEk(oS, j)</span><br><span class="line">    return j, Ej</span><br><span class="line"></span><br><span class="line">def updateEk(oS, k):</span><br><span class="line">    &#x27;&#x27;&#x27;</span><br><span class="line">    计算误差值并存入缓存</span><br><span class="line">    :param oS:</span><br><span class="line">    :param k:</span><br><span class="line">    :return:</span><br><span class="line">    &#x27;&#x27;&#x27;</span><br><span class="line">    Ek = calcEk(oS, k)</span><br><span class="line">    oS.eCache[k] = [1, Ek]</span><br><span class="line">        </span><br><span class="line">def innerL(i, oS):</span><br><span class="line">    &#x27;&#x27;&#x27;</span><br><span class="line">    优化过程</span><br><span class="line">    :param i:</span><br><span class="line">    :param oS:</span><br><span class="line">    :return:</span><br><span class="line">    &#x27;&#x27;&#x27;</span><br><span class="line">    Ei = calcEk(oS, i)</span><br><span class="line">    if ((oS.labelMat[i]*Ei &lt; -oS.tol) and (oS.alphas[i] &lt; oS.C)) or ((oS.labelMat[i]*Ei &gt; oS.tol) and (oS.alphas[i] &gt; 0)):</span><br><span class="line">        j, Ej = selectJ(i, oS, Ei)</span><br><span class="line">        alphaIold = oS.alphas[i].copy(); alphaJold = oS.alphas[j].copy()</span><br><span class="line">        if (oS.labelMat[i] != oS.labelMat[j]):</span><br><span class="line">            L = max(0, oS.alphas[j] - oS.alphas[i])</span><br><span class="line">            H = min(oS.C, oS.C + oS.alphas[j] - oS.alphas[i])</span><br><span class="line">        else:</span><br><span class="line">            L = max(0, oS.alphas[j] + oS.alphas[i] - oS.C)</span><br><span class="line">            H = min(oS.C, oS.alphas[j] + oS.alphas[i])</span><br><span class="line">        if L==H:</span><br><span class="line">            print(&quot;L==H&quot;)</span><br><span class="line">            return 0</span><br><span class="line">        eta = 2.0 * oS.K[i, j] - oS.K[i, i] - oS.K[j, j]</span><br><span class="line">        if eta &gt;= 0:</span><br><span class="line">            print(&quot;eta&gt;=0&quot;)</span><br><span class="line">            return 0</span><br><span class="line">        oS.alphas[j] -= oS.labelMat[j]*(Ei - Ej)/eta</span><br><span class="line">        oS.alphas[j] = clipAlpha(oS.alphas[j], H, L)</span><br><span class="line">        updateEk(oS, j)</span><br><span class="line">        if (abs(oS.alphas[j] - alphaJold) &lt; 0.00001):</span><br><span class="line">            print(&quot;j not moving enough&quot;)</span><br><span class="line">            return 0</span><br><span class="line">        oS.alphas[i] += oS.labelMat[j]*oS.labelMat[i]*(alphaJold - oS.alphas[j])</span><br><span class="line">        updateEk(oS, i)</span><br><span class="line">        b1 = oS.b - Ei - oS.labelMat[i]*(oS.alphas[i]-alphaIold)*oS.K[i, i] - oS.labelMat[j]*(oS.alphas[j]-alphaJold)*oS.K[i, j]</span><br><span class="line">        b2 = oS.b - Ej - oS.labelMat[i]*(oS.alphas[i]-alphaIold)*oS.K[i, j] - oS.labelMat[j]*(oS.alphas[j]-alphaJold)*oS.K[j, j]</span><br><span class="line">        if (0 &lt; oS.alphas[i]) and (oS.C &gt; oS.alphas[i]):</span><br><span class="line">            oS.b = b1</span><br><span class="line">        elif (0 &lt; oS.alphas[j]) and (oS.C &gt; oS.alphas[j]):</span><br><span class="line">            oS.b = b2</span><br><span class="line">        else:</span><br><span class="line">            oS.b = (b1 + b2)/2.0</span><br><span class="line">        return 1</span><br><span class="line">    else:</span><br><span class="line">        return 0</span><br><span class="line"></span><br><span class="line">def smoP(dataMatIn, classLabels, C, toler, maxIter,kTup=(&#x27;lin&#x27;, 0)):</span><br><span class="line">    &#x27;&#x27;&#x27;</span><br><span class="line">    完整的SMO外循环</span><br><span class="line">    :param dataMatIn:</span><br><span class="line">    :param classLabels:</span><br><span class="line">    :param C:</span><br><span class="line">    :param toler:</span><br><span class="line">    :param maxIter:</span><br><span class="line">    :param kTup:</span><br><span class="line">    :return:</span><br><span class="line">    &#x27;&#x27;&#x27;</span><br><span class="line">    oS = optStruct(mat(dataMatIn), mat(classLabels).transpose(), C, toler, kTup)</span><br><span class="line">    iter = 0</span><br><span class="line">    entireSet = True</span><br><span class="line">    alphaPairsChanged = 0</span><br><span class="line">    while (iter &lt; maxIter) and ((alphaPairsChanged &gt; 0) or (entireSet)):</span><br><span class="line">        alphaPairsChanged = 0</span><br><span class="line">        if entireSet:</span><br><span class="line">            for i in range(oS.m):        </span><br><span class="line">                alphaPairsChanged += innerL(i,oS)</span><br><span class="line">                print(&quot;fullSet, iter: %d i:%d, pairs changed %d&quot; % (iter, i, alphaPairsChanged))</span><br><span class="line">            iter += 1</span><br><span class="line">        else:</span><br><span class="line">            nonBoundIs = nonzero((oS.alphas.A &gt; 0) * (oS.alphas.A &lt; C))[0]</span><br><span class="line">            for i in nonBoundIs:</span><br><span class="line">                alphaPairsChanged += innerL(i, oS)</span><br><span class="line">                print(&quot;non-bound, iter: %d i:%d, pairs changed %d&quot; % (iter, i, alphaPairsChanged))</span><br><span class="line">            iter += 1</span><br><span class="line">        if entireSet:</span><br><span class="line">            entireSet = False</span><br><span class="line">        elif (alphaPairsChanged == 0):</span><br><span class="line">            entireSet = True</span><br><span class="line">        print(&quot;iteration number: %d&quot; % iter)</span><br><span class="line">    return oS.b, oS.alphas</span><br><span class="line"></span><br><span class="line">def calcWs(alphas, dataArr, classLabels):</span><br><span class="line">    &#x27;&#x27;&#x27;</span><br><span class="line">    利用计算出的alpha进行分类</span><br><span class="line">    :param alphas:</span><br><span class="line">    :param dataArr:</span><br><span class="line">    :param classLabels:</span><br><span class="line">    :return:</span><br><span class="line">    &#x27;&#x27;&#x27;</span><br><span class="line">    X = mat(dataArr)</span><br><span class="line">    labelMat = mat(classLabels).transpose()</span><br><span class="line">    m, n = shape(X)</span><br><span class="line">    w = zeros((n, 1))</span><br><span class="line">    for i in range(m):</span><br><span class="line">        w += multiply(alphas[i]*labelMat[i], X[i, :].T)</span><br><span class="line">    return w</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">for i in range(100):</span><br><span class="line">        if alphas[i] &gt; 0.0:</span><br><span class="line">            print(dateArr[i], labelArr[i])</span><br><span class="line">    ws = calcWs(alphas, dateArr, labelArr)</span><br><span class="line">    print(ws)</span><br><span class="line">    datmat = mat(dateArr)</span><br><span class="line">    print(datmat[0]*mat(ws) + b)</span><br></pre></td></tr></table></figure>
+
+<p><img lazyload src="/images/loading.svg" data-src="15384718527848.jpg"></p>
+<p>最后一行为测试结果，小于0属于-1类，大于0属于1类，等于0属于-1类</p>
+<h4 id="0x03-kernel"><a href="#0x03-kernel" class="headerlink" title="0x03 kernel"></a>0x03 kernel</h4><p><img lazyload src="/images/loading.svg" data-src="15384719736061.jpg"></p>
+<ul>
+<li>将数据映射到高维空间</li>
+</ul>
+<p>将数据从一个特征空间转换到另一个特征空间<br>映射会将低维特征空间映射到高维空间</p>
+<ul>
+<li>径向基核函数</li>
+</ul>
+<p><img lazyload src="/images/loading.svg" data-src="15384721217035.jpg"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">def kernelTrans(X, A, kTup):</span><br><span class="line">    &#x27;&#x27;&#x27;</span><br><span class="line">    核函数</span><br><span class="line">    :param X:</span><br><span class="line">    :param A:</span><br><span class="line">    :param kTup:包含核函数信息的元组</span><br><span class="line">    :return:</span><br><span class="line">    &#x27;&#x27;&#x27;</span><br><span class="line">    m, n = shape(X)</span><br><span class="line">    K = mat(zeros((m, 1)))</span><br><span class="line">    if kTup[0]==&#x27;lin&#x27;:</span><br><span class="line">        K = X * A.T</span><br><span class="line">    elif kTup[0]==&#x27;rbf&#x27;:</span><br><span class="line">        for j in range(m):</span><br><span class="line">            deltaRow = X[j, :] - A</span><br><span class="line">            K[j] = deltaRow*deltaRow.T</span><br><span class="line">        K = exp(K/(-1*kTup[1]**2))</span><br><span class="line">    else:</span><br><span class="line">        raise NameError(&#x27;Houston We Have a Problem -- That Kernel is not recognized&#x27;)</span><br><span class="line">    return K</span><br></pre></td></tr></table></figure>
+
+<p>测试</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">def testRbf(k1=1.3):</span><br><span class="line">    dataArr,labelArr = loadDataSet(&#x27;testSetRBF.txt&#x27;)</span><br><span class="line">    b,alphas = smoP(dataArr, labelArr, 200, 0.0001, 10000, (&#x27;rbf&#x27;, k1))</span><br><span class="line">    datMat=mat(dataArr)</span><br><span class="line">    labelMat = mat(labelArr).transpose()</span><br><span class="line">    svInd=nonzero(alphas.A&gt;0)[0]</span><br><span class="line">    sVs=datMat[svInd]</span><br><span class="line">    labelSV = labelMat[svInd]</span><br><span class="line">    print(&quot;there are %d Support Vectors&quot; % shape(sVs)[0])</span><br><span class="line">    m, n = shape(datMat)</span><br><span class="line">    errorCount = 0</span><br><span class="line">    for i in range(m):</span><br><span class="line">        kernelEval = kernelTrans(sVs, datMat[i, :], (&#x27;rbf&#x27;, k1))</span><br><span class="line">        predict = kernelEval.T * multiply(labelSV, alphas[svInd]) + b</span><br><span class="line">        if sign(predict) != sign(labelArr[i]):</span><br><span class="line">            errorCount += 1</span><br><span class="line">    print(&quot;the training error rate is: %f&quot; % (float(errorCount)/m))</span><br><span class="line">    dataArr, labelArr = loadDataSet(&#x27;testSetRBF2.txt&#x27;)</span><br><span class="line">    errorCount = 0</span><br><span class="line">    datMat=mat(dataArr)</span><br><span class="line">    labelMat = mat(labelArr).transpose()</span><br><span class="line">    m,n = shape(datMat)</span><br><span class="line">    for i in range(m):</span><br><span class="line">        kernelEval = kernelTrans(sVs, datMat[i, :], (&#x27;rbf&#x27;, k1))</span><br><span class="line">        predict = kernelEval.T * multiply(labelSV, alphas[svInd]) + b</span><br><span class="line">        if sign(predict) != sign(labelArr[i]):</span><br><span class="line">            errorCount += 1</span><br><span class="line">    print(&quot;the test error rate is: %f&quot; % (float(errorCount)/m))</span><br></pre></td></tr></table></figure>
+
+<p><img lazyload src="/images/loading.svg" data-src="15384726353561.jpg"></p>
+<h4 id="0x04-实例1"><a href="#0x04-实例1" class="headerlink" title="0x04 实例1"></a>0x04 实例1</h4><p>基于SVM的手写数字识别</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">def testDigits(kTup=(&#x27;rbf&#x27;, 10)):</span><br><span class="line">    dataArr,labelArr = loadImages(&#x27;../Ch02/digits/trainingDigits&#x27;)</span><br><span class="line">    b,alphas = smoP(dataArr, labelArr, 200, 0.0001, 10000, kTup)</span><br><span class="line">    datMat=mat(dataArr)</span><br><span class="line">    labelMat = mat(labelArr).transpose()</span><br><span class="line">    svInd=nonzero(alphas.A &gt; 0)[0]</span><br><span class="line">    sVs=datMat[svInd] </span><br><span class="line">    labelSV = labelMat[svInd]</span><br><span class="line">    print(&quot;there are %d Support Vectors&quot; % shape(sVs)[0])</span><br><span class="line">    m, n = shape(datMat)</span><br><span class="line">    errorCount = 0</span><br><span class="line">    for i in range(m):</span><br><span class="line">        kernelEval = kernelTrans(sVs, datMat[i, :], kTup)</span><br><span class="line">        predict = kernelEval.T * multiply(labelSV, alphas[svInd]) + b</span><br><span class="line">        if sign(predict) != sign(labelArr[i]):</span><br><span class="line">            errorCount += 1</span><br><span class="line">    print(&quot;the training error rate is: %f&quot; % (float(errorCount)/m))</span><br><span class="line">    dataArr, labelArr = loadImages(&#x27;testDigits&#x27;)</span><br><span class="line">    errorCount = 0</span><br><span class="line">    datMat=mat(dataArr)</span><br><span class="line">    labelMat = mat(labelArr).transpose()</span><br><span class="line">    m, n = shape(datMat)</span><br><span class="line">    for i in range(m):</span><br><span class="line">        kernelEval = kernelTrans(sVs, datMat[i, :], kTup)</span><br><span class="line">        predict=kernelEval.T * multiply(labelSV, alphas[svInd]) + b</span><br><span class="line">        if sign(predict)!=sign(labelArr[i]):</span><br><span class="line">            errorCount += 1</span><br><span class="line">    print(&quot;the test error rate is: %f&quot; % (float(errorCount)/m))</span><br></pre></td></tr></table></figure>
+
+
+<p><img lazyload src="/images/loading.svg" data-src="15384734295024.jpg"></p>
+<h4 id="0x05-实例2"><a href="#0x05-实例2" class="headerlink" title="0x05 实例2"></a>0x05 实例2</h4><p>XSS Detection</p>
+<h5 id="0x01-数据"><a href="#0x01-数据" class="headerlink" title="0x01 数据"></a>0x01 数据</h5><p>在github上看到<a class="link" target="_blank" rel="noopener" href="https://github.com/SparkSharly/DL_for_xss">https://github.com/SparkSharly/DL_for_xss<i class="fas fa-external-link-alt"></i></a> 这个项目，感觉不错，学习一下，数据集项目中已经附带，就直接使用了</p>
+<ul>
+<li>eg. normal_examples.csv （20w+取部分）</li>
+</ul>
+<p><img lazyload src="/images/loading.svg" data-src="15364860425700.jpg"></p>
+<ul>
+<li>eg. xssed.csv （4W+取部分）</li>
+</ul>
+<p><img lazyload src="/images/loading.svg" data-src="15364859847558.jpg"></p>
+<h5 id="0x02-分词"><a href="#0x02-分词" class="headerlink" title="0x02 分词"></a>0x02 分词</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">def GeneSeg(payload):</span><br><span class="line">    #数字泛化为&quot;0&quot;</span><br><span class="line">    payload=payload.lower()</span><br><span class="line">    payload=unquote(unquote(payload))</span><br><span class="line">    payload,num=re.subn(r&#x27;\d+&#x27;,&quot;0&quot;,payload)</span><br><span class="line">    #替换url为”http://u</span><br><span class="line">    payload,num=re.subn(r&#x27;(http|https)://[a-zA-Z0-9\.@&amp;/#!#\?]+&#x27;, &quot;http://u&quot;, payload)</span><br><span class="line">    #分词</span><br><span class="line">    r = &#x27;&#x27;&#x27;</span><br><span class="line">        (?x)[\w\.]+?\(</span><br><span class="line">        |\)</span><br><span class="line">        |&quot;\w+?&quot;</span><br><span class="line">        |&#x27;\w+?&#x27;</span><br><span class="line">        |http://\w</span><br><span class="line">        |&lt;/\w+&gt;</span><br><span class="line">        |&lt;\w+&gt;</span><br><span class="line">        |&lt;\w+</span><br><span class="line">        |\w+=</span><br><span class="line">        |&gt;</span><br><span class="line">        |[\w\.]+</span><br><span class="line">    &#x27;&#x27;&#x27;</span><br><span class="line">    return nltk.regexp_tokenize(payload, r)</span><br></pre></td></tr></table></figure>
+
+<p><img lazyload src="/images/loading.svg" data-src="15364866937362.jpg"></p>
+<h5 id="0x03-特征"><a href="#0x03-特征" class="headerlink" title="0x03 特征"></a>0x03 特征</h5><ul>
+<li>建立xss语义模型，构建词汇表</li>
+</ul>
+<p>统计高频出现的300词构建词表</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">words=[]</span><br><span class="line">datas=[]</span><br><span class="line">with open(&quot;data/xssed.csv&quot;,&quot;r&quot;,encoding=&quot;utf-8&quot;) as f:</span><br><span class="line">    reader=csv.DictReader(f,fieldnames=[&quot;payload&quot;])</span><br><span class="line">    for row in reader:</span><br><span class="line">        payload=row[&quot;payload&quot;]</span><br><span class="line">        word=GeneSeg(payload)</span><br><span class="line">        datas.append(word)</span><br><span class="line">        words+=word</span><br><span class="line"></span><br><span class="line">#构建数据集</span><br><span class="line">def build_dataset(datas,words):</span><br><span class="line">    count=[[&quot;UNK&quot;,-1]]</span><br><span class="line">    counter=Counter(words)</span><br><span class="line">    count.extend(counter.most_common(vocabulary_size-1))</span><br><span class="line">    #print(count)</span><br><span class="line">    vocabulary=[c[0] for c in count]</span><br><span class="line">    #print(vocabulary)</span><br><span class="line">    data_set=[]</span><br><span class="line">    for data in datas:</span><br><span class="line">        d_set=[]</span><br><span class="line">        for word in data:</span><br><span class="line">            if word in vocabulary:</span><br><span class="line">                d_set.append(word)</span><br><span class="line">            else:</span><br><span class="line">                d_set.append(&quot;UNK&quot;)</span><br><span class="line">                count[0][1]+=1</span><br><span class="line">        data_set.append(d_set)</span><br><span class="line">    print(data_set)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>word2vec建模</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model=Word2Vec(data_set,size=embedding_size,window=skip_window,negative=num_sampled,iter=num_iter)</span><br></pre></td></tr></table></figure>
+
+<p><img lazyload src="/images/loading.svg" data-src="15364964059172.jpg"></p>
+<p>空间维度设置为32维</p>
+<p><img lazyload src="/images/loading.svg" data-src="15364985492542.jpg"></p>
+<p>查看建模结果，与<code>&lt;/script&gt;</code>最语义最相近的词</p>
+<p><img lazyload src="/images/loading.svg" data-src="15364953220505.jpg"></p>
+<ul>
+<li>数据处理</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line">def pre_process():</span><br><span class="line">    with open(vec_dir,&quot;rb&quot;) as f :</span><br><span class="line">        word2vec=pickle.load(f)</span><br><span class="line">        #词表（&#x27;UNK&#x27;: 0, &#x27;0&#x27;: 1）</span><br><span class="line">        dictionary=word2vec[&quot;dictionary&quot;]</span><br><span class="line">        #维度值</span><br><span class="line">        embeddings=word2vec[&quot;embeddings&quot;]</span><br><span class="line">        #反向词表（num和word调换，0: &#x27;UNK&#x27;, 1: &#x27;0&#x27;）</span><br><span class="line">        reverse_dictionary = word2vec[&quot;reverse_dictionary&quot;]</span><br><span class="line">    xssed_data=[]</span><br><span class="line">    normal_data=[]</span><br><span class="line">    with open(&quot;data/xssed.csv&quot;,&quot;r&quot;,encoding=&quot;utf-8&quot;) as f:</span><br><span class="line">        reader = csv.DictReader(f, fieldnames=[&quot;payload&quot;])</span><br><span class="line">        for row in reader:</span><br><span class="line">            payload=row[&quot;payload&quot;]</span><br><span class="line">            #分词[&#x27;search=&#x27;, &#x27;&lt;/script&gt;&#x27;, &#x27;&lt;img&#x27;, &#x27;src=&#x27;, &#x27;worksinchrome&#x27;, &#x27;colon&#x27;, &#x27;prompt&#x27;, &#x27;x0&#x27;, &#x27;0&#x27;, &#x27;x0&#x27;, &#x27;onerror=&#x27;, &#x27;eval(&#x27;, &#x27;src&#x27;, &#x27;)&#x27;, &#x27;&gt;&#x27;]</span><br><span class="line">            word=GeneSeg(payload)</span><br><span class="line">            xssed_data.append(word)</span><br><span class="line">    with open(&quot;data/normal_examples.csv&quot;,&quot;r&quot;,encoding=&quot;utf-8&quot;) as f:</span><br><span class="line">        reader = csv.DictReader(f, fieldnames=[&quot;payload&quot;])</span><br><span class="line">        for row in reader:</span><br><span class="line">            payload=row[&quot;payload&quot;]</span><br><span class="line">            word=GeneSeg(payload)</span><br><span class="line">            normal_data.append(word)</span><br><span class="line">    xssed_num=len(xssed_data)</span><br><span class="line">    normal_num=len(normal_data)</span><br><span class="line">    #生成标签[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]</span><br><span class="line">    xssed_labels=[1]*xssed_num</span><br><span class="line">    normal_labels=[0]*normal_num</span><br><span class="line">    datas=xssed_data+normal_data</span><br><span class="line">    labels=xssed_labels+normal_labels</span><br><span class="line">    def to_index(data):</span><br><span class="line">        d_index=[]</span><br><span class="line">        for word in data:</span><br><span class="line">            if word in dictionary.keys():</span><br><span class="line">                d_index.append(dictionary[word])</span><br><span class="line">            else:</span><br><span class="line">                d_index.append(dictionary[&quot;UNK&quot;])</span><br><span class="line">        return d_index</span><br><span class="line">    #数据转换[23, 5, 34, 14, 0, 0, 0, 0, 1, 0, 81, 0, 0, 3, 2]</span><br><span class="line">    datas_index=[to_index(data) for data in datas]</span><br><span class="line">    #长度不足maxlen的用-1在前端填充</span><br><span class="line">    &#x27;&#x27;&#x27;</span><br><span class="line">    [[ -1  -1  -1 ...   0   3   2]</span><br><span class="line">    [ -1  -1  -1 ...  10  17   1]</span><br><span class="line">    [ -1  -1  -1 ... 150   0  71]</span><br><span class="line">    ...</span><br><span class="line">    [ -1  -1  -1 ...  11   2  55]</span><br><span class="line">    [ -1  -1  -1 ...   5  24   1]</span><br><span class="line">    [ -1  -1  -1 ...   1   3   5]]</span><br><span class="line">    &#x27;&#x27;&#x27;</span><br><span class="line">    datas_index=pad_sequences(datas_index,value=-1,maxlen=maxlen)</span><br><span class="line">    #从有序列表中选k个作为一个片段返回，eg.[7, 6, 3, 2, 5, 8, 0, 1, 10, 4, 9]</span><br><span class="line">    rand=random.sample(range(len(datas_index)),len(datas_index))</span><br><span class="line">    #数据简单随机排序</span><br><span class="line">    datas=[datas_index[index] for index in rand]</span><br><span class="line">    labels=[labels[index] for index in rand]</span><br><span class="line"></span><br><span class="line">    datas_embed=[]</span><br><span class="line">    #获取UNK的维度，本例中是32</span><br><span class="line">    dims=len(embeddings[&quot;UNK&quot;])</span><br><span class="line">    n=0</span><br><span class="line">    for data in datas:</span><br><span class="line">        data_embed = []</span><br><span class="line">        for d in data:</span><br><span class="line">            if d != -1:</span><br><span class="line">                #如果不是填充数据，就把真实纬度值替换</span><br><span class="line">                data_embed.extend(embeddings[reverse_dictionary[d]])</span><br><span class="line">            else:</span><br><span class="line">                data_embed.extend([0.0] * dims)</span><br><span class="line">        datas_embed.append(data_embed)</span><br><span class="line">        &#x27;&#x27;&#x27;</span><br><span class="line">        [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, </span><br><span class="line">        0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, </span><br><span class="line">        0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,··· -0.5644003, 0.41219762, -1.2313833, -1.3566964, </span><br><span class="line">        -0.74316794, -1.2668883, 1.0586963, 1.5969143, 0.21956278, 1.1538218, -0.35007623, 0.21183407, </span><br><span class="line">        -0.53830135, 1.7361579, -0.08175806, -1.1915175, -1.7790002, -1.1044971, 0.40857738]</span><br><span class="line">        &#x27;&#x27;&#x27;</span><br><span class="line">        n+=1</span><br><span class="line">        if n%10000 ==0:</span><br><span class="line">            print(n)</span><br><span class="line">    #七成训练，三成测试 </span><br><span class="line">    train_datas,test_datas,train_labels,test_labels=train_test_split(datas_embed,labels,test_size=0.3)</span><br><span class="line">    return train_datas,test_datas,train_labels,test_labels</span><br></pre></td></tr></table></figure>
+
+
+<h5 id="0x04-SVM训练"><a href="#0x04-SVM训练" class="headerlink" title="0x04 SVM训练"></a>0x04 SVM训练</h5><p>通过SVM算法进行模型训练</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">train_datas, train_labels=pre_process()</span><br><span class="line">print(&quot;Start Train Job! &quot;)</span><br><span class="line">start = time.time()</span><br><span class="line">model=LinearSVC()</span><br><span class="line">model = SVC(C=1.0, kernel=&quot;linear&quot;)</span><br><span class="line">model.fit(train_datas,train_labels)</span><br><span class="line">model.save(model_dir)</span><br><span class="line">end = time.time()</span><br><span class="line">print(&quot;Over train job in %f s&quot; % (end - start))</span><br><span class="line">print(&quot;Start Test Job!&quot;)</span><br><span class="line">start=time.time()</span><br><span class="line">pre=model.predict(test_datas)</span><br><span class="line">end=time.time()</span><br><span class="line">print(&quot;Over test job in %s s&quot;%(end-start))</span><br><span class="line">precision = precision_score(test_labels, pre)</span><br><span class="line">recall = recall_score(test_labels, pre)</span><br><span class="line">print(&quot;Precision score is :&quot;, precision)</span><br><span class="line">print(&quot;Recall score is :&quot;, recall)</span><br><span class="line">with open(model_dir,&quot;wb&quot;) as f:</span><br><span class="line">    pickle.dump(model,f,protocol=2)</span><br><span class="line">print(&quot;wirte to &quot;,model_dir)</span><br></pre></td></tr></table></figure>
+<p>精确率和召回率：</p>
+<p><img lazyload src="/images/loading.svg" data-src="15365002216054.jpg"></p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：Support Vector Machines（SVM）</li>
+        <li>Post author：langu_xyz</li>
+        <li>Create time：2019-07-22 21:00:00</li>
+        <li>
+            Post link：https://blog.langu.xyz/Support Vector Machines（SVM）/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/Logistic%20Regression/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Logistic Regression</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/Linear%20Regression/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Linear Regression</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>&nbsp;-&nbsp;
+            
+            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a target="_blank" rel="noopener" href="//langu.xyz">AboutME:langu_xyz</a>
+        </div>
+        <!--
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        -->
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#0x01-SVM"><span class="nav-text">0x01 SVM</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#0x02-SMO"><span class="nav-text">0x02 SMO</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#0x03-kernel"><span class="nav-text">0x03 kernel</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#0x04-%E5%AE%9E%E4%BE%8B1"><span class="nav-text">0x04 实例1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#0x05-%E5%AE%9E%E4%BE%8B2"><span class="nav-text">0x05 实例2</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#0x01-%E6%95%B0%E6%8D%AE"><span class="nav-text">0x01 数据</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#0x02-%E5%88%86%E8%AF%8D"><span class="nav-text">0x02 分词</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#0x03-%E7%89%B9%E5%BE%81"><span class="nav-text">0x03 特征</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#0x04-SVM%E8%AE%AD%E7%BB%83"><span class="nav-text">0x04 SVM训练</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

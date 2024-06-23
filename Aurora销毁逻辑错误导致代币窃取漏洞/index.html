@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="网络安全,黑客,JAVA安全,代码审计,渗透测试,入侵,SRC,扫描,WEB安全,移动安全,PHP">
+    <meta name="description" content="蓝骨, langu.xyz">
+    <meta name="author" content="langu_xyz">
+    
+        <title>
+            
+                Aurora销毁逻辑错误导致代币窃取漏洞 |
+                    
+                        langu_xyz
+        </title>
+        
+<link rel="stylesheet" href="/css/style.css">
+
+            <link rel="shortcut icon" href="/images/logo.jpeg">
+                
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+                    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"blog.langu.xyz","root":"/","language":"zh","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/logo.jpeg","favicon":"/images/logo.jpeg","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/shamo.jpg","description":"XYZ(无限未来)"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+
+                    <script>
+                        var _hmt = _hmt || [];
+                        (function() {
+                          var hm = document.createElement("script");
+                          hm.src = "https://hm.baidu.com/hm.js?1cd6e64ff252acf24b707985fcec8850";
+                          var s = document.getElementsByTagName("script")[0]; 
+                          s.parentNode.insertBefore(hm, s);
+                        })();
+                        </script>
+                        
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="langu_xyz" type="application/atom+xml">
+</head>
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                    <a class="logo-title" href="/">
+                        langu_xyz
+                    </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class="" href="/" >
+                                HOME
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class="" href="/tags/THINK/" >
+                                THINK
+                            </a>
+                        </li>
+                        
+                            
+                                <li class="menu-item search search-popup-trigger">
+                                    <i class="fas fa-search"></i>
+                                </li>
+                                
+                                
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                    
+                        <div class="icon-item menu-bar">
+                            <div class="menu-bar-middle"></div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/" >
+                        HOME
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/tags/THINK/" >
+                        THINK
+                    </a>
+                </li>
+                
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">Aurora销毁逻辑错误导致代币窃取漏洞</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/logo.jpeg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">langu_xyz</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2022-11-23 21:00:00
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/">区块链</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/">漏洞分析</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.1k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>4 Mins</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h2 id="跨链桥-RainBow-Bridge"><a href="#跨链桥-RainBow-Bridge" class="headerlink" title="跨链桥-RainBow Bridge"></a>跨链桥-RainBow Bridge</h2><p><img lazyload src="/images/loading.svg" data-src="1.png"></p>
+<p>Rainbow Bridge 不要求用户信任任何东西，除了区块链本身，称之为无信任。任何在 NEAR 上加密可证明的信息都可用于以太坊合约，反之亦然。</p>
+<p>例如以下信息：</p>
+<pre><code>•    将交易包含在区块中；
+•    执行具有特定结果的交易；
+•    合约的状态。
+</code></pre>
+<h3 id="桥的设计"><a href="#桥的设计" class="headerlink" title="桥的设计"></a>桥的设计</h3><p>桥背后的核心思想是它实现了两个轻客户端： <br>    1.    作为 NEAR 合约在 Rust 中实现的以太坊轻客户端<br>    2.    作为以太坊合约在 Solidity 中实现的 NEAR 轻客户端</p>
+<p><img lazyload src="/images/loading.svg" data-src="2.png"></p>
+<h3 id="处理流程"><a href="#处理流程" class="headerlink" title="处理流程"></a>处理流程</h3><p><a class="link" target="_blank" rel="noopener" href="https://near.org/blog/eth-near-rainbow-bridge/">https://near.org/blog/eth-near-rainbow-bridge/<i class="fas fa-external-link-alt"></i></a></p>
+<pre><code>1.    假设 Alice 想在 NEAR 区块链上将 X DAI 转给 Bob，她从 RainbowCLI/RainbowLib 发起转账；
+2.    RainbowLib 首先设置允许将 X DAI 从 Alice 转移到 TokenLocker；
+3.    然后它调用 TokenLocker 获取那些令牌，导致 TokenLocker 发出事件“Alice locked X tokens in favor of Bob”；
+4.    RainbowLib 然后等到 EthOnNearClient 收到包含此事件的以太坊标头，再加上 25 个区块进行确认；
+5.    然后 RainbowLib 计算这个事件的证明并提交给 MintableFungibleToken 合约；
+6.    MintableFungibleToken 合约然后通过调用 EthOnNearProver 来验证这个证明是否正确；
+    6.1.    EthOnNearProver 反过来验证证明的标头是否在 EthOnNearClient 的规范链上，并且它具有所需的确认次数。它还验证证明本身；
+    6.2.    MintableFungibleToken 然后解包以太坊事件并为 Bob 铸造 X nearDAI，完成转账。
+</code></pre>
+<p><img lazyload src="/images/loading.svg" data-src="3.png"></p>
+<h2 id="漏洞代码分析"><a href="#漏洞代码分析" class="headerlink" title="漏洞代码分析"></a>漏洞代码分析</h2><p>根据这个漏洞的基本信息，错误提交是漏洞的核心，先来看一下EthCustodian的withdraw函数是如何实现的。</p>
+<p>提取编码在’ proofData ‘中的适当数量的ETH，利用_parseAndConsumeProof对proofData进行解码。</p>
+<p><a class="link" target="_blank" rel="noopener" href="https://etherscan.io/address/0x6BFaD42cFC4EfC96f529D786D643Ff4A8B89FA52#code#F1#L116">https://etherscan.io/address/0x6BFaD42cFC4EfC96f529D786D643Ff4A8B89FA52#code#F1#L116<i class="fas fa-external-link-alt"></i></a></p>
+<p><img lazyload src="/images/loading.svg" data-src="4.png"></p>
+<p><a class="link" target="_blank" rel="noopener" href="https://etherscan.io/address/0x6BFaD42cFC4EfC96f529D786D643Ff4A8B89FA52#code#F5#L45">https://etherscan.io/address/0x6BFaD42cFC4EfC96f529D786D643Ff4A8B89FA52#code#F5#L45<i class="fas fa-external-link-alt"></i></a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">function _parseAndConsumeProof(</span><br><span class="line">        bytes memory proofData, </span><br><span class="line">        uint64 proofBlockHeight</span><br><span class="line">    )</span><br><span class="line">        internal</span><br><span class="line">        returns(ProofDecoder.ExecutionStatus memory result)</span><br><span class="line">    &#123;</span><br><span class="line">        require(</span><br><span class="line">            proofBlockHeight &gt;= minBlockAcceptanceHeight_,</span><br><span class="line">            &#x27;Proof is from the ancient block&#x27;</span><br><span class="line">        );</span><br><span class="line">        require(</span><br><span class="line">            prover_.proveOutcome(proofData,proofBlockHeight),</span><br><span class="line">            &#x27;Proof should be valid&#x27;</span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        // Unpack the proof and extract the execution outcome.</span><br><span class="line">        Borsh.Data memory borshData = Borsh.from(proofData);</span><br><span class="line"></span><br><span class="line">        ProofDecoder.FullOutcomeProof memory fullOutcomeProof = </span><br><span class="line">        borshData.decodeFullOutcomeProof();</span><br><span class="line">        </span><br><span class="line">        require(</span><br><span class="line">            borshData.finished(),</span><br><span class="line">            &#x27;Argument should be exact borsh serialization&#x27;</span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        bytes32 receiptId = </span><br><span class="line">        fullOutcomeProof.outcome_proof.outcome_with_id.outcome.receipt_ids[0];</span><br><span class="line"></span><br><span class="line">        require(</span><br><span class="line">            !usedEvents_[receiptId],</span><br><span class="line">            &#x27;The burn event cannot be reused&#x27;</span><br><span class="line">        );</span><br><span class="line">        usedEvents_[receiptId] = true;</span><br><span class="line"></span><br><span class="line">        require(</span><br><span class="line">            keccak256(fullOutcomeProof.outcome_proof.outcome_with_id.outcome.executor_id) == </span><br><span class="line">            keccak256(nearProofProducerAccount_),</span><br><span class="line">            &#x27;Can only withdraw coins from the linked proof producer on Near blockchain&#x27;</span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        result = fullOutcomeProof.outcome_proof.outcome_with_id.outcome.status;</span><br><span class="line">        require(</span><br><span class="line">            !result.failed, </span><br><span class="line">            &#x27;Cannot use failed execution outcome for unlocking the tokens&#x27;</span><br><span class="line">        );</span><br><span class="line">        require(</span><br><span class="line">            !result.unknown,</span><br><span class="line">            &#x27;Cannot use unknown execution outcome for unlocking the tokens&#x27;</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>从这里<code>keccak256(fullOutcomeProof.outcome_proof.outcome_with_id.outcome.executor_id) == keccak256(nearProofProducerAccount_)</code>可以看到会校验executor_id和nearProofProducerAccount_是否相等，也就是eth和near对应的合约是否一致。</p>
+<p>从Aurora的代码里找到对应的部分看下如何实现的。</p>
+<p><img lazyload src="/images/loading.svg" data-src="5.png"></p>
+<p><code>let mut executor = executor_params.make_executor(self);</code>是这个漏洞的关键，可以看到Aurora将自己设置为了executor。</p>
+<p>这时候我们模拟流程看一下会发生什么。</p>
+<p>经过EthCustodian.sol初始处理后，会生成如下的数据包：</p>
+<p><img lazyload src="/images/loading.svg" data-src="6.png"></p>
+<p>包含了要发送的ETH数量、ETH的接收账户、执行此操作的地址。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">require(</span><br><span class="line">            result.ethCustodian == address(this),</span><br><span class="line">            &#x27;Can only withdraw coins that were expected for the current contract&#x27;</span><br><span class="line">        );</span><br></pre></td></tr></table></figure>
+
+<p>在withdraw中验证result.ethCustodian是否等于BurnResult.ethCustodian，如果相等，则执行合约转账。</p>
+<p>当ETH侧发起转账时，Aurora侧withdraw_eth_from_near的会进行处理。</p>
+<p><img lazyload src="/images/loading.svg" data-src="7.png"></p>
+<p>同时重新定义了BurnResult数据结构如下：</p>
+<p><img lazyload src="/images/loading.svg" data-src="8.png"></p>
+<p>在 withdraw函数中直接调用了withdraw_eth_from_near函数，如下</p>
+<p><img lazyload src="/images/loading.svg" data-src="9.png"></p>
+<p>然后进一步跟踪withdraw_eth_from_near，最终在internal_withdraw_eth_from_near函数中实现了Near代币销毁。</p>
+<p><img lazyload src="/images/loading.svg" data-src="10.png"></p>
+<p>以上就是Near向ETH跨链发送代币的流程。</p>
+<p>那么如何利用漏洞来实现向ETH发送代币而不在Near链上销毁代币呢？</p>
+<p>在上文中分析过，ETH侧会判断执行者id和Aurora 合约发起地址匹配，如果可以将Aurora 合约发起地址设置为Aurora合约本身，就可以不需要销毁代币从而窃取ETH了。</p>
+<p>从Aurora的代码寻找会将自己设置为执行id的函数，在代码中我们找到三处，分别是deploy、call、view函数。</p>
+<p><img lazyload src="/images/loading.svg" data-src="11.png"></p>
+<p>所以攻击链就有了：</p>
+<pre><code>0.    创建一个合约Evil进行跨链转币，进行数据封装
+0.    用view函数去调用Evil合约(理论上查看合约就可以触发)
+0.    这时候executor_id就是Aurora合约本身
+0.    自动化批量调用实现
+</code></pre>
+<p>当前的修复方式是验证Evil中的EthCustodian是否等于Evil自身的EthCustodian。</p>
+<p>修复代码：</p>
+<p><img lazyload src="/images/loading.svg" data-src="12.png"></p>
+<p><a class="link" target="_blank" rel="noopener" href="https://medium.com/immunefi/aurora-withdrawal-logic-error-bugfix-review-c5b4e30a9160">https://medium.com/immunefi/aurora-withdrawal-logic-error-bugfix-review-c5b4e30a9160<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link" target="_blank" rel="noopener" href="https://github.com/aurora-is-near/aurora-engine/commit/7109e30926ea33f67c6f702aa2b796b025cca96a">https://github.com/aurora-is-near/aurora-engine/commit/7109e30926ea33f67c6f702aa2b796b025cca96a<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link" target="_blank" rel="noopener" href="https://etherscan.io/address/0x6BFaD42cFC4EfC96f529D786D643Ff4A8B89FA52#code">https://etherscan.io/address/0x6BFaD42cFC4EfC96f529D786D643Ff4A8B89FA52#code<i class="fas fa-external-link-alt"></i></a></p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：Aurora销毁逻辑错误导致代币窃取漏洞</li>
+        <li>Post author：langu_xyz</li>
+        <li>Create time：2022-11-23 21:00:00</li>
+        <li>
+            Post link：https://blog.langu.xyz/Aurora销毁逻辑错误导致代币窃取漏洞/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/Aurora%20%E8%B7%A8%E9%93%BE%E6%A1%A5%E9%94%80%E6%AF%81%E9%80%BB%E8%BE%91%E9%94%99%E8%AF%AF%E5%AF%BC%E8%87%B4%E6%97%A0ETH%E8%86%A8%E8%83%80%E6%BC%8F%E6%B4%9E/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Aurora 跨链桥销毁逻辑错误导致无ETH膨胀漏洞</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/Aurora%E8%BE%93%E5%85%A5%E5%A4%84%E7%90%86%E4%B8%8D%E5%BD%93%E5%AF%BC%E8%87%B4%E8%B4%B9%E7%94%A8%E7%AA%83%E5%8F%96%E6%BC%8F%E6%B4%9E/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Aurora输入处理不当导致费用窃取漏洞</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>&nbsp;-&nbsp;
+            
+            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a target="_blank" rel="noopener" href="//langu.xyz">AboutME:langu_xyz</a>
+        </div>
+        <!--
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        -->
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B7%A8%E9%93%BE%E6%A1%A5-RainBow-Bridge"><span class="nav-text">跨链桥-RainBow Bridge</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%A5%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="nav-text">桥的设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B"><span class="nav-text">处理流程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90"><span class="nav-text">漏洞代码分析</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

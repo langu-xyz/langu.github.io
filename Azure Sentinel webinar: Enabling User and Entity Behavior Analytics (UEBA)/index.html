@@ -1,0 +1,2053 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="网络安全,黑客,JAVA安全,代码审计,渗透测试,入侵,SRC,扫描,WEB安全,移动安全,PHP">
+    <meta name="description" content="蓝骨, langu.xyz">
+    <meta name="author" content="langu_xyz">
+    
+        <title>
+            
+                Azure Sentinel webinar：Enabling User and Entity Behavior Analytics (UEBA) |
+                    
+                        langu_xyz
+        </title>
+        
+<link rel="stylesheet" href="/css/style.css">
+
+            <link rel="shortcut icon" href="/images/logo.jpeg">
+                
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+                    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"blog.langu.xyz","root":"/","language":"zh","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/logo.jpeg","favicon":"/images/logo.jpeg","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/shamo.jpg","description":"XYZ(无限未来)"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+
+                    <script>
+                        var _hmt = _hmt || [];
+                        (function() {
+                          var hm = document.createElement("script");
+                          hm.src = "https://hm.baidu.com/hm.js?1cd6e64ff252acf24b707985fcec8850";
+                          var s = document.getElementsByTagName("script")[0]; 
+                          s.parentNode.insertBefore(hm, s);
+                        })();
+                        </script>
+                        
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="langu_xyz" type="application/atom+xml">
+</head>
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                    <a class="logo-title" href="/">
+                        langu_xyz
+                    </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class="" href="/" >
+                                HOME
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class="" href="/tags/THINK/" >
+                                THINK
+                            </a>
+                        </li>
+                        
+                            
+                                <li class="menu-item search search-popup-trigger">
+                                    <i class="fas fa-search"></i>
+                                </li>
+                                
+                                
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                    
+                        <div class="icon-item menu-bar">
+                            <div class="menu-bar-middle"></div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/" >
+                        HOME
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/tags/THINK/" >
+                        THINK
+                    </a>
+                </li>
+                
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">Azure Sentinel webinar：Enabling User and Entity Behavior Analytics (UEBA)</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/logo.jpeg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">langu_xyz</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2021-05-01 21:00:00
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%AE%89%E5%85%A8%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">安全数据分析</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/UEBA/">UEBA</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>4.5k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>17 Mins</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h3 id="什么是用户和实体行为分析-UEBA-？"><a href="#什么是用户和实体行为分析-UEBA-？" class="headerlink" title="什么是用户和实体行为分析 (UEBA)？"></a>什么是用户和实体行为分析 (UEBA)？</h3><p>识别组织内的威胁及其潜在影响（无论是被入侵的实体还是恶意内部因素）始终是一个耗时耗力的过程。 筛选警报、连接各点和主动搜寻都需要大量的时间和精力，却只有极少回报，而复杂的潜在威胁却很难发现。 特别难以发现的威胁（如零日威胁、针对性威胁和高级持久性威胁）对组织来说是最危险的，因此能够检测这些威胁则变得更加重要。</p>
+<p><img lazyload src="/images/loading.svg" data-src="1.png"></p>
+<p><img lazyload src="/images/loading.svg" data-src="2.png"></p>
+<p><img lazyload src="/images/loading.svg" data-src="3.png"><br>￼</p>
+<h3 id="安全驱动的分析"><a href="#安全驱动的分析" class="headerlink" title="安全驱动的分析"></a>安全驱动的分析</h3><p>受 Gartner 的 UEBA 解决方案范例的启发，Microsoft Sentinel 根据 3 个参考框架提供了一种“由外而内”的方法：</p>
+<ul>
+<li><pre><code>    用例：MITRE ATT&amp;CK 策略、技术和分解技术框架将各种实体作为受害者、作恶者或枢轴点放入杀伤链中，Microsoft Sentinel 根据按照此框架开展的安全性研究对相关攻击途径和方案划分优先级，从而特别专注于每个数据源可以提供的最有价值的日志。
+</code></pre>
+</li>
+<li><pre><code>    数据源：尽管首要支持 Azure 数据源，但出于周全性考虑，Microsoft Sentinel 选择第三方数据源来提供与我们的威胁方案相匹配的数据。
+</code></pre>
+</li>
+<li><pre><code>    分析：Microsoft Sentinel 使用各种机器学习 (ML) 算法来识别异常活动，并以上下文信息丰富的形式清晰、准确地呈现证据，相关示例如下所示。
+</code></pre>
+</li>
+</ul>
+<p>￼<br><img lazyload src="/images/loading.svg" data-src="4.png"></p>
+<p><img lazyload src="/images/loading.svg" data-src="5.png"></p>
+<p>Microsoft Sentinel 提供的项目可帮助安全分析师结合上下文并通过对比用户的基线概况来清楚地了解环境中的异常活动。 用户（或主机、地址）执行的操作在上下文中进行评估，“true”结果则表示发现异常：</p>
+<ul>
+<li><pre><code>    跨地理位置、设备和环境。
+</code></pre>
+</li>
+<li><pre><code>    跨时间和频率（与用户自己的历史记录相比）。
+</code></pre>
+</li>
+<li><pre><code>    与对等方的行为进行比较。
+</code></pre>
+</li>
+<li><pre><code>    与组织的行为进行比较。
+</code></pre>
+</li>
+</ul>
+<p><img lazyload src="/images/loading.svg" data-src="6.png"><br>￼<br><img lazyload src="/images/loading.svg" data-src="7.png"><br>￼</p>
+<h4 id="计分"><a href="#计分" class="headerlink" title="计分"></a>计分</h4><p>每个活动都使用“调查优先级评分”进行评分，该评分根据对用户及其对等方的行为学习来确定特定用户执行特定活动的概率。 被识别为最不正常的活动会获得最高分（分数范围为 0-10 分）。</p>
+<h4 id="时间线"><a href="#时间线" class="headerlink" title="时间线"></a>时间线</h4><p><img lazyload src="/images/loading.svg" data-src="8.png"></p>
+<h3 id="规则模版"><a href="#规则模版" class="headerlink" title="规则模版"></a>规则模版</h3><p><a class="link" target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/azure/sentinel/watchlist-schemas">https://docs.microsoft.com/zh-cn/azure/sentinel/watchlist-schemas<i class="fas fa-external-link-alt"></i></a></p>
+<p><strong>高价值资产</strong><br>“高价值资产”监视列表列出组织中具有重要价值的设备、资源和其他资产，此监视列表包括以下字段：</p>
+<table>
+<thead>
+<tr>
+<th><strong>字段名称</strong></th>
+<th><strong>格式</strong></th>
+<th><strong>示例</strong></th>
+<th><strong>必需/可选</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>资产类型</strong></td>
+<td>字符串</td>
+<td>Device, Azure resource, AWS resource, URL, SPO, File share, Other</td>
+<td>必需</td>
+</tr>
+<tr>
+<td><strong>资产 ID</strong></td>
+<td>字符串，视资产类型而定</td>
+<td>/subscriptions/d1d8779d-38d7-4f06-91db-9cbc8de0176f/resourceGroups/SOC-Purview/providers/Microsoft.Storage/storageAccounts/purviewadls</td>
+<td>必需</td>
+</tr>
+<tr>
+<td><strong>资产名称</strong></td>
+<td>字符串</td>
+<td>Microsoft.Storage/storageAccounts/purviewadls</td>
+<td>可选</td>
+</tr>
+<tr>
+<td><strong>资产 FQDN</strong></td>
+<td>FQDN</td>
+<td>Finance-SRv.local.microsoft.com</td>
+<td>必需</td>
+</tr>
+<tr>
+<td><strong>IP 地址</strong></td>
+<td>IP</td>
+<td>1.1.1.1</td>
+<td>可选</td>
+</tr>
+<tr>
+<td><strong>标记</strong></td>
+<td>列出</td>
+<td>[“SAW user”,”Blue Ocean team”]</td>
+<td>可选</td>
+</tr>
+</tbody></table>
+<p><strong>VIP 用户</strong><br>“VIP 用户”监视列表列出组织中影响力较高的员工的用户帐户，此监视列表包括以下值：</p>
+<table>
+<thead>
+<tr>
+<th><strong>字段名称</strong></th>
+<th><strong>格式</strong></th>
+<th><strong>示例</strong></th>
+<th><strong>必需/可选</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>用户标识符</strong></td>
+<td>UID</td>
+<td>52322ec8-6ebf-11eb-9439-0242ac130002</td>
+<td>可选</td>
+</tr>
+<tr>
+<td><strong>用户 AAD 对象 ID</strong></td>
+<td>SID</td>
+<td>03fa4b4e-dc26-426f-87b7-98e0c9e2955e</td>
+<td>可选</td>
+</tr>
+<tr>
+<td><strong>用户本地 SID</strong></td>
+<td>SID</td>
+<td>S-1-12-1-4141952679-1282074057-627758481-2916039507</td>
+<td>可选</td>
+</tr>
+<tr>
+<td><strong>用户主体名称</strong></td>
+<td>UPN</td>
+<td><a class="link" href="mailto:&#x4a;&#101;&#102;&#x66;&#x4c;&#64;&#x73;&#101;&#x63;&#99;&#x78;&#x70;&#46;&#110;&#105;&#110;&#x6a;&#97;">&#x4a;&#101;&#102;&#x66;&#x4c;&#64;&#x73;&#101;&#x63;&#99;&#x78;&#x70;&#46;&#110;&#105;&#110;&#x6a;&#97;<i class="fas fa-external-link-alt"></i></a></td>
+<td>必需</td>
+</tr>
+<tr>
+<td><strong>标记</strong></td>
+<td>列出</td>
+<td>[“SAW user”,”Blue Ocean team”]</td>
+<td>可选</td>
+</tr>
+</tbody></table>
+<p><strong>网络映射</strong><br>“网络映射”监视列表列出 IP 子网及其各自的组织上下文，此监视列表包括以下字段：</p>
+<table>
+<thead>
+<tr>
+<th><strong>字段名称</strong></th>
+<th><strong>格式</strong></th>
+<th><strong>示例</strong></th>
+<th><strong>必需/可选</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>IP 子网</strong></td>
+<td>子网范围</td>
+<td>198.51.100.0/24 - 198……/22</td>
+<td>必需</td>
+</tr>
+<tr>
+<td><strong>范围名</strong></td>
+<td>字符串</td>
+<td>DMZ</td>
+<td>可选</td>
+</tr>
+<tr>
+<td><strong>标记</strong></td>
+<td>列出</td>
+<td>[“Example”,”Example”]</td>
+<td>可选</td>
+</tr>
+</tbody></table>
+<p><strong>离职的员工</strong><br>“离职的员工”监视列表列出已离职或即将离职的员工的用户帐户，此监视列表包括以下字段：</p>
+<table>
+<thead>
+<tr>
+<th><strong>字段名称</strong></th>
+<th><strong>格式</strong></th>
+<th><strong>示例</strong></th>
+<th><strong>必需/可选</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>用户标识符</strong></td>
+<td>UID</td>
+<td>52322ec8-6ebf-11eb-9439-0242ac130002</td>
+<td>可选</td>
+</tr>
+<tr>
+<td><strong>用户 AAD 对象 ID</strong></td>
+<td>SID</td>
+<td>03fa4b4e-dc26-426f-87b7-98e0c9e2955e</td>
+<td>可选</td>
+</tr>
+<tr>
+<td><strong>用户本地 SID</strong></td>
+<td>SID</td>
+<td>S-1-12-1-4141952679-1282074057-123</td>
+<td>可选</td>
+</tr>
+<tr>
+<td><strong>用户主体名称</strong></td>
+<td>UPN</td>
+<td><a class="link" href="mailto:&#x4a;&#101;&#x66;&#102;&#x4c;&#64;&#115;&#101;&#99;&#99;&#x78;&#112;&#x2e;&#x6e;&#105;&#x6e;&#106;&#97;">&#x4a;&#101;&#x66;&#102;&#x4c;&#64;&#115;&#101;&#99;&#99;&#x78;&#112;&#x2e;&#x6e;&#105;&#x6e;&#106;&#97;<i class="fas fa-external-link-alt"></i></a></td>
+<td>必需</td>
+</tr>
+<tr>
+<td><strong>UserState</strong></td>
+<td>字符串</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>建议使用 Notified 或 Terminated</td>
+<td>Terminated</td>
+<td>必需</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>通知日期</strong></td>
+<td>时间戳 - 具体日期</td>
+<td>01.12.20</td>
+<td>可选</td>
+</tr>
+<tr>
+<td><strong>终止日期</strong></td>
+<td>时间戳 - 具体日期</td>
+<td>01.01.21</td>
+<td>必需</td>
+</tr>
+<tr>
+<td><strong>标记</strong></td>
+<td>列出</td>
+<td>[“SAW user”,”Amba Wolfs team”]</td>
+<td>可选</td>
+</tr>
+</tbody></table>
+<p><strong>标识相关</strong><br>“标识相关”监视列表列出属于同一人员的相关用户帐户，此监视列表包括以下字段：</p>
+<table>
+<thead>
+<tr>
+<th><strong>字段名称</strong></th>
+<th><strong>格式</strong></th>
+<th><strong>示例</strong></th>
+<th><strong>必需/可选</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>用户标识符</strong></td>
+<td>UID</td>
+<td>52322ec8-6ebf-11eb-9439-0242ac130002</td>
+<td>可选</td>
+</tr>
+<tr>
+<td><strong>用户 AAD 对象 ID</strong></td>
+<td>SID</td>
+<td>03fa4b4e-dc26-426f-87b7-98e0c9e2955e</td>
+<td>可选</td>
+</tr>
+<tr>
+<td><strong>用户本地 SID</strong></td>
+<td>SID</td>
+<td>S-1-12-1-4141952679-1282074057-627758481-2916039507</td>
+<td>可选</td>
+</tr>
+<tr>
+<td><strong>用户主体名称</strong></td>
+<td>UPN</td>
+<td><a class="link" href="mailto:&#x4a;&#x65;&#x66;&#x66;&#x4c;&#64;&#x73;&#101;&#99;&#x63;&#x78;&#112;&#46;&#x6e;&#105;&#110;&#x6a;&#x61;">&#x4a;&#x65;&#x66;&#x66;&#x4c;&#64;&#x73;&#101;&#99;&#x63;&#x78;&#112;&#46;&#x6e;&#105;&#110;&#x6a;&#x61;<i class="fas fa-external-link-alt"></i></a></td>
+<td>必需</td>
+</tr>
+<tr>
+<td><strong>员工 ID</strong></td>
+<td>字符串</td>
+<td>8234123</td>
+<td>可选</td>
+</tr>
+<tr>
+<td><strong>Email</strong></td>
+<td>电子邮件</td>
+<td><a class="link" href="mailto:&#x4a;&#101;&#102;&#102;&#x4c;&#64;&#115;&#101;&#99;&#99;&#x78;&#112;&#x2e;&#x6e;&#x69;&#x6e;&#x6a;&#x61;">&#x4a;&#101;&#102;&#102;&#x4c;&#64;&#115;&#101;&#99;&#99;&#x78;&#112;&#x2e;&#x6e;&#x69;&#x6e;&#x6a;&#x61;<i class="fas fa-external-link-alt"></i></a></td>
+<td>可选</td>
+</tr>
+<tr>
+<td><strong>关联的特权帐户 ID</strong></td>
+<td>UID/SID</td>
+<td>S-1-12-1-4141952679-1282074057-627758481-2916039507</td>
+<td>可选</td>
+</tr>
+<tr>
+<td><strong>关联的特权帐户</strong></td>
+<td>UPN</td>
+<td><a class="link" href="mailto:&#65;&#100;&#x6d;&#x69;&#x6e;&#64;&#x73;&#101;&#99;&#x63;&#120;&#112;&#x2e;&#x6e;&#x69;&#x6e;&#x6a;&#97;">&#65;&#100;&#x6d;&#x69;&#x6e;&#64;&#x73;&#101;&#99;&#x63;&#120;&#112;&#x2e;&#x6e;&#x69;&#x6e;&#x6a;&#97;<i class="fas fa-external-link-alt"></i></a></td>
+<td>可选</td>
+</tr>
+<tr>
+<td><strong>标记</strong></td>
+<td>列出</td>
+<td>[“SAW user”,”Amba Wolfs team”]</td>
+<td>可选</td>
+</tr>
+</tbody></table>
+<p><strong>服务帐户</strong><br>“服务帐户”监视列表列出服务帐户及其所有者，此监视列表包括以下字段：</p>
+<table>
+<thead>
+<tr>
+<th><strong>字段名称</strong></th>
+<th><strong>格式</strong></th>
+<th><strong>示例</strong></th>
+<th><strong>必需/可选</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>服务标识符</strong></td>
+<td>UID</td>
+<td>1111-112123-12312312-123123123</td>
+<td>可选</td>
+</tr>
+<tr>
+<td><strong>服务 AAD 对象 ID</strong></td>
+<td>SID</td>
+<td>11123-123123-123123-123123</td>
+<td>可选</td>
+</tr>
+<tr>
+<td><strong>服务本地 SID</strong></td>
+<td>SID</td>
+<td>S-1-12-1-3123123-123213123-12312312-2916039507</td>
+<td>可选</td>
+</tr>
+<tr>
+<td><strong>服务主体名称</strong></td>
+<td>UPN</td>
+<td><a class="link" href="mailto:&#x6d;&#121;&#115;&#101;&#x72;&#118;&#x69;&#x63;&#101;&#112;&#114;&#105;&#110;&#64;&#x63;&#111;&#110;&#x74;&#111;&#x73;&#111;&#x2e;&#99;&#x6f;&#x6d;">&#x6d;&#121;&#115;&#101;&#x72;&#118;&#x69;&#x63;&#101;&#112;&#114;&#105;&#110;&#64;&#x63;&#111;&#110;&#x74;&#111;&#x73;&#111;&#x2e;&#99;&#x6f;&#x6d;<i class="fas fa-external-link-alt"></i></a></td>
+<td>必需</td>
+</tr>
+<tr>
+<td><strong>所有者用户标识符</strong></td>
+<td>UID</td>
+<td>52322ec8-6ebf-11eb-9439-0242ac130002</td>
+<td>可选</td>
+</tr>
+<tr>
+<td><strong>所有者用户 AAD 对象 ID</strong></td>
+<td>SID</td>
+<td>03fa4b4e-dc26-426f-87b7-98e0c9e2955e</td>
+<td>可选</td>
+</tr>
+<tr>
+<td><strong>所有者用户本地 SID</strong></td>
+<td>SID</td>
+<td>S-1-12-1-4141952679-1282074057-627758481-2916039507</td>
+<td>可选</td>
+</tr>
+<tr>
+<td><strong>所有者用户主体名称</strong></td>
+<td>UPN</td>
+<td><a class="link" href="mailto:&#74;&#101;&#x66;&#x66;&#x4c;&#64;&#115;&#x65;&#99;&#x63;&#x78;&#112;&#46;&#x6e;&#x69;&#110;&#106;&#x61;">&#74;&#101;&#x66;&#x66;&#x4c;&#64;&#115;&#x65;&#99;&#x63;&#x78;&#112;&#46;&#x6e;&#x69;&#110;&#106;&#x61;<i class="fas fa-external-link-alt"></i></a></td>
+<td>必需</td>
+</tr>
+<tr>
+<td><strong>标记</strong></td>
+<td>列出</td>
+<td>[“Automation Account”,”GitHub Account”]</td>
+<td>可选</td>
+</tr>
+</tbody></table>
+<p><a class="link" target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/azure/sentinel/ueba-enrichments">https://docs.microsoft.com/zh-cn/azure/sentinel/ueba-enrichments<i class="fas fa-external-link-alt"></i></a></p>
+<p><strong>BehaviorAnalytics 表</strong><br>下表说明了 Microsoft Sentinel 中每个<a class="link" target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/azure/sentinel/identify-threats-with-entity-behavior-analytics#how-to-use-entity-pages">实体详细信息页<i class="fas fa-external-link-alt"></i></a>上显示的行为分析数据。</p>
+<table>
+<thead>
+<tr>
+<th><strong>字段</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>TenantId</strong></td>
+<td>string</td>
+<td>租户的唯一 ID 编号。</td>
+</tr>
+<tr>
+<td><strong>SourceRecordId</strong></td>
+<td>字符串</td>
+<td>EBA 事件的唯一 ID 编号。</td>
+</tr>
+<tr>
+<td><strong>TimeGenerated</strong></td>
+<td>datetime</td>
+<td>活动发生时的时间戳。</td>
+</tr>
+<tr>
+<td><strong>TimeProcessed</strong></td>
+<td>datetime</td>
+<td>EBA 引擎处理活动时的时间戳。</td>
+</tr>
+<tr>
+<td><strong>ActivityType</strong></td>
+<td>字符串</td>
+<td>活动的高级类别。</td>
+</tr>
+<tr>
+<td><strong>ActionType</strong></td>
+<td>字符串</td>
+<td>活动的规范化名称。</td>
+</tr>
+<tr>
+<td><strong>UserName</strong></td>
+<td>字符串</td>
+<td>发起活动的用户的用户名。</td>
+</tr>
+<tr>
+<td><strong>UserPrincipalName</strong></td>
+<td>字符串</td>
+<td>发起活动的用户的完整用户名。</td>
+</tr>
+<tr>
+<td><strong>EventSource</strong></td>
+<td>字符串</td>
+<td>提供原始事件的数据源。</td>
+</tr>
+<tr>
+<td><strong>SourceIPAddress</strong></td>
+<td>字符串</td>
+<td>发起活动的 IP 地址。</td>
+</tr>
+<tr>
+<td><strong>SourceIPLocation</strong></td>
+<td>字符串</td>
+<td>发起活动的国家/地区，从 IP 地址进行扩充。</td>
+</tr>
+<tr>
+<td><strong>SourceDevice</strong></td>
+<td>字符串</td>
+<td>发起活动的设备的主机名。</td>
+</tr>
+<tr>
+<td><strong>DestinationIPAddress</strong></td>
+<td>字符串</td>
+<td>活动目标的 IP 地址。</td>
+</tr>
+<tr>
+<td><strong>DestinationIPLocation</strong></td>
+<td>字符串</td>
+<td>活动目标所在国家/地区，从 IP 地址进行扩充。</td>
+</tr>
+<tr>
+<td><strong>DestinationDevice</strong></td>
+<td>字符串</td>
+<td>目标设备的名称。</td>
+</tr>
+<tr>
+<td><strong>UsersInsights</strong></td>
+<td>动态</td>
+<td>相关用户的上下文扩充（<a class="link" target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/azure/sentinel/ueba-enrichments#usersinsights-field">详细信息如下<i class="fas fa-external-link-alt"></i></a>）。</td>
+</tr>
+<tr>
+<td><strong>DevicesInsights</strong></td>
+<td>动态</td>
+<td>相关设备的上下文扩充（<a class="link" target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/azure/sentinel/ueba-enrichments#devicesinsights-field">详细信息如下<i class="fas fa-external-link-alt"></i></a>）。</td>
+</tr>
+<tr>
+<td><strong>ActivityInsights</strong></td>
+<td>动态</td>
+<td>基于我们的分析的活动的上下文分析（<a class="link" target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/azure/sentinel/ueba-enrichments#activityinsights-field">详细信息如下<i class="fas fa-external-link-alt"></i></a>）。</td>
+</tr>
+<tr>
+<td><strong>InvestigationPriority</strong></td>
+<td>int</td>
+<td>异常分数，介于 0-10（0=良性，10=高度异常）。</td>
+</tr>
+</tbody></table>
+<p><strong>实体扩充动态字段</strong></p>
+<p><strong>UsersInsights 字段</strong><br>下表说明了 BehaviorAnalytics 表中 UsersInsights 动态字段中提供的扩充：</p>
+<table>
+<thead>
+<tr>
+<th><strong>扩充名称</strong></th>
+<th><strong>说明</strong></th>
+<th><strong>示例值</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>帐户显示名称</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(AccountDisplayName)</em></td>
+<td>用户的帐户显示名称。</td>
+<td>Admin、Hayden Cook</td>
+</tr>
+<tr>
+<td><strong>帐户域</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(AccountDomain)</em></td>
+<td>用户的帐户域名。</td>
+<td><strong>帐户对象 ID</strong></td>
+</tr>
+<tr>
+<td><em>(AccountObjectID)</em></td>
+<td>用户的帐户对象 ID。</td>
+<td>a58df659-5cab-446c-9dd0-5a3af20ce1c2</td>
+</tr>
+<tr>
+<td><strong>冲击半径</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(BlastRadius)</em></td>
+<td>冲击半径根据多个因素来计算：用户在组织树中的位置，以及用户的 Azure Active Directory 角色和权限。</td>
+<td>低、中、高</td>
+</tr>
+<tr>
+<td><strong>休眠帐户</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(IsDormantAccount)</em></td>
+<td>此帐户在过去 180 天内未使用。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>本地管理员</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(IsLocalAdmin)</em></td>
+<td>此帐户具有本地管理员权限。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>新帐户</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(IsNewAccount)</em></td>
+<td>此帐户是在过去 30 天内创建的。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>本地 SID</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(OnPremisesSID)</em></td>
+<td>与该操作相关的用户的本地 SID。</td>
+<td>S-1-5-21-1112946627-1321165628-2437342228-1103</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>DevicesInsights 字段</strong><br>下表说明了 BehaviorAnalytics 表中 DevicesInsights 动态字段中提供的扩充：</p>
+<table>
+<thead>
+<tr>
+<th><strong>扩充名称</strong></th>
+<th><strong>说明</strong></th>
+<th><strong>示例值</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>浏览器</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(Browser)</em></td>
+<td>操作中使用的浏览器。</td>
+<td>Edge、Chrome</td>
+</tr>
+<tr>
+<td><strong>设备系列</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(DeviceFamily)</em></td>
+<td>操作中使用的设备系列。</td>
+<td>Windows</td>
+</tr>
+<tr>
+<td><strong>设备类型</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(DeviceType)</em></td>
+<td>操作中使用的客户端设备类型</td>
+<td>桌面</td>
+</tr>
+<tr>
+<td><strong>ISP</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(ISP)</em></td>
+<td>操作中使用的 Internet 服务提供商。</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>操作系统</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(OperatingSystem)</em></td>
+<td>操作中使用的操作系统。</td>
+<td>Windows 10</td>
+</tr>
+<tr>
+<td><strong>威胁 intel 指标说明</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(ThreatIntelIndicatorDescription)</em></td>
+<td>从操作中使用的 IP 地址解析的观察到的威胁指标的说明。</td>
+<td>主机是僵尸网络的成员：azorult</td>
+</tr>
+<tr>
+<td><strong>威胁 intel 指标类型</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(ThreatIntelIndicatorType)</em></td>
+<td>从操作中使用的 IP 地址解析的威胁指标的类型。</td>
+<td>僵尸网络、C2、CryptoMining、Darknet、Ddos、MaliciousUrl、恶意软件、仿冒、代理、PUA、播放列表</td>
+</tr>
+<tr>
+<td><strong>用户代理</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(UserAgent)</em></td>
+<td>操作中使用的用户代理。</td>
+<td>Microsoft Azure Graph Client Library 1.0、</td>
+</tr>
+<tr>
+<td>Swagger-Codegen/1.4.0.0/csharp,</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>EvoSTS</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>用户代理系列</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(UserAgentFamily)</em></td>
+<td>操作中使用的用户代理系列。</td>
+<td>Chrome、Edge、Firefox</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>ActivityInsights 字段</strong><br>下表说明了 BehaviorAnalytics 表中 ActivityInsights 动态字段中提供的扩充：</p>
+<p><strong>已执行的操作</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>扩充名称</strong></th>
+<th><a class="link" target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/azure/sentinel/ueba-enrichments#baseline-explained">基线<i class="fas fa-external-link-alt"></i></a><strong>（天）</strong></th>
+<th><strong>说明</strong></th>
+<th><strong>示例值</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>用户首次执行的操作</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(FirstTimeUserPerformedAction)</em></td>
+<td>180</td>
+<td>用户首次执行此操作。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>用户不常执行的操作</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(ActionUncommonlyPerformedByUser)</em></td>
+<td>10</td>
+<td>用户不常执行此操作。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>对等机之间不常执行的操作</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(ActionUncommonlyPerformedAmongPeers)</em></td>
+<td>180</td>
+<td>用户的对等机之间不常执行此操作。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>首次在租户中执行的操作</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(FirstTimeActionPerformedInTenant)</em></td>
+<td>180</td>
+<td>此操作由组织中的任何人首次执行。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>租户中不常执行的操作</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(ActionUncommonlyPerformedInTenant)</em></td>
+<td>180</td>
+<td>组织中不常执行此操作。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>使用的应用</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>扩充名称</strong></th>
+<th><a class="link" target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/azure/sentinel/ueba-enrichments#baseline-explained">基线<i class="fas fa-external-link-alt"></i></a><strong>（天）</strong></th>
+<th><strong>说明</strong></th>
+<th><strong>示例值</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>用户首次使用的应用</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(FirstTimeUserUsedApp)</em></td>
+<td>180</td>
+<td>用户首次使用此应用。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>用户不常使用的应用</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(AppUncommonlyUsedByUser)</em></td>
+<td>10</td>
+<td>用户不常使用此应用。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>在对等机之间不常使用的应用</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(AppUncommonlyUsedAmongPeers)</em></td>
+<td>180</td>
+<td>在用户的对等机之间不常使用此应用。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>首次在租户中观察到的应用</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(FirstTimeAppObservedInTenant)</em></td>
+<td>180</td>
+<td>在组织中首次观察到此应用。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>租户中不常使用的应用</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(AppUncommonlyUsedInTenant)</em></td>
+<td>180</td>
+<td>组织中不常使用此应用。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>使用的浏览器</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>扩充名称</strong></th>
+<th><a class="link" target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/azure/sentinel/ueba-enrichments#baseline-explained">基线<i class="fas fa-external-link-alt"></i></a><strong>（天）</strong></th>
+<th><strong>说明</strong></th>
+<th><strong>示例值</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>用户首次通过浏览器连接</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(FirstTimeUserConnectedViaBrowser)</em></td>
+<td>30</td>
+<td>用户首次观察到此浏览器。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>用户不常使用的浏览器</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(BrowserUncommonlyUsedByUser)</em></td>
+<td>10</td>
+<td>用户不常使用此浏览器。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>在对等机之间不常使用的浏览器</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(BrowserUncommonlyUsedAmongPeers)</em></td>
+<td>30</td>
+<td>在用户的对等机之间不常使用此浏览器。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>首次在租户中观察到的浏览器</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(FirstTimeBrowserObservedInTenant)</em></td>
+<td>30</td>
+<td>在组织中首次观察到此浏览器。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>租户中不常使用的浏览器</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(BrowserUncommonlyUsedInTenant)</em></td>
+<td>30</td>
+<td>组织中不常使用此浏览器。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>从其连接的国家/地区</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>扩充名称</strong></th>
+<th><a class="link" target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/azure/sentinel/ueba-enrichments#baseline-explained">基线<i class="fas fa-external-link-alt"></i></a><strong>（天）</strong></th>
+<th><strong>说明</strong></th>
+<th><strong>示例值</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>用户首次从国家/地区连接</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(FirstTimeUserConnectedFromCountry)</em></td>
+<td>90</td>
+<td>用户首次从 IP 地址解析的这个地理位置连接。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>用户不常从其连接的国家/地区</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(CountryUncommonlyConnectedFromByUser)</em></td>
+<td>10</td>
+<td>用户不常从 IP 地址解析的这个地理位置连接。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>在对等机之间不常从其连接的国家/地区</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(CountryUncommonlyConnectedFromAmongPeers)</em></td>
+<td>90</td>
+<td>用户的对等机之间不常从 IP 地址解析的这个地理位置连接。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>首次从租户中观察到的国家/地区连接</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(FirstTimeConnectionFromCountryObservedInTenant)</em></td>
+<td>90</td>
+<td>组织中的任何人首次从该国家/地区连接。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>租户中不常从其连接的国家/地区</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(CountryUncommonlyConnectedFromInTenant)</em></td>
+<td>90</td>
+<td>组织中不常从 IP 地址解析的这个地理位置连接。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>用于连接的设备</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>扩充名称</strong></th>
+<th><a class="link" target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/azure/sentinel/ueba-enrichments#baseline-explained">基线<i class="fas fa-external-link-alt"></i></a><strong>（天）</strong></th>
+<th><strong>说明</strong></th>
+<th><strong>示例值</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>用户首次从设备连接</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(FirstTimeUserConnectedFromDevice)</em></td>
+<td>30</td>
+<td>用户首次从该源设备连接。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>用户不常使用的设备</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(DeviceUncommonlyUsedByUser)</em></td>
+<td>10</td>
+<td>用户不常使用此设备。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>在对等机之间不常使用的设备</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(DeviceUncommonlyUsedAmongPeers)</em></td>
+<td>180</td>
+<td>在用户的对等机之间不常使用此设备。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>首次在租户中观察到的设备</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(FirstTimeDeviceObservedInTenant)</em></td>
+<td>30</td>
+<td>此设备首次在组织中观察到。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>租户中不常使用的设备</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(DeviceUncommonlyUsedInTenant)</em></td>
+<td>180</td>
+<td>组织中不常使用此设备。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>其他相关设备</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>扩充名称</strong></th>
+<th><a class="link" target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/azure/sentinel/ueba-enrichments#baseline-explained">基线<i class="fas fa-external-link-alt"></i></a><strong>（天）</strong></th>
+<th><strong>说明</strong></th>
+<th><strong>示例值</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>用户首次登录到设备</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(FirstTimeUserLoggedOnToDevice)</em></td>
+<td>180</td>
+<td>用户首次连接到此目标设备。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>租户中不常使用的设备系列</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(DeviceFamilyUncommonlyUsedInTenant)</em></td>
+<td>30</td>
+<td>组织中不常使用此设备系列。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>用于连接的 Internet 服务提供商</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>扩充名称</strong></th>
+<th><a class="link" target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/azure/sentinel/ueba-enrichments#baseline-explained">基线<i class="fas fa-external-link-alt"></i></a><strong>（天）</strong></th>
+<th><strong>说明</strong></th>
+<th><strong>示例值</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>用户首次通过 ISP 连接</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(FirstTimeUserConnectedViaISP)</em></td>
+<td>30</td>
+<td>用户首次观察到此 ISP。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>用户不常使用的 ISP</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(ISPUncommonlyUsedByUser)</em></td>
+<td>10</td>
+<td>用户不常使用此 ISP。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>在对等机之间不常使用的 ISP</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(ISPUncommonlyUsedAmongPeers)</em></td>
+<td>30</td>
+<td>在用户的对等机之间不常使用此 ISP。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>首次在租户中通过 ISP 连接</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(FirstTimeConnectionViaISPInTenant)</em></td>
+<td>30</td>
+<td>在组织中首次观察到此 ISP。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>租户中不常使用的 ISP</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(ISPUncommonlyUsedInTenant)</em></td>
+<td>30</td>
+<td>组织中不常使用此 ISP。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>访问的资源</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>扩充名称</strong></th>
+<th><a class="link" target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/azure/sentinel/ueba-enrichments#baseline-explained">基线<i class="fas fa-external-link-alt"></i></a><strong>（天）</strong></th>
+<th><strong>说明</strong></th>
+<th><strong>示例值</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>用户首次访问的资源</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(FirstTimeUserAccessedResource)</em></td>
+<td>180</td>
+<td>此资源由用户首次访问。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>用户不常访问的资源</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(ResourceUncommonlyAccessedByUser)</em></td>
+<td>10</td>
+<td>用户不常访问该资源。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>在对等机之间不常访问的资源</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(ResourceUncommonlyAccessedAmongPeers)</em></td>
+<td>180</td>
+<td>在用户的对等机之间不常访问该资源。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>首次在租户中访问的资源</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(FirstTimeResourceAccessedInTenant)</em></td>
+<td>180</td>
+<td>此资源由组织中的任何人首次访问。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>租户中不常访问的资源</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(ResourceUncommonlyAccessedInTenant)</em></td>
+<td>180</td>
+<td>组织中不常访问此资源。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>杂项</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>扩充名称</strong></th>
+<th><a class="link" target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/azure/sentinel/ueba-enrichments#baseline-explained">基线<i class="fas fa-external-link-alt"></i></a><strong>（天）</strong></th>
+<th><strong>说明</strong></th>
+<th><strong>示例值</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>用户上次执行的操作</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(LastTimeUserPerformedAction)</em></td>
+<td>180</td>
+<td>上次用户执行了相同的操作。</td>
+<td><Timestamp></Timestamp></td>
+</tr>
+<tr>
+<td><strong>过去未执行类似操作</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(SimilarActionWasn’tPerformedInThePast)</em></td>
+<td>30</td>
+<td>用户未在相同的资源提供程序中执行任何操作。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>源 IP 位置</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(SourceIPLocation)</em></td>
+<td>空值</td>
+<td>此国家/地区从操作的源 IP 解析。</td>
+<td>[英国萨里]</td>
+</tr>
+<tr>
+<td><strong>不常见的大量操作</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(UncommonHighVolumeOfOperations)</em></td>
+<td>7</td>
+<td>用户在同一个提供程序中执行了一连串类似操作</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>Azure AD 条件访问失败的异常数量</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(UnusualNumberOfAADConditionalAccessFailures)</em></td>
+<td>5</td>
+<td>由于条件访问导致无法进行身份验证的用户的异常数量</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>添加的异常数量的设备</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(UnusualNumberOfDevicesAdded)</em></td>
+<td>5</td>
+<td>用户添加了异常数量的设备。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>删除的异常数量的设备</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(UnusualNumberOfDevicesDeleted)</em></td>
+<td>5</td>
+<td>用户删除了异常数量的设备。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>添加到组中的异常数量的用户</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(UnusualNumberOfUsersAddedToGroup)</em></td>
+<td>5</td>
+<td>用户向组中添加了异常数量的用户。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>IdentityInfo 表（公开预览版）</strong><br>为 Microsoft Sentinel 工作区<a class="link" target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/azure/sentinel/enable-entity-behavior-analytics">启用 UEBA<i class="fas fa-external-link-alt"></i></a> 后，来自 Azure Active Directory 的数据将同步到 Log Analytics 中的 IdentityInfo 表以在 Microsoft Sentinel 中使用。 可以在分析规则中嵌入从 Azure AD 同步的用户数据，以增强分析来适应你的用例并减少误报。<br>虽然初始同步可能需要几天时间，但在数据完全同步后，将获得以下优势：</p>
+<ul>
+<li><pre><code>    对 Azure AD 中的用户配置文件所做的更改会在 15 分钟内更新到 IdentityInfo 表中。
+</code></pre>
+</li>
+<li><pre><code>    组和角色信息每天在 IdentityInfo 表和 Azure AD 之间同步。
+</code></pre>
+</li>
+<li><pre><code>    每 21 天，Microsoft Sentinel 会与整个 Azure AD 重新同步，以确保过时的记录将完全更新。
+</code></pre>
+</li>
+<li><pre><code>    IdentityInfo 表中的默认保留时间为 30 天。
+</code></pre>
+</li>
+</ul>
+<p><strong>备注</strong><br>目前，仅支持内置角色。<br>目前不支持有关已删除组（从组中删除了用户）的数据。<br>下表描述了 Log Analytics 的 IdentityInfo 表中包含的用户身份数据。</p>
+<table>
+<thead>
+<tr>
+<th><strong>字段</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>AccountCloudSID</strong></td>
+<td>string</td>
+<td>帐户的 Azure AD 安全标识符。</td>
+</tr>
+<tr>
+<td><strong>AccountCreationTime</strong></td>
+<td>datetime</td>
+<td>创建用户帐户的日期 (UTC)。</td>
+</tr>
+<tr>
+<td><strong>AccountDisplayName</strong></td>
+<td>string</td>
+<td>用户帐户的显示名称。</td>
+</tr>
+<tr>
+<td><strong>AccountDomain</strong></td>
+<td>string</td>
+<td>用户帐户的域名。</td>
+</tr>
+<tr>
+<td><strong>AccountName</strong></td>
+<td>string</td>
+<td>用户帐户的用户名。</td>
+</tr>
+<tr>
+<td><strong>AccountObjectId</strong></td>
+<td>string</td>
+<td>用户帐户的 Azure Active Directory 对象 ID。</td>
+</tr>
+<tr>
+<td><strong>AccountSID</strong></td>
+<td>string</td>
+<td>用户帐户的本地安全标识符。</td>
+</tr>
+<tr>
+<td><strong>AccountTenantId</strong></td>
+<td>string</td>
+<td>用户帐户的 Azure Active Directory 租户 ID。</td>
+</tr>
+<tr>
+<td><strong>AccountUPN</strong></td>
+<td>string</td>
+<td>用户帐户的用户主体名称。</td>
+</tr>
+<tr>
+<td><strong>AdditionalMailAddresses</strong></td>
+<td>动态</td>
+<td>用户的其他电子邮件地址。</td>
+</tr>
+<tr>
+<td><strong>AssignedRoles</strong></td>
+<td>动态</td>
+<td>为用户帐户分配的 Azure AD 角色。</td>
+</tr>
+<tr>
+<td><strong>城市</strong></td>
+<td>string</td>
+<td>用户帐户的城市。</td>
+</tr>
+<tr>
+<td><strong>国家/地区</strong></td>
+<td>string</td>
+<td>用户帐户的国家/地区。</td>
+</tr>
+<tr>
+<td><strong>DeletedDateTime</strong></td>
+<td>datetime</td>
+<td>删除用户的日期和时间。</td>
+</tr>
+<tr>
+<td><strong>部门</strong></td>
+<td>string</td>
+<td>用户帐户的部门。</td>
+</tr>
+<tr>
+<td><strong>GivenName</strong></td>
+<td>string</td>
+<td>用户帐户的给定名称。</td>
+</tr>
+<tr>
+<td><strong>GroupMembership</strong></td>
+<td>动态</td>
+<td>用户帐户所归属的 Azure AD 组。</td>
+</tr>
+<tr>
+<td><strong>IsAccountEnabled</strong></td>
+<td>bool</td>
+<td>指示是否在 Azure AD 中启用了用户帐户。</td>
+</tr>
+<tr>
+<td><strong>JobTitle</strong></td>
+<td>string</td>
+<td>用户帐户的职务。</td>
+</tr>
+<tr>
+<td><strong>MailAddress</strong></td>
+<td>string</td>
+<td>用户帐户的主要电子邮件地址。</td>
+</tr>
+<tr>
+<td>管理员</td>
+<td>string</td>
+<td>用户帐户的管理员别名。</td>
+</tr>
+<tr>
+<td><strong>OnPremisesDistinguishedName</strong></td>
+<td>string</td>
+<td>Azure AD 可分辨名称 (DN)。专有名称是一系列相对专有名称 (RDN)，由逗号连接。</td>
+</tr>
+<tr>
+<td><strong>电话</strong></td>
+<td>string</td>
+<td>用户帐户的电话号码。</td>
+</tr>
+<tr>
+<td><strong>SourceSystem</strong></td>
+<td>string</td>
+<td>用户数据的来源系统。</td>
+</tr>
+<tr>
+<td><strong>State</strong></td>
+<td>string</td>
+<td>用户帐户的地理状态。</td>
+</tr>
+<tr>
+<td><strong>StreetAddress</strong></td>
+<td>string</td>
+<td>用户帐户的办公街道地址。</td>
+</tr>
+<tr>
+<td><strong>Surname</strong></td>
+<td>string</td>
+<td>用户的姓氏。帐户。</td>
+</tr>
+<tr>
+<td><strong>TenantId</strong></td>
+<td>string</td>
+<td>用户的租户 ID。</td>
+</tr>
+<tr>
+<td><strong>TimeGenerated</strong></td>
+<td>datetime</td>
+<td>生成事件的时间 (UTC)。</td>
+</tr>
+<tr>
+<td><strong>类型</strong></td>
+<td>string</td>
+<td>表的名称。</td>
+</tr>
+<tr>
+<td><strong>UserState</strong></td>
+<td>string</td>
+<td>Azure AD 中用户帐户的当前状态（活动/禁用/休眠/锁定）。</td>
+</tr>
+<tr>
+<td><strong>UserStateChangedOn</strong></td>
+<td>datetime</td>
+<td>上次更改帐户状态的日期 (UTC)。</td>
+</tr>
+<tr>
+<td><strong>UserType</strong></td>
+<td>string</td>
+<td>用户类型。</td>
+</tr>
+</tbody></table>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：Azure Sentinel webinar：Enabling User and Entity Behavior Analytics (UEBA)</li>
+        <li>Post author：langu_xyz</li>
+        <li>Create time：2021-05-01 21:00:00</li>
+        <li>
+            Post link：https://blog.langu.xyz/Azure Sentinel webinar: Enabling User and Entity Behavior Analytics (UEBA)/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/%E4%BB%8E%E7%BC%96%E5%86%99JDI%E8%B0%83%E8%AF%95%E5%88%B0%E5%AE%9E%E7%8E%B0JDWP%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">从编写JDI调试到实现JDWP命令执行</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/OT%E7%8E%AF%E5%A2%83%E4%B8%8BIoT%E5%AE%89%E5%85%A8%E7%9A%84%E7%A0%B4%E5%B1%80%E6%8E%A2%E7%B4%A2/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">OT环境下IoT安全的破局探索</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>&nbsp;-&nbsp;
+            
+            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a target="_blank" rel="noopener" href="//langu.xyz">AboutME:langu_xyz</a>
+        </div>
+        <!--
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        -->
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%94%A8%E6%88%B7%E5%92%8C%E5%AE%9E%E4%BD%93%E8%A1%8C%E4%B8%BA%E5%88%86%E6%9E%90-UEBA-%EF%BC%9F"><span class="nav-text">什么是用户和实体行为分析 (UEBA)？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E9%A9%B1%E5%8A%A8%E7%9A%84%E5%88%86%E6%9E%90"><span class="nav-text">安全驱动的分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%A1%E5%88%86"><span class="nav-text">计分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%97%B6%E9%97%B4%E7%BA%BF"><span class="nav-text">时间线</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%84%E5%88%99%E6%A8%A1%E7%89%88"><span class="nav-text">规则模版</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

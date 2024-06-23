@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="网络安全,黑客,JAVA安全,代码审计,渗透测试,入侵,SRC,扫描,WEB安全,移动安全,PHP">
+    <meta name="description" content="蓝骨, langu.xyz">
+    <meta name="author" content="langu_xyz">
+    
+        <title>
+            
+                微服务架构下的越权风险 |
+                    
+                        langu_xyz
+        </title>
+        
+<link rel="stylesheet" href="/css/style.css">
+
+            <link rel="shortcut icon" href="/images/logo.jpeg">
+                
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+                    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"blog.langu.xyz","root":"/","language":"zh","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/logo.jpeg","favicon":"/images/logo.jpeg","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/shamo.jpg","description":"XYZ(无限未来)"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+
+                    <script>
+                        var _hmt = _hmt || [];
+                        (function() {
+                          var hm = document.createElement("script");
+                          hm.src = "https://hm.baidu.com/hm.js?1cd6e64ff252acf24b707985fcec8850";
+                          var s = document.getElementsByTagName("script")[0]; 
+                          s.parentNode.insertBefore(hm, s);
+                        })();
+                        </script>
+                        
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="langu_xyz" type="application/atom+xml">
+</head>
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                    <a class="logo-title" href="/">
+                        langu_xyz
+                    </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class="" href="/" >
+                                HOME
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class="" href="/tags/THINK/" >
+                                THINK
+                            </a>
+                        </li>
+                        
+                            
+                                <li class="menu-item search search-popup-trigger">
+                                    <i class="fas fa-search"></i>
+                                </li>
+                                
+                                
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                    
+                        <div class="icon-item menu-bar">
+                            <div class="menu-bar-middle"></div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/" >
+                        HOME
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/tags/THINK/" >
+                        THINK
+                    </a>
+                </li>
+                
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">微服务架构下的越权风险</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/logo.jpeg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">langu_xyz</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2020-10-20 21:00:00
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%BA%94%E7%94%A8%E5%AE%89%E5%85%A8/">应用安全</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/THINK/">THINK</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.8k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>6 Mins</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <blockquote>
+<blockquote>
+<p>一篇小文，主要是通过安全的视角来简单讨论一下微服务架构下容易出现的一些去权限安全问题，涉及到开发细节说错的时候还望谅解。</p>
+</blockquote>
+</blockquote>
+<h2 id="一、微服务与微服务架构"><a href="#一、微服务与微服务架构" class="headerlink" title="一、微服务与微服务架构"></a>一、微服务与微服务架构</h2><p>微服务是一种开发软件的架构和组织方法，其中软件由通过明确定义的 API 进行通信的小型独立服务组成。这些服务由各个小型独立团队负责；采用UNIX设计的哲学，每种服务只做一件事，是一种松耦合的能够被独立开发和部署的无状态化服务。</p>
+<p>微服务具有两个关键特性：自主性、专用性，具有敏捷性、灵活扩展、轻松部署、技术自由、可重复使用的代码、弹性等优势[1]。</p>
+<p><img lazyload src="/images/loading.svg" data-src="16264446902542.jpg"></p>
+<p>从上边的描述可以看出，微服务更多的是一种方法，而微服务架构则是实践微服务的具体实现，不同厂商、不同开发的实现方式各有差异，大概架构基本如下图[2]。它使得开发可以专注自由的开发他负责的服务，解决了系统的复杂性，可以独立部署，与DevOps开发流程契合等，这也难怪现在几乎全民微服务了。</p>
+<p><img lazyload src="/images/loading.svg" data-src="16264447090384.jpg"></p>
+<p>但是哪有什么银弹，优点越多的技术带来的负面影响往往越大。</p>
+<h2 id="二、微服务的访问权限困境"><a href="#二、微服务的访问权限困境" class="headerlink" title="二、微服务的访问权限困境"></a>二、微服务的访问权限困境</h2><p>在微服务架构下，一个应用被拆分为多个微服务，这样一来，原先单体架构下的权限体系就不再能满足微服务的鉴权需求了，每个微服务都需要对自身API进行权限管控，需要对接账号体系和明确哪些角色有权限访问；同时还有来自服务之间的调用等。</p>
+<p>在这种情况下，无论是通过session方案还是token方案，都需要开发去自己维护这一权限体系，那么问题就来了。业务产品在后边追，各种发布封网在前边拦，往往会为了完成业务功能而取舍掉权限的部分，又或者不同的开发同学对于鉴权的理解不一致，甚至认为判断有没有登陆就认为已经完成了权限校验。</p>
+<p>随着这类API的越来越多，就会发现同类安全问题频繁发生，特别是未授权访问这类低级的漏洞。</p>
+<p><img lazyload src="/images/loading.svg" data-src="16264447226782.jpg"></p>
+<h2 id="三、绕不过的API-Gateway"><a href="#三、绕不过的API-Gateway" class="headerlink" title="三、绕不过的API Gateway"></a>三、绕不过的API Gateway</h2><p>一方面为了管理乱糟糟的API调用关系，一方面为了解决上边提到的风险，微服务的调用需要一个统一管控的部分，也就是API Gateway。现在是不是就不会出现越权漏洞了呢？</p>
+<p>想法是美好的，但现实往往啪啪打脸，Gateway的架构缺陷往往会造成更大的风险。</p>
+<ul>
+<li>API Gateway 仅仅是个出入口</li>
+</ul>
+<p>这类网关往往只起到了一个路由的作用，它可能只有一个域名和简单的路由转发功能，将同一部分业务的API通过同一个域名开发出去，将API的权限校验全部交给相应的开发去搞，当出现未授权访问漏洞时，双方就开始扯皮，这个权限校验不是你应该做的吗？特别是当这业务特别庞大时，几百几千个API都接入，这可真是个灾难～</p>
+<ul>
+<li>API Gateway 通过黑名单控制访问权限</li>
+</ul>
+<p>有时候需要控制一部分API开放公网另一部分不对外开放，有时候一部分API需要访问控制另一部分可以公开访问等。在解决这类需求时，很多开发会把API Gateway设计成黑名单模式，例如不能对外开发的API需要添加到blacklist中，又或者需要做菜单访问控制的API需要主动去配置。从文字上，这貌似没有什么问题，合情又合理，但是回到人性上，人是健忘的和怕麻烦的，所以就导致经常出现内部API忘了配置blacklist开放公网或忘了配置权限菜单造成未授权访问漏洞的情况。</p>
+<ul>
+<li>API自动编排服务</li>
+</ul>
+<p>这两年出现了一些提供快速搭建应用能力的平台，通过网关能力，编排能力以及多种类型的服务对接、统一开放的服务市场，来完成服务发现，服务生产，服务消费的全链路的服务流程。这对于非开发的同学开发应用或帮助开发同学快速发布应用，是很有意义的，但是随之而来的就是它的权限校验问题，在编排时，权限判断逻辑是否是必选项、接入账号体系后是否有角色配置关联、是否支持数据权限的校验等等，任何一个点出现问题，整个平台的应用可能都会存在风险。</p>
+<p>随着这类情况越来越多，通过应用数量来看业务规模已经不太行的通了，有时候一个应用可能会有几百上千个API[3]，背后又对应着几十上百个开发，对于传统的SDL来说太难落地了[4]，关于API的安全治理，是一个复杂的体系，有机会细聊。</p>
+<p>(这难道不是越权漏洞挖掘的思路嘛)</p>
+<p><img lazyload src="/images/loading.svg" data-src="16264447430371.jpg"></p>
+<h2 id="四、基于API-Gateway权限校验的一些想法"><a href="#四、基于API-Gateway权限校验的一些想法" class="headerlink" title="四、基于API Gateway权限校验的一些想法"></a>四、基于API Gateway权限校验的一些想法</h2><p>实际的API Gateway设计涉及到多个方面，安全和性能往往在一个平衡的状态，下边的仅供参考</p>
+<ul>
+<li><p>安全工程师可以不介入到每个应用进行安全评审，但是API Gateway类的应用一定要覆盖和持续跟进</p>
+</li>
+<li><p>在调用者和被调用者中间加一层网关，每次调用时进行权限校验。充分利用API网关，完成将身份验证和路由功能</p>
+</li>
+<li><p>在Gateway或账号管理平台上维护API与角色的关系，在Gateway判断API与角色是否匹配，可以解决访问权限(垂直权限)越权的风险</p>
+</li>
+<li><p>当通过API Gateway控制router时，公网可访问的列表用白名单方式，只有主动添加才可以对外开放</p>
+</li>
+<li><p>每个微服务的开发都应该为其数据访问权限负责</p>
+</li>
+</ul>
+<p><img lazyload src="/images/loading.svg" data-src="16264447588757.jpg"></p>
+<h2 id="五、这个世界是一个圆"><a href="#五、这个世界是一个圆" class="headerlink" title="五、这个世界是一个圆"></a>五、这个世界是一个圆</h2><p>关于Service Mesh架构我们下次再聊。</p>
+<p><img lazyload src="/images/loading.svg" data-src="16264447703425.jpg"></p>
+<p>每一次开发架构的更迭，都会带来新的安全挑战，现在越来越火的Serverless、FaaS等也一定会带来一系列新的安全挑战，说不定再过一段时间又回到了最初的单体架构。</p>
+<p><img lazyload src="/images/loading.svg" data-src="16264447782311.jpg"></p>
+<p>参考：</p>
+<p>[1]<a class="link" target="_blank" rel="noopener" href="https://aws.amazon.com/cn/microservices/">https://aws.amazon.com/cn/microservices/<i class="fas fa-external-link-alt"></i></a></p>
+<p>[2]<a class="link" target="_blank" rel="noopener" href="http://dockone.io/article/3687">http://dockone.io/article/3687<i class="fas fa-external-link-alt"></i></a></p>
+<p>[3]API安全全链路解决方案写了好久，但是还有几个关键点在实践场景中没有跑顺畅，再等等(没有实践，没有发言权)</p>
+<p>[4]DevSecOps同样，在实践的路上，还不敢拿出来班门弄斧</p>
+<p>[5]图片来源网络</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：微服务架构下的越权风险</li>
+        <li>Post author：langu_xyz</li>
+        <li>Create time：2020-10-20 21:00:00</li>
+        <li>
+            Post link：https://blog.langu.xyz/微服务架构下的越权风险/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/%E6%88%91%E7%9A%84%E5%BA%94%E7%94%A8%E5%AE%89%E5%85%A8%E6%96%B9%E6%B3%95%E8%AE%BA%EF%BC%9A%E8%B7%AF%E5%9C%A8%E8%84%9A%E4%B8%8B/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">我的应用安全方法论：路在脚下</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/API%E8%B6%8A%E6%9D%83%E9%A3%8E%E9%99%A9%E6%A3%80%E6%B5%8B%E6%96%B9%E5%BC%8F%E6%B5%85%E8%B0%88/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">API越权风险检测方式浅谈</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>&nbsp;-&nbsp;
+            
+            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a target="_blank" rel="noopener" href="//langu.xyz">AboutME:langu_xyz</a>
+        </div>
+        <!--
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        -->
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%B8%8E%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84"><span class="nav-text">一、微服务与微服务架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%9A%84%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90%E5%9B%B0%E5%A2%83"><span class="nav-text">二、微服务的访问权限困境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E7%BB%95%E4%B8%8D%E8%BF%87%E7%9A%84API-Gateway"><span class="nav-text">三、绕不过的API Gateway</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E5%9F%BA%E4%BA%8EAPI-Gateway%E6%9D%83%E9%99%90%E6%A0%A1%E9%AA%8C%E7%9A%84%E4%B8%80%E4%BA%9B%E6%83%B3%E6%B3%95"><span class="nav-text">四、基于API Gateway权限校验的一些想法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E8%BF%99%E4%B8%AA%E4%B8%96%E7%95%8C%E6%98%AF%E4%B8%80%E4%B8%AA%E5%9C%86"><span class="nav-text">五、这个世界是一个圆</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

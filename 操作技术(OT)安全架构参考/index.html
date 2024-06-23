@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="网络安全,黑客,JAVA安全,代码审计,渗透测试,入侵,SRC,扫描,WEB安全,移动安全,PHP">
+    <meta name="description" content="蓝骨, langu.xyz">
+    <meta name="author" content="langu_xyz">
+    
+        <title>
+            
+                操作技术(OT)安全架构参考 |
+                    
+                        langu_xyz
+        </title>
+        
+<link rel="stylesheet" href="/css/style.css">
+
+            <link rel="shortcut icon" href="/images/logo.jpeg">
+                
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+                    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"blog.langu.xyz","root":"/","language":"zh","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/logo.jpeg","favicon":"/images/logo.jpeg","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/shamo.jpg","description":"XYZ(无限未来)"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+
+                    <script>
+                        var _hmt = _hmt || [];
+                        (function() {
+                          var hm = document.createElement("script");
+                          hm.src = "https://hm.baidu.com/hm.js?1cd6e64ff252acf24b707985fcec8850";
+                          var s = document.getElementsByTagName("script")[0]; 
+                          s.parentNode.insertBefore(hm, s);
+                        })();
+                        </script>
+                        
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="langu_xyz" type="application/atom+xml">
+</head>
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                    <a class="logo-title" href="/">
+                        langu_xyz
+                    </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class="" href="/" >
+                                HOME
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class="" href="/tags/THINK/" >
+                                THINK
+                            </a>
+                        </li>
+                        
+                            
+                                <li class="menu-item search search-popup-trigger">
+                                    <i class="fas fa-search"></i>
+                                </li>
+                                
+                                
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                    
+                        <div class="icon-item menu-bar">
+                            <div class="menu-bar-middle"></div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/" >
+                        HOME
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/tags/THINK/" >
+                        THINK
+                    </a>
+                </li>
+                
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">操作技术(OT)安全架构参考</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/logo.jpeg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">langu_xyz</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2022-05-16 21:00:00
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%AE%89%E5%85%A8%E6%9E%B6%E6%9E%84/">安全架构</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E5%AE%89%E5%85%A8%E5%BB%BA%E8%AE%BE/">安全建设</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%9E%B6%E6%9E%84%E4%BD%93%E7%B3%BB%E5%8F%82%E8%80%83/">网络安全架构体系参考</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.7k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>5 Mins</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>#安全架构网络安全架构体系参考——操作技术(OT)安全架构参考</p>
+<blockquote>
+<blockquote>
+<p>“在OT和工业物联网环境中应用零信任原则”</p>
+</blockquote>
+</blockquote>
+<p>操作技术 (OT) 和工业物联网环境由控制物理设备的计算机组成。 这包括供暖、通风和空调 (HVAC) 系统等常见技术，以及用于制造、石油和天然气设施、公用事业、交通运输、市政基础设施等的行业特定设备。 这些 OT 系统通常在 IT 环境中进行监控，以提供业务分析和对物理业务运营的其他洞察。</p>
+<p>虽然底层计算平台和 IP 网络与 IT 相似，但这些 OT 环境在几个方面有所不同：</p>
+<p>• 安全是主要的OT 安全保证，这与IT 主要关注知识产权的机密性形成鲜明对比（尽管两者都关注系统和数据的完整性和可用性）。 这种差异是因为 OT 系统故障可能直接导致人身伤害或死亡（例如，在重型机械上或附近工作的员工、使用/消费产品的客户、在实体设施附近生活/工作的公民等）。 此外，其中一些系统距离可以访问或重新启动它们的最近技术人员数百英里/公里。</p>
+<p>•与 IT 系统相比，OT 硬件/软件比较陈旧，因为物理设备的运行生命周期比典型的 IT 系统长得多（在许多情况下是 10 倍）。 找到 50 或 100 年历史的设备（有些仍然由蒸汽驱动！）在 30 到 50 年前被现代化为电子控制系统的情况并不罕见。</p>
+<p>•OT 安全有所不同，因为这些系统在构建时通常没有考虑到现代威胁和协议（并且通常依赖于“生命终结”软件）。 许多成熟的 IT 安全最佳实践（如软件修补）在 OT 环境中并不实用或完全有效，因此只能有选择地应用（或安全效果有限）。 OT 的基本安全始于网络隔离（包括对隔离边界的良好维护/监控）、威胁监控以及仔细管理供应商访问风险。</p>
+<h2 id="Purdue-Model"><a href="#Purdue-Model" class="headerlink" title="Purdue Model"></a>Purdue Model</h2><p>自 1990 年代以来，Purdue 企业参考架构 (PERA)，即 Purdue 模型，一直是组织（有时是分离）企业和工业控制系统 (ICS) 安全措施和网络功能的标准模型。</p>
+<p>•     0-3 级（OT 环境）变化不大，并且在今天仍然适用。</p>
+<p>•     4 级和 5 级（IT 环境）反映了一种较旧的企业访问控制方法，由于移动和云技术的出现，这种方法正在以零信任原则进行转变。</p>
+<p><img lazyload src="/images/loading.svg" data-src="1.png"></p>
+<h2 id="Blended-Attacks"><a href="#Blended-Attacks" class="headerlink" title="Blended Attacks"></a>Blended Attacks</h2><p>网络安全攻击越来越多地跨越 IT、物联网、OT 和工业物联网环境，要求事件响应流程（和预防策略）融合为跨越这些环境的统一方法（同时仍然根据每个环境的功能和限制进行定制）。</p>
+<p><img lazyload src="/images/loading.svg" data-src="2.png"></p>
+<h2 id="Cloud-Connections"><a href="#Cloud-Connections" class="headerlink" title="Cloud Connections"></a>Cloud Connections</h2><p>组织越来越多地将 OT 环境与基于云的业务分析相连接，以深入了解生产力、敏捷性和工作流管理等。</p>
+<p><img lazyload src="/images/loading.svg" data-src="3.png"></p>
+<h2 id="Isolation-and-Segmentation"><a href="#Isolation-and-Segmentation" class="headerlink" title="Isolation and Segmentation"></a>Isolation and Segmentation</h2><p>可用于提供隔离和分段的控制措施通常从使用以下任一方式将 OT 环境与公司内部网和互联网隔离开始</p>
+<p>•    硬边界 - 完全断开流量，通常在物理上拔掉插头以形成“air gap”</p>
+<p>•    软边界- 基于防火墙或其他网络流量过滤器。</p>
+<pre><code>防火墙和忽略风险 - 与任何安全边界一样，软边界需要监控和维护才能随着时间的推移保持有效。 不幸的是，我们看到许多情况下，组织设置防火墙规则来阻止流量，但没有应用完整的人员/流程/技术方法将安全性集成到变更管理中，仔细监控异常，持续审计变更，测试边界 攻击模拟等
+</code></pre>
+<p>•     内部分段——组织还可以通过将 OT 系统组彼此隔离来进一步分段，以进一步阻止攻击。 就像在 IT 环境中一样，这种做法需要通信/流量模式与这种方法以及持续的维护、审计、异常管理和其他严格的流程兼容。</p>
+<p>这些安全实践很好地应用了零信任原则，尽管由于 OT 系统的时代，它们受限于静态配置和网络控制。</p>
+<p><img lazyload src="/images/loading.svg" data-src="4.png"></p>
+<h2 id="Microsoft-Defender-for-IoT"><a href="#Microsoft-Defender-for-IoT" class="headerlink" title="Microsoft Defender for IoT"></a>Microsoft Defender for IoT</h2><p>Microsoft 的威胁监控方法专注于引入现代安全方法，同时也深刻尊重这些系统的限制和敏感性。 该方法基于 CyberX 开发的技术（最近被微软收购并集成）。</p>
+<p>解决方案包括</p>
+<p>•    Network TAP/SPAN（被动收集）——通过被动流量监控提供数据收集，以避免OT和IIoT操作中断。 这种被动方法至关重要，因为主动扫描可能会减慢或中断业务运营（可能会改变敏感的物理操作时间或可能会导致旧的 OT 计算机系统崩溃）。</p>
+<p>•     适用于物联网的 Microsoft Defender 的传感器和分析通常位于 OT 环境中，以快速解析流量并获得即时的本地洞察力。 这些受益于 OT 的确定性/一致性性质（一天发生的事情几乎与其他一天发生的事情相同）</p>
+<p>•     本地控制台可以为物理流程的操作员（除了安全操作分析师）提供即时的本地洞察（安全性和生产力）。</p>
+<p>•    Microsoft Defender for IoT 还提供了一个管理控制台，用于跨多个传感器捕获和关联洞察，并提供对安全操作攻击检测、清单、漏洞评估、攻击模拟等的洞察。</p>
+<p>•    这可以在 OT 环境（以尊重隔离边界）或 IT 环境（以更好地与融合的 IT/OT/IoT/IIoT 检测/响应/恢复流程集成）中进行离线托管。</p>
+<p>•    这包括将攻击检测映射到 MITRE ATT&amp;CK 框架。</p>
+<p>该解决方案方法通过明确验证环境的安全状态并假设攻击者可能会破坏系统并尝试访问 OT 系统，从而体现了零信任原则。</p>
+<p><img lazyload src="/images/loading.svg" data-src="5.png"></p>
+<h2 id="Microsoft-Sentinel-Integration"><a href="#Microsoft-Sentinel-Integration" class="headerlink" title="Microsoft Sentinel Integration"></a>Microsoft Sentinel Integration</h2><p>Microsoft Defender for IoT 还为你提供了在 Microsoft Sentinel 中集成云分析、编排和剧本的选择。</p>
+<p>配置 Microsoft Sentinel 与 Microsoft Defender for Cloud 的集成提供</p>
+<p>•    本地 OT 调查和修复手册<br>•     与 Microsoft Sentinel 中的其他数据源（IT、IoT、物理系统等）的相关性<br>•     技术威胁情报（IOC 等）和战略威胁情报（攻击组和环境）的集成</p>
+<p><img lazyload src="/images/loading.svg" data-src="6.png"></p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：操作技术(OT)安全架构参考</li>
+        <li>Post author：langu_xyz</li>
+        <li>Create time：2022-05-16 21:00:00</li>
+        <li>
+            Post link：https://blog.langu.xyz/操作技术(OT)安全架构参考/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/%E9%9B%B6%E4%BF%A1%E4%BB%BB%E5%8E%9F%E5%88%99/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">零信任原则</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/%E8%B7%A8%E8%B6%8A%E6%94%BB%E5%87%BB%E9%93%BE%E8%BF%9B%E8%A1%8C%E9%98%B2%E5%BE%A1(%E5%86%85%E9%83%A8%E5%92%8C%E5%A4%96%E9%83%A8%E5%A8%81%E8%83%81)/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">跨越攻击链进行防御(内部和外部威胁)</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>&nbsp;-&nbsp;
+            
+            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a target="_blank" rel="noopener" href="//langu.xyz">AboutME:langu_xyz</a>
+        </div>
+        <!--
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        -->
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Purdue-Model"><span class="nav-text">Purdue Model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Blended-Attacks"><span class="nav-text">Blended Attacks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cloud-Connections"><span class="nav-text">Cloud Connections</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Isolation-and-Segmentation"><span class="nav-text">Isolation and Segmentation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Microsoft-Defender-for-IoT"><span class="nav-text">Microsoft Defender for IoT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Microsoft-Sentinel-Integration"><span class="nav-text">Microsoft Sentinel Integration</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="网络安全,黑客,JAVA安全,代码审计,渗透测试,入侵,SRC,扫描,WEB安全,移动安全,PHP">
+    <meta name="description" content="蓝骨, langu.xyz">
+    <meta name="author" content="langu_xyz">
+    
+        <title>
+            
+                URLDNS反序列化gadget分析 |
+                    
+                        langu_xyz
+        </title>
+        
+<link rel="stylesheet" href="/css/style.css">
+
+            <link rel="shortcut icon" href="/images/logo.jpeg">
+                
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+                    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"blog.langu.xyz","root":"/","language":"zh","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/logo.jpeg","favicon":"/images/logo.jpeg","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/shamo.jpg","description":"XYZ(无限未来)"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+
+                    <script>
+                        var _hmt = _hmt || [];
+                        (function() {
+                          var hm = document.createElement("script");
+                          hm.src = "https://hm.baidu.com/hm.js?1cd6e64ff252acf24b707985fcec8850";
+                          var s = document.getElementsByTagName("script")[0]; 
+                          s.parentNode.insertBefore(hm, s);
+                        })();
+                        </script>
+                        
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="langu_xyz" type="application/atom+xml">
+</head>
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                    <a class="logo-title" href="/">
+                        langu_xyz
+                    </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class="" href="/" >
+                                HOME
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class="" href="/tags/THINK/" >
+                                THINK
+                            </a>
+                        </li>
+                        
+                            
+                                <li class="menu-item search search-popup-trigger">
+                                    <i class="fas fa-search"></i>
+                                </li>
+                                
+                                
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                    
+                        <div class="icon-item menu-bar">
+                            <div class="menu-bar-middle"></div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/" >
+                        HOME
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/tags/THINK/" >
+                        THINK
+                    </a>
+                </li>
+                
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">URLDNS反序列化gadget分析</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/logo.jpeg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">langu_xyz</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2019-01-15 21:00:00
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/JAVA%E5%AE%89%E5%85%A8/">JAVA安全</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/JAVA/">JAVA</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.3k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>5 Mins</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h2 id="0x00-分析gadget代码"><a href="#0x00-分析gadget代码" class="headerlink" title="0x00 分析gadget代码"></a>0x00 分析gadget代码</h2><p>ysoserial中URLDNS gadget代码只有短短几行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">URLStreamHandler handler = new SilentURLStreamHandler();</span><br><span class="line"></span><br><span class="line">········</span><br><span class="line"></span><br><span class="line">static class SilentURLStreamHandler extends URLStreamHandler &#123;</span><br><span class="line"></span><br><span class="line">        protected URLConnection openConnection(URL u) throws IOException &#123;</span><br><span class="line">                return null;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        protected synchronized InetAddress getHostAddress(URL u) &#123;</span><br><span class="line">                return null;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>注释中提到“为避免在创建payload时触发DNS解析”，这里就有两个问题：</p>
+<pre><code>1、创建payload时为什么会触发DNS解析？
+2、重写URLStreamHandler的作用是什么呢？
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">HashMap ht = new HashMap();  //HashMap中将包含URL</span><br><span class="line">URL u = new URL(null, url, handler);  //创建URL，作为HashMap中的key</span><br><span class="line">ht.put(u, url); //值可以是任何Serializable, URL作为key触发DNS lookup。</span><br></pre></td></tr></table></figure>
+<p>这几句的含义是创建一个HashMap，将URL对象作为key，在HashMap put操作的时候，会触发URL的序列化，在序列化的时候触发DNS解析。</p>
+<p>在开头注释中也提示了Gadget Chain</p>
+<ul>
+<li><pre><code>HashMap.readObject()
+</code></pre>
+</li>
+<li><pre><code>  HashMap.putVal()
+</code></pre>
+</li>
+<li><pre><code>    HashMap.hash()
+</code></pre>
+</li>
+<li><pre><code>      URL.hashCode()
+</code></pre>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Reflections.setFieldValue(u, &quot;hashCode&quot;, -1);//在上面的put过程中，URL的hashCode被计算并缓存。这将重置它，以便下次调用hashCode时触发DNS查找。</span><br></pre></td></tr></table></figure>
+<p>这句在这里的作用不太好理解，大概推测是hashcode的值为-1时，有不同的作用，这个疑问我们也留到下文中来寻找答案。</p>
+<h2 id="0x01-java-net-URL类为什么会触发DNS解析？"><a href="#0x01-java-net-URL类为什么会触发DNS解析？" class="headerlink" title="0x01 java.net.URL类为什么会触发DNS解析？"></a>0x01 java.net.URL类为什么会触发DNS解析？</h2><p>根据注释中的Chain，我们找到URL.hashCode()，<code>if (hashCode != -1)</code>这句可以解释上节中的“-1”的疑问了，当不等于“-1”的时候，会直接返回，而不会调用到<code> handler.hashCode</code>中。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public synchronized int hashCode() &#123;</span><br><span class="line">    if (hashCode != -1)</span><br><span class="line">        return hashCode;</span><br><span class="line"></span><br><span class="line">    hashCode = handler.hashCode(this);</span><br><span class="line">    return hashCode;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>继续看<code> handler.hashCode</code>做了哪些事情，可以看到<code>getHostAddress</code>会请求一次DNS解析，构成反序列化链路中的执行点。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">protected int hashCode(URL u) &#123;</span><br><span class="line">    int h = 0;</span><br><span class="line"></span><br><span class="line">    // Generate the protocol part.</span><br><span class="line">    String protocol = u.getProtocol();</span><br><span class="line">    if (protocol != null)</span><br><span class="line">        h += protocol.hashCode();</span><br><span class="line"></span><br><span class="line">    // Generate the host part.</span><br><span class="line">    InetAddress addr = getHostAddress(u);</span><br></pre></td></tr></table></figure>
+<p> </p>
+<h2 id="0x02-java-net-URL类如何触发DNS解析的（寻找触发点）？"><a href="#0x02-java-net-URL类如何触发DNS解析的（寻找触发点）？" class="headerlink" title="0x02 java.net.URL类如何触发DNS解析的（寻找触发点）？"></a>0x02 java.net.URL类如何触发DNS解析的（寻找触发点）？</h2><p>定位到触发点<code>HashMap.readObject()</code>，可以看到这个方法将<code>java.io.ObjectInputStream</code>反序列化后的值putVal进Node中。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">private void readObject(java.io.ObjectInputStream s)</span><br><span class="line">    throws IOException, ClassNotFoundException &#123;</span><br><span class="line">    // Read in the threshold (ignored), loadfactor, and any hidden stuff</span><br><span class="line">    s.defaultReadObject();</span><br><span class="line">    reinitialize();</span><br><span class="line">    if (loadFactor &lt;= 0 || Float.isNaN(loadFactor))</span><br><span class="line">        throw new InvalidObjectException(&quot;Illegal load factor: &quot; +</span><br><span class="line">                                         loadFactor);</span><br><span class="line">    s.readInt();                // Read and ignore number of buckets</span><br><span class="line">    int mappings = s.readInt(); // Read number of mappings (size)</span><br><span class="line">    if (mappings &lt; 0)</span><br><span class="line">        throw new InvalidObjectException(&quot;Illegal mappings count: &quot; +</span><br><span class="line">                                         mappings);</span><br><span class="line">    else if (mappings &gt; 0) &#123; // (if zero, use defaults)</span><br><span class="line">        // Size the table using given load factor only if within</span><br><span class="line">        // range of 0.25...4.0</span><br><span class="line">        float lf = Math.min(Math.max(0.25f, loadFactor), 4.0f);</span><br><span class="line">        float fc = (float)mappings / lf + 1.0f;</span><br><span class="line">        int cap = ((fc &lt; DEFAULT_INITIAL_CAPACITY) ?</span><br><span class="line">                   DEFAULT_INITIAL_CAPACITY :</span><br><span class="line">                   (fc &gt;= MAXIMUM_CAPACITY) ?</span><br><span class="line">                   MAXIMUM_CAPACITY :</span><br><span class="line">                   tableSizeFor((int)fc));</span><br><span class="line">        float ft = (float)cap * lf;</span><br><span class="line">        threshold = ((cap &lt; MAXIMUM_CAPACITY &amp;&amp; ft &lt; MAXIMUM_CAPACITY) ?</span><br><span class="line">                     (int)ft : Integer.MAX_VALUE);</span><br><span class="line"></span><br><span class="line">        // Check Map.Entry[].class since it&#x27;s the nearest public type to</span><br><span class="line">        // what we&#x27;re actually creating.</span><br><span class="line">        SharedSecrets.getJavaOISAccess().checkArray(s, Map.Entry[].class, cap);</span><br><span class="line">        @SuppressWarnings(&#123;&quot;rawtypes&quot;,&quot;unchecked&quot;&#125;)</span><br><span class="line">            Node&lt;K,V&gt;[] tab = (Node&lt;K,V&gt;[])new Node[cap];</span><br><span class="line">        table = tab;</span><br><span class="line"></span><br><span class="line">        // Read the keys and values, and put the mappings in the HashMap</span><br><span class="line">        for (int i = 0; i &lt; mappings; i++) &#123;</span><br><span class="line">            @SuppressWarnings(&quot;unchecked&quot;)</span><br><span class="line">                K key = (K) s.readObject();</span><br><span class="line">            @SuppressWarnings(&quot;unchecked&quot;)</span><br><span class="line">                V value = (V) s.readObject();</span><br><span class="line">            putVal(hash(key), key, value, false, false);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>putVal</code>的入参如下，其中在第一个入参hash方法（计算key.hashCode()并将较高的哈希值扩展为较低的哈希值），会调用key的hashcode方法。所以如果key是URL对象的话，就会调用到URL.hashCode方法，进而触发DNS解析。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Implements Map.put and related methods</span><br><span class="line"> *</span><br><span class="line"> * @param hash hash for key</span><br><span class="line"> * @param key the key</span><br><span class="line"> * @param value the value to put</span><br><span class="line"> * @param onlyIfAbsent if true, don&#x27;t change existing value</span><br><span class="line"> * @param evict if false, the table is in creation mode.</span><br><span class="line"> * @return previous value, or null if none</span><br><span class="line"> */</span><br><span class="line">final V putVal(int hash, K key, V value, boolean onlyIfAbsent,</span><br><span class="line">               boolean evict)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="0x03-如何利用-利用代码为什么要这么写？"><a href="#0x03-如何利用-利用代码为什么要这么写？" class="headerlink" title="0x03 如何利用/利用代码为什么要这么写？"></a>0x03 如何利用/利用代码为什么要这么写？</h2><p>需要注意两个点：<br>1、hashCode默认是-1，如果触发一次DNS解析，则会缓存hashCode，导致后续请求时无法触发；<br>2、避免在生成payload的时候put触发DNS解析，这里也就回答文章开头的两个疑问，通过重写getHostAddress避免触发DNS解析。</p>
+<h3 id="为什么HashMap要自己实现writeObject和readObject方法，而不是使用JDK统一的默认序列化和反序列化操作呢？"><a href="#为什么HashMap要自己实现writeObject和readObject方法，而不是使用JDK统一的默认序列化和反序列化操作呢？" class="headerlink" title="为什么HashMap要自己实现writeObject和readObject方法，而不是使用JDK统一的默认序列化和反序列化操作呢？"></a>为什么HashMap要自己实现writeObject和readObject方法，而不是使用JDK统一的默认序列化和反序列化操作呢？</h3><p>首先要明确序列化的目的，将java对象序列化，一定是为了在某个时刻能够将该对象反序列化，而且一般来讲序列化和反序列化所在的机器是不同的，因为序列化最常用的场景就是跨机器的调用，而序列化和反序列化的一个最基本的要求就是，反序列化之后的对象与序列化之前的对象是一致的。</p>
+<p>HashMap中，由于Entry的存放位置是根据Key的Hash值来计算，然后存放到数组中的，对于同一个Key，在不同的JVM实现中计算得出的Hash值可能是不同的。</p>
+<p>Hash值不同导致的结果就是：有可能一个HashMap对象的反序列化结果与序列化之前的结果不一致。即有可能序列化之前，Key=’AAA’的元素放在数组的第0个位置，而反序列化值后，根据Key获取元素的时候，可能需要从数组为2的位置来获取，而此时获取到的数据与序列化之前肯定是不同的。</p>
+<p>参考链接：<a class="link" target="_blank" rel="noopener" href="https://juejin.cn/post/6844903954774491144">https://juejin.cn/post/6844903954774491144<i class="fas fa-external-link-alt"></i></a></p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：URLDNS反序列化gadget分析</li>
+        <li>Post author：langu_xyz</li>
+        <li>Create time：2019-01-15 21:00:00</li>
+        <li>
+            Post link：https://blog.langu.xyz/URLDNS反序列化gadget分析/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/NodeJS%20sql%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E5%AE%A1%E8%AE%A1%E5%92%8C%E4%BF%AE%E5%A4%8D/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">NodeJS sql注入漏洞审计和修复</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/Security%20&amp;%20Data/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Security &amp; Data</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>&nbsp;-&nbsp;
+            
+            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a target="_blank" rel="noopener" href="//langu.xyz">AboutME:langu_xyz</a>
+        </div>
+        <!--
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        -->
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x00-%E5%88%86%E6%9E%90gadget%E4%BB%A3%E7%A0%81"><span class="nav-text">0x00 分析gadget代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x01-java-net-URL%E7%B1%BB%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E8%A7%A6%E5%8F%91DNS%E8%A7%A3%E6%9E%90%EF%BC%9F"><span class="nav-text">0x01 java.net.URL类为什么会触发DNS解析？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x02-java-net-URL%E7%B1%BB%E5%A6%82%E4%BD%95%E8%A7%A6%E5%8F%91DNS%E8%A7%A3%E6%9E%90%E7%9A%84%EF%BC%88%E5%AF%BB%E6%89%BE%E8%A7%A6%E5%8F%91%E7%82%B9%EF%BC%89%EF%BC%9F"><span class="nav-text">0x02 java.net.URL类如何触发DNS解析的（寻找触发点）？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x03-%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8-%E5%88%A9%E7%94%A8%E4%BB%A3%E7%A0%81%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E8%BF%99%E4%B9%88%E5%86%99%EF%BC%9F"><span class="nav-text">0x03 如何利用&#x2F;利用代码为什么要这么写？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88HashMap%E8%A6%81%E8%87%AA%E5%B7%B1%E5%AE%9E%E7%8E%B0writeObject%E5%92%8CreadObject%E6%96%B9%E6%B3%95%EF%BC%8C%E8%80%8C%E4%B8%8D%E6%98%AF%E4%BD%BF%E7%94%A8JDK%E7%BB%9F%E4%B8%80%E7%9A%84%E9%BB%98%E8%AE%A4%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%93%8D%E4%BD%9C%E5%91%A2%EF%BC%9F"><span class="nav-text">为什么HashMap要自己实现writeObject和readObject方法，而不是使用JDK统一的默认序列化和反序列化操作呢？</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

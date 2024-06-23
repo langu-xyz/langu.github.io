@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="网络安全,黑客,JAVA安全,代码审计,渗透测试,入侵,SRC,扫描,WEB安全,移动安全,PHP">
+    <meta name="description" content="蓝骨, langu.xyz">
+    <meta name="author" content="langu_xyz">
+    
+        <title>
+            
+                UEBA(用户和实体行为分析)可以用来做什么（十大场景） |
+                    
+                        langu_xyz
+        </title>
+        
+<link rel="stylesheet" href="/css/style.css">
+
+            <link rel="shortcut icon" href="/images/logo.jpeg">
+                
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+                    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"blog.langu.xyz","root":"/","language":"zh","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/logo.jpeg","favicon":"/images/logo.jpeg","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/shamo.jpg","description":"XYZ(无限未来)"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+
+                    <script>
+                        var _hmt = _hmt || [];
+                        (function() {
+                          var hm = document.createElement("script");
+                          hm.src = "https://hm.baidu.com/hm.js?1cd6e64ff252acf24b707985fcec8850";
+                          var s = document.getElementsByTagName("script")[0]; 
+                          s.parentNode.insertBefore(hm, s);
+                        })();
+                        </script>
+                        
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="langu_xyz" type="application/atom+xml">
+</head>
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                    <a class="logo-title" href="/">
+                        langu_xyz
+                    </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class="" href="/" >
+                                HOME
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class="" href="/tags/THINK/" >
+                                THINK
+                            </a>
+                        </li>
+                        
+                            
+                                <li class="menu-item search search-popup-trigger">
+                                    <i class="fas fa-search"></i>
+                                </li>
+                                
+                                
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                    
+                        <div class="icon-item menu-bar">
+                            <div class="menu-bar-middle"></div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/" >
+                        HOME
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/tags/THINK/" >
+                        THINK
+                    </a>
+                </li>
+                
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">UEBA(用户和实体行为分析)可以用来做什么（十大场景）</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/logo.jpeg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">langu_xyz</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2022-03-15 21:00:00
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%AE%89%E5%85%A8%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">安全数据分析</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/UEBA/">UEBA</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.8k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>6 Mins</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h2 id="一、UEBA简介"><a href="#一、UEBA简介" class="headerlink" title="一、UEBA简介"></a>一、UEBA简介</h2><p>UEBA 监控用户和实体的活动（如硬件设备和网络），并将当前活动与”正常”或”基线”行为进行比较。使用先进的统计分析，在某些情况下，机器学习算法，目的是要么检测异常活动，这可能是入侵或恶意”内部”行动的迹象，或发现已知的恶意行为模式。</p>
+<h3 id="UEBA-VS-UBA"><a href="#UEBA-VS-UBA" class="headerlink" title="UEBA VS. UBA"></a>UEBA VS. UBA</h3><p>UBA：重点是分析用户如何与数据交互<br>UEBA：Gartner 说，UEBA 一词”认识到一个事实，即除了用户之外，其他实体经常被分析，以便更准确地定位威胁，部分原因在于将这些其他实体的行为与用户行为相关联</p>
+<h3 id="UEBA-VS-SIEM"><a href="#UEBA-VS-SIEM" class="headerlink" title="UEBA VS. SIEM"></a>UEBA VS. SIEM</h3><p>由于许多公司安全团队已经实现了安全信息和事件管理(SIEM)解决方案，一个常见的问题是UEBA和SIEM是否提供了相同的保护。毕竟，它们都收集与安全相关的信息，这些信息可以指示潜在的或正在发生的威胁。<br>共同点都是收集非常多的数据进行分析，SIEM关注的更多是事件，UEBA更多的关注的是人的风险，当然这两者的界限在某些情境下可能非常窄。</p>
+<h2 id="二、为什么要做UEBA"><a href="#二、为什么要做UEBA" class="headerlink" title="二、为什么要做UEBA"></a>二、为什么要做UEBA</h2><p>1、内部的威胁往往不会触发告警<br>2、IoCs和静态检测很多时候是没有效果的（例如URLs、C&amp;C Servers、IP Adresses等）<br>3、攻击数据可以捕捉，但是攻击本身却很难<br>4、大量的日志、事件、告警是容易混乱的</p>
+<p>1、使用异常行为来检测攻击<br>2、使用机器模型规模分析所有的数据</p>
+<h2 id="三、UEBA的十个典型场景"><a href="#三、UEBA的十个典型场景" class="headerlink" title="三、UEBA的十个典型场景"></a>三、UEBA的十个典型场景</h2><h3 id="1、登录凭证泄漏检测"><a href="#1、登录凭证泄漏检测" class="headerlink" title="1、登录凭证泄漏检测"></a>1、登录凭证泄漏检测</h3><p>问题描述：<br>    1. 凭证失窃是一个大麻烦，仅次于钓鱼攻击；<br>    2. 黑客使用窃取的凭证和相应的权限进入内部；<br>    3. 最厉害的安全工具也无法区分合法的未授权访问。</p>
+<p>UEBA解法：<br>    1. 识别异常的账号访问、行动、设备、设备使用、应用对象进入等</p>
+<h3 id="2、特权用户监控"><a href="#2、特权用户监控" class="headerlink" title="2、特权用户监控"></a>2、特权用户监控</h3><p>问题描述：<br>    1. 特权账户能访问高价值资源，一旦泄漏，将会导致最大的影响；<br>    2. 特权用户的工作模式往往不受规则限制和不可预测的。</p>
+<p>UEBA解法：<br>    1. 识别特权用户通过上下文数据或者行为，例如执行管理行为或者使用特权系统等；<br>    2. 识别风险的异常活动，通过关联多个数据源来降低误报。</p>
+<h3 id="3、经营管理相关的用户、资产监控"><a href="#3、经营管理相关的用户、资产监控" class="headerlink" title="3、经营管理相关的用户、资产监控"></a>3、经营管理相关的用户、资产监控</h3><p>问题描述：<br>    1. 经营管理相关的资产往往包含敏感数据，例如关于收益、合并和收购、预算计划、产品和服务计划或竞争信息等；<br>    2. 有时候更困难的可能是确定哪些资产是经营管理相关的。</p>
+<p>UEBA解法：<br>    1. 通过使用模式去自动判断经营管理相关资产；<br>    2. 通过行为识别异常访问和活动；<br>    3. 检测对内部有损害和恶意的使用。</p>
+<h3 id="4、系统、主机、设备等的入侵检测"><a href="#4、系统、主机、设备等的入侵检测" class="headerlink" title="4、系统、主机、设备等的入侵检测"></a>4、系统、主机、设备等的入侵检测</h3><p>问题描述：<br>    1. 像IoT、OT等资产是黑客们频繁的目标，IoT是被用来获得网络访问权限的立足点，OT对于一些黑客来说是高价值目标；<br>    2. 可能有多个用户和它们交互；<br>    3. 许多攻击通过多个用户和资产来实现。</p>
+<p>UEBA解法：<br>    1. 识别和分类设备，例如服务器、工作站、IoT设备等；<br>    2. 构建正常行为基线，包括端口、协议、授权、访问、活动等；<br>    3. 监测异常活动和相关联的用户。</p>
+<h3 id="5、内部访问滥用"><a href="#5、内部访问滥用" class="headerlink" title="5、内部访问滥用"></a>5、内部访问滥用</h3><p>问题描述：<br>    1. 内部员工可能是恶意、被入侵或疏忽的；<br>    2. 当攻击者进入到内网中和多个系统中后很难被检测到；<br>    3. 在大多数传统的安全工具中，它们不会触发警报。</p>
+<p>UEBA解法：<br>    1. 识别高风险、异常的行为，和它自身、同职位、同组织等相比较来检测内部威胁；<br>    2. 通过提供全部数据中的异常行为视图来帮助识别攻击动机。</p>
+<h3 id="6、横向移动检测"><a href="#6、横向移动检测" class="headerlink" title="6、横向移动检测"></a>6、横向移动检测</h3><p>问题描述：<br>    1. 攻击者通过内部网络移动搜寻敏感数据和资产；<br>    2. 在攻击者横向移动后，安全工具和安全团队经常失去攻击者的踪迹；<br>    3. 结果可能导致全部攻击或部分攻击被忽略。</p>
+<p>UEBA解法：<br>    1. 通过行为分析去检测异常账户活动、账户切换、远程连接、PTH攻击等；<br>    2. 当攻击者在网络中移动的时候进行追踪；<br>    3. 攻击路径复现在单时间线下是容易的。</p>
+<h3 id="7、数据泄露检测"><a href="#7、数据泄露检测" class="headerlink" title="7、数据泄露检测"></a>7、数据泄露检测</h3><p>问题描述：<br>    1. 敏感数据被非法转移到组织外；<br>    2. 恶意的、被入侵的或疏忽的内部人员导致的；<br>    3、像DLP等流行的工具在处理这类问题是误报率较高。</p>
+<p>UEBA解法：<br>    1. 识别不一样的数据访问、向外数据传输、USB活动、打印机活动、文件活动等等；<br>    2. UEBA通过关联用户、角色、正常行为等上下文来实现低误报；<br>    3. 在攻击生命周期中能更早的发现数据泄漏；<br>    4. 上述内容的DLP攻击是基于行为和风险的。</p>
+<h3 id="8、失败的登录尝试和账户锁定"><a href="#8、失败的登录尝试和账户锁定" class="headerlink" title="8、失败的登录尝试和账户锁定"></a>8、失败的登录尝试和账户锁定</h3><p>问题描述：<br>    1. 产生的原因有很多，例如爆破攻击、密码重置、忘记密码、乌龙指等；<br>    2. 在可允许的上下文中需要几分钟或者几小时去解决每个锁定；<br>    3. 通常需要一个人去确认和解决。</p>
+<p>UEBA解法：<br>    1. 基于风险进行排序，允许安全团队关闭高风险的账号；<br>    2. 提供锁定账号的相关内容协助快速处置；<br>    3. 在账号锁定前后发生了什么？</p>
+<h3 id="9、服务账号滥用"><a href="#9、服务账号滥用" class="headerlink" title="9、服务账号滥用"></a>9、服务账号滥用</h3><p>问题描述：<br>    1. 服务账号往往有较高的权限，对于攻击者来说是高价值目标；<br>    2. 一些组织甚至不知道有一些服务账号在他们组织中存在；<br>    3. 典型的安全工具对服务账户提供有限或不可见性的防护。</p>
+<p>UEBA解法：<br>    1. 通过理解、分析行为，自动识别服务账户；<br>    2. 标记表明妥协或滥用的异常行为；<br>    3. 通过相关的事件背景，提供一个清晰的事件链。</p>
+<h3 id="10、安全告警调查"><a href="#10、安全告警调查" class="headerlink" title="10、安全告警调查"></a>10、安全告警调查</h3><p>问题描述：<br>    1. 告警排查在很多分析中都是关键任务；<br>    2. 它非常手工、耗时且容易出错；<br>    3. 有太多的事件告警时误报。</p>
+<p>UEBA解法：<br>    1. 分析告警整体的通过全部的数据源；<br>    2. 通过行为分析和风险排序去发现高风险告警或者异常告警；<br>    3. 为事件排查人员提供一系列简短的高保真告警调查；<br>    4. 通过自动化的方式规模化处理告警。</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：UEBA(用户和实体行为分析)可以用来做什么（十大场景）</li>
+        <li>Post author：langu_xyz</li>
+        <li>Create time：2022-03-15 21:00:00</li>
+        <li>
+            Post link：https://blog.langu.xyz/UEBA(用户和实体行为分析)可以用来做什么（十大场景）/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/%E4%BA%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%BA%BF/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">云安全基线</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/Java%20NashornJS%E5%BC%95%E6%93%8E%E4%BB%A3%E7%A0%81%E5%AE%89%E5%85%A8%E6%89%A7%E8%A1%8C/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Java NashornJS引擎代码安全执行</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>&nbsp;-&nbsp;
+            
+            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a target="_blank" rel="noopener" href="//langu.xyz">AboutME:langu_xyz</a>
+        </div>
+        <!--
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        -->
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81UEBA%E7%AE%80%E4%BB%8B"><span class="nav-text">一、UEBA简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#UEBA-VS-UBA"><span class="nav-text">UEBA VS. UBA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UEBA-VS-SIEM"><span class="nav-text">UEBA VS. SIEM</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%81%9AUEBA"><span class="nav-text">二、为什么要做UEBA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81UEBA%E7%9A%84%E5%8D%81%E4%B8%AA%E5%85%B8%E5%9E%8B%E5%9C%BA%E6%99%AF"><span class="nav-text">三、UEBA的十个典型场景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E7%99%BB%E5%BD%95%E5%87%AD%E8%AF%81%E6%B3%84%E6%BC%8F%E6%A3%80%E6%B5%8B"><span class="nav-text">1、登录凭证泄漏检测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E7%89%B9%E6%9D%83%E7%94%A8%E6%88%B7%E7%9B%91%E6%8E%A7"><span class="nav-text">2、特权用户监控</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81%E7%BB%8F%E8%90%A5%E7%AE%A1%E7%90%86%E7%9B%B8%E5%85%B3%E7%9A%84%E7%94%A8%E6%88%B7%E3%80%81%E8%B5%84%E4%BA%A7%E7%9B%91%E6%8E%A7"><span class="nav-text">3、经营管理相关的用户、资产监控</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%E3%80%81%E7%B3%BB%E7%BB%9F%E3%80%81%E4%B8%BB%E6%9C%BA%E3%80%81%E8%AE%BE%E5%A4%87%E7%AD%89%E7%9A%84%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B"><span class="nav-text">4、系统、主机、设备等的入侵检测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5%E3%80%81%E5%86%85%E9%83%A8%E8%AE%BF%E9%97%AE%E6%BB%A5%E7%94%A8"><span class="nav-text">5、内部访问滥用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6%E3%80%81%E6%A8%AA%E5%90%91%E7%A7%BB%E5%8A%A8%E6%A3%80%E6%B5%8B"><span class="nav-text">6、横向移动检测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7%E3%80%81%E6%95%B0%E6%8D%AE%E6%B3%84%E9%9C%B2%E6%A3%80%E6%B5%8B"><span class="nav-text">7、数据泄露检测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8%E3%80%81%E5%A4%B1%E8%B4%A5%E7%9A%84%E7%99%BB%E5%BD%95%E5%B0%9D%E8%AF%95%E5%92%8C%E8%B4%A6%E6%88%B7%E9%94%81%E5%AE%9A"><span class="nav-text">8、失败的登录尝试和账户锁定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9%E3%80%81%E6%9C%8D%E5%8A%A1%E8%B4%A6%E5%8F%B7%E6%BB%A5%E7%94%A8"><span class="nav-text">9、服务账号滥用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10%E3%80%81%E5%AE%89%E5%85%A8%E5%91%8A%E8%AD%A6%E8%B0%83%E6%9F%A5"><span class="nav-text">10、安全告警调查</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

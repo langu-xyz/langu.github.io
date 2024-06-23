@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="网络安全,黑客,JAVA安全,代码审计,渗透测试,入侵,SRC,扫描,WEB安全,移动安全,PHP">
+    <meta name="description" content="蓝骨, langu.xyz">
+    <meta name="author" content="langu_xyz">
+    
+        <title>
+            
+                Archive: 2022/7 |
+                    
+                        langu_xyz
+        </title>
+        
+<link rel="stylesheet" href="/css/style.css">
+
+            <link rel="shortcut icon" href="/images/logo.jpeg">
+                
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+                    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"blog.langu.xyz","root":"/","language":"zh","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/logo.jpeg","favicon":"/images/logo.jpeg","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/shamo.jpg","description":"XYZ(无限未来)"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+
+                    <script>
+                        var _hmt = _hmt || [];
+                        (function() {
+                          var hm = document.createElement("script");
+                          hm.src = "https://hm.baidu.com/hm.js?1cd6e64ff252acf24b707985fcec8850";
+                          var s = document.getElementsByTagName("script")[0]; 
+                          s.parentNode.insertBefore(hm, s);
+                        })();
+                        </script>
+                        
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="langu_xyz" type="application/atom+xml">
+</head>
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                    <a class="logo-title" href="/">
+                        langu_xyz
+                    </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class="" href="/" >
+                                HOME
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class="" href="/tags/THINK/" >
+                                THINK
+                            </a>
+                        </li>
+                        
+                            
+                                <li class="menu-item search search-popup-trigger">
+                                    <i class="fas fa-search"></i>
+                                </li>
+                                
+                                
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                    
+                        <div class="icon-item menu-bar">
+                            <div class="menu-bar-middle"></div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/" >
+                        HOME
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/tags/THINK/" >
+                        THINK
+                    </a>
+                </li>
+                
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="archive-container ">
+        
+<div class="archive-list-container">
+    <!--  -->
+        <!-- <section class="archive-item"> -->
+            <!-- <div class="archive-item-header">
+                <span class="archive-year">2024</span>
+                <span class="archive-year-post-count">[6]</span>
+            </div> -->
+            <ul class="article-list">
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/%E6%B2%89%E6%B2%A1%E6%88%90%E6%9C%AC/"
+                        >沉没成本</a>
+                        <!-- <span class="article-date">04-02</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/%E7%88%B1%E5%A5%BD%E7%9A%84%E6%9C%AC%E8%B4%A8%EF%BC%9A%E5%80%9F%E4%BA%8B%E4%BF%AE%E4%BA%BA/"
+                        >爱好的本质：借事修人</a>
+                        <!-- <span class="article-date">03-25</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/%E8%BF%87%E6%97%B6%E7%9A%84%E5%9C%B0%E5%9B%BE/"
+                        >过时的地图</a>
+                        <!-- <span class="article-date">03-04</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/%E8%87%AA%E5%BE%8B%20%E5%91%BD%E6%A0%BC%20%E5%85%A5%E9%97%A8%20%E5%86%92%E9%99%A9/"
+                        >自律 命格 入门 冒险</a>
+                        <!-- <span class="article-date">03-03</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/%E8%BF%90%E7%9A%84%E5%85%B7%E8%B1%A1%E6%98%AF%E9%80%89%E6%8B%A9/"
+                        >运的具象是选择</a>
+                        <!-- <span class="article-date">02-23</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/%E6%88%91%E7%94%A8%E5%B0%BD%E4%B8%80%E7%94%9F%E5%8F%AA%E8%83%BD%E7%9C%8B%E5%88%B0%E4%BD%A0%E7%9A%84%E8%BD%AE%E5%BB%93/"
+                        >我用尽一生只能看到你的轮廓</a>
+                        <!-- <span class="article-date">01-14</span> -->
+                    </li>
+                
+            </ul>
+        <!-- </section> -->
+    <!--  -->
+        <!-- <section class="archive-item"> -->
+            <!-- <div class="archive-item-header">
+                <span class="archive-year">2023</span>
+                <span class="archive-year-post-count">[12]</span>
+            </div> -->
+            <ul class="article-list">
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/%E5%A6%82%E5%90%8C%E5%A4%B4%E9%A1%B6%E4%B8%8A%E5%A4%9C%E7%A9%BA%E4%B8%AD%E7%9A%84%E6%9C%88%E4%BA%AE/"
+                        >如同头顶上夜空中的月亮</a>
+                        <!-- <span class="article-date">12-15</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/Balance%EF%BC%9A%E5%9F%BA%E4%BA%8EBodyBattery%E7%9A%84%E7%B2%BE%E5%8A%9B%E7%AE%A1%E7%90%86/"
+                        >Balance：基于BodyBattery的精力管理</a>
+                        <!-- <span class="article-date">12-12</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/%E2%80%9C%E8%8D%89%E5%8F%B0%E7%8F%AD%E5%AD%90%E2%80%9D%E4%B8%96%E7%95%8C%E7%9A%84%E7%94%9F%E5%AD%98%E6%8C%87%E5%8D%97%EF%BC%9A%E5%9C%A8%E9%9A%8F%E6%9C%BA%E7%94%9F%E6%B4%BB%E4%B8%AD%E6%BC%AB%E8%88%9E/"
+                        >“草台班子”世界的生存指南：在随机生活中漫舞</a>
+                        <!-- <span class="article-date">11-23</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/%E8%A1%A8%E8%BE%BE%E6%AC%B2%E4%B8%8D%E8%A7%81%E4%BA%86/"
+                        >表达欲不见了</a>
+                        <!-- <span class="article-date">11-11</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87%E9%9A%8F%E7%AC%94%E6%9D%A5%E6%9B%B4%E5%A5%BD%E7%9A%84%E6%80%9D%E8%80%83/"
+                        >如何通过随笔来更好的思考</a>
+                        <!-- <span class="article-date">11-11</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/%E4%BA%94%E5%B9%B4%E9%99%88/"
+                        >五年陈</a>
+                        <!-- <span class="article-date">07-04</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/%E4%B8%8D%E7%9F%A5%E5%91%BD%EF%BC%8C%E6%97%A0%E4%BB%A5%E4%B8%BA%E5%90%9B%E5%AD%90%E4%B9%9F/"
+                        >不知命，无以为君子也</a>
+                        <!-- <span class="article-date">06-13</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/Apple%20Vision%20Pro%E6%B2%BB%E5%A5%BD%E4%BA%86%E6%88%91%E7%9A%84%E7%94%B5%E5%AD%90ED/"
+                        >AV Pro治好了我的电子ED</a>
+                        <!-- <span class="article-date">06-06</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/%E6%9C%AC%E6%9D%A5%E6%97%A0%E4%B8%80%E7%89%A9%EF%BC%8C%E4%BD%95%E5%A4%84%E6%83%B9%E5%B0%98%E5%9F%83/"
+                        >本来无一物，何处惹尘埃</a>
+                        <!-- <span class="article-date">06-03</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/FlashLoan%E7%9A%84%E5%AE%9E%E7%8E%B0%E8%BF%87%E7%A8%8B/"
+                        >FlashLoan的实现过程</a>
+                        <!-- <span class="article-date">04-01</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/%E6%9C%AA%E6%9D%A5%E5%B7%B2%E6%9D%A5%EF%BC%8C%E4%BB%8E%E6%99%BA%E4%BA%BA%E5%88%B0%E6%99%BA%E8%83%BD/"
+                        >未来已来，从智人到智能</a>
+                        <!-- <span class="article-date">01-03</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/%E9%9D%A2%E5%90%91%E5%AE%9E%E6%88%98%E7%9A%84%E5%9F%BA%E7%A1%80%E5%AE%89%E5%85%A8%E4%BD%93%E7%B3%BB%E5%8D%87%E7%BA%A7&HW%E5%87%86%E5%A4%87/"
+                        >面向实战的基础安全体系升级&amp;HW准备</a>
+                        <!-- <span class="article-date">01-01</span> -->
+                    </li>
+                
+            </ul>
+        <!-- </section> -->
+    <!--  -->
+        <!-- <section class="archive-item"> -->
+            <!-- <div class="archive-item-header">
+                <span class="archive-year">2022</span>
+                <span class="archive-year-post-count">[23]</span>
+            </div> -->
+            <ul class="article-list">
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/Aurora%20%E8%B7%A8%E9%93%BE%E6%A1%A5%E9%94%80%E6%AF%81%E9%80%BB%E8%BE%91%E9%94%99%E8%AF%AF%E5%AF%BC%E8%87%B4%E6%97%A0ETH%E8%86%A8%E8%83%80%E6%BC%8F%E6%B4%9E/"
+                        >Aurora 跨链桥销毁逻辑错误导致无ETH膨胀漏洞</a>
+                        <!-- <span class="article-date">11-25</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/Aurora%E9%94%80%E6%AF%81%E9%80%BB%E8%BE%91%E9%94%99%E8%AF%AF%E5%AF%BC%E8%87%B4%E4%BB%A3%E5%B8%81%E7%AA%83%E5%8F%96%E6%BC%8F%E6%B4%9E/"
+                        >Aurora销毁逻辑错误导致代币窃取漏洞</a>
+                        <!-- <span class="article-date">11-23</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/Aurora%E8%BE%93%E5%85%A5%E5%A4%84%E7%90%86%E4%B8%8D%E5%BD%93%E5%AF%BC%E8%87%B4%E8%B4%B9%E7%94%A8%E7%AA%83%E5%8F%96%E6%BC%8F%E6%B4%9E/"
+                        >Aurora输入处理不当导致费用窃取漏洞</a>
+                        <!-- <span class="article-date">11-08</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/Google%E4%BA%91%E5%9F%BA%E7%A1%80%E6%9E%B6%E6%9E%84%E5%AE%89%E5%85%A8%E8%AE%BE%E8%AE%A1%E5%AD%A6%E4%B9%A0/"
+                        >Google云基础架构安全设计学习</a>
+                        <!-- <span class="article-date">10-12</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/Cloud%20Native%20PostgreSQL%E6%94%BB%E5%87%BB%E9%9D%A2%E5%88%86%E6%9E%90/"
+                        >Cloud Native PostgreSQL攻击面分析</a>
+                        <!-- <span class="article-date">09-20</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/%E5%A6%84%E8%B0%88%EF%BC%9A%E2%80%9C%E6%8A%80%E6%9C%AF%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5%E2%80%9D%E7%9A%84%E6%9C%AA%E6%9D%A5%E6%98%AF%E2%80%9C%E5%AE%89%E5%85%A8%E6%9E%B6%E6%9E%84%E5%B8%88%E2%80%9D/"
+                        >妄谈：“技术安全运营”的未来是“安全架构师”</a>
+                        <!-- <span class="article-date">07-20</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/%E7%AE%80%E5%8D%95%E8%81%8A%E8%81%8A%E5%BA%94%E7%94%A8%E5%AE%89%E5%85%A8%E9%A2%86%E5%9F%9F%E4%B8%AD%E7%9A%84%E6%8A%80%E6%9C%AF%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5/"
+                        >简单聊聊应用安全领域中的技术安全运营</a>
+                        <!-- <span class="article-date">07-15</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/Cloud%20I%20Hack%20into%20Google%20Cloud/"
+                        >Cloud I Hack into Google Cloud</a>
+                        <!-- <span class="article-date">06-10</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/%E4%BB%A5%E6%94%BB%E9%98%B2%E5%AF%B9%E6%8A%97%E4%B8%BA%E6%A0%B8%E5%BF%83%E2%80%94%E5%A6%82%E4%BD%95%E9%98%B2%E5%BE%A1%E7%BD%91%E7%BB%9C%E9%92%93%E9%B1%BC(%E6%9D%A5%E8%87%AA%E5%9B%BD%E5%AE%B6%E5%8F%8D%E8%AF%88%E7%9A%84%E5%90%AF%E7%A4%BA)/"
+                        >以攻防对抗为核心—如何防御网络钓鱼(来自国家反诈的启示)</a>
+                        <!-- <span class="article-date">06-08</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/%E5%85%B3%E4%BA%8EXDR%E7%9A%84%E4%B8%80%E7%82%B9%E7%AC%94%E8%AE%B0/"
+                        >关于XDR的一点笔记</a>
+                        <!-- <span class="article-date">05-27</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/%E9%9B%B6%E4%BF%A1%E4%BB%BB%E4%B8%8B%E7%9A%84%E7%94%A8%E6%88%B7%E8%AE%BF%E9%97%AE/"
+                        >零信任下的用户访问</a>
+                        <!-- <span class="article-date">05-18</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/%E4%BD%BF%E7%94%A8%E9%9B%B6%E4%BF%A1%E4%BB%BB%E5%BF%AB%E9%80%9F%E5%AE%9E%E7%8E%B0%E5%AE%89%E5%85%A8%E7%8E%B0%E4%BB%A3%E5%8C%96/"
+                        >使用零信任快速实现安全现代化</a>
+                        <!-- <span class="article-date">05-17</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/%E9%9B%B6%E4%BF%A1%E4%BB%BB%E5%8E%9F%E5%88%99/"
+                        >零信任原则</a>
+                        <!-- <span class="article-date">05-17</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/%E6%93%8D%E4%BD%9C%E6%8A%80%E6%9C%AF(OT)%E5%AE%89%E5%85%A8%E6%9E%B6%E6%9E%84%E5%8F%82%E8%80%83/"
+                        >操作技术(OT)安全架构参考</a>
+                        <!-- <span class="article-date">05-16</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/%E8%B7%A8%E8%B6%8A%E6%94%BB%E5%87%BB%E9%93%BE%E8%BF%9B%E8%A1%8C%E9%98%B2%E5%BE%A1(%E5%86%85%E9%83%A8%E5%92%8C%E5%A4%96%E9%83%A8%E5%A8%81%E8%83%81)/"
+                        >跨越攻击链进行防御(内部和外部威胁)</a>
+                        <!-- <span class="article-date">05-15</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/%E5%A4%9A%E4%BA%91%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%8A%80%E6%9C%AF/"
+                        >多云跨平台技术</a>
+                        <!-- <span class="article-date">05-14</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/%E5%AE%89%E5%85%A8%E8%A7%92%E8%89%B2%E5%92%8C%E8%81%8C%E8%B4%A3/"
+                        >安全角色和职责</a>
+                        <!-- <span class="article-date">05-13</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/%E4%BF%A1%E6%81%AF%E7%AE%A1%E7%90%86%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8(%E5%AE%89%E5%85%A8%E8%B4%A3%E4%BB%BB)/"
+                        >信息管理/网络安全(安全责任)</a>
+                        <!-- <span class="article-date">05-12</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/%E9%9B%B6%E4%BF%A1%E4%BB%BB%E5%8E%9F%E5%88%99%E4%B8%8B%E7%9A%84%E5%AE%89%E5%85%A8%E7%8E%B0%E4%BB%A3%E5%8C%96%E3%80%8CMicrosoft%E3%80%8D/"
+                        >零信任原则下的安全现代化「Microsoft」</a>
+                        <!-- <span class="article-date">05-11</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/IBM%20QRadar%20UBA(%E7%94%A8%E6%88%B7%E8%A1%8C%E4%B8%BA%E5%88%86%E6%9E%90)%20%E8%A7%84%E5%88%99%E9%9B%86%E5%90%88/"
+                        >IBM QRadar UBA(用户行为分析) 规则集合</a>
+                        <!-- <span class="article-date">04-22</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/%E4%BA%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%BA%BF/"
+                        >云安全基线</a>
+                        <!-- <span class="article-date">04-04</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/UEBA(%E7%94%A8%E6%88%B7%E5%92%8C%E5%AE%9E%E4%BD%93%E8%A1%8C%E4%B8%BA%E5%88%86%E6%9E%90)%E5%8F%AF%E4%BB%A5%E7%94%A8%E6%9D%A5%E5%81%9A%E4%BB%80%E4%B9%88%EF%BC%88%E5%8D%81%E5%A4%A7%E5%9C%BA%E6%99%AF%EF%BC%89/"
+                        >UEBA(用户和实体行为分析)可以用来做什么（十大场景）</a>
+                        <!-- <span class="article-date">03-15</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/Java%20NashornJS%E5%BC%95%E6%93%8E%E4%BB%A3%E7%A0%81%E5%AE%89%E5%85%A8%E6%89%A7%E8%A1%8C/"
+                        >Java NashornJS引擎代码安全执行</a>
+                        <!-- <span class="article-date">01-28</span> -->
+                    </li>
+                
+            </ul>
+        <!-- </section> -->
+    <!--  -->
+        <!-- <section class="archive-item"> -->
+            <!-- <div class="archive-item-header">
+                <span class="archive-year">2021</span>
+                <span class="archive-year-post-count">[9]</span>
+            </div> -->
+            <ul class="article-list">
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/%E5%88%9B%E9%80%A0%E5%92%8C%E7%83%AD%E7%88%B1/"
+                        >创造与热爱</a>
+                        <!-- <span class="article-date">12-20</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/CVE-2021-44228%20Log4Shell/"
+                        >CVE-2021-44228 Log4Shell</a>
+                        <!-- <span class="article-date">12-15</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/%E8%8E%AB%E5%90%91%E5%A4%96%E6%B1%82%EF%BC%8C%E5%8F%8D%E6%B1%82%E8%AF%B8%E5%B7%B1/"
+                        >莫向外求，反求诸己</a>
+                        <!-- <span class="article-date">12-12</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/%E8%BF%90%E5%8A%A8%E7%AF%87%EF%BC%9A2021%E5%BC%80%E6%9D%BF&%E8%81%8A%E8%81%8A%E8%BF%90%E5%8A%A8/"
+                        >运动篇：2021开板&amp;聊聊运动</a>
+                        <!-- <span class="article-date">12-05</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/API%E5%AE%89%E5%85%A8%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/"
+                        >API安全生命周期</a>
+                        <!-- <span class="article-date">11-15</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/%E8%BE%BE%E5%85%8B%E6%95%88%E5%BA%94%E3%80%81%E5%82%BB%E9%80%BC%E9%80%9F%E7%8E%87%E4%B8%8E%E8%87%AA%E6%88%91%E6%80%80%E7%96%91%E7%9A%84%E8%BF%99%E5%8D%8A%E5%B9%B4/"
+                        >达克效应、傻逼速率与自我怀疑的这半年</a>
+                        <!-- <span class="article-date">11-14</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/%E4%BB%8E%E7%BC%96%E5%86%99JDI%E8%B0%83%E8%AF%95%E5%88%B0%E5%AE%9E%E7%8E%B0JDWP%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/"
+                        >从编写JDI调试到实现JDWP命令执行</a>
+                        <!-- <span class="article-date">09-06</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/Azure%20Sentinel%20webinar:%20Enabling%20User%20and%20Entity%20Behavior%20Analytics%20(UEBA)/"
+                        >Azure Sentinel webinar：Enabling User and Entity Behavior Analytics (UEBA)</a>
+                        <!-- <span class="article-date">05-01</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/OT%E7%8E%AF%E5%A2%83%E4%B8%8BIoT%E5%AE%89%E5%85%A8%E7%9A%84%E7%A0%B4%E5%B1%80%E6%8E%A2%E7%B4%A2/"
+                        >OT环境下IoT安全的破局探索</a>
+                        <!-- <span class="article-date">04-01</span> -->
+                    </li>
+                
+            </ul>
+        <!-- </section> -->
+    <!--  -->
+        <!-- <section class="archive-item"> -->
+            <!-- <div class="archive-item-header">
+                <span class="archive-year">2020</span>
+                <span class="archive-year-post-count">[11]</span>
+            </div> -->
+            <ul class="article-list">
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/%E6%88%91%E7%9A%84%E5%BA%94%E7%94%A8%E5%AE%89%E5%85%A8%E6%96%B9%E6%B3%95%E8%AE%BA%EF%BC%9A%E8%B7%AF%E5%9C%A8%E8%84%9A%E4%B8%8B/"
+                        >我的应用安全方法论：路在脚下</a>
+                        <!-- <span class="article-date">12-17</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E4%B8%8B%E7%9A%84%E8%B6%8A%E6%9D%83%E9%A3%8E%E9%99%A9/"
+                        >微服务架构下的越权风险</a>
+                        <!-- <span class="article-date">10-20</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/API%E8%B6%8A%E6%9D%83%E9%A3%8E%E9%99%A9%E6%A3%80%E6%B5%8B%E6%96%B9%E5%BC%8F%E6%B5%85%E8%B0%88/"
+                        >API越权风险检测方式浅谈</a>
+                        <!-- <span class="article-date">09-08</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/JavaParse(AST)%E8%8E%B7%E5%8F%96Java%20Web%20API%20list/"
+                        >JavaParse(AST)获取Java Web API list</a>
+                        <!-- <span class="article-date">09-06</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/%E5%88%A9%E7%94%A8CodeQL%E5%AF%BB%E6%89%BEJava%20Deserialization%20Vulnerabilities/"
+                        >利用CodeQL寻找Java Deserialization Vulnerabilities</a>
+                        <!-- <span class="article-date">05-04</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/%E5%A5%94%E6%B6%8C%E7%9A%84%E5%90%8E%E6%B5%AA%E4%B8%8E%E7%8B%AC%E7%AB%8B%E6%80%9D%E8%80%83/"
+                        >奔涌的后浪与独立思考</a>
+                        <!-- <span class="article-date">05-04</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/%E9%80%9A%E8%BF%87%E6%B3%A8%E8%A7%A3%E5%88%87%E9%9D%A2%E6%96%B9%E5%BC%8F%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95%E6%9D%83%E9%99%90%E6%A0%A1%E9%AA%8C/"
+                        >通过注解/切面方式实现方法权限校验</a>
+                        <!-- <span class="article-date">04-10</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/%E9%80%9A%E8%BF%87%E6%B3%A8%E8%A7%A3%E6%96%B9%E5%BC%8F%E5%AE%9E%E7%8E%B0%E5%85%A5%E5%8F%82%E8%BF%87%E6%BB%A4(String%E7%B1%BB%E5%9E%8B%E4%B8%BA%E4%BE%8B)/"
+                        >通过注解方式实现入参过滤(String类型为例)</a>
+                        <!-- <span class="article-date">04-06</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E4%BB%AC%E4%BC%9A%E5%AF%B9%E6%96%B0%E4%BA%8B%E7%89%A9%E4%BA%A7%E7%94%9F%E6%8A%B5%E8%A7%A6%E5%BF%83%E7%90%86/"
+                        >为什么我们会对新事物产生抵触心理</a>
+                        <!-- <span class="article-date">03-29</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/2020%20IoT%20Threat%20Report%20%E8%A7%A3%E8%AF%BB/"
+                        >2020 IoT Threat Report 解读</a>
+                        <!-- <span class="article-date">03-12</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/%E5%BA%94%E7%94%A8%E5%AE%89%E5%85%A8%E8%AF%84%E5%AE%A1%E4%B8%AD%E7%9A%84%E4%B8%89%E4%B8%AA%E5%85%B3%E9%94%AE%E8%8A%82%E7%82%B9%E5%8F%8A%E6%8A%93%E6%89%8B%E5%AE%9E%E7%8E%B0/"
+                        >应用安全评审中的三个关键节点及抓手实现</a>
+                        <!-- <span class="article-date">02-07</span> -->
+                    </li>
+                
+            </ul>
+        <!-- </section> -->
+    <!--  -->
+        <!-- <section class="archive-item"> -->
+            <!-- <div class="archive-item-header">
+                <span class="archive-year">2019</span>
+                <span class="archive-year-post-count">[11]</span>
+            </div> -->
+            <ul class="article-list">
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/%E8%B4%A6%E5%8F%B7%E7%94%9F%E5%91%BD%E5%AE%89%E5%85%A8%E5%91%A8%E6%9C%9F/"
+                        >账号生命安全周期</a>
+                        <!-- <span class="article-date">10-22</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/DGA%20Domain%20Detection/"
+                        >DGA Domain Detection</a>
+                        <!-- <span class="article-date">08-24</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/SOAR(%E5%AE%89%E5%85%A8%E7%BC%96%E6%8E%92%E8%87%AA%E5%8A%A8%E5%8C%96%E4%B8%8E%E5%93%8D%E5%BA%94)%E4%B8%AD%E6%B1%82%E8%A7%A3%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5%E4%B9%8B%E6%B3%95/"
+                        >从SOAR(安全编排自动化与响应)中求解安全运营之法</a>
+                        <!-- <span class="article-date">08-08</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/K%20Nearest%20Neighbor/"
+                        >K Nearest Neighbor</a>
+                        <!-- <span class="article-date">08-03</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/Decision%20Tree/"
+                        >Decision Tree</a>
+                        <!-- <span class="article-date">08-01</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/Naive%20Bayes%EF%BC%88NB%EF%BC%89/"
+                        >Naive Bayes（NB）</a>
+                        <!-- <span class="article-date">07-28</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/Logistic%20Regression/"
+                        >Logistic Regression</a>
+                        <!-- <span class="article-date">07-27</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/Support%20Vector%20Machines%EF%BC%88SVM%EF%BC%89/"
+                        >Support Vector Machines（SVM）</a>
+                        <!-- <span class="article-date">07-22</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/Linear%20Regression/"
+                        >Linear Regression</a>
+                        <!-- <span class="article-date">07-21</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/NodeJS%20sql%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E5%AE%A1%E8%AE%A1%E5%92%8C%E4%BF%AE%E5%A4%8D/"
+                        >NodeJS sql注入漏洞审计和修复</a>
+                        <!-- <span class="article-date">05-01</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/URLDNS%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96gadget%E5%88%86%E6%9E%90/"
+                        >URLDNS反序列化gadget分析</a>
+                        <!-- <span class="article-date">01-15</span> -->
+                    </li>
+                
+            </ul>
+        <!-- </section> -->
+    <!--  -->
+        <!-- <section class="archive-item"> -->
+            <!-- <div class="archive-item-header">
+                <span class="archive-year">2018</span>
+                <span class="archive-year-post-count">[12]</span>
+            </div> -->
+            <ul class="article-list">
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/Security%20&%20Data/"
+                        >Security &amp; Data</a>
+                        <!-- <span class="article-date">07-21</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/Groovy%20Deserialization(groovy.util.Expando)CVE-2015-3253/"
+                        >Groovy Deserialization(groovy.util.Expando)CVE-2015-3253</a>
+                        <!-- <span class="article-date">06-21</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/%E5%9F%BA%E4%BA%8Etoken%E7%9A%84%E8%AE%A4%E8%AF%81/"
+                        >基于token的认证</a>
+                        <!-- <span class="article-date">05-18</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/XXE%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1%E5%92%8C%E9%98%B2%E5%BE%A1%E7%AD%96%E7%95%A5%20for%20Java/"
+                        >XXE代码审计和防御策略 for Java</a>
+                        <!-- <span class="article-date">05-16</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/SSRF%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1%E5%92%8C%E9%98%B2%E5%BE%A1%E7%AD%96%E7%95%A5%20for%20Java/"
+                        >SSRF代码审计和防御策略 for Java</a>
+                        <!-- <span class="article-date">05-15</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/Flask%E5%89%8D%E5%90%8E%E7%AB%AF%E6%95%B0%E6%8D%AE%E4%BA%A4%E4%BA%92%E7%9A%84%E5%87%A0%E7%A7%8D%E5%B8%B8%E8%A7%81%E6%96%B9%E5%BC%8F/"
+                        >Flask前后端数据交互的几种常见方式</a>
+                        <!-- <span class="article-date">04-22</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="CVE-2018-1273: RCE with Spring Data Commons/"
+                        >CVE-2018-1273 RCE with Spring Data Commons</a>
+                        <!-- <span class="article-date">04-13</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/Spring%20Expression%20Language%EF%BC%88SpEL%EF%BC%89/"
+                        >Spring Expression Language（SpEL）</a>
+                        <!-- <span class="article-date">04-10</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/CVE-2018-1270%20Remote%20Code%20Execution%20with%20spring-messaging/"
+                        >CVE-2018-1270 Remote Code Execution with spring-messaging</a>
+                        <!-- <span class="article-date">04-08</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/%E5%86%8D%E7%9C%8BFastJson%20Unserialization%E6%BC%8F%E6%B4%9E/"
+                        >再看FastJson Unserialization漏洞</a>
+                        <!-- <span class="article-date">03-23</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/JavaScript%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/"
+                        >JavaScript源码分析漏洞挖掘</a>
+                        <!-- <span class="article-date">03-22</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/AutoSploit%E7%9A%84%E7%AE%80%E5%8D%95%E5%88%86%E6%9E%90/"
+                        >AutoSploit的简单分析</a>
+                        <!-- <span class="article-date">01-20</span> -->
+                    </li>
+                
+            </ul>
+        <!-- </section> -->
+    <!--  -->
+        <!-- <section class="archive-item"> -->
+            <!-- <div class="archive-item-header">
+                <span class="archive-year">2017</span>
+                <span class="archive-year-post-count">[12]</span>
+            </div> -->
+            <ul class="article-list">
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/FastJson%20Unserialization/"
+                        >FastJson Unserialization</a>
+                        <!-- <span class="article-date">12-30</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/Java%20Web%20%E5%B7%A5%E7%A8%8B%E6%BA%90%E7%A0%81%E5%AE%89%E5%85%A8%E5%AE%A1%E8%AE%A1%E6%A6%82%E7%95%A5/"
+                        >Java Web 工程源码安全审计概略</a>
+                        <!-- <span class="article-date">12-29</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/%E5%85%B3%E4%BA%8E%E6%8A%80%E6%9C%AF%E7%9A%84%E7%BA%AF%E7%B2%B9/"
+                        >关于技术的纯粹</a>
+                        <!-- <span class="article-date">10-04</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/%E7%A4%BE%E4%BC%9A%E5%B7%A5%E7%A8%8B%E5%AD%A6TIPS/"
+                        >社会工程学TIPS</a>
+                        <!-- <span class="article-date">08-22</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/Android%E7%BB%84%E4%BB%B6%E6%9A%B4%E9%9C%B2%E7%9A%84%E5%AE%89%E5%85%A8%E6%80%A7/"
+                        >Android组件暴露的安全性</a>
+                        <!-- <span class="article-date">06-19</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/Chrome%20XSS%20Auditor%20Bypass%20Payload/"
+                        >Chrome XSS Auditor Bypass Payload</a>
+                        <!-- <span class="article-date">05-22</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/langu_xyz/"
+                        >langu.xyz(蓝骨)</a>
+                        <!-- <span class="article-date">04-21</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/XSS%20Tips%20%E5%8F%8A%E4%BF%AE%E5%A4%8D%E6%96%B9%E6%A1%88/"
+                        >XSS Tips 及修复方案</a>
+                        <!-- <span class="article-date">03-05</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/Laravel%20applications%20sensitive%20info%20leak/"
+                        >Laravel applications sensitive info leak</a>
+                        <!-- <span class="article-date">02-26</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/CVE-2016-1897-8%20-%20FFMpeg%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/"
+                        >CVE-2016-1897/8 - FFMpeg漏洞分析</a>
+                        <!-- <span class="article-date">02-19</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/zabbix%20SQL%20Inject%20Vul/"
+                        >zabbix SQL Inject Vul</a>
+                        <!-- <span class="article-date">02-18</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/PHPMailer%20%3C%205.2.18%20Remote%20Code%20Execution(CVE-2016-10033)/"
+                        >PHPMailer &lt; 5.2.18 Remote Code Execution(CVE-2016-10033)</a>
+                        <!-- <span class="article-date">01-05</span> -->
+                    </li>
+                
+            </ul>
+        <!-- </section> -->
+    <!--  -->
+        <!-- <section class="archive-item"> -->
+            <!-- <div class="archive-item-header">
+                <span class="archive-year">2016</span>
+                <span class="archive-year-post-count">[10]</span>
+            </div> -->
+            <ul class="article-list">
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/Local%20File%20Inclusion%20and%20Remote%20File%20Inclusion/"
+                        >Local File Inclusion and Remote File Inclusion</a>
+                        <!-- <span class="article-date">11-12</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/Cross-site%20request%20forgery/"
+                        >Cross-site request forgery</a>
+                        <!-- <span class="article-date">11-01</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/Wordpress_Plugin_SinglePersonalMessage1.0.3%20sql%20injection/"
+                        >Wordpress_Plugin_SinglePersonalMessage1.0.3 sql injection</a>
+                        <!-- <span class="article-date">10-27</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/Joomla!%203.7%20(CVE-2017-8917)%20%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90/"
+                        >Joomla! 3.7 (CVE-2017-8917) 代码分析</a>
+                        <!-- <span class="article-date">10-19</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/PHP%E4%B8%AD%E5%AE%B9%E6%98%93%E4%BA%A7%E7%94%9F%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E7%9A%84%E9%82%A3%E4%BA%9B%E5%87%BD%E6%95%B0/"
+                        >PHP中容易产生命令执行漏洞的那些函数</a>
+                        <!-- <span class="article-date">10-10</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/XSS%E5%88%A9%E7%94%A8%E4%B9%8BCookie%20/"
+                        >XSS利用之Cookie</a>
+                        <!-- <span class="article-date">10-03</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/PHP%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1TIPS/"
+                        >PHP代码审计TIPS</a>
+                        <!-- <span class="article-date">10-01</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/Linux%E7%B3%BB%E7%BB%9F%E5%8A%A0%E5%9B%BA/"
+                        >Linux系统加固</a>
+                        <!-- <span class="article-date">09-01</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/%E9%95%BF%E7%94%9F%E5%89%91%E4%B8%8E%E5%AD%94%E9%9B%80%E7%BF%8E/"
+                        >长生剑与孔雀翎</a>
+                        <!-- <span class="article-date">07-18</span> -->
+                    </li>
+                
+                    <li class="article-item">
+                        <a class="article-title"
+                           href="/JAVA%20Apache-CommonsCollections%20Unserialize%20Vulnerabilities/"
+                        >Apache-CommonsCollections Unserialize Vulnerabilities</a>
+                        <!-- <span class="article-date">02-03</span> -->
+                    </li>
+                
+            </ul>
+        <!-- </section> -->
+    <!--  -->
+</div>
+
+    </div>
+</div>
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>&nbsp;-&nbsp;
+            
+            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a target="_blank" rel="noopener" href="//langu.xyz">AboutME:langu_xyz</a>
+        </div>
+        <!--
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        -->
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

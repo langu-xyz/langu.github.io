@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="网络安全,黑客,JAVA安全,代码审计,渗透测试,入侵,SRC,扫描,WEB安全,移动安全,PHP">
+    <meta name="description" content="蓝骨, langu.xyz">
+    <meta name="author" content="langu_xyz">
+    
+        <title>
+            
+                Logistic Regression |
+                    
+                        langu_xyz
+        </title>
+        
+<link rel="stylesheet" href="/css/style.css">
+
+            <link rel="shortcut icon" href="/images/logo.jpeg">
+                
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+                    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"blog.langu.xyz","root":"/","language":"zh","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/logo.jpeg","favicon":"/images/logo.jpeg","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/shamo.jpg","description":"XYZ(无限未来)"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+
+                    <script>
+                        var _hmt = _hmt || [];
+                        (function() {
+                          var hm = document.createElement("script");
+                          hm.src = "https://hm.baidu.com/hm.js?1cd6e64ff252acf24b707985fcec8850";
+                          var s = document.getElementsByTagName("script")[0]; 
+                          s.parentNode.insertBefore(hm, s);
+                        })();
+                        </script>
+                        
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="langu_xyz" type="application/atom+xml">
+</head>
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                    <a class="logo-title" href="/">
+                        langu_xyz
+                    </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class="" href="/" >
+                                HOME
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class="" href="/tags/THINK/" >
+                                THINK
+                            </a>
+                        </li>
+                        
+                            
+                                <li class="menu-item search search-popup-trigger">
+                                    <i class="fas fa-search"></i>
+                                </li>
+                                
+                                
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                    
+                        <div class="icon-item menu-bar">
+                            <div class="menu-bar-middle"></div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/" >
+                        HOME
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/tags/THINK/" >
+                        THINK
+                    </a>
+                </li>
+                
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">Logistic Regression</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/logo.jpeg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">langu_xyz</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2019-07-27 21:00:00
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%AE%89%E5%85%A8%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">安全数据分析</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/ML/">ML</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.1k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>5 Mins</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h4 id="0x01-LR"><a href="#0x01-LR" class="headerlink" title="0x01 LR"></a>0x01 LR</h4><p>根据现有数据对分类边界线建立回归公式，以此进行分类</p>
+<p>LR的目的是寻找一个非线性函数Sigmoid的最佳拟合参数，求解过程可以由最优化 算法来完成<br>在最优化算法中，最常用的就是梯度上升算法，而梯度上升算法又可以简化为随机梯度上升算法</p>
+<p>优点</p>
+<ul>
+<li>计算代价不高</li>
+<li>易于理解和实现</li>
+</ul>
+<p>缺点</p>
+<ul>
+<li>容易欠拟合</li>
+<li>分类精度可能不高</li>
+</ul>
+<p>适用数据类型</p>
+<ul>
+<li>数值型</li>
+<li>标称型</li>
+</ul>
+<p>类阶跃函数：<code>Sigmoid函数</code></p>
+<p><img lazyload src="/images/loading.svg" data-src="15377821130484.jpg"></p>
+<p>LR分类器：<code>在每个特征上都乘以一个回归系数，然后把 所有的结果值相加，将这个总和代入Sigmoid函数中，进而得到一个范围在0~1之间的数值。任 何大于0.5的数据被分入1类，小于0.5即被归入0类</code></p>
+<h4 id="0x02-训练算法"><a href="#0x02-训练算法" class="headerlink" title="0x02 训练算法"></a>0x02 训练算法</h4><p><strong>确定回归系数</strong></p>
+<ul>
+<li>梯度上升法</li>
+</ul>
+<p><code>要找到某函数的 最大值，最好的方法是沿着该函数的梯度方向探寻</code></p>
+<p><img lazyload src="/images/loading.svg" data-src="15377952402353.jpg"></p>
+<ul>
+<li>训练数据</li>
+</ul>
+<p><img lazyload src="/images/loading.svg" data-src="15377958608774.jpg"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">def sigmoid(inX):</span><br><span class="line">    &#x27;&#x27;&#x27;</span><br><span class="line">    sigmoid函数</span><br><span class="line">    :param inX:</span><br><span class="line">    :return:</span><br><span class="line">    &#x27;&#x27;&#x27;</span><br><span class="line">    return 1.0/(1+exp(-inX))</span><br><span class="line"></span><br><span class="line">def gradAscent(dataMatIn, classLabels):</span><br><span class="line">    &#x27;&#x27;&#x27;</span><br><span class="line">    梯度上升优化算法</span><br><span class="line">    :param dataMatIn: </span><br><span class="line">    :param classLabels: </span><br><span class="line">    :return: </span><br><span class="line">    &#x27;&#x27;&#x27;</span><br><span class="line">    dataMatrix = mat(dataMatIn) #转换为numpy矩阵数据类型</span><br><span class="line">    labelMat = mat(classLabels).transpose()</span><br><span class="line">    m, n = shape(dataMatrix)</span><br><span class="line">    alpha = 0.001 #步长</span><br><span class="line">    maxCycles = 500 #迭代次数</span><br><span class="line">    weights = ones((n, 1))</span><br><span class="line">    for k in range(maxCycles):</span><br><span class="line">    #计算真实类别与预测类别的差值</span><br><span class="line">        h = sigmoid(dataMatrix*weights)     #矩阵相乘</span><br><span class="line">        error = (labelMat - h)              #向量相减</span><br><span class="line">        weights = weights + alpha * dataMatrix.transpose() * error #矩阵相乘</span><br><span class="line">    return weights</span><br></pre></td></tr></table></figure>
+
+
+<p><img lazyload src="/images/loading.svg" data-src="15377964122497.jpg"></p>
+<ul>
+<li>分析数据</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">def plotBestFit(weights):</span><br><span class="line">    &#x27;&#x27;&#x27;</span><br><span class="line">    import matplotlib.pyplot as plt</span><br><span class="line">    画出决策边界</span><br><span class="line">    :param weights: </span><br><span class="line">    :return: </span><br><span class="line">    &#x27;&#x27;&#x27;</span><br><span class="line">    dataMat, labelMat=loadDataSet()</span><br><span class="line">    dataArr = array(dataMat)</span><br><span class="line">    n = shape(dataArr)[0] </span><br><span class="line">    xcord1 = []</span><br><span class="line">    ycord1 = []</span><br><span class="line">    xcord2 = []</span><br><span class="line">    ycord2 = []</span><br><span class="line">    for i in range(n):</span><br><span class="line">        if int(labelMat[i]) == 1:</span><br><span class="line">            xcord1.append(dataArr[i, 1])</span><br><span class="line">            ycord1.append(dataArr[i, 2])</span><br><span class="line">        else:</span><br><span class="line">            xcord2.append(dataArr[i, 1])</span><br><span class="line">            ycord2.append(dataArr[i, 2])</span><br><span class="line">    fig = plt.figure()</span><br><span class="line">    ax = fig.add_subplot(111)</span><br><span class="line">    ax.scatter(xcord1, ycord1, s=30, c=&#x27;red&#x27;, marker=&#x27;s&#x27;)</span><br><span class="line">    ax.scatter(xcord2, ycord2, s=30, c=&#x27;green&#x27;)</span><br><span class="line">    x = arange(-3.0, 3.0, 0.1)</span><br><span class="line">    y = (-weights[0]-weights[1]*x)/weights[2] #设置sigmiod为0</span><br><span class="line">    ax.plot(x, y)</span><br><span class="line">    plt.xlabel(&#x27;X1&#x27;)</span><br><span class="line">    plt.ylabel(&#x27;X2&#x27;)</span><br><span class="line">    plt.show()</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plotBestFit(weights.getA()) #getA()函数与mat()函数的功能相反，将一个numpy矩阵转换为数组</span><br></pre></td></tr></table></figure>
+
+<p><img lazyload src="/images/loading.svg" data-src="15377969992698.jpg"></p>
+<ul>
+<li>随机梯度上升算法</li>
+</ul>
+<p><code>在线学习算法</code><br><code>一次仅用一个样本点来更新回归系数</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">def stocGradAscent0(dataMatrix, classLabels):</span><br><span class="line">    &#x27;&#x27;&#x27;</span><br><span class="line">    随机梯度上升算法</span><br><span class="line">    :param dataMatrix:</span><br><span class="line">    :param classLabels:</span><br><span class="line">    :return:</span><br><span class="line">    &#x27;&#x27;&#x27;</span><br><span class="line">    m, n = shape(dataMatrix)</span><br><span class="line">    alpha = 0.01</span><br><span class="line">    weights = ones(n)   #初始化</span><br><span class="line">    for i in range(m):</span><br><span class="line">        h = sigmoid(sum(dataMatrix[i]*weights))</span><br><span class="line">        error = classLabels[i] - h</span><br><span class="line">        weights = weights + alpha * error * dataMatrix[i]</span><br><span class="line">    return weights</span><br></pre></td></tr></table></figure>
+
+<p><img lazyload src="/images/loading.svg" data-src="15377977124914.jpg"></p>
+<ul>
+<li>改进的随机梯度上升算法</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">def stocGradAscent1(dataMatrix, classLabels, numIter=150):</span><br><span class="line">    &#x27;&#x27;&#x27;</span><br><span class="line">    改进的随机梯度上升算法</span><br><span class="line">    :param dataMatrix:</span><br><span class="line">    :param classLabels:</span><br><span class="line">    :param numIter:默认迭代次数</span><br><span class="line">    :return:</span><br><span class="line">    &#x27;&#x27;&#x27;</span><br><span class="line">    m, n = shape(dataMatrix)</span><br><span class="line">    weights = ones(n)</span><br><span class="line">    for j in range(numIter):</span><br><span class="line">        dataIndex = list(range(m))</span><br><span class="line">        for i in range(m):</span><br><span class="line">            alpha = 4/(1.0+j+i)+0.0001    #每次迭代进行调整，不断减小</span><br><span class="line">            randIndex = int(random.uniform(0, len(dataIndex))) #随机选择样本更新回归系数</span><br><span class="line">            h = sigmoid(sum(dataMatrix[randIndex]*weights))</span><br><span class="line">            error = classLabels[randIndex] - h</span><br><span class="line">            weights = weights + alpha * error * dataMatrix[randIndex]</span><br><span class="line">            del(dataIndex[randIndex])</span><br><span class="line">    return weights</span><br></pre></td></tr></table></figure>
+
+<p><img lazyload src="/images/loading.svg" data-src="15377984535574.jpg"></p>
+<h4 id="0x03-实例1"><a href="#0x03-实例1" class="headerlink" title="0x03 实例1"></a>0x03 实例1</h4><ul>
+<li>准备数据</li>
+</ul>
+<p>如何处理数据中的缺失值？</p>
+<pre><code>1.使用可用特征的均值来填补缺失值
+2.使用特殊值来填补缺失值
+3.忽略有缺失值的样本
+4.使用相似样本的均值添补缺失值
+5.使用另外的机器学习算法预测缺失值
+</code></pre>
+<ul>
+<li>测试算法</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">def classifyVector(inX, weights):</span><br><span class="line">    &#x27;&#x27;&#x27;</span><br><span class="line"></span><br><span class="line">    :param inX: 回归系数</span><br><span class="line">    :param weights: 特征向量</span><br><span class="line">    :return: 0 or 1</span><br><span class="line">    &#x27;&#x27;&#x27;</span><br><span class="line">    prob = sigmoid(sum(inX*weights))</span><br><span class="line">    if prob &gt; 0.5:</span><br><span class="line">        return 1.0</span><br><span class="line">    else:</span><br><span class="line">        return 0.0</span><br><span class="line"></span><br><span class="line">def colicTest():</span><br><span class="line">    frTrain = open(&#x27;horseColicTraining.txt&#x27;)</span><br><span class="line">    frTest = open(&#x27;horseColicTest.txt&#x27;)</span><br><span class="line">    trainingSet = []</span><br><span class="line">    trainingLabels = []</span><br><span class="line">    for line in frTrain.readlines():</span><br><span class="line">        currLine = line.strip().split(&#x27;\t&#x27;)</span><br><span class="line">        lineArr = []</span><br><span class="line">        for i in range(21):</span><br><span class="line">            lineArr.append(float(currLine[i]))</span><br><span class="line">        trainingSet.append(lineArr)</span><br><span class="line">        trainingLabels.append(float(currLine[21]))</span><br><span class="line">    trainWeights = stocGradAscent1(array(trainingSet), trainingLabels, 1000) #计算回归系数向量，迭代1000次</span><br><span class="line">    errorCount = 0</span><br><span class="line">    numTestVec = 0.0</span><br><span class="line">    for line in frTest.readlines(): #导入测试集计算分类错误率</span><br><span class="line">        numTestVec += 1.0</span><br><span class="line">        currLine = line.strip().split(&#x27;\t&#x27;)</span><br><span class="line">        lineArr = []</span><br><span class="line">        for i in range(21):</span><br><span class="line">            lineArr.append(float(currLine[i]))</span><br><span class="line">        if int(classifyVector(array(lineArr), trainWeights)) != int(currLine[21]):</span><br><span class="line">            errorCount += 1</span><br><span class="line">    errorRate = (float(errorCount)/numTestVec)</span><br><span class="line">    print(&quot;the error rate of this test is: %f&quot; % errorRate)</span><br><span class="line">    return errorRate</span><br><span class="line"></span><br><span class="line">def multiTest():</span><br><span class="line">    numTests = 10</span><br><span class="line">    errorSum=0.0</span><br><span class="line">    for k in range(numTests): # 计算10次求平均值</span><br><span class="line">        errorSum += colicTest()</span><br><span class="line">    print(&quot;after %d iterations the average error rate is: %f&quot; % (numTests, errorSum/float(numTests)))</span><br></pre></td></tr></table></figure>
+
+<p><img lazyload src="/images/loading.svg" data-src="15377994809259.jpg"></p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：Logistic Regression</li>
+        <li>Post author：langu_xyz</li>
+        <li>Create time：2019-07-27 21:00:00</li>
+        <li>
+            Post link：https://blog.langu.xyz/Logistic Regression/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/Naive%20Bayes%EF%BC%88NB%EF%BC%89/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Naive Bayes（NB）</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/Support%20Vector%20Machines%EF%BC%88SVM%EF%BC%89/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Support Vector Machines（SVM）</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>&nbsp;-&nbsp;
+            
+            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a target="_blank" rel="noopener" href="//langu.xyz">AboutME:langu_xyz</a>
+        </div>
+        <!--
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        -->
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#0x01-LR"><span class="nav-text">0x01 LR</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#0x02-%E8%AE%AD%E7%BB%83%E7%AE%97%E6%B3%95"><span class="nav-text">0x02 训练算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#0x03-%E5%AE%9E%E4%BE%8B1"><span class="nav-text">0x03 实例1</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

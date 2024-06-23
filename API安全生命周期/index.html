@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="网络安全,黑客,JAVA安全,代码审计,渗透测试,入侵,SRC,扫描,WEB安全,移动安全,PHP">
+    <meta name="description" content="蓝骨, langu.xyz">
+    <meta name="author" content="langu_xyz">
+    
+        <title>
+            
+                API安全生命周期 |
+                    
+                        langu_xyz
+        </title>
+        
+<link rel="stylesheet" href="/css/style.css">
+
+            <link rel="shortcut icon" href="/images/logo.jpeg">
+                
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+                    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"blog.langu.xyz","root":"/","language":"zh","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/logo.jpeg","favicon":"/images/logo.jpeg","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/shamo.jpg","description":"XYZ(无限未来)"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+
+                    <script>
+                        var _hmt = _hmt || [];
+                        (function() {
+                          var hm = document.createElement("script");
+                          hm.src = "https://hm.baidu.com/hm.js?1cd6e64ff252acf24b707985fcec8850";
+                          var s = document.getElementsByTagName("script")[0]; 
+                          s.parentNode.insertBefore(hm, s);
+                        })();
+                        </script>
+                        
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="langu_xyz" type="application/atom+xml">
+</head>
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                    <a class="logo-title" href="/">
+                        langu_xyz
+                    </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class="" href="/" >
+                                HOME
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class="" href="/tags/THINK/" >
+                                THINK
+                            </a>
+                        </li>
+                        
+                            
+                                <li class="menu-item search search-popup-trigger">
+                                    <i class="fas fa-search"></i>
+                                </li>
+                                
+                                
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                    
+                        <div class="icon-item menu-bar">
+                            <div class="menu-bar-middle"></div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/" >
+                        HOME
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/tags/THINK/" >
+                        THINK
+                    </a>
+                </li>
+                
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">API安全生命周期</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/logo.jpeg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">langu_xyz</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2021-11-15 21:00:00
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%BA%94%E7%94%A8%E5%AE%89%E5%85%A8/">应用安全</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/THINK/">THINK</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>4k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>13 Mins</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>本文的由来主要是最近一年来对内部API风险治理过程中的总结。因为API的种类繁多，并没有写的很详细，但是在其中表达了很多API治理的思路和经验总结。在WAF、黑白盒扫描器、RASP越来越成熟的今天，API导致的逻辑类风险将是各公司面临的最大难题，希望本文可以给予同行者们一些帮助。</p>
+<h1 id="一、什么是API"><a href="#一、什么是API" class="headerlink" title="一、什么是API"></a>一、什么是API</h1><p>应用编程接口（API）由一组用于集成应用软件和服务的工具、定义和协议组合而成 <a class="link" target="_blank" rel="noopener" href="https://www.redhat.com/zh/topics/api">https://www.redhat.com/zh/topics/api<i class="fas fa-external-link-alt"></i></a> 。设计方式主要遵循SOAP协议或者REST架构。SOAP和REST的关系此处不在赘述，详情可以看<a class="link" target="_blank" rel="noopener" href="https://www.redhat.com/zh/topics/integration/whats-the-difference-between-soap-resth%E3%80%82">https://www.redhat.com/zh/topics/integration/whats-the-difference-between-soap-resth。<i class="fas fa-external-link-alt"></i></a> </p>
+<p>API 既可以私有（仅供内部使用），也可以合用（与特定合作伙伴共享以创造更多收益）或公用（允许第三方开发的应用能与您的API 交互，从而推动创新）。</p>
+<p>在大多数情况下，企业会采用微服务架构，想要通过加速软件开发来满足需求。基于 HTTP 的 API 已成为微服务架构之间同步交互的首选方法。因为它们可以降低部署、可扩展性和维护的复杂性和开销。这些 API 是将所有微服务连接在一起的粘合剂。API被广泛的应用在各种业务中，也导致大量不规范的API发布到线上，将风险暴露在攻击者的视线中。</p>
+<h1 id="二、API生命周期"><a href="#二、API生命周期" class="headerlink" title="二、API生命周期"></a>二、API生命周期</h1><p>生命周期就是指一个对象的生老病死。其实所有的非瞬时性的对象都有着自己的生命周期，诞生-存在-消亡。</p>
+<p>￼<img lazyload src="/images/loading.svg" data-src="live.png" alt="live"></p>
+<p>那结合我们的实际经验，可以总结出API的生命周期，设计-开发-测试-上线-运行-迭代-下线。</p>
+<p>￼<img lazyload src="/images/loading.svg" data-src="life.png" alt="life"></p>
+<h1 id="三、API安全生命周期"><a href="#三、API安全生命周期" class="headerlink" title="三、API安全生命周期"></a>三、API安全生命周期</h1><h2 id="1-API面临的主要网络攻击"><a href="#1-API面临的主要网络攻击" class="headerlink" title="1. API面临的主要网络攻击"></a>1. API面临的主要网络攻击</h2><p>在聊API安全生命周期之前，首先我们要思考一下，API会遇到哪些攻击。API作为业务的表达，承载着大量的数据和生产资料，主要的攻击主要包括以下几种：</p>
+<ol>
+<li><p>失陷的访问控制<br> “失陷的访问控制”也就是常说的“越权”，荣登OWASP 2021的Top 1。API的访问控制失效，攻击方可直接调用API进行增删改查操作，造成数据泄漏或者生产中断。在有一定安全水位的企业里，越权漏洞一定是高危漏洞种类的重要组成。</p>
+</li>
+<li><p>数据泄漏(敏感数据暴露、加密失败)<br>   数据泄漏风险可以说是现在企业面临的最高网络攻击风险了，主要的泄漏途径除了被入侵拖库，就是API的数据过度透出、访问控制缺陷导致被批量调用泄漏数据。随着现在大公司的网络边界安全水位越来越高，被入侵拖库的难度已经非常大了，但是不规范的API暴露的数据泄漏敞口仍然是非常之多。</p>
+</li>
+<li><p>Web网络攻击<br>   针对API的Web网络攻击主要包括DDoS攻击、注入攻击等等。这类传统web攻击类型作为一类，它们的共同点就是可以通过一定的策略进行拦截。</p>
+</li>
+</ol>
+<h2 id="2-API生命周期中的安全"><a href="#2-API生命周期中的安全" class="headerlink" title="2. API生命周期中的安全"></a>2. API生命周期中的安全</h2><p>上面讲的都是外部的网络攻击威胁，但产生这些风险的原因都是内因，我们顺着API生命周期来看每一个环节中缺少的安全部分以及难点。</p>
+<p>￼￼<img lazyload src="/images/loading.svg" data-src="seclife.png" alt="seclife"></p>
+<h3 id="1-设计阶段"><a href="#1-设计阶段" class="headerlink" title="1. 设计阶段"></a>1. 设计阶段</h3><p>绝大部分开发同学都想开发出安全和可靠的API，但是在设计之初以及开发过程中，因为自身对风险的整体认知不足，往往很难做到完善可靠的安全设计。在设计阶段，产品、开发等会多次对焦需求和设计方案，但是往往安全的角色在这里是缺席的。</p>
+<p>理想情况下，如果每个API的设计阶段都有安全工程师参与其中对其进行威胁建模，那线上的API风险将会大大减少。但是我们都知道，在 安全:开发 = 1:1000 的现状下，人工覆盖每个API的威胁建模将永远是一个美好的想象。</p>
+<p>安全部分：</p>
+<p>将威胁建模加入到API设计阶段，给出可能发生的风险解决建议和方案。</p>
+<p>实施难点：</p>
+<p>安全工程师在公司中的人数往往比较少，难以人工覆盖。</p>
+<p>实现建议：</p>
+<p>建设自动化威胁建模能力，同时对业务进行分层。采用“重点业务人工评审”和“非重点业务自动化威胁建模”相结合的方式，可以有效的对核心高风险接口进行覆盖。在过去半年里，我们在公司内部落地了这个思路，效果非常明显。</p>
+<h3 id="2-开发阶段"><a href="#2-开发阶段" class="headerlink" title="2. 开发阶段"></a>2. 开发阶段</h3><p>开发过程中，安全基本没有机会参与其中，能做的大概就是提供API安全开发规范、安全开发插件、安全辅助包等辅助性安全开发工具。是否使用，全看开发同学的安全意识以及开发项目的紧迫程度。</p>
+<p>再一个有用的则是白盒代码扫描，嵌入到CI/CD流程中，发布到测试环境时就进行扫描。但是白盒代码扫描的弊端也很明显，对于逻辑类的风险，目前尚未有很好的检测工具，API是否包含敏感数据也很难判断。</p>
+<p>安全部分：</p>
+<ol>
+<li>API安全开发规范、安全开发插件、安全辅助包</li>
+<li>嵌入到CI/CD流程中的白盒代码扫描工具</li>
+</ol>
+<p>实施难点：</p>
+<p>如何让开发人员将这些安全辅助工具用起来是个挑战，安全意识培养在于一点一滴的积累。</p>
+<p>实现建议：</p>
+<p>白盒代码扫描实现越权等逻辑类漏洞的检测，在我看来是未来最有可能有效解决逻辑类漏洞的方向之一。但是到现在尚未看到有准确率高、可大规模覆盖使用的产品出现。不过各个公司内部应该都在进行着类似的实现，期待。</p>
+<h3 id="3-测试阶段"><a href="#3-测试阶段" class="headerlink" title="3. 测试阶段"></a>3. 测试阶段</h3><p>如果利用得当，测试阶段将是保证API安全上线的一个关键环节。无论是自动化测试流程还是人工测试，都会对API的业务逻辑实现、稳定性等进行策略，越重要的业务覆盖的越全面。如果在测试的CheckList中加入API相关的内容，则可以接入测试的能力发现API的安全问题。</p>
+<p>在这里有一个关键问题，那就是API安全漏洞是否属于bug，例如API的权限校验失效，是否应该算进未被发现的bug数量中。这个共识如果可以达成，那接下来就可以去讨论如何合作了，无论是嵌入到自动化测试平台或者人工测试的CheckList中。在笔者看来，这个共识并不是很难达成，当然这也要看生产关系是怎样的。</p>
+<p>安全部分：</p>
+<p>与测试团队达成共识，API安全漏洞等于BUG，在此基础上，结合已有的基础设施进行合作，与测试团队共同在上线前发现API的安全风险。</p>
+<p>实施难点：</p>
+<ol>
+<li>测试团队的工作往往也比较饱和，要想达成共识最好能从上到下进行</li>
+<li>测试团队人员的安全专业能力往往欠缺，需要安全团队给予安全能力培训或者提供安全工具辅助发现安全风险</li>
+</ol>
+<p>实现建议：</p>
+<p>主要还是三个要点：与测试团队达成共识、提供自动化的测试工具以及提高测试同学的安全专业能力。</p>
+<h3 id="4-上线阶段"><a href="#4-上线阶段" class="headerlink" title="4. 上线阶段"></a>4. 上线阶段</h3><p>API发布上线阶段是最关键的环节之一。如果API的漏洞在设计、开发、测试环节中没有被发现，那这将是最后的机会去阻止漏洞产生了，一旦发布到线上，那就只能和攻击者赛跑了。</p>
+<p>到这个阶段，理论上传统Web漏洞应该已经都被黑白盒漏洞扫描工具发现出来了，如果还没有，那就很难发现了。但是API权限和API数据相关的漏洞在上线阶段是很容易被安全同学挖掘出来的，不过这里也存在一个人力分配的情况。根据笔者的经验，在这个阶段将有限的安全人力投入到高风险的资产中是最具性价比的。什么样的API是高风险的呢？涉及敏感信息的、涉及资金的、涉及核心基础设施操作的，等等，与设计阶段的评审一样，分层治理。</p>
+<p>安全部分：</p>
+<p>通过建设自动化发现高风险API能力，例如通过测试流量识别敏感数据API等，对高风险API进行人工安全上线评审，将高危API漏洞拦截在上线前。</p>
+<p>实施难点：</p>
+<p>主要的难点应该是如何发现高风险的“影子资产”API，在聚光灯的API资产，出现风险的概率往往比较低，但是那些不在我们视线中的API，往往因为没有经过安全评审，产生严重的漏洞。业务、应用越多，“影子资产”API也会越多，如果对API资产进行全面的覆盖、管理，是一个非常有意义且重要的题目。</p>
+<p>实现建议：</p>
+<p>可以先从流量、日志入手，找到测试环境的流量，通过其识别哪些资产属于高风险资产，“影子资产”API的发现也可以类似的方式持续发现。</p>
+<h3 id="5-运行阶段"><a href="#5-运行阶段" class="headerlink" title="5. 运行阶段"></a>5. 运行阶段</h3><p>运行阶段，API风险往往已经暴露在互联网，随时可能被攻击利用。这个节点的重心要做两件事，API被攻击情况的监控以及API漏洞的持续巡检。</p>
+<p>API被攻击情况的监控：例如通过WAF监控阻断SQL注入请求、通过防爬拦截掉尝试利用API越权漏洞获取数据的请求、通过UEBA发现利用自身权限批量获取敏感数据的行为等等。主要的监控能力需要具备WAF拦截、DDoS防御、爬虫拦截、用户异常行为检测等。</p>
+<p>安全部分：</p>
+<p>通过流量安全监控平台对风险进行检测、阻断，同时结合完善的应急响应流程，对攻击事件进行处置。</p>
+<p>实施难点：</p>
+<ol>
+<li>数据窃取类流量和真实业务流量相似度较高，通过传统的规则策略发现难度较大</li>
+<li>内部人员利用API获取数据的检测难度大</li>
+</ol>
+<p>实现建议：</p>
+<p>购买或者自研各类监控平台，对高风险API进行重点监控，同时针对各种类型的API风险，制定完善可靠的应急SOP。</p>
+<h3 id="6-迭代阶段"><a href="#6-迭代阶段" class="headerlink" title="6. 迭代阶段"></a>6. 迭代阶段</h3><p>这个阶段可能是最令人头疼的了，即便是这个API上线时经过各种扫描、评审，确定没有安全风险了，后边随着业务需求变化发生改动，就很容易产生新的风险，特别是当开发人员认为前期已经做过非常多的安全检测后，不太可能再出问题时。</p>
+<p>安全部分：</p>
+<ol>
+<li>需要我们建设响应的API迭代发现能力，当API发生高风险迭代时，介入安全评审流程。</li>
+</ol>
+<p>实施难点：</p>
+<ol>
+<li>当API发生迭代后，API的名称和API的参数可能并不会发生变化，却在返回值中透出了敏感数据</li>
+</ol>
+<p>实现建议：</p>
+<ol>
+<li>监控API的返回值，当历史API的返回值中新增敏感数据时，介入安全评审</li>
+<li>监控代码仓库变更，当发现API方法代码发生变更时，介入安全评审</li>
+<li>监控历史API的名称、入参等，当发生变化时，介入安全评审</li>
+</ol>
+<h3 id="7-下线阶段"><a href="#7-下线阶段" class="headerlink" title="7. 下线阶段"></a>7. 下线阶段</h3><p>大量的API在完成自己的使命后，没有被及时下线，不仅会浪费系统资源，还会变成潜在的线上风险。例如一个API存在越权漏洞，但是因为没有流量一直没有被发现，直到有一天被攻击者利用。</p>
+<p>安全部分：</p>
+<ol>
+<li>需要我们针对该下线未下线的API建立API生命周期流程管理，催动无流量API下线。</li>
+</ol>
+<p>实施难点：</p>
+<ol>
+<li>如何识别哪些API是应该下线的，部分API在特殊业务场景下，可能在一年中只会使用几次，这部分要单独维护</li>
+</ol>
+<p>实现建议：</p>
+<ol>
+<li>监控API的流量变化，对一段时间内无流量的API启动下线流程</li>
+</ol>
+<h2 id="3-API中的关键设施"><a href="#3-API中的关键设施" class="headerlink" title="3. API中的关键设施"></a>3. API中的关键设施</h2><h3 id="1、API管理"><a href="#1、API管理" class="headerlink" title="1、API管理"></a>1、API管理</h3><p>API资产管理平台是API中的关键设施，从上文的API安全生命周期中可以看到，在各个环节都要依赖该平台能力，简单总结大致需要这几点功能：</p>
+<ol>
+<li>API资产自动发现能力，能否覆盖影子资产是关键</li>
+<li>API流量监控能力，持续性的对API的总流量及异常流量等各类API数据进行记录</li>
+<li>API敏感数据识别能力，API会涉及哪些敏感数据</li>
+<li>API画像构建能力，调用方、调用量等等</li>
+</ol>
+<p>API网关在一定程度上也会承载API管理的角色，但是一个公司里，往往不会只有一个API网关，甚至是很多API并没有走API网关，所以从安全的角度，需要有一个all in one的API管理平台。</p>
+<h3 id="2、API网关"><a href="#2、API网关" class="headerlink" title="2、API网关"></a>2、API网关</h3><p>近几年微服务架构的兴起使得API 网关成为必要的关键设施，庞大的业务系统被拆分成许多粒度更小的微服务，进行独立部署和维护，这种模式带来了更多的跨系统交互，应用API 的规模也爆发增加，API网关已然成为了微服务架构的标配组件。</p>
+<p>一个典型的API网关往往承载了非常多的能力，例如路由、限流、版本控制、运行情况监控等，但是在这里只聊安全性。</p>
+<p><img lazyload src="/images/loading.svg" data-src="gateway.jpeg" alt="gateway"></p>
+<p>API网关在安全性中的角色主要是“身份验证”和“访问控制”。API网关的访问控制功能通常从身份验证机制开始，用来确定API调用实际来源。</p>
+<p>身份验证方式主要有：</p>
+<ol>
+<li>API密钥：例如签名等</li>
+<li>基础身份验证：账号、密码登录</li>
+<li>OAuth2.0、OpenID Connect 、SAML等</li>
+</ol>
+<p>访问控制主要涉及API的访问控制，哪些用户、调用方可以访问，这里需要和账号体系中的角色进行判断。</p>
+<h3 id="3、API权限设计"><a href="#3、API权限设计" class="headerlink" title="3、API权限设计"></a>3、API权限设计</h3><p>权限失效类的风险主要包括以下几类：</p>
+<ol>
+<li>API未授权访问</li>
+<li>API水平越权</li>
+<li>API垂直越权</li>
+</ol>
+<p>除了上边说的三类权限漏洞，结合业务场景，一般会将权限分为两类</p>
+<ol>
+<li>API功能性权限/菜单权限（用户有没有权限访问这个功能/菜单）</li>
+<li>API数据性权限（用户有没有权限访问其它用户的数据）</li>
+</ol>
+<p>大多数情况下，只要开发人员有安全意识，往往不会遗漏权限校验。但是往往因为业务紧急情况或者对于架构的错误理解，对权限做出一些错误的理解。当然，还有很多没有安全意识的开发人员，认为有了登录就万事大吉了，这种情况就只能加强安全意识培训了。</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：API安全生命周期</li>
+        <li>Post author：langu_xyz</li>
+        <li>Create time：2021-11-15 21:00:00</li>
+        <li>
+            Post link：https://blog.langu.xyz/API安全生命周期/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/%E8%BF%90%E5%8A%A8%E7%AF%87%EF%BC%9A2021%E5%BC%80%E6%9D%BF&amp;%E8%81%8A%E8%81%8A%E8%BF%90%E5%8A%A8/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">运动篇：2021开板&amp;聊聊运动</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/%E8%BE%BE%E5%85%8B%E6%95%88%E5%BA%94%E3%80%81%E5%82%BB%E9%80%BC%E9%80%9F%E7%8E%87%E4%B8%8E%E8%87%AA%E6%88%91%E6%80%80%E7%96%91%E7%9A%84%E8%BF%99%E5%8D%8A%E5%B9%B4/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">达克效应、傻逼速率与自我怀疑的这半年</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>&nbsp;-&nbsp;
+            
+            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a target="_blank" rel="noopener" href="//langu.xyz">AboutME:langu_xyz</a>
+        </div>
+        <!--
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        -->
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="nav-text">写在前面</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AFAPI"><span class="nav-text">一、什么是API</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81API%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-text">二、API生命周期</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E3%80%81API%E5%AE%89%E5%85%A8%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-text">三、API安全生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-API%E9%9D%A2%E4%B8%B4%E7%9A%84%E4%B8%BB%E8%A6%81%E7%BD%91%E7%BB%9C%E6%94%BB%E5%87%BB"><span class="nav-text">1. API面临的主要网络攻击</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-API%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E4%B8%AD%E7%9A%84%E5%AE%89%E5%85%A8"><span class="nav-text">2. API生命周期中的安全</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E8%AE%BE%E8%AE%A1%E9%98%B6%E6%AE%B5"><span class="nav-text">1. 设计阶段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%BC%80%E5%8F%91%E9%98%B6%E6%AE%B5"><span class="nav-text">2. 开发阶段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%B5%8B%E8%AF%95%E9%98%B6%E6%AE%B5"><span class="nav-text">3. 测试阶段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E4%B8%8A%E7%BA%BF%E9%98%B6%E6%AE%B5"><span class="nav-text">4. 上线阶段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E8%BF%90%E8%A1%8C%E9%98%B6%E6%AE%B5"><span class="nav-text">5. 运行阶段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E8%BF%AD%E4%BB%A3%E9%98%B6%E6%AE%B5"><span class="nav-text">6. 迭代阶段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E4%B8%8B%E7%BA%BF%E9%98%B6%E6%AE%B5"><span class="nav-text">7. 下线阶段</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-API%E4%B8%AD%E7%9A%84%E5%85%B3%E9%94%AE%E8%AE%BE%E6%96%BD"><span class="nav-text">3. API中的关键设施</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81API%E7%AE%A1%E7%90%86"><span class="nav-text">1、API管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81API%E7%BD%91%E5%85%B3"><span class="nav-text">2、API网关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81API%E6%9D%83%E9%99%90%E8%AE%BE%E8%AE%A1"><span class="nav-text">3、API权限设计</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

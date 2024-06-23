@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="网络安全,黑客,JAVA安全,代码审计,渗透测试,入侵,SRC,扫描,WEB安全,移动安全,PHP">
+    <meta name="description" content="蓝骨, langu.xyz">
+    <meta name="author" content="langu_xyz">
+    
+        <title>
+            
+                莫向外求，反求诸己 |
+                    
+                        langu_xyz
+        </title>
+        
+<link rel="stylesheet" href="/css/style.css">
+
+            <link rel="shortcut icon" href="/images/logo.jpeg">
+                
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+                    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"blog.langu.xyz","root":"/","language":"zh","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/logo.jpeg","favicon":"/images/logo.jpeg","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/shamo.jpg","description":"XYZ(无限未来)"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+
+                    <script>
+                        var _hmt = _hmt || [];
+                        (function() {
+                          var hm = document.createElement("script");
+                          hm.src = "https://hm.baidu.com/hm.js?1cd6e64ff252acf24b707985fcec8850";
+                          var s = document.getElementsByTagName("script")[0]; 
+                          s.parentNode.insertBefore(hm, s);
+                        })();
+                        </script>
+                        
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="langu_xyz" type="application/atom+xml">
+</head>
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                    <a class="logo-title" href="/">
+                        langu_xyz
+                    </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class="" href="/" >
+                                HOME
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class="" href="/tags/THINK/" >
+                                THINK
+                            </a>
+                        </li>
+                        
+                            
+                                <li class="menu-item search search-popup-trigger">
+                                    <i class="fas fa-search"></i>
+                                </li>
+                                
+                                
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                    
+                        <div class="icon-item menu-bar">
+                            <div class="menu-bar-middle"></div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/" >
+                        HOME
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/tags/THINK/" >
+                        THINK
+                    </a>
+                </li>
+                
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">莫向外求，反求诸己</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/logo.jpeg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">langu_xyz</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2021-12-12 00:50:00
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E8%83%A1%E6%80%9D%E4%B9%B1%E6%83%B3/">胡思乱想</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/THINK/">THINK</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>4.3k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>14 Mins</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <blockquote>
+<blockquote>
+<p>这篇小文可以理解为是《心流：最优体验心理学》的笔记和摘录，和大多数人一样，在注意力和自律上并不能很好的战胜欲望，但是内心却一直在寻找一种心境，可以让自己感受到内心愉悦、幸福，而不想一直困在世俗的制度、条例、奖赏、惩罚之中。寻求内心的安宁以及如何与这个社会共处的平衡。</p>
+</blockquote>
+</blockquote>
+
+<div style="position: relative; width: 100%; height: 0; padding-bottom: 75%;">
+<iframe src="//player.bilibili.com/player.html?aid=764679443&bvid=BV1Dr4y1S7wj&cid=456577034&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; width: 100%; height: 100%; Left: 0; top: 0;"></iframe></div>
+
+
+
+
+<h2 id="怎么定义幸福？"><a href="#怎么定义幸福？" class="headerlink" title="怎么定义幸福？"></a>怎么定义幸福？</h2><p>漫长的人生岁月不仅幸福难求，还时时处于焦虑和倦怠之中。</p>
+<p>每个人对于自己这辈子希望完成的事，大致总有个模糊的概念，目标达到的程度就是衡量生活品质的指标。如果它始终遥不可及，我们就会变得怨天尤人、愤世嫉俗；但只要能完成一小部分，我们就会觉得幸福满足。世上大多数人的人生目标都很简单：平安地活着，养育一儿半女；如果可能的话，再加上那么一点儿舒适与尊严。</p>
+<p>我们从小就以为，人生最重要的是未来。父母教孩子养成好习惯，为的是长大后对他们有益；老师向学生保证，无聊的课程日后有助于他们谋职；公司主管告诉新员工，要有耐心，努力工作，因为有朝一日会晋升为主管—然而在漫长的晋升之路尽头，退休的时刻也会同时到来。爱默生曾说：“我们对生活有种种期许，却从未真正生活过。”一个穷困的小女孩也从童话故事中学到：果酱和面包永远是明天的事，今天就是吃不到。</p>
+<p>我们应该要认识到，文明就是建立在压抑个人欲望基础上的。社会成员不论乐意与否，都被迫接受既定的习惯与技能，否则就不可能维持社会秩序和复杂的分工制度。个人社会化是必然的；社会化的真谛在于使个人依赖社会的控制，并对赏罚有既定的反应；社会化的最高境界就是使每个人都完全认同社会秩序，根本不想触犯任何规则。社会为了使我们实现它的目标，有若干手段：生理需求和基因制约。除了痛苦，社会控制也以快乐作为使人就范的诱饵。工作一辈子并遵守法律的报酬就是美好生活，这一招其实就是利用人性的弱点。人的每个欲望——从性欲到侵略，从寻求安全感到接受改变——几乎都成为政客、教会、企业及广告界控制社会的手段。</p>
+<p>跟随本能的享乐，即时满足，并不会构建有序的意识，反而会加速其无序的状态，进而产生焦虑、烦躁等负面情绪。而一个“well being“需要兼顾生理和精神的双重满足。</p>
+<p>在当今社会的运行机制下，外界展示给你的，往往通过某种奖励吸引你去追随，它们的动机大多是想要控制你，例如广告，通过各个角度来暗示你可以通过购买xx商品获得生活品质的改善，不断的会有新的广告、商品，提高生活品质是一件永远没有尽头的苦役，最终陷入期望值不断升高的恶性循环中无力自拔。</p>
+<p>纵然明知物质的丰裕并不能带来幸福，但我们还是习惯外求，不停地追逐外在的目标，希望借此改善生活。财富、地位、权力是现代文明最重视的幸福象征。我们总以为，有钱、有名、俊俏美丽的人一定过得很充实，尽管各方面证据可能显示，他们生活得并不惬意。但我们依然坚信，只要能拥有跟他们同样的象征特质，就会更幸福。享乐是高水准生活的重要一环，但享乐本身并不能带来幸福。睡眠、休息、食物与性，都属于恢复“均衡”的体验，在肉体需求引起精神熵以后，重整意识的秩序。它们并不能带动心灵的成长，也不能增加自我的复杂性。换言之，享乐虽有助于维持意识的秩序，却无法在意识中创造新秩序。</p>
+<p>摆脱社会制约的首要之务便是控制本能的冲动，因为只要我们凡事跟着感觉走，一举一动就不难预测，别人就很容易利用我们的好意，达到他们自私的目的。幸运的是，还是有不少人能逃脱出来。这些人尽管物质条件不够优越，但仍然能改善生活品质，不但知足常乐，也常能使周遭的人生活得更快乐。</p>
+<p>古老的故事告诉我们，英雄在“从此过上幸福快乐的生活”之前，必须与喷火毒龙搏斗，与居心险恶的魔法师抗争。同样的譬喻也适用于心灵的冒险。我认为幸福之所以难求，最主要是因为人类自以为是地认定宇宙是为满足我们的需求而存在的，然而现实却大相径庭——生命中其实深埋着沮丧的种子。只要某种欲望一时得到满足，我们就立刻渴望得到更多。这种长期的贪得无厌，是追求知足常乐途中的另一重障碍。</p>
+<p>一般人想进一步充实自己的生活时，不但会想到享乐，还会想到虽然与享乐重叠，但必须用不同字眼表达的另一种感受——乐趣。乐趣具有向前发展的特性，并蕴涵新鲜感和成就感。经历过有乐趣的事，我们就感觉自己有了改变，自我有了成长；在某些方面，这次体验已使我们变得更复杂、更丰富。</p>
+<p>真正的幸福，是当你全心全意投入一件事，把自己置之度外的时候，获得的副产品。你直接追求的并不是幸福，而是把自己变得更复杂——在这个变复杂的过程中，你会找到乐趣，这个状态就是幸福的。人生要的不是最后终点的结果，而是每时每刻点点滴滴成长的过程。成长不仅仅是在校学生的事儿。成长也不是为了达到什么目的的手段。成长本身，就是我们的目的。</p>
+<p>这个全身心投入的事物每个人的理解可能都不一样，在如今，很多人陷入一个误区，“享乐==幸福”，如米哈里所言，“享乐的片刻转瞬即逝”。相信都能理解，例如无法抗拒食物、酒精、性爱等等，无穷无尽的欲念，当满足一个欲念后，随之而来的是空虚以及更强烈的欲念。人首先作为一种动物，所有的本能都是受基因所驱使，当然“跟随基因的反应，享受自然的乐趣，寻求快乐是基因为物种延续而设的一种即时反射，其目的非关个人利益。但我们应该认清事实真相。”</p>
+<p>全身心地投入一桩事物，达到忘我的程度，并由此获得内心秩序和安宁时的状态。心流其实是一种生活方式，而且是最高级的生活方式。你想幸福吗？追求心流。它背后更大的逻辑是，你要通过锻炼控制自己的意识，去获得真正的幸福。我们做事的时候并不在乎结果能不能给自己带来多大的利益，而是专注于做这件事本身，从中获得乐趣。这句话听着特别像“心灵鸡汤”，但它恰恰是一个站得住脚的理论！</p>
+<h2 id="心流"><a href="#心流" class="headerlink" title="心流"></a>心流</h2><p>对于心流的定义有很多种，我最欣赏这个定义，“沉浸于事物本身，这就是心流。”</p>
+<p>就是当你特别专注地做一件目标明确而又有挑战的事情，而你的能力恰好能接住这个挑战时，你可能会进入的一种状态。它的特征是你做这件事的时候会忘记自己，忘记时间的流逝，你能体察到所有相关的信息，不管工作多复杂你都毫不费力，而且有强烈的愉悦感。</p>
+<p>这个过程可以理解为精神世界的负墒，最典型、最壮丽也最奇妙的负熵过程就是这个宇宙的最大奇迹——生命，从无序到有序。从这个角度来说，心流就是大脑的生命。当心熵比较高的时候，在一片混乱的情况下，大脑的做功能力很低，很多心理能量都浪费在内耗上了。但一旦进入心流状态，心理能量就围绕着同一个主题组织起来，向同一个方向高效率地输出。这也就是契克森米哈赖反复强调的，人在心流状态下的表现最好。</p>
+<p>“首先，这种体验出现在我们面临一份可完成的工作时。</p>
+<p>其次，我们必须能够全神贯注于这件事情。</p>
+<p>第三，明确的目标.</p>
+<p>第四，即时的反馈。</p>
+<p>第五，我们能深入而毫不牵强地投入到行动之中，日常生活的忧虑和沮丧都因此一扫而空。</p>
+<p>第六，充满乐趣的体验使人觉得能自由控制自己的行动。</p>
+<p>第七，进入“忘我”状态，但心流体验告一段落后，自我感觉又会变得强烈。</p>
+<p>第八，时间感会改变——几小时犹如几分钟，几分钟也可能变得像几小时那么漫长。这些元素结合成一种深刻的愉悦感，带来无比的报偿，并扩展成极大的能量，仅是感觉它的存在就已值回“票价”了。”</p>
+<p>最简单的理解，有些人习惯信笔涂鸦，有些人咀嚼东西或抽烟、梳头发、哼曲子，目的无非是通过有规律的行动，把意识规范得更有秩序。这些活动是一种“小型心流”，可以帮助我们度过日常生活的低潮。</p>
+<p>进入心流状态后，“当事人全神贯注，一切动作都不假思索，几乎完全自动自发；他们的知觉甚至泯灭，人与行动完全合一。”“在日常生活中，我们经常被怀疑或疑问打断：“我为什么这么做？我是否该做这件事？”我们一再追问行动的必要性，并批判它们背后的理由。然而在心流中没有反省的空间，所有行动宛如一股魔力，带着我们勇往直前。”</p>
+<p>“最常述及的心流体验的特征就是，在心流中会把生活中所有不快乐的事忘得一干二净。这是因为要想从活动中汲取乐趣，必须全心全意地专注于手头的工作，所产生的重要副产品——心流状态下的心灵完全没有容纳不相干资讯的余地。”</p>
+<p>“体育具备造就心流的最佳条件：明确的目标，即时的回馈，易学难精带来的上不封顶的挑战性。体育的最大功能是帮助人控制自己：既学习控制自己的身体——这很好理解，体操、田径、游泳、球类，都要在控制身体上下大功夫，又要学习控制自己的精神，控制自己的注意力。”</p>
+<p>“冒险专家的乐趣并非来自危险本身，而是来自他们使危险降至最低的能力。真正令他们乐此不疲的，不是追逐危险的病态悚栗，而是一种有办法控制潜在危险的感觉。”</p>
+<p>“一位骄傲的作家用字与词创造一个令人沉浸的世界。在这个过程中，他不断挑战自我。就像海明威一样，三十岁的时候，人们以为《战地春梦》就是他的最高水准了；然而，他又用了二十多年锤炼手艺，直到巅峰之作《老人与海》问世。海明威的大半生，一直用写作催生心流涓涓不断。在这个硬汉世界中，他是唯一的君王。直到有一天，世界失控，沙堆崩溃。”</p>
+<h2 id="人生目标"><a href="#人生目标" class="headerlink" title="人生目标"></a>人生目标</h2><p>人生目标的获得不能抄袭，没有捷径。米哈里说：获得最优体验的手段，“不能浓缩成一个秘诀，也不能背诵下来重复使用……每个人必须自行从不断的尝试与错误中学习”。米哈里问读者：什么是自得其乐？他自己的回答是：“就是‘拥有自足目标的自我’，大多数人的目标都受生理需要或社会传统的制约，亦即来自外界。自得其乐的人，主要目标都从意识评估过的体验中涌现，并以自我为依据。”外界向你提供目标时，往往以某种奖励吸引你追随它。世上大多数奖励的动机是控制你</p>
+<p>在讨论心流与目标时，米哈里还提出了“自成目标”的概念，即目标是做你喜欢做的事情，而非做这件事情的报酬，尽管有时也存在报酬，有时也有社会效益。也就是为艺术而艺术，为科学而科学，为你喜欢的劳作而劳作。米哈里说：“开始时靠目标证明努力的必要，到后来却变成靠努力证明目标的重要性。”“登上山顶之所以重要，只因它证明了我们爬过山，爬山的过程才是真正的目标。”</p>
+<p>“痛下决心追求一个重要的目标，各式各样的活动都能汇集成统一的心流体验时，意识就呈现出一片祥和。知道自己要什么，并朝这个方向努力的人，感觉、思想、行动都能配合无间，内心的和谐自然涌现。生活在和谐之中的人，不论做什么、遭遇什么，都不会把精神能量浪费在怀疑、后悔、罪恶感及恐惧之上，精力永远用在有益的方面。对生命胸有成竹的人，内心的力量与宁静，就是内在一致的最高境界。方向、决心加上和谐，就能把生命转变成天衣无缝的心流体验，并赋予人生意义。达到这种境界的人再也不觉得匮乏。意识井然有序的人不需要害怕出乎意料的事，甚至也不惧怕死亡，活着的每一刻都饶富意义，大多数时候也都乐趣无穷。”</p>
+<p>首先要找到一个终生的目标，其次不要害怕复杂性，这就是对你人生意义的挑战，而你可以应对的技能是“行动式生活”与“反省式生活”相结合。最终，你既有独特的个人特性，又与周围世界、人们所整合，“只要个人目标与宇宙心流汇合，意义的问题也就迎刃而解了”。</p>
+<p>但是正如文中所说：“伟大的音乐、建筑、艺术、诗歌、戏剧、舞蹈、哲学、宗教，都是以和谐克服混沌的好榜样”。降熵过程有高下，美有高下，技艺有高下，心流也有高下。原本的混沌越多，整合进去的元素越复杂，这个心流就越伟大。那么，自然，人生意义也有高下。那些能够整合无比复杂的人生、找到人生意义，整合无比复杂的世界、形成自己的世界观，整合无比复杂经常是相对矛盾的价值观、形成自己的价值观的人，有最大的“大心流”。</p>
+<p>文中所推崇的人生最优体验，不是幸福、快乐这点肤浅的感受，而是奋斗、挣扎、咬牙坚持，最终，是整合之后的巅峰体验。这才是心流的真意。</p>
+<h2 id="进入心流"><a href="#进入心流" class="headerlink" title="进入心流"></a>进入心流</h2><p>“最典型的例子就是冥想。佛家经常用冥想来降伏内心那瀑布一样奔腾如雷的念头。在冥想中，你摒除杂念，心灵澄净，如一道清澈的心流。经过长期练习之后，哪怕不在冥想之中，你的心灵也会比常人更平静，遇到意外变故时能更快地集中注意力。换句话说，你的心熵整体降低了。”</p>
+<p>高僧冥想多年才能达到波澜不惊，我亦很难进入心流状态，待到可以稳定进入心流之时，再来补充这最后一章节。</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：莫向外求，反求诸己</li>
+        <li>Post author：langu_xyz</li>
+        <li>Create time：2021-12-12 00:50:00</li>
+        <li>
+            Post link：https://blog.langu.xyz/莫向外求，反求诸己/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/CVE-2021-44228%20Log4Shell/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">CVE-2021-44228 Log4Shell</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/%E8%BF%90%E5%8A%A8%E7%AF%87%EF%BC%9A2021%E5%BC%80%E6%9D%BF&amp;%E8%81%8A%E8%81%8A%E8%BF%90%E5%8A%A8/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">运动篇：2021开板&amp;聊聊运动</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>&nbsp;-&nbsp;
+            
+            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a target="_blank" rel="noopener" href="//langu.xyz">AboutME:langu_xyz</a>
+        </div>
+        <!--
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        -->
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%8E%E4%B9%88%E5%AE%9A%E4%B9%89%E5%B9%B8%E7%A6%8F%EF%BC%9F"><span class="nav-text">怎么定义幸福？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%83%E6%B5%81"><span class="nav-text">心流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%BA%E7%94%9F%E7%9B%AE%E6%A0%87"><span class="nav-text">人生目标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E5%85%A5%E5%BF%83%E6%B5%81"><span class="nav-text">进入心流</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="网络安全,黑客,JAVA安全,代码审计,渗透测试,入侵,SRC,扫描,WEB安全,移动安全,PHP">
+    <meta name="description" content="蓝骨, langu.xyz">
+    <meta name="author" content="langu_xyz">
+    
+        <title>
+            
+                Decision Tree |
+                    
+                        langu_xyz
+        </title>
+        
+<link rel="stylesheet" href="/css/style.css">
+
+            <link rel="shortcut icon" href="/images/logo.jpeg">
+                
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+                    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"blog.langu.xyz","root":"/","language":"zh","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/logo.jpeg","favicon":"/images/logo.jpeg","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/shamo.jpg","description":"XYZ(无限未来)"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+
+                    <script>
+                        var _hmt = _hmt || [];
+                        (function() {
+                          var hm = document.createElement("script");
+                          hm.src = "https://hm.baidu.com/hm.js?1cd6e64ff252acf24b707985fcec8850";
+                          var s = document.getElementsByTagName("script")[0]; 
+                          s.parentNode.insertBefore(hm, s);
+                        })();
+                        </script>
+                        
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="langu_xyz" type="application/atom+xml">
+</head>
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                    <a class="logo-title" href="/">
+                        langu_xyz
+                    </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class="" href="/" >
+                                HOME
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class="" href="/tags/THINK/" >
+                                THINK
+                            </a>
+                        </li>
+                        
+                            
+                                <li class="menu-item search search-popup-trigger">
+                                    <i class="fas fa-search"></i>
+                                </li>
+                                
+                                
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                    
+                        <div class="icon-item menu-bar">
+                            <div class="menu-bar-middle"></div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/" >
+                        HOME
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/tags/THINK/" >
+                        THINK
+                    </a>
+                </li>
+                
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">Decision Tree</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/logo.jpeg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">langu_xyz</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2019-08-01 21:00:00
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%AE%89%E5%85%A8%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">安全数据分析</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/ML/">ML</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.2k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>5 Mins</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h4 id="0x01-DT"><a href="#0x01-DT" class="headerlink" title="0x01 DT"></a>0x01 DT</h4><p>分类算法</p>
+<p>优点</p>
+<ul>
+<li>计算复杂度不高</li>
+<li>输出结果易于理解</li>
+<li>中间值缺失不敏感</li>
+<li>可处理不相关特征</li>
+</ul>
+<p>缺点</p>
+<ul>
+<li>可能会产生过度匹配问题</li>
+</ul>
+<p>适用数据类型：</p>
+<ul>
+<li>数值型</li>
+<li>标称型</li>
+</ul>
+<h4 id="0x02-准备数据"><a href="#0x02-准备数据" class="headerlink" title="0x02 准备数据"></a>0x02 准备数据</h4><p><strong>算法描述</strong></p>
+<pre><code>1.根节点开始，测试待分类项中相应的特征属性
+
+2.按照其值选择输出分支，直到到达叶子节点
+
+3.将叶子节点存放的类别作为决策结果
+</code></pre>
+<ul>
+<li>划分数据集</li>
+</ul>
+<p>将无序的数据变得更加有序</p>
+<p><code>信息增益</code>：划分数据集之后信息发生的变化<br><code>熵</code>：信息的期望值</p>
+<ul>
+<li>熵计算公式</li>
+</ul>
+<p><img lazyload src="/images/loading.svg" data-src="15367568995606.jpg"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">def calcShannonEnt(dataSet):</span><br><span class="line">    numEntries = len(dataSet) #计算数据集中实例总数</span><br><span class="line">    labelCounts = &#123;&#125;</span><br><span class="line">    #统计每个键值的数量，dict</span><br><span class="line">    for featVec in dataSet:</span><br><span class="line">        currentLabel = featVec[-1]</span><br><span class="line">        if currentLabel not in labelCounts.keys():</span><br><span class="line">            labelCounts[currentLabel] = 0</span><br><span class="line">        labelCounts[currentLabel] += 1</span><br><span class="line">    shannonEnt = 0.0</span><br><span class="line">    #计算香农熵</span><br><span class="line">    for key in labelCounts:</span><br><span class="line">        prob = float(labelCounts[key])/numEntries</span><br><span class="line">        shannonEnt -= prob * log(prob, 2)</span><br><span class="line">    return shannonEnt</span><br></pre></td></tr></table></figure>
+
+<p><img lazyload src="/images/loading.svg" data-src="15367570540472.jpg"></p>
+<ul>
+<li>划分数据集</li>
+</ul>
+<p><strong>按照给定特征划分数据集</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">def splitDataSet(dataSet, axis, value):</span><br><span class="line">    &#x27;&#x27;&#x27;</span><br><span class="line">    </span><br><span class="line">    :param dataSet: 待划分数据集</span><br><span class="line">    :param axis: 特征</span><br><span class="line">    :param value: 特征值</span><br><span class="line">    :return: 符合条件的值列表</span><br><span class="line">    &#x27;&#x27;&#x27;</span><br><span class="line">    retDataSet = []</span><br><span class="line">    for featVec in dataSet:</span><br><span class="line">        if featVec[axis] == value:</span><br><span class="line">            reducedFeatVec = featVec[:axis]     </span><br><span class="line">            reducedFeatVec.extend(featVec[axis+1:]) #把特征列除去</span><br><span class="line">            retDataSet.append(reducedFeatVec)</span><br><span class="line">    return retDataSet</span><br></pre></td></tr></table></figure>
+
+<p><strong>选择最好的数据集划分方式</strong></p>
+<p>熵越高，则混合的数据就越多</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">def chooseBestFeatureToSplit(dataSet):</span><br><span class="line">    &#x27;&#x27;&#x27;</span><br><span class="line">    :param dataSet: 数据集</span><br><span class="line">    :return:</span><br><span class="line">    &#x27;&#x27;&#x27;</span><br><span class="line">    numFeatures = len(dataSet[0]) - 1      #特征列的长度，-1为label</span><br><span class="line">    baseEntropy = calcShannonEnt(dataSet)  #计算数据集的香农熵</span><br><span class="line">    bestInfoGain = 0.0</span><br><span class="line">    bestFeature = -1</span><br><span class="line">    for i in range(numFeatures):</span><br><span class="line">        featList = [example[i] for example in dataSet] #创建一个list包含所有数据的第i个feature</span><br><span class="line">        uniqueVals = set(featList)       #转变为set格式</span><br><span class="line">        newEntropy = 0.0</span><br><span class="line">        for value in uniqueVals:</span><br><span class="line">            subDataSet = splitDataSet(dataSet, i, value) #遍历featList中的所有feature，对每个feture划分一次数据集</span><br><span class="line">            prob = len(subDataSet)/float(len(dataSet))</span><br><span class="line">            newEntropy += prob * calcShannonEnt(subDataSet)  #计算当前feature的香农熵</span><br><span class="line">        infoGain = baseEntropy - newEntropy     #计算熵差，信息增益</span><br><span class="line">        if (infoGain &gt; bestInfoGain): #计算最大信息增益</span><br><span class="line">            bestInfoGain = infoGain</span><br><span class="line">            bestFeature = i</span><br><span class="line">    return bestFeature                      #返回最好的feature</span><br></pre></td></tr></table></figure>
+
+<p><strong>递归构建决策树</strong></p>
+<p>1.得到数据集<br>2.最好feature划分<br>3.递归划分</p>
+<p>当处理了所有feature后，类标签仍然不唯一时，采用多数表决方式决定子节点分类</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">def majorityCnt(classList):</span><br><span class="line">    classCount=&#123;&#125;</span><br><span class="line">    for vote in classList:</span><br><span class="line">        if vote not in classCount.keys():</span><br><span class="line">            classCount[vote] = 0</span><br><span class="line">        classCount[vote] += 1</span><br><span class="line">    sortedClassCount = sorted(classCount.items(), key=operator.itemgetter(1), reverse=True)</span><br><span class="line">    return sortedClassCount[0][0]</span><br></pre></td></tr></table></figure>
+
+<p>利用递归构建tree</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">def createTree(dataSet,labels):</span><br><span class="line">    classList = [example[-1] for example in dataSet] #数据集的所有类标签</span><br><span class="line">    if classList.count(classList[0]) == len(classList): </span><br><span class="line">        return classList[0] #当类标签完全相同返回该类标签</span><br><span class="line">    if len(dataSet[0]) == 1: #当所有属性都处理完，label仍然不唯一时，采用表决方式</span><br><span class="line">        return majorityCnt(classList)</span><br><span class="line">    bestFeat = chooseBestFeatureToSplit(dataSet)</span><br><span class="line">    bestFeatLabel = labels[bestFeat] #当前数据集选取的最好特征变量</span><br><span class="line">    myTree = &#123;bestFeatLabel: &#123;&#125;&#125;</span><br><span class="line">    del(labels[bestFeat]) #删除用过的feature</span><br><span class="line">    featValues = [example[bestFeat] for example in dataSet]</span><br><span class="line">    uniqueVals = set(featValues)</span><br><span class="line">    for value in uniqueVals: </span><br><span class="line">        subLabels = labels[:]</span><br><span class="line">        myTree[bestFeatLabel][value] = createTree(splitDataSet(dataSet, bestFeat, value), subLabels) #利用递归构建tree</span><br><span class="line">    return myTree  </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>绘制树形图</li>
+</ul>
+<p>利用Matplotlib annotations实现绘制树形图</p>
+<p>实现效果如下图</p>
+<p><img lazyload src="/images/loading.svg" data-src="15370834199165.jpg"></p>
+<h4 id="0x03-测试和储存分类器"><a href="#0x03-测试和储存分类器" class="headerlink" title="0x03 测试和储存分类器"></a>0x03 测试和储存分类器</h4><ul>
+<li>将标签字符串转换为索引</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">def classify(inputTree,featLabels,testVec):</span><br><span class="line">    &#x27;&#x27;&#x27;</span><br><span class="line"></span><br><span class="line">    :param inputTree: tree dict</span><br><span class="line">    :param featLabels: labels</span><br><span class="line">    :param testVec: 位置,eg.[1, 0]</span><br><span class="line">    :return:</span><br><span class="line">    &#x27;&#x27;&#x27;</span><br><span class="line">    firstStr = list(inputTree.keys())[0]</span><br><span class="line">    secondDict = inputTree[firstStr]</span><br><span class="line">    featIndex = featLabels.index(firstStr)</span><br><span class="line">    key = testVec[featIndex]</span><br><span class="line">    valueOfFeat = secondDict[key]</span><br><span class="line">    if isinstance(valueOfFeat, dict): </span><br><span class="line">        classLabel = classify(valueOfFeat, featLabels, testVec)</span><br><span class="line">    else:</span><br><span class="line">        classLabel = valueOfFeat</span><br><span class="line">    return classLabel</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li>存储决策树</li>
+</ul>
+<p>使用pickle持久化对象</p>
+<p><code>pickle.dump(obj, file[, protocol])</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">def storeTree(inputTree, filename):</span><br><span class="line">    import pickle</span><br><span class="line">    fw = open(filename, &#x27;wb&#x27;)</span><br><span class="line">    pickle.dump(inputTree, fw)</span><br><span class="line">    fw.close()</span><br><span class="line">    </span><br><span class="line">def grabTree(filename):</span><br><span class="line">    import pickle</span><br><span class="line">    fr = open(filename, &#x27;rb&#x27;)</span><br><span class="line">    return pickle.load(fr)</span><br></pre></td></tr></table></figure>
+
+<h4 id="0x04-使用决策树预测隐形眼镜类型"><a href="#0x04-使用决策树预测隐形眼镜类型" class="headerlink" title="0x04 使用决策树预测隐形眼镜类型"></a>0x04 使用决策树预测隐形眼镜类型</h4><ul>
+<li>收集数据</li>
+</ul>
+<p><a class="link" target="_blank" rel="noopener" href="http://archive.ics.uci.edu/ml/machine-learning-databases/lenses/">lenses<i class="fas fa-external-link-alt"></i></a></p>
+<ul>
+<li>准备数据</li>
+</ul>
+<p>解析通过’\t’分隔的数据</p>
+<p><img lazyload src="/images/loading.svg" data-src="15370863087583.jpg"></p>
+<p><img lazyload src="/images/loading.svg" data-src="15370863188621.jpg"></p>
+<ul>
+<li>分析数据&amp;训练模型</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">labels = [&#x27;age&#x27;, &#x27;prescript&#x27;, &#x27;astigmatic&#x27;, &#x27;tearRate&#x27;]</span><br><span class="line">lenses_tree = createTree(lenses, labels)</span><br></pre></td></tr></table></figure>
+<p><img lazyload src="/images/loading.svg" data-src="15370866231411.jpg"></p>
+<p><img lazyload src="/images/loading.svg" data-src="15370866007025.jpg"></p>
+<ul>
+<li>测试模型</li>
+</ul>
+<p><img lazyload src="/images/loading.svg" data-src="15370873991863.jpg"></p>
+<p><img lazyload src="/images/loading.svg" data-src="15370875259893.jpg"></p>
+<h4 id="0x05-其它模型"><a href="#0x05-其它模型" class="headerlink" title="0x05 其它模型"></a>0x05 其它模型</h4><ul>
+<li><p>ID3（分类树）</p>
+<p>  每次根据“最大信息熵增益”选取当前最佳的特征来分割数据，并按照该特征的所有取值来切分</p>
+</li>
+<li><p>C4.5（分类树）</p>
+<p>  ID3的升级版，采用信息增益比率，通过引入一个被称作分裂信息(Split information)的项来惩罚取值较多的Feature<br>  弥补了ID3中不能处理特征属性值连续的问题</p>
+</li>
+<li><p>CART（分类回归树）</p>
+<p>  CART是一棵二叉树，采用二元切分法，每次把数据切成两份，分别进入左子树、右子树。而且每个非叶子节点都有两个孩子，所以CART的叶子节点比非叶子多1</p>
+</li>
+</ul>
+<h4 id="0x05-安全领域"><a href="#0x05-安全领域" class="headerlink" title="0x05 安全领域"></a>0x05 安全领域</h4><ul>
+<li>分析恶意网络攻击和入侵</li>
+<li>口令爆破检测</li>
+<li>僵尸流量检测</li>
+</ul>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：Decision Tree</li>
+        <li>Post author：langu_xyz</li>
+        <li>Create time：2019-08-01 21:00:00</li>
+        <li>
+            Post link：https://blog.langu.xyz/Decision Tree/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/K%20Nearest%20Neighbor/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">K Nearest Neighbor</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/Naive%20Bayes%EF%BC%88NB%EF%BC%89/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Naive Bayes（NB）</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>&nbsp;-&nbsp;
+            
+            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a target="_blank" rel="noopener" href="//langu.xyz">AboutME:langu_xyz</a>
+        </div>
+        <!--
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        -->
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#0x01-DT"><span class="nav-text">0x01 DT</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#0x02-%E5%87%86%E5%A4%87%E6%95%B0%E6%8D%AE"><span class="nav-text">0x02 准备数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#0x03-%E6%B5%8B%E8%AF%95%E5%92%8C%E5%82%A8%E5%AD%98%E5%88%86%E7%B1%BB%E5%99%A8"><span class="nav-text">0x03 测试和储存分类器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#0x04-%E4%BD%BF%E7%94%A8%E5%86%B3%E7%AD%96%E6%A0%91%E9%A2%84%E6%B5%8B%E9%9A%90%E5%BD%A2%E7%9C%BC%E9%95%9C%E7%B1%BB%E5%9E%8B"><span class="nav-text">0x04 使用决策树预测隐形眼镜类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#0x05-%E5%85%B6%E5%AE%83%E6%A8%A1%E5%9E%8B"><span class="nav-text">0x05 其它模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#0x05-%E5%AE%89%E5%85%A8%E9%A2%86%E5%9F%9F"><span class="nav-text">0x05 安全领域</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

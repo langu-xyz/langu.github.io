@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="网络安全,黑客,JAVA安全,代码审计,渗透测试,入侵,SRC,扫描,WEB安全,移动安全,PHP">
+    <meta name="description" content="蓝骨, langu.xyz">
+    <meta name="author" content="langu_xyz">
+    
+        <title>
+            
+                XSS利用之Cookie |
+                    
+                        langu_xyz
+        </title>
+        
+<link rel="stylesheet" href="/css/style.css">
+
+            <link rel="shortcut icon" href="/images/logo.jpeg">
+                
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+                    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"blog.langu.xyz","root":"/","language":"zh","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/logo.jpeg","favicon":"/images/logo.jpeg","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/shamo.jpg","description":"XYZ(无限未来)"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+
+                    <script>
+                        var _hmt = _hmt || [];
+                        (function() {
+                          var hm = document.createElement("script");
+                          hm.src = "https://hm.baidu.com/hm.js?1cd6e64ff252acf24b707985fcec8850";
+                          var s = document.getElementsByTagName("script")[0]; 
+                          s.parentNode.insertBefore(hm, s);
+                        })();
+                        </script>
+                        
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="langu_xyz" type="application/atom+xml">
+</head>
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                    <a class="logo-title" href="/">
+                        langu_xyz
+                    </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class="" href="/" >
+                                HOME
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class="" href="/tags/THINK/" >
+                                THINK
+                            </a>
+                        </li>
+                        
+                            
+                                <li class="menu-item search search-popup-trigger">
+                                    <i class="fas fa-search"></i>
+                                </li>
+                                
+                                
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                    
+                        <div class="icon-item menu-bar">
+                            <div class="menu-bar-middle"></div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/" >
+                        HOME
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/tags/THINK/" >
+                        THINK
+                    </a>
+                </li>
+                
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">XSS利用之Cookie</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/logo.jpeg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">langu_xyz</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2016-10-03 21:00:00
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/WEB%E5%AE%89%E5%85%A8/">WEB安全</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/XSS/">XSS</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>2.8k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>11 Mins</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h3 id="0x01-什么是cookie"><a href="#0x01-什么是cookie" class="headerlink" title="0x01 什么是cookie"></a>0x01 什么是cookie</h3><p>cookie是浏览器提供的一种机制，它将document对象的cookie属性提供给JavaScript。<br>可以由JavaScript对其进行控制，而并不是JavaScript本身的性质。</p>
+<p>cookie是存于用户硬盘的一个文件，这个文件通常对应于一个域名，当浏览器再次访问这个域名时，便使这个cookie可用。<br>因此，cookie可以跨越一个域名下的多个网页，但不能跨越多个域名使用。<br>不同的浏览器对cookie的实现也不一样，但其性质是相同的。<br>cookie机制将信息存储于用户硬盘，因此可以作为全局变量，这是它最大的一个优点。<br>它可以用于以下几种场合：</p>
+<ul>
+<li>保存用户登录状态。例如将用户id存储于一个cookie内，这样当用户下次访问该页面时就不需要重新登录了，现在很多论坛和社区都提供这样的功能。cookie还可以设置过期时间，当超过时间期限后，cookie就会自动消失。因此，系统往往可以提示用户保持登录状态的时间：常见选项有一个月、三个月、一年等。</li>
+<li>跟踪用户行为。例如一个天气预报网站，能够根据用户选择的地区显示当地的天气情况。如果每次都需要选择所在地是烦琐的，当利用了cookie后就会显得很人性化了，系统能够记住上一次访问的地区，当下次再打开该页面时，它就会自动显示上次用户所在地区的天气情况。因为一切都是在后台完成，所以这样的页面就像为某个用户所定制的一样，使用起来非常方便。</li>
+<li>定制页面。如果网站提供了换肤或更换布局的功能，那么可以使用cookie来记录用户的选项，例如：背景色、分辨率等。当用户下次访问时，仍然可以保存上一次访问的界面风格。</li>
+<li>创建购物车。正如在前面的例子中使用cookie来记录用户需要购买的商品一样，在结账的时候可以统一提交。例如淘宝网就使用cookie记录了用户曾经浏览过的商品，方便随时进行比较。</li>
+</ul>
+<p>当然，上述应用仅仅是cookie能完成的部分应用，还有更多的功能需要全局变量。cookie的缺点主要集中于安全性和隐私保护.<br>主要包括以下几种：</p>
+<ul>
+<li>cookie可能被禁用。当用户非常注重个人隐私保护时，他很可能禁用浏览器的cookie功能；</li>
+<li>cookie是与浏览器相关的。这意味着即使访问的是同一个页面，不同浏览器之间所保存的cookie也是不能互相访问的；</li>
+<li>cookie可能被删除。因为每个cookie都是硬盘上的一个文件，因此很有可能被用户删除；</li>
+<li>cookie安全性不够高。所有的cookie都是以纯文本的形式记录于文件中，因此如果要保存用户名密码等信息时，最好事先经过加密处理。<h3 id="0x02-设置cookie"><a href="#0x02-设置cookie" class="headerlink" title="0x02 设置cookie"></a>0x02 设置cookie</h3></li>
+</ul>
+<p>每个cookie都是一个名/值对，可以把下面这样一个字符串赋值给<code>document.cookie</code>：<br><code>document.cookie=&quot;userId=828&quot;;</code><br>如果要一次存储多个名/值对，可以使用分号加空格（; ）隔开，例如：<br><code>document.cookie=&quot;userId=828; userName=hulk&quot;;</code><br>在cookie的名或值中不能使用分号（;）、逗号（,）、等号（=）以及空格。<br>在cookie的名中做到这点很容易，但要保存的值是不确定的。如何来存储这些值呢？<br>方法是用escape()函数进行编码，它能将一些特殊符号使用十六进制表示，例如空格将会编码为“20%”，从而可以存储于cookie值中，而且使用此种方案还可以避免中文乱码的出现。<br>例如：<br><code>document.cookie=&quot;str=&quot;+escape(&quot;I love ajax&quot;);</code><br>相当于：<br><code>document.cookie=&quot;str=I%20love%20ajax&quot;;</code><br>当使用escape()编码后，在取出值以后需要使用unescape()进行解码才能得到原来的cookie值。<br>尽管document.cookie看上去就像一个属性，可以赋不同的值。但它和一般的属性不一样，改变它的赋值并不意味着丢失原来的值，例如连续执行下面两条语句：<br><code>document.cookie=&quot;userId=828&quot;;</code><br><code>document.cookie=&quot;userName=hulk&quot;;</code><br>这时浏览器将维护两个cookie，分别是userId和userName，因此给<code>document.cookie</code>赋值更像执行类似这样的语句：<br><code>document.addcookie(&quot;userId=828&quot;);</code><br><code>document.addcookie(&quot;userName=hulk&quot;);</code><br>事实上，浏览器就是按照这样的方式来设置cookie的，如果要改变一个cookie的值，只需重新赋值，例如：<br><code>document.cookie=&quot;userId=929&quot;;</code><br>这样就将名为userId的cookie值设置为了929。</p>
+<h3 id="0x03-获取cookie的值"><a href="#0x03-获取cookie的值" class="headerlink" title="0x03 获取cookie的值"></a>0x03 获取cookie的值</h3><p>下面介绍如何获取cookie的值。cookie的值可以由<code>document.cookie</code>直接获得：<br><code>var strcookie=document.cookie;</code><br>这将获得以分号隔开的多个名/值对所组成的字符串，这些名/值对包括了该域名下的所有cookie。<br>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;script language=&quot;JavaScript&quot; type=&quot;text/JavaScript&quot;&gt;</span><br><span class="line">&lt;!--</span><br><span class="line">document.cookie=&quot;userId=828&quot;;</span><br><span class="line">document.cookie=&quot;userName=hulk&quot;;</span><br><span class="line">var strcookie=document.cookie;</span><br><span class="line">alert(strcookie);</span><br><span class="line">//--&gt;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>只能够一次获取所有的cookie值，而不能指定cookie名称来获得指定的值，这正是处理cookie值最麻烦的一部分。用户必须自己分析这个字符串，来获取指定的cookie值，例如，要获取userId的值，可以这样实现：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;script language=&quot;JavaScript&quot; type=&quot;text/JavaScript&quot;&gt;</span><br><span class="line">&lt;!--</span><br><span class="line">//设置两个cookie</span><br><span class="line">document.cookie=&quot;userId=828&quot;;</span><br><span class="line">document.cookie=&quot;userName=hulk&quot;;</span><br><span class="line">//获取cookie字符串</span><br><span class="line">var strcookie=document.cookie;</span><br><span class="line">//将多cookie切割为多个名/值对</span><br><span class="line">var arrcookie=strcookie.split(&quot;; &quot;);</span><br><span class="line">var userId;</span><br><span class="line">//遍历cookie数组，处理每个cookie对</span><br><span class="line">for(var i=0;i&lt;arrcookie.length;i++)&#123;</span><br><span class="line">      var arr=arrcookie[i].split(&quot;=&quot;);</span><br><span class="line">      //找到名称为userId的cookie，并返回它的值</span><br><span class="line">      if(&quot;userId&quot;==arr[0])&#123;</span><br><span class="line">             userId=arr[1];</span><br><span class="line">             break;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br><span class="line">alert(userId);</span><br><span class="line">//--&gt;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这样就得到了单个cookie的值</p>
+<p>用类似的方法，可以获取一个或多个cookie的值，其主要的技巧仍然是字符串和数组的相关操作。</p>
+<h3 id="0x04-给cookie设置终止日期"><a href="#0x04-给cookie设置终止日期" class="headerlink" title="0x04 给cookie设置终止日期"></a>0x04 给cookie设置终止日期</h3><p>到现在为止，所有的cookie都是单会话cookie，即浏览器关闭后这些cookie将会丢失，事实上这些cookie仅仅是存储在内存中，而没有建立相应的硬盘文件。<br>在实际开发中，cookie常常需要长期保存，例如保存用户登录的状态。这可以用下面的选项来实现：<br><code>document.cookie=&quot;userId=828; expires=GMT_String&quot;;</code><br>其中GMT_String是以GMT格式表示的时间字符串，这条语句就是将userId这个cookie设置为GMT_String表示的过期时间，超过这个时间，cookie将消失，不可访问。<br>例如：如果要将cookie设置为10天后过期，可以这样实现：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;script language=&quot;JavaScript&quot; type=&quot;text/JavaScript&quot;&gt;</span><br><span class="line">&lt;!--</span><br><span class="line">//获取当前时间</span><br><span class="line">var date=new Date();</span><br><span class="line">var expireDays=10;</span><br><span class="line">//将date设置为10天以后的时间</span><br><span class="line">date.setTime(date.getTime()+expireDays*24*3600*1000);</span><br><span class="line">//将userId和userName两个cookie设置为10天后过期</span><br><span class="line">document.cookie=&quot;userId=828; userName=hulk; expire=&quot;+date.toGMTString();</span><br><span class="line">//--&gt;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="0x05-删除cookie"><a href="#0x05-删除cookie" class="headerlink" title="0x05 删除cookie"></a>0x05 删除cookie</h3><p>为了删除一个cookie，可以将其过期时间设定为一个过去的时间，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;script language=&quot;JavaScript&quot; type=&quot;text/JavaScript&quot;&gt;</span><br><span class="line">&lt;!--</span><br><span class="line">//获取当前时间</span><br><span class="line">var date=new Date();</span><br><span class="line">//将date设置为过去的时间</span><br><span class="line">date.setTime(date.getTime()-10000);</span><br><span class="line">//将userId这个cookie删除</span><br><span class="line">document.cookie=&quot;userId=828; expire=&quot;+date.toGMTString();</span><br><span class="line">//--&gt;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="0x06-指定可访问cookie的路径"><a href="#0x06-指定可访问cookie的路径" class="headerlink" title="0x06 指定可访问cookie的路径"></a>0x06 指定可访问cookie的路径</h3><p>默认情况下，如果在某个页面创建了一个cookie，那么该页面所在目录中的其他页面也可以访问该cookie。如果这个目录下还有子目录，则在子目录中也可以访问。例如在<code>www.xxxx.com/html/a.html</code>中所创建的cookie，可以被<code>www.xxxx.com/html/b.html</code>或<code>www.xxx.com/ html/ some/c.html</code>所访问，但不能被<code>www.xxxx.com/d.html</code>访问。<br>为了控制cookie可以访问的目录，需要使用path参数设置cookie，语法如下：<br><code>document.cookie=&quot;name=value; path=cookieDir&quot;;</code><br>其中cookieDir表示可访问cookie的目录。例如：<br><code>document.cookie=&quot;userId=320; path=/shop&quot;;</code><br>就表示当前cookie仅能在shop目录下使用。<br>如果要使cookie在整个网站下可用，可以将cookie_dir指定为根目录，例如：<br><code>document.cookie=&quot;userId=320; path=/&quot;;</code></p>
+<h3 id="0x07-指定可访问cookie的主机名"><a href="#0x07-指定可访问cookie的主机名" class="headerlink" title="0x07 指定可访问cookie的主机名"></a>0x07 指定可访问cookie的主机名</h3><p>和路径类似，主机名是指同一个域下的不同主机，例如：<code>www.google.com</code>和<code>gmail.google.com</code>就是两个不同的主机名。默认情况下，一个主机中创建的cookie在另一个主机下是不能被访问的，但可以通过domain参数来实现对其的控制，其语法格式为：<br><code>document.cookie=&quot;name=value; domain=cookieDomain&quot;;</code><br>以google为例，要实现跨主机访问，可以写为：<br><code>document.cookie=&quot;name=value;domain=.google.com&quot;;</code><br>这样，所有google.com下的主机都可以访问该cookie。</p>
+<h3 id="0x08-综合示例：构造通用的cookie处理函数"><a href="#0x08-综合示例：构造通用的cookie处理函数" class="headerlink" title="0x08 综合示例：构造通用的cookie处理函数"></a>0x08 综合示例：构造通用的cookie处理函数</h3><p>cookie的处理过程比较复杂，并具有一定的相似性。因此可以定义几个函数来完成cookie的通用操作，从而实现代码的复用。下面列出了常用的cookie操作及其函数实现。</p>
+<h4 id="1．添加一个cookie：addcookie-name-value-expireHours"><a href="#1．添加一个cookie：addcookie-name-value-expireHours" class="headerlink" title="1．添加一个cookie：addcookie(name,value,expireHours)"></a>1．添加一个cookie：addcookie(name,value,expireHours)</h4><p>该函数接收3个参数：cookie名称，cookie值，以及在多少小时后过期。这里约定expireHours为0时不设定过期时间，即当浏览器关闭时cookie自动消失。该函数实现如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;script language=&quot;JavaScript&quot; type=&quot;text/JavaScript&quot;&gt;</span><br><span class="line">&lt;!--</span><br><span class="line">function addcookie(name,value,expireHours)&#123;</span><br><span class="line">      var cookieString=name+&quot;=&quot;+escape(value);</span><br><span class="line">      //判断是否设置过期时间</span><br><span class="line">      if(expireHours&gt;0)&#123;</span><br><span class="line">             var date=new Date();</span><br><span class="line">             date.setTime(date.getTime+expireHours*3600*1000);</span><br><span class="line">             cookieString=cookieString+&quot;; expire=&quot;+date.toGMTString();</span><br><span class="line">      &#125;</span><br><span class="line">      document.cookie=cookieString;</span><br><span class="line">&#125;</span><br><span class="line">//--&gt;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="2．获取指定名称的cookie值：getcookie-name"><a href="#2．获取指定名称的cookie值：getcookie-name" class="headerlink" title="2．获取指定名称的cookie值：getcookie(name)"></a>2．获取指定名称的cookie值：getcookie(name)</h4><p>该函数返回名称为name的cookie值，如果不存在则返回空，其实现如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;script language=&quot;JavaScript&quot; type=&quot;text/JavaScript&quot;&gt;</span><br><span class="line">&lt;!--</span><br><span class="line">function getcookie(name)&#123;</span><br><span class="line">      var strcookie=document.cookie;</span><br><span class="line">      var arrcookie=strcookie.split(&quot;; &quot;);</span><br><span class="line">      for(var i=0;i&lt;arrcookie.length;i++)&#123;</span><br><span class="line">            var arr=arrcookie[i].split(&quot;=&quot;);</span><br><span class="line">            if(arr[0]==name)return arr[1];</span><br><span class="line">      &#125;</span><br><span class="line">      return &quot;&quot;;</span><br><span class="line">&#125;</span><br><span class="line">//--&gt;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="3．删除指定名称的cookie：deletecookie-name"><a href="#3．删除指定名称的cookie：deletecookie-name" class="headerlink" title="3．删除指定名称的cookie：deletecookie(name)"></a>3．删除指定名称的cookie：deletecookie(name)</h4><p>该函数可以删除指定名称的cookie，其实现如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;script language=&quot;JavaScript&quot; type=&quot;text/JavaScript&quot;&gt;</span><br><span class="line">&lt;!--</span><br><span class="line">function deletecookie(name)&#123;</span><br><span class="line">       var date=new Date();</span><br><span class="line">       date.setTime(date.getTime()-10000);</span><br><span class="line">       document.cookie=name+&quot;=v; expire=&quot;+date.toGMTString();</span><br><span class="line">&#125;</span><br><span class="line">//--&gt;</span><br><span class="line">&lt;/script&gt; </span><br></pre></td></tr></table></figure>
+
+<p>也可以用另一种网上流传的:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;script language=&quot;JavaScript&quot; type=&quot;text/JavaScript&quot;&gt;</span><br><span class="line">function SetCookie(name,value)//两个参数，一个是cookie的名子，一个是值</span><br><span class="line">&#123;</span><br><span class="line">    var Days = 30; //此 cookie 将被保存 30 天</span><br><span class="line">    var exp  = new Date();    //new Date(&quot;December 31, 9998&quot;);</span><br><span class="line">    exp.setTime(exp.getTime() + Days*24*60*60*1000);</span><br><span class="line">    document.cookie = name + &quot;=&quot;+ escape (value) + &quot;;expires=&quot; + exp.toGMTString();</span><br><span class="line">&#125;</span><br><span class="line">function getCookie(name)//取cookies函数       </span><br><span class="line">&#123;</span><br><span class="line">    var arr = document.cookie.match(new RegExp(&quot;(^| )&quot;+name+&quot;=([^;]*)(;|$)&quot;));</span><br><span class="line">     if(arr != null) return unescape(arr[2]); return null;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">function delCookie(name)//删除cookie</span><br><span class="line">&#123;</span><br><span class="line">    var exp = new Date();</span><br><span class="line">    exp.setTime(exp.getTime() - 1);</span><br><span class="line">    var cval=getCookie(name);</span><br><span class="line">    if(cval!=null) document.cookie= name + &quot;=&quot;+cval+&quot;;expires=&quot;+exp.toGMTString();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">SetCookie (&quot;xiaoqi&quot;, &quot;3&quot;)</span><br><span class="line">alert(getCookie(&#x27;xiaoqi&#x27;));</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：XSS利用之Cookie</li>
+        <li>Post author：langu_xyz</li>
+        <li>Create time：2016-10-03 21:00:00</li>
+        <li>
+            Post link：https://blog.langu.xyz/XSS利用之Cookie /
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/PHP%E4%B8%AD%E5%AE%B9%E6%98%93%E4%BA%A7%E7%94%9F%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E7%9A%84%E9%82%A3%E4%BA%9B%E5%87%BD%E6%95%B0/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">PHP中容易产生命令执行漏洞的那些函数</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/PHP%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1TIPS/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">PHP代码审计TIPS</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>&nbsp;-&nbsp;
+            
+            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a target="_blank" rel="noopener" href="//langu.xyz">AboutME:langu_xyz</a>
+        </div>
+        <!--
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        -->
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-%E4%BB%80%E4%B9%88%E6%98%AFcookie"><span class="nav-text">0x01 什么是cookie</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x02-%E8%AE%BE%E7%BD%AEcookie"><span class="nav-text">0x02 设置cookie</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x03-%E8%8E%B7%E5%8F%96cookie%E7%9A%84%E5%80%BC"><span class="nav-text">0x03 获取cookie的值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x04-%E7%BB%99cookie%E8%AE%BE%E7%BD%AE%E7%BB%88%E6%AD%A2%E6%97%A5%E6%9C%9F"><span class="nav-text">0x04 给cookie设置终止日期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x05-%E5%88%A0%E9%99%A4cookie"><span class="nav-text">0x05 删除cookie</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x06-%E6%8C%87%E5%AE%9A%E5%8F%AF%E8%AE%BF%E9%97%AEcookie%E7%9A%84%E8%B7%AF%E5%BE%84"><span class="nav-text">0x06 指定可访问cookie的路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x07-%E6%8C%87%E5%AE%9A%E5%8F%AF%E8%AE%BF%E9%97%AEcookie%E7%9A%84%E4%B8%BB%E6%9C%BA%E5%90%8D"><span class="nav-text">0x07 指定可访问cookie的主机名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x08-%E7%BB%BC%E5%90%88%E7%A4%BA%E4%BE%8B%EF%BC%9A%E6%9E%84%E9%80%A0%E9%80%9A%E7%94%A8%E7%9A%84cookie%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0"><span class="nav-text">0x08 综合示例：构造通用的cookie处理函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%EF%BC%8E%E6%B7%BB%E5%8A%A0%E4%B8%80%E4%B8%AAcookie%EF%BC%9Aaddcookie-name-value-expireHours"><span class="nav-text">1．添加一个cookie：addcookie(name,value,expireHours)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%EF%BC%8E%E8%8E%B7%E5%8F%96%E6%8C%87%E5%AE%9A%E5%90%8D%E7%A7%B0%E7%9A%84cookie%E5%80%BC%EF%BC%9Agetcookie-name"><span class="nav-text">2．获取指定名称的cookie值：getcookie(name)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3%EF%BC%8E%E5%88%A0%E9%99%A4%E6%8C%87%E5%AE%9A%E5%90%8D%E7%A7%B0%E7%9A%84cookie%EF%BC%9Adeletecookie-name"><span class="nav-text">3．删除指定名称的cookie：deletecookie(name)</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

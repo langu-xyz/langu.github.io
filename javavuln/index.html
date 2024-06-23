@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="网络安全,黑客,JAVA安全,代码审计,渗透测试,入侵,SRC,扫描,WEB安全,移动安全,PHP">
+    <meta name="description" content="蓝骨, langu.xyz">
+    <meta name="author" content="langu_xyz">
+    
+        <title>
+            
+                Java漏洞导图 |
+                    
+                        langu_xyz
+        </title>
+        
+<link rel="stylesheet" href="/css/style.css">
+
+            <link rel="shortcut icon" href="/images/logo.jpeg">
+                
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+                    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"blog.langu.xyz","root":"/","language":"zh","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/logo.jpeg","favicon":"/images/logo.jpeg","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/shamo.jpg","description":"XYZ(无限未来)"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+
+                    <script>
+                        var _hmt = _hmt || [];
+                        (function() {
+                          var hm = document.createElement("script");
+                          hm.src = "https://hm.baidu.com/hm.js?1cd6e64ff252acf24b707985fcec8850";
+                          var s = document.getElementsByTagName("script")[0]; 
+                          s.parentNode.insertBefore(hm, s);
+                        })();
+                        </script>
+                        
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="langu_xyz" type="application/atom+xml">
+</head>
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                    <a class="logo-title" href="/">
+                        langu_xyz
+                    </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class="" href="/" >
+                                HOME
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class="" href="/tags/THINK/" >
+                                THINK
+                            </a>
+                        </li>
+                        
+                            
+                                <li class="menu-item search search-popup-trigger">
+                                    <i class="fas fa-search"></i>
+                                </li>
+                                
+                                
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                    
+                        <div class="icon-item menu-bar">
+                            <div class="menu-bar-middle"></div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/" >
+                        HOME
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/tags/THINK/" >
+                        THINK
+                    </a>
+                </li>
+                
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="page-template-container">
+        
+        
+        <div class="page-template-content markdown-body">
+            
+                <ul>
+<li><strong>应用层</strong><ul>
+<li>OWASP Top 10<ul>
+<li>2021-Broken Access Control</li>
+<li>2021-Cryptographic Failures</li>
+<li>2021-Injection</li>
+<li>2021-Insecure Design</li>
+<li>2021-Security Misconfiguration</li>
+<li>2021-Vulnerable and Outdated Components</li>
+<li>2021-Identification and Authentication Failures</li>
+<li>2021-Software and Data Integrity Failures</li>
+<li>2021-Security Logging and Monitoring Failures</li>
+<li>2021-Server-Side Request Forgery</li>
+<li>2017-Broken Authentication and Session Management</li>
+<li>2017-Cross-Site Scripting (XSS)</li>
+<li>2017-Sensitive Data Exposure</li>
+<li>2017-Insufficient Attack Protection</li>
+<li>2017-Cross-Site Request Forgery (CSRF)</li>
+<li>2017-Using Components with Known Vulnerabilities</li>
+<li>2017-Underprotected APIs</li>
+</ul>
+</li>
+<li>其它漏洞<ul>
+<li>SpEL表达式注入</li>
+<li>变量覆盖</li>
+</ul>
+</li>
+<li>基于Java开发的应用<ul>
+<li>Confluence<ul>
+<li>CVE-2022-26134<ul>
+<li><code>source</code>是<code>namespace</code>，<code>sink</code>位于是<code>com.opensymphony.xwork.util.OgnlValueStack</code>，<code>findValue</code>对<code>namespace</code>(恶意OGNL表达式)进行解析触发OGNL注入。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>框架层</strong><ul>
+<li>Web框架 <ul>
+<li>Spring Framework(<a class="link" target="_blank" rel="noopener" href="https://tanzu.vmware.com/security">https://tanzu.vmware.com/security<i class="fas fa-external-link-alt"></i></a>)<ul>
+<li>Spring Boot <ul>
+<li>Spring Cloud <ul>
+<li>Spring Cloud Function<ul>
+<li>CVE-2022-22963</li>
+</ul>
+</li>
+<li>Spring Cloud Gateway <ul>
+<li>CVE-2022-22947</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Spring MVC <ul>
+<li>CVE-2022-22965</li>
+</ul>
+</li>
+<li>组件<ul>
+<li>spring-security-oauth2<ul>
+<li>CVE-2018-1260</li>
+</ul>
+</li>
+<li>spring-messaging<ul>
+<li>CVE-2018-1270</li>
+</ul>
+</li>
+<li>spring-amqp<ul>
+<li>CVE-2016-2173</li>
+<li>CVE-2017-8045</li>
+</ul>
+</li>
+<li>Spring Security OAuth<ul>
+<li>CVE-2016-4977</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>JSF</li>
+<li>Struts2 <ul>
+<li>S2-062</li>
+<li>S2-061</li>
+<li>S2-059</li>
+<li>S2-057</li>
+<li>S2-055</li>
+<li>S2-053</li>
+<li>S2-052</li>
+<li>S2-048</li>
+<li>S2-046</li>
+<li>S2-045</li>
+<li>S2-037</li>
+<li>S2-036</li>
+<li>S2-033</li>
+<li>S2-032</li>
+<li>S2-029</li>
+<li>S2-026</li>
+<li>S2-022</li>
+<li>S2-021</li>
+<li>S2-020</li>
+<li>S2-018</li>
+<li>S2-019</li>
+<li>S2-016</li>
+<li>S2-015</li>
+<li>S2-014</li>
+<li>S2-013</li>
+<li>S2-012</li>
+<li>S2-08</li>
+<li>S2-07</li>
+<li>S2-05</li>
+<li>S2-03</li>
+<li>S2-01</li>
+</ul>
+</li>
+<li>Struts1</li>
+</ul>
+</li>
+<li>核心功能 <ul>
+<li>JDBC</li>
+<li>JNDI</li>
+<li>EJB</li>
+<li>RMI</li>
+<li>Servlet</li>
+<li>JSP</li>
+<li>XML</li>
+<li>JMS</li>
+<li>Java IDL</li>
+<li>JTS</li>
+<li>JTA</li>
+<li>JavaMail</li>
+<li>JAF</li>
+</ul>
+</li>
+<li>组件 <ul>
+<li>Apache Druid <ul>
+<li>CVE-2021-25646</li>
+</ul>
+</li>
+<li>Fastjson<ul>
+<li>v1.2.24<ul>
+<li>有<code>parseObject</code>和<code>parse</code>两种方式进行反序列化，存在<code>autoType</code>特性可以通过<code>@type</code>调用指定类的<code>getter</code>或<code>setter</code>方法，如果某个<code>getter</code>或<code>setter</code>方法存在恶意操作，则可以实现命令执行。</li>
+</ul>
+</li>
+<li>v1.2.41<ul>
+<li>在开启<code>AutoTypeSupport</code>的情况下，通过在类名前增加<code>L</code>、末尾<code>; </code>绕过黑名单，例如<code>Lcom.sun.rowset.JdbcRowSetImpl;</code></li>
+</ul>
+</li>
+<li>v1.2.42<ul>
+<li>在CheckAutoType里面增加了一次对className的提取操作，所以可以通过再增加一次<code>L</code>、末尾<code>; </code>绕过黑名单，例如</li>
+</ul>
+</li>
+<li>v1.2.43<ul>
+<li>与1.2.41和1.2.42类似，通过添加<code>[</code>绕过，例如<code>&#123;&quot;@type&quot;:&quot;[com.sun.rowset.JdbcRowSetImpl&quot;[&#123;,</code></li>
+</ul>
+</li>
+<li>v1.2.45<ul>
+<li>在开启<code>AutoTypeSupport</code>的情况下，<code>org.apache.ibatis.datasource.jndi.JndiDataSourceFactory</code>不在黑名单，直接绕过</li>
+</ul>
+</li>
+<li>v1.2.47<ul>
+<li>精彩的漏洞，通过利用<code>java.lang.Class</code>不在白名单，也不在黑名单中，绕过<code>fastjson</code>安全机制将<code>com.sun.rowset.JdbcRowSetImpl</code>加入到缓存中，然后利用黑名单的<code>TypeUtils.getClassFromMapping(typeName) == null</code>逻辑绕过黑名单，实现恶意利用</li>
+</ul>
+</li>
+<li>v1.2.62<ul>
+<li>在开启<code>AutoTypeSupport</code>的情况下,<code>org.apache.xbean.propertyeditor.JndiConverter</code>类的<code>toObjectImpl()</code>函数存在JNDI注入漏洞，可由其构造函数处触发利用</li>
+</ul>
+</li>
+<li>v.1.2.66<ul>
+<li>在开启<code>AutoTypeSupport</code>的情况，<code>org.apache.shiro.jndi.JndiObjectFactory</code>(shiro-core)、<code>br.com.anteros.dbcp.AnterosDBCPConfig</code>(Anteros-Core和Anteros-DBCP)、<code>com.ibatis.sqlmap.engine.transaction.jta.JtaTransactionConfig</code>(ibatis-sqlmap和jta)，存在JNDI注入漏洞，可由其构造函数处触发利用</li>
+</ul>
+</li>
+<li>v1.2.67<ul>
+<li>在开启<code>AutoTypeSupport</code>的情况，<code>org.apache.ignite.cache.jta.jndi.CacheJndiTmLookup</code>(ignite-core、ignite-jta和jta)、<code>org.apache.shiro.jndi.JndiObjectFactory</code>(shiro-core和slf4j-api)，存在JNDI注入漏洞，可由其构造函数处触发利用</li>
+</ul>
+</li>
+<li>v1.2.68<ul>
+<li>通过<code>java.lang.Runnable</code>，<code>java.lang.Readable</code>和<code>java.lang.AutoCloseable</code>几个类，通过<code>Mysql connector RCE</code>、<code>Apache commons io read and write files</code>、<code>Jetty SSRF</code>、<code>Apache xbean-reflect RCE</code> 几条攻击链，可实现<code>mysql RCE</code>等恶意攻击。在该版本之后增加<code>safeMode</code>。</li>
+</ul>
+</li>
+<li>v1.2.80<ul>
+<li>待补充</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Log4j2<ul>
+<li>CVE-2021-44228 Log4Shell<ul>
+<li>Log4j2会解析${}，读取出其中的内容。判断其是否为Ldap实现的JNDI，于是调用Java底层的Lookup方法，尝试完成Ldap的Lookup操作。例如<code>$&#123;jndi:ldap://127.0.0.1/poc&#125;</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>ScriptEngine <ul>
+<li>eval()</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>应用服务器</strong><ul>
+<li>Tomcat</li>
+<li>Jetty</li>
+<li>GlassFish</li>
+<li>JBoss EAP</li>
+<li>WebLogic<ul>
+<li>CVE-2015-4852</li>
+<li>CVE-2016-0638</li>
+<li>CVE-2016-3510</li>
+<li>CVE-2017-3248</li>
+<li>CVE-2017-3506</li>
+<li>CVE-2017-10271</li>
+<li>CVE-2018-2628</li>
+<li>CVE-2018-2894</li>
+<li>CVE-2018-3191</li>
+<li>CVE-2019-2647</li>
+<li>CVE-2019-2648</li>
+<li>CVE-2019-2649</li>
+<li>CVE-2019-2650</li>
+<li>CVE-2019-2725</li>
+<li>CVE-2019-2729</li>
+<li>CVE-2019-2888</li>
+<li>CVE-2019-2890</li>
+<li>CVE-2020-2551</li>
+<li>CVE-2020-2555</li>
+<li>CVE-2020-14644</li>
+<li>CVE-2020-14645</li>
+<li>CVE-2020-14882</li>
+<li>CVE-2020-14883</li>
+<li>CVE-2021-2394 </li>
+<li>CVE-2022-21350</li>
+</ul>
+</li>
+<li>WebSphere</li>
+<li>WildFly</li>
+</ul>
+</li>
+<li><strong>JVM层</strong><ul>
+<li>Java版本 <ul>
+<li>Java8</li>
+<li>Java11</li>
+<li>Java17</li>
+</ul>
+</li>
+<li>JVM优化器 <ul>
+<li>VisualVM</li>
+<li>JProfiler</li>
+<li>Java Mission Control</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+        </div>
+        <div class="page-template-comments">
+            
+        </div>
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>&nbsp;-&nbsp;
+            
+            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a target="_blank" rel="noopener" href="//langu.xyz">AboutME:langu_xyz</a>
+        </div>
+        <!--
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        -->
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

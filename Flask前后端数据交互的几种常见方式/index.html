@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="网络安全,黑客,JAVA安全,代码审计,渗透测试,入侵,SRC,扫描,WEB安全,移动安全,PHP">
+    <meta name="description" content="蓝骨, langu.xyz">
+    <meta name="author" content="langu_xyz">
+    
+        <title>
+            
+                Flask前后端数据交互的几种常见方式 |
+                    
+                        langu_xyz
+        </title>
+        
+<link rel="stylesheet" href="/css/style.css">
+
+            <link rel="shortcut icon" href="/images/logo.jpeg">
+                
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+                    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"blog.langu.xyz","root":"/","language":"zh","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/logo.jpeg","favicon":"/images/logo.jpeg","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/shamo.jpg","description":"XYZ(无限未来)"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+
+                    <script>
+                        var _hmt = _hmt || [];
+                        (function() {
+                          var hm = document.createElement("script");
+                          hm.src = "https://hm.baidu.com/hm.js?1cd6e64ff252acf24b707985fcec8850";
+                          var s = document.getElementsByTagName("script")[0]; 
+                          s.parentNode.insertBefore(hm, s);
+                        })();
+                        </script>
+                        
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="langu_xyz" type="application/atom+xml">
+</head>
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                    <a class="logo-title" href="/">
+                        langu_xyz
+                    </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class="" href="/" >
+                                HOME
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class="" href="/tags/THINK/" >
+                                THINK
+                            </a>
+                        </li>
+                        
+                            
+                                <li class="menu-item search search-popup-trigger">
+                                    <i class="fas fa-search"></i>
+                                </li>
+                                
+                                
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                    
+                        <div class="icon-item menu-bar">
+                            <div class="menu-bar-middle"></div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/" >
+                        HOME
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/tags/THINK/" >
+                        THINK
+                    </a>
+                </li>
+                
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">Flask前后端数据交互的几种常见方式</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/logo.jpeg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">langu_xyz</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2018-04-22 21:00:00
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/dev/">dev</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.1k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>6 Mins</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>前后端数据交互</p>
+<h3 id="jquery-ajax"><a href="#jquery-ajax" class="headerlink" title="jquery ajax"></a>jquery ajax</h3><p>Post方式</p>
+<p><img lazyload src="/images/loading.svg" data-src="15244671529959.jpg"></p>
+<p>获取input value的几种方式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(&quot; #name &quot;).val()</span><br><span class="line">$(&quot; input[ name=&#x27;name&#x27; ] &quot;).val()</span><br><span class="line">$(&quot; input[ type=&#x27;text&#x27; ] &quot;).val()</span><br><span class="line">$(&quot; input[ type=&#x27;text&#x27; ]&quot;).attr(&quot;value&quot;)</span><br><span class="line">、、、</span><br></pre></td></tr></table></figure>
+
+
+
+<p>坑1：如果没有$(‘#submit’).click(function()动作的话，就只能获取input的预设value，如果没有预设则返回空</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">&lt;p&gt;jquery ajax&lt;/p&gt;</span><br><span class="line">&lt;form id=&quot;form1&quot;&gt;</span><br><span class="line">    &lt;input type=&quot;text&quot; id=&quot;name&quot;&gt;</span><br><span class="line">    &lt;input type=&quot;submit&quot; value=&quot;Submit form&quot; id=&quot;submit&quot; /&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    $(&#x27;#submit&#x27;).click(function()&#123;</span><br><span class="line">        var data=&#123;&#125;</span><br><span class="line">        data[&#x27;name&#x27;] = $(&#x27;#name&#x27;).val();</span><br><span class="line">        $.ajax(&#123;</span><br><span class="line">            type: &#x27;POST&#x27;,</span><br><span class="line">            url: &quot;/trans1&quot;,</span><br><span class="line">            data: JSON.stringify(data),</span><br><span class="line">            contentType: &#x27;application/json; charset=UTF-8&#x27;,</span><br><span class="line">            dataType: &#x27;json&#x27;,</span><br><span class="line">            success: function(data) &#123;</span><br><span class="line">                alert(data)</span><br><span class="line">            &#125;,</span><br><span class="line">            error: function(xhr, type) &#123;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+<p>坑2:获取json数据可使用get_json()方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@app.route(&#x27;/trans1&#x27;, methods=[&#x27;post&#x27;])</span><br><span class="line">def trans1():</span><br><span class="line">    name = request.get_json(&#x27;name&#x27;)</span><br><span class="line">    print(name[&#x27;name&#x27;])</span><br><span class="line">    return jsonify(name[&#x27;name&#x27;] + &#x27;233333&#x27;)</span><br></pre></td></tr></table></figure>
+
+
+<p>另一种写法</p>
+<p>坑3:input 的类型只能为button不能为submit只能为button,否则点击button会执行表单action,不会走jquery异步</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    $(&#x27;#submit&#x27;).click(function()&#123;</span><br><span class="line">        var data=&#123;&#125;</span><br><span class="line">        data[&#x27;name&#x27;] = $(&#x27;#name&#x27;).val();</span><br><span class="line">        var url = &quot;/trans1&quot;;</span><br><span class="line">        $.post(url,JSON.stringify(data),function(data)&#123;alert(data)&#125;,&#x27;json&#x27;);</span><br><span class="line">    &#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Flask-WTF表单"><a href="#Flask-WTF表单" class="headerlink" title="Flask WTF表单"></a>Flask WTF表单</h3><p><img lazyload src="/images/loading.svg" data-src="15244720433616.jpg"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">from flask_wtf import Form</span><br><span class="line">from wtforms import StringField,SubmitField</span><br><span class="line">from wtforms.validators import DataRequired</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class TestForm(Form):</span><br><span class="line">    name = StringField(&#x27;name&#x27;, validators=[DataRequired()])</span><br><span class="line">    submit = SubmitField(label=&#x27;submit&#x27;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@app.route(&#x27;/wtform&#x27;, methods=[&#x27;get&#x27;,&#x27;post&#x27;])</span><br><span class="line">def wtform():</span><br><span class="line">    form = TestForm()</span><br><span class="line">    name = form.name.data</span><br><span class="line">    print(name)</span><br><span class="line">    return render_template(&#x27;wtform.html&#x27;, form=form, name=name)</span><br></pre></td></tr></table></figure>
+
+<p>坑4: <code>&#123;&#123;form.hidden_tag()&#125;&#125;</code>是flask防止csrf的机制，在config.py里配置<code>SECRET_KEY = &#39;************&#39;</code>，在view.py中引入<code>app.config.from_pyfile(&#39;config.py&#39;)</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">&lt;form action=&quot;&#123;&#123; url_for(&#x27;wtform&#x27;) &#125;&#125;&quot; method=&quot;post&quot;&gt;</span><br><span class="line">    &#123;&#123;form.hidden_tag()&#125;&#125;</span><br><span class="line">    &lt;p&gt;</span><br><span class="line">        &#123;&#123;form.name&#125;&#125;&lt;br&gt;</span><br><span class="line">        &#123;&#123; form.submit &#125;&#125;</span><br><span class="line">    &lt;/p&gt;</span><br><span class="line">    &lt;p&gt;Hello, &#123;&#123; name &#125;&#125;&lt;/p&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="XMLHttpRequest"><a href="#XMLHttpRequest" class="headerlink" title="XMLHttpRequest"></a>XMLHttpRequest</h3><p>Post</p>
+<p><img lazyload src="/images/loading.svg" data-src="15244748295338.jpg"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;title&gt;Practice AJAX&lt;/title&gt;</span><br><span class="line">    &lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">      function do_ajax() &#123;</span><br><span class="line">        var req = new XMLHttpRequest();</span><br><span class="line">        var result = document.getElementById(&#x27;result&#x27;);</span><br><span class="line">        req.onreadystatechange = function()</span><br><span class="line">        &#123;</span><br><span class="line">          if(this.readyState == 4 &amp;&amp; this.status == 200) &#123;</span><br><span class="line">            result.innerHTML = this.responseText;</span><br><span class="line">          &#125; else &#123;</span><br><span class="line">            result.innerHTML = &quot;...&quot;;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        req.open(&#x27;POST&#x27;, &#x27;/xmlhttp&#x27;, true);</span><br><span class="line">        req.setRequestHeader(&#x27;content-type&#x27;, &#x27;application/x-www-form-urlencoded;charset=UTF-8&#x27;);</span><br><span class="line">        req.send(&quot;name=&quot; + document.getElementById(&#x27;name&#x27;).value);</span><br><span class="line">      &#125;</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">  &lt;/head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;form action=&quot;index&quot; method=&quot;post&quot;&gt;</span><br><span class="line">      &lt;label&gt;Name:&lt;input type=&quot;text&quot; id=&quot;name&quot; value=&quot;&quot; /&gt;&lt;/label&gt;</span><br><span class="line">      &lt;button type=&quot;button&quot; id=&quot;btn-post&quot; onclick=&quot;do_ajax();&quot;&gt;Click&lt;/button&gt;</span><br><span class="line">      &lt;div id=&quot;result&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;/form&gt;</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@app.route(&#x27;/xmlhttp&#x27;, methods=[&#x27;GET&#x27;, &#x27;POST&#x27;])</span><br><span class="line">def xmlhttp():</span><br><span class="line">    if request.method == &#x27;POST&#x27;:</span><br><span class="line">        name = request.form[&#x27;name&#x27;]</span><br><span class="line">        return &#x27;hello&#x27; + name</span><br><span class="line">    return render_template(&#x27;XMLHttpRequest.html&#x27;)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="WebSocket（Flask-Socketio）"><a href="#WebSocket（Flask-Socketio）" class="headerlink" title="WebSocket（Flask-Socketio）"></a>WebSocket（Flask-Socketio）</h3><p><img lazyload src="/images/loading.svg" data-src="15244774374724.jpg"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE HTML&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;Flask-SocketIO Test&lt;/title&gt;</span><br><span class="line">    &lt;script type=&quot;text/javascript&quot; src=&quot;//cdn.bootcss.com/jquery/3.1.1/jquery.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script type=&quot;text/javascript&quot; src=&quot;//cdn.bootcss.com/socket.io/1.5.1/socket.io.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;</span><br><span class="line">    $(document).ready(function() &#123;</span><br><span class="line">        var socket = io.connect();</span><br><span class="line"></span><br><span class="line">        socket.on(&#x27;connect&#x27;, function() &#123;</span><br><span class="line">            socket.emit(&#x27;connect_event&#x27;, &#123;data: &#x27;connected!&#x27;&#125;);</span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line">        socket.on(&#x27;server_response&#x27;, function(msg) &#123;</span><br><span class="line">            $(&#x27;#log&#x27;).append(&#x27;&lt;br&gt;&#x27; + $(&#x27;&lt;div/&gt;&#x27;).text(&#x27;Received #&#x27; + &#x27;: &#x27; + msg.data).html());</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        $(&#x27;form#emit&#x27;).submit(function(event) &#123;</span><br><span class="line">                socket.emit(&#x27;client_event&#x27;, &#123;data: $(&#x27;#emit_data&#x27;).val()&#125;);</span><br><span class="line">                return false;</span><br><span class="line">            &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;h2&gt;WebSokect&lt;/h2&gt;</span><br><span class="line">    &lt;form id=&quot;emit&quot; method=&quot;POST&quot; action=&#x27;#&#x27;&gt;</span><br><span class="line">        &lt;input type=&quot;text&quot; name=&quot;emit_data&quot; id=&quot;emit_data&quot; placeholder=&quot;Message&quot;&gt;</span><br><span class="line">        &lt;input type=&quot;submit&quot; value=&quot;Echo&quot;&gt;</span><br><span class="line">    &lt;/form&gt;</span><br><span class="line">    &lt;div id=&#x27;log&#x27;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env python</span><br><span class="line">from flask import Flask, render_template, session, request</span><br><span class="line">from flask_socketio import SocketIO, emit</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line">app.config.from_pyfile(&#x27;config.py&#x27;)</span><br><span class="line"></span><br><span class="line">socketio = SocketIO(app)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@app.route(&#x27;/&#x27;)</span><br><span class="line">def index():</span><br><span class="line">    return render_template(&#x27;websocket.html&#x27;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@socketio.on(&#x27;client_event&#x27;)</span><br><span class="line">def client_msg(msg):</span><br><span class="line">    emit(&#x27;server_response&#x27;, &#123;&#x27;data&#x27;: msg[&#x27;data&#x27;]&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@socketio.on(&#x27;connect_event&#x27;)</span><br><span class="line">def connected_msg(msg):</span><br><span class="line">    emit(&#x27;server_response&#x27;, &#123;&#x27;data&#x27;: msg[&#x27;data&#x27;]&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">    socketio.run(app, host=&#x27;0.0.0.0&#x27;)</span><br></pre></td></tr></table></figure>
+<p><a class="link" target="_blank" rel="noopener" href="https://jiayi.space/post/shi-yong-flask-socketiojin-xing-websockettong-xin">参考<i class="fas fa-external-link-alt"></i></a></p>
+<p><a href="data_trans.zip">源码</a></p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：Flask前后端数据交互的几种常见方式</li>
+        <li>Post author：langu_xyz</li>
+        <li>Create time：2018-04-22 21:00:00</li>
+        <li>
+            Post link：https://blog.langu.xyz/Flask前后端数据交互的几种常见方式/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/SSRF%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1%E5%92%8C%E9%98%B2%E5%BE%A1%E7%AD%96%E7%95%A5%20for%20Java/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">SSRF代码审计和防御策略 for Java</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="CVE-2018-1273: RCE with Spring Data Commons/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">CVE-2018-1273 RCE with Spring Data Commons</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>&nbsp;-&nbsp;
+            
+            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a target="_blank" rel="noopener" href="//langu.xyz">AboutME:langu_xyz</a>
+        </div>
+        <!--
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        -->
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#jquery-ajax"><span class="nav-text">jquery ajax</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Flask-WTF%E8%A1%A8%E5%8D%95"><span class="nav-text">Flask WTF表单</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XMLHttpRequest"><span class="nav-text">XMLHttpRequest</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WebSocket%EF%BC%88Flask-Socketio%EF%BC%89"><span class="nav-text">WebSocket（Flask-Socketio）</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

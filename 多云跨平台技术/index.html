@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="网络安全,黑客,JAVA安全,代码审计,渗透测试,入侵,SRC,扫描,WEB安全,移动安全,PHP">
+    <meta name="description" content="蓝骨, langu.xyz">
+    <meta name="author" content="langu_xyz">
+    
+        <title>
+            
+                多云跨平台技术 |
+                    
+                        langu_xyz
+        </title>
+        
+<link rel="stylesheet" href="/css/style.css">
+
+            <link rel="shortcut icon" href="/images/logo.jpeg">
+                
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+                    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"blog.langu.xyz","root":"/","language":"zh","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/logo.jpeg","favicon":"/images/logo.jpeg","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/shamo.jpg","description":"XYZ(无限未来)"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+
+                    <script>
+                        var _hmt = _hmt || [];
+                        (function() {
+                          var hm = document.createElement("script");
+                          hm.src = "https://hm.baidu.com/hm.js?1cd6e64ff252acf24b707985fcec8850";
+                          var s = document.getElementsByTagName("script")[0]; 
+                          s.parentNode.insertBefore(hm, s);
+                        })();
+                        </script>
+                        
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="langu_xyz" type="application/atom+xml">
+</head>
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                    <a class="logo-title" href="/">
+                        langu_xyz
+                    </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class="" href="/" >
+                                HOME
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class="" href="/tags/THINK/" >
+                                THINK
+                            </a>
+                        </li>
+                        
+                            
+                                <li class="menu-item search search-popup-trigger">
+                                    <i class="fas fa-search"></i>
+                                </li>
+                                
+                                
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                    
+                        <div class="icon-item menu-bar">
+                            <div class="menu-bar-middle"></div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/" >
+                        HOME
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/tags/THINK/" >
+                        THINK
+                    </a>
+                </li>
+                
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">多云跨平台技术</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/logo.jpeg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">langu_xyz</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2022-05-14 21:00:00
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%AE%89%E5%85%A8%E6%9E%B6%E6%9E%84/">安全架构</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E5%AE%89%E5%85%A8%E5%BB%BA%E8%AE%BE/">安全建设</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%9E%B6%E6%9E%84%E4%BD%93%E7%B3%BB%E5%8F%82%E8%80%83/">网络安全架构体系参考</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>3 Mins</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>当今大多数组织都在运行一个复杂的环境，其中包括众多操作系统平台、SaaS 云服务和 IaaS/PaaS 云提供商。 根据您的行业，这通常还包括各种操作技术（也称为 SCADA、ICS 或 PCN）和物联网设备</p>
+<h2 id="多云跨平台技术"><a href="#多云跨平台技术" class="headerlink" title="多云跨平台技术"></a>多云跨平台技术</h2><p>Microsoft 专注于通过利用我们每天从超过 8 万亿个情报中收集的洞察力，为组织提供降低这些现代资产风险所需的安全功能，帮助组织改进其安全计划的各个领域。</p>
+<p>Microsoft 还专注于从我们的全球客户和合作伙伴网络（包括解决方案集成和 MDR/MSSP 合作伙伴）、NIST、CIS 和 The Open Group 等组织、CERTS、ISAC、执法机构（用于僵尸网络清除）中引入安全专业知识和情报等等。</p>
+<p><img lazyload src="/images/loading.svg" data-src="1.png"></p>
+<p>补充说明：<br>OT 和物联网——大多数组织通过其中一种或两种方式暴露于物联网和OT 安全风险：</p>
+<p>•     常见的系统，如 HVAC 系统、安全摄像头和大多数组织中的数据中心；</p>
+<p>•     用于制造、发电/配电、医疗保健或其他支持实体业务运营的设备/传感器的专用网络设备。</p>
+<h2 id="如何使多云跨平台安全"><a href="#如何使多云跨平台安全" class="headerlink" title="如何使多云跨平台安全"></a>如何使多云跨平台安全</h2><p><img lazyload src="/images/loading.svg" data-src="2.png"></p>
+<h2 id="终端和云管理"><a href="#终端和云管理" class="headerlink" title="终端和云管理"></a>终端和云管理</h2><p>Microsoft 的跨平台/云安全性始于端点和云可见性和控制：</p>
+<p>•     跨 Mac、Android、iOS 和 Windows 操作系统的终端管理；</p>
+<p>•    云安全态势管理 (CSPM)，可提供对多云和本地数据中心资产的洞察力以及云工作负载保护功能（又名 CWPP）。</p>
+<p><img lazyload src="/images/loading.svg" data-src="3.png"></p>
+<h2 id="SIEM-和-XDR-策略"><a href="#SIEM-和-XDR-策略" class="headerlink" title="SIEM 和 XDR 策略"></a>SIEM 和 XDR 策略</h2><p>Microsoft 为安全运营/SOC 提供集成功能，以获得跨云和平台快速检测、寻找和响应/恢复威胁所需的广泛和深入的可见性：</p>
+<p>•Broad – 安全信息和事件管理 (SIEM) – Microsoft Sentinel 从任何来源获取任何日志，将它们与机器学习 (ML) 和用户和实体行为分析 (UEBA) 相关联并解释它们的原因，并通过安全编排自动响应 , 自动化和响应 (SOAR)；</p>
+<p>•Deep - 扩展检测和响应 (XDR) – 功能提供针对特定资产量身定制的检测和响应功能，以提供高质量警报（低误报率），从而减轻 SOC 分析师编写警报查询和处理端点误报的负担 、云和本地标识、电子邮件、Office 365、Azure 服务等等。</p>
+<p><img lazyload src="/images/loading.svg" data-src="4.png"></p>
+<h2 id="基础设施-XDR"><a href="#基础设施-XDR" class="headerlink" title="基础设施 XDR"></a>基础设施 XDR</h2><p>•Microsoft Defender for Cloud 是 Azure 服务的 XDR，包括服务器/VM、应用服务、存储、SQL、Kubernetes、容器注册表、DNS 等；</p>
+<p>•Azure Arc 通过将这些资源投射到 Azure 对象中，将 Microsoft Defender for Cloud 扩展到 AWS、GCP 和本地资源，从而实现这些资源的管理和安全性；</p>
+<p>•Microsoft Defender for IoT（和 OT）为 SCADA、ICS 和工业物联网 (IIoT) 等运营技术 (OT) 设备提供威胁检测和响应功能</p>
+<p>•这可以在离线模式下运行以进行安全隔离，也可以在在线模式下运行，在该模式下它与 Microsoft Sentinel 中的 playbook 等本地集成。</p>
+<p><img lazyload src="/images/loading.svg" data-src="5.png"></p>
+<p><img lazyload src="/images/loading.svg" data-src="6.png"></p>
+<h2 id="工作效率和身份安全-XDR"><a href="#工作效率和身份安全-XDR" class="headerlink" title="工作效率和身份安全 XDR"></a>工作效率和身份安全 XDR</h2><p>Microsoft 365 Defender 提供了一个广泛的库，其中包含预构建的调查和响应自动化 (SOAR) 功能、数据丢失保护 (DLP) 功能、Web 内容筛选、集成威胁和漏洞管理等。</p>
+<p><img lazyload src="/images/loading.svg" data-src="7.png"></p>
+<h2 id="身份启用和安全性"><a href="#身份启用和安全性" class="headerlink" title="身份启用和安全性"></a>身份启用和安全性</h2><p>Azure Active Directory 为以下方面提供全面的解决方案：</p>
+<p>•    身份支持——适用于跨任何平台或云的员工、合作伙伴 (B2B) 和客户/客户/公民 (B2C)；</p>
+<p>•     身份安全——适用于那些具有零信任访问控制的场景，通过本机 UEBA、威胁情报和分析明确验证设备（通过 XDR）和用户的可信度。</p>
+<p><img lazyload src="/images/loading.svg" data-src="8.png"></p>
+<h2 id="信息保护"><a href="#信息保护" class="headerlink" title="信息保护"></a>信息保护</h2><p>Microsoft 信息保护和 Azure Purview 提供了一个完整的生命周期方法来发现、分类、保护和监视结构化和非结构化数据，使组织利用更多数据和见解来推动任务完成和竞争优势。</p>
+<p><img lazyload src="/images/loading.svg" data-src="9.png"></p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：多云跨平台技术</li>
+        <li>Post author：langu_xyz</li>
+        <li>Create time：2022-05-14 21:00:00</li>
+        <li>
+            Post link：https://blog.langu.xyz/多云跨平台技术/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/%E8%B7%A8%E8%B6%8A%E6%94%BB%E5%87%BB%E9%93%BE%E8%BF%9B%E8%A1%8C%E9%98%B2%E5%BE%A1(%E5%86%85%E9%83%A8%E5%92%8C%E5%A4%96%E9%83%A8%E5%A8%81%E8%83%81)/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">跨越攻击链进行防御(内部和外部威胁)</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/%E5%AE%89%E5%85%A8%E8%A7%92%E8%89%B2%E5%92%8C%E8%81%8C%E8%B4%A3/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">安全角色和职责</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>&nbsp;-&nbsp;
+            
+            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a target="_blank" rel="noopener" href="//langu.xyz">AboutME:langu_xyz</a>
+        </div>
+        <!--
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        -->
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E4%BA%91%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%8A%80%E6%9C%AF"><span class="nav-text">多云跨平台技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E5%A4%9A%E4%BA%91%E8%B7%A8%E5%B9%B3%E5%8F%B0%E5%AE%89%E5%85%A8"><span class="nav-text">如何使多云跨平台安全</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%88%E7%AB%AF%E5%92%8C%E4%BA%91%E7%AE%A1%E7%90%86"><span class="nav-text">终端和云管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SIEM-%E5%92%8C-XDR-%E7%AD%96%E7%95%A5"><span class="nav-text">SIEM 和 XDR 策略</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD-XDR"><span class="nav-text">基础设施 XDR</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%A5%E4%BD%9C%E6%95%88%E7%8E%87%E5%92%8C%E8%BA%AB%E4%BB%BD%E5%AE%89%E5%85%A8-XDR"><span class="nav-text">工作效率和身份安全 XDR</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BA%AB%E4%BB%BD%E5%90%AF%E7%94%A8%E5%92%8C%E5%AE%89%E5%85%A8%E6%80%A7"><span class="nav-text">身份启用和安全性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%A1%E6%81%AF%E4%BF%9D%E6%8A%A4"><span class="nav-text">信息保护</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="网络安全,黑客,JAVA安全,代码审计,渗透测试,入侵,SRC,扫描,WEB安全,移动安全,PHP">
+    <meta name="description" content="蓝骨, langu.xyz">
+    <meta name="author" content="langu_xyz">
+    
+        <title>
+            
+                Spring Expression Language（SpEL） |
+                    
+                        langu_xyz
+        </title>
+        
+<link rel="stylesheet" href="/css/style.css">
+
+            <link rel="shortcut icon" href="/images/logo.jpeg">
+                
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+                    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"blog.langu.xyz","root":"/","language":"zh","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/logo.jpeg","favicon":"/images/logo.jpeg","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/shamo.jpg","description":"XYZ(无限未来)"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+
+                    <script>
+                        var _hmt = _hmt || [];
+                        (function() {
+                          var hm = document.createElement("script");
+                          hm.src = "https://hm.baidu.com/hm.js?1cd6e64ff252acf24b707985fcec8850";
+                          var s = document.getElementsByTagName("script")[0]; 
+                          s.parentNode.insertBefore(hm, s);
+                        })();
+                        </script>
+                        
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="langu_xyz" type="application/atom+xml">
+</head>
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                    <a class="logo-title" href="/">
+                        langu_xyz
+                    </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class="" href="/" >
+                                HOME
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class="" href="/tags/THINK/" >
+                                THINK
+                            </a>
+                        </li>
+                        
+                            
+                                <li class="menu-item search search-popup-trigger">
+                                    <i class="fas fa-search"></i>
+                                </li>
+                                
+                                
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                    
+                        <div class="icon-item menu-bar">
+                            <div class="menu-bar-middle"></div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/" >
+                        HOME
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/tags/THINK/" >
+                        THINK
+                    </a>
+                </li>
+                
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">Spring Expression Language（SpEL）</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/logo.jpeg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">langu_xyz</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2018-04-10 21:00:00
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/JAVA%E5%AE%89%E5%85%A8/">JAVA安全</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/JAVA/">JAVA</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>729 Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>3 Mins</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h3 id="0x00-简介"><a href="#0x00-简介" class="headerlink" title="0x00 简介"></a>0x00 简介</h3><p><code>SpEL（Spring Expression Language）是Spring提供的一种表达式语言</code></p>
+<p><code>能在运行时构建复杂表达式、存取对象图属性、对象方法调用等，并且能与Spring功能完美整合，如能用来配置Bean定义</code></p>
+<p><code>表达式语言给静态Java语言增加了动态功能</code></p>
+<h3 id="0x01-表达式执行步骤"><a href="#0x01-表达式执行步骤" class="headerlink" title="0x01 表达式执行步骤"></a>0x01 表达式执行步骤</h3><p>SpEL求表达式值时的步骤</p>
+<pre><code>1、构造一个解析器
+    SpEL使用ExpressionParser接口表示解析器，提供SpelExpressionParser默认实现
+2、解析器解析字符串表达式
+    使用ExpressionParser的parseExpression来解析相应的表达式为Expression对象
+3、构造上下文
+    准备比如变量定义等等表达式需要的上下文数据
+4、根据上下文得到表达式运算后的值
+    通过Expression接口的getValue方法根据上下文获得表达式值
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">ExpressionParser parser = new SpelExpressionParser(); （1）</span><br><span class="line">Expression exp = parser.parseExpression(&quot;&#x27;Hello World&#x27;&quot;); （2）</span><br><span class="line">String message = (String) exp.getValue(); （4）</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ExpressionParser parser = new SpelExpressionParser();    (1)</span><br><span class="line">Expression expression = parser.parseExpression(&quot;(&#x27;Hello&#x27; + &#x27; World&#x27;).concat(#end)&quot;);   (2) </span><br><span class="line">EvaluationContext context = new StandardEvaluationContext();    (3)</span><br><span class="line">context.setVariable(&quot;end&quot;, &quot;!&quot;);    </span><br><span class="line">Assert.assertEquals(&quot;Hello World!&quot;, expression.getValue(context));   (4) </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="0x02-工作原理"><a href="#0x02-工作原理" class="headerlink" title="0x02 工作原理"></a>0x02 工作原理</h3><p><img lazyload src="/images/loading.svg" data-src="15238470717386.jpg"></p>
+<h3 id="0x03-主要接口"><a href="#0x03-主要接口" class="headerlink" title="0x03 主要接口"></a>0x03 主要接口</h3><h4 id="EvaluationContext"><a href="#EvaluationContext" class="headerlink" title="EvaluationContext"></a>EvaluationContext</h4><p>表示上下文环境<br>默认实现是org.springframework.expression.spel.support包中的StandardEvaluationContext类<br>使用setRootObject方法来设置根对象，使用setVariable方法来注册自定义变量，使用registerFunction来注册自定义函数等</p>
+<p>下例表达式name表示对应EvaluationContext的rootObject的一个属性</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public void EvaluationContextTest() &#123;</span><br><span class="line">	Object user = new Object() &#123;</span><br><span class="line">		public String getName() &#123;</span><br><span class="line">			return &quot;abc&quot;;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br><span class="line">	EvaluationContext context = new StandardEvaluationContext(user);</span><br><span class="line">	ExpressionParser parser = new SpelExpressionParser();</span><br><span class="line">	Assert.assertTrue(parser.parseExpression(&quot;name&quot;).getValue(context, String.class).equals(&quot;abc&quot;));</span><br><span class="line">	Assert.assertTrue(parser.parseExpression(&quot;getName()&quot;).getValue(context, String.class).equals(&quot;abc&quot;));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="ExpressionParser"><a href="#ExpressionParser" class="headerlink" title="ExpressionParser"></a>ExpressionParser</h4><p>表示解析器<br>默认实现是org.springframework.expression.spel.standard包中的SpelExpressionParser类，使用parseExpression方法将字符串表达式转换为Expression对象<br>对于ParserContext接口用于定义字符串表达式是不是模板，及模板开始与结束字符</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">public interface ExpressionParser &#123;    </span><br><span class="line">    Expression parseExpression(String expressionString);    </span><br><span class="line">    Expression parseExpression(String expressionString, ParserContext context);    </span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">public void testParserContext() &#123;    </span><br><span class="line">    ExpressionParser parser = new SpelExpressionParser();    </span><br><span class="line">    ParserContext parserContext = new ParserContext() &#123;    </span><br><span class="line">        @Override    </span><br><span class="line">         public boolean isTemplate() &#123;    </span><br><span class="line">            return true;    </span><br><span class="line">        &#125;    </span><br><span class="line">        @Override    </span><br><span class="line">        public String getExpressionPrefix() &#123;    </span><br><span class="line">            return &quot;#&#123;&quot;;    </span><br><span class="line">        &#125;    </span><br><span class="line">        @Override    </span><br><span class="line">        public String getExpressionSuffix() &#123;    </span><br><span class="line">            return &quot;&#125;&quot;;    </span><br><span class="line">        &#125;    </span><br><span class="line">    &#125;;    </span><br><span class="line">    String template = &quot;#&#123;&#x27;Hello &#x27;&#125;#&#123;&#x27;World!&#x27;&#125;&quot;;    </span><br><span class="line">    Expression expression = parser.parseExpression(template, parserContext);    </span><br><span class="line">    Assert.assertEquals(&quot;Hello World!&quot;, expression.getValue());    </span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
+
+<h4 id="Expression"><a href="#Expression" class="headerlink" title="Expression"></a>Expression</h4><p>表示表达式对象<br>默认实现是org.springframework.expression.spel.standard包中的SpelExpression<br>提供getValue方法用于获取表达式值，提供setValue方法用于设置对象值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ExpressionParser parser = new SpelExpressionParser();    (1)</span><br><span class="line">Expression expression = parser.parseExpression(&quot;(&#x27;Hello&#x27; + &#x27; World&#x27;).concat(#end)&quot;);   (2) </span><br><span class="line">EvaluationContext context = new StandardEvaluationContext();    (3)</span><br><span class="line">context.setVariable(&quot;end&quot;, &quot;!&quot;);    </span><br><span class="line">Assert.assertEquals(&quot;Hello World!&quot;, expression.getValue(context));   (4) </span><br></pre></td></tr></table></figure>
+
+<h3 id="0x04-主要功能"><a href="#0x04-主要功能" class="headerlink" title="0x04 主要功能"></a>0x04 主要功能</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">Literal expressions</span><br><span class="line"></span><br><span class="line">Boolean and relational operators</span><br><span class="line"></span><br><span class="line">Regular expressions</span><br><span class="line"></span><br><span class="line">Class expressions</span><br><span class="line"></span><br><span class="line">Accessing properties, arrays, lists, maps</span><br><span class="line"></span><br><span class="line">Method invocation</span><br><span class="line"></span><br><span class="line">Relational operators</span><br><span class="line"></span><br><span class="line">Assignment</span><br><span class="line"></span><br><span class="line">Calling constructors</span><br><span class="line"></span><br><span class="line">Bean references</span><br><span class="line"></span><br><span class="line">Array construction</span><br><span class="line"></span><br><span class="line">Inline lists</span><br><span class="line"></span><br><span class="line">Ternary operator</span><br><span class="line"></span><br><span class="line">Variables</span><br><span class="line"></span><br><span class="line">User defined functions</span><br><span class="line"></span><br><span class="line">Collection projection</span><br><span class="line"></span><br><span class="line">Collection selection</span><br><span class="line"></span><br><span class="line">Templated expressions</span><br></pre></td></tr></table></figure>
+
+<p>参考：<br><a class="link" target="_blank" rel="noopener" href="https://docs.spring.io/spring/docs/3.0.x/reference/expressions.html">https://docs.spring.io/spring/docs/3.0.x/reference/expressions.html<i class="fas fa-external-link-alt"></i></a><br><a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/zhoudaxia/article/details/38174169">https://blog.csdn.net/zhoudaxia/article/details/38174169<i class="fas fa-external-link-alt"></i></a><br><a class="link" target="_blank" rel="noopener" href="https://github.com/elim168/elim168.github.io/blob/master/spring/bean/23.spel%E8%A1%A8%E8%BE%BE%E5%BC%8F.md">https://github.com/elim168/elim168.github.io/blob/master/spring/bean/23.spel%E8%A1%A8%E8%BE%BE%E5%BC%8F.md<i class="fas fa-external-link-alt"></i></a></p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：Spring Expression Language（SpEL）</li>
+        <li>Post author：langu_xyz</li>
+        <li>Create time：2018-04-10 21:00:00</li>
+        <li>
+            Post link：https://blog.langu.xyz/Spring Expression Language（SpEL）/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="CVE-2018-1273: RCE with Spring Data Commons/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">CVE-2018-1273 RCE with Spring Data Commons</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/CVE-2018-1270%20Remote%20Code%20Execution%20with%20spring-messaging/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">CVE-2018-1270 Remote Code Execution with spring-messaging</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>&nbsp;-&nbsp;
+            
+            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a target="_blank" rel="noopener" href="//langu.xyz">AboutME:langu_xyz</a>
+        </div>
+        <!--
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        -->
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x00-%E7%AE%80%E4%BB%8B"><span class="nav-text">0x00 简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%89%A7%E8%A1%8C%E6%AD%A5%E9%AA%A4"><span class="nav-text">0x01 表达式执行步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x02-%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-text">0x02 工作原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x03-%E4%B8%BB%E8%A6%81%E6%8E%A5%E5%8F%A3"><span class="nav-text">0x03 主要接口</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#EvaluationContext"><span class="nav-text">EvaluationContext</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ExpressionParser"><span class="nav-text">ExpressionParser</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Expression"><span class="nav-text">Expression</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x04-%E4%B8%BB%E8%A6%81%E5%8A%9F%E8%83%BD"><span class="nav-text">0x04 主要功能</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

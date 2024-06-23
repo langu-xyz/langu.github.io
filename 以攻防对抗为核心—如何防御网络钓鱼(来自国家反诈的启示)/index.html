@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="网络安全,黑客,JAVA安全,代码审计,渗透测试,入侵,SRC,扫描,WEB安全,移动安全,PHP">
+    <meta name="description" content="蓝骨, langu.xyz">
+    <meta name="author" content="langu_xyz">
+    
+        <title>
+            
+                以攻防对抗为核心—如何防御网络钓鱼(来自国家反诈的启示) |
+                    
+                        langu_xyz
+        </title>
+        
+<link rel="stylesheet" href="/css/style.css">
+
+            <link rel="shortcut icon" href="/images/logo.jpeg">
+                
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+                    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"blog.langu.xyz","root":"/","language":"zh","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/logo.jpeg","favicon":"/images/logo.jpeg","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/shamo.jpg","description":"XYZ(无限未来)"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+
+                    <script>
+                        var _hmt = _hmt || [];
+                        (function() {
+                          var hm = document.createElement("script");
+                          hm.src = "https://hm.baidu.com/hm.js?1cd6e64ff252acf24b707985fcec8850";
+                          var s = document.getElementsByTagName("script")[0]; 
+                          s.parentNode.insertBefore(hm, s);
+                        })();
+                        </script>
+                        
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="langu_xyz" type="application/atom+xml">
+</head>
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                    <a class="logo-title" href="/">
+                        langu_xyz
+                    </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class="" href="/" >
+                                HOME
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class="" href="/tags/THINK/" >
+                                THINK
+                            </a>
+                        </li>
+                        
+                            
+                                <li class="menu-item search search-popup-trigger">
+                                    <i class="fas fa-search"></i>
+                                </li>
+                                
+                                
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                    
+                        <div class="icon-item menu-bar">
+                            <div class="menu-bar-middle"></div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/" >
+                        HOME
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/tags/THINK/" >
+                        THINK
+                    </a>
+                </li>
+                
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">以攻防对抗为核心—如何防御网络钓鱼(来自国家反诈的启示)</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/logo.jpeg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">langu_xyz</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2022-06-08 17:00:00
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%BA%94%E7%94%A8%E5%AE%89%E5%85%A8/">应用安全</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/THINK/">THINK</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.8k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>6 Mins</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><p>昨天处理了一个简单的钓鱼事件，同时结合最近准备攻防对抗的一些思考，简单聊一下“如何应对网络钓鱼”这个难题。</p>
+<h2 id="网络钓鱼有哪几种"><a href="#网络钓鱼有哪几种" class="headerlink" title="网络钓鱼有哪几种"></a>网络钓鱼有哪几种</h2><p>网络诈骗钓鱼类型</p>
+<ul>
+<li>预付金诈骗（贪）</li>
+<li>帐户停用诈骗（怕）</li>
+<li>伪造网站诈骗（粗心）</li>
+<li>…</li>
+</ul>
+<p>网络攻击钓鱼方式</p>
+<ul>
+<li>鱼叉式网络钓鱼</li>
+<li>克隆网络钓鱼</li>
+<li>捕鲸诈骗</li>
+<li>…</li>
+</ul>
+<p>参考自<a class="link" target="_blank" rel="noopener" href="https://www.cloudflare.com/zh-cn/learning/access-management/phishing-attack/">https://www.cloudflare.com/zh-cn/learning/access-management/phishing-attack/<i class="fas fa-external-link-alt"></i></a></p>
+<h2 id="防钓鱼与反诈骗"><a href="#防钓鱼与反诈骗" class="headerlink" title="防钓鱼与反诈骗"></a>防钓鱼与反诈骗</h2><p>2021年，国家反诈中心去年共紧急止付涉案资金3200余亿元人民币，拦截诈骗电话15.5亿次、成功避免2800余万名民众受骗。公安机关共破获电信网络诈骗案件44.1万余起，抓获违法犯罪嫌疑人69万余名，打掉涉“两卡”违法犯罪团伙3.9万个，追缴返还人民群众被骗资金120亿元。</p>
+<p>围绕网络钓鱼的攻防对抗，本质上是人性弱点的对抗。在本质上，当前声势浩大的“反电信诈骗”和“防网络钓鱼”是一样的，国家反诈就是最佳实践，所以先来看一下国家是如何做“反诈骗”的。</p>
+<h3 id="反诈之防骗意识之“淹没式宣传”"><a href="#反诈之防骗意识之“淹没式宣传”" class="headerlink" title="反诈之防骗意识之“淹没式宣传”"></a>反诈之防骗意识之“淹没式宣传”</h3><p>对于如何提升广大群众的防骗意识，国家采用的是地毯式、淹没式的铺天盖地的宣导，无论是各种奇形怪状的口号、传单，还是“本小区本月发生xx起诈骗事件，被骗xx元”，基本上就是按住你的脑袋，从眼睛、耳朵里灌输防骗意识。</p>
+<p>这样的做法笔者是非常认同的，虽然没有一个具体的数据来说明这样做的效果，但是从笔者自身的经验来说，在曾经被骗过一次之前，自负满满的认为自己不会被网络诈骗，然后打脸打的啪啪响（金额不大），曾经很长一段时间引以为耻。相信在看本文的读者应该也认为自己不会被骗，大忌。</p>
+<h3 id="反诈之安装“国家反诈APP”"><a href="#反诈之安装“国家反诈APP”" class="headerlink" title="反诈之安装“国家反诈APP”"></a>反诈之安装“国家反诈APP”</h3><p>相信现在没有人的手机上没有这个APP了吧，挨家挨户的地毯式安装，各种网络直播宣传等等，相当于每个人的手机上都装了一个“EDR”。</p>
+<h3 id="反诈之“国家反诈APP”之“来电预警守护”"><a href="#反诈之“国家反诈APP”之“来电预警守护”" class="headerlink" title="反诈之“国家反诈APP”之“来电预警守护”"></a>反诈之“国家反诈APP”之“来电预警守护”</h3><p>为什么要在每个手机上装上反诈APP，核心作用就是和大数据威胁情报关联，当诈骗电话进线或接收短信的时候可以实时识别和预警。</p>
+<h3 id="反诈之异常网站访问告警"><a href="#反诈之异常网站访问告警" class="headerlink" title="反诈之异常网站访问告警"></a>反诈之异常网站访问告警</h3><p>应该很多人都收到过当地派出所打电话过来说“你xx时间是不是访问了xx网站，这个网站涉嫌电信诈骗……”</p>
+<h2 id="来自“国家反诈骗”的启示——企业如何防御网络钓鱼"><a href="#来自“国家反诈骗”的启示——企业如何防御网络钓鱼" class="headerlink" title="来自“国家反诈骗”的启示——企业如何防御网络钓鱼"></a>来自“国家反诈骗”的启示——企业如何防御网络钓鱼</h2><p>从上一小节可以看到，为了反诈骗，国家的主要手段是“意识宣导”、“覆盖EDR”、“威胁情报告警(实时)”和“网站访问日志分析(延时)”等等，这几个做法和我们日常建设防网络钓鱼基本大同小异，但是如何做好这几部分，是需要和“国家反诈中心”认真学习的。</p>
+<h3 id="意识宣导"><a href="#意识宣导" class="headerlink" title="意识宣导"></a>意识宣导</h3><p>总结下反诈骗的宣导，“形式多样”、“案例真实”、“题材丰富”、“高频次”、“一对一”等等，之前看到的一个演讲中也提到了同样的点，核心就在于“重复”。</p>
+<p><img lazyload src="/images/loading.svg" data-src="1.png"></p>
+<p>在真实的企业安全环境中，在没有切实感受到钓鱼危害之前，是很难做到这点的，更多的是发一发全员邮件告诉大家小心网络钓鱼，这种做法的作用基本为零，毕竟每天来自各个团队的宣传邮件早就把邮箱填满了。</p>
+<p>不过在企业防网络钓鱼的宣导上，比反诈骗有一个最大的优势，因为性质的不同，可以进行“网络钓鱼演习”。</p>
+<h4 id="如何进行网络钓鱼演习？"><a href="#如何进行网络钓鱼演习？" class="headerlink" title="如何进行网络钓鱼演习？"></a>如何进行网络钓鱼演习？</h4><ol>
+<li><p>演习必须要真实<br> 何为真实，就是不论是邮箱、域名、网站还是文案，都要和员工息息相关，而不是在邮件里写“我来钓鱼了”，emmm<br> 参考：《你好，捕鱼人》<a class="link" target="_blank" rel="noopener" href="https://vipread.com/library/topic/3233">https://vipread.com/library/topic/3233<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li><p>全员参与（特别是TL）<br> 在演练结束后的复盘中，可以做到层层团队的内部宣导和复盘，我们往往对发生在身边的事件更能有体感</p>
+</li>
+<li><p>重复重复重复<br> 投入资源，阶段性重复、多样性演练、复盘，直到受害者成为零</p>
+</li>
+</ol>
+<h4 id="进行安全意识考试（不）"><a href="#进行安全意识考试（不）" class="headerlink" title="进行安全意识考试（不）"></a>进行安全意识考试（不）</h4><p>其实笔者不太喜欢考试的这种形式，但是不得不说，考试是可以让员工在百忙之中快速学习某些知识的有效手段，同时还可以比较容易的量化工作成果，这或许就是为什么现在有这么多考试的原因吧。</p>
+<p>不过如果做好激励，也许能成为一个好的宣导方式。</p>
+<h3 id="防网络钓鱼策略"><a href="#防网络钓鱼策略" class="headerlink" title="防网络钓鱼策略"></a>防网络钓鱼策略</h3><p>像“外部邮箱变色”、“URL跳转弹窗”这些方式基本上每个企业邮箱/企业IM都具备了，然后再深一点，会做“SPF IP地址验证”、“DKIM 数字签名验证”、“DMARC From地址验证”等协议验证，这些手段可以有效的防止垃圾邮件和外部恶意邮件。</p>
+<p>但是因为业务的复杂性，往来邮件的多样，这些协议策略很难完整的上线，同时也会因为配置策略问题，存在各种绕过的可能性。</p>
+<p>所以目前的趋势是“钓鱼邮件的智能检测”，不过这是一个大工程，目前有效的落地实践应该并不多，更多的还是在特殊时期采用特殊策略。</p>
+<p><img lazyload src="/images/loading.svg" data-src="2.png"></p>
+<p>（图源Splunk）</p>
+<p><img lazyload src="/images/loading.svg" data-src="3.png"></p>
+<p>（图源Fireeye <a class="link" target="_blank" rel="noopener" href="https://www.fireeye.com/company/press-releases/2019/fireeye-secure-email-gateway-protects-against-threats-others-mis.html%EF%BC%89">https://www.fireeye.com/company/press-releases/2019/fireeye-secure-email-gateway-protects-against-threats-others-mis.html）<i class="fas fa-external-link-alt"></i></a></p>
+<p><img lazyload src="/images/loading.svg" data-src="4.png"></p>
+<p>（《邮件防线的攻防研究实践》<a class="link" target="_blank" rel="noopener" href="https://vipread.com/library/topic/3699%EF%BC%89">https://vipread.com/library/topic/3699）<i class="fas fa-external-link-alt"></i></a></p>
+<h3 id="发生钓鱼攻击事件后的应急响应"><a href="#发生钓鱼攻击事件后的应急响应" class="headerlink" title="发生钓鱼攻击事件后的应急响应"></a>发生钓鱼攻击事件后的应急响应</h3><ol>
+<li><p>止血<br> 当通过各种途径或知到某员工收到钓鱼邮件后，第一时间并行做两件事：止血该员工和获取其他收到钓鱼邮件/消息的员工列表</p>
+</li>
+<li><p>修复<br> 将相关IP、URL、邮箱等恶意信息加入黑名单，同时排查为什么会绕过恶意邮件防御策略    </p>
+</li>
+<li><p>溯源<br> 通过相关线索进行溯源，判断钓鱼攻击类型，来决定后续采取相应措施</p>
+</li>
+<li><p>复盘/宣导<br> 如果有员工中招，要重点复盘<br> 如果是员工主动发现，要有激励<br> 同时，真实的CASE一定要把握住进行宣导</p>
+</li>
+</ol>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>当然了，做了再多，人性也是永远的弱点，但是多做一点，风险就少一分。</p>
+<p>持续对抗才是安全的魅力所在。</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：以攻防对抗为核心—如何防御网络钓鱼(来自国家反诈的启示)</li>
+        <li>Post author：langu_xyz</li>
+        <li>Create time：2022-06-08 17:00:00</li>
+        <li>
+            Post link：https://blog.langu.xyz/以攻防对抗为核心—如何防御网络钓鱼(来自国家反诈的启示)/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/Cloud%20I%20Hack%20into%20Google%20Cloud/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Cloud I Hack into Google Cloud</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/%E5%85%B3%E4%BA%8EXDR%E7%9A%84%E4%B8%80%E7%82%B9%E7%AC%94%E8%AE%B0/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">关于XDR的一点笔记</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>&nbsp;-&nbsp;
+            
+            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a target="_blank" rel="noopener" href="//langu.xyz">AboutME:langu_xyz</a>
+        </div>
+        <!--
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        -->
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E5%AD%90"><span class="nav-text">引子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E9%92%93%E9%B1%BC%E6%9C%89%E5%93%AA%E5%87%A0%E7%A7%8D"><span class="nav-text">网络钓鱼有哪几种</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%98%B2%E9%92%93%E9%B1%BC%E4%B8%8E%E5%8F%8D%E8%AF%88%E9%AA%97"><span class="nav-text">防钓鱼与反诈骗</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8D%E8%AF%88%E4%B9%8B%E9%98%B2%E9%AA%97%E6%84%8F%E8%AF%86%E4%B9%8B%E2%80%9C%E6%B7%B9%E6%B2%A1%E5%BC%8F%E5%AE%A3%E4%BC%A0%E2%80%9D"><span class="nav-text">反诈之防骗意识之“淹没式宣传”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8D%E8%AF%88%E4%B9%8B%E5%AE%89%E8%A3%85%E2%80%9C%E5%9B%BD%E5%AE%B6%E5%8F%8D%E8%AF%88APP%E2%80%9D"><span class="nav-text">反诈之安装“国家反诈APP”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8D%E8%AF%88%E4%B9%8B%E2%80%9C%E5%9B%BD%E5%AE%B6%E5%8F%8D%E8%AF%88APP%E2%80%9D%E4%B9%8B%E2%80%9C%E6%9D%A5%E7%94%B5%E9%A2%84%E8%AD%A6%E5%AE%88%E6%8A%A4%E2%80%9D"><span class="nav-text">反诈之“国家反诈APP”之“来电预警守护”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8D%E8%AF%88%E4%B9%8B%E5%BC%82%E5%B8%B8%E7%BD%91%E7%AB%99%E8%AE%BF%E9%97%AE%E5%91%8A%E8%AD%A6"><span class="nav-text">反诈之异常网站访问告警</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9D%A5%E8%87%AA%E2%80%9C%E5%9B%BD%E5%AE%B6%E5%8F%8D%E8%AF%88%E9%AA%97%E2%80%9D%E7%9A%84%E5%90%AF%E7%A4%BA%E2%80%94%E2%80%94%E4%BC%81%E4%B8%9A%E5%A6%82%E4%BD%95%E9%98%B2%E5%BE%A1%E7%BD%91%E7%BB%9C%E9%92%93%E9%B1%BC"><span class="nav-text">来自“国家反诈骗”的启示——企业如何防御网络钓鱼</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%84%8F%E8%AF%86%E5%AE%A3%E5%AF%BC"><span class="nav-text">意识宣导</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E7%BD%91%E7%BB%9C%E9%92%93%E9%B1%BC%E6%BC%94%E4%B9%A0%EF%BC%9F"><span class="nav-text">如何进行网络钓鱼演习？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%9B%E8%A1%8C%E5%AE%89%E5%85%A8%E6%84%8F%E8%AF%86%E8%80%83%E8%AF%95%EF%BC%88%E4%B8%8D%EF%BC%89"><span class="nav-text">进行安全意识考试（不）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%98%B2%E7%BD%91%E7%BB%9C%E9%92%93%E9%B1%BC%E7%AD%96%E7%95%A5"><span class="nav-text">防网络钓鱼策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%91%E7%94%9F%E9%92%93%E9%B1%BC%E6%94%BB%E5%87%BB%E4%BA%8B%E4%BB%B6%E5%90%8E%E7%9A%84%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94"><span class="nav-text">发生钓鱼攻击事件后的应急响应</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E5%90%8E"><span class="nav-text">最后</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

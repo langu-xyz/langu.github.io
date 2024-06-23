@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="网络安全,黑客,JAVA安全,代码审计,渗透测试,入侵,SRC,扫描,WEB安全,移动安全,PHP">
+    <meta name="description" content="蓝骨, langu.xyz">
+    <meta name="author" content="langu_xyz">
+    
+        <title>
+            
+                IBM QRadar UBA(用户行为分析) 规则集合 |
+                    
+                        langu_xyz
+        </title>
+        
+<link rel="stylesheet" href="/css/style.css">
+
+            <link rel="shortcut icon" href="/images/logo.jpeg">
+                
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+                    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"blog.langu.xyz","root":"/","language":"zh","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/logo.jpeg","favicon":"/images/logo.jpeg","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/shamo.jpg","description":"XYZ(无限未来)"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+
+                    <script>
+                        var _hmt = _hmt || [];
+                        (function() {
+                          var hm = document.createElement("script");
+                          hm.src = "https://hm.baidu.com/hm.js?1cd6e64ff252acf24b707985fcec8850";
+                          var s = document.getElementsByTagName("script")[0]; 
+                          s.parentNode.insertBefore(hm, s);
+                        })();
+                        </script>
+                        
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="langu_xyz" type="application/atom+xml">
+</head>
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                    <a class="logo-title" href="/">
+                        langu_xyz
+                    </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class="" href="/" >
+                                HOME
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class="" href="/tags/THINK/" >
+                                THINK
+                            </a>
+                        </li>
+                        
+                            
+                                <li class="menu-item search search-popup-trigger">
+                                    <i class="fas fa-search"></i>
+                                </li>
+                                
+                                
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                    
+                        <div class="icon-item menu-bar">
+                            <div class="menu-bar-middle"></div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/" >
+                        HOME
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/tags/THINK/" >
+                        THINK
+                    </a>
+                </li>
+                
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">IBM QRadar UBA(用户行为分析) 规则集合</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/logo.jpeg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">langu_xyz</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2022-04-22 21:00:00
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%AE%89%E5%85%A8%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">安全数据分析</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/UEBA/">UEBA</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>6.6k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>23 Mins</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h2 id="UBA-规则包摘要"><a href="#UBA-规则包摘要" class="headerlink" title="UBA 规则包摘要"></a>UBA 规则包摘要</h2><table>
+<thead>
+<tr>
+<th><strong>Content Pack</strong></th>
+<th><strong>Custom Rules</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Access and Authentication</td>
+<td>42</td>
+</tr>
+<tr>
+<td>Accounts and Privileges</td>
+<td>32</td>
+</tr>
+<tr>
+<td>Browsing Behavior</td>
+<td>20</td>
+</tr>
+<tr>
+<td>Cloud</td>
+<td>16</td>
+</tr>
+<tr>
+<td>DNS Analyzer</td>
+<td>5</td>
+</tr>
+<tr>
+<td>Domain Controller</td>
+<td>15</td>
+</tr>
+<tr>
+<td>Endpoint</td>
+<td>22</td>
+</tr>
+<tr>
+<td>Exfiltration</td>
+<td>27</td>
+</tr>
+<tr>
+<td>Geography</td>
+<td>12</td>
+</tr>
+<tr>
+<td>MaaS360</td>
+<td>10</td>
+</tr>
+<tr>
+<td>Network Traffic</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Other</td>
+<td>50+</td>
+</tr>
+</tbody></table>
+<p><img lazyload src="/images/loading.svg" data-src="1.png"></p>
+<p><img lazyload src="/images/loading.svg" data-src="2.png"></p>
+<h2 id="Access-and-authentication-访问和身份验证"><a href="#Access-and-authentication-访问和身份验证" class="headerlink" title="Access and authentication 访问和身份验证"></a>Access and authentication 访问和身份验证</h2><p>UBA：暴力验证尝试</p>
+<p>检测身份验证失败蛮力攻击（水平和垂直）。</p>
+<p>UBA：检测到来自锁定机器</p>
+<p>检测来自锁定机器的活动。</p>
+<p>UBA：非执行用户从外部网络访问的仅执行资产</p>
+<p>检测来自外部网络的非执行用户何时登录到供执行使用的资产。</p>
+<p>UBA：非执行用户从内部网络访问的仅限执行资产</p>
+<p>检测非执行用户何时登录仅供执行使用的资产。</p>
+<p>UBA：对关键资产的高风险用户访问</p>
+<p>检测用户何时参与事件（犯罪）访问关键资产。</p>
+<p>UBA：针对外部域的大量拒绝访问事件 </p>
+<p>检测何时有异常数量的针对任何外部域的拒绝访问事件。</p>
+<p>UBA：多个 VPN 帐户无法从单个 IP 登录</p>
+<p>检测任何 VPN 帐户登录失败。</p>
+<p>UBA：从单个 IP 登录的多个 VPN 帐户 </p>
+<p>映射来自同一 IP 地址的多个 VPN 用户，然后提高风险评分。</p>
+<p>UBA：企业防火墙中的远程访问漏洞 </p>
+<p>检测 GotoMyPC 和 OpenVPN 应用程序创建的防火墙中何时存在远程访问漏洞。</p>
+<p>UBA：重复未经授权的访问</p>
+<p>表示发现重复的未经授权的访问活动。</p>
+<p>UBA：终止的用户活动</p>
+<p>检测任何被列为已终止或已辞职的用户的活动。</p>
+<p>UBA：未经授权的访问</p>
+<p>表示发现了未经授权的访问活动。</p>
+<p>UBA：使用服务或机器帐户访问的 Unix/Linux 系统</p>
+<p>检测由 UNIX 和 Linux 服务器中的服务或计算机帐户启动的任何交互式会话（通过 GUI 和 CLI，本地和远程登录）。</p>
+<p>UBA：用户访问 - 对关键资产的访问失败 </p>
+<p>此规则检测位于关键资产参考集中的系统的身份验证失败。</p>
+<p>UBA：对关键资产的首次访问</p>
+<p>表示这是用户第一次访问关键资产。</p>
+<p>UBA：来自多个主机的用户访问 </p>
+<p>检测单个用户何时从超过允许数量的设备登录。</p>
+<p>UBA：用户从 Jump 服务器访问内部服务器</p>
+<p>检测单个用户何时从超过允许数量的设备登录。</p>
+<p>UBA：登录异常</p>
+<p>指示本地资产上的一系列登录失败。</p>
+<p>UBA：来自匿名来源的用户访问帐户 </p>
+<p>表示用户正在从匿名源（例如 TOR 或 VPN）访问内部资源。</p>
+<p>UBA：异常时间的用户访问</p>
+<p>表示用户在您的网络不寻常的时间成功进行身份验证。</p>
+<p>UBA：通过服务或机器帐户访问 VPN</p>
+<p>检测服务或计算机帐户何时访问 Cisco VPN。</p>
+<p>UBA：VPN 证书共享</p>
+<p>此规则检测 VPN 事件的用户名何时不等于“VPNSubjectcn”。这可能表明正在发生 VPN 证书共享。证书共享或其他身份验证令牌共享会使识别谁做了什么变得困难。如果发生妥协，这可能会使采取下一步措施变得复杂。</p>
+<p>UBA：使用服务或机器帐户进行 Windows 访问</p>
+<p>检测由 Windows Server 中的服务或计算机帐户启动的任何交互式会话（RDP、本地登录）。</p>
+<h2 id="Accounts-and-privileges-帐户和权限"><a href="#Accounts-and-privileges-帐户和权限" class="headerlink" title="Accounts and privileges 帐户和权限"></a>Accounts and privileges 帐户和权限</h2><p>UBA：添加了帐户或组或特权</p>
+<p>检测用户执行的并且属于以下类别之一的事件。</p>
+<ul>
+<li><pre><code>    Authentication.Group Added
+</code></pre>
+</li>
+<li><pre><code>    Authentication.Group Changed
+</code></pre>
+</li>
+<li><pre><code>    Authentication.Group Member Added
+</code></pre>
+</li>
+<li><pre><code>    Authentication.Computer Account Added
+</code></pre>
+</li>
+<li><pre><code>    Authentication.Computer Account Changed
+</code></pre>
+</li>
+<li><pre><code>    Authentication.Policy Added
+</code></pre>
+</li>
+<li><pre><code>    Authentication.Policy Change
+</code></pre>
+</li>
+<li><pre><code>    Authentication.Trusted Domain Added
+</code></pre>
+</li>
+<li><pre><code>    Authentication.User Account Added
+</code></pre>
+</li>
+<li><pre><code>    Authentication.User Account Changed
+</code></pre>
+</li>
+<li><pre><code>    Authentication.User Right Assigned
+</code></pre>
+</li>
+</ul>
+<p>UBA：帐户或组或权限已修改</p>
+<p>指示用户帐户何时受到更改用户有效权限（向上或向下）的操作的影响。</p>
+<p>UBA：帐户删除造成的 DoS 攻击</p>
+<p>通过在固定时间跨度内根据固定阈值检查帐户删除事件的数量来检测 DoS 攻击。</p>
+<p>UBA：在短时间内创建和删除用户帐户</p>
+<p>检测在短时间内创建和删除用户帐户的时间。</p>
+<p>UBA：使用的休眠帐户 </p>
+<p>检测从已确定为休眠的帐户成功登录。</p>
+<p>UBA：尝试使用休眠帐户</p>
+<p>从已确定为休眠的帐户检测失败的登录尝试。</p>
+<p>UBA：已使用过期帐户</p>
+<p>表示用户尝试登录本地系统上已禁用或过期的帐户。</p>
+<p>UBA：首次权限提升</p>
+<p>表示用户第一次执行特权访问。</p>
+<p>UBA：检测到新帐户使用</p>
+<p>提供表明帐户首次成功使用的报告功能。</p>
+<p>UBA：可疑特权活动（首次观察到的特权使用）</p>
+<p>表示用户执行了该用户以前从未执行过的特权操作。</p>
+<p>UBA：可疑特权活动（很少使用的特权）</p>
+<p>表示用户执行了该用户最近未执行的特权操作。</p>
+<p>UBA：用户尝试使用已禁用帐户</p>
+<p>检测用户何时尝试使用禁用的帐户访问组织资源。</p>
+<p>UBA：用户尝试使用暂停的帐户</p>
+<p>检测用户何时尝试使用暂停或阻止的权限访问组织资源。</p>
+<h2 id="Browsing-behavior-浏览行为"><a href="#Browsing-behavior-浏览行为" class="headerlink" title="Browsing behavior 浏览行为"></a>Browsing behavior 浏览行为</h2><p>UBA：浏览至业务/服务网站</p>
+<p>用户访问的 URL 可能表明安全性或法律风险较高。</p>
+<p>UBA：浏览至通信网站</p>
+<p>用户访问的 URL 可能表明安全性或法律风险较高。</p>
+<p>UBA：浏览到教育网站</p>
+<p>检测到用户浏览与教育内容相关的网站。</p>
+<p>UBA：浏览至娱乐网站</p>
+<p>用户访问的 URL 可能表明安全性或法律风险较高。</p>
+<p>UBA：浏览到赌博网站</p>
+<p>用户访问的 URL 可能表明安全性或法律风险较高。</p>
+<p>UBA：浏览至政府网站</p>
+<p>检测到用户浏览与政府内容相关的网站。</p>
+<p>UBA：浏览至信息技术网站</p>
+<p>用户访问的 URL 可能表明安全性或法律风险较高。</p>
+<p>UBA：浏览至求职网站</p>
+<p>用户访问的 URL 可能表明安全性或法律风险较高。</p>
+<p>UBA：浏览至 LifeStyle 网站</p>
+<p>用户访问的 URL 可能表明安全性或法律风险较高。</p>
+<p>UBA：浏览到恶意网站</p>
+<p>用户访问的 URL 可能表明安全性或法律风险较高。</p>
+<p>UBA：浏览到混合内容/可能是成人网站</p>
+<p>用户访问的 URL 可能表明安全性或法律风险较高。</p>
+<p>UBA：浏览到网络钓鱼网站</p>
+<p>用户访问的 URL 可能表明安全性或法律风险较高。</p>
+<p>UBA：浏览到色情网站</p>
+<p>用户访问的 URL 可能表明安全性或法律风险较高。</p>
+<p>UBA：浏览到宗教网站</p>
+<p>用户访问了与宗教内容相关联的 URL。</p>
+<p>UBA：浏览到诈骗/可疑/非法网站</p>
+<p>用户访问的 URL 可能表明安全性或法律风险较高。</p>
+<p>UBA：浏览到社交网络网站</p>
+<p>用户访问了归类为社交网络的网站。</p>
+<p>UBA：浏览至未分类网站</p>
+<p>用户访问的 URL 可能表明安全性或法律风险较高。</p>
+<p>UBA：用户访问有风险的 URL</p>
+<p>此规则检测本地用户何时访问有问题的在线内容。</p>
+<h2 id="Cloud-云相关"><a href="#Cloud-云相关" class="headerlink" title="Cloud 云相关"></a>Cloud 云相关</h2><p>UBA：匿名用户访问资源</p>
+<p>检测访问资源的匿名用户。</p>
+<p>UBA：未经授权的用户访问的 AWS 控制台</p>
+<p>检测到“AWS - 标准用户”参考集中授权列表之外的用户未经授权尝试访问 Amazon Web Services (AWS) 控制台。</p>
+<p>UBA：外部用户邮箱登录失败</p>
+<p>检测外部用户登录邮箱的重复失败。</p>
+<p>UBA：无法设置邮箱审核日志绕过</p>
+<p>检测用户何时未能正确设置邮箱审核日志绕过。</p>
+<p>UBA：收件箱设置为转发到外部收件箱</p>
+<p>检测邮箱是否设置为转发到信任域引用集中未列出的域。</p>
+<p>UBA：内部用户失败邮箱登录，随后成功</p>
+<p>在内部用户成功登录之前检测到多个邮箱登录失败。</p>
+<p>UBA：在短时间内添加和删除邮箱权限</p>
+<p>检测一个小时内添加和删除的邮箱权限。</p>
+<p>UBA：访问 AWS 资源的非标准用户 </p>
+<p>检测尝试访问 Amazon Web Services (AWS) 资源的非标准用户。</p>
+<p>UBA：共享发送给访客的链接 </p>
+<p>检测发送给来宾的共享邀请。</p>
+<p>UBA：共享策略已更改或共享外部 (SharePoint/OneDrive)</p>
+<p>检测项目的共享策略何时更改为与来宾用户共享。</p>
+<p>UBA：站点管理员将用户添加到 SharePoint 或 OneDrive 上的组</p>
+<p>检测系统管理员将用户添加到 Sharepoint 或 OneDrive 中的组。</p>
+<p>UBA：未能将用户添加到角色</p>
+<p>检测将用户添加到角色的尝试何时失败。</p>
+<h2 id="Domain-controller-域名控制"><a href="#Domain-controller-域名控制" class="headerlink" title="Domain controller 域名控制"></a>Domain controller 域名控制</h2><p>UBA：尝试恢复 DPAPI 备份主密钥</p>
+<p>检测何时尝试恢复 DPAPI 主密钥。</p>
+<p>UBA：检测到 Kerberos 帐户枚举</p>
+<p>通过检测用于从同一源 IP 发出 Kerberos 请求的大量用户名来检测 Kerberos 帐户枚举。</p>
+<p>UBA：来自同一用户的多个 Kerberos 身份验证失败</p>
+<p>检测多个 Kerberos 身份验证票证拒绝或失败。</p>
+<p>UBA：对域控制器的非管理员访问</p>
+<p>检测对域控制器的非管理员帐户访问尝试。</p>
+<p>UBA：传递哈希</p>
+<p>检测在传递散列漏洞期间可能生成的 Windows 登录事件。</p>
+<p>UBA：可能的目录服务枚举</p>
+<p>检测对目录服务枚举的侦察尝试。</p>
+<p>UBA：域控制器上可能的 SMB 会话枚举</p>
+<p>检测对域控制器的 SMB 枚举尝试。</p>
+<p>UBA：可能的 TGT 伪造</p>
+<p>检测包含域名异常的 Kerberos TGT。这些可能表明使用 pass the ticket 漏洞生成的票证。</p>
+<p>UBA：可能的 TGT PAC 伪造</p>
+<p>检测到使用伪造的 PAC 证书从 Kerberos TGS 获取服务票证。</p>
+<p>UBA：来自非域控制器的复制请求 </p>
+<p>检测来自非法域控制器的复制请求。</p>
+<p>UBA：多台主机使用的 TGT 票证</p>
+<p>检测在两台（或更多）不同的计算机上使用的 Kerberos TGT 票证。</p>
+<h2 id="Endpoint-端点"><a href="#Endpoint-端点" class="headerlink" title="Endpoint 端点"></a>Endpoint 端点</h2><p>UBA：检测不安全或非标准协议</p>
+<p>检测通过被视为不安全或非标准协议的未经授权协议进行通信的任何用户。</p>
+<p>UBA：检测持久 SSH 会话</p>
+<p>检测活动时间超过 10 小时的 SSH 会话。</p>
+<p>UBA：修改了 Internet 设置</p>
+<p>检测系统上 Internet 设置的修改。</p>
+<p>UBA：恶意软件活动 - 批量修改注册表</p>
+<p>检测在较短时间间隔内批量修改多个注册表值的进程。</p>
+<p>UBA：Netcat 进程检测 (Linux)</p>
+<p>检测 Linux 系统上的 netcat 进程。</p>
+<p>UBA：Netcat 进程检测 (Windows)</p>
+<p>在 Windows 系统上检测 Netcat 进程。</p>
+<p>UBA：在 Gold Disk 白名单之外执行的进程 (Linux)</p>
+<p>检测在 Linux 系统上创建的进程，并在进程超出Gold Disk 进程允许列表时发出警报。</p>
+<p>UBA：在 Gold Disk 白名单之外执行的进程 (Windows)</p>
+<p>检测在 Windows 系统上创建的进程，并在进程超出Gold Disk 进程许可名单时发出警报。</p>
+<p>UBA：检测到勒索软件行为</p>
+<p>检测勒索软件感染期间通常出现的行为。</p>
+<p>UBA：受限程序使用</p>
+<p>表示创建了一个进程，并且该进程名称与引用集“UBA : Restricted Program Filenames”中列出的二进制名称之一匹配。</p>
+<p>UBA：用户安装可疑应用程序</p>
+<p>检测应用程序安装事件，然后在发现可疑应用程序时发出警报。</p>
+<p>UBA：创建的卷影副本 </p>
+<p>检测使用 vssadmin.exe 或 Windows Management Instrumentation 命令行 (WMIC) 创建的卷影副本。</p>
+<h2 id="Exfiltration-泄漏"><a href="#Exfiltration-泄漏" class="headerlink" title="Exfiltration 泄漏"></a>Exfiltration 泄漏</h2><p>UBA：云服务的数据泄露 </p>
+<p>检测正在将文件上传到个人云服务的用户。</p>
+<p>UBA：打印数据泄露 </p>
+<p>检测发送文件以进行打印或使用屏幕捕获工具（例如 Print Screen 和 Snipping Tool）的用户。</p>
+<p>UBA：可移动媒体的数据泄露 </p>
+<p>检测正在将文件传输到 USB 和 CD 等可移动媒体的用户。</p>
+<p>UBA：可能丢失数据</p>
+<p>检测由数据源、事件类别或与数据丢失检测和预防相关的特定事件确定的可能的数据丢失。</p>
+<p>UBA：可疑活动后的初始访问 </p>
+<p>在 24 小时内检测网络钓鱼或恶意软件活动以及随后的可疑访问活动。注意：编辑支持的构建块以监控适用于环境的任何规则。</p>
+<p>UBA：高风险用户的大量出站传输 </p>
+<p>检测到高风险用户的 200,000 字节或更多的出站传输。</p>
+<p>UBA：文件传输后的多个阻止文件传输</p>
+<p>通过检查最初被阻止但随后在 5 分钟内成功上传的文件上传来检测渗漏。</p>
+<p>UBA：多次阻止文件上传，然后成功上传</p>
+<p>检测何时有大量被阻止的文件上传，然后上传成功。</p>
+<p>UBA：潜在受损帐户</p>
+<p>检测可疑活动场景，然后在 24 小时内渗透。</p>
+<p>UBA：可疑访问，然后是数据泄露</p>
+<p>检测来自异常、受限或禁止位置的访问，然后进行数据泄露尝试。</p>
+<p>UBA：可疑活动，随后是泄露</p>
+<p>检测可疑活动场景，然后在 24 小时内渗透。 </p>
+<p>UBA：用户可能被钓鱼</p>
+<p>在一小时内检测到 3 个或更多针对单个用户的潜在网络钓鱼攻击实例。注意：编辑支持的构建块以监控适用于环境的任何规则。</p>
+<h2 id="Geography-位置"><a href="#Geography-位置" class="headerlink" title="Geography 位置"></a>Geography 位置</h2><p>UBA：从新位置创建的异常帐户 </p>
+<p>检测来自新位置的异常帐户创建活动。</p>
+<p>UBA：从新位置创建的异常云帐户 </p>
+<p>从新位置检测云帐户创建活动。</p>
+<p>UBA：来自多个位置的用户访问 </p>
+<p>表示多个位置或来源同时使用同一个用户帐户。调整匹配和持续时间参数以调整响应性。</p>
+<p>UBA：禁止位置的用户访问 </p>
+<p>从不在“UBA：允许的位置列表”中的位置检测用户访问。</p>
+<p>UBA：受限位置的用户访问</p>
+<p>从“UBA：受限位置列表”中的某个位置检测用户访问。</p>
+<p>UBA：用户地理变化</p>
+<p>匹配表示用户从不同于用户上次远程登录的国家/地区远程登录。此规则还可能表明帐户被盗，尤其是在规则匹配发生的时间很近的情况下。</p>
+<p>UBA：来自异常位置的用户访问 </p>
+<p>表示用户能够在您的网络不常见的国家/地区进行身份验证。</p>
+<h2 id="MaaS360-Security-MaaS360-安全告警"><a href="#MaaS360-Security-MaaS360-安全告警" class="headerlink" title="MaaS360 Security MaaS360 安全告警"></a>MaaS360 Security MaaS360 安全告警</h2><p>UBA：MaaS360 检测到具有低加密级别的设备 </p>
+<p>检测到设备的加密级别较低。</p>
+<p>UBA：由于非漫游数据使用导致 MaaS360 设备不合规</p>
+<p>设备不合规，因为它超出了 MaaS 管理员设置的移动使用限制。</p>
+<p>UBA：MaaS360 设备因设备被 root 不合规</p>
+<p>设备不合规，因为它已越狱或root以绕过操作系统限制。</p>
+<p>UBA：由于加密级别导致 MaaS360 设备不合规</p>
+<p>设备不合规，因为它支持 MaaS 管理员设置的指定加密级别。</p>
+<p>UBA：由于操作系统版本导致 MaaS360 设备不合规</p>
+<p>设备不合规，因为它需要更新的操作系统版本。</p>
+<p>UBA：收到 MaaS360 恶意 SMS</p>
+<p>检测到表明用户收到恶意 SMS 消息的 MaaS360 事件。</p>
+<p>UBA：收到 MaaS360 恶意电子邮件</p>
+<p>检测到表明用户收到恶意电子邮件的 MaaS360 事件。</p>
+<p>UBA：MaaS360 URL 访问被阻止</p>
+<p>检测到指示用户对 URL 的访问已被阻止的 MaaS360 事件。</p>
+<p>UBA：安装了 MaaS360 恶意软件应用程序</p>
+<p>检测 MaaS360 事件，表明用户的设备上有恶意软件。</p>
+<p>UBA：访问了 MaaS360 恶意 URL</p>
+<p>检测从 iOS 和 Android 设备单击的网络钓鱼链接，无论来源如何。</p>
+<h2 id="Network-traffic-and-attacks-网络流量和攻击"><a href="#Network-traffic-and-attacks-网络流量和攻击" class="headerlink" title="Network traffic and attacks 网络流量和攻击"></a>Network traffic and attacks 网络流量和攻击</h2><p>UBA：检测到 D/DoS 攻击</p>
+<p>检测用户的网络拒绝服务 (DoS) 攻击。</p>
+<p>UBA：Honeytoken 活动</p>
+<p>使用 Honeytoken 帐户检测活动。</p>
+<p>UBA：网络流量：捕获监控和分析程序使用情况</p>
+<p>表示创建了一个进程，并且该进程名称与参考集“UBA：网络捕获、监视和分析程序文件名”中列出的二进制名称之一匹配。此参考集列出了网络数据包捕获软件的二进制名称。参考集预先填充了一些常见的网络协议分析软件文件名的名称。</p>
+<h2 id="QRadar-DNS-Analyzer-QRadar-DNS-分析器"><a href="#QRadar-DNS-Analyzer-QRadar-DNS-分析器" class="headerlink" title="QRadar DNS Analyzer QRadar DNS 分析器"></a>QRadar DNS Analyzer QRadar DNS 分析器</h2><p>UBA：对阻止列表域的潜在访问</p>
+<p>检测表明用户可能访问了阻止列表域的事件。</p>
+<p>UBA：对 DGA 域的潜在访问</p>
+<p>检测表明用户可能访问了 DGA（由算法生成的域）域的事件。</p>
+<p>UBA：对抢注域的潜在访问</p>
+<p>检测表明用户可能访问了抢注域的事件。</p>
+<p>UBA：对隧道域的潜在访问</p>
+<p>检测指示用户可能访问隧道域的事件。</p>
+<h2 id="Threat-intelligence-威胁情报"><a href="#Threat-intelligence-威胁情报" class="headerlink" title="Threat intelligence  威胁情报"></a>Threat intelligence  威胁情报</h2><p>UBA：为 Locky 检测 IOC</p>
+<p>使用从 X-Force 活动源填充的 URL 或 IP 检测显示 Locky 的妥协指标 (IOC) 的用户计算机。</p>
+<p>UBA：为 WannaCry 检测 IOC</p>
+<p>使用从 X-Force 活动源填充的 URL、IP 或哈希来检测显示 WannaCry 的妥协指标 (IOC) 的用户计算机。</p>
+<p>UBA：受监​​控日志源的多个会话（NIS 指令）</p>
+<p>在 5 分钟内检测到单个用户与同一 QRadar 日志源系统的连接超过 2 个。</p>
+<p>UBA：勒索软件修改的 ShellBags </p>
+<p>检测表明典型恶意软件或勒索软件行为的 ShellBag 注册表修改。</p>
+<p>UBA：用户访问有风险的 IP 匿名化</p>
+<p>此规则检测本地用户或主机何时连接到外部匿名化服务。</p>
+<p>UBA：用户访问有风险的 IP 僵尸网络 </p>
+<p>此规则检测本地用户或主机何时连接到僵尸网络命令和控制服务器。</p>
+<p>UBA：用户访问有风险的 IP 动态</p>
+<p>此规则检测本地用户或主机何时连接到动态分配的 IP 地址。</p>
+<p>UBA：用户访问有风险的 IP 恶意软件 </p>
+<p>此规则检测本地用户或主机何时连接到恶意软件主机。</p>
+<p>UBA：用户访问有风险的 IP 垃圾邮件 </p>
+<p>此规则检测本地用户或主机何时连接到垃圾邮件发送主机。</p>
+<h2 id="机器学习规则部分"><a href="#机器学习规则部分" class="headerlink" title="机器学习规则部分"></a>机器学习规则部分</h2><p>UBA：异常出站传输尝试<br>UBA：发现异常的出站转移尝试<br>UBA：到外部域的异常数据量<br>UBA：发现到外部域的数据量异常<br>UBA : 对风险资源的异常访问<br>UBA：发现异常访问风险资源<br>UBA : 用户访问有风险的资源<br>UBA : 风险资源<br>UBA：用户行为、会话异常（按目的地）<br>UBA：发现目的地的用户行为、会话异常<br>UBA : User Event Frequency Anomaly - 研究主题<br>UBA：用户事件频率异常 - 找到的类别<br>UBA : User Running New Process（在 UBA 3.8.0 中替换为Process Usage ML 用户模型）<br>UBA：用户量活动异常 - 到外部域的流量<br>UBA：用户量活动异常 - 发现到外部域的流量<br>UBA：用户量活动异常 - 到内部域的流量<br>UBA：用户量活动异常 - 发现到内部域的流量<br>UBA：用户活动异常量 - 流量<br>UBA：用户活动量异常 - 发现流量</p>
+<p>以下规则和构建块以及它们提供的功能现在在 UBA 应用程序中进行管理：</p>
+<p>UBA：用户已休眠（无活动异常规则）<br>BB:UBA : 休眠用户首次登录 (逻辑)<br>BB:UBA : 休眠用户后续登录 (逻辑)<br>UBA : 用户名，成功，休眠<br>新账户<br>UBA：用户帐户的用户名，成功，观察到<br>UBA：用户帐户的用户名，成功，最近<br>UBA：用户帐户的用户名，成功，最近更新<br>BB:UBA：用户首次访问（逻辑）</p>
+<p>以下规则和构建块以及它们提供的功能现在通过允许非 UBA 规则与 UBA 一起使用来处理：</p>
+<p>QNI<br>UBA：QNI - 访问不适当保护的服务 - 证书过期<br>UBA：QNI - 访问不适当保护的服务 - 证书无效<br>UBA：QNI - 访问不适当保护的服务 - 自签名证书<br>UBA：QNI - 访问不适当保护的服务 - 弱公钥长度<br>UBA：QNI - 观察到的与恶意软件威胁相关的文件哈希<br>UBA：QNI - 在多个主机上观察到的文件哈希<br>UBA：QNI - 在被拒绝的电子邮件收件人上检测到潜在的垃圾邮件/网络钓鱼尝试<br>UBA：QNI - 从多次发送中检测到的潜在垃圾邮件/网络钓鱼主题服务器<br>UBA : QNI - 机密内容被转移到国外</p>
+<p>系统监控<br>UBA：可疑的 PowerShell 活动<br>UBA：可疑的 PowerShell 活动（资产）<br>UBA：可疑的命令提示符活动<br>UBA：检测到用户访问控制绕过（资产）<br>UBA：可疑的计划任务活动<br>UBA：可疑的服务活动<br>UBA：可疑的服务活动（资产）<br>UBA：系统注册表（资产）中的可疑条目<br>UBA：检测到可疑图像负载（资产）<br>UBA：可疑管道活动（资产）<br>UBA：受损主机上的可疑活动 UBA：受损主机（资产）上的可疑活动<br>UBA：检测到可疑管理活动<br>UBA：检测到创建可疑远程线程的进程（资产）<br>UBA：检测到常见漏洞利用工具<br>UBA：检测到常见漏洞利用工具（资产）<br>UBA：检测到恶意进程<br>UBA：访问了网络共享</p>
+<p>侦察<br>UBA：检测到 DHCP 服务器<br>异常扫描 UBA：检测到 DNS 服务器<br>异常扫描 UBA：检测到数据库服务器<br>异常扫描 UBA：检测到 FTP 服务器<br>异常扫描 UBA：检测到游戏服务器<br>异常扫描 UBA：检测到通用 ICMP<br>异常扫描UBA：检测到通用 TCP<br>异常扫描 UBA：检测到通用 UDP<br>异常扫描 UBA：检测到 IRC 服务器<br>异常扫描 UBA：检测到 LDAP 服务器<br>异常扫描 UBA：检测到邮件服务器<br>异常扫描 UBA：检测到消息服务器<br>异常扫描 UBA：异常扫描检测到 P2P 服务器的<br>UBA : 检测到代理服务器的异常扫描<br>UBA：检测到 RPC 服务器<br>异常扫描 UBA：检测到 SNMP 服务器<br>异常扫描 UBA：检测到 SSH 服务器<br>异常扫描 UBA：检测到 Web 服务器<br>异常扫描 UBA：检测到 Windows 服务器异常扫描</p>
+<h2 id="用于-Sysmon-的-IBM-QRadar-内容"><a href="#用于-Sysmon-的-IBM-QRadar-内容" class="headerlink" title="用于 Sysmon 的 IBM QRadar 内容"></a>用于 Sysmon 的 IBM QRadar 内容</h2><p>检测到可能的键盘记录器<br>检测到以系统用户权限启动的新的看不见的进程<br>检测到在多个主机上远程执行的进程<br>进程从异常目录开始（Recycle.bin，..）<br>添加了隐藏的网络共享<br>检测到 Powershell 恶意使用<br>使用编码命令检测到 Powershell 恶意使用<br>不寻常的过程（例如：word、iexplore、AcroRd..）<br>启动命令外壳<br>以系统权限启动的命令外壳<br>检测到从受损主机成功登录到其他主机<br>检测到可能的凭证转储工具<br>无子进程启动/产生了一个进程<br>从临时目录启动的进程<br>系统进程的异常父级<br>检测到可疑的 Svchost 进程<br>已从受损主机访问网络共享<br>已访问管理共享<br>已从受损计算机访问管理共享<br>进程从共享文件夹启动并创建线程到另一个进程<br>检测到单台机器过度使用系统工具<br>从受损主机访问网络共享资源的尝试过多失败<br>从单一来源访问管理共享的尝试过多失败<br>Powershell 已在受损主机中启动<br>PsExec 已从受损主机启动<br>检测到从受损主机到其他主机的 SMB 流量<br>已从远程系统启动命令 Shell 或 Powershell<br>已在受损主机中创建计划任务<br>系统中安装了恶意服务<br>检测到配置为使用 Powershell 的服务<br>检测到配置为使用管道的服务</p>
+<h2 id="适用于-Amazon-AWS-的-IBM-QRadar-内容扩展"><a href="#适用于-Amazon-AWS-的-IBM-QRadar-内容扩展" class="headerlink" title="适用于 Amazon AWS 的 IBM QRadar 内容扩展"></a>适用于 Amazon AWS 的 IBM QRadar 内容扩展</h2><p>AWS 云：根用户的云活动<br>AWS 云：关键 EC2 实例已停止或终止<br>AWS 云：检测到从不同地区成功登录 AWS 控制台<br>AWS 云：日志已被删除/禁用或停止<br>AWS 云：来自不同源 IP 的多个控制台登录失败<br>AWS 云：来自同一源 IP 的多个控制台登录失败<br>AWS 云：来自不同源 IP 的多个失败的 API 请求<br>AWS 云：来自同一源 IP 的多个失败的 API 请求<br>AWS 云：来自同一用户名的多个失败的 API 请求</p>
+<h2 id="IBM-安全侦察内容"><a href="#IBM-安全侦察内容" class="headerlink" title="IBM 安全侦察内容"></a>IBM 安全侦察内容</h2><p>本地 L2L TCP 扫描器<br>本地 L2L Windows 服务器扫描程序<br>本地 L2L 游戏服务器扫描器<br>本地 L2L DNS 扫描程序<br>本地 L2L 邮件服务器扫描程序<br>本地 L2L 代理服务器扫描程序<br>本地 L2L IM 服务器扫描程序<br>本地 L2L Web 服务器扫描程序<br>本地 L2L P2P 服务器扫描器<br>本地 L2L SNMP 扫描程序<br>本地 L2L RPC 服务器扫描程序<br>本地 L2L UDP 扫描器<br>本地 L2L DHCP 扫描程序<br>本地 L2L ICMP 扫描器</p>
+<h2 id="QRadar-Network-Insights-内容"><a href="#QRadar-Network-Insights-内容" class="headerlink" title="QRadar Network Insights 内容"></a>QRadar Network Insights 内容</h2><p>QNI : 机密内容被转移到国外<br>QNI : 访问不适当的安全服务 - 证书已过期<br>QNI : 访问不适当的安全服务 - 证书无效<br>QNI：从多个发送服务器检测到的潜在垃圾邮件/网络钓鱼主题<br>QNI：在多个主机上观察到的文件哈希<br>QNI：观察到的与恶意软件威胁相关的文件哈希<br>QNI：在被拒绝的电子邮件收件人上检测到潜在的垃圾邮件/网络钓鱼尝试<br>QNI : 访问不适当的安全服务 - 自签名证书<br>QNI : 访问不适当的安全服务 - 弱公钥长度</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：IBM QRadar UBA(用户行为分析) 规则集合</li>
+        <li>Post author：langu_xyz</li>
+        <li>Create time：2022-04-22 21:00:00</li>
+        <li>
+            Post link：https://blog.langu.xyz/IBM QRadar UBA(用户行为分析) 规则集合/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/%E9%9B%B6%E4%BF%A1%E4%BB%BB%E5%8E%9F%E5%88%99%E4%B8%8B%E7%9A%84%E5%AE%89%E5%85%A8%E7%8E%B0%E4%BB%A3%E5%8C%96%E3%80%8CMicrosoft%E3%80%8D/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">零信任原则下的安全现代化「Microsoft」</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/%E4%BA%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%BA%BF/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">云安全基线</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>&nbsp;-&nbsp;
+            
+            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a target="_blank" rel="noopener" href="//langu.xyz">AboutME:langu_xyz</a>
+        </div>
+        <!--
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        -->
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#UBA-%E8%A7%84%E5%88%99%E5%8C%85%E6%91%98%E8%A6%81"><span class="nav-text">UBA 规则包摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Access-and-authentication-%E8%AE%BF%E9%97%AE%E5%92%8C%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81"><span class="nav-text">Access and authentication 访问和身份验证</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Accounts-and-privileges-%E5%B8%90%E6%88%B7%E5%92%8C%E6%9D%83%E9%99%90"><span class="nav-text">Accounts and privileges 帐户和权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Browsing-behavior-%E6%B5%8F%E8%A7%88%E8%A1%8C%E4%B8%BA"><span class="nav-text">Browsing behavior 浏览行为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cloud-%E4%BA%91%E7%9B%B8%E5%85%B3"><span class="nav-text">Cloud 云相关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Domain-controller-%E5%9F%9F%E5%90%8D%E6%8E%A7%E5%88%B6"><span class="nav-text">Domain controller 域名控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Endpoint-%E7%AB%AF%E7%82%B9"><span class="nav-text">Endpoint 端点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Exfiltration-%E6%B3%84%E6%BC%8F"><span class="nav-text">Exfiltration 泄漏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Geography-%E4%BD%8D%E7%BD%AE"><span class="nav-text">Geography 位置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MaaS360-Security-MaaS360-%E5%AE%89%E5%85%A8%E5%91%8A%E8%AD%A6"><span class="nav-text">MaaS360 Security MaaS360 安全告警</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Network-traffic-and-attacks-%E7%BD%91%E7%BB%9C%E6%B5%81%E9%87%8F%E5%92%8C%E6%94%BB%E5%87%BB"><span class="nav-text">Network traffic and attacks 网络流量和攻击</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#QRadar-DNS-Analyzer-QRadar-DNS-%E5%88%86%E6%9E%90%E5%99%A8"><span class="nav-text">QRadar DNS Analyzer QRadar DNS 分析器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Threat-intelligence-%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5"><span class="nav-text">Threat intelligence  威胁情报</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%A7%84%E5%88%99%E9%83%A8%E5%88%86"><span class="nav-text">机器学习规则部分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E4%BA%8E-Sysmon-%E7%9A%84-IBM-QRadar-%E5%86%85%E5%AE%B9"><span class="nav-text">用于 Sysmon 的 IBM QRadar 内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%82%E7%94%A8%E4%BA%8E-Amazon-AWS-%E7%9A%84-IBM-QRadar-%E5%86%85%E5%AE%B9%E6%89%A9%E5%B1%95"><span class="nav-text">适用于 Amazon AWS 的 IBM QRadar 内容扩展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IBM-%E5%AE%89%E5%85%A8%E4%BE%A6%E5%AF%9F%E5%86%85%E5%AE%B9"><span class="nav-text">IBM 安全侦察内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#QRadar-Network-Insights-%E5%86%85%E5%AE%B9"><span class="nav-text">QRadar Network Insights 内容</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

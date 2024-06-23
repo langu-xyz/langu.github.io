@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="网络安全,黑客,JAVA安全,代码审计,渗透测试,入侵,SRC,扫描,WEB安全,移动安全,PHP">
+    <meta name="description" content="蓝骨, langu.xyz">
+    <meta name="author" content="langu_xyz">
+    
+        <title>
+            
+                从SOAR(安全编排自动化与响应)中求解安全运营之法 |
+                    
+                        langu_xyz
+        </title>
+        
+<link rel="stylesheet" href="/css/style.css">
+
+            <link rel="shortcut icon" href="/images/logo.jpeg">
+                
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+                    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"blog.langu.xyz","root":"/","language":"zh","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/logo.jpeg","favicon":"/images/logo.jpeg","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/shamo.jpg","description":"XYZ(无限未来)"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+
+                    <script>
+                        var _hmt = _hmt || [];
+                        (function() {
+                          var hm = document.createElement("script");
+                          hm.src = "https://hm.baidu.com/hm.js?1cd6e64ff252acf24b707985fcec8850";
+                          var s = document.getElementsByTagName("script")[0]; 
+                          s.parentNode.insertBefore(hm, s);
+                        })();
+                        </script>
+                        
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="langu_xyz" type="application/atom+xml">
+</head>
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                    <a class="logo-title" href="/">
+                        langu_xyz
+                    </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class="" href="/" >
+                                HOME
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class="" href="/tags/THINK/" >
+                                THINK
+                            </a>
+                        </li>
+                        
+                            
+                                <li class="menu-item search search-popup-trigger">
+                                    <i class="fas fa-search"></i>
+                                </li>
+                                
+                                
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                    
+                        <div class="icon-item menu-bar">
+                            <div class="menu-bar-middle"></div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/" >
+                        HOME
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/tags/THINK/" >
+                        THINK
+                    </a>
+                </li>
+                
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">从SOAR(安全编排自动化与响应)中求解安全运营之法</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/logo.jpeg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">langu_xyz</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2019-08-08 21:00:00
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%BA%94%E7%94%A8%E5%AE%89%E5%85%A8/">应用安全</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/THINK/">THINK</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>3.2k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>10 Mins</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <blockquote>
+<blockquote>
+<p>凡学问者，皆有术法道三大层次。法者，于术精通而升华成理，复以理指导术之提高，学问之提高层次。达于法者，达中乘也。</p>
+</blockquote>
+</blockquote>
+<p><img lazyload src="/images/loading.svg" data-src="15982653176360.jpg"></p>
+<h2 id="0x00-个人理解的企业应用安全建设"><a href="#0x00-个人理解的企业应用安全建设" class="headerlink" title="0x00 个人理解的企业应用安全建设"></a>0x00 个人理解的企业应用安全建设</h2><p>参与企业应用安全建设两年有余，在公司的应用安全建设比较早期的时候参与进来，最近一年又有幸深度参与了多家中小型公司的应用安全建设，无论是基于云安全平台还是基于自研平台的企业安全建设都有了些许思考。也渐渐构建起了自己的安全观，</p>
+<p>“企业安全建设是一个动态博弈需要持续投入的过程。安全是业务的一个重要属性，是业务的核心竞争力之一，应用安全的本质是运营。安全建设更重要的是看待安全问题的思路、角度和高度。攻防之道，相辅相成。”</p>
+<p>什么是运营，一切围绕着网站产品进行的人工干预都叫运营，那什么又是强运营呢，直白点就是需要大量人工参与、与其它角色大量沟通的运营。从笔者的角度来看，企业安全建设就是一个强运营的工作，尤其是在安全建设后期，平台、工具、制度相对完善之后。大量的运营使人痛苦，尤其对技术安全运营来说尤甚，所以在很长的时间里思考这个困境的解法，有了些许思路，通过本文中将自己对企业安全中应用安全建设的思考和大家分享下。</p>
+<p>当企业开始应用安全建设时，一般会经历这几个阶段：采购阶段、自研阶段、产品闭环，以期实现高效运营的目标。</p>
+<h2 id="0x01-采购阶段"><a href="#0x01-采购阶段" class="headerlink" title="0x01 采购阶段"></a>0x01 采购阶段</h2><p>这个阶段相信很多经历过“一个人的安全部”的都会深有感触，简单调研之后，大概率会发现这样一个事实————“一穷二白”，好一点的可能运维或IT同学已经做了一部分，例如系统漏洞、高危端口等，但很明显远远不够的。这时候就要开始采购安全产品了，“管它好不好用，先止血”。对各个乙方的安全解决方案进行调研，在各个开源社区寻找各类开源安全工具、平台，在耗费了大量精力和经历安全预算申请的绝望后，终于部署了防火墙、IDS等安全产品，从开源社区找到了SOC平台、扫描器、风控平台等开源安全产品。枪有了，能不能打道猎物还是要看人。同样，安全产品怎么来用才能发挥最大价值是个值得思考的事情，需要大量的内部调研，尝试与已有的流程、机制、产品进行配合，以及如何得到高层的帮助，这就需要大家各显神通了。</p>
+<p>在对接时，会发现在不经过二次开发的情况下很难实现有效的配合，更多的是在各自为战。与此同时，需要对这些产品进行运营，处理报警日志、漏洞扫描、漏洞的推动修复、应用上线审核、活动风险控制、各类安全应急等等，现阶段如果想要全部一手抓，难度有点大。笔者认为，<strong>在甲方做企业安全建设，最终还是要对结果负责，对于安全效果，有两个指标是最关键的核心指标，一个是漏洞/事件数，一个是安全产品覆盖面。</strong></p>
+<p>所以在初期阶段没法全覆盖的情况下，<strong>最有效的办法是找到业务最痛最关心的点，重点保障，得到认可。通过短期快速止血和长期安全机制建设相结合的方法迭代改进来度过这一阶段</strong>。为什么要找到业务最痛最关心的点呢？企业的安全是100%服务保障业务的，业务永远是第一位的，有业务才有安全。(当然如果公司的业务都是基于云产品部署的，那可以直接跳过这一阶段了，云平台提供的一整套安全产品对于基本的安全保障还是很有效的。)</p>
+<h2 id="0x02-自研阶段"><a href="#0x02-自研阶段" class="headerlink" title="0x02 自研阶段"></a>0x02 自研阶段</h2><p>经历了采购阶段安全建设后，有了一定的安全水位，安全团队的配置也得到相应的提高，在基于开源或采购的安全产品进行运营时，被大量平台之间的协作搞得焦头烂额，迫切的需要开始安全平台的部分自研。</p>
+<p>在这提一嘴安全团队的建设，笔者认为的安全团队组成主要有攻防、运营、开发三部分组成，其中开发又分为安全工具开发和安全平台开发，其中的区别在于安全工具开发需要专业的攻防能力，而安全平台开发则更侧重于开发本身，<strong>专业的人做专业的事</strong>，让一个安全同学去开发一个安全运营平台与现有的代码构建等平台进行对接是一件很困难的事情，所以就需要专业的开发来做这部分工作。</p>
+<p>没有哪套安全解决方案可以应用在所有企业上，这就需要安全团队针对当前的业务模式、系统架构、发布流程等针对性的开发一些工具或平台来使安全解决方案更契合当前企业的技术栈。</p>
+<p>例如SDL中的应用发布流程，其中最重要的莫过于发布卡点，卡点又要依赖代码安全扫描，而每个公司使用的开发框架往往不同，甚至在某些公司会对开发框架进行大量的修改，这种情况下通用的代码扫描就不可靠了，就需要对代码安全扫描器进行改造或自研，然后扫描出的漏洞需要通过漏洞运营平台来管理，如何修复对于开发来说也是个棘手的问题，要解决快速修复的问题就需要完整的代码级解决方案，好多公司都有安全包的组件供开发使用。例子只是其中的一个点，这一阶段往往是漫长的，平台和工具会经过一次次的迭代，最终和业务达到和平共处的状态。</p>
+<p>为什么需要专业的开发，一个很重要的原因是需要工程化的能力，这里引用《赵彦的CISO闪电战：两年甲方安全修炼之路》中的一句话，<strong>“工程化能力体现在能把自研的安全产品、安全系统落地于海量分布式环境，落地于规模庞大的组织的IT系统上，且不降低性能，不影响可用性，不出故障和运营事故”</strong>。</p>
+<p>因为安全产品导致的大型故障发生过很多起，安全产品有时候就是一个双刃剑，例如WAF，既能挡住恶意攻击，也有可能会把正常用户拒之门外。如果安全自身把业务给搞瘫痪了，那要安全还有何用，在很多情况下，稳定性往往是高于安全性的，凸显出工程化体系化的重要性。</p>
+<h2 id="0x03-产品闭环"><a href="#0x03-产品闭环" class="headerlink" title="0x03 产品闭环"></a>0x03 产品闭环</h2><p>每个企业的安全思路都是不完全相同的，经过了自研阶段后，会形成自己企业特有的安全建设解决方案。漫长的自研阶段度过后，可能会有同学认为“纵深防御体系”（<strong>笔者理解的纵深防御，从系统、中间件、网络、应用、业务等各个环节布控，一道道防线由外到内共同组成整个防御体系</strong>）已经建设完成。从产品上来说，或许是的。但是从安全运营的角度来看，当前每个产品都还是孤立的点，产品之间的联动更多的是靠人工运营。</p>
+<p>拿漏洞的运营举例，一个漏洞的生命周期通常是漏洞产生（SRC、内部发现、工具发现、威胁情报）、漏洞确认（是否误报、定级）、漏洞分配（对应的开发修复）、修复审核（是否修复以及修复方案的健壮性）、漏洞关闭，这其中就需要SRC、工具、TIP、SOC、开发中台、SIEM等平台的联动，来实现漏洞生命周期的闭环。类似闭环还有很多，但是工具类的产品闭环往往不是那么容易，这时可以寻找突破点，做产品的小闭环。</p>
+<h2 id="0x04-运营的痛点"><a href="#0x04-运营的痛点" class="headerlink" title="0x04 运营的痛点"></a>0x04 运营的痛点</h2><p>安全人员短缺、报警数量多、处置速度无法保证、处置经验有效沉淀少、威胁态势愈加危险和复杂等等</p>
+<p>往往在安全产品闭环阶段后，技术安全团队的大小会稳定下来甚至会缩小，应用安全运营人员也会越来越少，在笔者看来这是一个正常的进化过程。但是业务的扩张并没有停止，应用也是一刻不停发布上线，随着企业规模越来越大，暴露的攻击面也越来越广，各类报警、漏洞大量增加，在有限的人力下，处置速度和经验沉淀很难有保障，更不用说现在大环境下安全形势了。</p>
+<p>求变之心愈加强烈。</p>
+<h2 id="0x05-SOAR是否是一剂良药？"><a href="#0x05-SOAR是否是一剂良药？" class="headerlink" title="0x05 SOAR是否是一剂良药？"></a>0x05 SOAR是否是一剂良药？</h2><p>思考这个问题很久了，<strong>应用安全建设强运营的困境该如何去突围？</strong> 从最初的鼓吹AI到回归现实，终于从SOAR(安全编排自动化与响应)中看到些许希望。</p>
+<p>简单介绍一下SOAR，SOAR是Gartner 2018年在安全领域定义的最新前沿技术，与UEBA、EDR等侧重于威胁识别发现的技术不同，SOAR集中在识别后的威胁处理，强调用户可以通过事件编排中心通过编码实现任意的威胁处理逻辑。</p>
+<p>SOAR 是一系列技术的合集，它能够帮助企业和组织收集安全运维团队监控到的各种信息（包括各种安全系统产生的告警），并对这些信息进行事件分析和告警分诊。然后在标准工作流程的指引下，利用人机结合的方式帮助安全运维人员定义、排序和驱动标准化的事件响应活动。SOAR 工具使得企业和组织能够对事件分析与响应流程进行形式化的描述。</p>
+<p>SOAR相关的安全产品在国外国内都已经有安全公司进入到这个领域，但是在本文中，不去讨论具体的实现和产品，而是将其视作一个<strong>方法论</strong>，领会它的思路，尝试将其融入到产品自研和产品闭环中去。</p>
+<p>看一下SOAR的组成，编排、自动化、响应，其实从名字中已经给了我们答案，笔者认为，最核心的思想在于Orchestration和Automation，<strong>先将事件处理流程或其它的流程通过编排的方式形成闭环，然后对其中大量重复工作的部分进行自动化。</strong> 至于响应，也是同理，具体的以后详谈。</p>
+<p>有一点需要明确，<strong>目前通过应用SOAR来实现全自动组织和缓解的情况非常罕见，安全没有银弹，大多数缓解和阻断仍然需要安全人员的参与</strong>。但是SOAR的思想非常值得借鉴，尤其是在经历采购阶段、产品自研、产品闭环这几个阶段后，思考能不能通过SOAR的方法论来减轻工作量。</p>
+<p>例如漏洞扫描的流程，发现、上报、分配确认、修复确认，其中发现、上报、修复确认均可以实现自动化，再比如各类安全警报的处理也可以应用这套方法论。</p>
+<p>让专业的人来处理专业的事，用自动化来处理重复工作，或许是突围应用安全强运营困境的一个解法。SOAR目前还处于成长期，保持期待和不断探索。</p>
+<p>Modern Security Operations Center = SOAR + SIEM + UEBA + OTHER</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：从SOAR(安全编排自动化与响应)中求解安全运营之法</li>
+        <li>Post author：langu_xyz</li>
+        <li>Create time：2019-08-08 21:00:00</li>
+        <li>
+            Post link：https://blog.langu.xyz/SOAR(安全编排自动化与响应)中求解安全运营之法/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/DGA%20Domain%20Detection/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">DGA Domain Detection</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/K%20Nearest%20Neighbor/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">K Nearest Neighbor</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>&nbsp;-&nbsp;
+            
+            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a target="_blank" rel="noopener" href="//langu.xyz">AboutME:langu_xyz</a>
+        </div>
+        <!--
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        -->
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x00-%E4%B8%AA%E4%BA%BA%E7%90%86%E8%A7%A3%E7%9A%84%E4%BC%81%E4%B8%9A%E5%BA%94%E7%94%A8%E5%AE%89%E5%85%A8%E5%BB%BA%E8%AE%BE"><span class="nav-text">0x00 个人理解的企业应用安全建设</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x01-%E9%87%87%E8%B4%AD%E9%98%B6%E6%AE%B5"><span class="nav-text">0x01 采购阶段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x02-%E8%87%AA%E7%A0%94%E9%98%B6%E6%AE%B5"><span class="nav-text">0x02 自研阶段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x03-%E4%BA%A7%E5%93%81%E9%97%AD%E7%8E%AF"><span class="nav-text">0x03 产品闭环</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x04-%E8%BF%90%E8%90%A5%E7%9A%84%E7%97%9B%E7%82%B9"><span class="nav-text">0x04 运营的痛点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x05-SOAR%E6%98%AF%E5%90%A6%E6%98%AF%E4%B8%80%E5%89%82%E8%89%AF%E8%8D%AF%EF%BC%9F"><span class="nav-text">0x05 SOAR是否是一剂良药？</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

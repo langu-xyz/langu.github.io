@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="网络安全,黑客,JAVA安全,代码审计,渗透测试,入侵,SRC,扫描,WEB安全,移动安全,PHP">
+    <meta name="description" content="蓝骨, langu.xyz">
+    <meta name="author" content="langu_xyz">
+    
+        <title>
+            
+                应用安全评审中的三个关键节点及抓手实现 |
+                    
+                        langu_xyz
+        </title>
+        
+<link rel="stylesheet" href="/css/style.css">
+
+            <link rel="shortcut icon" href="/images/logo.jpeg">
+                
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+                    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"blog.langu.xyz","root":"/","language":"zh","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/logo.jpeg","favicon":"/images/logo.jpeg","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/shamo.jpg","description":"XYZ(无限未来)"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+
+                    <script>
+                        var _hmt = _hmt || [];
+                        (function() {
+                          var hm = document.createElement("script");
+                          hm.src = "https://hm.baidu.com/hm.js?1cd6e64ff252acf24b707985fcec8850";
+                          var s = document.getElementsByTagName("script")[0]; 
+                          s.parentNode.insertBefore(hm, s);
+                        })();
+                        </script>
+                        
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="langu_xyz" type="application/atom+xml">
+</head>
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                    <a class="logo-title" href="/">
+                        langu_xyz
+                    </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class="" href="/" >
+                                HOME
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class="" href="/tags/THINK/" >
+                                THINK
+                            </a>
+                        </li>
+                        
+                            
+                                <li class="menu-item search search-popup-trigger">
+                                    <i class="fas fa-search"></i>
+                                </li>
+                                
+                                
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                    
+                        <div class="icon-item menu-bar">
+                            <div class="menu-bar-middle"></div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/" >
+                        HOME
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/tags/THINK/" >
+                        THINK
+                    </a>
+                </li>
+                
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">应用安全评审中的三个关键节点及抓手实现</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/logo.jpeg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">langu_xyz</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2020-02-07 21:00:00
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%BA%94%E7%94%A8%E5%AE%89%E5%85%A8/">应用安全</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/THINK/">THINK</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.9k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>6 Mins</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>如何快速感知项目立项？如何感知应用上线？如何跟踪应用迭代？越权漏洞频发如何解决？</p>
+<p><img lazyload src="/images/loading.svg" data-src="15982649151296.jpg"></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>应用安全如何做？这是一个老生常谈的问题，那为什么还要提这个话题呢？在笔者经历了短暂的两年多的应用安全建设来看，SDL的完整落地是一个很大的难题。当然，像其中的培训、代码扫描以及应急响应这几部分，各种落地方案很成熟，也就不提了。应用安全建设的本质就是运营，最难落地的差不多就是安全评审了。</p>
+<p>如何进行安全评审，从方法论来看也不是什么难题，通过STRIDE威胁建模模型和DREAD威胁评级模型，再融入公司的实际情况，一份定制化的评审CheckList差不多就可以出炉了。然后问题就来了，在哪个环节切入？通过什么方式？如何持续运营？</p>
+<h2 id="安全评审需要介入的三个节点"><a href="#安全评审需要介入的三个节点" class="headerlink" title="安全评审需要介入的三个节点"></a>安全评审需要介入的三个节点</h2><p>立项时、上线时、迭代时。</p>
+<p><strong>立项时</strong>：根基不牢地动山摇，这个阶段需要进行架构安全评审。架构安全评审的必要性在于可以用最小的成本解决最大的风险，如果架构性安全问题在这个阶段未被发现，后续会随着一次次迭代，修复成本和风险都会急剧上升。</p>
+<p><strong>上线时</strong>：现在的白盒扫描，更多的是发现代码层漏洞，但是对于架构相关和业务相关的风险，就有心无力了。这也就引出了应用上线安全评审的必要性，验证立项评审阶段的风险是否存在，同时评审其有没有业务逻辑相关风险(越权、敏感信息等)。</p>
+<p><strong>迭代时</strong>：现在的开发思路大多都是快速立项、快速上线、持续迭代，也就导致了大部分的功能是在后期迭代过程中上线的，经过笔者的简单统计，当应用完成度在90%以上时，迭代新增的接口约占80%以上，换句话说，绝大多数的web接口都没有经过安全评审就暴露到公网当中去了，成为无数的攻击面，进而导致了权限相关安全风险的频发。</p>
+<h2 id="立项时–快速感知"><a href="#立项时–快速感知" class="headerlink" title="立项时–快速感知"></a>立项时–快速感知</h2><p>如何做到快速感知？笔者了解到的有这么几种：</p>
+<p><strong>一是和PD混熟</strong>，有新项目时及时同步，这种方法具有局限性，适合应用比较少的公司或者公司的某条业务线；</p>
+<p><strong>二是利用现有平台</strong>，往往在中台支撑部门、工程效能部门等，会有一些环节可以感知到立项，财务部门也是一个非常好的环节。这个时候就要发挥敏锐的嗅觉，找到这样的点，然后形成联动。这些平台大概率会接受合作，一则可以提升该平台的价值，二来可以提升其影响力；</p>
+<p><strong>三是自立门户成为入口</strong>，这种方案的思想是让项目在安全平台上立项，想要实现需要运气。为什么这么说呢，想要做这件事，需要大量的人员投入和强制的流程更改，能决定这事的往往需要CXO的支持，要想获得他们的支持，就需要一个影响足够大的安全风险。不过据笔者所知，有几家大公司就是这么做的。</p>
+<p>第一种方案，灵活性太强，效果时好时坏，笔者在很长一段时间里都是用这种方法，最后的结果很惨，随着业务的迅速发展，项目评审率跌至很低的水位。</p>
+<p>第二种方案的可行性非常强，是一个成本低效果好的抓手。但是有一个问题是，项目非常多怎么办？笔者现在的思路是按照项目的等级来评审，项目等级的划分有很多种方法，例如人日、业务线等等</p>
+<p>第三种方案就不提了，时刻准备着，机会来了抓紧。</p>
+<p>当找到了有效的抓手时，一定要记得带上数据安全、业务安全等，这个阶段的主要风险往往集中在风控、合规等。</p>
+<h2 id="上线时–发布卡点"><a href="#上线时–发布卡点" class="headerlink" title="上线时–发布卡点"></a>上线时–发布卡点</h2><p>上线发布卡点，这个做起来就非常容易了，嵌入到应用构建平台中去就可以实现。有一个问题是，为什么不每次发布都卡点呢？</p>
+<p>其实去看一下构建平台的发布记录就知道了，过于频繁，完全无法运营，所以只能退而求其次，卡住第一次上线发布。</p>
+<h2 id="迭代时–持续跟踪"><a href="#迭代时–持续跟踪" class="headerlink" title="迭代时–持续跟踪"></a>迭代时–持续跟踪</h2><p>上边说到“<strong>迭代新增的接口约占80%以上</strong>”，这就是一个超级大风险，迭代接口的安全性全依赖于开发的安全意识和应急响应。虽然在上线后会有持续的黑盒扫描，但是目前还没有哪个工具可以低误报、低风险的发现权限相关漏洞吧。</p>
+<p>在上线评审那里有说到过，构建平台的发布记录非常多，如果依赖这个去评审迭代，会消耗大量的精力，当应用只有两位数时还能勉强运营，但是当应用数量上升到几百、几千的时候，每天最多迭代几十万行代码，怕是不吃不喝也搞不定了。</p>
+<p>这里讲一下笔者的思路，<strong>commit监控</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1、每隔一段时间自动拉取commit记录；</span><br><span class="line">2、获取应用源码进行解析（白盒代码扫描工具中大多都可以做到源码解析，笔者是自己实现的）；</span><br><span class="line">3、解析diff记录，获取新增web接口；</span><br><span class="line">4、通过污点跟踪结合关键方法(permission等)大致判断风险指数(这个笔者实现起来效果不是很好，几乎每个应用都有自己独特的鉴权逻辑，通用程度低)。</span><br></pre></td></tr></table></figure>
+
+<p>只需要这几步，即可以实现应用新增web接口的跟踪。可能还有一些其它通用接口平台，其实跟踪思想也是类似。</p>
+<p>不过在笔者的运营过程中发现，还是会存在新增接口过多的情况，现在采用的是优先级的方案（重点应用、发生过高危风险的应用等），发现新增接口后，大部分情况下，人工快速审计下代码就可以发现风险了，当然还是会存在各种奇葩的鉴权逻辑，这时候就要和开发交流了。</p>
+<p>这段时间的运营感受就是，随着覆盖应用的增多，每天要读代码量也开始快速上升，不过效果还是很明显的。第4点的自动化分析需求愈加迫切。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>总结下就是，三个节点，关键之处在于找到这三个节点的抓手，充分利用现有资源，如果实在没有，那就创造抓手。用技术的思路去做运营，用创业的心态去做产品。</p>
+<p>本文纯属笔者的经验之谈，如有偏颇之处，还望指出，不甚感谢。</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：应用安全评审中的三个关键节点及抓手实现</li>
+        <li>Post author：langu_xyz</li>
+        <li>Create time：2020-02-07 21:00:00</li>
+        <li>
+            Post link：https://blog.langu.xyz/应用安全评审中的三个关键节点及抓手实现/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2020%20IoT%20Threat%20Report%20%E8%A7%A3%E8%AF%BB/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">2020 IoT Threat Report 解读</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/%E8%B4%A6%E5%8F%B7%E7%94%9F%E5%91%BD%E5%AE%89%E5%85%A8%E5%91%A8%E6%9C%9F/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">账号生命安全周期</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>&nbsp;-&nbsp;
+            
+            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a target="_blank" rel="noopener" href="//langu.xyz">AboutME:langu_xyz</a>
+        </div>
+        <!--
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        -->
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E8%AF%84%E5%AE%A1%E9%9C%80%E8%A6%81%E4%BB%8B%E5%85%A5%E7%9A%84%E4%B8%89%E4%B8%AA%E8%8A%82%E7%82%B9"><span class="nav-text">安全评审需要介入的三个节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AB%8B%E9%A1%B9%E6%97%B6%E2%80%93%E5%BF%AB%E9%80%9F%E6%84%9F%E7%9F%A5"><span class="nav-text">立项时–快速感知</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8A%E7%BA%BF%E6%97%B6%E2%80%93%E5%8F%91%E5%B8%83%E5%8D%A1%E7%82%B9"><span class="nav-text">上线时–发布卡点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%AD%E4%BB%A3%E6%97%B6%E2%80%93%E6%8C%81%E7%BB%AD%E8%B7%9F%E8%B8%AA"><span class="nav-text">迭代时–持续跟踪</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-text">总结</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

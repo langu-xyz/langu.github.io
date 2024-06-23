@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="网络安全,黑客,JAVA安全,代码审计,渗透测试,入侵,SRC,扫描,WEB安全,移动安全,PHP">
+    <meta name="description" content="蓝骨, langu.xyz">
+    <meta name="author" content="langu_xyz">
+    
+        <title>
+            
+                简单聊聊应用安全领域中的技术安全运营 |
+                    
+                        langu_xyz
+        </title>
+        
+<link rel="stylesheet" href="/css/style.css">
+
+            <link rel="shortcut icon" href="/images/logo.jpeg">
+                
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+                    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"blog.langu.xyz","root":"/","language":"zh","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/logo.jpeg","favicon":"/images/logo.jpeg","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/shamo.jpg","description":"XYZ(无限未来)"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+
+                    <script>
+                        var _hmt = _hmt || [];
+                        (function() {
+                          var hm = document.createElement("script");
+                          hm.src = "https://hm.baidu.com/hm.js?1cd6e64ff252acf24b707985fcec8850";
+                          var s = document.getElementsByTagName("script")[0]; 
+                          s.parentNode.insertBefore(hm, s);
+                        })();
+                        </script>
+                        
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="langu_xyz" type="application/atom+xml">
+</head>
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                    <a class="logo-title" href="/">
+                        langu_xyz
+                    </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class="" href="/" >
+                                HOME
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class="" href="/tags/THINK/" >
+                                THINK
+                            </a>
+                        </li>
+                        
+                            
+                                <li class="menu-item search search-popup-trigger">
+                                    <i class="fas fa-search"></i>
+                                </li>
+                                
+                                
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                    
+                        <div class="icon-item menu-bar">
+                            <div class="menu-bar-middle"></div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/" >
+                        HOME
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/tags/THINK/" >
+                        THINK
+                    </a>
+                </li>
+                
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">简单聊聊应用安全领域中的技术安全运营</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/logo.jpeg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">langu_xyz</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2022-07-15 21:00:00
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%BA%94%E7%94%A8%E5%AE%89%E5%85%A8/">应用安全</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/THINK/">THINK</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.1k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>3 Mins</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p><strong>技术安全运营是一个上限极高同时又下限极低的一个角色，做好不易。</strong></p>
+<p>注解：本文中“技术安全运营”的定义</p>
+<p>安全团队中的工种基本可以分为两类，“运营岗”和“技术岗”，而“技术岗”有可以分为开发安全产品的“研发岗/算法岗”和使用这些安全产品的“(技术)运营岗“。因此，例如各类安全产品的运营人员、SDLC安全人员等均可称为”技术安全运营“。</p>
+<p>本文中以几个实际场景中的例子来讨论不同能力的技术安全运营人员之间的差别。因视野有限，以下仅当胡言乱语，勿对号入座。</p>
+<h2 id="场景一：漏洞运营"><a href="#场景一：漏洞运营" class="headerlink" title="场景一：漏洞运营"></a>场景一：漏洞运营</h2><p>SRC或黑白灰扫描器等发现漏洞后：</p>
+<h3 id="“初级的”技术安全运营"><a href="#“初级的”技术安全运营" class="headerlink" title="“初级的”技术安全运营"></a>“初级的”技术安全运营</h3><p>简单验证/不验证后点击确认漏洞下发到研发进行修复，同时针对研发的修复疑问进行答疑(一般在此处多是针对漏洞本身进行修复，而不是考虑是否是最优解)，在修复完成后验证/不验证后关闭工单，某漏洞的运营到这里就结束了。</p>
+<h3 id="“中级的”技术安全运营"><a href="#“中级的”技术安全运营" class="headerlink" title="“中级的”技术安全运营"></a>“中级的”技术安全运营</h3><p>简单验证漏洞后给到研发进行修复，同时主动找到开发确定产生漏洞的根本原因，是系统架构层面原因还是安全意识原因，修复方案是否可以实现“默认安全”，该系统中是否还存在类似问题，在漏洞止血/修复后，进行漏洞复盘，寻找根因，优化研发流程/SDLC流程来避免该风险。</p>
+<h3 id="“高级的”技术安全运营"><a href="#“高级的”技术安全运营" class="headerlink" title="“高级的”技术安全运营"></a>“高级的”技术安全运营</h3><p>在“中级”之上，不定期归结历史漏洞产生原因，抽象当前应用层面临的核心风险TOP，然后针对不同的TOP风险，统筹资源，进行全域治理，优先从架构层、框架层进行风险解决，而不是将所有疑似风险下发让研发自查(如果所有的问题都用这种方式解决，那未必也太无能了)，避免沦为成为“工单下发工程师”、“首席客服官”。</p>
+<h2 id="场景二：RASP-WAF等等安全产品运营-非安全产品角色，而是产品使用方"><a href="#场景二：RASP-WAF等等安全产品运营-非安全产品角色，而是产品使用方" class="headerlink" title="场景二：RASP/WAF等等安全产品运营(非安全产品角色，而是产品使用方)"></a>场景二：RASP/WAF等等安全产品运营(非安全产品角色，而是产品使用方)</h2><p>安全产品的使用可以简单分为“部署”、“响应”两部分</p>
+<h3 id="“初级的”技术安全运营-1"><a href="#“初级的”技术安全运营-1" class="headerlink" title="“初级的”技术安全运营"></a>“初级的”技术安全运营</h3><p>“部署”</p>
+<p>从安全产品研发侧拿到部署文档和模棱两可的稳定性影响，然后进行通过邮件/群组通知到研发，进行部署，当研发产生疑问/部署失败时，拉相关安全产品研发进行答疑，而自己全程都是一个“proxy”。</p>
+<p>“响应”</p>
+<p>当事件发生告警时，拉群应急，完成止血，影响不大则应急结束，影响较大往往被动复盘，效果不佳。</p>
+<h3 id="“中级的”技术安全运营-1"><a href="#“中级的”技术安全运营-1" class="headerlink" title="“中级的”技术安全运营"></a>“中级的”技术安全运营</h3><p>“部署”</p>
+<p>在部署前，建立标准的部署流程，验证稳定性和防护效果，与安全产品团队制定稳定性标准和规则下发标准，同时建立完善的稳定性问题解决SOP和部署答疑指南。</p>
+<p>在部署时，与架构师团队协作，分优先级、分批次进行灰度部署，以稳定性为核心。</p>
+<p>在部署后，监测覆盖率变化，进行动态全覆盖。</p>
+<p>“响应”</p>
+<p>事件发生告警时，止血遏制，然后进行详细复盘，确定正式修复方案和排期、安全产品告警是否准确和及时、全域同类风险解决方案等。</p>
+<p>同时安全产品不可避免的会产生大量误报，通过对告警风险进行风险(更进一步进行自动化告警优化)，同时与安全产品团队进行规则优化，降低误报率。</p>
+<h3 id="“高级的”技术安全运营-1"><a href="#“高级的”技术安全运营-1" class="headerlink" title="“高级的”技术安全运营"></a>“高级的”技术安全运营</h3><p>让自己成为安全产品的半个PD，将自己安全经验融入到产品的设计中去，帮助安全产品进行架构优化。（这部分笔者并无多少经验，是未来要进行深入的方向之一）</p>
+<p>透过这两个简单例子，便是我对“技术安全运营”这个角色的简单理解。做与做好之间的差距是巨大的，核心是是否对自己的能力有成长。</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：简单聊聊应用安全领域中的技术安全运营</li>
+        <li>Post author：langu_xyz</li>
+        <li>Create time：2022-07-15 21:00:00</li>
+        <li>
+            Post link：https://blog.langu.xyz/简单聊聊应用安全领域中的技术安全运营/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/%E5%A6%84%E8%B0%88%EF%BC%9A%E2%80%9C%E6%8A%80%E6%9C%AF%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5%E2%80%9D%E7%9A%84%E6%9C%AA%E6%9D%A5%E6%98%AF%E2%80%9C%E5%AE%89%E5%85%A8%E6%9E%B6%E6%9E%84%E5%B8%88%E2%80%9D/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">妄谈：“技术安全运营”的未来是“安全架构师”</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/Cloud%20I%20Hack%20into%20Google%20Cloud/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Cloud I Hack into Google Cloud</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>&nbsp;-&nbsp;
+            
+            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a target="_blank" rel="noopener" href="//langu.xyz">AboutME:langu_xyz</a>
+        </div>
+        <!--
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        -->
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%BA%E6%99%AF%E4%B8%80%EF%BC%9A%E6%BC%8F%E6%B4%9E%E8%BF%90%E8%90%A5"><span class="nav-text">场景一：漏洞运营</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%80%9C%E5%88%9D%E7%BA%A7%E7%9A%84%E2%80%9D%E6%8A%80%E6%9C%AF%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5"><span class="nav-text">“初级的”技术安全运营</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%80%9C%E4%B8%AD%E7%BA%A7%E7%9A%84%E2%80%9D%E6%8A%80%E6%9C%AF%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5"><span class="nav-text">“中级的”技术安全运营</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%80%9C%E9%AB%98%E7%BA%A7%E7%9A%84%E2%80%9D%E6%8A%80%E6%9C%AF%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5"><span class="nav-text">“高级的”技术安全运营</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%BA%E6%99%AF%E4%BA%8C%EF%BC%9ARASP-WAF%E7%AD%89%E7%AD%89%E5%AE%89%E5%85%A8%E4%BA%A7%E5%93%81%E8%BF%90%E8%90%A5-%E9%9D%9E%E5%AE%89%E5%85%A8%E4%BA%A7%E5%93%81%E8%A7%92%E8%89%B2%EF%BC%8C%E8%80%8C%E6%98%AF%E4%BA%A7%E5%93%81%E4%BD%BF%E7%94%A8%E6%96%B9"><span class="nav-text">场景二：RASP&#x2F;WAF等等安全产品运营(非安全产品角色，而是产品使用方)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%80%9C%E5%88%9D%E7%BA%A7%E7%9A%84%E2%80%9D%E6%8A%80%E6%9C%AF%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5-1"><span class="nav-text">“初级的”技术安全运营</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%80%9C%E4%B8%AD%E7%BA%A7%E7%9A%84%E2%80%9D%E6%8A%80%E6%9C%AF%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5-1"><span class="nav-text">“中级的”技术安全运营</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%80%9C%E9%AB%98%E7%BA%A7%E7%9A%84%E2%80%9D%E6%8A%80%E6%9C%AF%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5-1"><span class="nav-text">“高级的”技术安全运营</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="网络安全,黑客,JAVA安全,代码审计,渗透测试,入侵,SRC,扫描,WEB安全,移动安全,PHP">
+    <meta name="description" content="蓝骨, langu.xyz">
+    <meta name="author" content="langu_xyz">
+    
+        <title>
+            
+                妄谈：“技术安全运营”的未来是“安全架构师” |
+                    
+                        langu_xyz
+        </title>
+        
+<link rel="stylesheet" href="/css/style.css">
+
+            <link rel="shortcut icon" href="/images/logo.jpeg">
+                
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+                    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"blog.langu.xyz","root":"/","language":"zh","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/logo.jpeg","favicon":"/images/logo.jpeg","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/shamo.jpg","description":"XYZ(无限未来)"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+
+                    <script>
+                        var _hmt = _hmt || [];
+                        (function() {
+                          var hm = document.createElement("script");
+                          hm.src = "https://hm.baidu.com/hm.js?1cd6e64ff252acf24b707985fcec8850";
+                          var s = document.getElementsByTagName("script")[0]; 
+                          s.parentNode.insertBefore(hm, s);
+                        })();
+                        </script>
+                        
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="langu_xyz" type="application/atom+xml">
+</head>
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                    <a class="logo-title" href="/">
+                        langu_xyz
+                    </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class="" href="/" >
+                                HOME
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class="" href="/tags/THINK/" >
+                                THINK
+                            </a>
+                        </li>
+                        
+                            
+                                <li class="menu-item search search-popup-trigger">
+                                    <i class="fas fa-search"></i>
+                                </li>
+                                
+                                
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                    
+                        <div class="icon-item menu-bar">
+                            <div class="menu-bar-middle"></div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/" >
+                        HOME
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/tags/THINK/" >
+                        THINK
+                    </a>
+                </li>
+                
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">妄谈：“技术安全运营”的未来是“安全架构师”</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/logo.jpeg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">langu_xyz</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2022-07-20 21:00:00
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%BA%94%E7%94%A8%E5%AE%89%E5%85%A8/">应用安全</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/THINK/">THINK</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.4k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>4 Mins</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <blockquote>
+<blockquote>
+<p>资历尚浅，见识狭隘，仅以自身所见所闻所学，妄谈一下这个话题，当个乐子，随便看看。</p>
+</blockquote>
+</blockquote>
+<h3 id="问：“架构师”是岗位还是思想？"><a href="#问：“架构师”是岗位还是思想？" class="headerlink" title="问：“架构师”是岗位还是思想？"></a>问：“架构师”是岗位还是思想？</h3><p>：在阿里对架构师的定义是“去应对复杂性，应对熵值不断增加的一个组织性的力量。”“软件/系统架构的核心挑战是快速增长的复杂性，越是大型系统，越需要简单性。”识别和控制复杂度正式“架构师”在对复杂核心系统设计时候要考虑的重点。</p>
+<p>而架构的基本出发点是效率，通过合理的架构设计、有序化重构，实现效率最大化。</p>
+<p>架构师不应该脱离业务上下文而单独存在，好的架构师是为解决复杂问题而存在的，思考如何能用抽象的方法解决一类问题。将发现的问题进行抽象和归纳，定义问题的基本要素，定义出问题的短期和长期解决方案，推动技术整体的进步。</p>
+<p>简化一下架构师本质上是一种“发现问题—定义问题—解决问题”的能力或是思考模式，而如何定义问题是“架构师”是否优秀的核心衡量。</p>
+<h3 id="问：“架构师”需要具备哪些能力？"><a href="#问：“架构师”需要具备哪些能力？" class="headerlink" title="问：“架构师”需要具备哪些能力？"></a>问：“架构师”需要具备哪些能力？</h3><p>：“架构师”要具备的五个能力，1. 全局视角 2. 技术广度 3. 持续学习 4. 业务理解 5.结果落地。</p>
+<p>不同level的架构师的差别在于建设的范围，例如在阿里体系内，技术序列从P8开始就要具备架构师的能力，P8往往只负责一个单体业务，P9会负责一个更加复杂的单体业务，到了P10就要思考整个行业，而P11及以上就要跨行业、从集团整体角度去思考问题，最牛的架构师莫过于“1979年，那是一个春天，有一位老人，在中国的南海边，划了一个圈……”</p>
+<p>但是我更认可的是“架构师”是一个底层的人才特质，与层级无关。（实际上有大把P8并没有任何的“架构师”思维）</p>
+<h3 id="问：“架构师”需要非常精深的技术能力吗？"><a href="#问：“架构师”需要非常精深的技术能力吗？" class="headerlink" title="问：“架构师”需要非常精深的技术能力吗？"></a>问：“架构师”需要非常精深的技术能力吗？</h3><p>：如果身兼“架构师”的角色，往往就没有足够的时间去持续的精深技术，但是这个角色本身需要大量的实践和知识的积累，需要接触更多的人和事，用新的方法来解决新的问题。要具备这个能力，就要持续的保持先进技术学习的能力和经常性的实践。</p>
+<h3 id="问：“安全”“架构师”存在的意义是什么？"><a href="#问：“安全”“架构师”存在的意义是什么？" class="headerlink" title="问：“安全”“架构师”存在的意义是什么？"></a>问：“安全”“架构师”存在的意义是什么？</h3><p>：在上一篇文章中写了“技术安全运营”，那么在这之后的发展我浅薄的认为应该就是“安全架构师”了。</p>
+<p>参考架构师的Job Model，作为架构师，应该具备横向和纵向两方面的职责。</p>
+<p>一方面不能脱离实际的业务上下文，要深入到业务中，从业务战略到技术战略再到安全战略，到设计、实施、再到治理。提供一个简单、清晰、优秀的设计。在安全风险治理中什么是好的设计呢？默认安全和可持续化是最核心的两点。</p>
+<p>就像在实际的工作中，很多风险治理都是靠人力去运营，稍有成色便在PPT上侃侃而谈大书特书，但是实际上只要项目转为日常化运营，那便等于没人运营了。要想做到低成本的可持续风险治理何其难。</p>
+<p>再者是默认安全，在各类风险中，人的因素不可谓不大，一味的用各种方式要求“人”来保证安全，终归事倍功半。</p>
+<p>“安全架构师”在这其中，既要能设计出有效的阶段治理策略，又要保证这样的设计可以迭代可持续化。</p>
+<p>另一方面，“安全架构师”要融入到“系统架构师”圈子中，与他们就重要的概念达成一致。因为不存在哪个业务先设计好架构然后去发展的，大多都是野蛮生长然后再规范化。那在这个过程中，一个优秀的健壮的安全的架构需要“架构师”们一起对重要的概念、原则有广泛的共识，例如“默认安全”。</p>
+<p>“安全架构师”必须是一个长期主义者，要长期的去看一些东西。而要具备“长期主义”，是需要有信仰的，信仰何来，需要持续的对前沿的理念、技术进行学习，同时对身处其中的业务足够的了解，更重要的是要有一个可以培养“长期主义”的土壤（虽然现在的浮躁对于长期主义并不友好）。</p>
+<p>还有一个重要的点，不论是“架构”还是其它的比如“云安全”等，一定不要狭义的去理解，就比如“云安全”，不仅仅包括“K8S”，也包括“云系统网络的设计”、“云上应用的设计”、“云上数据安全保护”等等，“架构”也是同理，技术、产品、业务、经营等等都要交叉去思考，才能有一个更全局的视角和思考，“安全”真的是小的不能再小的一个赛道了，跨圈看看会发现有大量优秀的设计可以借鉴回来。</p>
+<p>看完这里，相信各位必然会有许多不同的见解，我也是正门外窥探，随便看看好了。</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：妄谈：“技术安全运营”的未来是“安全架构师”</li>
+        <li>Post author：langu_xyz</li>
+        <li>Create time：2022-07-20 21:00:00</li>
+        <li>
+            Post link：https://blog.langu.xyz/妄谈：“技术安全运营”的未来是“安全架构师”/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/Cloud%20Native%20PostgreSQL%E6%94%BB%E5%87%BB%E9%9D%A2%E5%88%86%E6%9E%90/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Cloud Native PostgreSQL攻击面分析</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/%E7%AE%80%E5%8D%95%E8%81%8A%E8%81%8A%E5%BA%94%E7%94%A8%E5%AE%89%E5%85%A8%E9%A2%86%E5%9F%9F%E4%B8%AD%E7%9A%84%E6%8A%80%E6%9C%AF%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">简单聊聊应用安全领域中的技术安全运营</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>&nbsp;-&nbsp;
+            
+            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a target="_blank" rel="noopener" href="//langu.xyz">AboutME:langu_xyz</a>
+        </div>
+        <!--
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        -->
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%EF%BC%9A%E2%80%9C%E6%9E%B6%E6%9E%84%E5%B8%88%E2%80%9D%E6%98%AF%E5%B2%97%E4%BD%8D%E8%BF%98%E6%98%AF%E6%80%9D%E6%83%B3%EF%BC%9F"><span class="nav-text">问：“架构师”是岗位还是思想？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%EF%BC%9A%E2%80%9C%E6%9E%B6%E6%9E%84%E5%B8%88%E2%80%9D%E9%9C%80%E8%A6%81%E5%85%B7%E5%A4%87%E5%93%AA%E4%BA%9B%E8%83%BD%E5%8A%9B%EF%BC%9F"><span class="nav-text">问：“架构师”需要具备哪些能力？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%EF%BC%9A%E2%80%9C%E6%9E%B6%E6%9E%84%E5%B8%88%E2%80%9D%E9%9C%80%E8%A6%81%E9%9D%9E%E5%B8%B8%E7%B2%BE%E6%B7%B1%E7%9A%84%E6%8A%80%E6%9C%AF%E8%83%BD%E5%8A%9B%E5%90%97%EF%BC%9F"><span class="nav-text">问：“架构师”需要非常精深的技术能力吗？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%EF%BC%9A%E2%80%9C%E5%AE%89%E5%85%A8%E2%80%9D%E2%80%9C%E6%9E%B6%E6%9E%84%E5%B8%88%E2%80%9D%E5%AD%98%E5%9C%A8%E7%9A%84%E6%84%8F%E4%B9%89%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-text">问：“安全”“架构师”存在的意义是什么？</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

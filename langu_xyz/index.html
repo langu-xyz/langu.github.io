@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="网络安全,黑客,JAVA安全,代码审计,渗透测试,入侵,SRC,扫描,WEB安全,移动安全,PHP">
+    <meta name="description" content="蓝骨, langu.xyz">
+    <meta name="author" content="langu_xyz">
+    
+        <title>
+            
+                langu.xyz(蓝骨) |
+                    
+                        langu_xyz
+        </title>
+        
+<link rel="stylesheet" href="/css/style.css">
+
+            <link rel="shortcut icon" href="/images/logo.jpeg">
+                
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+                    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"blog.langu.xyz","root":"/","language":"zh","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/logo.jpeg","favicon":"/images/logo.jpeg","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/shamo.jpg","description":"XYZ(无限未来)"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+
+                    <script>
+                        var _hmt = _hmt || [];
+                        (function() {
+                          var hm = document.createElement("script");
+                          hm.src = "https://hm.baidu.com/hm.js?1cd6e64ff252acf24b707985fcec8850";
+                          var s = document.getElementsByTagName("script")[0]; 
+                          s.parentNode.insertBefore(hm, s);
+                        })();
+                        </script>
+                        
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="langu_xyz" type="application/atom+xml">
+</head>
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                    <a class="logo-title" href="/">
+                        langu_xyz
+                    </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class="" href="/" >
+                                HOME
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class="" href="/tags/THINK/" >
+                                THINK
+                            </a>
+                        </li>
+                        
+                            
+                                <li class="menu-item search search-popup-trigger">
+                                    <i class="fas fa-search"></i>
+                                </li>
+                                
+                                
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                    
+                        <div class="icon-item menu-bar">
+                            <div class="menu-bar-middle"></div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/" >
+                        HOME
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/tags/THINK/" >
+                        THINK
+                    </a>
+                </li>
+                
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">langu.xyz(蓝骨)</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/logo.jpeg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">langu_xyz</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2017-04-21 21:00:00
+    </span>
+    
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.1k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>3 Mins</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h3 id="职业生涯"><a href="#职业生涯" class="headerlink" title="职业生涯"></a>职业生涯</h3><!-- ### 2024- 字节跳动
+
+>> 内部威胁/安全数据分析
+
+负责内部威胁蓝军的建设，基于各类数据，围绕业务场景，提炼规则构建策略，对各类内部威胁行为进行异常检测和精准识别，持续发现未知内部高级威胁。 -->
+
+<h4 id="2022-2023-字节跳动"><a href="#2022-2023-字节跳动" class="headerlink" title="2022-2023 字节跳动"></a>2022-2023 字节跳动</h4><blockquote>
+<blockquote>
+<p>应用安全</p>
+</blockquote>
+</blockquote>
+<p>经过前五年的应用安全建设实践，想要在更庞大的业务去验证“我的应用安全观”思路的通用性，在TikTok的应用安全建设中，通过风险摸排、漏洞复盘、“SDLC工作台”的综合思路，提效、跟踪、闭环，有效实现外部漏洞数量的大幅收敛以及完整SDLC体系的构建。</p>
+<h4 id="2017-2022-阿里巴巴"><a href="#2017-2022-阿里巴巴" class="headerlink" title="2017-2022 阿里巴巴"></a>2017-2022 阿里巴巴</h4><blockquote>
+<blockquote>
+<p>应用安全/数据安全</p>
+</blockquote>
+</blockquote>
+<p>从零开始，全程参与菜鸟BU技术安全体系的构建，带领团队不断建设和深耕应用安全领域，致力于线上数据批量泄漏的治理和<a class="link" target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/E1cDMfGRbF0hKlvnJ2PMFQ">基础安全建设<i class="fas fa-external-link-alt"></i></a>，推动并实现<a class="link" target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/atfMoXjxccUfrZbFsULiRg">DevSecOps在菜鸟的落地<i class="fas fa-external-link-alt"></i></a>。</p>
+<br>
+<br>
+
+
+<h3 id="应用安全观"><a href="#应用安全观" class="headerlink" title="应用安全观"></a>应用安全观</h3><h4 id="必经之路"><a href="#必经之路" class="headerlink" title="必经之路"></a>必经之路</h4><h5 id="第一阶段：从0到1，表面上补齐了各类安全能力，但是风险仍遍地开花"><a href="#第一阶段：从0到1，表面上补齐了各类安全能力，但是风险仍遍地开花" class="headerlink" title="第一阶段：从0到1，表面上补齐了各类安全能力，但是风险仍遍地开花"></a>第一阶段：从0到1，表面上补齐了各类安全能力，但是风险仍遍地开花</h5><p>SDLC的流程所有人都背的滚瓜烂熟，在进行一个新业务的SDLC建设时，第一步要做的几乎都是通过各种方式，将拼图补齐，至少看起来是五脏俱全，但是这些拼图是否在起作用就未知可否了。判断当前业务是否处于这个阶段有个很简单的办法，就是分析下历史漏洞，是否各个类型的漏洞都在占有一定的比例，外部上报漏洞数量忽高忽低并且处于一个相对较高的位置。啥啥都有，啥啥都不行。</p>
+<h5 id="第二阶段：自动化能力得到提升，风险集中到某几类特定类型"><a href="#第二阶段：自动化能力得到提升，风险集中到某几类特定类型" class="headerlink" title="第二阶段：自动化能力得到提升，风险集中到某几类特定类型"></a>第二阶段：自动化能力得到提升，风险集中到某几类特定类型</h5><p>一直持续的投入人力进行漏洞挖掘是ROI相对较低，所以在第一阶段的风险适当收敛后，自然而然的会将重心转移到工具自动化发现漏洞上，但是工具也不是万能的，风险最终会被收敛到越权、数据泄漏或业务特色风险等几类中，这时往往需要通过一些风险治理专项进行攻坚克难。</p>
+<h5 id="第三阶段：核心风险基本得到解决，SDLC左移，重心转移到上线前，安全水位可度量"><a href="#第三阶段：核心风险基本得到解决，SDLC左移，重心转移到上线前，安全水位可度量" class="headerlink" title="第三阶段：核心风险基本得到解决，SDLC左移，重心转移到上线前，安全水位可度量"></a>第三阶段：核心风险基本得到解决，SDLC左移，重心转移到上线前，安全水位可度量</h5><p>无数个应急的夜晚之后，救火队员角色的比重可以降低一点，这个阶段我们的重心更多的是防患于未然——“治未病”；这时候也会遇到个严峻的问题，左移的时候如何让RD看到并看清楚，这时候就需要科学的度量衡，设计良好“安全分”在这时会起到很大的作用。</p>
+<h5 id="第四阶段：经过持续的SDLC深耕，实现理想的DevSecOps，产品、开发、测试、安全所有人都在为安全负责"><a href="#第四阶段：经过持续的SDLC深耕，实现理想的DevSecOps，产品、开发、测试、安全所有人都在为安全负责" class="headerlink" title="第四阶段：经过持续的SDLC深耕，实现理想的DevSecOps，产品、开发、测试、安全所有人都在为安全负责"></a>第四阶段：经过持续的SDLC深耕，实现理想的DevSecOps，产品、开发、测试、安全所有人都在为安全负责</h5><p>经过持续的左移、深耕，理想情况下我们会再次经历一次角色的转变，“安全工程师提供安全能力支持，业务为产品自身的安全负责”，安全大同。</p>
+<h4 id="浅谈“技术安全运营”"><a href="#浅谈“技术安全运营”" class="headerlink" title="浅谈“技术安全运营”"></a>浅谈“技术安全运营”</h4><p>末等：漏洞修复只要无法复现便结束工单，全程几乎与RD无沟通；</p>
+<p>下乘：结合历史漏洞与RD探讨漏洞产生根因，并能根据业务现状因地制宜给出修复方案，并且能在关键时候对稳定性与安全性的取舍做出决断；</p>
+<p>中庸：总结发现漏洞或风险的共性，通过深入业务，能在架构层给出“默认安全”的解决方案，并能推动落地，需要有一定的知识广度、架构能力、项目管理能力；</p>
+<p>上乘：提出并推动更普世的安全解决方案，适用于全部业务或成为行业解决方案，例如“可信安全架构”</p>
+<h4 id="“漏洞”是SDLC的发动机"><a href="#“漏洞”是SDLC的发动机" class="headerlink" title="“漏洞”是SDLC的发动机"></a>“漏洞”是SDLC的发动机</h4><p>漏洞运营的核心是“复盘”</p>
+<p>不只是关心“为什么没发现”，更关心“为什么会出现”</p>
+<p>不仅要知道“为什么会出现”，更要知道复盘后的效果“发现了多少”</p>
+<br>
+<br>
+
+
+<h3 id="如何找到我"><a href="#如何找到我" class="headerlink" title="如何找到我"></a>如何找到我</h3><p>有一个小小的公众号，偶尔会发一些平常的所思所想，当然也可以直接留言</p>
+<p><img lazyload src="/images/loading.svg" data-src="https://mp.weixin.qq.com/mp/qrcode?scene=10000004&size=150&__biz=MzU3MDg0MDgwNw==&mid=2247484026&idx=1&sn=b25c5f17ab3407514f9ca8ab023425b1&send_time=" alt="公众号: 电驭叛客"> </p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：langu.xyz(蓝骨)</li>
+        <li>Post author：langu_xyz</li>
+        <li>Create time：2017-04-21 21:00:00</li>
+        <li>
+            Post link：https://blog.langu.xyz/langu_xyz/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/Chrome%20XSS%20Auditor%20Bypass%20Payload/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Chrome XSS Auditor Bypass Payload</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/XSS%20Tips%20%E5%8F%8A%E4%BF%AE%E5%A4%8D%E6%96%B9%E6%A1%88/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">XSS Tips 及修复方案</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>&nbsp;-&nbsp;
+            
+            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a target="_blank" rel="noopener" href="//langu.xyz">AboutME:langu_xyz</a>
+        </div>
+        <!--
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        -->
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%81%8C%E4%B8%9A%E7%94%9F%E6%B6%AF"><span class="nav-text">职业生涯</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2022-2023-%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8"><span class="nav-text">2022-2023 字节跳动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2017-2022-%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4"><span class="nav-text">2017-2022 阿里巴巴</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E5%AE%89%E5%85%A8%E8%A7%82"><span class="nav-text">应用安全观</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BF%85%E7%BB%8F%E4%B9%8B%E8%B7%AF"><span class="nav-text">必经之路</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E9%98%B6%E6%AE%B5%EF%BC%9A%E4%BB%8E0%E5%88%B01%EF%BC%8C%E8%A1%A8%E9%9D%A2%E4%B8%8A%E8%A1%A5%E9%BD%90%E4%BA%86%E5%90%84%E7%B1%BB%E5%AE%89%E5%85%A8%E8%83%BD%E5%8A%9B%EF%BC%8C%E4%BD%86%E6%98%AF%E9%A3%8E%E9%99%A9%E4%BB%8D%E9%81%8D%E5%9C%B0%E5%BC%80%E8%8A%B1"><span class="nav-text">第一阶段：从0到1，表面上补齐了各类安全能力，但是风险仍遍地开花</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E9%98%B6%E6%AE%B5%EF%BC%9A%E8%87%AA%E5%8A%A8%E5%8C%96%E8%83%BD%E5%8A%9B%E5%BE%97%E5%88%B0%E6%8F%90%E5%8D%87%EF%BC%8C%E9%A3%8E%E9%99%A9%E9%9B%86%E4%B8%AD%E5%88%B0%E6%9F%90%E5%87%A0%E7%B1%BB%E7%89%B9%E5%AE%9A%E7%B1%BB%E5%9E%8B"><span class="nav-text">第二阶段：自动化能力得到提升，风险集中到某几类特定类型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E9%98%B6%E6%AE%B5%EF%BC%9A%E6%A0%B8%E5%BF%83%E9%A3%8E%E9%99%A9%E5%9F%BA%E6%9C%AC%E5%BE%97%E5%88%B0%E8%A7%A3%E5%86%B3%EF%BC%8CSDLC%E5%B7%A6%E7%A7%BB%EF%BC%8C%E9%87%8D%E5%BF%83%E8%BD%AC%E7%A7%BB%E5%88%B0%E4%B8%8A%E7%BA%BF%E5%89%8D%EF%BC%8C%E5%AE%89%E5%85%A8%E6%B0%B4%E4%BD%8D%E5%8F%AF%E5%BA%A6%E9%87%8F"><span class="nav-text">第三阶段：核心风险基本得到解决，SDLC左移，重心转移到上线前，安全水位可度量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E9%98%B6%E6%AE%B5%EF%BC%9A%E7%BB%8F%E8%BF%87%E6%8C%81%E7%BB%AD%E7%9A%84SDLC%E6%B7%B1%E8%80%95%EF%BC%8C%E5%AE%9E%E7%8E%B0%E7%90%86%E6%83%B3%E7%9A%84DevSecOps%EF%BC%8C%E4%BA%A7%E5%93%81%E3%80%81%E5%BC%80%E5%8F%91%E3%80%81%E6%B5%8B%E8%AF%95%E3%80%81%E5%AE%89%E5%85%A8%E6%89%80%E6%9C%89%E4%BA%BA%E9%83%BD%E5%9C%A8%E4%B8%BA%E5%AE%89%E5%85%A8%E8%B4%9F%E8%B4%A3"><span class="nav-text">第四阶段：经过持续的SDLC深耕，实现理想的DevSecOps，产品、开发、测试、安全所有人都在为安全负责</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%85%E8%B0%88%E2%80%9C%E6%8A%80%E6%9C%AF%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5%E2%80%9D"><span class="nav-text">浅谈“技术安全运营”</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%80%9C%E6%BC%8F%E6%B4%9E%E2%80%9D%E6%98%AFSDLC%E7%9A%84%E5%8F%91%E5%8A%A8%E6%9C%BA"><span class="nav-text">“漏洞”是SDLC的发动机</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E6%89%BE%E5%88%B0%E6%88%91"><span class="nav-text">如何找到我</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

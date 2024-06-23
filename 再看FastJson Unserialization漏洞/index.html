@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="网络安全,黑客,JAVA安全,代码审计,渗透测试,入侵,SRC,扫描,WEB安全,移动安全,PHP">
+    <meta name="description" content="蓝骨, langu.xyz">
+    <meta name="author" content="langu_xyz">
+    
+        <title>
+            
+                再看FastJson Unserialization漏洞 |
+                    
+                        langu_xyz
+        </title>
+        
+<link rel="stylesheet" href="/css/style.css">
+
+            <link rel="shortcut icon" href="/images/logo.jpeg">
+                
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+                    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"blog.langu.xyz","root":"/","language":"zh","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/logo.jpeg","favicon":"/images/logo.jpeg","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/shamo.jpg","description":"XYZ(无限未来)"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+
+                    <script>
+                        var _hmt = _hmt || [];
+                        (function() {
+                          var hm = document.createElement("script");
+                          hm.src = "https://hm.baidu.com/hm.js?1cd6e64ff252acf24b707985fcec8850";
+                          var s = document.getElementsByTagName("script")[0]; 
+                          s.parentNode.insertBefore(hm, s);
+                        })();
+                        </script>
+                        
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="langu_xyz" type="application/atom+xml">
+</head>
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                    <a class="logo-title" href="/">
+                        langu_xyz
+                    </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class="" href="/" >
+                                HOME
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class="" href="/tags/THINK/" >
+                                THINK
+                            </a>
+                        </li>
+                        
+                            
+                                <li class="menu-item search search-popup-trigger">
+                                    <i class="fas fa-search"></i>
+                                </li>
+                                
+                                
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                    
+                        <div class="icon-item menu-bar">
+                            <div class="menu-bar-middle"></div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/" >
+                        HOME
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/tags/THINK/" >
+                        THINK
+                    </a>
+                </li>
+                
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">再看FastJson Unserialization漏洞</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/logo.jpeg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">langu_xyz</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2018-03-23 21:00:00
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/JAVA%E5%AE%89%E5%85%A8/">JAVA安全</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/JAVA/">JAVA</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.1k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>4 Mins</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h4 id="0x01"><a href="#0x01" class="headerlink" title="0x01"></a>0x01</h4><p>前言 这段时间反思了下，以前分析的那些框架级别漏洞，跟进一遍后就没有然后了，对漏洞的理解还是太浅，达不到举一反三的作用，再看一次fastjson</p>
+<h4 id="0x02-跟进调用链"><a href="#0x02-跟进调用链" class="headerlink" title="0x02 跟进调用链"></a>0x02 跟进调用链</h4><p><img lazyload src="/images/loading.svg" data-src="15217923998433.jpg"></p>
+<p>JSON.parseObject</p>
+<p><img lazyload src="/images/loading.svg" data-src="15217925423751.jpg"><br><img lazyload src="/images/loading.svg" data-src="15217930007239.jpg"></p>
+<p>JSON是一个抽象类，JSON中有一个静态方法parseObject（String text），将text解析为一个JSONObject对象并返回</p>
+<p><img lazyload src="/images/loading.svg" data-src="15217932644440.jpg"></p>
+<p>fastjson支持注册ObjectDeserializer实现自定义反序列化。要自定义序列化，首先需要实现一个ObjectDeserializer，然后注册到ParserConfig中</p>
+<p><img lazyload src="/images/loading.svg" data-src="15217967095189.jpg"></p>
+<p><img lazyload src="/images/loading.svg" data-src="15217969833221.jpg"></p>
+<p><img lazyload src="/images/loading.svg" data-src="15218010473832.jpg"></p>
+<p>key是@type并启用了SpecialKeyDetect</p>
+<p>把com.sun.org.apache.xalan.internal.xsltc.trax.TemplatesImpl加载为类</p>
+<p>看一下getDeserializer的实现</p>
+<p><img lazyload src="/images/loading.svg" data-src="15218017480400.jpg"></p>
+<p>过一遍denyList</p>
+<p><img lazyload src="/images/loading.svg" data-src="15218019424700.jpg"></p>
+<p>还有一些常见内置类</p>
+<p><img lazyload src="/images/loading.svg" data-src="15218020062741.jpg"></p>
+<p>均没有过滤之后通过createJavaBeanDeserializer来处理反序列化</p>
+<p><img lazyload src="/images/loading.svg" data-src="15218018652602.jpg"></p>
+<p>createJavaBeanDeserializer方法后边需要经过JavaBeanInfo.build的处理</p>
+<p><img lazyload src="/images/loading.svg" data-src="15218023262410.jpg"></p>
+<p>跟踪build方法</p>
+<p><img lazyload src="/images/loading.svg" data-src="15218027829262.jpg"></p>
+<p>会遍历传入类的方法、字段等，需要满足下边的条件才会被添加到fieldList中</p>
+<p>以set举例，还会以类似的规则处理get、field</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line">        for (Method method : methods) &#123; //</span><br><span class="line">            int ordinal = 0, serialzeFeatures = 0, parserFeatures = 0;</span><br><span class="line">            String methodName = method.getName();</span><br><span class="line">            if (methodName.length() &lt; 4) &#123;</span><br><span class="line">            //方法名长度大于4</span><br><span class="line">                continue;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            if (Modifier.isStatic(method.getModifiers())) &#123;</span><br><span class="line">            //是静态方法</span><br><span class="line">                continue;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            // support builder set</span><br><span class="line">            if (!(method.getReturnType().equals(Void.TYPE) || method.getReturnType().equals(method.getDeclaringClass()))) &#123;</span><br><span class="line">            //返回类型需要是void类型或者是当前类型</span><br><span class="line">                continue;</span><br><span class="line">            &#125;</span><br><span class="line">            Class&lt;?&gt;[] types = method.getParameterTypes();</span><br><span class="line">            if (types.length != 1) &#123;</span><br><span class="line">            //参数只能有一个</span><br><span class="line">                continue;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            JSONField annotation = method.getAnnotation(JSONField.class);</span><br><span class="line"></span><br><span class="line">            if (annotation == null) &#123;</span><br><span class="line">                annotation = TypeUtils.getSuperMethodAnnotation(clazz, method);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            if (annotation != null) &#123;</span><br><span class="line">                if (!annotation.deserialize()) &#123;</span><br><span class="line">                    continue;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                ordinal = annotation.ordinal();</span><br><span class="line">                serialzeFeatures = SerializerFeature.of(annotation.serialzeFeatures());</span><br><span class="line">                parserFeatures = Feature.of(annotation.parseFeatures());</span><br><span class="line"></span><br><span class="line">                if (annotation.name().length() != 0) &#123;</span><br><span class="line">                    String propertyName = annotation.name();</span><br><span class="line">                    add(fieldList, new FieldInfo(propertyName, method, null, clazz, type, ordinal, serialzeFeatures, parserFeatures, </span><br><span class="line">                                                 annotation, null, null));</span><br><span class="line">                    continue;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            if (!methodName.startsWith(&quot;set&quot;)) &#123; </span><br><span class="line">            //以set开头</span><br><span class="line">            // TODO &quot;set&quot;的判断放在 JSONField 注解后面，意思是允许非 setter 方法标记 JSONField 注解？</span><br><span class="line">                continue;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            char c3 = methodName.charAt(3);</span><br><span class="line"></span><br><span class="line">            String propertyName;</span><br><span class="line">            if (Character.isUpperCase(c3) //</span><br><span class="line">                || c3 &gt; 512 // for unicode method name</span><br><span class="line">            ) &#123;</span><br><span class="line">                if (TypeUtils.compatibleWithJavaBean) &#123;</span><br><span class="line">                    propertyName = TypeUtils.decapitalize(methodName.substring(3));</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    propertyName = Character.toLowerCase(methodName.charAt(3)) + methodName.substring(4);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; else if (c3 == &#x27;_&#x27;) &#123;</span><br><span class="line">                propertyName = methodName.substring(4);</span><br><span class="line">                //取_后字符做变量名，即第4个往后</span><br><span class="line">            &#125; else if (c3 == &#x27;f&#x27;) &#123;</span><br><span class="line">                propertyName = methodName.substring(3);</span><br><span class="line">                //set往后，即第3个往后</span><br><span class="line">            &#125; else if (methodName.length() &gt;= 5 &amp;&amp; Character.isUpperCase(methodName.charAt(4))) &#123;</span><br><span class="line">            //长度大于5并且第5个字母大写</span><br><span class="line">                propertyName = TypeUtils.decapitalize(methodName.substring(3));</span><br><span class="line">                //取set后边字符并转为小写</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                continue;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">.......</span><br><span class="line">            add(fieldList, new FieldInfo(propertyName, method, field, clazz, type, ordinal, serialzeFeatures, parserFeatures,</span><br><span class="line">                                         annotation, fieldAnnotation, null));</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>上边跟踪了下getDeserializer的实现</p>
+<p><img lazyload src="/images/loading.svg" data-src="15219045005865.jpg"></p>
+<p>接下来就是deserialze了</p>
+<p><img lazyload src="/images/loading.svg" data-src="15219046577386.jpg"></p>
+<p>遍历javabeaninfo中处理返回的fieldList</p>
+<p><img lazyload src="/images/loading.svg" data-src="15219047427363.jpg"></p>
+<p>遍历的过程会对相应的field进行getDeserializer处理<br>然后通过parseField进行反序列化</p>
+<p><img lazyload src="/images/loading.svg" data-src="15219050465669.jpg"></p>
+<p>跟进parseField看一下实现，它的作用应该就是实现“定制序列化”这个特性</p>
+<p><img lazyload src="/images/loading.svg" data-src="15219051518103.jpg"></p>
+<p><img lazyload src="/images/loading.svg" data-src="15219054677413.jpg"></p>
+<p>parseField里调用了smartMatch方法，这个漏洞很关键的一个点<br>这也就是遍历到_outputProperties时执行getOutputProperties()的症结所在</p>
+<p><img lazyload src="/images/loading.svg" data-src="15219056214849.jpg"></p>
+<p>可以看到parseField调用了setValue</p>
+<p><img lazyload src="/images/loading.svg" data-src="15219060189459.jpg"></p>
+<p>跟进一下setValue可以看到method就是getOutputProperties()<br>既然是这样，那么很明显的是要利用getOutputProperties()来执行恶意代码</p>
+<p>关于getOutputProperties()的执行链可以看上一篇分析<a href="https://blog.langu.xyz/%20FastJsonUnserialization.html">https://blog.langu.xyz/%20FastJsonUnserialization.html</a></p>
+<p><img lazyload src="/images/loading.svg" data-src="15219064681028.jpg"></p>
+<p><img lazyload src="/images/loading.svg" data-src="15219063930004.jpg"></p>
+<h4 id="0x03-构造POC和执行的根本原因"><a href="#0x03-构造POC和执行的根本原因" class="headerlink" title="0x03 构造POC和执行的根本原因"></a>0x03 构造POC和执行的根本原因</h4><p>上一篇基本已经提及了<a href="https://blog.langu.xyz/%20FastJsonUnserialization.html">https://blog.langu.xyz/%20FastJsonUnserialization.html</a></p>
+<p>很精妙的一个漏洞，环环相扣</p>
+<p>这个gadget更是各种巧合，只要有任意一个点限制，就不能利用成功</p>
+<p>若json字符串中包含@type字段，会按照@type指定的类进行反序列化</p>
+<p>在修复版本中会默认忽略该字段，若数据中有@type字段，会抛出autoType is not support错误</p>
+<p>同时修复版本中允许通过配置白名单的形式来提供对特定类反序列化的支持</p>
+<pre><code>1、调用链
+    1、为什么会走到这一步
+    2、关键方法是什么
+    3、特性是什么
+    4、继承自哪里
+
+2、最后是如何执行的
+    1、根本原因/本质是什么
+    
+3、如果是自己，该怎么挖出这个漏洞
+
+4、再构造一次poc
+    1、构造要点
+    2、所需条件
+</code></pre>
+<p>参考：<br><a class="link" target="_blank" rel="noopener" href="https://github.com/alibaba/fastjson/wiki/">https://github.com/alibaba/fastjson/wiki/<i class="fas fa-external-link-alt"></i></a><br><a class="link" target="_blank" rel="noopener" href="http://xxlegend.com/2017/04/29/title-%20fastjson%20%E8%BF%9C%E7%A8%8B%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96poc%E7%9A%84%E6%9E%84%E9%80%A0%E5%92%8C%E5%88%86%E6%9E%90/">http://xxlegend.com/2017/04/29/title-%20fastjson%20%E8%BF%9C%E7%A8%8B%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96poc%E7%9A%84%E6%9E%84%E9%80%A0%E5%92%8C%E5%88%86%E6%9E%90/<i class="fas fa-external-link-alt"></i></a><br><a class="link" target="_blank" rel="noopener" href="https://ricterz.me/posts/Fastjson%20Unserialize%20Vulnerability%20Write%20Up">https://ricterz.me/posts/Fastjson%20Unserialize%20Vulnerability%20Write%20Up<i class="fas fa-external-link-alt"></i></a><br><a class="link" target="_blank" rel="noopener" href="http://5alt.me/2017/09/fastjson%E8%B0%83%E8%AF%95%E5%88%A9%E7%94%A8%E8%AE%B0%E5%BD%95/">http://5alt.me/2017/09/fastjson%E8%B0%83%E8%AF%95%E5%88%A9%E7%94%A8%E8%AE%B0%E5%BD%95/<i class="fas fa-external-link-alt"></i></a></p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：再看FastJson Unserialization漏洞</li>
+        <li>Post author：langu_xyz</li>
+        <li>Create time：2018-03-23 21:00:00</li>
+        <li>
+            Post link：https://blog.langu.xyz/再看FastJson Unserialization漏洞/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/CVE-2018-1270%20Remote%20Code%20Execution%20with%20spring-messaging/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">CVE-2018-1270 Remote Code Execution with spring-messaging</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/JavaScript%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">JavaScript源码分析漏洞挖掘</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>&nbsp;-&nbsp;
+            
+            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a target="_blank" rel="noopener" href="//langu.xyz">AboutME:langu_xyz</a>
+        </div>
+        <!--
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        -->
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#0x01"><span class="nav-text">0x01</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#0x02-%E8%B7%9F%E8%BF%9B%E8%B0%83%E7%94%A8%E9%93%BE"><span class="nav-text">0x02 跟进调用链</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#0x03-%E6%9E%84%E9%80%A0POC%E5%92%8C%E6%89%A7%E8%A1%8C%E7%9A%84%E6%A0%B9%E6%9C%AC%E5%8E%9F%E5%9B%A0"><span class="nav-text">0x03 构造POC和执行的根本原因</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

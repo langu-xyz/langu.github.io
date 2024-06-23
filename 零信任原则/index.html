@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="网络安全,黑客,JAVA安全,代码审计,渗透测试,入侵,SRC,扫描,WEB安全,移动安全,PHP">
+    <meta name="description" content="蓝骨, langu.xyz">
+    <meta name="author" content="langu_xyz">
+    
+        <title>
+            
+                零信任原则 |
+                    
+                        langu_xyz
+        </title>
+        
+<link rel="stylesheet" href="/css/style.css">
+
+            <link rel="shortcut icon" href="/images/logo.jpeg">
+                
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+                    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"blog.langu.xyz","root":"/","language":"zh","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/logo.jpeg","favicon":"/images/logo.jpeg","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/shamo.jpg","description":"XYZ(无限未来)"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+
+                    <script>
+                        var _hmt = _hmt || [];
+                        (function() {
+                          var hm = document.createElement("script");
+                          hm.src = "https://hm.baidu.com/hm.js?1cd6e64ff252acf24b707985fcec8850";
+                          var s = document.getElementsByTagName("script")[0]; 
+                          s.parentNode.insertBefore(hm, s);
+                        })();
+                        </script>
+                        
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="langu_xyz" type="application/atom+xml">
+</head>
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                    <a class="logo-title" href="/">
+                        langu_xyz
+                    </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class="" href="/" >
+                                HOME
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class="" href="/tags/THINK/" >
+                                THINK
+                            </a>
+                        </li>
+                        
+                            
+                                <li class="menu-item search search-popup-trigger">
+                                    <i class="fas fa-search"></i>
+                                </li>
+                                
+                                
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                    
+                        <div class="icon-item menu-bar">
+                            <div class="menu-bar-middle"></div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/" >
+                        HOME
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/tags/THINK/" >
+                        THINK
+                    </a>
+                </li>
+                
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">零信任原则</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/logo.jpeg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">langu_xyz</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2022-05-17 21:00:00
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%AE%89%E5%85%A8%E6%9E%B6%E6%9E%84/">安全架构</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E5%AE%89%E5%85%A8%E5%BB%BA%E8%AE%BE/">安全建设</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%9E%B6%E6%9E%84%E4%BD%93%E7%B3%BB%E5%8F%82%E8%80%83/">网络安全架构体系参考</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>2.1k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>7 Mins</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <blockquote>
+<blockquote>
+<p>零信任以全新的战略视角关注最初的安全使命（使资产不受攻击者控制）</p>
+</blockquote>
+</blockquote>
+<p>我们运行的 IT 环境从一开始就很复杂，由许多设备、用户身份以及它们之间的交互组成</p>
+<h2 id="为什么我们要尝试“零信任”策略"><a href="#为什么我们要尝试“零信任”策略" class="headerlink" title="为什么我们要尝试“零信任”策略"></a>为什么我们要尝试“零信任”策略</h2><h3 id="尝试了受安全边界保护的“可信网络”"><a href="#尝试了受安全边界保护的“可信网络”" class="headerlink" title="尝试了受安全边界保护的“可信网络”"></a>尝试了受安全边界保护的“可信网络”</h3><p>随着攻击开始出现在我们的 IT 系统上，我们在 IT 安全中尝试的第一件事是从军事学说中调整安全边界的概念。 这种策略起初奏效，似乎是解决问题的一个很好的简单解决方案，因为当时大多数生产力都是在办公室的物理公司网络（台式机、服务器、大型机和终端）上完成的</p>
+<h3 id="但这并没有随着时间的推移而持续"><a href="#但这并没有随着时间的推移而持续" class="headerlink" title="但这并没有随着时间的推移而持续"></a>但这并没有随着时间的推移而持续</h3><p>随着时间的推移，生产力世界随着移动设备、WiFi、云服务和远程生产力的发展而增长。 </p>
+<p>与此同时，安全威胁扩展到全方位的攻击动机（犯罪、民族国家间谍活动、黑客行动主义等），并不断添加新的创造性攻击技术以始终绕过此网络边界。</p>
+<p><img lazyload src="/images/loading.svg" data-src="1.png"></p>
+<p>这两个因素削弱了所有要保护的东西都在企业网络上的基本假设， 网络安全边界策略开始无法满足组织的战略需求。</p>
+<p>安全需要一个全面的安全策略来指导和优先考虑如何处理这种新的复杂性（在适当的情况下结合网络安全边界），我们现在将这种策略称为零信任。</p>
+<p><img lazyload src="/images/loading.svg" data-src="2.png"></p>
+<h2 id="Microsoft-技术架构零信任原则指南"><a href="#Microsoft-技术架构零信任原则指南" class="headerlink" title="Microsoft 技术架构零信任原则指南"></a>Microsoft 技术架构零信任原则指南</h2><ul>
+<li><p>明确验证</p>
+</li>
+<li><p>使用最小特权访问</p>
+</li>
+<li><p>假设违反</p>
+</li>
+</ul>
+<p><img lazyload src="/images/loading.svg" data-src="3.png"></p>
+<h2 id="有效的访问控制策略需要身份和网络控制"><a href="#有效的访问控制策略需要身份和网络控制" class="headerlink" title="有效的访问控制策略需要身份和网络控制"></a>有效的访问控制策略需要身份和网络控制</h2><p>虽然负责网络控制的团队与负责身份和相关控制（应用程序、数据、客户端/服务器）的团队之间经常存在文化冲突和困难关系，但现实是身份和安全控制对于访问控制都至关重要。 这与我们是否应该始终使用锤子或始终使用螺丝刀无关，而是要为工作选择正确的工具。</p>
+<p>这些技术必须协同工作才能发挥作用，发挥各自的优势，克服彼此的弱点。</p>
+<p>•     身份和相关控制具有丰富的上下文（用户是谁、他们的角色/属性、他们尝试使用或做什么、会话的身份验证有多强等），但仅对使用企业进行身份验证的会话有效的身份系统。</p>
+<p>•    网络控制可以查看和拦截更广泛的通信（尤其是遗留系统），但通常缺乏通信中通信的上下文，并且需要完全控制所有网络通信才能使控制生效。 除了一些关键场景，如运营技术 (OT) 和内部数据中心，试图为拥有远程工作、移动设备和云服务的企业保留对网络流量的完全控制是不切实际的，而且会适得其反。 试图为 SaaS 提供商重新路由所有流量的成本很高，会影响生产力，并且会通过激励用户采用未经授权和不受监控的云服务来完成他们的工作而增加整体风险。</p>
+<p>安全体系结构中对网络与身份和相关控制的关注程度应根据每个环境中的机会和限制进行调整：</p>
+<p><img lazyload src="/images/loading.svg" data-src="4.png"></p>
+<h3 id="用户访问和工作效率"><a href="#用户访问和工作效率" class="headerlink" title="用户访问和工作效率"></a>用户访问和工作效率</h3><p>云服务正在成为用户生产力和支持远程用户的标准，使身份和相关控制成为这些环境的重中之重。</p>
+<p>•     身份和相关控制应该是主要关注点，确保所有云服务和移动设备都连接到单一企业控制平面（如 Azure Active Directory），以实现对身份验证和访问的集中可见性和控制。</p>
+<p>•     网络控制仍然具有核心的基本过滤威胁的作用，以确保客户端端点有防火墙来阻止未经请求的流量，但除此之外，试图控制来自用户生产力设备（例如使用 VPN）的所有流量最终是一场失败的安全战斗。 网络也可用于实施精细控制，但应由零信任策略引擎而不是本地静态策略引导。</p>
+<p>我们建议组织将构建这种新的身份控制面（又名身份边界）作为首要任务，确保安全角色（架构师、工程师、安全运营中的分析师等）学习如何将身份和相关技术集成到架构中 、实施和日常运营。 对某些人来说，这可能是一项新技能，但它是一项需要学习的关键技能。</p>
+<h3 id="操作技术（OT）和工业物联网"><a href="#操作技术（OT）和工业物联网" class="headerlink" title="操作技术（OT）和工业物联网"></a>操作技术（OT）和工业物联网</h3><p>与用户访问和生产力相比，OT 和 IoT 环境的比例相反。 这些环境由可能有 50-100 年历史的物理机械（在某些情况下由蒸汽驱动）组成，在过去 30-50 年中经常使用电子计算机控制进行改造。 这些计算机控件中的大多数现在都支持 IP 网络通信，但许多都是依靠设备将自定义或行业特定协议转换为 IP 流量来实现的。 这些系统通常（从 IT 角度来看）陈旧且过时，执行“基本”IT 安全功能（例如扫描网络以查找漏洞）很容易导致代价高昂的中断。 经常听到这样的故事，比如安全扫描导致关键设备失效，并要求技术人员驾驶数百英里来重新启动连接到远程设备的 PC。</p>
+<p>网络控制——由于这些限制，安全必须关注他们能做什么，这通常是：</p>
+<p>•     使用防火墙和其他网络控制将这些环境与企业 IT 环境隔离开来</p>
+<p>•     被动监控流量，以识别异常活动和漏洞。</p>
+<p>身份及相关——使用现代云时代身份协议（如 OAuth/ODIC 或 SAML）作为主要控制通常甚至不是一个微弱的希望。 身份和相关控制的作用主要是保护 IT 环境中连接这些环境的暴露点，例如 确保将 IT 最佳实践严格应用于与 OT 系统交互的 IT 系统（强大的多因素身份验证、快速修补等）</p>
+<h3 id="数据中心安全"><a href="#数据中心安全" class="headerlink" title="数据中心安全"></a>数据中心安全</h3><p>数据中心环境需要更多地混合两种类型的控制。 大多数托管应用程序和数据的数据中心都采用了多种控制组合：</p>
+<p>•    网络 - 防火墙、IDS/IPS 和其他控制措施，以防止未经请求的互联网流量。 这有时会扩展到网段以分隔应用程序/工作负载或应用程序层（数据库、应用程序和演示），但由于应用程序间通信的复杂性，这是一项具有挑战性/高级的练习。</p>
+<p>•     身份和相关——大多数数据中心操作系统和应用程序结合使用Active Directory、身份系统和其他管理工具来提供对这些系统的访问控制。 有时，详细的基于角色的访问控制 (RBAC) 或基于属性的访问控制 (ABAC) 用于单个工作负载和应用程序，但这通常因工作负载而异。</p>
+<p>随着数据中心工作负载迁移到云端（以及软件定义的数据中心方法），使用 Azure 网络安全组 (NSG)、应用程序安全组 (ASG) 和 Azure 防火墙等技术可以更轻松地实施基本网络控制。</p>
+<p>更重要的是，使用 Azure 资源的托管身份等技术，身份控制变得更容易实施和集成。 这些提供了基于身份的访问控制的丰富上下文，而无需管理凭证的负担，并且通常可以在不需要开发人员更改应用程序的情况下实施。<br>这促使人们越来越关注数据中心内的身份，从而提高了安全架构的可见性和控制粒度。</p>
+<h3 id="安全运营"><a href="#安全运营" class="headerlink" title="安全运营"></a>安全运营</h3><p>安全运营部门监视并响应这些环境中的事件，因此他们需要熟悉每个组织中的网络和身份控制。</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：零信任原则</li>
+        <li>Post author：langu_xyz</li>
+        <li>Create time：2022-05-17 21:00:00</li>
+        <li>
+            Post link：https://blog.langu.xyz/零信任原则/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/%E4%BD%BF%E7%94%A8%E9%9B%B6%E4%BF%A1%E4%BB%BB%E5%BF%AB%E9%80%9F%E5%AE%9E%E7%8E%B0%E5%AE%89%E5%85%A8%E7%8E%B0%E4%BB%A3%E5%8C%96/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">使用零信任快速实现安全现代化</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/%E6%93%8D%E4%BD%9C%E6%8A%80%E6%9C%AF(OT)%E5%AE%89%E5%85%A8%E6%9E%B6%E6%9E%84%E5%8F%82%E8%80%83/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">操作技术(OT)安全架构参考</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>&nbsp;-&nbsp;
+            
+            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a target="_blank" rel="noopener" href="//langu.xyz">AboutME:langu_xyz</a>
+        </div>
+        <!--
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        -->
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E4%BB%AC%E8%A6%81%E5%B0%9D%E8%AF%95%E2%80%9C%E9%9B%B6%E4%BF%A1%E4%BB%BB%E2%80%9D%E7%AD%96%E7%95%A5"><span class="nav-text">为什么我们要尝试“零信任”策略</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%9D%E8%AF%95%E4%BA%86%E5%8F%97%E5%AE%89%E5%85%A8%E8%BE%B9%E7%95%8C%E4%BF%9D%E6%8A%A4%E7%9A%84%E2%80%9C%E5%8F%AF%E4%BF%A1%E7%BD%91%E7%BB%9C%E2%80%9D"><span class="nav-text">尝试了受安全边界保护的“可信网络”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%86%E8%BF%99%E5%B9%B6%E6%B2%A1%E6%9C%89%E9%9A%8F%E7%9D%80%E6%97%B6%E9%97%B4%E7%9A%84%E6%8E%A8%E7%A7%BB%E8%80%8C%E6%8C%81%E7%BB%AD"><span class="nav-text">但这并没有随着时间的推移而持续</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Microsoft-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E9%9B%B6%E4%BF%A1%E4%BB%BB%E5%8E%9F%E5%88%99%E6%8C%87%E5%8D%97"><span class="nav-text">Microsoft 技术架构零信任原则指南</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%89%E6%95%88%E7%9A%84%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E7%AD%96%E7%95%A5%E9%9C%80%E8%A6%81%E8%BA%AB%E4%BB%BD%E5%92%8C%E7%BD%91%E7%BB%9C%E6%8E%A7%E5%88%B6"><span class="nav-text">有效的访问控制策略需要身份和网络控制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E8%AE%BF%E9%97%AE%E5%92%8C%E5%B7%A5%E4%BD%9C%E6%95%88%E7%8E%87"><span class="nav-text">用户访问和工作效率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E6%8A%80%E6%9C%AF%EF%BC%88OT%EF%BC%89%E5%92%8C%E5%B7%A5%E4%B8%9A%E7%89%A9%E8%81%94%E7%BD%91"><span class="nav-text">操作技术（OT）和工业物联网</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83%E5%AE%89%E5%85%A8"><span class="nav-text">数据中心安全</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5"><span class="nav-text">安全运营</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

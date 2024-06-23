@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="网络安全,黑客,JAVA安全,代码审计,渗透测试,入侵,SRC,扫描,WEB安全,移动安全,PHP">
+    <meta name="description" content="蓝骨, langu.xyz">
+    <meta name="author" content="langu_xyz">
+    
+        <title>
+            
+                Cloud I Hack into Google Cloud |
+                    
+                        langu_xyz
+        </title>
+        
+<link rel="stylesheet" href="/css/style.css">
+
+            <link rel="shortcut icon" href="/images/logo.jpeg">
+                
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+                    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"blog.langu.xyz","root":"/","language":"zh","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/logo.jpeg","favicon":"/images/logo.jpeg","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/shamo.jpg","description":"XYZ(无限未来)"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+
+                    <script>
+                        var _hmt = _hmt || [];
+                        (function() {
+                          var hm = document.createElement("script");
+                          hm.src = "https://hm.baidu.com/hm.js?1cd6e64ff252acf24b707985fcec8850";
+                          var s = document.getElementsByTagName("script")[0]; 
+                          s.parentNode.insertBefore(hm, s);
+                        })();
+                        </script>
+                        
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="langu_xyz" type="application/atom+xml">
+</head>
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                    <a class="logo-title" href="/">
+                        langu_xyz
+                    </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class="" href="/" >
+                                HOME
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class="" href="/tags/THINK/" >
+                                THINK
+                            </a>
+                        </li>
+                        
+                            
+                                <li class="menu-item search search-popup-trigger">
+                                    <i class="fas fa-search"></i>
+                                </li>
+                                
+                                
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                    
+                        <div class="icon-item menu-bar">
+                            <div class="menu-bar-middle"></div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/" >
+                        HOME
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/tags/THINK/" >
+                        THINK
+                    </a>
+                </li>
+                
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">Cloud I Hack into Google Cloud</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/logo.jpeg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">langu_xyz</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2022-06-10 21:00:00
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E4%BA%91%E5%AE%89%E5%85%A8/">云安全</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Cloud/">Cloud</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.4k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>5 Mins</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>在本月初，Google宣布了去年2021的Google Cloud Platform的六个VRP漏洞（ GCP VRP 奖旨在鼓励安全研究人员关注 GCP 的安全性，从而帮助我们为我们的用户、客户和整个互联网提高 GCP 的安全性），希望鼓励更多的安全研究者涉足云安全领域，这六个漏洞看完非常有趣，接下来我会用自己的理解分析下这几个漏洞。</p>
+<h2 id="漏洞1-Bypassing-Identity-Aware-Proxy"><a href="#漏洞1-Bypassing-Identity-Aware-Proxy" class="headerlink" title="漏洞1: Bypassing Identity-Aware Proxy"></a>漏洞1: Bypassing Identity-Aware Proxy</h2><p>漏洞详情链接：<a class="link" target="_blank" rel="noopener" href="https://www.seblu.de/2021/12/iap-bypass.html">https://www.seblu.de/2021/12/iap-bypass.html<i class="fas fa-external-link-alt"></i></a></p>
+<p>IAP(Identity-Aware Proxy)可以理解为是应用层零信任，在用户和应用之间增加了一层独立的身份认证。<a class="link" target="_blank" rel="noopener" href="https://cloud.google.com/iap?hl=zh-cn">https://cloud.google.com/iap?hl=zh-cn<i class="fas fa-external-link-alt"></i></a></p>
+<p><img lazyload src="/images/loading.svg" data-src="1.png"></p>
+<p>根据作者的漏洞介绍，尝试着画了一下攻击路径(原文描述的有点凌乱，可能有不对的地方，见谅)，大概路径是通过这三个小漏洞，利用重定向，在受害者访问开启了IAP的APP之前先重定向到没有开IAP的APP上，然后捕获链接中的token，实现凭证窃取。</p>
+<p><img lazyload src="/images/loading.svg" data-src="2.png"></p>
+<p>就像作者说的，小的漏洞可以组合成大的漏洞，这或许也是Google为什么将其排在第一位的原因吧。</p>
+<h2 id="漏洞2-通过DHCP泛洪接管VM和获取ROOT访问权限"><a href="#漏洞2-通过DHCP泛洪接管VM和获取ROOT访问权限" class="headerlink" title="漏洞2: 通过DHCP泛洪接管VM和获取ROOT访问权限"></a>漏洞2: 通过DHCP泛洪接管VM和获取ROOT访问权限</h2><p>漏洞详情链接：<a class="link" target="_blank" rel="noopener" href="https://github.com/irsl/gcp-dhcp-takeover-code-exec">https://github.com/irsl/gcp-dhcp-takeover-code-exec<i class="fas fa-external-link-alt"></i></a></p>
+<p>ISC 的 DHCP 客户端（Debian 风格的 isc-dhcp-client 包）的实现依赖于 random(3) 来生成伪随机数（非线性加性反馈随机数）。由当前unixtime、dhclient进程的pid和MAC最后四个字节。这三个值可以猜测出来，进而可以伪造DHCP包，在某些环境下，通过DHCP泛洪可以接管目标VM的网络配置。</p>
+<p>允许攻击者通过向虚拟机发送恶意 DHCP 数据包并冒充 GCE 元数据服务器来访问 Google Compute Engine 虚拟机。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Google 严重依赖元数据服务器，包括 ssh 公钥的分发。 连接在网络/路由层是安全的，并且服务器没有经过身份验证（没有 TLS，仅清除 http）。 负责处理元数据服务器响应的google_guest_agent 进程通过虚拟主机名 metadata.google.internal 建立连接，该虚拟主机名是 /etc/hosts 文件中的别名。 该文件由 /etc/dhcp/dhclient-exit-hooks.d/google_set_hostname 作为 DHCP 响应处理的钩子部分管理，并且别名通常由该脚本在每个 DHCPACK 处添加。 通过完全控制 DHCP，可以模拟元数据服务器。</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="漏洞4-在-Cloud-SQL-的中发现的多个漏洞"><a href="#漏洞4-在-Cloud-SQL-的中发现的多个漏洞" class="headerlink" title="漏洞4: 在 Cloud SQL 的中发现的多个漏洞"></a>漏洞4: 在 Cloud SQL 的中发现的多个漏洞</h2><p>漏洞详情链接：<a class="link" target="_blank" rel="noopener" href="https://irsl.medium.com/the-speckle-umbrella-story-part-2-fcc0193614ea">https://irsl.medium.com/the-speckle-umbrella-story-part-2-fcc0193614ea<i class="fas fa-external-link-alt"></i></a></p>
+<p> 作者研究Cloud SQL 攻击向量的过程中发现的多个漏洞</p>
+<p>3.1 Postgres 服务帐户可以访问其他 RDS（MySQL、SQL Server 等）的 Docker 映像</p>
+<p>3.2 MySQL LOAD DATA LOCAL 滥用</p>
+<p>3.3 终端转义序列注入 gcloud</p>
+<p>3.4 Postgres IAM 身份验证可能允许窃取其他用户的访问令牌</p>
+<p>3.5 Cloud SQL Auth Proxy 通过网络泄露访问令牌 — 中间人攻击</p>
+<p>3.6 Cloud SQL — SQL 代理信息泄露漏洞（项目和实例名称）</p>
+<p>这一系列漏洞对于研究其它云产品的安全性有着很大的借鉴意义。“在服务器端环顾四周是一次很棒的经历，我学到了很多关于 Google 内部的知识！”</p>
+<h2 id="漏洞3-Google-Cloud-Dataflow-中的RCE"><a href="#漏洞3-Google-Cloud-Dataflow-中的RCE" class="headerlink" title="漏洞3: Google Cloud Dataflow 中的RCE"></a>漏洞3: Google Cloud Dataflow 中的RCE</h2><p>漏洞详情链接：<a class="link" target="_blank" rel="noopener" href="https://mbrancato.github.io/2021/12/28/rce-dataflow.html">https://mbrancato.github.io/2021/12/28/rce-dataflow.html<i class="fas fa-external-link-alt"></i></a></p>
+<p>Dataflow 节点暴露了未经身份验证的 Java JMX 端口，但是GCP默认的防火墙规则不会使其暴露在互联网。不过很多GCP用户会调整防火墙规则，导致5555端口暴露在互联网，从而可以被远程获取shell。</p>
+<p>这也是个蛮有趣的漏洞，用户的一些配置使安全变成了不安全，这在日常的工作中也经常遇到，任何一方做好都没有漏洞，挺好奇Google是如何修复的？</p>
+<h2 id="漏洞5-Managed-Anthos-Service-Mesh-控制面中的RCE"><a href="#漏洞5-Managed-Anthos-Service-Mesh-控制面中的RCE" class="headerlink" title="漏洞5: Managed Anthos Service Mesh 控制面中的RCE"></a>漏洞5: Managed Anthos Service Mesh 控制面中的RCE</h2><p>漏洞详情链接：<a class="link" target="_blank" rel="noopener" href="https://lf.lc/vrp/203177829/">https://lf.lc/vrp/203177829/<i class="fas fa-external-link-alt"></i></a></p>
+<p>控制面（control plane）：用于帮助service mesh 来进行服务发现、流量治理等。</p>
+<p><img lazyload src="/images/loading.svg" data-src="3.png"></p>
+<p>这个漏洞在一般情况下需要在K8s集群中具有高访问权限，才能允许Istio控制面上执行远程命令。但是在某些特殊的场景下，就像Managed Anthos Service Mesh中，它在Google管理的项目中运行Istio控制面，当具备了高访问权限的时候，这个漏洞就变得严重了。（不知道这样理解对不对）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">apiVersion: v1</span><br><span class="line">kind: Config</span><br><span class="line">current-context: default</span><br><span class="line">clusters:</span><br><span class="line">- name: default</span><br><span class="line">  cluster:</span><br><span class="line">    server: https://127.0.0.1</span><br><span class="line">contexts:</span><br><span class="line">- name: default</span><br><span class="line">  context:</span><br><span class="line">    cluster: default</span><br><span class="line">    user: default</span><br><span class="line">users:</span><br><span class="line">- name: default</span><br><span class="line">  user:</span><br><span class="line">    exec:</span><br><span class="line">      apiVersion: client.authentication.k8s.io/v1beta1</span><br><span class="line">      command: /bin/sh</span><br><span class="line">      args: [&#x27;-c&#x27;, &#x27;touch /tmp/flag&#x27;]</span><br></pre></td></tr></table></figure>
+
+<h2 id="漏洞6-Google-Cloud-Shell-中的命令注入"><a href="#漏洞6-Google-Cloud-Shell-中的命令注入" class="headerlink" title="漏洞6: Google Cloud Shell 中的命令注入"></a>漏洞6: Google Cloud Shell 中的命令注入</h2><p>漏洞详情链接：<a class="link" target="_blank" rel="noopener" href="https://docs.google.com/document/d/1-TTCS6fS6kvFUkoJmX4Udr-czQ79lSUVXiWsiAED_bs/edit#">https://docs.google.com/document/d/1-TTCS6fS6kvFUkoJmX4Udr-czQ79lSUVXiWsiAED_bs/edit#<i class="fas fa-external-link-alt"></i></a></p>
+<p>Cloud Shell 有个功能是可以通过类似下面的链接clone可信代码库的代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">https://ssh.cloud.google.com/?git_repo=https://github.com/GoogleCloudPlatform/gsutil</span><br><span class="line">https://ssh.cloud.google.com/?go_get_repo=github.com/google/gops</span><br></pre></td></tr></table></figure>
+<p>但是在配置文件中有个缺陷，git_repo和go_get_repo两个参数同时存在于链接中时，判断逻辑是or，所以只要git_repo和go_get_repo其中一个存在其中就可以，所以可以在go_get_repo参数上添加命令，同时在git_repo上加载可信代码库。</p>
+<p><img lazyload src="/images/loading.svg" data-src="4.png"></p>
+<p>最终构造的payload为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://shell.cloud.google.com/?show=ide&amp;go_get_repo=%22;curl%200/service-accounts/default/token;%23&amp;git_repo=github.com/GoogleCloudPlatform/gsutil</span><br></pre></td></tr></table></figure>
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：Cloud I Hack into Google Cloud</li>
+        <li>Post author：langu_xyz</li>
+        <li>Create time：2022-06-10 21:00:00</li>
+        <li>
+            Post link：https://blog.langu.xyz/Cloud I Hack into Google Cloud/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/%E7%AE%80%E5%8D%95%E8%81%8A%E8%81%8A%E5%BA%94%E7%94%A8%E5%AE%89%E5%85%A8%E9%A2%86%E5%9F%9F%E4%B8%AD%E7%9A%84%E6%8A%80%E6%9C%AF%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">简单聊聊应用安全领域中的技术安全运营</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/%E4%BB%A5%E6%94%BB%E9%98%B2%E5%AF%B9%E6%8A%97%E4%B8%BA%E6%A0%B8%E5%BF%83%E2%80%94%E5%A6%82%E4%BD%95%E9%98%B2%E5%BE%A1%E7%BD%91%E7%BB%9C%E9%92%93%E9%B1%BC(%E6%9D%A5%E8%87%AA%E5%9B%BD%E5%AE%B6%E5%8F%8D%E8%AF%88%E7%9A%84%E5%90%AF%E7%A4%BA)/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">以攻防对抗为核心—如何防御网络钓鱼(来自国家反诈的启示)</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>&nbsp;-&nbsp;
+            
+            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a target="_blank" rel="noopener" href="//langu.xyz">AboutME:langu_xyz</a>
+        </div>
+        <!--
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        -->
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E1-Bypassing-Identity-Aware-Proxy"><span class="nav-text">漏洞1: Bypassing Identity-Aware Proxy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E2-%E9%80%9A%E8%BF%87DHCP%E6%B3%9B%E6%B4%AA%E6%8E%A5%E7%AE%A1VM%E5%92%8C%E8%8E%B7%E5%8F%96ROOT%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90"><span class="nav-text">漏洞2: 通过DHCP泛洪接管VM和获取ROOT访问权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E4-%E5%9C%A8-Cloud-SQL-%E7%9A%84%E4%B8%AD%E5%8F%91%E7%8E%B0%E7%9A%84%E5%A4%9A%E4%B8%AA%E6%BC%8F%E6%B4%9E"><span class="nav-text">漏洞4: 在 Cloud SQL 的中发现的多个漏洞</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E3-Google-Cloud-Dataflow-%E4%B8%AD%E7%9A%84RCE"><span class="nav-text">漏洞3: Google Cloud Dataflow 中的RCE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E5-Managed-Anthos-Service-Mesh-%E6%8E%A7%E5%88%B6%E9%9D%A2%E4%B8%AD%E7%9A%84RCE"><span class="nav-text">漏洞5: Managed Anthos Service Mesh 控制面中的RCE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E6-Google-Cloud-Shell-%E4%B8%AD%E7%9A%84%E5%91%BD%E4%BB%A4%E6%B3%A8%E5%85%A5"><span class="nav-text">漏洞6: Google Cloud Shell 中的命令注入</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

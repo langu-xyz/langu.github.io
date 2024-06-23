@@ -1,0 +1,2879 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="网络安全,黑客,JAVA安全,代码审计,渗透测试,入侵,SRC,扫描,WEB安全,移动安全,PHP">
+    <meta name="description" content="蓝骨, langu.xyz">
+    <meta name="author" content="langu_xyz">
+    
+        <title>
+            
+                        langu_xyz
+        </title>
+        
+<link rel="stylesheet" href="/css/style.css">
+
+            <link rel="shortcut icon" href="/images/logo.jpeg">
+                
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+                    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"blog.langu.xyz","root":"/","language":"zh","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/logo.jpeg","favicon":"/images/logo.jpeg","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/shamo.jpg","description":"XYZ(无限未来)"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+
+                    <script>
+                        var _hmt = _hmt || [];
+                        (function() {
+                          var hm = document.createElement("script");
+                          hm.src = "https://hm.baidu.com/hm.js?1cd6e64ff252acf24b707985fcec8850";
+                          var s = document.getElementsByTagName("script")[0]; 
+                          s.parentNode.insertBefore(hm, s);
+                        })();
+                        </script>
+                        
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="langu_xyz" type="application/atom+xml">
+</head>
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                    <a class="logo-title" href="/">
+                        langu_xyz
+                    </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class="active" href="/" >
+                                HOME
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class="" href="/tags/THINK/" >
+                                THINK
+                            </a>
+                        </li>
+                        
+                            
+                                <li class="menu-item search search-popup-trigger">
+                                    <i class="fas fa-search"></i>
+                                </li>
+                                
+                                
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                    
+                        <div class="icon-item menu-bar">
+                            <div class="menu-bar-middle"></div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="active" href="/" >
+                        HOME
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/tags/THINK/" >
+                        THINK
+                    </a>
+                </li>
+                
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="home-content-container fade-in-down-animation">
+    <ul class="home-article-list">
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/%E4%BD%BF%E7%94%A8%E9%9B%B6%E4%BF%A1%E4%BB%BB%E5%BF%AB%E9%80%9F%E5%AE%9E%E7%8E%B0%E5%AE%89%E5%85%A8%E7%8E%B0%E4%BB%A3%E5%8C%96/">
+                        使用零信任快速实现安全现代化
+                    </a>
+                </h3>
+
+                <!-- <div class="home-article-content markdown-body">
+                    
+                        
+
+这些是使用零信任快速实现安全现代化的建议优先事项
+
+
+
+用户访问和工作效率
+许多组织的第一个举措侧重于对传统企业网络安全边界之外的新型生产力资源（云和移动）资产的安全可见性和控制。
+用户访问和工作效率（用户账户和设备）
+这通常始于为云应用程序和移动设备建立身份“安全边界”，将身份用作控制平面，并在允许访问之前明确验证对用户帐户和设备的信任
+1a. 用户帐户 - 首要任务是需要强大的多因素身份验证 (MFA)（最好是无密码身份验证）。 攻击者很容易获得泄露的用户名/密码和常用密码，因此组织必须优先考虑超越仅密码身份验证作为他们的第一步。
+1b. 端点——在允许从它们访问之前，应该快速测量生产力设备保证。 许多攻击者已经掌握了破坏用户设备、窃取凭据并使用这些技术继续攻击环境的技术。
+该计划的下一个优先事项将这些新的高级控制扩展到应用程序：
+1c. 应用程序——从 SaaS 应用程序开始，使用您在步骤 1 中配置的 Azure AD 身份验证安全性来提高您的资产访问安全性。 为所有认可的软件即服务 (SaaS) 应用程序配置 Azure AD。然后，通过两步流程进行现代化并超越 VPN 身份验证，为不直接支持现代协议（如 OAuth/OIDC 和 SAML）的应用程序启用安全性
+• 提高VPN 安全性- 通过将您的VPN 设备连接到Azure AD 身份验证，VPN 会话受益于用户帐户/会话的显式验证和设备可信度的额外安全性。
+• 发布应用程序——通过 Azure AD 应用代理发布现有的本地（和 IaaS）应用程序，将应用程序移出 VPN，使您能够利用第 1 步中的强大 Azure AD 身份验证，改善用户体验，并将帐户限制为访问 一次单个应用程序（而不是通常提供对整个网络的所有端口/协议的访问权限的 VPN）。
+作为访问控制现代化的一部分，您还应该确保已建立网络控制：
+1d. 网络 - 建立基本的流量过滤和分段，以增加对业务关键和高度易受攻击的资源的隔离。
+数据、合规性和治理：
+下一个举措是数据、合规性和治理的现代化，包括：
+
+勒索软件恢复准备——确保您能够从自己经过验证的备份中恢复数据和系统，这样您就不必向攻击者支付敲诈勒索以重新获得对您业务资产的访问权限。 
+
+数据——您还应该专注于保护数据本身。 无论您是否已经采用传统的数据丢失保护 (DLP) 方法，您都应该专注于保护数据：
+
+
+无论走到哪里（云服务、USB 设备、企业端点和服务器等），都采用超越扩展程序（或构建新程序）的完整生命周期方法
+•   采用全生命周期方法（发现、分类、保护和监控）
+根据您的数据安全优先级，选择有助于实现此目的的技术，例如 Microsoft 信息保护 (MIP)，它会加密数据并需要对云服务进行身份验证以获取解密密钥。 Microsoft Defender for Cloud Apps 还可以发现云应用程序和应用程序会话中的非结构化数据，Azure Purview 可以发现结构化数据并对其进行分类。
+ 
+现代安全运营 (SecOps) 组织通常与前两个并行运行的另一个首要任务是安全操作的现代化。 该计划侧重于针对新的云应用程序、远程设备、身份和其他传统安全边界之外的资产的威胁检测、响应和恢复功能，以补充预防性访问控制。
+使用零信任实现安全运营现代化需要严格的优先级，以确保 SecOps 团队专注于组织面临的最大风险，不会在误报/误报上浪费时间，并在他们需要的整个资产中拥有广泛而深入的可见性是有效的。
+•   简化响应 - SecOps 的首要任务是掌握威胁响应和对常见攻击资源的补救，使用
+•   扩展检测和响应 (XDR) 技术为这些新资源类型提供高质量的警报，在尝试在 SIEM（安全信息和事件管理）中构建每个警报时绕过人工工作和延迟。
+•   简化针对这些常见攻击的流程。 将分类（第 1 层）和调查（第 2 层）分析团队的重点放在掌握这些攻击上，将在此过程的早期捕获普通攻击者和高级攻击者，从而降低组织的风险。
+•   统一可见性 —— 虽然很难从 SIEM 中的原始数据创建高质量的个人警报，但它们对于将所有数据和上下文整合在一起以进行调查和威胁搜寻非常有用，从而可以全面了解您的整个资产 （减少攻击者可能停留的盲点）。
+•   减少人工
+在任何时候，安全操作都应该专注于减少手动和重复性任务（如切换工具、键入命令、复制/粘贴数据等）的劳累/痛苦。专注于为分析师提供简化的端到端集成体验，包括安全编排、自动化和 响应（SOAR）技术将提高效率和士气。 SOAR 技术内置于 Microsoft 365 Defender 和 Microsoft Sentinel 中。
+ 
+数据中心安全
+数据中心零信任的重点领域包括：
+•   安全基线——首先关注数据中心应用完善的安全最佳实践。 正如推土机和生产线等物理设备需要定期维护（换油等）才能可靠运行，计算机系统也是如此（尽管计算机安全维护故障通常会像烟花工厂的草率消防安全程序一样突然发生）。错误配置和缺少安全更新可能会破坏或否定几乎所有其他安全控制，因为它们允许攻击者绕过这些架构假定的安全边界。
+•   降低遗留风险– 发现并（制定计划）淘汰具有高安全风险的遗留技术，如遗留身份验证协议和不受支持的操作系统。 具有网络访问权限的攻击者可以迅速利用这些来扩大他们对环境的访问权限，因此偿还这笔技术债务是一项值得投资的事情。 Microsoft Defender for Cloud 可以为多云和本地资源提供这种发现和测量。
+•   DevOps集成 -– 将安全性尽可能无缝地集成到DevOps 流程中，以提供健康的安全代价（导致批判性思维和分析），同时避免不健康的代价（阻碍的价值超过其保护的价值）。 在理想状态下，团队共同朝着创新速度、可靠性和安全弹性的目标保持一致。
+•   微分段 —— 应用微分段的概念，结合身份和网络控制。 将对资源的访问限制在更小的“段”中，通过限制任何受损数据中心资源的“爆炸区域”来降低风险（这限制了攻击者访问其他数据中心资源的能力，应用最小权限原则）。
+•   即时 (JIT) 虚拟机访问——这会阻止管理员使用的管理端口（以及攻击者的目标），而不限制客户和员工的端口/协议。
+•   网络过滤（Internet 防火墙和 IDS/IPS）——大多数现有/遗留应用程序都是在假设它们位于专用网络（防火墙、IDS/IPS 和/或 WAF 之后）上的情况下实施和操作的，因此它对 确保在云上遵循这些实践（直到/除非它们被重构为云原生应用程序）。 随着组织迁移到 Azure，他们可以选择使用网络设备直接扩展其现有功能，也可以选择采用 Azure 防火墙和 WAF 等原生功能。
+•   网络过滤（在数据中心内） 这通常是最难成功执行的元素之一，因为在数据中心静态控制内应用精细网络控制需要深入了解应用程序工作流，以避免破坏业务关键应用程序功能与安全控制。 
+•   网络安全组 
+•   应用程序安全组
+• 内部资源身份验证——除了第 1 步和第 2 步中的保护措施外，身份团队和工作负载所有者应努力确保服务器、应用程序和服务在相互通信之前进行身份验证。 这限制了任何受损资源对其他应用程序、VM、帐户或其他资源的访问，从而增加了攻击者的成本和摩擦。
+  
+零信任数据中心小贴士• 与云计划保持一致——当您将工作负载迁移到云端时，我们建议将零信任原则引入企业和工作负载安全性的设计中。 将这些保护措施改造到本地数据中心通常很困难，并且需要处理每个单独的工作负载和应用程序（可能有数百、数千甚至更多）。 因为云迁移已经在清点并与应用程序/工作负载所有者合作，所以在您进入云时添加零信任保护是最好的自然集成点。
+•更快地将设备移动到互联网——最终用户设备和数据中心共享一个网络，直到这些设备移动到仅互联网模式。 这种情况发生得越早，您的 Intranet 就越早缩小为更容易隔离风险的较小的私有数据中心网络。 要达到这种状态，用户和设备需要从 SaaS 或已发布的旧版应用程序（通过 Azure AD 代理或类似方式）获取他们的所有应用程序，这样他们就不再需要直接（或 VPN）访问数据中心网络。
+ 
+运营技术 如果您的资产包括运营技术 (OT) 和工业 IoT，则下一个优先事项是将零信任原则应用于这些环境。
+保护这些环境和架构的安全通常受到旧硬件和软件的限制，因此您应该专注于发现这些资产的过程，通过将易受攻击和/或重要的工作负载与 Internet 和 Intranet 连接隔离开来保护它们，并使用制造的安全工具来监控它们用于环境（不会导致旧应用程序和操作系统崩溃的被动监控）。
+Microsoft Defender for IoT 旨在发现这些资产并以非侵入式的方式对其进行监控，同时应用复杂的异常检测（如果需要，还可以选择连接到云中的 Microsoft Sentinel 以进行进一步的分析和关联）。
+
+                    
+                </div> -->
+                <div class="article-content markdown-body">
+                    <blockquote>
+<blockquote>
+<p>这些是使用零信任快速实现安全现代化的建议优先事项</p>
+</blockquote>
+</blockquote>
+<p><img lazyload src="/images/loading.svg" data-src="1.png"></p>
+<h2 id="用户访问和工作效率"><a href="#用户访问和工作效率" class="headerlink" title="用户访问和工作效率"></a>用户访问和工作效率</h2><p><img lazyload src="/images/loading.svg" data-src="2.png"></p>
+<p>许多组织的第一个举措侧重于对传统企业网络安全边界之外的新型生产力资源（云和移动）资产的安全可见性和控制。</p>
+<p>用户访问和工作效率（用户账户和设备）</p>
+<p>这通常始于为云应用程序和移动设备建立身份“安全边界”，将身份用作控制平面，并在允许访问之前明确验证对用户帐户和设备的信任</p>
+<p>1a. 用户帐户 - 首要任务是需要强大的多因素身份验证 (MFA)（最好是无密码身份验证）。 攻击者很容易获得泄露的用户名/密码和常用密码，因此组织必须优先考虑超越仅密码身份验证作为他们的第一步。</p>
+<p>1b. 端点——在允许从它们访问之前，应该快速测量生产力设备保证。 许多攻击者已经掌握了破坏用户设备、窃取凭据并使用这些技术继续攻击环境的技术。</p>
+<p>该计划的下一个优先事项将这些新的高级控制扩展到应用程序：</p>
+<p>1c. 应用程序——从 SaaS 应用程序开始，使用您在步骤 1 中配置的 Azure AD 身份验证安全性来提高您的资产访问安全性。 为所有认可的软件即服务 (SaaS) 应用程序配置 Azure AD。<br>然后，通过两步流程进行现代化并超越 VPN 身份验证，为不直接支持现代协议（如 OAuth/OIDC 和 SAML）的应用程序启用安全性</p>
+<p>• 提高VPN 安全性- 通过将您的VPN 设备连接到Azure AD 身份验证，VPN 会话受益于用户帐户/会话的显式验证和设备可信度的额外安全性。</p>
+<p>• 发布应用程序——通过 Azure AD 应用代理发布现有的本地（和 IaaS）应用程序，将应用程序移出 VPN，使您能够利用第 1 步中的强大 Azure AD 身份验证，改善用户体验，并将帐户限制为访问 一次单个应用程序（而不是通常提供对整个网络的所有端口/协议的访问权限的 VPN）。</p>
+<p>作为访问控制现代化的一部分，您还应该确保已建立网络控制：</p>
+<p>1d. 网络 - 建立基本的流量过滤和分段，以增加对业务关键和高度易受攻击的资源的隔离。</p>
+<h2 id="数据、合规性和治理："><a href="#数据、合规性和治理：" class="headerlink" title="数据、合规性和治理："></a>数据、合规性和治理：</h2><p><img lazyload src="/images/loading.svg" data-src="3.png"></p>
+<p>下一个举措是数据、合规性和治理的现代化，包括：</p>
+<ul>
+<li><p>勒索软件恢复准备——确保您能够从自己经过验证的备份中恢复数据和系统，这样您就不必向攻击者支付敲诈勒索以重新获得对您业务资产的访问权限。 </p>
+</li>
+<li><p>数据——您还应该专注于保护数据本身。 无论您是否已经采用传统的数据丢失保护 (DLP) 方法，您都应该专注于保护数据：</p>
+</li>
+</ul>
+<p>无论走到哪里（云服务、USB 设备、企业端点和服务器等），都采用超越扩展程序（或构建新程序）的完整生命周期方法</p>
+<p>•   采用全生命周期方法（发现、分类、保护和监控）</p>
+<p>根据您的数据安全优先级，选择有助于实现此目的的技术，例如 Microsoft 信息保护 (MIP)，它会加密数据并需要对云服务进行身份验证以获取解密密钥。 Microsoft Defender for Cloud Apps 还可以发现云应用程序和应用程序会话中的非结构化数据，Azure Purview 可以发现结构化数据并对其进行分类。
+ </p>
+<h2 id="现代安全运营-SecOps"><a href="#现代安全运营-SecOps" class="headerlink" title="现代安全运营 (SecOps)"></a>现代安全运营 (SecOps)</h2><p><img lazyload src="/images/loading.svg" data-src="4.png"><br> <br>组织通常与前两个并行运行的另一个首要任务是安全操作的现代化。 该计划侧重于针对新的云应用程序、远程设备、身份和其他传统安全边界之外的资产的威胁检测、响应和恢复功能，以补充预防性访问控制。</p>
+<p>使用零信任实现安全运营现代化需要严格的优先级，以确保 SecOps 团队专注于组织面临的最大风险，不会在误报/误报上浪费时间，并在他们需要的整个资产中拥有广泛而深入的可见性是有效的。</p>
+<p>•   简化响应 - SecOps 的首要任务是掌握威胁响应和对常见攻击资源的补救，使用</p>
+<p>•   扩展检测和响应 (XDR) 技术为这些新资源类型提供高质量的警报，在尝试在 SIEM（安全信息和事件管理）中构建每个警报时绕过人工工作和延迟。</p>
+<p>•   简化针对这些常见攻击的流程。 将分类（第 1 层）和调查（第 2 层）分析团队的重点放在掌握这些攻击上，将在此过程的早期捕获普通攻击者和高级攻击者，从而降低组织的风险。</p>
+<p>•   统一可见性 —— 虽然很难从 SIEM 中的原始数据创建高质量的个人警报，但它们对于将所有数据和上下文整合在一起以进行调查和威胁搜寻非常有用，从而可以全面了解您的整个资产 （减少攻击者可能停留的盲点）。</p>
+<p>•   减少人工</p>
+<p>在任何时候，安全操作都应该专注于减少手动和重复性任务（如切换工具、键入命令、复制/粘贴数据等）的劳累/痛苦。专注于为分析师提供简化的端到端集成体验，包括安全编排、自动化和 响应（SOAR）技术将提高效率和士气。 SOAR 技术内置于 Microsoft 365 Defender 和 Microsoft Sentinel 中。
+ </p>
+<h2 id="数据中心安全"><a href="#数据中心安全" class="headerlink" title="数据中心安全"></a>数据中心安全</h2><p><img lazyload src="/images/loading.svg" data-src="5.png"></p>
+<p>数据中心零信任的重点领域包括：</p>
+<p>•   安全基线——首先关注数据中心应用完善的安全最佳实践。 正如推土机和生产线等物理设备需要定期维护（换油等）才能可靠运行，计算机系统也是如此（尽管计算机安全维护故障通常会像烟花工厂的草率消防安全程序一样突然发生）。错误配置和缺少安全更新可能会破坏或否定几乎所有其他安全控制，因为它们允许攻击者绕过这些架构假定的安全边界。</p>
+<p>•   降低遗留风险– 发现并（制定计划）淘汰具有高安全风险的遗留技术，如遗留身份验证协议和不受支持的操作系统。 具有网络访问权限的攻击者可以迅速利用这些来扩大他们对环境的访问权限，因此偿还这笔技术债务是一项值得投资的事情。 Microsoft Defender for Cloud 可以为多云和本地资源提供这种发现和测量。</p>
+<p>•   DevOps集成 -– 将安全性尽可能无缝地集成到DevOps 流程中，以提供健康的安全代价（导致批判性思维和分析），同时避免不健康的代价（阻碍的价值超过其保护的价值）。 在理想状态下，团队共同朝着创新速度、可靠性和安全弹性的目标保持一致。</p>
+<p>•   微分段 —— 应用微分段的概念，结合身份和网络控制。 将对资源的访问限制在更小的“段”中，通过限制任何受损数据中心资源的“爆炸区域”来降低风险（这限制了攻击者访问其他数据中心资源的能力，应用最小权限原则）。</p>
+<p>•   即时 (JIT) 虚拟机访问——这会阻止管理员使用的管理端口（以及攻击者的目标），而不限制客户和员工的端口/协议。</p>
+<p>•   网络过滤（Internet 防火墙和 IDS/IPS）——大多数现有/遗留应用程序都是在假设它们位于专用网络（防火墙、IDS/IPS 和/或 WAF 之后）上的情况下实施和操作的，因此它对 确保在云上遵循这些实践（直到/除非它们被重构为云原生应用程序）。 随着组织迁移到 Azure，他们可以选择使用网络设备直接扩展其现有功能，也可以选择采用 Azure 防火墙和 WAF 等原生功能。</p>
+<p>•   网络过滤（在数据中心内） 这通常是最难成功执行的元素之一，因为在数据中心静态控制内应用精细网络控制需要深入了解应用程序工作流，以避免破坏业务关键应用程序功能与安全控制。 </p>
+<p>•   网络安全组 </p>
+<p>•   应用程序安全组</p>
+<p>• 内部资源身份验证——除了第 1 步和第 2 步中的保护措施外，身份团队和工作负载所有者应努力确保服务器、应用程序和服务在相互通信之前进行身份验证。 这限制了任何受损资源对其他应用程序、VM、帐户或其他资源的访问，从而增加了攻击者的成本和摩擦。
+  </p>
+<h3 id="零信任数据中心小贴士"><a href="#零信任数据中心小贴士" class="headerlink" title="零信任数据中心小贴士"></a>零信任数据中心小贴士</h3><p>• 与云计划保持一致——当您将工作负载迁移到云端时，我们建议将零信任原则引入企业和工作负载安全性的设计中。 将这些保护措施改造到本地数据中心通常很困难，并且需要处理每个单独的工作负载和应用程序（可能有数百、数千甚至更多）。 因为云迁移已经在清点并与应用程序/工作负载所有者合作，所以在您进入云时添加零信任保护是最好的自然集成点。</p>
+<p>•更快地将设备移动到互联网——最终用户设备和数据中心共享一个网络，直到这些设备移动到仅互联网模式。 这种情况发生得越早，您的 Intranet 就越早缩小为更容易隔离风险的较小的私有数据中心网络。 要达到这种状态，用户和设备需要从 SaaS 或已发布的旧版应用程序（通过 Azure AD 代理或类似方式）获取他们的所有应用程序，这样他们就不再需要直接（或 VPN）访问数据中心网络。
+ </p>
+<h2 id="运营技术"><a href="#运营技术" class="headerlink" title="运营技术"></a>运营技术</h2><p><img lazyload src="/images/loading.svg" data-src="6.png"><br> <br>如果您的资产包括运营技术 (OT) 和工业 IoT，则下一个优先事项是将零信任原则应用于这些环境。</p>
+<p>保护这些环境和架构的安全通常受到旧硬件和软件的限制，因此您应该专注于发现这些资产的过程，通过将易受攻击和/或重要的工作负载与 Internet 和 Intranet 连接隔离开来保护它们，并使用制造的安全工具来监控它们用于环境（不会导致旧应用程序和操作系统崩溃的被动监控）。</p>
+<p>Microsoft Defender for IoT 旨在发现这些资产并以非侵入式的方式对其进行监控，同时应用复杂的异常检测（如果需要，还可以选择连接到云中的 Microsoft Sentinel 以进行进一步的分析和关联）。</p>
+
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Tue May 17 2022 21:00:00 GMT+0800">2022-05-17</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/%E5%AE%89%E5%85%A8%E6%9E%B6%E6%9E%84/">安全架构</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E5%AE%89%E5%85%A8%E5%BB%BA%E8%AE%BE/">安全建设</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%9E%B6%E6%9E%84%E4%BD%93%E7%B3%BB%E5%8F%82%E8%80%83/">网络安全架构体系参考</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/%E4%BD%BF%E7%94%A8%E9%9B%B6%E4%BF%A1%E4%BB%BB%E5%BF%AB%E9%80%9F%E5%AE%9E%E7%8E%B0%E5%AE%89%E5%85%A8%E7%8E%B0%E4%BB%A3%E5%8C%96/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/%E9%9B%B6%E4%BF%A1%E4%BB%BB%E5%8E%9F%E5%88%99/">
+                        零信任原则
+                    </a>
+                </h3>
+
+                <!-- <div class="home-article-content markdown-body">
+                    
+                        
+
+零信任以全新的战略视角关注最初的安全使命（使资产不受攻击者控制）
+
+
+我们运行的 IT 环境从一开始就很复杂，由许多设备、用户身份以及它们之间的交互组成
+为什么我们要尝试“零信任”策略尝试了受安全边界保护的“可信网络”随着攻击开始出现在我们的 IT 系统上，我们在 IT 安全中尝试的第一件事是从军事学说中调整安全边界的概念。 这种策略起初奏效，似乎是解决问题的一个很好的简单解决方案，因为当时大多数生产力都是在办公室的物理公司网络（台式机、服务器、大型机和终端）上完成的
+但这并没有随着时间的推移而持续随着时间的推移，生产力世界随着移动设备、WiFi、云服务和远程生产力的发展而增长。 
+与此同时，安全威胁扩展到全方位的攻击动机（犯罪、民族国家间谍活动、黑客行动主义等），并不断添加新的创造性攻击技术以始终绕过此网络边界。
+
+这两个因素削弱了所有要保护的东西都在企业网络上的基本假设， 网络安全边界策略开始无法满足组织的战略需求。
+安全需要一个全面的安全策略来指导和优先考虑如何处理这种新的复杂性（在适当的情况下结合网络安全边界），我们现在将这种策略称为零信任。
+
+Microsoft 技术架构零信任原则指南
+明确验证
+
+使用最小特权访问
+
+假设违反
+
+
+
+有效的访问控制策略需要身份和网络控制虽然负责网络控制的团队与负责身份和相关控制（应用程序、数据、客户端/服务器）的团队之间经常存在文化冲突和困难关系，但现实是身份和安全控制对于访问控制都至关重要。 这与我们是否应该始终使用锤子或始终使用螺丝刀无关，而是要为工作选择正确的工具。
+这些技术必须协同工作才能发挥作用，发挥各自的优势，克服彼此的弱点。
+•     身份和相关控制具有丰富的上下文（用户是谁、他们的角色/属性、他们尝试使用或做什么、会话的身份验证有多强等），但仅对使用企业进行身份验证的会话有效的身份系统。
+•    网络控制可以查看和拦截更广泛的通信（尤其是遗留系统），但通常缺乏通信中通信的上下文，并且需要完全控制所有网络通信才能使控制生效。 除了一些关键场景，如运营技术 (OT) 和内部数据中心，试图为拥有远程工作、移动设备和云服务的企业保留对网络流量的完全控制是不切实际的，而且会适得其反。 试图为 SaaS 提供商重新路由所有流量的成本很高，会影响生产力，并且会通过激励用户采用未经授权和不受监控的云服务来完成他们的工作而增加整体风险。
+安全体系结构中对网络与身份和相关控制的关注程度应根据每个环境中的机会和限制进行调整：
+
+用户访问和工作效率云服务正在成为用户生产力和支持远程用户的标准，使身份和相关控制成为这些环境的重中之重。
+•     身份和相关控制应该是主要关注点，确保所有云服务和移动设备都连接到单一企业控制平面（如 Azure Active Directory），以实现对身份验证和访问的集中可见性和控制。
+•     网络控制仍然具有核心的基本过滤威胁的作用，以确保客户端端点有防火墙来阻止未经请求的流量，但除此之外，试图控制来自用户生产力设备（例如使用 VPN）的所有流量最终是一场失败的安全战斗。 网络也可用于实施精细控制，但应由零信任策略引擎而不是本地静态策略引导。
+我们建议组织将构建这种新的身份控制面（又名身份边界）作为首要任务，确保安全角色（架构师、工程师、安全运营中的分析师等）学习如何将身份和相关技术集成到架构中 、实施和日常运营。 对某些人来说，这可能是一项新技能，但它是一项需要学习的关键技能。
+操作技术（OT）和工业物联网与用户访问和生产力相比，OT 和 IoT 环境的比例相反。 这些环境由可能有 50-100 年历史的物理机械（在某些情况下由蒸汽驱动）组成，在过去 30-50 年中经常使用电子计算机控制进行改造。 这些计算机控件中的大多数现在都支持 IP 网络通信，但许多都是依靠设备将自定义或行业特定协议转换为 IP 流量来实现的。 这些系统通常（从 IT 角度来看）陈旧且过时，执行“基本”IT 安全功能（例如扫描网络以查找漏洞）很容易导致代价高昂的中断。 经常听到这样的故事，比如安全扫描导致关键设备失效，并要求技术人员驾驶数百英里来重新启动连接到远程设备的 PC。
+网络控制——由于这些限制，安全必须关注他们能做什么，这通常是：
+•     使用防火墙和其他网络控制将这些环境与企业 IT 环境隔离开来
+•     被动监控流量，以识别异常活动和漏洞。
+身份及相关——使用现代云时代身份协议（如 OAuth/ODIC 或 SAML）作为主要控制通常甚至不是一个微弱的希望。 身份和相关控制的作用主要是保护 IT 环境中连接这些环境的暴露点，例如 确保将 IT 最佳实践严格应用于与 OT 系统交互的 IT 系统（强大的多因素身份验证、快速修补等）
+数据中心安全数据中心环境需要更多地混合两种类型的控制。 大多数托管应用程序和数据的数据中心都采用了多种控制组合：
+•    网络 - 防火墙、IDS/IPS 和其他控制措施，以防止未经请求的互联网流量。 这有时会扩展到网段以分隔应用程序/工作负载或应用程序层（数据库、应用程序和演示），但由于应用程序间通信的复杂性，这是一项具有挑战性/高级的练习。
+•     身份和相关——大多数数据中心操作系统和应用程序结合使用Active Directory、身份系统和其他管理工具来提供对这些系统的访问控制。 有时，详细的基于角色的访问控制 (RBAC) 或基于属性的访问控制 (ABAC) 用于单个工作负载和应用程序，但这通常因工作负载而异。
+随着数据中心工作负载迁移到云端（以及软件定义的数据中心方法），使用 Azure 网络安全组 (NSG)、应用程序安全组 (ASG) 和 Azure 防火墙等技术可以更轻松地实施基本网络控制。
+更重要的是，使用 Azure 资源的托管身份等技术，身份控制变得更容易实施和集成。 这些提供了基于身份的访问控制的丰富上下文，而无需管理凭证的负担，并且通常可以在不需要开发人员更改应用程序的情况下实施。这促使人们越来越关注数据中心内的身份，从而提高了安全架构的可见性和控制粒度。
+安全运营安全运营部门监视并响应这些环境中的事件，因此他们需要熟悉每个组织中的网络和身份控制。
+
+                    
+                </div> -->
+                <div class="article-content markdown-body">
+                    <blockquote>
+<blockquote>
+<p>零信任以全新的战略视角关注最初的安全使命（使资产不受攻击者控制）</p>
+</blockquote>
+</blockquote>
+<p>我们运行的 IT 环境从一开始就很复杂，由许多设备、用户身份以及它们之间的交互组成</p>
+<h2 id="为什么我们要尝试“零信任”策略"><a href="#为什么我们要尝试“零信任”策略" class="headerlink" title="为什么我们要尝试“零信任”策略"></a>为什么我们要尝试“零信任”策略</h2><h3 id="尝试了受安全边界保护的“可信网络”"><a href="#尝试了受安全边界保护的“可信网络”" class="headerlink" title="尝试了受安全边界保护的“可信网络”"></a>尝试了受安全边界保护的“可信网络”</h3><p>随着攻击开始出现在我们的 IT 系统上，我们在 IT 安全中尝试的第一件事是从军事学说中调整安全边界的概念。 这种策略起初奏效，似乎是解决问题的一个很好的简单解决方案，因为当时大多数生产力都是在办公室的物理公司网络（台式机、服务器、大型机和终端）上完成的</p>
+<h3 id="但这并没有随着时间的推移而持续"><a href="#但这并没有随着时间的推移而持续" class="headerlink" title="但这并没有随着时间的推移而持续"></a>但这并没有随着时间的推移而持续</h3><p>随着时间的推移，生产力世界随着移动设备、WiFi、云服务和远程生产力的发展而增长。 </p>
+<p>与此同时，安全威胁扩展到全方位的攻击动机（犯罪、民族国家间谍活动、黑客行动主义等），并不断添加新的创造性攻击技术以始终绕过此网络边界。</p>
+<p><img lazyload src="/images/loading.svg" data-src="1.png"></p>
+<p>这两个因素削弱了所有要保护的东西都在企业网络上的基本假设， 网络安全边界策略开始无法满足组织的战略需求。</p>
+<p>安全需要一个全面的安全策略来指导和优先考虑如何处理这种新的复杂性（在适当的情况下结合网络安全边界），我们现在将这种策略称为零信任。</p>
+<p><img lazyload src="/images/loading.svg" data-src="2.png"></p>
+<h2 id="Microsoft-技术架构零信任原则指南"><a href="#Microsoft-技术架构零信任原则指南" class="headerlink" title="Microsoft 技术架构零信任原则指南"></a>Microsoft 技术架构零信任原则指南</h2><ul>
+<li><p>明确验证</p>
+</li>
+<li><p>使用最小特权访问</p>
+</li>
+<li><p>假设违反</p>
+</li>
+</ul>
+<p><img lazyload src="/images/loading.svg" data-src="3.png"></p>
+<h2 id="有效的访问控制策略需要身份和网络控制"><a href="#有效的访问控制策略需要身份和网络控制" class="headerlink" title="有效的访问控制策略需要身份和网络控制"></a>有效的访问控制策略需要身份和网络控制</h2><p>虽然负责网络控制的团队与负责身份和相关控制（应用程序、数据、客户端/服务器）的团队之间经常存在文化冲突和困难关系，但现实是身份和安全控制对于访问控制都至关重要。 这与我们是否应该始终使用锤子或始终使用螺丝刀无关，而是要为工作选择正确的工具。</p>
+<p>这些技术必须协同工作才能发挥作用，发挥各自的优势，克服彼此的弱点。</p>
+<p>•     身份和相关控制具有丰富的上下文（用户是谁、他们的角色/属性、他们尝试使用或做什么、会话的身份验证有多强等），但仅对使用企业进行身份验证的会话有效的身份系统。</p>
+<p>•    网络控制可以查看和拦截更广泛的通信（尤其是遗留系统），但通常缺乏通信中通信的上下文，并且需要完全控制所有网络通信才能使控制生效。 除了一些关键场景，如运营技术 (OT) 和内部数据中心，试图为拥有远程工作、移动设备和云服务的企业保留对网络流量的完全控制是不切实际的，而且会适得其反。 试图为 SaaS 提供商重新路由所有流量的成本很高，会影响生产力，并且会通过激励用户采用未经授权和不受监控的云服务来完成他们的工作而增加整体风险。</p>
+<p>安全体系结构中对网络与身份和相关控制的关注程度应根据每个环境中的机会和限制进行调整：</p>
+<p><img lazyload src="/images/loading.svg" data-src="4.png"></p>
+<h3 id="用户访问和工作效率"><a href="#用户访问和工作效率" class="headerlink" title="用户访问和工作效率"></a>用户访问和工作效率</h3><p>云服务正在成为用户生产力和支持远程用户的标准，使身份和相关控制成为这些环境的重中之重。</p>
+<p>•     身份和相关控制应该是主要关注点，确保所有云服务和移动设备都连接到单一企业控制平面（如 Azure Active Directory），以实现对身份验证和访问的集中可见性和控制。</p>
+<p>•     网络控制仍然具有核心的基本过滤威胁的作用，以确保客户端端点有防火墙来阻止未经请求的流量，但除此之外，试图控制来自用户生产力设备（例如使用 VPN）的所有流量最终是一场失败的安全战斗。 网络也可用于实施精细控制，但应由零信任策略引擎而不是本地静态策略引导。</p>
+<p>我们建议组织将构建这种新的身份控制面（又名身份边界）作为首要任务，确保安全角色（架构师、工程师、安全运营中的分析师等）学习如何将身份和相关技术集成到架构中 、实施和日常运营。 对某些人来说，这可能是一项新技能，但它是一项需要学习的关键技能。</p>
+<h3 id="操作技术（OT）和工业物联网"><a href="#操作技术（OT）和工业物联网" class="headerlink" title="操作技术（OT）和工业物联网"></a>操作技术（OT）和工业物联网</h3><p>与用户访问和生产力相比，OT 和 IoT 环境的比例相反。 这些环境由可能有 50-100 年历史的物理机械（在某些情况下由蒸汽驱动）组成，在过去 30-50 年中经常使用电子计算机控制进行改造。 这些计算机控件中的大多数现在都支持 IP 网络通信，但许多都是依靠设备将自定义或行业特定协议转换为 IP 流量来实现的。 这些系统通常（从 IT 角度来看）陈旧且过时，执行“基本”IT 安全功能（例如扫描网络以查找漏洞）很容易导致代价高昂的中断。 经常听到这样的故事，比如安全扫描导致关键设备失效，并要求技术人员驾驶数百英里来重新启动连接到远程设备的 PC。</p>
+<p>网络控制——由于这些限制，安全必须关注他们能做什么，这通常是：</p>
+<p>•     使用防火墙和其他网络控制将这些环境与企业 IT 环境隔离开来</p>
+<p>•     被动监控流量，以识别异常活动和漏洞。</p>
+<p>身份及相关——使用现代云时代身份协议（如 OAuth/ODIC 或 SAML）作为主要控制通常甚至不是一个微弱的希望。 身份和相关控制的作用主要是保护 IT 环境中连接这些环境的暴露点，例如 确保将 IT 最佳实践严格应用于与 OT 系统交互的 IT 系统（强大的多因素身份验证、快速修补等）</p>
+<h3 id="数据中心安全"><a href="#数据中心安全" class="headerlink" title="数据中心安全"></a>数据中心安全</h3><p>数据中心环境需要更多地混合两种类型的控制。 大多数托管应用程序和数据的数据中心都采用了多种控制组合：</p>
+<p>•    网络 - 防火墙、IDS/IPS 和其他控制措施，以防止未经请求的互联网流量。 这有时会扩展到网段以分隔应用程序/工作负载或应用程序层（数据库、应用程序和演示），但由于应用程序间通信的复杂性，这是一项具有挑战性/高级的练习。</p>
+<p>•     身份和相关——大多数数据中心操作系统和应用程序结合使用Active Directory、身份系统和其他管理工具来提供对这些系统的访问控制。 有时，详细的基于角色的访问控制 (RBAC) 或基于属性的访问控制 (ABAC) 用于单个工作负载和应用程序，但这通常因工作负载而异。</p>
+<p>随着数据中心工作负载迁移到云端（以及软件定义的数据中心方法），使用 Azure 网络安全组 (NSG)、应用程序安全组 (ASG) 和 Azure 防火墙等技术可以更轻松地实施基本网络控制。</p>
+<p>更重要的是，使用 Azure 资源的托管身份等技术，身份控制变得更容易实施和集成。 这些提供了基于身份的访问控制的丰富上下文，而无需管理凭证的负担，并且通常可以在不需要开发人员更改应用程序的情况下实施。<br>这促使人们越来越关注数据中心内的身份，从而提高了安全架构的可见性和控制粒度。</p>
+<h3 id="安全运营"><a href="#安全运营" class="headerlink" title="安全运营"></a>安全运营</h3><p>安全运营部门监视并响应这些环境中的事件，因此他们需要熟悉每个组织中的网络和身份控制。</p>
+
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Tue May 17 2022 21:00:00 GMT+0800">2022-05-17</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/%E5%AE%89%E5%85%A8%E6%9E%B6%E6%9E%84/">安全架构</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E5%AE%89%E5%85%A8%E5%BB%BA%E8%AE%BE/">安全建设</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%9E%B6%E6%9E%84%E4%BD%93%E7%B3%BB%E5%8F%82%E8%80%83/">网络安全架构体系参考</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/%E9%9B%B6%E4%BF%A1%E4%BB%BB%E5%8E%9F%E5%88%99/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/%E6%93%8D%E4%BD%9C%E6%8A%80%E6%9C%AF(OT)%E5%AE%89%E5%85%A8%E6%9E%B6%E6%9E%84%E5%8F%82%E8%80%83/">
+                        操作技术(OT)安全架构参考
+                    </a>
+                </h3>
+
+                <!-- <div class="home-article-content markdown-body">
+                    
+                        #安全架构网络安全架构体系参考——操作技术(OT)安全架构参考
+
+
+“在OT和工业物联网环境中应用零信任原则”
+
+
+操作技术 (OT) 和工业物联网环境由控制物理设备的计算机组成。 这包括供暖、通风和空调 (HVAC) 系统等常见技术，以及用于制造、石油和天然气设施、公用事业、交通运输、市政基础设施等的行业特定设备。 这些 OT 系统通常在 IT 环境中进行监控，以提供业务分析和对物理业务运营的其他洞察。
+虽然底层计算平台和 IP 网络与 IT 相似，但这些 OT 环境在几个方面有所不同：
+• 安全是主要的OT 安全保证，这与IT 主要关注知识产权的机密性形成鲜明对比（尽管两者都关注系统和数据的完整性和可用性）。 这种差异是因为 OT 系统故障可能直接导致人身伤害或死亡（例如，在重型机械上或附近工作的员工、使用/消费产品的客户、在实体设施附近生活/工作的公民等）。 此外，其中一些系统距离可以访问或重新启动它们的最近技术人员数百英里/公里。
+•与 IT 系统相比，OT 硬件/软件比较陈旧，因为物理设备的运行生命周期比典型的 IT 系统长得多（在许多情况下是 10 倍）。 找到 50 或 100 年历史的设备（有些仍然由蒸汽驱动！）在 30 到 50 年前被现代化为电子控制系统的情况并不罕见。
+•OT 安全有所不同，因为这些系统在构建时通常没有考虑到现代威胁和协议（并且通常依赖于“生命终结”软件）。 许多成熟的 IT 安全最佳实践（如软件修补）在 OT 环境中并不实用或完全有效，因此只能有选择地应用（或安全效果有限）。 OT 的基本安全始于网络隔离（包括对隔离边界的良好维护/监控）、威胁监控以及仔细管理供应商访问风险。
+Purdue Model自 1990 年代以来，Purdue 企业参考架构 (PERA)，即 Purdue 模型，一直是组织（有时是分离）企业和工业控制系统 (ICS) 安全措施和网络功能的标准模型。
+•     0-3 级（OT 环境）变化不大，并且在今天仍然适用。
+•     4 级和 5 级（IT 环境）反映了一种较旧的企业访问控制方法，由于移动和云技术的出现，这种方法正在以零信任原则进行转变。
+
+Blended Attacks网络安全攻击越来越多地跨越 IT、物联网、OT 和工业物联网环境，要求事件响应流程（和预防策略）融合为跨越这些环境的统一方法（同时仍然根据每个环境的功能和限制进行定制）。
+
+Cloud Connections组织越来越多地将 OT 环境与基于云的业务分析相连接，以深入了解生产力、敏捷性和工作流管理等。
+
+Isolation and Segmentation可用于提供隔离和分段的控制措施通常从使用以下任一方式将 OT 环境与公司内部网和互联网隔离开始
+•    硬边界 - 完全断开流量，通常在物理上拔掉插头以形成“air gap”
+•    软边界- 基于防火墙或其他网络流量过滤器。
+防火墙和忽略风险 - 与任何安全边界一样，软边界需要监控和维护才能随着时间的推移保持有效。 不幸的是，我们看到许多情况下，组织设置防火墙规则来阻止流量，但没有应用完整的人员/流程/技术方法将安全性集成到变更管理中，仔细监控异常，持续审计变更，测试边界 攻击模拟等
+
+•     内部分段——组织还可以通过将 OT 系统组彼此隔离来进一步分段，以进一步阻止攻击。 就像在 IT 环境中一样，这种做法需要通信/流量模式与这种方法以及持续的维护、审计、异常管理和其他严格的流程兼容。
+这些安全实践很好地应用了零信任原则，尽管由于 OT 系统的时代，它们受限于静态配置和网络控制。
+
+Microsoft Defender for IoTMicrosoft 的威胁监控方法专注于引入现代安全方法，同时也深刻尊重这些系统的限制和敏感性。 该方法基于 CyberX 开发的技术（最近被微软收购并集成）。
+解决方案包括
+•    Network TAP/SPAN（被动收集）——通过被动流量监控提供数据收集，以避免OT和IIoT操作中断。 这种被动方法至关重要，因为主动扫描可能会减慢或中断业务运营（可能会改变敏感的物理操作时间或可能会导致旧的 OT 计算机系统崩溃）。
+•     适用于物联网的 Microsoft Defender 的传感器和分析通常位于 OT 环境中，以快速解析流量并获得即时的本地洞察力。 这些受益于 OT 的确定性/一致性性质（一天发生的事情几乎与其他一天发生的事情相同）
+•     本地控制台可以为物理流程的操作员（除了安全操作分析师）提供即时的本地洞察（安全性和生产力）。
+•    Microsoft Defender for IoT 还提供了一个管理控制台，用于跨多个传感器捕获和关联洞察，并提供对安全操作攻击检测、清单、漏洞评估、攻击模拟等的洞察。
+•    这可以在 OT 环境（以尊重隔离边界）或 IT 环境（以更好地与融合的 IT/OT/IoT/IIoT 检测/响应/恢复流程集成）中进行离线托管。
+•    这包括将攻击检测映射到 MITRE ATT&amp;CK 框架。
+该解决方案方法通过明确验证环境的安全状态并假设攻击者可能会破坏系统并尝试访问 OT 系统，从而体现了零信任原则。
+
+Microsoft Sentinel IntegrationMicrosoft Defender for IoT 还为你提供了在 Microsoft Sentinel 中集成云分析、编排和剧本的选择。
+配置 Microsoft Sentinel 与 Microsoft Defender for Cloud 的集成提供
+•    本地 OT 调查和修复手册•     与 Microsoft Sentinel 中的其他数据源（IT、IoT、物理系统等）的相关性•     技术威胁情报（IOC 等）和战略威胁情报（攻击组和环境）的集成
+
+
+                    
+                </div> -->
+                <div class="article-content markdown-body">
+                    <p>#安全架构网络安全架构体系参考——操作技术(OT)安全架构参考</p>
+<blockquote>
+<blockquote>
+<p>“在OT和工业物联网环境中应用零信任原则”</p>
+</blockquote>
+</blockquote>
+<p>操作技术 (OT) 和工业物联网环境由控制物理设备的计算机组成。 这包括供暖、通风和空调 (HVAC) 系统等常见技术，以及用于制造、石油和天然气设施、公用事业、交通运输、市政基础设施等的行业特定设备。 这些 OT 系统通常在 IT 环境中进行监控，以提供业务分析和对物理业务运营的其他洞察。</p>
+<p>虽然底层计算平台和 IP 网络与 IT 相似，但这些 OT 环境在几个方面有所不同：</p>
+<p>• 安全是主要的OT 安全保证，这与IT 主要关注知识产权的机密性形成鲜明对比（尽管两者都关注系统和数据的完整性和可用性）。 这种差异是因为 OT 系统故障可能直接导致人身伤害或死亡（例如，在重型机械上或附近工作的员工、使用/消费产品的客户、在实体设施附近生活/工作的公民等）。 此外，其中一些系统距离可以访问或重新启动它们的最近技术人员数百英里/公里。</p>
+<p>•与 IT 系统相比，OT 硬件/软件比较陈旧，因为物理设备的运行生命周期比典型的 IT 系统长得多（在许多情况下是 10 倍）。 找到 50 或 100 年历史的设备（有些仍然由蒸汽驱动！）在 30 到 50 年前被现代化为电子控制系统的情况并不罕见。</p>
+<p>•OT 安全有所不同，因为这些系统在构建时通常没有考虑到现代威胁和协议（并且通常依赖于“生命终结”软件）。 许多成熟的 IT 安全最佳实践（如软件修补）在 OT 环境中并不实用或完全有效，因此只能有选择地应用（或安全效果有限）。 OT 的基本安全始于网络隔离（包括对隔离边界的良好维护/监控）、威胁监控以及仔细管理供应商访问风险。</p>
+<h2 id="Purdue-Model"><a href="#Purdue-Model" class="headerlink" title="Purdue Model"></a>Purdue Model</h2><p>自 1990 年代以来，Purdue 企业参考架构 (PERA)，即 Purdue 模型，一直是组织（有时是分离）企业和工业控制系统 (ICS) 安全措施和网络功能的标准模型。</p>
+<p>•     0-3 级（OT 环境）变化不大，并且在今天仍然适用。</p>
+<p>•     4 级和 5 级（IT 环境）反映了一种较旧的企业访问控制方法，由于移动和云技术的出现，这种方法正在以零信任原则进行转变。</p>
+<p><img lazyload src="/images/loading.svg" data-src="1.png"></p>
+<h2 id="Blended-Attacks"><a href="#Blended-Attacks" class="headerlink" title="Blended Attacks"></a>Blended Attacks</h2><p>网络安全攻击越来越多地跨越 IT、物联网、OT 和工业物联网环境，要求事件响应流程（和预防策略）融合为跨越这些环境的统一方法（同时仍然根据每个环境的功能和限制进行定制）。</p>
+<p><img lazyload src="/images/loading.svg" data-src="2.png"></p>
+<h2 id="Cloud-Connections"><a href="#Cloud-Connections" class="headerlink" title="Cloud Connections"></a>Cloud Connections</h2><p>组织越来越多地将 OT 环境与基于云的业务分析相连接，以深入了解生产力、敏捷性和工作流管理等。</p>
+<p><img lazyload src="/images/loading.svg" data-src="3.png"></p>
+<h2 id="Isolation-and-Segmentation"><a href="#Isolation-and-Segmentation" class="headerlink" title="Isolation and Segmentation"></a>Isolation and Segmentation</h2><p>可用于提供隔离和分段的控制措施通常从使用以下任一方式将 OT 环境与公司内部网和互联网隔离开始</p>
+<p>•    硬边界 - 完全断开流量，通常在物理上拔掉插头以形成“air gap”</p>
+<p>•    软边界- 基于防火墙或其他网络流量过滤器。</p>
+<pre><code>防火墙和忽略风险 - 与任何安全边界一样，软边界需要监控和维护才能随着时间的推移保持有效。 不幸的是，我们看到许多情况下，组织设置防火墙规则来阻止流量，但没有应用完整的人员/流程/技术方法将安全性集成到变更管理中，仔细监控异常，持续审计变更，测试边界 攻击模拟等
+</code></pre>
+<p>•     内部分段——组织还可以通过将 OT 系统组彼此隔离来进一步分段，以进一步阻止攻击。 就像在 IT 环境中一样，这种做法需要通信/流量模式与这种方法以及持续的维护、审计、异常管理和其他严格的流程兼容。</p>
+<p>这些安全实践很好地应用了零信任原则，尽管由于 OT 系统的时代，它们受限于静态配置和网络控制。</p>
+<p><img lazyload src="/images/loading.svg" data-src="4.png"></p>
+<h2 id="Microsoft-Defender-for-IoT"><a href="#Microsoft-Defender-for-IoT" class="headerlink" title="Microsoft Defender for IoT"></a>Microsoft Defender for IoT</h2><p>Microsoft 的威胁监控方法专注于引入现代安全方法，同时也深刻尊重这些系统的限制和敏感性。 该方法基于 CyberX 开发的技术（最近被微软收购并集成）。</p>
+<p>解决方案包括</p>
+<p>•    Network TAP/SPAN（被动收集）——通过被动流量监控提供数据收集，以避免OT和IIoT操作中断。 这种被动方法至关重要，因为主动扫描可能会减慢或中断业务运营（可能会改变敏感的物理操作时间或可能会导致旧的 OT 计算机系统崩溃）。</p>
+<p>•     适用于物联网的 Microsoft Defender 的传感器和分析通常位于 OT 环境中，以快速解析流量并获得即时的本地洞察力。 这些受益于 OT 的确定性/一致性性质（一天发生的事情几乎与其他一天发生的事情相同）</p>
+<p>•     本地控制台可以为物理流程的操作员（除了安全操作分析师）提供即时的本地洞察（安全性和生产力）。</p>
+<p>•    Microsoft Defender for IoT 还提供了一个管理控制台，用于跨多个传感器捕获和关联洞察，并提供对安全操作攻击检测、清单、漏洞评估、攻击模拟等的洞察。</p>
+<p>•    这可以在 OT 环境（以尊重隔离边界）或 IT 环境（以更好地与融合的 IT/OT/IoT/IIoT 检测/响应/恢复流程集成）中进行离线托管。</p>
+<p>•    这包括将攻击检测映射到 MITRE ATT&amp;CK 框架。</p>
+<p>该解决方案方法通过明确验证环境的安全状态并假设攻击者可能会破坏系统并尝试访问 OT 系统，从而体现了零信任原则。</p>
+<p><img lazyload src="/images/loading.svg" data-src="5.png"></p>
+<h2 id="Microsoft-Sentinel-Integration"><a href="#Microsoft-Sentinel-Integration" class="headerlink" title="Microsoft Sentinel Integration"></a>Microsoft Sentinel Integration</h2><p>Microsoft Defender for IoT 还为你提供了在 Microsoft Sentinel 中集成云分析、编排和剧本的选择。</p>
+<p>配置 Microsoft Sentinel 与 Microsoft Defender for Cloud 的集成提供</p>
+<p>•    本地 OT 调查和修复手册<br>•     与 Microsoft Sentinel 中的其他数据源（IT、IoT、物理系统等）的相关性<br>•     技术威胁情报（IOC 等）和战略威胁情报（攻击组和环境）的集成</p>
+<p><img lazyload src="/images/loading.svg" data-src="6.png"></p>
+
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Mon May 16 2022 21:00:00 GMT+0800">2022-05-16</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/%E5%AE%89%E5%85%A8%E6%9E%B6%E6%9E%84/">安全架构</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E5%AE%89%E5%85%A8%E5%BB%BA%E8%AE%BE/">安全建设</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%9E%B6%E6%9E%84%E4%BD%93%E7%B3%BB%E5%8F%82%E8%80%83/">网络安全架构体系参考</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/%E6%93%8D%E4%BD%9C%E6%8A%80%E6%9C%AF(OT)%E5%AE%89%E5%85%A8%E6%9E%B6%E6%9E%84%E5%8F%82%E8%80%83/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/%E8%B7%A8%E8%B6%8A%E6%94%BB%E5%87%BB%E9%93%BE%E8%BF%9B%E8%A1%8C%E9%98%B2%E5%BE%A1(%E5%86%85%E9%83%A8%E5%92%8C%E5%A4%96%E9%83%A8%E5%A8%81%E8%83%81)/">
+                        跨越攻击链进行防御(内部和外部威胁)
+                    </a>
+                </h3>
+
+                <!-- <div class="home-article-content markdown-body">
+                    
+                        
+
+Microsoft 为外部攻击和内部风险中出现的各种攻击技术提供端到端的集成可见性
+
+
+外部威胁——攻击者很灵活，可以在攻击链序列中使用各种攻击技术来达到他们的最终目标（最常见的是窃取数据，但勒索软件和其他勒索攻击者正变得越来越普遍）。
+
+Microsoft 提供了一套集成的扩展检测和响应 (XDR) 和 SIEM/SOAR 功能，可覆盖常见的攻击链。 这些 XDR 功能提供高级威胁检测，重点关注高质量警报（误报率低，也就是误报）以及自动调查和响应功能。 这些工具旨在协同工作，其中包括：
+•    Microsoft Defender for Office 365 (MDO) 为电子邮件、SharePoint、OneDrive、Teams 和其他 Office 365 功能提供保护;
+•     Microsoft Defender for Endpoint (MDE) 提供了端点检测和响应 (EDR) 功能，涵盖生产力工作站、服务器、移动设备等;
+•    Microsoft Defender for IoT 为物联网设备的资产发现和威胁管理以及对运营技术 (OT) 资源的攻击（这可能导致工厂生产、发电、医疗设备功能等物理过程中断）提供保障;
+•    Microsoft Defender for Cloud 为服务器 VM 和 SQL 服务器、容器等提供了额外的功能;
+•    Azure AD 身份保护和 Microsoft Defender for Identity (MDI) 共同涵盖攻击的身份阶段，为基于云的 Azure Active Directory 和基于 Windows Server Active Directory 和 Active Directory 联合服务的本地身份基础设施提供威胁检测 (ADFS);
+•    Microsoft Defender for Cloud Apps (MDCA) 从攻击检测和数据泄露的角度为软件即服务 (SaaS) 应用提供了覆盖;
+•    Microsoft Sentinel 提供这些工具的统一可见性，以及来自其他安全工具、业务线应用程序、网络设备等的事件日志和警报。
+集成示例——这说明了这些工具如何协同工作以确保组织安全并减少分析师的重复性任务数量：
+
+   Attack - 用户从他们的公司设备检查个人网络邮件并打开带有恶意软件的附件（旨在逃避传统的 AV 签名）。
+
+   Detection - MDE 检测到这种异常行为并自动对其进行调查，创建自动序列来修复威胁，并提示分析师批准清理（也可以自动批准）。
+
+   Intelligence Sharing - MDE向微软威胁情报系统提供关于这种新恶意软件的信息，触发其他微软安全功能（MDE、MDO、MDCA、MDI等）在客户之间搜索类似的恶意软件并从邮箱、设备中清除 、云服务等。
+
+   Damage Containment——在分析师批准修复之前，Azure AD 条件访问会阻止从此设备访问企业应用程序。 一旦 MDE 传达此设备的“全部清除”，Azure AD 就会恢复用户访问权限。
+
+   其他补救措施 - 还触发 Microsoft Sentinel 工作流来修改 Palo Alto 防火墙，以阻止攻击者的命令和控制 (C2) 服务器的 IP 地址。
+
+
+组织还面临内部风险，即有权访问敏感资源的受信任的内部人员可能会出于各种原因选择滥用该访问权限。
+•    Microsoft 365 中的Microsoft Insider 风险管理使您能够检测、调查和处理组织中的恶意和无意活动，从而帮助最大限度地降低内部风险。
+
+                    
+                </div> -->
+                <div class="article-content markdown-body">
+                    <blockquote>
+<blockquote>
+<p>Microsoft 为外部攻击和内部风险中出现的各种攻击技术提供端到端的集成可见性</p>
+</blockquote>
+</blockquote>
+<p>外部威胁——攻击者很灵活，可以在攻击链序列中使用各种攻击技术来达到他们的最终目标（最常见的是窃取数据，但勒索软件和其他勒索攻击者正变得越来越普遍）。</p>
+<p><img lazyload src="/images/loading.svg" data-src="1.png"></p>
+<p>Microsoft 提供了一套集成的扩展检测和响应 (XDR) 和 SIEM/SOAR 功能，可覆盖常见的攻击链。 这些 XDR 功能提供高级威胁检测，重点关注高质量警报（误报率低，也就是误报）以及自动调查和响应功能。 这些工具旨在协同工作，其中包括：</p>
+<p>•    Microsoft Defender for Office 365 (MDO) 为电子邮件、SharePoint、OneDrive、Teams 和其他 Office 365 功能提供保护;</p>
+<p>•     Microsoft Defender for Endpoint (MDE) 提供了端点检测和响应 (EDR) 功能，涵盖生产力工作站、服务器、移动设备等;</p>
+<p>•    Microsoft Defender for IoT 为物联网设备的资产发现和威胁管理以及对运营技术 (OT) 资源的攻击（这可能导致工厂生产、发电、医疗设备功能等物理过程中断）提供保障;</p>
+<p>•    Microsoft Defender for Cloud 为服务器 VM 和 SQL 服务器、容器等提供了额外的功能;</p>
+<p>•    Azure AD 身份保护和 Microsoft Defender for Identity (MDI) 共同涵盖攻击的身份阶段，为基于云的 Azure Active Directory 和基于 Windows Server Active Directory 和 Active Directory 联合服务的本地身份基础设施提供威胁检测 (ADFS);</p>
+<p>•    Microsoft Defender for Cloud Apps (MDCA) 从攻击检测和数据泄露的角度为软件即服务 (SaaS) 应用提供了覆盖;</p>
+<p>•    Microsoft Sentinel 提供这些工具的统一可见性，以及来自其他安全工具、业务线应用程序、网络设备等的事件日志和警报。</p>
+<p>集成示例——这说明了这些工具如何协同工作以确保组织安全并减少分析师的重复性任务数量：</p>
+<ol>
+<li><p>   Attack - 用户从他们的公司设备检查个人网络邮件并打开带有恶意软件的附件（旨在逃避传统的 AV 签名）。</p>
+</li>
+<li><p>   Detection - MDE 检测到这种异常行为并自动对其进行调查，创建自动序列来修复威胁，并提示分析师批准清理（也可以自动批准）。</p>
+</li>
+<li><p>   Intelligence Sharing - MDE向微软威胁情报系统提供关于这种新恶意软件的信息，触发其他微软安全功能（MDE、MDO、MDCA、MDI等）在客户之间搜索类似的恶意软件并从邮箱、设备中清除 、云服务等。</p>
+</li>
+<li><p>   Damage Containment——在分析师批准修复之前，Azure AD 条件访问会阻止从此设备访问企业应用程序。 一旦 MDE 传达此设备的“全部清除”，Azure AD 就会恢复用户访问权限。</p>
+</li>
+<li><p>   其他补救措施 - 还触发 Microsoft Sentinel 工作流来修改 Palo Alto 防火墙，以阻止攻击者的命令和控制 (C2) 服务器的 IP 地址。</p>
+</li>
+</ol>
+<p>组织还面临内部风险，即有权访问敏感资源的受信任的内部人员可能会出于各种原因选择滥用该访问权限。</p>
+<p>•    Microsoft 365 中的Microsoft Insider 风险管理使您能够检测、调查和处理组织中的恶意和无意活动，从而帮助最大限度地降低内部风险。</p>
+
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sun May 15 2022 21:00:00 GMT+0800">2022-05-15</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/%E5%AE%89%E5%85%A8%E6%9E%B6%E6%9E%84/">安全架构</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E5%AE%89%E5%85%A8%E5%BB%BA%E8%AE%BE/">安全建设</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%9E%B6%E6%9E%84%E4%BD%93%E7%B3%BB%E5%8F%82%E8%80%83/">网络安全架构体系参考</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/%E8%B7%A8%E8%B6%8A%E6%94%BB%E5%87%BB%E9%93%BE%E8%BF%9B%E8%A1%8C%E9%98%B2%E5%BE%A1(%E5%86%85%E9%83%A8%E5%92%8C%E5%A4%96%E9%83%A8%E5%A8%81%E8%83%81)/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/%E5%A4%9A%E4%BA%91%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%8A%80%E6%9C%AF/">
+                        多云跨平台技术
+                    </a>
+                </h3>
+
+                <!-- <div class="home-article-content markdown-body">
+                    
+                        当今大多数组织都在运行一个复杂的环境，其中包括众多操作系统平台、SaaS 云服务和 IaaS/PaaS 云提供商。 根据您的行业，这通常还包括各种操作技术（也称为 SCADA、ICS 或 PCN）和物联网设备
+多云跨平台技术Microsoft 专注于通过利用我们每天从超过 8 万亿个情报中收集的洞察力，为组织提供降低这些现代资产风险所需的安全功能，帮助组织改进其安全计划的各个领域。
+Microsoft 还专注于从我们的全球客户和合作伙伴网络（包括解决方案集成和 MDR/MSSP 合作伙伴）、NIST、CIS 和 The Open Group 等组织、CERTS、ISAC、执法机构（用于僵尸网络清除）中引入安全专业知识和情报等等。
+
+补充说明：OT 和物联网——大多数组织通过其中一种或两种方式暴露于物联网和OT 安全风险：
+•     常见的系统，如 HVAC 系统、安全摄像头和大多数组织中的数据中心；
+•     用于制造、发电/配电、医疗保健或其他支持实体业务运营的设备/传感器的专用网络设备。
+如何使多云跨平台安全
+终端和云管理Microsoft 的跨平台/云安全性始于端点和云可见性和控制：
+•     跨 Mac、Android、iOS 和 Windows 操作系统的终端管理；
+•    云安全态势管理 (CSPM)，可提供对多云和本地数据中心资产的洞察力以及云工作负载保护功能（又名 CWPP）。
+
+SIEM 和 XDR 策略Microsoft 为安全运营/SOC 提供集成功能，以获得跨云和平台快速检测、寻找和响应/恢复威胁所需的广泛和深入的可见性：
+•Broad – 安全信息和事件管理 (SIEM) – Microsoft Sentinel 从任何来源获取任何日志，将它们与机器学习 (ML) 和用户和实体行为分析 (UEBA) 相关联并解释它们的原因，并通过安全编排自动响应 , 自动化和响应 (SOAR)；
+•Deep - 扩展检测和响应 (XDR) – 功能提供针对特定资产量身定制的检测和响应功能，以提供高质量警报（低误报率），从而减轻 SOC 分析师编写警报查询和处理端点误报的负担 、云和本地标识、电子邮件、Office 365、Azure 服务等等。
+
+基础设施 XDR•Microsoft Defender for Cloud 是 Azure 服务的 XDR，包括服务器/VM、应用服务、存储、SQL、Kubernetes、容器注册表、DNS 等；
+•Azure Arc 通过将这些资源投射到 Azure 对象中，将 Microsoft Defender for Cloud 扩展到 AWS、GCP 和本地资源，从而实现这些资源的管理和安全性；
+•Microsoft Defender for IoT（和 OT）为 SCADA、ICS 和工业物联网 (IIoT) 等运营技术 (OT) 设备提供威胁检测和响应功能
+•这可以在离线模式下运行以进行安全隔离，也可以在在线模式下运行，在该模式下它与 Microsoft Sentinel 中的 playbook 等本地集成。
+
+
+工作效率和身份安全 XDRMicrosoft 365 Defender 提供了一个广泛的库，其中包含预构建的调查和响应自动化 (SOAR) 功能、数据丢失保护 (DLP) 功能、Web 内容筛选、集成威胁和漏洞管理等。
+
+身份启用和安全性Azure Active Directory 为以下方面提供全面的解决方案：
+•    身份支持——适用于跨任何平台或云的员工、合作伙伴 (B2B) 和客户/客户/公民 (B2C)；
+•     身份安全——适用于那些具有零信任访问控制的场景，通过本机 UEBA、威胁情报和分析明确验证设备（通过 XDR）和用户的可信度。
+
+信息保护Microsoft 信息保护和 Azure Purview 提供了一个完整的生命周期方法来发现、分类、保护和监视结构化和非结构化数据，使组织利用更多数据和见解来推动任务完成和竞争优势。
+
+
+                    
+                </div> -->
+                <div class="article-content markdown-body">
+                    <p>当今大多数组织都在运行一个复杂的环境，其中包括众多操作系统平台、SaaS 云服务和 IaaS/PaaS 云提供商。 根据您的行业，这通常还包括各种操作技术（也称为 SCADA、ICS 或 PCN）和物联网设备</p>
+<h2 id="多云跨平台技术"><a href="#多云跨平台技术" class="headerlink" title="多云跨平台技术"></a>多云跨平台技术</h2><p>Microsoft 专注于通过利用我们每天从超过 8 万亿个情报中收集的洞察力，为组织提供降低这些现代资产风险所需的安全功能，帮助组织改进其安全计划的各个领域。</p>
+<p>Microsoft 还专注于从我们的全球客户和合作伙伴网络（包括解决方案集成和 MDR/MSSP 合作伙伴）、NIST、CIS 和 The Open Group 等组织、CERTS、ISAC、执法机构（用于僵尸网络清除）中引入安全专业知识和情报等等。</p>
+<p><img lazyload src="/images/loading.svg" data-src="1.png"></p>
+<p>补充说明：<br>OT 和物联网——大多数组织通过其中一种或两种方式暴露于物联网和OT 安全风险：</p>
+<p>•     常见的系统，如 HVAC 系统、安全摄像头和大多数组织中的数据中心；</p>
+<p>•     用于制造、发电/配电、医疗保健或其他支持实体业务运营的设备/传感器的专用网络设备。</p>
+<h2 id="如何使多云跨平台安全"><a href="#如何使多云跨平台安全" class="headerlink" title="如何使多云跨平台安全"></a>如何使多云跨平台安全</h2><p><img lazyload src="/images/loading.svg" data-src="2.png"></p>
+<h2 id="终端和云管理"><a href="#终端和云管理" class="headerlink" title="终端和云管理"></a>终端和云管理</h2><p>Microsoft 的跨平台/云安全性始于端点和云可见性和控制：</p>
+<p>•     跨 Mac、Android、iOS 和 Windows 操作系统的终端管理；</p>
+<p>•    云安全态势管理 (CSPM)，可提供对多云和本地数据中心资产的洞察力以及云工作负载保护功能（又名 CWPP）。</p>
+<p><img lazyload src="/images/loading.svg" data-src="3.png"></p>
+<h2 id="SIEM-和-XDR-策略"><a href="#SIEM-和-XDR-策略" class="headerlink" title="SIEM 和 XDR 策略"></a>SIEM 和 XDR 策略</h2><p>Microsoft 为安全运营/SOC 提供集成功能，以获得跨云和平台快速检测、寻找和响应/恢复威胁所需的广泛和深入的可见性：</p>
+<p>•Broad – 安全信息和事件管理 (SIEM) – Microsoft Sentinel 从任何来源获取任何日志，将它们与机器学习 (ML) 和用户和实体行为分析 (UEBA) 相关联并解释它们的原因，并通过安全编排自动响应 , 自动化和响应 (SOAR)；</p>
+<p>•Deep - 扩展检测和响应 (XDR) – 功能提供针对特定资产量身定制的检测和响应功能，以提供高质量警报（低误报率），从而减轻 SOC 分析师编写警报查询和处理端点误报的负担 、云和本地标识、电子邮件、Office 365、Azure 服务等等。</p>
+<p><img lazyload src="/images/loading.svg" data-src="4.png"></p>
+<h2 id="基础设施-XDR"><a href="#基础设施-XDR" class="headerlink" title="基础设施 XDR"></a>基础设施 XDR</h2><p>•Microsoft Defender for Cloud 是 Azure 服务的 XDR，包括服务器/VM、应用服务、存储、SQL、Kubernetes、容器注册表、DNS 等；</p>
+<p>•Azure Arc 通过将这些资源投射到 Azure 对象中，将 Microsoft Defender for Cloud 扩展到 AWS、GCP 和本地资源，从而实现这些资源的管理和安全性；</p>
+<p>•Microsoft Defender for IoT（和 OT）为 SCADA、ICS 和工业物联网 (IIoT) 等运营技术 (OT) 设备提供威胁检测和响应功能</p>
+<p>•这可以在离线模式下运行以进行安全隔离，也可以在在线模式下运行，在该模式下它与 Microsoft Sentinel 中的 playbook 等本地集成。</p>
+<p><img lazyload src="/images/loading.svg" data-src="5.png"></p>
+<p><img lazyload src="/images/loading.svg" data-src="6.png"></p>
+<h2 id="工作效率和身份安全-XDR"><a href="#工作效率和身份安全-XDR" class="headerlink" title="工作效率和身份安全 XDR"></a>工作效率和身份安全 XDR</h2><p>Microsoft 365 Defender 提供了一个广泛的库，其中包含预构建的调查和响应自动化 (SOAR) 功能、数据丢失保护 (DLP) 功能、Web 内容筛选、集成威胁和漏洞管理等。</p>
+<p><img lazyload src="/images/loading.svg" data-src="7.png"></p>
+<h2 id="身份启用和安全性"><a href="#身份启用和安全性" class="headerlink" title="身份启用和安全性"></a>身份启用和安全性</h2><p>Azure Active Directory 为以下方面提供全面的解决方案：</p>
+<p>•    身份支持——适用于跨任何平台或云的员工、合作伙伴 (B2B) 和客户/客户/公民 (B2C)；</p>
+<p>•     身份安全——适用于那些具有零信任访问控制的场景，通过本机 UEBA、威胁情报和分析明确验证设备（通过 XDR）和用户的可信度。</p>
+<p><img lazyload src="/images/loading.svg" data-src="8.png"></p>
+<h2 id="信息保护"><a href="#信息保护" class="headerlink" title="信息保护"></a>信息保护</h2><p>Microsoft 信息保护和 Azure Purview 提供了一个完整的生命周期方法来发现、分类、保护和监视结构化和非结构化数据，使组织利用更多数据和见解来推动任务完成和竞争优势。</p>
+<p><img lazyload src="/images/loading.svg" data-src="9.png"></p>
+
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sat May 14 2022 21:00:00 GMT+0800">2022-05-14</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/%E5%AE%89%E5%85%A8%E6%9E%B6%E6%9E%84/">安全架构</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E5%AE%89%E5%85%A8%E5%BB%BA%E8%AE%BE/">安全建设</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%9E%B6%E6%9E%84%E4%BD%93%E7%B3%BB%E5%8F%82%E8%80%83/">网络安全架构体系参考</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/%E5%A4%9A%E4%BA%91%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%8A%80%E6%9C%AF/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/%E5%AE%89%E5%85%A8%E8%A7%92%E8%89%B2%E5%92%8C%E8%81%8C%E8%B4%A3/">
+                        安全角色和职责
+                    </a>
+                </h3>
+
+                <!-- <div class="home-article-content markdown-body">
+                    
+                        
+
+显示安全角色如何映射到业务成果支持
+
+
+传统上，业务和技术成果是使用计划/构建/运行框架来驱动的（对于数字化转型，随着所有阶段的快速迭代，该框架变得越来越敏捷）。
+安全结果是通过映射到该框架的类似治理、预防和响应框架驱动的。 这也映射到 NIST 网络安全框架的识别、保护、检测、响应和恢复功能。
+
+Leadership安全领导角色和安全架构师角色在整个组织和技术领域提供远见、指导和协调。
+
+Governance安全态势和合规性角色专注于识别整个企业的安全风险，并与领域专家合作，以确保减轻最大风险。 这些角色的职责通常包括安全合规管理、政策和标准以及状态管理。
+
+Prevention平台安全工程师是安全领域专家 (SMEs)，他们专注于企业范围的系统，如身份和密钥管理，以及各种基础设施和端点学科，如网络安全、服务器/VM 安全和客户端端点/设备。
+应用安全工程师是专注于保护个人工作负载和应用程序的安全 SMEs，通常在它们被开发的时候。 这些职责包括基础架构和端点技能的每个工作负载应用程序以及应用程序安全性和 DevSecOps 和数据安全性。 我们预计，随着数字化转型增加云技术、DevOps/DevSecOps 模型和基础设施即代码方法的采用率，对这些技能的需求将继续增加。
+人员安全是一门新兴学科，其重点是教育人员、保护他们并保护组织免受内部风险的影响。
+
+Response运营阶段由负责生产环境的运营团队（IT 和 OT 运营、DevOps）+ 安全运营团队执行。
+安全运营通常侧重于被动事件监控和响应，以及针对漏过检测的对手的主动威胁搜寻。 威胁情报和事件准备功能通常在安全运营中孵化，但随着它们的成熟并被集成到技术和组织流程中，它们会转移到更广泛的范围。
+创建一个健康的反馈循环对于安全所有部分的有效性（以及成熟的安全流程）至关重要。
+我们预计，随着团队越来越多地自动化技术流程并采用专注于快速敏捷迭代的 DevOps 风格流程，预防和响应之间的关系将继续变得更加紧密。
+
+附加信息•NIST 网络安全框架 - https://www.nist.gov/cyberframework
+
+                    
+                </div> -->
+                <div class="article-content markdown-body">
+                    <blockquote>
+<blockquote>
+<p>显示安全角色如何映射到业务成果支持</p>
+</blockquote>
+</blockquote>
+<p>传统上，业务和技术成果是使用计划/构建/运行框架来驱动的（对于数字化转型，随着所有阶段的快速迭代，该框架变得越来越敏捷）。</p>
+<p>安全结果是通过映射到该框架的类似治理、预防和响应框架驱动的。 这也映射到 NIST 网络安全框架的识别、保护、检测、响应和恢复功能。</p>
+<p><img lazyload src="/images/loading.svg" data-src="1.png"></p>
+<h2 id="Leadership"><a href="#Leadership" class="headerlink" title="Leadership"></a>Leadership</h2><p>安全领导角色和安全架构师角色在整个组织和技术领域提供远见、指导和协调。</p>
+<p><img lazyload src="/images/loading.svg" data-src="2.png"></p>
+<h2 id="Governance"><a href="#Governance" class="headerlink" title="Governance"></a>Governance</h2><p>安全态势和合规性角色专注于识别整个企业的安全风险，并与领域专家合作，以确保减轻最大风险。 这些角色的职责通常包括安全合规管理、政策和标准以及状态管理。</p>
+<p><img lazyload src="/images/loading.svg" data-src="3.png"></p>
+<h2 id="Prevention"><a href="#Prevention" class="headerlink" title="Prevention"></a>Prevention</h2><p>平台安全工程师是安全领域专家 (SMEs)，他们专注于企业范围的系统，如身份和密钥管理，以及各种基础设施和端点学科，如网络安全、服务器/VM 安全和客户端端点/设备。</p>
+<p>应用安全工程师是专注于保护个人工作负载和应用程序的安全 SMEs，通常在它们被开发的时候。 这些职责包括基础架构和端点技能的每个工作负载应用程序以及应用程序安全性和 DevSecOps 和数据安全性。 我们预计，随着数字化转型增加云技术、DevOps/DevSecOps 模型和基础设施即代码方法的采用率，对这些技能的需求将继续增加。</p>
+<p>人员安全是一门新兴学科，其重点是教育人员、保护他们并保护组织免受内部风险的影响。</p>
+<p><img lazyload src="/images/loading.svg" data-src="4.png"></p>
+<h2 id="Response"><a href="#Response" class="headerlink" title="Response"></a>Response</h2><p>运营阶段由负责生产环境的运营团队（IT 和 OT 运营、DevOps）+ 安全运营团队执行。</p>
+<p>安全运营通常侧重于被动事件监控和响应，以及针对漏过检测的对手的主动威胁搜寻。 威胁情报和事件准备功能通常在安全运营中孵化，但随着它们的成熟并被集成到技术和组织流程中，它们会转移到更广泛的范围。</p>
+<p>创建一个健康的反馈循环对于安全所有部分的有效性（以及成熟的安全流程）至关重要。</p>
+<p>我们预计，随着团队越来越多地自动化技术流程并采用专注于快速敏捷迭代的 DevOps 风格流程，预防和响应之间的关系将继续变得更加紧密。</p>
+<p><img lazyload src="/images/loading.svg" data-src="5.png"></p>
+<p>附加信息<br>•NIST 网络安全框架 - <a class="link" target="_blank" rel="noopener" href="https://www.nist.gov/cyberframework">https://www.nist.gov/cyberframework<i class="fas fa-external-link-alt"></i></a></p>
+
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Fri May 13 2022 21:00:00 GMT+0800">2022-05-13</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/%E5%AE%89%E5%85%A8%E6%9E%B6%E6%9E%84/">安全架构</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E5%AE%89%E5%85%A8%E5%BB%BA%E8%AE%BE/">安全建设</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%9E%B6%E6%9E%84%E4%BD%93%E7%B3%BB%E5%8F%82%E8%80%83/">网络安全架构体系参考</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/%E5%AE%89%E5%85%A8%E8%A7%92%E8%89%B2%E5%92%8C%E8%81%8C%E8%B4%A3/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/%E4%BF%A1%E6%81%AF%E7%AE%A1%E7%90%86%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8(%E5%AE%89%E5%85%A8%E8%B4%A3%E4%BB%BB)/">
+                        信息管理/网络安全(安全责任)
+                    </a>
+                </h3>
+
+                <!-- <div class="home-article-content markdown-body">
+                    
+                        
+
+这些是管理信息安全风险所需的组织职能，以及关于它如何变化的一些见解
+
+
+￼
+安全领导力包括指导组织文化以及制定或批准政策和标准。 这应该与组织的使命和风险偏好保持一致，重点关注提高生产力和保护资产（在需要时仔细平衡这些），并保持敏捷以满足不断发展的环境。
+注意：安全领导层通常得到项目管理办公室(PMO)的支持，以推动大型/复杂项目并衡量成功（有时在安全组织内，有时由另一个内部小组提供）。
+
+组织政策和标准应告知安全架构和合规性要求，并以此为基础。 该政策的设计应符合组织的风险偏好，并纳入:
+1.监管合规要求及当前合规状态（满足要求、接受风险等）2.当前状态的架构评估以及设计、实施和实施的技术可能性
+￼
+然后，安全架构和合规性要求在生产环境中设计和实施，由每个领域的专业安全技能组合，包括人员、应用程序和数据、基础设施和端点、身份和密钥以及运营技术（他们也提供反馈以改进它们） .
+ 这些环境中的技术实施通常由负责其操作的所有其他方面的 IT 和 OT 团队（或应用程序/身份团队）执行。 人员安全功能通常通过人力资源和用户教育/培训等团队与他们的流程整合。
+
+安全运营功能（有时称为安全运营中心 (SOC)）负责响应和管理通过被动方式和主动威胁搜寻检测到的事件。 组织还应具备事件准备能力，以进行实践练习，为重大事件建立组织肌肉记忆并结合现实世界的风险情景。
+￼
+威胁情报充当组织的一种神经系统，从组织中的先前事件和社区中的其他事件中收集经验教训，并通知安全领域的各种利益相关者。 这类似于 ITIL 中的问题管理规则，该规则确保通过反馈过程应用主动学习。 虽然此功能通常从战术层面的技术洞察力开始，但随着时间的推移，它应该发展成熟，为安全领导和业务领导提供战略洞察力。
+此功能在网络安全中尤为重要，因为攻击者改变策略的速度非常快，并且需要为不同级别的组织提供洞察力，以便有效管理网络安全风险。
+
+态势感知是一门新兴学科，长期以来一直被设想为“持续监控”，但随着基于云的安全技术的成熟，最近才变得实用。这包括几个组件，使组织能够在不断变化的复杂环境中快速发现和降低风险。
+•    零信任策略执行——通过 Azure AD 条件访问（或第三方功能）•    实时风险发现和评分——通过安全评分、合规评分、Defender for Cloud Apps 共享风险等•     实时上下文丰富——通过威胁和漏洞管理与 M365 防御者中的事件调查集成
+虽然这建立在漏洞管理等现有学科的基础上，但分配此功能会挑战组织的规范，因为
+1.它跨越了技术边界（通常由不同的团队管理）
+2.它将传统上独立的功能实时连接在一起（例如安全操作、合规性和架构/工程），这些功能通常具有有限的交互
+3.它立即显示以前仅在审计、渗透测试和特殊评估期间发现的配置问题
+
+￼
+
+                    
+                </div> -->
+                <div class="article-content markdown-body">
+                    <blockquote>
+<blockquote>
+<p>这些是管理信息安全风险所需的组织职能，以及关于它如何变化的一些见解</p>
+</blockquote>
+</blockquote>
+<p>￼<img lazyload src="/images/loading.svg" data-src="1.png"></p>
+<p>安全领导力包括指导组织文化以及制定或批准政策和标准。 这应该与组织的使命和风险偏好保持一致，重点关注提高生产力和保护资产（在需要时仔细平衡这些），并保持敏捷以满足不断发展的环境。</p>
+<p>注意：安全领导层通常得到项目管理办公室(PMO)的支持，以推动大型/复杂项目并衡量成功（有时在安全组织内，有时由另一个内部小组提供）。</p>
+<p><img lazyload src="/images/loading.svg" data-src="2.png"></p>
+<p>组织政策和标准应告知安全架构和合规性要求，并以此为基础。 该政策的设计应符合组织的风险偏好，并纳入:</p>
+<p>1.监管合规要求及当前合规状态（满足要求、接受风险等）<br>2.当前状态的架构评估以及设计、实施和实施的技术可能性</p>
+<p><img lazyload src="/images/loading.svg" data-src="3.png"><br>￼</p>
+<p>然后，安全架构和合规性要求在生产环境中设计和实施，由每个领域的专业安全技能组合，包括人员、应用程序和数据、基础设施和端点、身份和密钥以及运营技术（他们也提供反馈以改进它们） .</p>
+<p> 这些环境中的技术实施通常由负责其操作的所有其他方面的 IT 和 OT 团队（或应用程序/身份团队）执行。 人员安全功能通常通过人力资源和用户教育/培训等团队与他们的流程整合。</p>
+<p><img lazyload src="/images/loading.svg" data-src="4.png"></p>
+<p>安全运营功能（有时称为安全运营中心 (SOC)）负责响应和管理通过被动方式和主动威胁搜寻检测到的事件。 组织还应具备事件准备能力，以进行实践练习，为重大事件建立组织肌肉记忆并结合现实世界的风险情景。</p>
+<p>￼<img lazyload src="/images/loading.svg" data-src="5.png"></p>
+<p>威胁情报充当组织的一种神经系统，从组织中的先前事件和社区中的其他事件中收集经验教训，并通知安全领域的各种利益相关者。 这类似于 ITIL 中的问题管理规则，该规则确保通过反馈过程应用主动学习。 虽然此功能通常从战术层面的技术洞察力开始，但随着时间的推移，它应该发展成熟，为安全领导和业务领导提供战略洞察力。</p>
+<p>此功能在网络安全中尤为重要，因为攻击者改变策略的速度非常快，并且需要为不同级别的组织提供洞察力，以便有效管理网络安全风险。</p>
+<p><img lazyload src="/images/loading.svg" data-src="6.png"></p>
+<p>态势感知是一门新兴学科，长期以来一直被设想为“持续监控”，但随着基于云的安全技术的成熟，最近才变得实用。这包括几个组件，使组织能够在不断变化的复杂环境中快速发现和降低风险。</p>
+<p>•    零信任策略执行——通过 Azure AD 条件访问（或第三方功能）<br>•    实时风险发现和评分——通过安全评分、合规评分、Defender for Cloud Apps 共享风险等<br>•     实时上下文丰富——通过威胁和漏洞管理与 M365 防御者中的事件调查集成</p>
+<p>虽然这建立在漏洞管理等现有学科的基础上，但分配此功能会挑战组织的规范，因为</p>
+<pre><code>1.它跨越了技术边界（通常由不同的团队管理）
+2.它将传统上独立的功能实时连接在一起（例如安全操作、合规性和架构/工程），这些功能通常具有有限的交互
+3.它立即显示以前仅在审计、渗透测试和特殊评估期间发现的配置问题
+</code></pre>
+<p>￼<img lazyload src="/images/loading.svg" data-src="7.png"></p>
+
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Thu May 12 2022 21:00:00 GMT+0800">2022-05-12</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/%E5%AE%89%E5%85%A8%E6%9E%B6%E6%9E%84/">安全架构</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E5%AE%89%E5%85%A8%E5%BB%BA%E8%AE%BE/">安全建设</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%9E%B6%E6%9E%84%E4%BD%93%E7%B3%BB%E5%8F%82%E8%80%83/">网络安全架构体系参考</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/%E4%BF%A1%E6%81%AF%E7%AE%A1%E7%90%86%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8(%E5%AE%89%E5%85%A8%E8%B4%A3%E4%BB%BB)/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/%E9%9B%B6%E4%BF%A1%E4%BB%BB%E5%8E%9F%E5%88%99%E4%B8%8B%E7%9A%84%E5%AE%89%E5%85%A8%E7%8E%B0%E4%BB%A3%E5%8C%96%E3%80%8CMicrosoft%E3%80%8D/">
+                        零信任原则下的安全现代化「Microsoft」
+                    </a>
+                </h3>
+
+                <!-- <div class="home-article-content markdown-body">
+                    
+                        #安全架构  网络安全架构体系参考——零信任原则下的安全现代化「Microsoft」
+
+
+这一张图里干货满满，拆解开来学习下现代化的网络安全架构体系
+
+
+
+从服务器和网络开始现在的大多数组织都在运行着多平台环境，使用 Windows 和 Linux 服务器，在上面运行着数据中心、容器和要保护的许多不同类型、版本的应用程序。 因此大多数组织会从网络边缘/出口点部署核心安全功能（NGFW、Edge DLP、IPS/IDS、Proxy），以保护生产网和内网的资产。
+
+…和端点和设备许多组织利用系统内置的 Windows 功能和系统管理来提供基本的安全保障，例如打补丁和 Active Directory 帐户安全和组策略等
+•Microsoft Endpoint Manager (MEM) 配置管理器和 Intune MDM/MAM 提供跨平台的统一端点管理 (UEM) 和跨Windows、Linux、Mac、iOS 和 Android 的安全性•Windows 10 安全包括一套广泛的平台功能和硬件安全集成，以防止不断演变的攻击
+
+
+SaaS 推动身份和访问安全的现代化组织首先开始采用SaaS云服务，第一个app通常是用于电子邮件的 Office 365（或者G Suite）
+这就需要使用安全的云身份（也延伸到企业资产的移动/物联网部分）在防火墙之外进行访问控制。随着数据中心上云的现代化趋势，身份在数据中心访问控制策略中也扮演着越来越重要的角色。
+虽然有些人没有意识到这一点，但许多组织已经使用 Azure Active Directory 在其企业资产中部署了现代单一身份和单一登录功能（在 Office 365 部署期间配置并通过 Active Directory 连接到现有企业身份系统）
+除了单点登录 (SSO) 之外，Microsoft 还为 Azure AD 提供了关键的现代安全元素，例如：
+•    无密码和 MFA – 通过 Hello For Business 生物特征认证、Authenticator App（适用于任何现代手机）和 FIDO2 密钥简化用户体验和加强安全保证的能力•    身份保护——通过泄露凭证保护、行为分析、威胁情报集成等来抵御高度流行的攻击•    Azure AD PIM 通过使用审批工作流提供对特权帐户的及时访问来降低风险•    身份治理有助于确保正确的人能够访问正确的资源•    Azure AD B2B 和 B2C 为合作伙伴和客户/客户/公民帐户提供安全性，同时将它们与企业用户目录分开
+此外，条件访问通过显式验证请求访问您的资源的用户和端点的信任，将零信任原则应用于访问控制决策。这有助于通过现代控制围绕这些现代资源构建事实上的安全边界，并在它们之间提供简单一致的策略实施。
+服务信任门户提供有关 Microsoft 如何保护我们的云平台并报告合规性的信息。
+
+
+Azure AD 应用代理Azure AD 应用代理通过简化用户对本地资源的访问并通过条件访问（明确验证用户和设备信任，零信任原则）实现安全性，将现代访问控制方法（安全边界）扩展到本地资源。
+
+数据中心成为跨多个云（IaaS、PaaS）和本地的混合基础架构大多数组织已扩展到混合基础架构，该基础架构跨越本地和一个或多个云，提供基础架构即服务 (IaaS) 和/或平台即服务 (PaaS) 功能。
+在 Azure 上，微软对 Azure Marketplace 进行了投资，以确保客户能够访问流行供应商的功能，客户通常使用这些功能将现有的本地控制扩展到云。
+Microsoft 为 Azure 服务提供专用链接支持，以帮助组织将专用网络扩展到应用程序使用的 PaaS 服务。 虽然这将当前的控制和实践扩展到云，但私有网络可能不足以缓解现代攻击，因此 Microsoft 建议遵循零信任原则 (https://aka.ms/zerotrust) 使用身份、网络、 应用程序、数据和其他控件。
+
+多云和 Azure 安全性Microsoft 已投资于广泛的功能，以帮助保护混合多云环境及其中的工作负载。这些内置在 Azure 中，并且有几个使用 Azure Arc 扩展到您的混合基础架构资产（本地、AWS、GCP 和其他云）。
+Azure Lighthouse 在 Azure 中为服务提供跨租户支持，通常由托管服务提供商和拥有多个租户的客户使用。
+•    Microsoft Defender for Cloud 为管理 Azure（以及跨 IaaS 和 PaaS 云）中的安全性和合规性提供了一个单一起点，包括•    Secure Score 来衡量安全状况并提供优先指导以改进它，例如•    管理帐户不需要多重身份验证•    直接暴露在互联网上的虚拟机•     Web 应用程序缺少 Web 应用程序防火墙 (WAF)•     过时的补丁和反恶意软件签名•    …和许多其它的•    Compliance Dashboard 帮助您快速查看和报告合规状态以及监管指导（并快速提高您的合规性）•    Azure 防火墙是一种托管的、基于云的网络安全服务，可帮助保护您的 Azure 虚拟网络资源。•    Azure Firewall Premium（预览版）是下一代防火墙，具有高度敏感和受监管的环境（TLS 检查、IDPS、URL 过滤、Web 类别）所需的功能。•    Azure Firewall Manager 是一项安全管理服务，可为基于云的安全边界提供中央安全策略和路由管理。•    Azure Web 应用程序防火墙 (WAF) 为您的 Web 应用程序提供集中保护，使其免受常见攻击和漏洞的影响。
+微软还在其他 Azure 安全功能上投入巨资，例如分布式拒绝服务 (DDoS) 缓解措施、密钥管理、用于保护远程访问的 Azure Bastion、Azure Backup 中的防勒索软件备份存档、在处理数据时保护数据的机密计算功能， 还有很多。
+
+数据中心和运营技术 (OT) 的威胁监控Microsoft 威胁情报 – 在我们的正常运营过程中，Microsoft 每天处理超过 24 万亿个上下文信号，我们使用这些信号生成威胁情报，以保护我们的云服务、IT 环境和客户。此架构中的许多功能将威胁情报直接集成到威胁检测、安全指导等中。
+Microsoft Defender for Cloud 为跨混合资产的基础结构以及运营技术 (OT) 提供扩展的检测和响应 (XDR) 功能。 XDR 工具旨在通过提供对特定资产类型的深入可见性以及增强的检测、响应和恢复功能（尤其是具有低误报率的高质量警报）来补充安全信息和事件管理 (SIEM)。
+•    Microsoft Defender for Cloud 目前涵盖最常用的基础架构服务，包括服务器/VM、存储、数据库、DNS、应用服务、Kubernetes、容器注册表、密钥保管库和资源管理器。•    Microsoft Defender for IoT 使用无代理方法帮助保护控制物理过程的 OT 系统，例如监督控制和数据采集 (SCADA) 和工业控制系统 (ICS)。此外，此功能还通过支持标准物联网操作系统（如 Linux 和 RTOS）的轻量级微代理来保护物联网设备。
+
+
+安全运营/SOC为了帮助安全运营团队管理主动攻击，Microsoft 投资了 XDR 和 SIEM 的双重策略。
+Microsoft Sentinel 是一种云原生 SIEM，可提供对整个资产（IT、OT、IoT）的广泛可见性，而 XDR 功能可提供对特定资产的深入可见性，以帮助快速调查和修复（端点、电子邮件和 Office 365、身份、SaaS、Azure和多云基础架构）
+•     Microsoft Defender for Endpoint (MDE) – 提供高级端点检测和响应 (EDR) 功能、Web 内容过滤、威胁和漏洞管理以及数据丢失保护 (DLP)。与云应用程序一样，Microsoft 将其与我们产品组合中的其他功能集成在一起，因此您无需运行多个代理/解决方案即可实现端点安全目标。
+Microsoft 专注于减少分析师的疲劳并实现对事件的快速有效响应，并专注于
+•     安全编排、自动化和补救 (SOAR) 技术以及将工具集集成在一起（本机和通过提供 API）的无缝体验。•    使用机器学习 (ML) 和行为分析 (UEBA) 快速准确地分析异常情况
+Microsoft 还为我们的客户提供人类专业知识，包括
+•    Microsoft Threat Experts – Microsoft 365 Defender 中内置的托管搜寻服务，具有专家级监控和分析功能，可帮助确保您的独特环境中的关键威胁不会被遗漏。•    检测和响应团队 (DART) – 和相关团队提供专业服务，帮助调查您环境中的事件并寻找潜在的现有威胁•    MSSP/MDR 提供商– Microsoft 与业内顶级专家合作，在这些功能上建立他们的专业知识，以便他们可以为我们的客户提供建议和直接支持。
+此外，Microsoft Defender for Cloud Apps (MDCA) 提供云访问安全代理 (CASB) 功能，为 SaaS 应用程序提供 XDR，并为这些 SaaS 应用程序和存储在其中的数据提供治理、威胁保护、数据保护等。 MDCA 与 Microsoft 产品组合中的其他功能集成，以将其扩展到 SaaS 应用程序，以简化管理和安全性。
+
+
+
+DevSecOps / 应用程序安全 / GitHubMicrosoft 使用我们的安全开发生命周期 (SDL) 来开发软件，并使用我们的运营安全保障 (OSA) 框架来运营云服务。 为了帮助客户安全应用，我们还提供
+•    SDL 和OSA 文档——帮助保护您的应用程序和操作。•    GitHub Advanced Security 提供DevSecOps 和应用程序开发安全，它在开发人员工作流程中本地集成，包括代码扫描、秘密扫描、警报、依赖项审查、安全策略等。
+
+特权访问Microsoft 提供有关保护特权访问 (SPA) 的说明性指南，以帮助您快速防御这些攻击技术（攻击者经常使用的高影响攻击向量）。 这是基于 Microsoft 用于保护我们的 IT 和云服务环境（内部称为安全访问工作站或 SAW）中的特权访问的方法
+本指南包括用于保护帐户、设备、中介和接口（包括使用特权访问工作站 - PAW）的策略、规划和实施文档。 该方法基于零信任原则，并利用条件访问来执行策略。
+
+信息保护/数据保护Microsoft 信息保护和 Azure Purview 提供了一个完整的生命周期方法来发现、分类、保护和监视您的组织依赖的数据，以推动任务完成和竞争优势（以各种形式、格式和位置）几个关键的重点领域是：
+•    无论数据存储在何处或与谁共享，都可以保护文件（相对于仅在特定设备/位置上保护文件）•     用于发现和评估 SharePoint 网站和文件共享中的现有数据的文件扫描程序•     数据治理提供整个信息生命周期的可见性和管理•     先进的电子发现功能，有助于简化履行这些法律义务•     检测 Amazon S3 存储桶扫描的开放权限（在 MDCA 中） - https://docs.microsoft.com/cloud-app-security/connect-aws-to-microsoft-cloud-app-security
+合规管理器 - 帮助您管理合规要求（主要基于管理我们的云服务对多个标准的合规性的经验教训）
+
+安全分数和合规分数安全分数 - 组织需要广泛了解其整个资产的风险和安全状况。 Microsoft 已投资帮助组织了解主要风险、确定优先级并减轻风险。合规分数——提供关于合规状况的类似见解以及您可以采取哪些措施来改进它
+
+人员安全如果没有保护和教育人们 + 防范内部风险（包括无意的和蓄意的恶意），安全程序是不完整的。 Microsoft 通过以下方式投资这些领域：
+•    攻击模拟器- 可用于在您的组织中运行真实的攻击场景，以帮助您识别和查找易受攻击的用户，通过 Terranova 安全提供微培训，帮助他们掌握安全知识。•    内部风险管理- Microsoft 365 中的内部风险使您能够检测、调查和处理组织中的恶意和无意活动，从而帮助最大限度地降低内部风险。•     通信合规性- 通过帮助您检测、捕获和处理组织中的不适当消息来帮助最小化通信风险。
+
+除了上述这些，微软还进行了大量其他安全投资，例如安全策略顾问 (https://docs.microsoft.com/DeployOffice/overview-of-security-policy-advisor) 和 Windows 服务器安全功能 ( https://docs.microsoft.com/windows-server/security/security-and-assurance）。
+
+                    
+                </div> -->
+                <div class="article-content markdown-body">
+                    <p>#安全架构  网络安全架构体系参考——零信任原则下的安全现代化「Microsoft」</p>
+<blockquote>
+<blockquote>
+<p>这一张图里干货满满，拆解开来学习下现代化的网络安全架构体系</p>
+</blockquote>
+</blockquote>
+<p><img lazyload src="/images/loading.svg" data-src="1.png"></p>
+<h2 id="从服务器和网络开始"><a href="#从服务器和网络开始" class="headerlink" title="从服务器和网络开始"></a>从服务器和网络开始</h2><p>现在的大多数组织都在运行着多平台环境，使用 Windows 和 Linux 服务器，在上面运行着数据中心、容器和要保护的许多不同类型、版本的应用程序。 因此大多数组织会从网络边缘/出口点部署核心安全功能（NGFW、Edge DLP、IPS/IDS、Proxy），以保护生产网和内网的资产。</p>
+<p><img lazyload src="/images/loading.svg" data-src="2.png"></p>
+<h2 id="…和端点和设备"><a href="#…和端点和设备" class="headerlink" title="…和端点和设备"></a>…和端点和设备</h2><p>许多组织利用系统内置的 Windows 功能和系统管理来提供基本的安全保障，例如打补丁和 Active Directory 帐户安全和组策略等</p>
+<p>•Microsoft Endpoint Manager (MEM) 配置管理器和 Intune MDM/MAM 提供跨平台的统一端点管理 (UEM) 和跨Windows、Linux、Mac、iOS 和 Android 的安全性<br>•Windows 10 安全包括一套广泛的平台功能和硬件安全集成，以防止不断演变的攻击</p>
+<p><img lazyload src="/images/loading.svg" data-src="3.png"></p>
+<p><img lazyload src="/images/loading.svg" data-src="4.png"></p>
+<h2 id="SaaS-推动身份和访问安全的现代化"><a href="#SaaS-推动身份和访问安全的现代化" class="headerlink" title="SaaS 推动身份和访问安全的现代化"></a>SaaS 推动身份和访问安全的现代化</h2><p>组织首先开始采用SaaS云服务，第一个app通常是用于电子邮件的 Office 365（或者G Suite）</p>
+<p>这就需要使用安全的云身份（也延伸到企业资产的移动/物联网部分）在防火墙之外进行访问控制。随着数据中心上云的现代化趋势，身份在数据中心访问控制策略中也扮演着越来越重要的角色。</p>
+<p>虽然有些人没有意识到这一点，但许多组织已经使用 Azure Active Directory 在其企业资产中部署了现代单一身份和单一登录功能（在 Office 365 部署期间配置并通过 Active Directory 连接到现有企业身份系统）</p>
+<p>除了单点登录 (SSO) 之外，Microsoft 还为 Azure AD 提供了关键的现代安全元素，例如：</p>
+<p>•    无密码和 MFA – 通过 Hello For Business 生物特征认证、Authenticator App（适用于任何现代手机）和 FIDO2 密钥简化用户体验和加强安全保证的能力<br>•    身份保护——通过泄露凭证保护、行为分析、威胁情报集成等来抵御高度流行的攻击<br>•    Azure AD PIM 通过使用审批工作流提供对特权帐户的及时访问来降低风险<br>•    身份治理有助于确保正确的人能够访问正确的资源<br>•    Azure AD B2B 和 B2C 为合作伙伴和客户/客户/公民帐户提供安全性，同时将它们与企业用户目录分开</p>
+<p>此外，条件访问通过显式验证请求访问您的资源的用户和端点的信任，将零信任原则应用于访问控制决策。这有助于通过现代控制围绕这些现代资源构建事实上的安全边界，并在它们之间提供简单一致的策略实施。</p>
+<p>服务信任门户提供有关 Microsoft 如何保护我们的云平台并报告合规性的信息。</p>
+<p><img lazyload src="/images/loading.svg" data-src="5.png"></p>
+<p><img lazyload src="/images/loading.svg" data-src="6.png"></p>
+<h2 id="Azure-AD-应用代理"><a href="#Azure-AD-应用代理" class="headerlink" title="Azure AD 应用代理"></a>Azure AD 应用代理</h2><p>Azure AD 应用代理通过简化用户对本地资源的访问并通过条件访问（明确验证用户和设备信任，零信任原则）实现安全性，将现代访问控制方法（安全边界）扩展到本地资源。</p>
+<p><img lazyload src="/images/loading.svg" data-src="7.png"></p>
+<h2 id="数据中心成为跨多个云（IaaS、PaaS）和本地的混合基础架构"><a href="#数据中心成为跨多个云（IaaS、PaaS）和本地的混合基础架构" class="headerlink" title="数据中心成为跨多个云（IaaS、PaaS）和本地的混合基础架构"></a>数据中心成为跨多个云（IaaS、PaaS）和本地的混合基础架构</h2><p>大多数组织已扩展到混合基础架构，该基础架构跨越本地和一个或多个云，提供基础架构即服务 (IaaS) 和/或平台即服务 (PaaS) 功能。</p>
+<p>在 Azure 上，微软对 Azure Marketplace 进行了投资，以确保客户能够访问流行供应商的功能，客户通常使用这些功能将现有的本地控制扩展到云。</p>
+<p>Microsoft 为 Azure 服务提供专用链接支持，以帮助组织将专用网络扩展到应用程序使用的 PaaS 服务。 虽然这将当前的控制和实践扩展到云，但私有网络可能不足以缓解现代攻击，因此 Microsoft 建议遵循零信任原则 (<a class="link" target="_blank" rel="noopener" href="https://aka.ms/zerotrust">https://aka.ms/zerotrust<i class="fas fa-external-link-alt"></i></a>) 使用身份、网络、 应用程序、数据和其他控件。</p>
+<p><img lazyload src="/images/loading.svg" data-src="8.png"></p>
+<h2 id="多云和-Azure-安全性"><a href="#多云和-Azure-安全性" class="headerlink" title="多云和 Azure 安全性"></a>多云和 Azure 安全性</h2><p>Microsoft 已投资于广泛的功能，以帮助保护混合多云环境及其中的工作负载。这些内置在 Azure 中，并且有几个使用 Azure Arc 扩展到您的混合基础架构资产（本地、AWS、GCP 和其他云）。</p>
+<p>Azure Lighthouse 在 Azure 中为服务提供跨租户支持，通常由托管服务提供商和拥有多个租户的客户使用。</p>
+<p>•    Microsoft Defender for Cloud 为管理 Azure（以及跨 IaaS 和 PaaS 云）中的安全性和合规性提供了一个单一起点，包括<br>•    Secure Score 来衡量安全状况并提供优先指导以改进它，例如<br>•    管理帐户不需要多重身份验证<br>•    直接暴露在互联网上的虚拟机<br>•     Web 应用程序缺少 Web 应用程序防火墙 (WAF)<br>•     过时的补丁和反恶意软件签名<br>•    …和许多其它的<br>•    Compliance Dashboard 帮助您快速查看和报告合规状态以及监管指导（并快速提高您的合规性）<br>•    Azure 防火墙是一种托管的、基于云的网络安全服务，可帮助保护您的 Azure 虚拟网络资源。<br>•    Azure Firewall Premium（预览版）是下一代防火墙，具有高度敏感和受监管的环境（TLS 检查、IDPS、URL 过滤、Web 类别）所需的功能。<br>•    Azure Firewall Manager 是一项安全管理服务，可为基于云的安全边界提供中央安全策略和路由管理。<br>•    Azure Web 应用程序防火墙 (WAF) 为您的 Web 应用程序提供集中保护，使其免受常见攻击和漏洞的影响。</p>
+<p>微软还在其他 Azure 安全功能上投入巨资，例如分布式拒绝服务 (DDoS) 缓解措施、密钥管理、用于保护远程访问的 Azure Bastion、Azure Backup 中的防勒索软件备份存档、在处理数据时保护数据的机密计算功能， 还有很多。</p>
+<p><img lazyload src="/images/loading.svg" data-src="9.png"></p>
+<h2 id="数据中心和运营技术-OT-的威胁监控"><a href="#数据中心和运营技术-OT-的威胁监控" class="headerlink" title="数据中心和运营技术 (OT) 的威胁监控"></a>数据中心和运营技术 (OT) 的威胁监控</h2><p>Microsoft 威胁情报 – 在我们的正常运营过程中，Microsoft 每天处理超过 24 万亿个上下文信号，我们使用这些信号生成威胁情报，以保护我们的云服务、IT 环境和客户。此架构中的许多功能将威胁情报直接集成到威胁检测、安全指导等中。</p>
+<p>Microsoft Defender for Cloud 为跨混合资产的基础结构以及运营技术 (OT) 提供扩展的检测和响应 (XDR) 功能。 XDR 工具旨在通过提供对特定资产类型的深入可见性以及增强的检测、响应和恢复功能（尤其是具有低误报率的高质量警报）来补充安全信息和事件管理 (SIEM)。</p>
+<p>•    Microsoft Defender for Cloud 目前涵盖最常用的基础架构服务，包括服务器/VM、存储、数据库、DNS、应用服务、Kubernetes、容器注册表、密钥保管库和资源管理器。<br>•    Microsoft Defender for IoT 使用无代理方法帮助保护控制物理过程的 OT 系统，例如监督控制和数据采集 (SCADA) 和工业控制系统 (ICS)。此外，此功能还通过支持标准物联网操作系统（如 Linux 和 RTOS）的轻量级微代理来保护物联网设备。</p>
+<p><img lazyload src="/images/loading.svg" data-src="10.png"></p>
+<p><img lazyload src="/images/loading.svg" data-src="11.png"></p>
+<h2 id="安全运营-SOC"><a href="#安全运营-SOC" class="headerlink" title="安全运营/SOC"></a>安全运营/SOC</h2><p>为了帮助安全运营团队管理主动攻击，Microsoft 投资了 XDR 和 SIEM 的双重策略。</p>
+<p>Microsoft Sentinel 是一种云原生 SIEM，可提供对整个资产（IT、OT、IoT）的广泛可见性，而 XDR 功能可提供对特定资产的深入可见性，以帮助快速调查和修复（端点、电子邮件和 Office 365、身份、SaaS、Azure和多云基础架构）</p>
+<p>•     Microsoft Defender for Endpoint (MDE) – 提供高级端点检测和响应 (EDR) 功能、Web 内容过滤、威胁和漏洞管理以及数据丢失保护 (DLP)。与云应用程序一样，Microsoft 将其与我们产品组合中的其他功能集成在一起，因此您无需运行多个代理/解决方案即可实现端点安全目标。</p>
+<p>Microsoft 专注于减少分析师的疲劳并实现对事件的快速有效响应，并专注于</p>
+<p>•     安全编排、自动化和补救 (SOAR) 技术以及将工具集集成在一起（本机和通过提供 API）的无缝体验。<br>•    使用机器学习 (ML) 和行为分析 (UEBA) 快速准确地分析异常情况</p>
+<p>Microsoft 还为我们的客户提供人类专业知识，包括</p>
+<p>•    Microsoft Threat Experts – Microsoft 365 Defender 中内置的托管搜寻服务，具有专家级监控和分析功能，可帮助确保您的独特环境中的关键威胁不会被遗漏。<br>•    检测和响应团队 (DART) – 和相关团队提供专业服务，帮助调查您环境中的事件并寻找潜在的现有威胁<br>•    MSSP/MDR 提供商– Microsoft 与业内顶级专家合作，在这些功能上建立他们的专业知识，以便他们可以为我们的客户提供建议和直接支持。</p>
+<p>此外，Microsoft Defender for Cloud Apps (MDCA) 提供云访问安全代理 (CASB) 功能，为 SaaS 应用程序提供 XDR，并为这些 SaaS 应用程序和存储在其中的数据提供治理、威胁保护、数据保护等。 MDCA 与 Microsoft 产品组合中的其他功能集成，以将其扩展到 SaaS 应用程序，以简化管理和安全性。</p>
+<p><img lazyload src="/images/loading.svg" data-src="12.png"></p>
+<p><img lazyload src="/images/loading.svg" data-src="13.png"></p>
+<p><img lazyload src="/images/loading.svg" data-src="14.png"></p>
+<h2 id="DevSecOps-应用程序安全-GitHub"><a href="#DevSecOps-应用程序安全-GitHub" class="headerlink" title="DevSecOps / 应用程序安全 / GitHub"></a>DevSecOps / 应用程序安全 / GitHub</h2><p>Microsoft 使用我们的安全开发生命周期 (SDL) 来开发软件，并使用我们的运营安全保障 (OSA) 框架来运营云服务。 为了帮助客户安全应用，我们还提供</p>
+<p>•    SDL 和OSA 文档——帮助保护您的应用程序和操作。<br>•    GitHub Advanced Security 提供DevSecOps 和应用程序开发安全，它在开发人员工作流程中本地集成，包括代码扫描、秘密扫描、警报、依赖项审查、安全策略等。</p>
+<p><img lazyload src="/images/loading.svg" data-src="15.png"></p>
+<h2 id="特权访问"><a href="#特权访问" class="headerlink" title="特权访问"></a>特权访问</h2><p>Microsoft 提供有关保护特权访问 (SPA) 的说明性指南，以帮助您快速防御这些攻击技术（攻击者经常使用的高影响攻击向量）。 这是基于 Microsoft 用于保护我们的 IT 和云服务环境（内部称为安全访问工作站或 SAW）中的特权访问的方法</p>
+<p>本指南包括用于保护帐户、设备、中介和接口（包括使用特权访问工作站 - PAW）的策略、规划和实施文档。 该方法基于零信任原则，并利用条件访问来执行策略。</p>
+<p><img lazyload src="/images/loading.svg" data-src="16.png"></p>
+<h2 id="信息保护-数据保护"><a href="#信息保护-数据保护" class="headerlink" title="信息保护/数据保护"></a>信息保护/数据保护</h2><p>Microsoft 信息保护和 Azure Purview 提供了一个完整的生命周期方法来发现、分类、保护和监视您的组织依赖的数据，以推动任务完成和竞争优势（以各种形式、格式和位置）<br>几个关键的重点领域是：</p>
+<p>•    无论数据存储在何处或与谁共享，都可以保护文件（相对于仅在特定设备/位置上保护文件）<br>•     用于发现和评估 SharePoint 网站和文件共享中的现有数据的文件扫描程序<br>•     数据治理提供整个信息生命周期的可见性和管理<br>•     先进的电子发现功能，有助于简化履行这些法律义务<br>•     检测 Amazon S3 存储桶扫描的开放权限（在 MDCA 中） - <a class="link" target="_blank" rel="noopener" href="https://docs.microsoft.com/cloud-app-security/connect-aws-to-microsoft-cloud-app-security">https://docs.microsoft.com/cloud-app-security/connect-aws-to-microsoft-cloud-app-security<i class="fas fa-external-link-alt"></i></a></p>
+<p>合规管理器 - 帮助您管理合规要求（主要基于管理我们的云服务对多个标准的合规性的经验教训）</p>
+<p><img lazyload src="/images/loading.svg" data-src="17.png"></p>
+<h2 id="安全分数和合规分数"><a href="#安全分数和合规分数" class="headerlink" title="安全分数和合规分数"></a>安全分数和合规分数</h2><p>安全分数 - 组织需要广泛了解其整个资产的风险和安全状况。 Microsoft 已投资帮助组织了解主要风险、确定优先级并减轻风险。<br>合规分数——提供关于合规状况的类似见解以及您可以采取哪些措施来改进它</p>
+<p><img lazyload src="/images/loading.svg" data-src="18.png"></p>
+<h2 id="人员安全"><a href="#人员安全" class="headerlink" title="人员安全"></a>人员安全</h2><p>如果没有保护和教育人们 + 防范内部风险（包括无意的和蓄意的恶意），安全程序是不完整的。 Microsoft 通过以下方式投资这些领域：</p>
+<p>•    攻击模拟器- 可用于在您的组织中运行真实的攻击场景，以帮助您识别和查找易受攻击的用户，通过 Terranova 安全提供微培训，帮助他们掌握安全知识。<br>•    内部风险管理- Microsoft 365 中的内部风险使您能够检测、调查和处理组织中的恶意和无意活动，从而帮助最大限度地降低内部风险。<br>•     通信合规性- 通过帮助您检测、捕获和处理组织中的不适当消息来帮助最小化通信风险。</p>
+<p><img lazyload src="/images/loading.svg" data-src="19.png"></p>
+<p>除了上述这些，微软还进行了大量其他安全投资，例如安全策略顾问 (<a class="link" target="_blank" rel="noopener" href="https://docs.microsoft.com/DeployOffice/overview-of-security-policy-advisor">https://docs.microsoft.com/DeployOffice/overview-of-security-policy-advisor<i class="fas fa-external-link-alt"></i></a>) 和 Windows 服务器安全功能 ( <a class="link" target="_blank" rel="noopener" href="https://docs.microsoft.com/windows-server/security/security-and-assurance%EF%BC%89%E3%80%82">https://docs.microsoft.com/windows-server/security/security-and-assurance）。<i class="fas fa-external-link-alt"></i></a></p>
+
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Wed May 11 2022 21:00:00 GMT+0800">2022-05-11</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/%E5%AE%89%E5%85%A8%E6%9E%B6%E6%9E%84/">安全架构</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E5%AE%89%E5%85%A8%E5%BB%BA%E8%AE%BE/">安全建设</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%9E%B6%E6%9E%84%E4%BD%93%E7%B3%BB%E5%8F%82%E8%80%83/">网络安全架构体系参考</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/%E9%9B%B6%E4%BF%A1%E4%BB%BB%E5%8E%9F%E5%88%99%E4%B8%8B%E7%9A%84%E5%AE%89%E5%85%A8%E7%8E%B0%E4%BB%A3%E5%8C%96%E3%80%8CMicrosoft%E3%80%8D/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/IBM%20QRadar%20UBA(%E7%94%A8%E6%88%B7%E8%A1%8C%E4%B8%BA%E5%88%86%E6%9E%90)%20%E8%A7%84%E5%88%99%E9%9B%86%E5%90%88/">
+                        IBM QRadar UBA(用户行为分析) 规则集合
+                    </a>
+                </h3>
+
+                <!-- <div class="home-article-content markdown-body">
+                    
+                        UBA 规则包摘要
+
+
+Content Pack
+Custom Rules
+
+
+
+Access and Authentication
+42
+
+
+Accounts and Privileges
+32
+
+
+Browsing Behavior
+20
+
+
+Cloud
+16
+
+
+DNS Analyzer
+5
+
+
+Domain Controller
+15
+
+
+Endpoint
+22
+
+
+Exfiltration
+27
+
+
+Geography
+12
+
+
+MaaS360
+10
+
+
+Network Traffic
+4
+
+
+Other
+50+
+
+
+
+
+Access and authentication 访问和身份验证UBA：暴力验证尝试
+检测身份验证失败蛮力攻击（水平和垂直）。
+UBA：检测到来自锁定机器
+检测来自锁定机器的活动。
+UBA：非执行用户从外部网络访问的仅执行资产
+检测来自外部网络的非执行用户何时登录到供执行使用的资产。
+UBA：非执行用户从内部网络访问的仅限执行资产
+检测非执行用户何时登录仅供执行使用的资产。
+UBA：对关键资产的高风险用户访问
+检测用户何时参与事件（犯罪）访问关键资产。
+UBA：针对外部域的大量拒绝访问事件 
+检测何时有异常数量的针对任何外部域的拒绝访问事件。
+UBA：多个 VPN 帐户无法从单个 IP 登录
+检测任何 VPN 帐户登录失败。
+UBA：从单个 IP 登录的多个 VPN 帐户 
+映射来自同一 IP 地址的多个 VPN 用户，然后提高风险评分。
+UBA：企业防火墙中的远程访问漏洞 
+检测 GotoMyPC 和 OpenVPN 应用程序创建的防火墙中何时存在远程访问漏洞。
+UBA：重复未经授权的访问
+表示发现重复的未经授权的访问活动。
+UBA：终止的用户活动
+检测任何被列为已终止或已辞职的用户的活动。
+UBA：未经授权的访问
+表示发现了未经授权的访问活动。
+UBA：使用服务或机器帐户访问的 Unix/Linux 系统
+检测由 UNIX 和 Linux 服务器中的服务或计算机帐户启动的任何交互式会话（通过 GUI 和 CLI，本地和远程登录）。
+UBA：用户访问 - 对关键资产的访问失败 
+此规则检测位于关键资产参考集中的系统的身份验证失败。
+UBA：对关键资产的首次访问
+表示这是用户第一次访问关键资产。
+UBA：来自多个主机的用户访问 
+检测单个用户何时从超过允许数量的设备登录。
+UBA：用户从 Jump 服务器访问内部服务器
+检测单个用户何时从超过允许数量的设备登录。
+UBA：登录异常
+指示本地资产上的一系列登录失败。
+UBA：来自匿名来源的用户访问帐户 
+表示用户正在从匿名源（例如 TOR 或 VPN）访问内部资源。
+UBA：异常时间的用户访问
+表示用户在您的网络不寻常的时间成功进行身份验证。
+UBA：通过服务或机器帐户访问 VPN
+检测服务或计算机帐户何时访问 Cisco VPN。
+UBA：VPN 证书共享
+此规则检测 VPN 事件的用户名何时不等于“VPNSubjectcn”。这可能表明正在发生 VPN 证书共享。证书共享或其他身份验证令牌共享会使识别谁做了什么变得困难。如果发生妥协，这可能会使采取下一步措施变得复杂。
+UBA：使用服务或机器帐户进行 Windows 访问
+检测由 Windows Server 中的服务或计算机帐户启动的任何交互式会话（RDP、本地登录）。
+Accounts and privileges 帐户和权限UBA：添加了帐户或组或特权
+检测用户执行的并且属于以下类别之一的事件。
+
+    Authentication.Group Added
+
+
+    Authentication.Group Changed
+
+
+    Authentication.Group Member Added
+
+
+    Authentication.Computer Account Added
+
+
+    Authentication.Computer Account Changed
+
+
+    Authentication.Policy Added
+
+
+    Authentication.Policy Change
+
+
+    Authentication.Trusted Domain Added
+
+
+    Authentication.User Account Added
+
+
+    Authentication.User Account Changed
+
+
+    Authentication.User Right Assigned
+
+
+
+UBA：帐户或组或权限已修改
+指示用户帐户何时受到更改用户有效权限（向上或向下）的操作的影响。
+UBA：帐户删除造成的 DoS 攻击
+通过在固定时间跨度内根据固定阈值检查帐户删除事件的数量来检测 DoS 攻击。
+UBA：在短时间内创建和删除用户帐户
+检测在短时间内创建和删除用户帐户的时间。
+UBA：使用的休眠帐户 
+检测从已确定为休眠的帐户成功登录。
+UBA：尝试使用休眠帐户
+从已确定为休眠的帐户检测失败的登录尝试。
+UBA：已使用过期帐户
+表示用户尝试登录本地系统上已禁用或过期的帐户。
+UBA：首次权限提升
+表示用户第一次执行特权访问。
+UBA：检测到新帐户使用
+提供表明帐户首次成功使用的报告功能。
+UBA：可疑特权活动（首次观察到的特权使用）
+表示用户执行了该用户以前从未执行过的特权操作。
+UBA：可疑特权活动（很少使用的特权）
+表示用户执行了该用户最近未执行的特权操作。
+UBA：用户尝试使用已禁用帐户
+检测用户何时尝试使用禁用的帐户访问组织资源。
+UBA：用户尝试使用暂停的帐户
+检测用户何时尝试使用暂停或阻止的权限访问组织资源。
+Browsing behavior 浏览行为UBA：浏览至业务/服务网站
+用户访问的 URL 可能表明安全性或法律风险较高。
+UBA：浏览至通信网站
+用户访问的 URL 可能表明安全性或法律风险较高。
+UBA：浏览到教育网站
+检测到用户浏览与教育内容相关的网站。
+UBA：浏览至娱乐网站
+用户访问的 URL 可能表明安全性或法律风险较高。
+UBA：浏览到赌博网站
+用户访问的 URL 可能表明安全性或法律风险较高。
+UBA：浏览至政府网站
+检测到用户浏览与政府内容相关的网站。
+UBA：浏览至信息技术网站
+用户访问的 URL 可能表明安全性或法律风险较高。
+UBA：浏览至求职网站
+用户访问的 URL 可能表明安全性或法律风险较高。
+UBA：浏览至 LifeStyle 网站
+用户访问的 URL 可能表明安全性或法律风险较高。
+UBA：浏览到恶意网站
+用户访问的 URL 可能表明安全性或法律风险较高。
+UBA：浏览到混合内容/可能是成人网站
+用户访问的 URL 可能表明安全性或法律风险较高。
+UBA：浏览到网络钓鱼网站
+用户访问的 URL 可能表明安全性或法律风险较高。
+UBA：浏览到色情网站
+用户访问的 URL 可能表明安全性或法律风险较高。
+UBA：浏览到宗教网站
+用户访问了与宗教内容相关联的 URL。
+UBA：浏览到诈骗/可疑/非法网站
+用户访问的 URL 可能表明安全性或法律风险较高。
+UBA：浏览到社交网络网站
+用户访问了归类为社交网络的网站。
+UBA：浏览至未分类网站
+用户访问的 URL 可能表明安全性或法律风险较高。
+UBA：用户访问有风险的 URL
+此规则检测本地用户何时访问有问题的在线内容。
+Cloud 云相关UBA：匿名用户访问资源
+检测访问资源的匿名用户。
+UBA：未经授权的用户访问的 AWS 控制台
+检测到“AWS - 标准用户”参考集中授权列表之外的用户未经授权尝试访问 Amazon Web Services (AWS) 控制台。
+UBA：外部用户邮箱登录失败
+检测外部用户登录邮箱的重复失败。
+UBA：无法设置邮箱审核日志绕过
+检测用户何时未能正确设置邮箱审核日志绕过。
+UBA：收件箱设置为转发到外部收件箱
+检测邮箱是否设置为转发到信任域引用集中未列出的域。
+UBA：内部用户失败邮箱登录，随后成功
+在内部用户成功登录之前检测到多个邮箱登录失败。
+UBA：在短时间内添加和删除邮箱权限
+检测一个小时内添加和删除的邮箱权限。
+UBA：访问 AWS 资源的非标准用户 
+检测尝试访问 Amazon Web Services (AWS) 资源的非标准用户。
+UBA：共享发送给访客的链接 
+检测发送给来宾的共享邀请。
+UBA：共享策略已更改或共享外部 (SharePoint/OneDrive)
+检测项目的共享策略何时更改为与来宾用户共享。
+UBA：站点管理员将用户添加到 SharePoint 或 OneDrive 上的组
+检测系统管理员将用户添加到 Sharepoint 或 OneDrive 中的组。
+UBA：未能将用户添加到角色
+检测将用户添加到角色的尝试何时失败。
+Domain controller 域名控制UBA：尝试恢复 DPAPI 备份主密钥
+检测何时尝试恢复 DPAPI 主密钥。
+UBA：检测到 Kerberos 帐户枚举
+通过检测用于从同一源 IP 发出 Kerberos 请求的大量用户名来检测 Kerberos 帐户枚举。
+UBA：来自同一用户的多个 Kerberos 身份验证失败
+检测多个 Kerberos 身份验证票证拒绝或失败。
+UBA：对域控制器的非管理员访问
+检测对域控制器的非管理员帐户访问尝试。
+UBA：传递哈希
+检测在传递散列漏洞期间可能生成的 Windows 登录事件。
+UBA：可能的目录服务枚举
+检测对目录服务枚举的侦察尝试。
+UBA：域控制器上可能的 SMB 会话枚举
+检测对域控制器的 SMB 枚举尝试。
+UBA：可能的 TGT 伪造
+检测包含域名异常的 Kerberos TGT。这些可能表明使用 pass the ticket 漏洞生成的票证。
+UBA：可能的 TGT PAC 伪造
+检测到使用伪造的 PAC 证书从 Kerberos TGS 获取服务票证。
+UBA：来自非域控制器的复制请求 
+检测来自非法域控制器的复制请求。
+UBA：多台主机使用的 TGT 票证
+检测在两台（或更多）不同的计算机上使用的 Kerberos TGT 票证。
+Endpoint 端点UBA：检测不安全或非标准协议
+检测通过被视为不安全或非标准协议的未经授权协议进行通信的任何用户。
+UBA：检测持久 SSH 会话
+检测活动时间超过 10 小时的 SSH 会话。
+UBA：修改了 Internet 设置
+检测系统上 Internet 设置的修改。
+UBA：恶意软件活动 - 批量修改注册表
+检测在较短时间间隔内批量修改多个注册表值的进程。
+UBA：Netcat 进程检测 (Linux)
+检测 Linux 系统上的 netcat 进程。
+UBA：Netcat 进程检测 (Windows)
+在 Windows 系统上检测 Netcat 进程。
+UBA：在 Gold Disk 白名单之外执行的进程 (Linux)
+检测在 Linux 系统上创建的进程，并在进程超出Gold Disk 进程允许列表时发出警报。
+UBA：在 Gold Disk 白名单之外执行的进程 (Windows)
+检测在 Windows 系统上创建的进程，并在进程超出Gold Disk 进程许可名单时发出警报。
+UBA：检测到勒索软件行为
+检测勒索软件感染期间通常出现的行为。
+UBA：受限程序使用
+表示创建了一个进程，并且该进程名称与引用集“UBA : Restricted Program Filenames”中列出的二进制名称之一匹配。
+UBA：用户安装可疑应用程序
+检测应用程序安装事件，然后在发现可疑应用程序时发出警报。
+UBA：创建的卷影副本 
+检测使用 vssadmin.exe 或 Windows Management Instrumentation 命令行 (WMIC) 创建的卷影副本。
+Exfiltration 泄漏UBA：云服务的数据泄露 
+检测正在将文件上传到个人云服务的用户。
+UBA：打印数据泄露 
+检测发送文件以进行打印或使用屏幕捕获工具（例如 Print Screen 和 Snipping Tool）的用户。
+UBA：可移动媒体的数据泄露 
+检测正在将文件传输到 USB 和 CD 等可移动媒体的用户。
+UBA：可能丢失数据
+检测由数据源、事件类别或与数据丢失检测和预防相关的特定事件确定的可能的数据丢失。
+UBA：可疑活动后的初始访问 
+在 24 小时内检测网络钓鱼或恶意软件活动以及随后的可疑访问活动。注意：编辑支持的构建块以监控适用于环境的任何规则。
+UBA：高风险用户的大量出站传输 
+检测到高风险用户的 200,000 字节或更多的出站传输。
+UBA：文件传输后的多个阻止文件传输
+通过检查最初被阻止但随后在 5 分钟内成功上传的文件上传来检测渗漏。
+UBA：多次阻止文件上传，然后成功上传
+检测何时有大量被阻止的文件上传，然后上传成功。
+UBA：潜在受损帐户
+检测可疑活动场景，然后在 24 小时内渗透。
+UBA：可疑访问，然后是数据泄露
+检测来自异常、受限或禁止位置的访问，然后进行数据泄露尝试。
+UBA：可疑活动，随后是泄露
+检测可疑活动场景，然后在 24 小时内渗透。 
+UBA：用户可能被钓鱼
+在一小时内检测到 3 个或更多针对单个用户的潜在网络钓鱼攻击实例。注意：编辑支持的构建块以监控适用于环境的任何规则。
+Geography 位置UBA：从新位置创建的异常帐户 
+检测来自新位置的异常帐户创建活动。
+UBA：从新位置创建的异常云帐户 
+从新位置检测云帐户创建活动。
+UBA：来自多个位置的用户访问 
+表示多个位置或来源同时使用同一个用户帐户。调整匹配和持续时间参数以调整响应性。
+UBA：禁止位置的用户访问 
+从不在“UBA：允许的位置列表”中的位置检测用户访问。
+UBA：受限位置的用户访问
+从“UBA：受限位置列表”中的某个位置检测用户访问。
+UBA：用户地理变化
+匹配表示用户从不同于用户上次远程登录的国家/地区远程登录。此规则还可能表明帐户被盗，尤其是在规则匹配发生的时间很近的情况下。
+UBA：来自异常位置的用户访问 
+表示用户能够在您的网络不常见的国家/地区进行身份验证。
+MaaS360 Security MaaS360 安全告警UBA：MaaS360 检测到具有低加密级别的设备 
+检测到设备的加密级别较低。
+UBA：由于非漫游数据使用导致 MaaS360 设备不合规
+设备不合规，因为它超出了 MaaS 管理员设置的移动使用限制。
+UBA：MaaS360 设备因设备被 root 不合规
+设备不合规，因为它已越狱或root以绕过操作系统限制。
+UBA：由于加密级别导致 MaaS360 设备不合规
+设备不合规，因为它支持 MaaS 管理员设置的指定加密级别。
+UBA：由于操作系统版本导致 MaaS360 设备不合规
+设备不合规，因为它需要更新的操作系统版本。
+UBA：收到 MaaS360 恶意 SMS
+检测到表明用户收到恶意 SMS 消息的 MaaS360 事件。
+UBA：收到 MaaS360 恶意电子邮件
+检测到表明用户收到恶意电子邮件的 MaaS360 事件。
+UBA：MaaS360 URL 访问被阻止
+检测到指示用户对 URL 的访问已被阻止的 MaaS360 事件。
+UBA：安装了 MaaS360 恶意软件应用程序
+检测 MaaS360 事件，表明用户的设备上有恶意软件。
+UBA：访问了 MaaS360 恶意 URL
+检测从 iOS 和 Android 设备单击的网络钓鱼链接，无论来源如何。
+Network traffic and attacks 网络流量和攻击UBA：检测到 D/DoS 攻击
+检测用户的网络拒绝服务 (DoS) 攻击。
+UBA：Honeytoken 活动
+使用 Honeytoken 帐户检测活动。
+UBA：网络流量：捕获监控和分析程序使用情况
+表示创建了一个进程，并且该进程名称与参考集“UBA：网络捕获、监视和分析程序文件名”中列出的二进制名称之一匹配。此参考集列出了网络数据包捕获软件的二进制名称。参考集预先填充了一些常见的网络协议分析软件文件名的名称。
+QRadar DNS Analyzer QRadar DNS 分析器UBA：对阻止列表域的潜在访问
+检测表明用户可能访问了阻止列表域的事件。
+UBA：对 DGA 域的潜在访问
+检测表明用户可能访问了 DGA（由算法生成的域）域的事件。
+UBA：对抢注域的潜在访问
+检测表明用户可能访问了抢注域的事件。
+UBA：对隧道域的潜在访问
+检测指示用户可能访问隧道域的事件。
+Threat intelligence  威胁情报UBA：为 Locky 检测 IOC
+使用从 X-Force 活动源填充的 URL 或 IP 检测显示 Locky 的妥协指标 (IOC) 的用户计算机。
+UBA：为 WannaCry 检测 IOC
+使用从 X-Force 活动源填充的 URL、IP 或哈希来检测显示 WannaCry 的妥协指标 (IOC) 的用户计算机。
+UBA：受监​​控日志源的多个会话（NIS 指令）
+在 5 分钟内检测到单个用户与同一 QRadar 日志源系统的连接超过 2 个。
+UBA：勒索软件修改的 ShellBags 
+检测表明典型恶意软件或勒索软件行为的 ShellBag 注册表修改。
+UBA：用户访问有风险的 IP 匿名化
+此规则检测本地用户或主机何时连接到外部匿名化服务。
+UBA：用户访问有风险的 IP 僵尸网络 
+此规则检测本地用户或主机何时连接到僵尸网络命令和控制服务器。
+UBA：用户访问有风险的 IP 动态
+此规则检测本地用户或主机何时连接到动态分配的 IP 地址。
+UBA：用户访问有风险的 IP 恶意软件 
+此规则检测本地用户或主机何时连接到恶意软件主机。
+UBA：用户访问有风险的 IP 垃圾邮件 
+此规则检测本地用户或主机何时连接到垃圾邮件发送主机。
+机器学习规则部分UBA：异常出站传输尝试UBA：发现异常的出站转移尝试UBA：到外部域的异常数据量UBA：发现到外部域的数据量异常UBA : 对风险资源的异常访问UBA：发现异常访问风险资源UBA : 用户访问有风险的资源UBA : 风险资源UBA：用户行为、会话异常（按目的地）UBA：发现目的地的用户行为、会话异常UBA : User Event Frequency Anomaly - 研究主题UBA：用户事件频率异常 - 找到的类别UBA : User Running New Process（在 UBA 3.8.0 中替换为Process Usage ML 用户模型）UBA：用户量活动异常 - 到外部域的流量UBA：用户量活动异常 - 发现到外部域的流量UBA：用户量活动异常 - 到内部域的流量UBA：用户量活动异常 - 发现到内部域的流量UBA：用户活动异常量 - 流量UBA：用户活动量异常 - 发现流量
+以下规则和构建块以及它们提供的功能现在在 UBA 应用程序中进行管理：
+UBA：用户已休眠（无活动异常规则）BB:UBA : 休眠用户首次登录 (逻辑)BB:UBA : 休眠用户后续登录 (逻辑)UBA : 用户名，成功，休眠新账户UBA：用户帐户的用户名，成功，观察到UBA：用户帐户的用户名，成功，最近UBA：用户帐户的用户名，成功，最近更新BB:UBA：用户首次访问（逻辑）
+以下规则和构建块以及它们提供的功能现在通过允许非 UBA 规则与 UBA 一起使用来处理：
+QNIUBA：QNI - 访问不适当保护的服务 - 证书过期UBA：QNI - 访问不适当保护的服务 - 证书无效UBA：QNI - 访问不适当保护的服务 - 自签名证书UBA：QNI - 访问不适当保护的服务 - 弱公钥长度UBA：QNI - 观察到的与恶意软件威胁相关的文件哈希UBA：QNI - 在多个主机上观察到的文件哈希UBA：QNI - 在被拒绝的电子邮件收件人上检测到潜在的垃圾邮件/网络钓鱼尝试UBA：QNI - 从多次发送中检测到的潜在垃圾邮件/网络钓鱼主题服务器UBA : QNI - 机密内容被转移到国外
+系统监控UBA：可疑的 PowerShell 活动UBA：可疑的 PowerShell 活动（资产）UBA：可疑的命令提示符活动UBA：检测到用户访问控制绕过（资产）UBA：可疑的计划任务活动UBA：可疑的服务活动UBA：可疑的服务活动（资产）UBA：系统注册表（资产）中的可疑条目UBA：检测到可疑图像负载（资产）UBA：可疑管道活动（资产）UBA：受损主机上的可疑活动 UBA：受损主机（资产）上的可疑活动UBA：检测到可疑管理活动UBA：检测到创建可疑远程线程的进程（资产）UBA：检测到常见漏洞利用工具UBA：检测到常见漏洞利用工具（资产）UBA：检测到恶意进程UBA：访问了网络共享
+侦察UBA：检测到 DHCP 服务器异常扫描 UBA：检测到 DNS 服务器异常扫描 UBA：检测到数据库服务器异常扫描 UBA：检测到 FTP 服务器异常扫描 UBA：检测到游戏服务器异常扫描 UBA：检测到通用 ICMP异常扫描UBA：检测到通用 TCP异常扫描 UBA：检测到通用 UDP异常扫描 UBA：检测到 IRC 服务器异常扫描 UBA：检测到 LDAP 服务器异常扫描 UBA：检测到邮件服务器异常扫描 UBA：检测到消息服务器异常扫描 UBA：异常扫描检测到 P2P 服务器的UBA : 检测到代理服务器的异常扫描UBA：检测到 RPC 服务器异常扫描 UBA：检测到 SNMP 服务器异常扫描 UBA：检测到 SSH 服务器异常扫描 UBA：检测到 Web 服务器异常扫描 UBA：检测到 Windows 服务器异常扫描
+用于 Sysmon 的 IBM QRadar 内容检测到可能的键盘记录器检测到以系统用户权限启动的新的看不见的进程检测到在多个主机上远程执行的进程进程从异常目录开始（Recycle.bin，..）添加了隐藏的网络共享检测到 Powershell 恶意使用使用编码命令检测到 Powershell 恶意使用不寻常的过程（例如：word、iexplore、AcroRd..）启动命令外壳以系统权限启动的命令外壳检测到从受损主机成功登录到其他主机检测到可能的凭证转储工具无子进程启动/产生了一个进程从临时目录启动的进程系统进程的异常父级检测到可疑的 Svchost 进程已从受损主机访问网络共享已访问管理共享已从受损计算机访问管理共享进程从共享文件夹启动并创建线程到另一个进程检测到单台机器过度使用系统工具从受损主机访问网络共享资源的尝试过多失败从单一来源访问管理共享的尝试过多失败Powershell 已在受损主机中启动PsExec 已从受损主机启动检测到从受损主机到其他主机的 SMB 流量已从远程系统启动命令 Shell 或 Powershell已在受损主机中创建计划任务系统中安装了恶意服务检测到配置为使用 Powershell 的服务检测到配置为使用管道的服务
+适用于 Amazon AWS 的 IBM QRadar 内容扩展AWS 云：根用户的云活动AWS 云：关键 EC2 实例已停止或终止AWS 云：检测到从不同地区成功登录 AWS 控制台AWS 云：日志已被删除/禁用或停止AWS 云：来自不同源 IP 的多个控制台登录失败AWS 云：来自同一源 IP 的多个控制台登录失败AWS 云：来自不同源 IP 的多个失败的 API 请求AWS 云：来自同一源 IP 的多个失败的 API 请求AWS 云：来自同一用户名的多个失败的 API 请求
+IBM 安全侦察内容本地 L2L TCP 扫描器本地 L2L Windows 服务器扫描程序本地 L2L 游戏服务器扫描器本地 L2L DNS 扫描程序本地 L2L 邮件服务器扫描程序本地 L2L 代理服务器扫描程序本地 L2L IM 服务器扫描程序本地...
+                    
+                </div> -->
+                <div class="article-content markdown-body">
+                    <h2 id="UBA-规则包摘要"><a href="#UBA-规则包摘要" class="headerlink" title="UBA 规则包摘要"></a>UBA 规则包摘要</h2><table>
+<thead>
+<tr>
+<th><strong>Content Pack</strong></th>
+<th><strong>Custom Rules</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Access and Authentication</td>
+<td>42</td>
+</tr>
+<tr>
+<td>Accounts and Privileges</td>
+<td>32</td>
+</tr>
+<tr>
+<td>Browsing Behavior</td>
+<td>20</td>
+</tr>
+<tr>
+<td>Cloud</td>
+<td>16</td>
+</tr>
+<tr>
+<td>DNS Analyzer</td>
+<td>5</td>
+</tr>
+<tr>
+<td>Domain Controller</td>
+<td>15</td>
+</tr>
+<tr>
+<td>Endpoint</td>
+<td>22</td>
+</tr>
+<tr>
+<td>Exfiltration</td>
+<td>27</td>
+</tr>
+<tr>
+<td>Geography</td>
+<td>12</td>
+</tr>
+<tr>
+<td>MaaS360</td>
+<td>10</td>
+</tr>
+<tr>
+<td>Network Traffic</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Other</td>
+<td>50+</td>
+</tr>
+</tbody></table>
+<p><img lazyload src="/images/loading.svg" data-src="1.png"></p>
+<p><img lazyload src="/images/loading.svg" data-src="2.png"></p>
+<h2 id="Access-and-authentication-访问和身份验证"><a href="#Access-and-authentication-访问和身份验证" class="headerlink" title="Access and authentication 访问和身份验证"></a>Access and authentication 访问和身份验证</h2><p>UBA：暴力验证尝试</p>
+<p>检测身份验证失败蛮力攻击（水平和垂直）。</p>
+<p>UBA：检测到来自锁定机器</p>
+<p>检测来自锁定机器的活动。</p>
+<p>UBA：非执行用户从外部网络访问的仅执行资产</p>
+<p>检测来自外部网络的非执行用户何时登录到供执行使用的资产。</p>
+<p>UBA：非执行用户从内部网络访问的仅限执行资产</p>
+<p>检测非执行用户何时登录仅供执行使用的资产。</p>
+<p>UBA：对关键资产的高风险用户访问</p>
+<p>检测用户何时参与事件（犯罪）访问关键资产。</p>
+<p>UBA：针对外部域的大量拒绝访问事件 </p>
+<p>检测何时有异常数量的针对任何外部域的拒绝访问事件。</p>
+<p>UBA：多个 VPN 帐户无法从单个 IP 登录</p>
+<p>检测任何 VPN 帐户登录失败。</p>
+<p>UBA：从单个 IP 登录的多个 VPN 帐户 </p>
+<p>映射来自同一 IP 地址的多个 VPN 用户，然后提高风险评分。</p>
+<p>UBA：企业防火墙中的远程访问漏洞 </p>
+<p>检测 GotoMyPC 和 OpenVPN 应用程序创建的防火墙中何时存在远程访问漏洞。</p>
+<p>UBA：重复未经授权的访问</p>
+<p>表示发现重复的未经授权的访问活动。</p>
+<p>UBA：终止的用户活动</p>
+<p>检测任何被列为已终止或已辞职的用户的活动。</p>
+<p>UBA：未经授权的访问</p>
+<p>表示发现了未经授权的访问活动。</p>
+<p>UBA：使用服务或机器帐户访问的 Unix/Linux 系统</p>
+<p>检测由 UNIX 和 Linux 服务器中的服务或计算机帐户启动的任何交互式会话（通过 GUI 和 CLI，本地和远程登录）。</p>
+<p>UBA：用户访问 - 对关键资产的访问失败 </p>
+<p>此规则检测位于关键资产参考集中的系统的身份验证失败。</p>
+<p>UBA：对关键资产的首次访问</p>
+<p>表示这是用户第一次访问关键资产。</p>
+<p>UBA：来自多个主机的用户访问 </p>
+<p>检测单个用户何时从超过允许数量的设备登录。</p>
+<p>UBA：用户从 Jump 服务器访问内部服务器</p>
+<p>检测单个用户何时从超过允许数量的设备登录。</p>
+<p>UBA：登录异常</p>
+<p>指示本地资产上的一系列登录失败。</p>
+<p>UBA：来自匿名来源的用户访问帐户 </p>
+<p>表示用户正在从匿名源（例如 TOR 或 VPN）访问内部资源。</p>
+<p>UBA：异常时间的用户访问</p>
+<p>表示用户在您的网络不寻常的时间成功进行身份验证。</p>
+<p>UBA：通过服务或机器帐户访问 VPN</p>
+<p>检测服务或计算机帐户何时访问 Cisco VPN。</p>
+<p>UBA：VPN 证书共享</p>
+<p>此规则检测 VPN 事件的用户名何时不等于“VPNSubjectcn”。这可能表明正在发生 VPN 证书共享。证书共享或其他身份验证令牌共享会使识别谁做了什么变得困难。如果发生妥协，这可能会使采取下一步措施变得复杂。</p>
+<p>UBA：使用服务或机器帐户进行 Windows 访问</p>
+<p>检测由 Windows Server 中的服务或计算机帐户启动的任何交互式会话（RDP、本地登录）。</p>
+<h2 id="Accounts-and-privileges-帐户和权限"><a href="#Accounts-and-privileges-帐户和权限" class="headerlink" title="Accounts and privileges 帐户和权限"></a>Accounts and privileges 帐户和权限</h2><p>UBA：添加了帐户或组或特权</p>
+<p>检测用户执行的并且属于以下类别之一的事件。</p>
+<ul>
+<li><pre><code>    Authentication.Group Added
+</code></pre>
+</li>
+<li><pre><code>    Authentication.Group Changed
+</code></pre>
+</li>
+<li><pre><code>    Authentication.Group Member Added
+</code></pre>
+</li>
+<li><pre><code>    Authentication.Computer Account Added
+</code></pre>
+</li>
+<li><pre><code>    Authentication.Computer Account Changed
+</code></pre>
+</li>
+<li><pre><code>    Authentication.Policy Added
+</code></pre>
+</li>
+<li><pre><code>    Authentication.Policy Change
+</code></pre>
+</li>
+<li><pre><code>    Authentication.Trusted Domain Added
+</code></pre>
+</li>
+<li><pre><code>    Authentication.User Account Added
+</code></pre>
+</li>
+<li><pre><code>    Authentication.User Account Changed
+</code></pre>
+</li>
+<li><pre><code>    Authentication.User Right Assigned
+</code></pre>
+</li>
+</ul>
+<p>UBA：帐户或组或权限已修改</p>
+<p>指示用户帐户何时受到更改用户有效权限（向上或向下）的操作的影响。</p>
+<p>UBA：帐户删除造成的 DoS 攻击</p>
+<p>通过在固定时间跨度内根据固定阈值检查帐户删除事件的数量来检测 DoS 攻击。</p>
+<p>UBA：在短时间内创建和删除用户帐户</p>
+<p>检测在短时间内创建和删除用户帐户的时间。</p>
+<p>UBA：使用的休眠帐户 </p>
+<p>检测从已确定为休眠的帐户成功登录。</p>
+<p>UBA：尝试使用休眠帐户</p>
+<p>从已确定为休眠的帐户检测失败的登录尝试。</p>
+<p>UBA：已使用过期帐户</p>
+<p>表示用户尝试登录本地系统上已禁用或过期的帐户。</p>
+<p>UBA：首次权限提升</p>
+<p>表示用户第一次执行特权访问。</p>
+<p>UBA：检测到新帐户使用</p>
+<p>提供表明帐户首次成功使用的报告功能。</p>
+<p>UBA：可疑特权活动（首次观察到的特权使用）</p>
+<p>表示用户执行了该用户以前从未执行过的特权操作。</p>
+<p>UBA：可疑特权活动（很少使用的特权）</p>
+<p>表示用户执行了该用户最近未执行的特权操作。</p>
+<p>UBA：用户尝试使用已禁用帐户</p>
+<p>检测用户何时尝试使用禁用的帐户访问组织资源。</p>
+<p>UBA：用户尝试使用暂停的帐户</p>
+<p>检测用户何时尝试使用暂停或阻止的权限访问组织资源。</p>
+<h2 id="Browsing-behavior-浏览行为"><a href="#Browsing-behavior-浏览行为" class="headerlink" title="Browsing behavior 浏览行为"></a>Browsing behavior 浏览行为</h2><p>UBA：浏览至业务/服务网站</p>
+<p>用户访问的 URL 可能表明安全性或法律风险较高。</p>
+<p>UBA：浏览至通信网站</p>
+<p>用户访问的 URL 可能表明安全性或法律风险较高。</p>
+<p>UBA：浏览到教育网站</p>
+<p>检测到用户浏览与教育内容相关的网站。</p>
+<p>UBA：浏览至娱乐网站</p>
+<p>用户访问的 URL 可能表明安全性或法律风险较高。</p>
+<p>UBA：浏览到赌博网站</p>
+<p>用户访问的 URL 可能表明安全性或法律风险较高。</p>
+<p>UBA：浏览至政府网站</p>
+<p>检测到用户浏览与政府内容相关的网站。</p>
+<p>UBA：浏览至信息技术网站</p>
+<p>用户访问的 URL 可能表明安全性或法律风险较高。</p>
+<p>UBA：浏览至求职网站</p>
+<p>用户访问的 URL 可能表明安全性或法律风险较高。</p>
+<p>UBA：浏览至 LifeStyle 网站</p>
+<p>用户访问的 URL 可能表明安全性或法律风险较高。</p>
+<p>UBA：浏览到恶意网站</p>
+<p>用户访问的 URL 可能表明安全性或法律风险较高。</p>
+<p>UBA：浏览到混合内容/可能是成人网站</p>
+<p>用户访问的 URL 可能表明安全性或法律风险较高。</p>
+<p>UBA：浏览到网络钓鱼网站</p>
+<p>用户访问的 URL 可能表明安全性或法律风险较高。</p>
+<p>UBA：浏览到色情网站</p>
+<p>用户访问的 URL 可能表明安全性或法律风险较高。</p>
+<p>UBA：浏览到宗教网站</p>
+<p>用户访问了与宗教内容相关联的 URL。</p>
+<p>UBA：浏览到诈骗/可疑/非法网站</p>
+<p>用户访问的 URL 可能表明安全性或法律风险较高。</p>
+<p>UBA：浏览到社交网络网站</p>
+<p>用户访问了归类为社交网络的网站。</p>
+<p>UBA：浏览至未分类网站</p>
+<p>用户访问的 URL 可能表明安全性或法律风险较高。</p>
+<p>UBA：用户访问有风险的 URL</p>
+<p>此规则检测本地用户何时访问有问题的在线内容。</p>
+<h2 id="Cloud-云相关"><a href="#Cloud-云相关" class="headerlink" title="Cloud 云相关"></a>Cloud 云相关</h2><p>UBA：匿名用户访问资源</p>
+<p>检测访问资源的匿名用户。</p>
+<p>UBA：未经授权的用户访问的 AWS 控制台</p>
+<p>检测到“AWS - 标准用户”参考集中授权列表之外的用户未经授权尝试访问 Amazon Web Services (AWS) 控制台。</p>
+<p>UBA：外部用户邮箱登录失败</p>
+<p>检测外部用户登录邮箱的重复失败。</p>
+<p>UBA：无法设置邮箱审核日志绕过</p>
+<p>检测用户何时未能正确设置邮箱审核日志绕过。</p>
+<p>UBA：收件箱设置为转发到外部收件箱</p>
+<p>检测邮箱是否设置为转发到信任域引用集中未列出的域。</p>
+<p>UBA：内部用户失败邮箱登录，随后成功</p>
+<p>在内部用户成功登录之前检测到多个邮箱登录失败。</p>
+<p>UBA：在短时间内添加和删除邮箱权限</p>
+<p>检测一个小时内添加和删除的邮箱权限。</p>
+<p>UBA：访问 AWS 资源的非标准用户 </p>
+<p>检测尝试访问 Amazon Web Services (AWS) 资源的非标准用户。</p>
+<p>UBA：共享发送给访客的链接 </p>
+<p>检测发送给来宾的共享邀请。</p>
+<p>UBA：共享策略已更改或共享外部 (SharePoint/OneDrive)</p>
+<p>检测项目的共享策略何时更改为与来宾用户共享。</p>
+<p>UBA：站点管理员将用户添加到 SharePoint 或 OneDrive 上的组</p>
+<p>检测系统管理员将用户添加到 Sharepoint 或 OneDrive 中的组。</p>
+<p>UBA：未能将用户添加到角色</p>
+<p>检测将用户添加到角色的尝试何时失败。</p>
+<h2 id="Domain-controller-域名控制"><a href="#Domain-controller-域名控制" class="headerlink" title="Domain controller 域名控制"></a>Domain controller 域名控制</h2><p>UBA：尝试恢复 DPAPI 备份主密钥</p>
+<p>检测何时尝试恢复 DPAPI 主密钥。</p>
+<p>UBA：检测到 Kerberos 帐户枚举</p>
+<p>通过检测用于从同一源 IP 发出 Kerberos 请求的大量用户名来检测 Kerberos 帐户枚举。</p>
+<p>UBA：来自同一用户的多个 Kerberos 身份验证失败</p>
+<p>检测多个 Kerberos 身份验证票证拒绝或失败。</p>
+<p>UBA：对域控制器的非管理员访问</p>
+<p>检测对域控制器的非管理员帐户访问尝试。</p>
+<p>UBA：传递哈希</p>
+<p>检测在传递散列漏洞期间可能生成的 Windows 登录事件。</p>
+<p>UBA：可能的目录服务枚举</p>
+<p>检测对目录服务枚举的侦察尝试。</p>
+<p>UBA：域控制器上可能的 SMB 会话枚举</p>
+<p>检测对域控制器的 SMB 枚举尝试。</p>
+<p>UBA：可能的 TGT 伪造</p>
+<p>检测包含域名异常的 Kerberos TGT。这些可能表明使用 pass the ticket 漏洞生成的票证。</p>
+<p>UBA：可能的 TGT PAC 伪造</p>
+<p>检测到使用伪造的 PAC 证书从 Kerberos TGS 获取服务票证。</p>
+<p>UBA：来自非域控制器的复制请求 </p>
+<p>检测来自非法域控制器的复制请求。</p>
+<p>UBA：多台主机使用的 TGT 票证</p>
+<p>检测在两台（或更多）不同的计算机上使用的 Kerberos TGT 票证。</p>
+<h2 id="Endpoint-端点"><a href="#Endpoint-端点" class="headerlink" title="Endpoint 端点"></a>Endpoint 端点</h2><p>UBA：检测不安全或非标准协议</p>
+<p>检测通过被视为不安全或非标准协议的未经授权协议进行通信的任何用户。</p>
+<p>UBA：检测持久 SSH 会话</p>
+<p>检测活动时间超过 10 小时的 SSH 会话。</p>
+<p>UBA：修改了 Internet 设置</p>
+<p>检测系统上 Internet 设置的修改。</p>
+<p>UBA：恶意软件活动 - 批量修改注册表</p>
+<p>检测在较短时间间隔内批量修改多个注册表值的进程。</p>
+<p>UBA：Netcat 进程检测 (Linux)</p>
+<p>检测 Linux 系统上的 netcat 进程。</p>
+<p>UBA：Netcat 进程检测 (Windows)</p>
+<p>在 Windows 系统上检测 Netcat 进程。</p>
+<p>UBA：在 Gold Disk 白名单之外执行的进程 (Linux)</p>
+<p>检测在 Linux 系统上创建的进程，并在进程超出Gold Disk 进程允许列表时发出警报。</p>
+<p>UBA：在 Gold Disk 白名单之外执行的进程 (Windows)</p>
+<p>检测在 Windows 系统上创建的进程，并在进程超出Gold Disk 进程许可名单时发出警报。</p>
+<p>UBA：检测到勒索软件行为</p>
+<p>检测勒索软件感染期间通常出现的行为。</p>
+<p>UBA：受限程序使用</p>
+<p>表示创建了一个进程，并且该进程名称与引用集“UBA : Restricted Program Filenames”中列出的二进制名称之一匹配。</p>
+<p>UBA：用户安装可疑应用程序</p>
+<p>检测应用程序安装事件，然后在发现可疑应用程序时发出警报。</p>
+<p>UBA：创建的卷影副本 </p>
+<p>检测使用 vssadmin.exe 或 Windows Management Instrumentation 命令行 (WMIC) 创建的卷影副本。</p>
+<h2 id="Exfiltration-泄漏"><a href="#Exfiltration-泄漏" class="headerlink" title="Exfiltration 泄漏"></a>Exfiltration 泄漏</h2><p>UBA：云服务的数据泄露 </p>
+<p>检测正在将文件上传到个人云服务的用户。</p>
+<p>UBA：打印数据泄露 </p>
+<p>检测发送文件以进行打印或使用屏幕捕获工具（例如 Print Screen 和 Snipping Tool）的用户。</p>
+<p>UBA：可移动媒体的数据泄露 </p>
+<p>检测正在将文件传输到 USB 和 CD 等可移动媒体的用户。</p>
+<p>UBA：可能丢失数据</p>
+<p>检测由数据源、事件类别或与数据丢失检测和预防相关的特定事件确定的可能的数据丢失。</p>
+<p>UBA：可疑活动后的初始访问 </p>
+<p>在 24 小时内检测网络钓鱼或恶意软件活动以及随后的可疑访问活动。注意：编辑支持的构建块以监控适用于环境的任何规则。</p>
+<p>UBA：高风险用户的大量出站传输 </p>
+<p>检测到高风险用户的 200,000 字节或更多的出站传输。</p>
+<p>UBA：文件传输后的多个阻止文件传输</p>
+<p>通过检查最初被阻止但随后在 5 分钟内成功上传的文件上传来检测渗漏。</p>
+<p>UBA：多次阻止文件上传，然后成功上传</p>
+<p>检测何时有大量被阻止的文件上传，然后上传成功。</p>
+<p>UBA：潜在受损帐户</p>
+<p>检测可疑活动场景，然后在 24 小时内渗透。</p>
+<p>UBA：可疑访问，然后是数据泄露</p>
+<p>检测来自异常、受限或禁止位置的访问，然后进行数据泄露尝试。</p>
+<p>UBA：可疑活动，随后是泄露</p>
+<p>检测可疑活动场景，然后在 24 小时内渗透。 </p>
+<p>UBA：用户可能被钓鱼</p>
+<p>在一小时内检测到 3 个或更多针对单个用户的潜在网络钓鱼攻击实例。注意：编辑支持的构建块以监控适用于环境的任何规则。</p>
+<h2 id="Geography-位置"><a href="#Geography-位置" class="headerlink" title="Geography 位置"></a>Geography 位置</h2><p>UBA：从新位置创建的异常帐户 </p>
+<p>检测来自新位置的异常帐户创建活动。</p>
+<p>UBA：从新位置创建的异常云帐户 </p>
+<p>从新位置检测云帐户创建活动。</p>
+<p>UBA：来自多个位置的用户访问 </p>
+<p>表示多个位置或来源同时使用同一个用户帐户。调整匹配和持续时间参数以调整响应性。</p>
+<p>UBA：禁止位置的用户访问 </p>
+<p>从不在“UBA：允许的位置列表”中的位置检测用户访问。</p>
+<p>UBA：受限位置的用户访问</p>
+<p>从“UBA：受限位置列表”中的某个位置检测用户访问。</p>
+<p>UBA：用户地理变化</p>
+<p>匹配表示用户从不同于用户上次远程登录的国家/地区远程登录。此规则还可能表明帐户被盗，尤其是在规则匹配发生的时间很近的情况下。</p>
+<p>UBA：来自异常位置的用户访问 </p>
+<p>表示用户能够在您的网络不常见的国家/地区进行身份验证。</p>
+<h2 id="MaaS360-Security-MaaS360-安全告警"><a href="#MaaS360-Security-MaaS360-安全告警" class="headerlink" title="MaaS360 Security MaaS360 安全告警"></a>MaaS360 Security MaaS360 安全告警</h2><p>UBA：MaaS360 检测到具有低加密级别的设备 </p>
+<p>检测到设备的加密级别较低。</p>
+<p>UBA：由于非漫游数据使用导致 MaaS360 设备不合规</p>
+<p>设备不合规，因为它超出了 MaaS 管理员设置的移动使用限制。</p>
+<p>UBA：MaaS360 设备因设备被 root 不合规</p>
+<p>设备不合规，因为它已越狱或root以绕过操作系统限制。</p>
+<p>UBA：由于加密级别导致 MaaS360 设备不合规</p>
+<p>设备不合规，因为它支持 MaaS 管理员设置的指定加密级别。</p>
+<p>UBA：由于操作系统版本导致 MaaS360 设备不合规</p>
+<p>设备不合规，因为它需要更新的操作系统版本。</p>
+<p>UBA：收到 MaaS360 恶意 SMS</p>
+<p>检测到表明用户收到恶意 SMS 消息的 MaaS360 事件。</p>
+<p>UBA：收到 MaaS360 恶意电子邮件</p>
+<p>检测到表明用户收到恶意电子邮件的 MaaS360 事件。</p>
+<p>UBA：MaaS360 URL 访问被阻止</p>
+<p>检测到指示用户对 URL 的访问已被阻止的 MaaS360 事件。</p>
+<p>UBA：安装了 MaaS360 恶意软件应用程序</p>
+<p>检测 MaaS360 事件，表明用户的设备上有恶意软件。</p>
+<p>UBA：访问了 MaaS360 恶意 URL</p>
+<p>检测从 iOS 和 Android 设备单击的网络钓鱼链接，无论来源如何。</p>
+<h2 id="Network-traffic-and-attacks-网络流量和攻击"><a href="#Network-traffic-and-attacks-网络流量和攻击" class="headerlink" title="Network traffic and attacks 网络流量和攻击"></a>Network traffic and attacks 网络流量和攻击</h2><p>UBA：检测到 D/DoS 攻击</p>
+<p>检测用户的网络拒绝服务 (DoS) 攻击。</p>
+<p>UBA：Honeytoken 活动</p>
+<p>使用 Honeytoken 帐户检测活动。</p>
+<p>UBA：网络流量：捕获监控和分析程序使用情况</p>
+<p>表示创建了一个进程，并且该进程名称与参考集“UBA：网络捕获、监视和分析程序文件名”中列出的二进制名称之一匹配。此参考集列出了网络数据包捕获软件的二进制名称。参考集预先填充了一些常见的网络协议分析软件文件名的名称。</p>
+<h2 id="QRadar-DNS-Analyzer-QRadar-DNS-分析器"><a href="#QRadar-DNS-Analyzer-QRadar-DNS-分析器" class="headerlink" title="QRadar DNS Analyzer QRadar DNS 分析器"></a>QRadar DNS Analyzer QRadar DNS 分析器</h2><p>UBA：对阻止列表域的潜在访问</p>
+<p>检测表明用户可能访问了阻止列表域的事件。</p>
+<p>UBA：对 DGA 域的潜在访问</p>
+<p>检测表明用户可能访问了 DGA（由算法生成的域）域的事件。</p>
+<p>UBA：对抢注域的潜在访问</p>
+<p>检测表明用户可能访问了抢注域的事件。</p>
+<p>UBA：对隧道域的潜在访问</p>
+<p>检测指示用户可能访问隧道域的事件。</p>
+<h2 id="Threat-intelligence-威胁情报"><a href="#Threat-intelligence-威胁情报" class="headerlink" title="Threat intelligence  威胁情报"></a>Threat intelligence  威胁情报</h2><p>UBA：为 Locky 检测 IOC</p>
+<p>使用从 X-Force 活动源填充的 URL 或 IP 检测显示 Locky 的妥协指标 (IOC) 的用户计算机。</p>
+<p>UBA：为 WannaCry 检测 IOC</p>
+<p>使用从 X-Force 活动源填充的 URL、IP 或哈希来检测显示 WannaCry 的妥协指标 (IOC) 的用户计算机。</p>
+<p>UBA：受监​​控日志源的多个会话（NIS 指令）</p>
+<p>在 5 分钟内检测到单个用户与同一 QRadar 日志源系统的连接超过 2 个。</p>
+<p>UBA：勒索软件修改的 ShellBags </p>
+<p>检测表明典型恶意软件或勒索软件行为的 ShellBag 注册表修改。</p>
+<p>UBA：用户访问有风险的 IP 匿名化</p>
+<p>此规则检测本地用户或主机何时连接到外部匿名化服务。</p>
+<p>UBA：用户访问有风险的 IP 僵尸网络 </p>
+<p>此规则检测本地用户或主机何时连接到僵尸网络命令和控制服务器。</p>
+<p>UBA：用户访问有风险的 IP 动态</p>
+<p>此规则检测本地用户或主机何时连接到动态分配的 IP 地址。</p>
+<p>UBA：用户访问有风险的 IP 恶意软件 </p>
+<p>此规则检测本地用户或主机何时连接到恶意软件主机。</p>
+<p>UBA：用户访问有风险的 IP 垃圾邮件 </p>
+<p>此规则检测本地用户或主机何时连接到垃圾邮件发送主机。</p>
+<h2 id="机器学习规则部分"><a href="#机器学习规则部分" class="headerlink" title="机器学习规则部分"></a>机器学习规则部分</h2><p>UBA：异常出站传输尝试<br>UBA：发现异常的出站转移尝试<br>UBA：到外部域的异常数据量<br>UBA：发现到外部域的数据量异常<br>UBA : 对风险资源的异常访问<br>UBA：发现异常访问风险资源<br>UBA : 用户访问有风险的资源<br>UBA : 风险资源<br>UBA：用户行为、会话异常（按目的地）<br>UBA：发现目的地的用户行为、会话异常<br>UBA : User Event Frequency Anomaly - 研究主题<br>UBA：用户事件频率异常 - 找到的类别<br>UBA : User Running New Process（在 UBA 3.8.0 中替换为Process Usage ML 用户模型）<br>UBA：用户量活动异常 - 到外部域的流量<br>UBA：用户量活动异常 - 发现到外部域的流量<br>UBA：用户量活动异常 - 到内部域的流量<br>UBA：用户量活动异常 - 发现到内部域的流量<br>UBA：用户活动异常量 - 流量<br>UBA：用户活动量异常 - 发现流量</p>
+<p>以下规则和构建块以及它们提供的功能现在在 UBA 应用程序中进行管理：</p>
+<p>UBA：用户已休眠（无活动异常规则）<br>BB:UBA : 休眠用户首次登录 (逻辑)<br>BB:UBA : 休眠用户后续登录 (逻辑)<br>UBA : 用户名，成功，休眠<br>新账户<br>UBA：用户帐户的用户名，成功，观察到<br>UBA：用户帐户的用户名，成功，最近<br>UBA：用户帐户的用户名，成功，最近更新<br>BB:UBA：用户首次访问（逻辑）</p>
+<p>以下规则和构建块以及它们提供的功能现在通过允许非 UBA 规则与 UBA 一起使用来处理：</p>
+<p>QNI<br>UBA：QNI - 访问不适当保护的服务 - 证书过期<br>UBA：QNI - 访问不适当保护的服务 - 证书无效<br>UBA：QNI - 访问不适当保护的服务 - 自签名证书<br>UBA：QNI - 访问不适当保护的服务 - 弱公钥长度<br>UBA：QNI - 观察到的与恶意软件威胁相关的文件哈希<br>UBA：QNI - 在多个主机上观察到的文件哈希<br>UBA：QNI - 在被拒绝的电子邮件收件人上检测到潜在的垃圾邮件/网络钓鱼尝试<br>UBA：QNI - 从多次发送中检测到的潜在垃圾邮件/网络钓鱼主题服务器<br>UBA : QNI - 机密内容被转移到国外</p>
+<p>系统监控<br>UBA：可疑的 PowerShell 活动<br>UBA：可疑的 PowerShell 活动（资产）<br>UBA：可疑的命令提示符活动<br>UBA：检测到用户访问控制绕过（资产）<br>UBA：可疑的计划任务活动<br>UBA：可疑的服务活动<br>UBA：可疑的服务活动（资产）<br>UBA：系统注册表（资产）中的可疑条目<br>UBA：检测到可疑图像负载（资产）<br>UBA：可疑管道活动（资产）<br>UBA：受损主机上的可疑活动 UBA：受损主机（资产）上的可疑活动<br>UBA：检测到可疑管理活动<br>UBA：检测到创建可疑远程线程的进程（资产）<br>UBA：检测到常见漏洞利用工具<br>UBA：检测到常见漏洞利用工具（资产）<br>UBA：检测到恶意进程<br>UBA：访问了网络共享</p>
+<p>侦察<br>UBA：检测到 DHCP 服务器<br>异常扫描 UBA：检测到 DNS 服务器<br>异常扫描 UBA：检测到数据库服务器<br>异常扫描 UBA：检测到 FTP 服务器<br>异常扫描 UBA：检测到游戏服务器<br>异常扫描 UBA：检测到通用 ICMP<br>异常扫描UBA：检测到通用 TCP<br>异常扫描 UBA：检测到通用 UDP<br>异常扫描 UBA：检测到 IRC 服务器<br>异常扫描 UBA：检测到 LDAP 服务器<br>异常扫描 UBA：检测到邮件服务器<br>异常扫描 UBA：检测到消息服务器<br>异常扫描 UBA：异常扫描检测到 P2P 服务器的<br>UBA : 检测到代理服务器的异常扫描<br>UBA：检测到 RPC 服务器<br>异常扫描 UBA：检测到 SNMP 服务器<br>异常扫描 UBA：检测到 SSH 服务器<br>异常扫描 UBA：检测到 Web 服务器<br>异常扫描 UBA：检测到 Windows 服务器异常扫描</p>
+<h2 id="用于-Sysmon-的-IBM-QRadar-内容"><a href="#用于-Sysmon-的-IBM-QRadar-内容" class="headerlink" title="用于 Sysmon 的 IBM QRadar 内容"></a>用于 Sysmon 的 IBM QRadar 内容</h2><p>检测到可能的键盘记录器<br>检测到以系统用户权限启动的新的看不见的进程<br>检测到在多个主机上远程执行的进程<br>进程从异常目录开始（Recycle.bin，..）<br>添加了隐藏的网络共享<br>检测到 Powershell 恶意使用<br>使用编码命令检测到 Powershell 恶意使用<br>不寻常的过程（例如：word、iexplore、AcroRd..）<br>启动命令外壳<br>以系统权限启动的命令外壳<br>检测到从受损主机成功登录到其他主机<br>检测到可能的凭证转储工具<br>无子进程启动/产生了一个进程<br>从临时目录启动的进程<br>系统进程的异常父级<br>检测到可疑的 Svchost 进程<br>已从受损主机访问网络共享<br>已访问管理共享<br>已从受损计算机访问管理共享<br>进程从共享文件夹启动并创建线程到另一个进程<br>检测到单台机器过度使用系统工具<br>从受损主机访问网络共享资源的尝试过多失败<br>从单一来源访问管理共享的尝试过多失败<br>Powershell 已在受损主机中启动<br>PsExec 已从受损主机启动<br>检测到从受损主机到其他主机的 SMB 流量<br>已从远程系统启动命令 Shell 或 Powershell<br>已在受损主机中创建计划任务<br>系统中安装了恶意服务<br>检测到配置为使用 Powershell 的服务<br>检测到配置为使用管道的服务</p>
+<h2 id="适用于-Amazon-AWS-的-IBM-QRadar-内容扩展"><a href="#适用于-Amazon-AWS-的-IBM-QRadar-内容扩展" class="headerlink" title="适用于 Amazon AWS 的 IBM QRadar 内容扩展"></a>适用于 Amazon AWS 的 IBM QRadar 内容扩展</h2><p>AWS 云：根用户的云活动<br>AWS 云：关键 EC2 实例已停止或终止<br>AWS 云：检测到从不同地区成功登录 AWS 控制台<br>AWS 云：日志已被删除/禁用或停止<br>AWS 云：来自不同源 IP 的多个控制台登录失败<br>AWS 云：来自同一源 IP 的多个控制台登录失败<br>AWS 云：来自不同源 IP 的多个失败的 API 请求<br>AWS 云：来自同一源 IP 的多个失败的 API 请求<br>AWS 云：来自同一用户名的多个失败的 API 请求</p>
+<h2 id="IBM-安全侦察内容"><a href="#IBM-安全侦察内容" class="headerlink" title="IBM 安全侦察内容"></a>IBM 安全侦察内容</h2><p>本地 L2L TCP 扫描器<br>本地 L2L Windows 服务器扫描程序<br>本地 L2L 游戏服务器扫描器<br>本地 L2L DNS 扫描程序<br>本地 L2L 邮件服务器扫描程序<br>本地 L2L 代理服务器扫描程序<br>本地 L2L IM 服务器扫描程序<br>本地 L2L Web 服务器扫描程序<br>本地 L2L P2P 服务器扫描器<br>本地 L2L SNMP 扫描程序<br>本地 L2L RPC 服务器扫描程序<br>本地 L2L UDP 扫描器<br>本地 L2L DHCP 扫描程序<br>本地 L2L ICMP 扫描器</p>
+<h2 id="QRadar-Network-Insights-内容"><a href="#QRadar-Network-Insights-内容" class="headerlink" title="QRadar Network Insights 内容"></a>QRadar Network Insights 内容</h2><p>QNI : 机密内容被转移到国外<br>QNI : 访问不适当的安全服务 - 证书已过期<br>QNI : 访问不适当的安全服务 - 证书无效<br>QNI：从多个发送服务器检测到的潜在垃圾邮件/网络钓鱼主题<br>QNI：在多个主机上观察到的文件哈希<br>QNI：观察到的与恶意软件威胁相关的文件哈希<br>QNI：在被拒绝的电子邮件收件人上检测到潜在的垃圾邮件/网络钓鱼尝试<br>QNI : 访问不适当的安全服务 - 自签名证书<br>QNI : 访问不适当的安全服务 - 弱公钥长度</p>
+
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Fri Apr 22 2022 21:00:00 GMT+0800">2022-04-22</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/%E5%AE%89%E5%85%A8%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">安全数据分析</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/UEBA/">UEBA</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/IBM%20QRadar%20UBA(%E7%94%A8%E6%88%B7%E8%A1%8C%E4%B8%BA%E5%88%86%E6%9E%90)%20%E8%A7%84%E5%88%99%E9%9B%86%E5%90%88/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/%E4%BA%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%BA%BF/">
+                        云安全基线
+                    </a>
+                </h3>
+
+                <!-- <div class="home-article-content markdown-body">
+                    
+                        网络安全网络安全包含用于保护 Azure 网络的控制措施，包括保护虚拟网络、建立专用连接、阻止和减少外部攻击以及保护 DNS。
+NS-1：建立网络分段边界安全原则：确保虚拟网络部署符合 GS-2 安全控制中定义的企业分段策略。 任何可能给组织带来较高风险的工作负载都应位于独立的虚拟网络中。 高风险工作负载的示例包括：
+
+    存储或处理高度敏感数据的应用程序。
+
+
+    公众或组织外部用户可访问的面向外部网络的应用程序。
+
+
+    使用不安全的体系结构或包含无法轻松修正的漏洞的应用程序。
+
+
+
+若要增强企业的分段策略，请通过网络控制限制或监视内部资源之间的流量。 对于明确定义的特定应用程序（例如 3 层应用），可采用高度安全的“默认拒绝，允许例外”方法，包括限制网络流量的端口、协议、源和目标 IP。 如果有多个应用程序和终结点彼此交互，那么阻止流量的扩展性可能并不好，你可能只能监视流量。
+NS-2：使用网络控制保护云服务安全原则：通过为资源建立专用访问点保护云服务。 如果可能，还应禁用或限制来自公共网络的访问。
+NS-3：在企业网络边缘部署防火墙安全原则：部署防火墙，对与外部网络之间的网络流量执行高级筛选。 还可以在内部段之间使用防火墙来支持分段策略。 如果需要，在需要强制网络流量通过网络设备以进行安全控制时，请使用子网的自定义路由来替代系统路由。至少要阻止已知的不良 IP 地址和高风险协议，例如远程管理（例如 RDP 和 SSH）和 Intranet 协议（例如 SMB 和 Kerberos）。
+NS-4：部署入侵检测/入侵防护系统 (IDS/IPS)安全原则：使用网络入侵检测和入侵防护系统 (IDS/IPS) 检查进出工作负载的网络和有效负载流量。 请确保始终优化 IDS/IPS，为 SIEM 解决方案提供高质量的警报。有关更深入的主机级别检测和防护功能，请将基于主机的 IDS/IPS 或基于主机的终结点检测和响应 (EDR) 解决方案与网络 ID/IPS 结合使用。
+NS-5：部署 DDOS 防护安全原则：部署分布式拒绝服务 (DDoS) 防护，以保护网络和应用程序免受攻击。
+NS-6：部署 Web 应用程序防火墙安全原则：部署 Web 应用程序防火墙 (WAF) 并配置适当的规则，以保护 Web 应用程序和 API 免受特定于应用程序的攻击。
+NS-7：简化网络安全配置安全原则：管理复杂的网络环境时，请使用工具来简化、集中和增强网络安全管理。
+NS-8：检测并禁用不安全的服务和协议安全原则：在操作系统、应用程序或软件包层检测并禁用不安全的服务和协议。 如果无法禁用不安全的服务和协议，请部署补偿控制。
+NS-9：以私密方式连接本地或云网络安全原则：使用专用连接在不同网络之间进行安全通信，例如在归置环境中的云服务提供商数据中心和本地基础结构之间。
+NS-10：确保域名系统 (DNS) 安全性安全原则：确保域名系统 (DNS) 安全配置能够防范已知风险：
+
+    在云环境中使用受信任的权威和递归 DNS 服务，以确保客户端（例如操作系统和应用程序）收到正确的解析结果。
+
+
+    将公共和专用 DNS 解析分开，以便可以将专用网络的 DNS 解析过程与公共网络的 DNS 解析过程隔离开来。
+
+
+    确保 DNS 安全策略还包括针对常见攻击的缓解措施，例如无关联 DNS、DNS 放大攻击、DNS 中毒和欺骗等。
+
+
+
+身份管理标识管理包括用于使用 Azure Active Directory 建立安全标识和访问控制的控制措施，其中包括使用单一登录、强身份验证、用于应用程序的托管标识（和服务主体）、条件访问和帐户异常监视。
+IM-1：使用集中式标识和身份验证系统安全原则：使用集中式标识和身份验证系统来管理组织的标识以及云和非云资源的身份验证。
+IM-2：保护标识和身份验证系统安全原则：在组织的云安全实践中，将标识和身份验证系统的保护视为具有高优先级的实践。 常见的安全控制措施包括：
+
+    限制特权角色和帐户
+
+
+    要求对所有特权访问进行强身份验证
+
+
+    监视和审核高风险活动
+
+
+
+IM-3：安全且自动地管理应用程序标识安全原则：使用托管应用程序标识，而不是为应用程序创建用于访问资源和执行代码的人工帐户。 托管应用程序标识提供了一些好处，例如减少凭据的暴露。 自动轮换凭据以确保标识的安全性。
+IM-4：对服务器和服务进行身份验证安全原则：从客户端对远程服务器和服务进行身份验证，以确保连接到受信任的服务器和服务。 最常见的服务器身份验证协议是传输层安全性 (TLS)，其中客户端（通常是浏览器或客户端设备）通过验证服务器的证书是否由受信任的证书颁发机构颁发来验证服务器。注意：当服务器和客户端相互进行身份验证时，可以使用相互身份验证。
+IM-5：使用单一登录(SSO)进行应用程序访问安全原则：使用单一登录 (SSO) 简化跨云服务和本地环境对资源（包括应用程序和数据）进行身份验证的用户体验。
+IM-6：使用强身份验证控制安全原则：对所有资源访问使用集中式标识和身份验证管理系统强制实施强身份验证控制（强的无密码身份验证或多重身份验证）。 仅基于密码凭据的身份验证被视为旧版身份验证，因为它不安全且无法抵御常见的攻击方法。部署强身份验证时，请先配置管理员和特权用户，以确保使用最高级别的强身份验证方法，紧接着向所有用户推出适当的强身份验证策略。注意：如果旧版应用程序和方案需要基于旧版密码的身份验证，请确保遵循密码安全最佳做法，例如复杂性要求。
+IM-7：根据条件限制资源访问安全原则：在零信任访问模型中，显式验证受信任的信号以允许或拒绝用户访问资源。 要验证的信号应包括用户帐户的强身份验证、用户帐户的行为分析、设备可信度、用户或组成员身份、位置等。
+IM-8：限制凭据和机密的泄露安全原则：确保应用程序开发人员安全地处理凭据和机密：
+
+    避免将凭据和机密嵌入到代码和配置文件中
+
+
+    使用密钥保管库或安全密钥存储服务来存储凭据和机密
+
+
+    扫描源代码中的凭据。
+
+
+
+注意：这通常通过安全的软件开发生命周期 (SDLC) 和 DevOps 安全流程进行管理和实施。
+IM-9：保护用户对现有应用程序的访问安全原则：在混合环境中，如果其中有使用旧式身份验证的本地应用程序或非本机云应用程序，请考虑云访问安全代理 (CASB)、应用程序代理、单一登录 (SSO) 等解决方案来管理对这些应用程序的访问，以获得以下好处：
+
+    强制执行集中式强身份验证
+
+
+    监视和控制风险最终用户活动
+
+
+    监视和修正有风险的旧版应用程序活动
+
+
+    检测和防止敏感数据传输
+
+
+
+特权访问特权访问包括用于保护对你的 Azure 租户和资源的特权访问的控制措施，包括一系列用于避免管理模型、管理帐户和特权访问工作站面临有意和无意的风险的控制措施。
+PA-1：隔离和限制高度特权/管理用户安全原则：确保你将标识所有严重影响业务的帐户。 限制云的控制平面、管理平面和数据/工作负载平面中的特权/管理帐户的数量。
+PA-2：避免对用户帐户和权限的长期访问安全原则：使用实时 (JIT) 机制将特权访问分配到不同的资源层，而不是创建已有的权限。
+PA-3：管理标识和权利的生命周期安全原则：使用自动化流程或技术控制来管理标识和访问生命周期，包括请求、审查、批准、预配和取消预配。
+PA-4：定期审查和协调用户访问权限安全原则：定期审查特权帐户权利。 确保授予帐户的访问权限对控制平面、管理平面和工作负载的管理有效。
+PA-5：设置紧急访问安全原则：设置紧急访问，确保不会在紧急情况下意外锁定关键云基础结构（例如标识和访问管理系统）。紧急访问帐户应很少使用，如果泄露，会对组织造成巨大损害，但在极少数需要紧急访问帐户的情况下，紧急访问帐户对于组织的可用性又是至关重要的。
+PA-6：使用特权访问工作站安全原则：受保护的独立工作站对于机密角色（如管理员、开发人员和关键服务操作员）的安全性至关重要。
+PA-7：遵循 Just Enough Administration（最小特权）原则安全原则：遵循 Just Enough Administration（最小特权）原则以在精细的级别管理权限。 使用基于角色的访问控制 (RBAC) 等功能，通过角色分配管理资源访问。
+PA-8 确定云提供商支持的访问流程安全原则：建立用于请求和批准供应商支持请求的审批流程和访问路径，并通过安全通道临时访问数据。
+数据保护数据保护涵盖控制静态数据保护、传输中的数据保护以及通过授权访问机制实现的数据保护，包括使用 Azure 中的访问控制、加密、密钥和证书管理发现、分类、保护和监视敏感数据资产。
+DP-1：对敏感数据进行发现、分类和标记安全原则：根据定义的敏感数据范围，建立和维护敏感数据的清单。 使用工具发现、分类和标记范围内的敏感数据。
+DP-2：监视针对敏感数据的异常情况和威胁安全原则：监控敏感数据周围的异常情况，例如未经授权将数据传输到企业可见性和控制范围之外的位置。 这通常涉及监视那些可能意味着未经授权的数据外泄的异常活动（大型或异常传输）。
+DP-3：加密传输中的敏感数据安全原则：使用加密保护传输中的数据免受“带外”攻击（例如流量捕获），确保攻击者无法轻松读取或修改数据。设置网络边界和服务范围，并在网络内部和外部强制实施传输中数据加密。 虽然这对于专用网络上的流量来说是可选的，但对于外部和公共网络上的流量来说，这是至关重要的。
+DP-4：默认启用静态数据加密安全原则：为了对访问控制进行补充，应使用加密保护静态数据，以免遭受“带外”攻击（例如访问底层存储）。 这有助于确保攻击者无法轻松读取或修改数据。
+DP-5：需要时在静态数据加密中使用客户管理的密钥选项安全原则：根据法规合规性要求，如果需要，请定义需要客户管理的密钥选项的用例和服务范围。 在服务中使用客户管理的密钥启用和实施静态数据加密。
+DP-6：使用安全密钥管理流程安全原则：记录并实现企业加密密钥管理标准、流程和过程，以控制密钥生命周期。 如果需要在服务中使用客户管理的密钥，请使用安全的 Key Vault 服务进行密钥生成、分发和存储。 根据定义的计划以及在密钥停用或泄露时轮换和撤销密钥。
+DP-7：使用安全证书管理流程安全原则：记录并实现企业证书管理标准、流程和过程，其中包括证书生命周期控制和证书策略（如果需要公钥基础结构）。使用自动化机制确保及时清查、跟踪、监视和续订组织中的关键服务使用的证书，以避免服务中断。
+DP-8：确保密钥和证书存储库的安全性安全原则：确保用于加密密钥和证书生命周期管理的密钥保管库服务的安全性。 通过访问控制、网络安全、日志记录和监视以及备份强化 Key Vault 服务，以确保始终使用最大安全性保护密钥和证书。
+资产管理资产管理包括用于确保 Azure 资源安全可见性和治理的控制措施，包括以下几方面的建议：安全人员的权限、对资产清单的安全访问，以及管理对服务和资源的审批（盘点、跟踪和更正）。
+AM-1：跟踪资产清单及其风险安全原则：通过查询跟踪资产清单并发现所有云资源。 根据资产的服务性质、位置或其他特征，对资产进行标记和分组，以便从逻辑上组织资产。 确保安全组织能够访问不断更新的资产清单。通过始终集中汇总安全见解和风险，确保安全组织能够监视云资产的风险
+AM-2：仅使用已获批准的服务安全原则：通过审核和限制用户可在环境中预配的服务，确保仅可使用已获批准的云服务。
+AM-3：确保资产生命周期管理的安全安全原则：确保资产的安全属性或配置在资产生命周期内将会一直更新。
+AM-4：限制对资产管理的访问安全原则：限制用户对资产管理功能的访问，避免意外或恶意修改云中的资产。
+AM-5：仅在虚拟机中使用已获批准的应用程序安全原则：通过创建允许列表并阻止未经授权的软件在环境中执行，确保仅已授权的软件才能执行。
+日志记录和威胁检测日志记录和威胁检测涵盖了用于检测 Azure 上的威胁以及启用、收集和存储 Azure 服务的审核日志的控件，包括使用控件启用检测、调查和修正过程，以利用 Azure 服务中的本机威胁检测生成高质量的警报；它还包括使用 Azure Monitor 收集日志，使用 Azure Sentinel 集中进行安全分析、时间同步和日志保留。
+LT-1：启用威胁检测功能安全原则：若要支持威胁检测方案，请监视所有已知资源类型的已知和预期的威胁和异常。 配置警报筛选和分析规则以从日志数据、代理或其他数据源中提取高质量警报，从而减少误报。
+LT-2：为标识和访问管理启用威胁检测安全原则：通过监视用户和应用程序登录和访问异常来检测标识和访问管理威胁。 应针对失败的登录尝试次数过多和使用了订阅中的已弃用帐户等行为模式发出警报。
+LT-3：启用日志记录以进行安全调查安全原则：为云资源启用日志记录，以满足安全事件调查以及安全响应与合规性的要求。
+LT-4：启用网络日志记录以进行安全调查安全原则：为网络服务启用日志记录，以支持与网络相关的事件调查、威胁搜寻和安全警报生成。 网络日志可能包括来自网络服务的日志，例如 IP 筛选、网络和应用程序防火墙、DNS、流量监视等。
+LT-5：集中管理和分析安全日志安全原则：集中记录存储和分析，以实现跨日志数据的关联。 对于每个日志源，请确保已分配数据所有者、访问指南、存储位置、用于处理和访问数据的工具以及数据保留要求。
+LT-6：配置日志存储保留期安全原则：根据合规性、法规和业务要求规划日志保留策略。 在各个日志记录服务中配置日志保留策略，以确保对日志进行正确存档。
+LT-7：使用批准的时间同步源安全原则：为日志记录时间戳使用已获批准的时间同步源，其中包括日期、时间和时区信息。
+事件响应事件响应包括对事件响应生命周期（准备、检测、分析、包含和事后活动）的控制措施，包括使用 Microsoft Defender for Cloud 和 Sentinel 等 Azure 服务自动执行事件响应过程。
+IR-1：准备 - 更新事件响应计划和处理过程安全原则：确保组织遵循行业最佳做法来制定流程和计划，以响应云平台上的安全事件。 请注意共担责任模型以及 IaaS、PaaS 和 SaaS 服务之间的差异。 这将直接影响你与云提供商在事件响应和处理活动方面的协作方式，例如事件通知和会审、证据收集、调查、清除和恢复。
+IR-2：准备 - 设置事件通知安全原则：确保事件响应组织中的正确联系人可以接收来自云服务提供商平台和你的环境的安全警报和事件通知。
+IR-3：检测和分析 - 基于高质量警报创建事件安全原则：确保你有创建高质量警报和衡量警报质量的流程。 这样，你就可以从过去的事件中吸取经验，并为分析人员确定警报的优先级，确保他们不会浪费时间来处理误报。可以基于过去的事件经验、经验证的社区源以及旨在通过融合和关联各种信号源来生成和清理警报的工具构建高质量警报。
+IR-4：检测和分析 - 调查事件安全原则：确保安全运营团队在调查潜在事件时可以查询和使用不同的数据源，以便全面了解发生的情况。 应收集各种各样的日志，以跟踪整个终止链中潜在攻击者的活动，避免出现盲点。 还应确保收集见解和经验，以供其他分析人员使用和用作将来的历史参考资料。
+IR-5：检测和分析 - 确定事件的优先级安全原则：为安全运营团队提供上下文，帮助他们根据组织的事件响应计划中定义的警报严重性和资产敏感度确定应首先关注哪些事件。
+IR-6：遏制、根除和恢复 - 自动执行事件处理安全原则：自动执行重复性手动任务，以加快响应速度并减轻分析人员的负担。 执行手动任务需要更长的时间，这会导致减慢每个事件的速度，并减少分析人员可以处理的事件数量。 手动任务还会使分析人员更加疲劳，这会增加可导致延迟的人为错误的风险，并降低分析人员专注于复杂任务的工作效率。
+IR-7：事后活动 - 吸取教训并保留证据安全原则：定期和/或在发生重大事件后在组织中吸取教训，以提高未来的事件响应和处理能力。根据事件的性质，在事件处理标准中定义的期限内保留与事件相关的证据，以供进一步分析或采取法律措施。
+态势和漏洞管理态势和漏洞管理侧重于评估和改进 Azure 安全状况的控制措施，包括漏洞扫描、渗透测试和修正，以及 Azure 资源中的安全配置跟踪、报告和更正。
+PV-1：定义并建立安全配置安全原则：为云中的不同资源类型定义安全配置基线。 或者，使用配置管理工具在资源部署之前或期间自动建立配置基线，以便在部署后默认情况下环境符合要求。
+PV-2：审核并强制执行安全配置安全原则：如果定义的配置基线存在偏差，则持续监视和发出警报。 通过拒绝不合规的配置或部署配置，根据基线配置强制实施所需的配置。
+PV-3：定义并建立计算资源的安全配置安全原则：为计算资源（如 VM 和容器）定义安全配置基线。 使用配置管理工具在计算资源部署之前或期间自动建立配置基线，以便在部署后默认情况下环境符合要求。 或者，使用预配置的映像将所需的配置基线构建到计算资源映像模板中。
+PV-4：审核并强制执行计算资源的安全配置安全原则：如果计算资源中定义的配置基线存在偏差，则持续监视和发出警报。 通过拒绝不合规的配置或在计算资源中部署配置，根据基线配置强制实施所需的配置。
+PV-5：执行漏洞评估安全原则：按固定计划或按需对所有层的云资源执行漏洞评估。 跟踪和比较扫描结果，以验证是否已修正漏洞。 评估应包括所有类型的漏洞，例如 Azure 服务、网络、Web、操作系统、配置错误等中的漏洞。请注意与漏洞扫描程序使用的特权访问相关的潜在风险。 遵循特权访问安全最佳做法，以保护用于扫描的任何管理帐户。
+PV-6：快速自动地修正漏洞安全原则：快速自动部署补丁和更新，修复云资源中的漏洞。 使用适当的基于风险的方法确定漏洞修复的优先级。 例如，应将较高价值资产中更严重的漏洞作为更高的优先级进行处理。
+PV-7：定期执行红队操作安全原则：模拟真实世界的攻击，以提供组织漏洞的更完整视图。 红队操作和渗透测试补充了传统的漏洞扫描方法，以发现风险。遵循行业最佳做法来设计、准备和进行此类测试，确保它不会对环境造成损害或破坏。 这应始终包括与相关利益干系人和资源所有者讨论测试范围和约束。
+端点安全性终结点安全保护对终结点检测和响应的控制措施，包括在 Azure 环境中对终结点使用终结点检测和响应 (EDR) 和反恶意软件服务。
+ES-1：使用终结点检测和响应 (EDR)安全原则：为 VM 启用终结点检测和响应 (EDR) 功能，并与 SIEM 和安全操作流程集成。
+ES-2：使用新式反恶意软件安全原则：使用能够实时保护和定期扫描的反恶意软件解决方案。
+ES-3：确保反恶意软件和签名已更新安全原则：确保针对反恶意软件解决方案快速一致地更新反恶意软件签名。
+备份和恢复备份和恢复包括用于确保在不同服务层执行、验证和保护数据和配置备份的控制措施。
+BR-1：确保定期执行自动备份安全原则：确保在资源创建期间或通过现有资源的策略对关键业务资源强制执行备份。
+BR-2：保护备份和恢复数据安全原则：确保备份数据和操作免受数据外泄、数据泄露、勒索软件/恶意软件和恶意内部人员的影响。 应该应用的安全控制包括用户和网络访问控制、数据加密（静态和传输中）。
+BR-3：监视器备份安全原则：确保所有业务关键型可保护资源符合定义的备份策略和标准。
+BR-4：定期测试备份安全原则：定期对备份执行数据恢复测试，以验证备份配置和备份数据的可用性是否满足 RTO（恢复时间目标）和 RPO（恢复点目标）中定义的恢复需求。
+DevOps安全性DevOps 安全性涵盖 DevOps 过程中与安全工程和运营相关的控制，包括在部署阶段之前部署关键安全检查（如静态应用安全测试、漏洞管理），以确保整个 DevOps 流程的安全；它还包括常见主题，例如威胁建模和软件供应安全。
+DS-1：执行威胁建模安全原则：执行威胁建模，以识别潜在威胁并枚举缓解威胁的控制。 确保威胁建模具有以下用途：
+
+    在生产运行时阶段保护应用程序和服务。
+
+
+    保护生成工件、基础 CI/CD 管道和其他用于生成、测试和部署的工具环境。 威胁建模至少应包括以下几方面：
+
+
+    定义应用程序的安全要求。 确保在威胁建模中充分满足这些要求。
+
+
+    分析应用程序组件、数据连接及其关系。 确保此分析还包括应用程序范围之外的上游和下游连接。
+
+
+    列出应用程序组件、数据连接以及上游和下游服务可能面临的潜在威胁和攻击途径。
+
+
+    确定可用于缓解枚举威胁的适用安全控制，并识别可能需要制定额外处理计划的任何控制漏洞（例如安全漏洞）。
+
+
+    枚举和设计可以缓解所识别漏洞风险的控制。
+
+
+
+DS-2：确保软件供应链安全性安全原则：确保企业的 SDLC（软件开发生命周期）或流程包括一组安全控制，用于管理应用程序依赖的内部和第三方软件组件（包括专有软件和开源软件）。 定义限制条件，防止将易受攻击组件或恶意组件集成和部署到环境中。软件供应链安全控制至少应包括以下几方面：
+
+    确定开发、生成、集成和部署阶段所需的上游依赖项。
+
+
+    当上游有可用的修补程序时，对内部和第三方软件组件进行盘存和跟踪来发现已知的漏洞。
+
+
+    使用静态和动态应用程序测试评估软件组件中的漏洞和恶意软件，以发现未知的漏洞。
+
+
+    确保使用适当的方法缓解漏洞和恶意软件的威胁。 这可能包括源代码本地修复或上游修复、功能排除和/或应用补偿控制（如果直接缓解不可用）。
+
+
+
+如果在生产环境中使用第三方闭源组件，则可能无法看见其安全状况。 应考虑其他控制，例如访问控制、网络隔离和终结点安全性，以便在出现与组件相关的恶意活动或漏洞时将影响降至最低。
+DS-3：安全 DevOps 基础结构安全原则：确保 DevOps 基础结构和管道遵循各环境（包括生成、测试和生产阶段）中的最佳安全做法。 这通常包括以下范围的安全控制：
+
+    用于存储源代码、生成的包和映像、项目生成工件和业务数据的生成工件存储库。
+
+
+    托管 CI/CD 管道的服务器、服务和工具。
+
+
+    CI/CD 管道配置。
+
+
+
+DS-4：将静态应用程序安全测试集成到 DevOps 管道安全原则：确保静态应用程序安全测试 (SAST) 是 CI/CD 工作流程中限制控制的一部分。 可根据测试结果设置限制，防止易受攻击的包提交到存储库、生成到包中或部署到生产中。
+DS-5：将动态应用程序安全测试集成到 DevOps 管道安全原则：确保动态应用程序安全测试 (DAST) 是 CI/CD 工作流程中限制控制的一部分。 可根据测试结果设置限制，防止漏洞生成到包中或部署到生产中。
+DS-6：在整个 DevOps 生命周期内加强工作负载的安全性安全原则：确保在开发、测试和部署阶段的整个生命周期内保护工作负载。 使用 Azure 安全基准评估可以在默认情况下设置为护栏或在部署阶段之前左移的控制（例如网络安全、标识管理、特权访问等）。 具体而言，请确保在 DevOps 过程中实现以下控制：
+
+    在 CI/CD 工作流、基础结构管理（基础结构即代码）和测试中使用 Azure 或第三方工具实现自动部署，以减少人为错误和攻击面。
+
+
+    确保 VM、容器映像和其他生成工件免受恶意操纵。
+
+
+    在 CI/CD 工作流中进行部署之前，扫描工作负载生成工件（也就是容器映像、依赖项、SAST 和 DAST 扫描）
+
+
+    在生产环境中部署漏洞评估和威胁检测功能，并在运行时持续使用这些功能。
+
+
+
+DS-7：在 DevOps 中启用日志记录和监视安全原则：确保日志记录和监视范围包括 DevOps（和任何其他开发过程）中使用的非生产环境和 CI/CD 工作流元素。 如果未正确监视生产环境，针对这些环境的漏洞和威胁会给生产环境带来巨大的风险。 还应监视 CI/CD 生成、测试和部署工作流中的事件，以识别 CI/CD 工作流作业中的任何...
+                    
+                </div> -->
+                <div class="article-content markdown-body">
+                    <h2 id="网络安全"><a href="#网络安全" class="headerlink" title="网络安全"></a>网络安全</h2><p>网络安全包含用于保护 Azure 网络的控制措施，包括保护虚拟网络、建立专用连接、阻止和减少外部攻击以及保护 DNS。</p>
+<h3 id="NS-1：建立网络分段边界"><a href="#NS-1：建立网络分段边界" class="headerlink" title="NS-1：建立网络分段边界"></a>NS-1：建立网络分段边界</h3><p>安全原则：确保虚拟网络部署符合 GS-2 安全控制中定义的企业分段策略。 任何可能给组织带来较高风险的工作负载都应位于独立的虚拟网络中。 高风险工作负载的示例包括：</p>
+<ul>
+<li><pre><code>    存储或处理高度敏感数据的应用程序。
+</code></pre>
+</li>
+<li><pre><code>    公众或组织外部用户可访问的面向外部网络的应用程序。
+</code></pre>
+</li>
+<li><pre><code>    使用不安全的体系结构或包含无法轻松修正的漏洞的应用程序。
+</code></pre>
+</li>
+</ul>
+<p>若要增强企业的分段策略，请通过网络控制限制或监视内部资源之间的流量。 对于明确定义的特定应用程序（例如 3 层应用），可采用高度安全的“默认拒绝，允许例外”方法，包括限制网络流量的端口、协议、源和目标 IP。 如果有多个应用程序和终结点彼此交互，那么阻止流量的扩展性可能并不好，你可能只能监视流量。</p>
+<h3 id="NS-2：使用网络控制保护云服务"><a href="#NS-2：使用网络控制保护云服务" class="headerlink" title="NS-2：使用网络控制保护云服务"></a>NS-2：使用网络控制保护云服务</h3><p>安全原则：通过为资源建立专用访问点保护云服务。 如果可能，还应禁用或限制来自公共网络的访问。</p>
+<h3 id="NS-3：在企业网络边缘部署防火墙"><a href="#NS-3：在企业网络边缘部署防火墙" class="headerlink" title="NS-3：在企业网络边缘部署防火墙"></a>NS-3：在企业网络边缘部署防火墙</h3><p>安全原则：部署防火墙，对与外部网络之间的网络流量执行高级筛选。 还可以在内部段之间使用防火墙来支持分段策略。 如果需要，在需要强制网络流量通过网络设备以进行安全控制时，请使用子网的自定义路由来替代系统路由。<br>至少要阻止已知的不良 IP 地址和高风险协议，例如远程管理（例如 RDP 和 SSH）和 Intranet 协议（例如 SMB 和 Kerberos）。</p>
+<h3 id="NS-4：部署入侵检测-入侵防护系统-IDS-IPS"><a href="#NS-4：部署入侵检测-入侵防护系统-IDS-IPS" class="headerlink" title="NS-4：部署入侵检测/入侵防护系统 (IDS/IPS)"></a>NS-4：部署入侵检测/入侵防护系统 (IDS/IPS)</h3><p>安全原则：使用网络入侵检测和入侵防护系统 (IDS/IPS) 检查进出工作负载的网络和有效负载流量。 请确保始终优化 IDS/IPS，为 SIEM 解决方案提供高质量的警报。<br>有关更深入的主机级别检测和防护功能，请将基于主机的 IDS/IPS 或基于主机的终结点检测和响应 (EDR) 解决方案与网络 ID/IPS 结合使用。</p>
+<h3 id="NS-5：部署-DDOS-防护"><a href="#NS-5：部署-DDOS-防护" class="headerlink" title="NS-5：部署 DDOS 防护"></a>NS-5：部署 DDOS 防护</h3><p>安全原则：部署分布式拒绝服务 (DDoS) 防护，以保护网络和应用程序免受攻击。</p>
+<h3 id="NS-6：部署-Web-应用程序防火墙"><a href="#NS-6：部署-Web-应用程序防火墙" class="headerlink" title="NS-6：部署 Web 应用程序防火墙"></a>NS-6：部署 Web 应用程序防火墙</h3><p>安全原则：部署 Web 应用程序防火墙 (WAF) 并配置适当的规则，以保护 Web 应用程序和 API 免受特定于应用程序的攻击。</p>
+<h3 id="NS-7：简化网络安全配置"><a href="#NS-7：简化网络安全配置" class="headerlink" title="NS-7：简化网络安全配置"></a>NS-7：简化网络安全配置</h3><p>安全原则：管理复杂的网络环境时，请使用工具来简化、集中和增强网络安全管理。</p>
+<h3 id="NS-8：检测并禁用不安全的服务和协议"><a href="#NS-8：检测并禁用不安全的服务和协议" class="headerlink" title="NS-8：检测并禁用不安全的服务和协议"></a>NS-8：检测并禁用不安全的服务和协议</h3><p>安全原则：在操作系统、应用程序或软件包层检测并禁用不安全的服务和协议。 如果无法禁用不安全的服务和协议，请部署补偿控制。</p>
+<h3 id="NS-9：以私密方式连接本地或云网络"><a href="#NS-9：以私密方式连接本地或云网络" class="headerlink" title="NS-9：以私密方式连接本地或云网络"></a>NS-9：以私密方式连接本地或云网络</h3><p>安全原则：使用专用连接在不同网络之间进行安全通信，例如在归置环境中的云服务提供商数据中心和本地基础结构之间。</p>
+<h3 id="NS-10：确保域名系统-DNS-安全性"><a href="#NS-10：确保域名系统-DNS-安全性" class="headerlink" title="NS-10：确保域名系统 (DNS) 安全性"></a>NS-10：确保域名系统 (DNS) 安全性</h3><p>安全原则：确保域名系统 (DNS) 安全配置能够防范已知风险：</p>
+<ul>
+<li><pre><code>    在云环境中使用受信任的权威和递归 DNS 服务，以确保客户端（例如操作系统和应用程序）收到正确的解析结果。
+</code></pre>
+</li>
+<li><pre><code>    将公共和专用 DNS 解析分开，以便可以将专用网络的 DNS 解析过程与公共网络的 DNS 解析过程隔离开来。
+</code></pre>
+</li>
+<li><pre><code>    确保 DNS 安全策略还包括针对常见攻击的缓解措施，例如无关联 DNS、DNS 放大攻击、DNS 中毒和欺骗等。
+</code></pre>
+</li>
+</ul>
+<h2 id="身份管理"><a href="#身份管理" class="headerlink" title="身份管理"></a>身份管理</h2><p>标识管理包括用于使用 Azure Active Directory 建立安全标识和访问控制的控制措施，其中包括使用单一登录、强身份验证、用于应用程序的托管标识（和服务主体）、条件访问和帐户异常监视。</p>
+<h3 id="IM-1：使用集中式标识和身份验证系统"><a href="#IM-1：使用集中式标识和身份验证系统" class="headerlink" title="IM-1：使用集中式标识和身份验证系统"></a>IM-1：使用集中式标识和身份验证系统</h3><p>安全原则：使用集中式标识和身份验证系统来管理组织的标识以及云和非云资源的身份验证。</p>
+<h3 id="IM-2：保护标识和身份验证系统"><a href="#IM-2：保护标识和身份验证系统" class="headerlink" title="IM-2：保护标识和身份验证系统"></a>IM-2：保护标识和身份验证系统</h3><p>安全原则：在组织的云安全实践中，将标识和身份验证系统的保护视为具有高优先级的实践。 常见的安全控制措施包括：</p>
+<ul>
+<li><pre><code>    限制特权角色和帐户
+</code></pre>
+</li>
+<li><pre><code>    要求对所有特权访问进行强身份验证
+</code></pre>
+</li>
+<li><pre><code>    监视和审核高风险活动
+</code></pre>
+</li>
+</ul>
+<h3 id="IM-3：安全且自动地管理应用程序标识"><a href="#IM-3：安全且自动地管理应用程序标识" class="headerlink" title="IM-3：安全且自动地管理应用程序标识"></a>IM-3：安全且自动地管理应用程序标识</h3><p>安全原则：使用托管应用程序标识，而不是为应用程序创建用于访问资源和执行代码的人工帐户。 托管应用程序标识提供了一些好处，例如减少凭据的暴露。 自动轮换凭据以确保标识的安全性。</p>
+<h3 id="IM-4：对服务器和服务进行身份验证"><a href="#IM-4：对服务器和服务进行身份验证" class="headerlink" title="IM-4：对服务器和服务进行身份验证"></a>IM-4：对服务器和服务进行身份验证</h3><p>安全原则：从客户端对远程服务器和服务进行身份验证，以确保连接到受信任的服务器和服务。 最常见的服务器身份验证协议是传输层安全性 (TLS)，其中客户端（通常是浏览器或客户端设备）通过验证服务器的证书是否由受信任的证书颁发机构颁发来验证服务器。<br>注意：当服务器和客户端相互进行身份验证时，可以使用相互身份验证。</p>
+<h3 id="IM-5：使用单一登录-SSO-进行应用程序访问"><a href="#IM-5：使用单一登录-SSO-进行应用程序访问" class="headerlink" title="IM-5：使用单一登录(SSO)进行应用程序访问"></a>IM-5：使用单一登录(SSO)进行应用程序访问</h3><p>安全原则：使用单一登录 (SSO) 简化跨云服务和本地环境对资源（包括应用程序和数据）进行身份验证的用户体验。</p>
+<h3 id="IM-6：使用强身份验证控制"><a href="#IM-6：使用强身份验证控制" class="headerlink" title="IM-6：使用强身份验证控制"></a>IM-6：使用强身份验证控制</h3><p>安全原则：对所有资源访问使用集中式标识和身份验证管理系统强制实施强身份验证控制（强的无密码身份验证或多重身份验证）。 仅基于密码凭据的身份验证被视为旧版身份验证，因为它不安全且无法抵御常见的攻击方法。<br>部署强身份验证时，请先配置管理员和特权用户，以确保使用最高级别的强身份验证方法，紧接着向所有用户推出适当的强身份验证策略。<br>注意：如果旧版应用程序和方案需要基于旧版密码的身份验证，请确保遵循密码安全最佳做法，例如复杂性要求。</p>
+<h3 id="IM-7：根据条件限制资源访问"><a href="#IM-7：根据条件限制资源访问" class="headerlink" title="IM-7：根据条件限制资源访问"></a>IM-7：根据条件限制资源访问</h3><p>安全原则：在零信任访问模型中，显式验证受信任的信号以允许或拒绝用户访问资源。 要验证的信号应包括用户帐户的强身份验证、用户帐户的行为分析、设备可信度、用户或组成员身份、位置等。</p>
+<h3 id="IM-8：限制凭据和机密的泄露"><a href="#IM-8：限制凭据和机密的泄露" class="headerlink" title="IM-8：限制凭据和机密的泄露"></a>IM-8：限制凭据和机密的泄露</h3><p>安全原则：确保应用程序开发人员安全地处理凭据和机密：</p>
+<ul>
+<li><pre><code>    避免将凭据和机密嵌入到代码和配置文件中
+</code></pre>
+</li>
+<li><pre><code>    使用密钥保管库或安全密钥存储服务来存储凭据和机密
+</code></pre>
+</li>
+<li><pre><code>    扫描源代码中的凭据。
+</code></pre>
+</li>
+</ul>
+<p>注意：这通常通过安全的软件开发生命周期 (SDLC) 和 DevOps 安全流程进行管理和实施。</p>
+<h3 id="IM-9：保护用户对现有应用程序的访问"><a href="#IM-9：保护用户对现有应用程序的访问" class="headerlink" title="IM-9：保护用户对现有应用程序的访问"></a>IM-9：保护用户对现有应用程序的访问</h3><p>安全原则：在混合环境中，如果其中有使用旧式身份验证的本地应用程序或非本机云应用程序，请考虑云访问安全代理 (CASB)、应用程序代理、单一登录 (SSO) 等解决方案来管理对这些应用程序的访问，以获得以下好处：</p>
+<ul>
+<li><pre><code>    强制执行集中式强身份验证
+</code></pre>
+</li>
+<li><pre><code>    监视和控制风险最终用户活动
+</code></pre>
+</li>
+<li><pre><code>    监视和修正有风险的旧版应用程序活动
+</code></pre>
+</li>
+<li><pre><code>    检测和防止敏感数据传输
+</code></pre>
+</li>
+</ul>
+<h2 id="特权访问"><a href="#特权访问" class="headerlink" title="特权访问"></a>特权访问</h2><p>特权访问包括用于保护对你的 Azure 租户和资源的特权访问的控制措施，包括一系列用于避免管理模型、管理帐户和特权访问工作站面临有意和无意的风险的控制措施。</p>
+<h3 id="PA-1：隔离和限制高度特权-管理用户"><a href="#PA-1：隔离和限制高度特权-管理用户" class="headerlink" title="PA-1：隔离和限制高度特权/管理用户"></a>PA-1：隔离和限制高度特权/管理用户</h3><p>安全原则：确保你将标识所有严重影响业务的帐户。 限制云的控制平面、管理平面和数据/工作负载平面中的特权/管理帐户的数量。</p>
+<h3 id="PA-2：避免对用户帐户和权限的长期访问"><a href="#PA-2：避免对用户帐户和权限的长期访问" class="headerlink" title="PA-2：避免对用户帐户和权限的长期访问"></a>PA-2：避免对用户帐户和权限的长期访问</h3><p>安全原则：使用实时 (JIT) 机制将特权访问分配到不同的资源层，而不是创建已有的权限。</p>
+<h3 id="PA-3：管理标识和权利的生命周期"><a href="#PA-3：管理标识和权利的生命周期" class="headerlink" title="PA-3：管理标识和权利的生命周期"></a>PA-3：管理标识和权利的生命周期</h3><p>安全原则：使用自动化流程或技术控制来管理标识和访问生命周期，包括请求、审查、批准、预配和取消预配。</p>
+<h3 id="PA-4：定期审查和协调用户访问权限"><a href="#PA-4：定期审查和协调用户访问权限" class="headerlink" title="PA-4：定期审查和协调用户访问权限"></a>PA-4：定期审查和协调用户访问权限</h3><p>安全原则：定期审查特权帐户权利。 确保授予帐户的访问权限对控制平面、管理平面和工作负载的管理有效。</p>
+<h3 id="PA-5：设置紧急访问"><a href="#PA-5：设置紧急访问" class="headerlink" title="PA-5：设置紧急访问"></a>PA-5：设置紧急访问</h3><p>安全原则：设置紧急访问，确保不会在紧急情况下意外锁定关键云基础结构（例如标识和访问管理系统）。<br>紧急访问帐户应很少使用，如果泄露，会对组织造成巨大损害，但在极少数需要紧急访问帐户的情况下，紧急访问帐户对于组织的可用性又是至关重要的。</p>
+<h3 id="PA-6：使用特权访问工作站"><a href="#PA-6：使用特权访问工作站" class="headerlink" title="PA-6：使用特权访问工作站"></a>PA-6：使用特权访问工作站</h3><p>安全原则：受保护的独立工作站对于机密角色（如管理员、开发人员和关键服务操作员）的安全性至关重要。</p>
+<h3 id="PA-7：遵循-Just-Enough-Administration（最小特权）原则"><a href="#PA-7：遵循-Just-Enough-Administration（最小特权）原则" class="headerlink" title="PA-7：遵循 Just Enough Administration（最小特权）原则"></a>PA-7：遵循 Just Enough Administration（最小特权）原则</h3><p>安全原则：遵循 Just Enough Administration（最小特权）原则以在精细的级别管理权限。 使用基于角色的访问控制 (RBAC) 等功能，通过角色分配管理资源访问。</p>
+<h3 id="PA-8-确定云提供商支持的访问流程"><a href="#PA-8-确定云提供商支持的访问流程" class="headerlink" title="PA-8 确定云提供商支持的访问流程"></a>PA-8 确定云提供商支持的访问流程</h3><p>安全原则：建立用于请求和批准供应商支持请求的审批流程和访问路径，并通过安全通道临时访问数据。</p>
+<h2 id="数据保护"><a href="#数据保护" class="headerlink" title="数据保护"></a>数据保护</h2><p>数据保护涵盖控制静态数据保护、传输中的数据保护以及通过授权访问机制实现的数据保护，包括使用 Azure 中的访问控制、加密、密钥和证书管理发现、分类、保护和监视敏感数据资产。</p>
+<h3 id="DP-1：对敏感数据进行发现、分类和标记"><a href="#DP-1：对敏感数据进行发现、分类和标记" class="headerlink" title="DP-1：对敏感数据进行发现、分类和标记"></a>DP-1：对敏感数据进行发现、分类和标记</h3><p>安全原则：根据定义的敏感数据范围，建立和维护敏感数据的清单。 使用工具发现、分类和标记范围内的敏感数据。</p>
+<h3 id="DP-2：监视针对敏感数据的异常情况和威胁"><a href="#DP-2：监视针对敏感数据的异常情况和威胁" class="headerlink" title="DP-2：监视针对敏感数据的异常情况和威胁"></a>DP-2：监视针对敏感数据的异常情况和威胁</h3><p>安全原则：监控敏感数据周围的异常情况，例如未经授权将数据传输到企业可见性和控制范围之外的位置。 这通常涉及监视那些可能意味着未经授权的数据外泄的异常活动（大型或异常传输）。</p>
+<h3 id="DP-3：加密传输中的敏感数据"><a href="#DP-3：加密传输中的敏感数据" class="headerlink" title="DP-3：加密传输中的敏感数据"></a>DP-3：加密传输中的敏感数据</h3><p>安全原则：使用加密保护传输中的数据免受“带外”攻击（例如流量捕获），确保攻击者无法轻松读取或修改数据。<br>设置网络边界和服务范围，并在网络内部和外部强制实施传输中数据加密。 虽然这对于专用网络上的流量来说是可选的，但对于外部和公共网络上的流量来说，这是至关重要的。</p>
+<h3 id="DP-4：默认启用静态数据加密"><a href="#DP-4：默认启用静态数据加密" class="headerlink" title="DP-4：默认启用静态数据加密"></a>DP-4：默认启用静态数据加密</h3><p>安全原则：为了对访问控制进行补充，应使用加密保护静态数据，以免遭受“带外”攻击（例如访问底层存储）。 这有助于确保攻击者无法轻松读取或修改数据。</p>
+<h3 id="DP-5：需要时在静态数据加密中使用客户管理的密钥选项"><a href="#DP-5：需要时在静态数据加密中使用客户管理的密钥选项" class="headerlink" title="DP-5：需要时在静态数据加密中使用客户管理的密钥选项"></a>DP-5：需要时在静态数据加密中使用客户管理的密钥选项</h3><p>安全原则：根据法规合规性要求，如果需要，请定义需要客户管理的密钥选项的用例和服务范围。 在服务中使用客户管理的密钥启用和实施静态数据加密。</p>
+<h3 id="DP-6：使用安全密钥管理流程"><a href="#DP-6：使用安全密钥管理流程" class="headerlink" title="DP-6：使用安全密钥管理流程"></a>DP-6：使用安全密钥管理流程</h3><p>安全原则：记录并实现企业加密密钥管理标准、流程和过程，以控制密钥生命周期。 如果需要在服务中使用客户管理的密钥，请使用安全的 Key Vault 服务进行密钥生成、分发和存储。 根据定义的计划以及在密钥停用或泄露时轮换和撤销密钥。</p>
+<h3 id="DP-7：使用安全证书管理流程"><a href="#DP-7：使用安全证书管理流程" class="headerlink" title="DP-7：使用安全证书管理流程"></a>DP-7：使用安全证书管理流程</h3><p>安全原则：记录并实现企业证书管理标准、流程和过程，其中包括证书生命周期控制和证书策略（如果需要公钥基础结构）。<br>使用自动化机制确保及时清查、跟踪、监视和续订组织中的关键服务使用的证书，以避免服务中断。</p>
+<h3 id="DP-8：确保密钥和证书存储库的安全性"><a href="#DP-8：确保密钥和证书存储库的安全性" class="headerlink" title="DP-8：确保密钥和证书存储库的安全性"></a>DP-8：确保密钥和证书存储库的安全性</h3><p>安全原则：确保用于加密密钥和证书生命周期管理的密钥保管库服务的安全性。 通过访问控制、网络安全、日志记录和监视以及备份强化 Key Vault 服务，以确保始终使用最大安全性保护密钥和证书。</p>
+<h2 id="资产管理"><a href="#资产管理" class="headerlink" title="资产管理"></a>资产管理</h2><p>资产管理包括用于确保 Azure 资源安全可见性和治理的控制措施，包括以下几方面的建议：安全人员的权限、对资产清单的安全访问，以及管理对服务和资源的审批（盘点、跟踪和更正）。</p>
+<h3 id="AM-1：跟踪资产清单及其风险"><a href="#AM-1：跟踪资产清单及其风险" class="headerlink" title="AM-1：跟踪资产清单及其风险"></a>AM-1：跟踪资产清单及其风险</h3><p>安全原则：通过查询跟踪资产清单并发现所有云资源。 根据资产的服务性质、位置或其他特征，对资产进行标记和分组，以便从逻辑上组织资产。 确保安全组织能够访问不断更新的资产清单。<br>通过始终集中汇总安全见解和风险，确保安全组织能够监视云资产的风险</p>
+<h3 id="AM-2：仅使用已获批准的服务"><a href="#AM-2：仅使用已获批准的服务" class="headerlink" title="AM-2：仅使用已获批准的服务"></a>AM-2：仅使用已获批准的服务</h3><p>安全原则：通过审核和限制用户可在环境中预配的服务，确保仅可使用已获批准的云服务。</p>
+<h3 id="AM-3：确保资产生命周期管理的安全"><a href="#AM-3：确保资产生命周期管理的安全" class="headerlink" title="AM-3：确保资产生命周期管理的安全"></a>AM-3：确保资产生命周期管理的安全</h3><p>安全原则：确保资产的安全属性或配置在资产生命周期内将会一直更新。</p>
+<h3 id="AM-4：限制对资产管理的访问"><a href="#AM-4：限制对资产管理的访问" class="headerlink" title="AM-4：限制对资产管理的访问"></a>AM-4：限制对资产管理的访问</h3><p>安全原则：限制用户对资产管理功能的访问，避免意外或恶意修改云中的资产。</p>
+<h3 id="AM-5：仅在虚拟机中使用已获批准的应用程序"><a href="#AM-5：仅在虚拟机中使用已获批准的应用程序" class="headerlink" title="AM-5：仅在虚拟机中使用已获批准的应用程序"></a>AM-5：仅在虚拟机中使用已获批准的应用程序</h3><p>安全原则：通过创建允许列表并阻止未经授权的软件在环境中执行，确保仅已授权的软件才能执行。</p>
+<h2 id="日志记录和威胁检测"><a href="#日志记录和威胁检测" class="headerlink" title="日志记录和威胁检测"></a>日志记录和威胁检测</h2><p>日志记录和威胁检测涵盖了用于检测 Azure 上的威胁以及启用、收集和存储 Azure 服务的审核日志的控件，包括使用控件启用检测、调查和修正过程，以利用 Azure 服务中的本机威胁检测生成高质量的警报；它还包括使用 Azure Monitor 收集日志，使用 Azure Sentinel 集中进行安全分析、时间同步和日志保留。</p>
+<h3 id="LT-1：启用威胁检测功能"><a href="#LT-1：启用威胁检测功能" class="headerlink" title="LT-1：启用威胁检测功能"></a>LT-1：启用威胁检测功能</h3><p>安全原则：若要支持威胁检测方案，请监视所有已知资源类型的已知和预期的威胁和异常。 配置警报筛选和分析规则以从日志数据、代理或其他数据源中提取高质量警报，从而减少误报。</p>
+<h3 id="LT-2：为标识和访问管理启用威胁检测"><a href="#LT-2：为标识和访问管理启用威胁检测" class="headerlink" title="LT-2：为标识和访问管理启用威胁检测"></a>LT-2：为标识和访问管理启用威胁检测</h3><p>安全原则：通过监视用户和应用程序登录和访问异常来检测标识和访问管理威胁。 应针对失败的登录尝试次数过多和使用了订阅中的已弃用帐户等行为模式发出警报。</p>
+<h3 id="LT-3：启用日志记录以进行安全调查"><a href="#LT-3：启用日志记录以进行安全调查" class="headerlink" title="LT-3：启用日志记录以进行安全调查"></a>LT-3：启用日志记录以进行安全调查</h3><p>安全原则：为云资源启用日志记录，以满足安全事件调查以及安全响应与合规性的要求。</p>
+<h3 id="LT-4：启用网络日志记录以进行安全调查"><a href="#LT-4：启用网络日志记录以进行安全调查" class="headerlink" title="LT-4：启用网络日志记录以进行安全调查"></a>LT-4：启用网络日志记录以进行安全调查</h3><p>安全原则：为网络服务启用日志记录，以支持与网络相关的事件调查、威胁搜寻和安全警报生成。 网络日志可能包括来自网络服务的日志，例如 IP 筛选、网络和应用程序防火墙、DNS、流量监视等。</p>
+<h3 id="LT-5：集中管理和分析安全日志"><a href="#LT-5：集中管理和分析安全日志" class="headerlink" title="LT-5：集中管理和分析安全日志"></a>LT-5：集中管理和分析安全日志</h3><p>安全原则：集中记录存储和分析，以实现跨日志数据的关联。 对于每个日志源，请确保已分配数据所有者、访问指南、存储位置、用于处理和访问数据的工具以及数据保留要求。</p>
+<h3 id="LT-6：配置日志存储保留期"><a href="#LT-6：配置日志存储保留期" class="headerlink" title="LT-6：配置日志存储保留期"></a>LT-6：配置日志存储保留期</h3><p>安全原则：根据合规性、法规和业务要求规划日志保留策略。 在各个日志记录服务中配置日志保留策略，以确保对日志进行正确存档。</p>
+<h3 id="LT-7：使用批准的时间同步源"><a href="#LT-7：使用批准的时间同步源" class="headerlink" title="LT-7：使用批准的时间同步源"></a>LT-7：使用批准的时间同步源</h3><p>安全原则：为日志记录时间戳使用已获批准的时间同步源，其中包括日期、时间和时区信息。</p>
+<h2 id="事件响应"><a href="#事件响应" class="headerlink" title="事件响应"></a>事件响应</h2><p>事件响应包括对事件响应生命周期（准备、检测、分析、包含和事后活动）的控制措施，包括使用 Microsoft Defender for Cloud 和 Sentinel 等 Azure 服务自动执行事件响应过程。</p>
+<h3 id="IR-1：准备-更新事件响应计划和处理过程"><a href="#IR-1：准备-更新事件响应计划和处理过程" class="headerlink" title="IR-1：准备 - 更新事件响应计划和处理过程"></a>IR-1：准备 - 更新事件响应计划和处理过程</h3><p>安全原则：确保组织遵循行业最佳做法来制定流程和计划，以响应云平台上的安全事件。 请注意共担责任模型以及 IaaS、PaaS 和 SaaS 服务之间的差异。 这将直接影响你与云提供商在事件响应和处理活动方面的协作方式，例如事件通知和会审、证据收集、调查、清除和恢复。</p>
+<h3 id="IR-2：准备-设置事件通知"><a href="#IR-2：准备-设置事件通知" class="headerlink" title="IR-2：准备 - 设置事件通知"></a>IR-2：准备 - 设置事件通知</h3><p>安全原则：确保事件响应组织中的正确联系人可以接收来自云服务提供商平台和你的环境的安全警报和事件通知。</p>
+<h3 id="IR-3：检测和分析-基于高质量警报创建事件"><a href="#IR-3：检测和分析-基于高质量警报创建事件" class="headerlink" title="IR-3：检测和分析 - 基于高质量警报创建事件"></a>IR-3：检测和分析 - 基于高质量警报创建事件</h3><p>安全原则：确保你有创建高质量警报和衡量警报质量的流程。 这样，你就可以从过去的事件中吸取经验，并为分析人员确定警报的优先级，确保他们不会浪费时间来处理误报。<br>可以基于过去的事件经验、经验证的社区源以及旨在通过融合和关联各种信号源来生成和清理警报的工具构建高质量警报。</p>
+<h3 id="IR-4：检测和分析-调查事件"><a href="#IR-4：检测和分析-调查事件" class="headerlink" title="IR-4：检测和分析 - 调查事件"></a>IR-4：检测和分析 - 调查事件</h3><p>安全原则：确保安全运营团队在调查潜在事件时可以查询和使用不同的数据源，以便全面了解发生的情况。 应收集各种各样的日志，以跟踪整个终止链中潜在攻击者的活动，避免出现盲点。 还应确保收集见解和经验，以供其他分析人员使用和用作将来的历史参考资料。</p>
+<h3 id="IR-5：检测和分析-确定事件的优先级"><a href="#IR-5：检测和分析-确定事件的优先级" class="headerlink" title="IR-5：检测和分析 - 确定事件的优先级"></a>IR-5：检测和分析 - 确定事件的优先级</h3><p>安全原则：为安全运营团队提供上下文，帮助他们根据组织的事件响应计划中定义的警报严重性和资产敏感度确定应首先关注哪些事件。</p>
+<h3 id="IR-6：遏制、根除和恢复-自动执行事件处理"><a href="#IR-6：遏制、根除和恢复-自动执行事件处理" class="headerlink" title="IR-6：遏制、根除和恢复 - 自动执行事件处理"></a>IR-6：遏制、根除和恢复 - 自动执行事件处理</h3><p>安全原则：自动执行重复性手动任务，以加快响应速度并减轻分析人员的负担。 执行手动任务需要更长的时间，这会导致减慢每个事件的速度，并减少分析人员可以处理的事件数量。 手动任务还会使分析人员更加疲劳，这会增加可导致延迟的人为错误的风险，并降低分析人员专注于复杂任务的工作效率。</p>
+<h3 id="IR-7：事后活动-吸取教训并保留证据"><a href="#IR-7：事后活动-吸取教训并保留证据" class="headerlink" title="IR-7：事后活动 - 吸取教训并保留证据"></a>IR-7：事后活动 - 吸取教训并保留证据</h3><p>安全原则：定期和/或在发生重大事件后在组织中吸取教训，以提高未来的事件响应和处理能力。<br>根据事件的性质，在事件处理标准中定义的期限内保留与事件相关的证据，以供进一步分析或采取法律措施。</p>
+<h2 id="态势和漏洞管理"><a href="#态势和漏洞管理" class="headerlink" title="态势和漏洞管理"></a>态势和漏洞管理</h2><p>态势和漏洞管理侧重于评估和改进 Azure 安全状况的控制措施，包括漏洞扫描、渗透测试和修正，以及 Azure 资源中的安全配置跟踪、报告和更正。</p>
+<h3 id="PV-1：定义并建立安全配置"><a href="#PV-1：定义并建立安全配置" class="headerlink" title="PV-1：定义并建立安全配置"></a>PV-1：定义并建立安全配置</h3><p>安全原则：为云中的不同资源类型定义安全配置基线。 或者，使用配置管理工具在资源部署之前或期间自动建立配置基线，以便在部署后默认情况下环境符合要求。</p>
+<h3 id="PV-2：审核并强制执行安全配置"><a href="#PV-2：审核并强制执行安全配置" class="headerlink" title="PV-2：审核并强制执行安全配置"></a>PV-2：审核并强制执行安全配置</h3><p>安全原则：如果定义的配置基线存在偏差，则持续监视和发出警报。 通过拒绝不合规的配置或部署配置，根据基线配置强制实施所需的配置。</p>
+<h3 id="PV-3：定义并建立计算资源的安全配置"><a href="#PV-3：定义并建立计算资源的安全配置" class="headerlink" title="PV-3：定义并建立计算资源的安全配置"></a>PV-3：定义并建立计算资源的安全配置</h3><p>安全原则：为计算资源（如 VM 和容器）定义安全配置基线。 使用配置管理工具在计算资源部署之前或期间自动建立配置基线，以便在部署后默认情况下环境符合要求。 或者，使用预配置的映像将所需的配置基线构建到计算资源映像模板中。</p>
+<h3 id="PV-4：审核并强制执行计算资源的安全配置"><a href="#PV-4：审核并强制执行计算资源的安全配置" class="headerlink" title="PV-4：审核并强制执行计算资源的安全配置"></a>PV-4：审核并强制执行计算资源的安全配置</h3><p>安全原则：如果计算资源中定义的配置基线存在偏差，则持续监视和发出警报。 通过拒绝不合规的配置或在计算资源中部署配置，根据基线配置强制实施所需的配置。</p>
+<h3 id="PV-5：执行漏洞评估"><a href="#PV-5：执行漏洞评估" class="headerlink" title="PV-5：执行漏洞评估"></a>PV-5：执行漏洞评估</h3><p>安全原则：按固定计划或按需对所有层的云资源执行漏洞评估。 跟踪和比较扫描结果，以验证是否已修正漏洞。 评估应包括所有类型的漏洞，例如 Azure 服务、网络、Web、操作系统、配置错误等中的漏洞。<br>请注意与漏洞扫描程序使用的特权访问相关的潜在风险。 遵循特权访问安全最佳做法，以保护用于扫描的任何管理帐户。</p>
+<h3 id="PV-6：快速自动地修正漏洞"><a href="#PV-6：快速自动地修正漏洞" class="headerlink" title="PV-6：快速自动地修正漏洞"></a>PV-6：快速自动地修正漏洞</h3><p>安全原则：快速自动部署补丁和更新，修复云资源中的漏洞。 使用适当的基于风险的方法确定漏洞修复的优先级。 例如，应将较高价值资产中更严重的漏洞作为更高的优先级进行处理。</p>
+<h3 id="PV-7：定期执行红队操作"><a href="#PV-7：定期执行红队操作" class="headerlink" title="PV-7：定期执行红队操作"></a>PV-7：定期执行红队操作</h3><p>安全原则：模拟真实世界的攻击，以提供组织漏洞的更完整视图。 红队操作和渗透测试补充了传统的漏洞扫描方法，以发现风险。<br>遵循行业最佳做法来设计、准备和进行此类测试，确保它不会对环境造成损害或破坏。 这应始终包括与相关利益干系人和资源所有者讨论测试范围和约束。</p>
+<h2 id="端点安全性"><a href="#端点安全性" class="headerlink" title="端点安全性"></a>端点安全性</h2><p>终结点安全保护对终结点检测和响应的控制措施，包括在 Azure 环境中对终结点使用终结点检测和响应 (EDR) 和反恶意软件服务。</p>
+<h3 id="ES-1：使用终结点检测和响应-EDR"><a href="#ES-1：使用终结点检测和响应-EDR" class="headerlink" title="ES-1：使用终结点检测和响应 (EDR)"></a>ES-1：使用终结点检测和响应 (EDR)</h3><p>安全原则：为 VM 启用终结点检测和响应 (EDR) 功能，并与 SIEM 和安全操作流程集成。</p>
+<h3 id="ES-2：使用新式反恶意软件"><a href="#ES-2：使用新式反恶意软件" class="headerlink" title="ES-2：使用新式反恶意软件"></a>ES-2：使用新式反恶意软件</h3><p>安全原则：使用能够实时保护和定期扫描的反恶意软件解决方案。</p>
+<h3 id="ES-3：确保反恶意软件和签名已更新"><a href="#ES-3：确保反恶意软件和签名已更新" class="headerlink" title="ES-3：确保反恶意软件和签名已更新"></a>ES-3：确保反恶意软件和签名已更新</h3><p>安全原则：确保针对反恶意软件解决方案快速一致地更新反恶意软件签名。</p>
+<h2 id="备份和恢复"><a href="#备份和恢复" class="headerlink" title="备份和恢复"></a>备份和恢复</h2><p>备份和恢复包括用于确保在不同服务层执行、验证和保护数据和配置备份的控制措施。</p>
+<h3 id="BR-1：确保定期执行自动备份"><a href="#BR-1：确保定期执行自动备份" class="headerlink" title="BR-1：确保定期执行自动备份"></a>BR-1：确保定期执行自动备份</h3><p>安全原则：确保在资源创建期间或通过现有资源的策略对关键业务资源强制执行备份。</p>
+<h3 id="BR-2：保护备份和恢复数据"><a href="#BR-2：保护备份和恢复数据" class="headerlink" title="BR-2：保护备份和恢复数据"></a>BR-2：保护备份和恢复数据</h3><p>安全原则：确保备份数据和操作免受数据外泄、数据泄露、勒索软件/恶意软件和恶意内部人员的影响。 应该应用的安全控制包括用户和网络访问控制、数据加密（静态和传输中）。</p>
+<h3 id="BR-3：监视器备份"><a href="#BR-3：监视器备份" class="headerlink" title="BR-3：监视器备份"></a>BR-3：监视器备份</h3><p>安全原则：确保所有业务关键型可保护资源符合定义的备份策略和标准。</p>
+<h3 id="BR-4：定期测试备份"><a href="#BR-4：定期测试备份" class="headerlink" title="BR-4：定期测试备份"></a>BR-4：定期测试备份</h3><p>安全原则：定期对备份执行数据恢复测试，以验证备份配置和备份数据的可用性是否满足 RTO（恢复时间目标）和 RPO（恢复点目标）中定义的恢复需求。</p>
+<h2 id="DevOps安全性"><a href="#DevOps安全性" class="headerlink" title="DevOps安全性"></a>DevOps安全性</h2><p>DevOps 安全性涵盖 DevOps 过程中与安全工程和运营相关的控制，包括在部署阶段之前部署关键安全检查（如静态应用安全测试、漏洞管理），以确保整个 DevOps 流程的安全；它还包括常见主题，例如威胁建模和软件供应安全。</p>
+<h3 id="DS-1：执行威胁建模"><a href="#DS-1：执行威胁建模" class="headerlink" title="DS-1：执行威胁建模"></a>DS-1：执行威胁建模</h3><p>安全原则：执行威胁建模，以识别潜在威胁并枚举缓解威胁的控制。 确保威胁建模具有以下用途：</p>
+<ul>
+<li><pre><code>    在生产运行时阶段保护应用程序和服务。
+</code></pre>
+</li>
+<li><pre><code>    保护生成工件、基础 CI/CD 管道和其他用于生成、测试和部署的工具环境。 威胁建模至少应包括以下几方面：
+</code></pre>
+</li>
+<li><pre><code>    定义应用程序的安全要求。 确保在威胁建模中充分满足这些要求。
+</code></pre>
+</li>
+<li><pre><code>    分析应用程序组件、数据连接及其关系。 确保此分析还包括应用程序范围之外的上游和下游连接。
+</code></pre>
+</li>
+<li><pre><code>    列出应用程序组件、数据连接以及上游和下游服务可能面临的潜在威胁和攻击途径。
+</code></pre>
+</li>
+<li><pre><code>    确定可用于缓解枚举威胁的适用安全控制，并识别可能需要制定额外处理计划的任何控制漏洞（例如安全漏洞）。
+</code></pre>
+</li>
+<li><pre><code>    枚举和设计可以缓解所识别漏洞风险的控制。
+</code></pre>
+</li>
+</ul>
+<h3 id="DS-2：确保软件供应链安全性"><a href="#DS-2：确保软件供应链安全性" class="headerlink" title="DS-2：确保软件供应链安全性"></a>DS-2：确保软件供应链安全性</h3><p>安全原则：确保企业的 SDLC（软件开发生命周期）或流程包括一组安全控制，用于管理应用程序依赖的内部和第三方软件组件（包括专有软件和开源软件）。 定义限制条件，防止将易受攻击组件或恶意组件集成和部署到环境中。<br>软件供应链安全控制至少应包括以下几方面：</p>
+<ul>
+<li><pre><code>    确定开发、生成、集成和部署阶段所需的上游依赖项。
+</code></pre>
+</li>
+<li><pre><code>    当上游有可用的修补程序时，对内部和第三方软件组件进行盘存和跟踪来发现已知的漏洞。
+</code></pre>
+</li>
+<li><pre><code>    使用静态和动态应用程序测试评估软件组件中的漏洞和恶意软件，以发现未知的漏洞。
+</code></pre>
+</li>
+<li><pre><code>    确保使用适当的方法缓解漏洞和恶意软件的威胁。 这可能包括源代码本地修复或上游修复、功能排除和/或应用补偿控制（如果直接缓解不可用）。
+</code></pre>
+</li>
+</ul>
+<p>如果在生产环境中使用第三方闭源组件，则可能无法看见其安全状况。 应考虑其他控制，例如访问控制、网络隔离和终结点安全性，以便在出现与组件相关的恶意活动或漏洞时将影响降至最低。</p>
+<h3 id="DS-3：安全-DevOps-基础结构"><a href="#DS-3：安全-DevOps-基础结构" class="headerlink" title="DS-3：安全 DevOps 基础结构"></a>DS-3：安全 DevOps 基础结构</h3><p>安全原则：确保 DevOps 基础结构和管道遵循各环境（包括生成、测试和生产阶段）中的最佳安全做法。 这通常包括以下范围的安全控制：</p>
+<ul>
+<li><pre><code>    用于存储源代码、生成的包和映像、项目生成工件和业务数据的生成工件存储库。
+</code></pre>
+</li>
+<li><pre><code>    托管 CI/CD 管道的服务器、服务和工具。
+</code></pre>
+</li>
+<li><pre><code>    CI/CD 管道配置。
+</code></pre>
+</li>
+</ul>
+<h3 id="DS-4：将静态应用程序安全测试集成到-DevOps-管道"><a href="#DS-4：将静态应用程序安全测试集成到-DevOps-管道" class="headerlink" title="DS-4：将静态应用程序安全测试集成到 DevOps 管道"></a>DS-4：将静态应用程序安全测试集成到 DevOps 管道</h3><p>安全原则：确保静态应用程序安全测试 (SAST) 是 CI/CD 工作流程中限制控制的一部分。 可根据测试结果设置限制，防止易受攻击的包提交到存储库、生成到包中或部署到生产中。</p>
+<h3 id="DS-5：将动态应用程序安全测试集成到-DevOps-管道"><a href="#DS-5：将动态应用程序安全测试集成到-DevOps-管道" class="headerlink" title="DS-5：将动态应用程序安全测试集成到 DevOps 管道"></a>DS-5：将动态应用程序安全测试集成到 DevOps 管道</h3><p>安全原则：确保动态应用程序安全测试 (DAST) 是 CI/CD 工作流程中限制控制的一部分。 可根据测试结果设置限制，防止漏洞生成到包中或部署到生产中。</p>
+<h3 id="DS-6：在整个-DevOps-生命周期内加强工作负载的安全性"><a href="#DS-6：在整个-DevOps-生命周期内加强工作负载的安全性" class="headerlink" title="DS-6：在整个 DevOps 生命周期内加强工作负载的安全性"></a>DS-6：在整个 DevOps 生命周期内加强工作负载的安全性</h3><p>安全原则：确保在开发、测试和部署阶段的整个生命周期内保护工作负载。 使用 Azure 安全基准评估可以在默认情况下设置为护栏或在部署阶段之前左移的控制（例如网络安全、标识管理、特权访问等）。 具体而言，请确保在 DevOps 过程中实现以下控制：</p>
+<ul>
+<li><pre><code>    在 CI/CD 工作流、基础结构管理（基础结构即代码）和测试中使用 Azure 或第三方工具实现自动部署，以减少人为错误和攻击面。
+</code></pre>
+</li>
+<li><pre><code>    确保 VM、容器映像和其他生成工件免受恶意操纵。
+</code></pre>
+</li>
+<li><pre><code>    在 CI/CD 工作流中进行部署之前，扫描工作负载生成工件（也就是容器映像、依赖项、SAST 和 DAST 扫描）
+</code></pre>
+</li>
+<li><pre><code>    在生产环境中部署漏洞评估和威胁检测功能，并在运行时持续使用这些功能。
+</code></pre>
+</li>
+</ul>
+<h3 id="DS-7：在-DevOps-中启用日志记录和监视"><a href="#DS-7：在-DevOps-中启用日志记录和监视" class="headerlink" title="DS-7：在 DevOps 中启用日志记录和监视"></a>DS-7：在 DevOps 中启用日志记录和监视</h3><p>安全原则：确保日志记录和监视范围包括 DevOps（和任何其他开发过程）中使用的非生产环境和 CI/CD 工作流元素。 如果未正确监视生产环境，针对这些环境的漏洞和威胁会给生产环境带来巨大的风险。 还应监视 CI/CD 生成、测试和部署工作流中的事件，以识别 CI/CD 工作流作业中的任何偏差。</p>
+<h2 id="治理和策略"><a href="#治理和策略" class="headerlink" title="治理和策略"></a>治理和策略</h2><p>治理和策略提供的指导可确保使用一致的安全策略和记录在案的治理方法来指导和维持安全保障，包括为不同的云安全功能、统一的技术策略以及支持策略和标准建立角色和责任。</p>
+<h3 id="GS-1：使组织角色、责任和职责一致"><a href="#GS-1：使组织角色、责任和职责一致" class="headerlink" title="GS-1：使组织角色、责任和职责一致"></a>GS-1：使组织角色、责任和职责一致</h3><p>指导：确保为安全组织中的角色和职责定义并传达清晰的策略。 优先考虑提供涉及安全决策的明确责任，对每个人进行共同职责模式培训，并为技术团队传授保护云的技术。</p>
+<h3 id="GS-2：定义并实现企业分段-职责分离策略"><a href="#GS-2：定义并实现企业分段-职责分离策略" class="headerlink" title="GS-2：定义并实现企业分段/职责分离策略"></a>GS-2：定义并实现企业分段/职责分离策略</h3><p>指导：建立企业级的策略，将标识、网络、应用程序、订阅、管理组和其他控制措施结合使用以对资产的访问进行分段。<br>仔细权衡安全分离需求与为需要彼此通信并访问数据的系统启用日常操作的需求。<br>确保在工作负载中一致地实现分段策略，包括网络安全、标识和访问模型、应用程序权限/访问模型，以及人机过程控制。</p>
+<h3 id="GS-3：定义并实现数据保护策略"><a href="#GS-3：定义并实现数据保护策略" class="headerlink" title="GS-3：定义并实现数据保护策略"></a>GS-3：定义并实现数据保护策略</h3><p>指导：在 Azure 中建立企业级的数据保护策略：</p>
+<ul>
+<li><pre><code>    根据企业数据管理标准和法规合规性，定义并应用数据分类和保护标准，从而决定每个级别的数据分类所需的安全控制措施。
+</code></pre>
+</li>
+<li><pre><code>    设置与企业分段策略一致的云资源管理层次结构。 企业分段策略还应根据敏感的或业务关键型的数据和系统的位置来确定。
+</code></pre>
+</li>
+<li><pre><code>    在云环境中定义和应用适用的零信任原则，以避免基于外围网络位置来实现信任。 请改用设备和用户信任声明来限制对数据和资源的访问。
+</code></pre>
+</li>
+<li><pre><code>    跟踪和最大程度地减少整个企业中的敏感数据占用量（存储、传输和处理），以减少攻击面和数据保护成本。 请尽可能考虑工作负载中的单向哈希处理、截断和词汇切分等方法，以避免以原始形式存储和传输敏感数据。
+</code></pre>
+</li>
+<li><pre><code>    确保有一个完整的生命周期控制策略为数据和访问密钥提供安全保障。
+</code></pre>
+</li>
+</ul>
+<h3 id="GS-4：定义并实现网络安全策略"><a href="#GS-4：定义并实现网络安全策略" class="headerlink" title="GS-4：定义并实现网络安全策略"></a>GS-4：定义并实现网络安全策略</h3><p>指导：建立 Azure 网络安全策略，作为组织访问控制的总体安全策略的一部分。 此策略应包括针对以下元素的记录在案的指南、策略和标准：</p>
+<ul>
+<li><pre><code>    设计集中/分散网络管理和安全责任模型，以便部署和维护网络资源。
+</code></pre>
+</li>
+<li><pre><code>    与企业分段策略一致的虚拟网络分段模型。
+</code></pre>
+</li>
+<li><pre><code>    Internet 边缘及入口和出口策略。
+</code></pre>
+</li>
+<li><pre><code>    混合云和本地互连策略。
+</code></pre>
+</li>
+<li><pre><code>    网络监视和日志记录策略。
+</code></pre>
+</li>
+<li><pre><code>    最新的网络安全项目（例如网络关系图、参考网络体系结构）。
+</code></pre>
+</li>
+</ul>
+<h3 id="GS-5：定义并实现安全状况管理策略"><a href="#GS-5：定义并实现安全状况管理策略" class="headerlink" title="GS-5：定义并实现安全状况管理策略"></a>GS-5：定义并实现安全状况管理策略</h3><p>指导：建立策略、过程和标准，以确保安全配置管理和漏洞管理在云安全任务中落实就位。</p>
+<h3 id="GS-6：定义并实现标识和特权访问策略"><a href="#GS-6：定义并实现标识和特权访问策略" class="headerlink" title="GS-6：定义并实现标识和特权访问策略"></a>GS-6：定义并实现标识和特权访问策略</h3><p>指导：建立 Azure 标识和特权访问方法，将其作为组织总体安全访问控制策略的一部分。 此策略应包括针对以下方面的记录在案的指导、策略和标准：</p>
+<ul>
+<li><pre><code>    集中标识和身份验证系统 (Azure AD) 及其与其他内部和外部标识系统的互连
+</code></pre>
+</li>
+<li><pre><code>    特权标识和访问治理（如访问请求、评审和批准）
+</code></pre>
+</li>
+<li><pre><code>    紧急（破窗式）情况下的特权帐户
+</code></pre>
+</li>
+<li><pre><code>    在不同用例和条件中使用强身份验证（无密码身份验证和多重身份验证）方法
+</code></pre>
+</li>
+<li><pre><code>    通过 Azure 门户、CLI 和 API 执行管理操作，保障访问安全。
+</code></pre>
+</li>
+</ul>
+<p>对于未使用企业系统的例外情况，请确保具备足够的安全控制措施以用于标识、身份验证和访问管理以及治理。 企业团队应批准和定期查看这些例外。 这些例外通常出现在以下情况：</p>
+<ul>
+<li><pre><code>    使用非企业指定的标识和身份验证系统，如基于云的第三方系统（可能引发未知风险）
+</code></pre>
+</li>
+<li><pre><code>    特权用户在本地进行了身份验证和/或使用非强身份验证方法
+</code></pre>
+</li>
+</ul>
+<h3 id="GS-7：定义并实现日志记录、威胁检测和事件响应策略"><a href="#GS-7：定义并实现日志记录、威胁检测和事件响应策略" class="headerlink" title="GS-7：定义并实现日志记录、威胁检测和事件响应策略"></a>GS-7：定义并实现日志记录、威胁检测和事件响应策略</h3><p>指导：建立日志记录、威胁检测和事件响应策略，以快速检测和修正威胁并满足合规性要求。 安全操作 (SecOps / SOC) 团队应注重实施高质量警报和无缝体验，以便能够专注于威胁，而不是过多关注记录集成和手动步骤。<br>此策略应包括以下方面的记录在案的策略、过程和标准：</p>
+<ul>
+<li><pre><code>    安全运营 (SecOps) 组织的角色和职责
+</code></pre>
+</li>
+<li><pre><code>    一个明确定义的定期测试的事件响应计划，以及与 NIST 或其他行业框架一致的处理流程。
+</code></pre>
+</li>
+<li><pre><code>    与客户、供应商和公开的利益相关方之间的通信和通知计划。
+</code></pre>
+</li>
+<li><pre><code>    优先使用扩展检测和响应 (XDR) 功能（如 Azure Defender 功能）来检测各方面的威胁。
+</code></pre>
+</li>
+<li><pre><code>    使用 Azure 原生功能（例如 Microsoft Defender for Cloud）的和第三方的平台进行事件处理，例如日志记录和威胁检测、取证以及攻击补救和清除。
+</code></pre>
+</li>
+<li><pre><code>    定义主要方案（例如威胁检测、事件响应和合规性），并设置日志捕获和保留以满足方案要求。
+</code></pre>
+</li>
+<li><pre><code>    使用 SIEM、原生 Azure 威胁检测功能和其他源来集中查看与威胁相关的关联信息。
+</code></pre>
+</li>
+<li><pre><code>    事件后活动，如经验教训和证据保留。
+</code></pre>
+</li>
+</ul>
+<h3 id="GS-8：定义并实现备份和恢复策略"><a href="#GS-8：定义并实现备份和恢复策略" class="headerlink" title="GS-8：定义并实现备份和恢复策略"></a>GS-8：定义并实现备份和恢复策略</h3><p>指导：为组织制定 Azure 备份和恢复策略。 此策略应包括以下方面的记录在案的指导、策略和标准：</p>
+<ul>
+<li><pre><code>    符合你业务复原目标的恢复时间目标 (RTO) 和恢复点目标 (RPO) 定义，以及法规合规性要求。
+</code></pre>
+</li>
+<li><pre><code>    用于云和本地的应用程序和基础结构中的冗余设计（包括备份、恢复和复制）。 请考虑在策略中使用区域、区域对、跨区域恢复和非现场存储位置。
+</code></pre>
+</li>
+<li><pre><code>    使用数据访问控制、加密和网络安全等控制措施对备份进行保护，以防未经授权的访问和篡改。
+</code></pre>
+</li>
+<li><pre><code>    使用备份和恢复来减小出现的威胁（如勒索软件攻击）带来的风险。 并且还可以保护备份和恢复数据本身，使其免受这些攻击。
+</code></pre>
+</li>
+<li><pre><code>    出于审核和警报目的，监视备份和恢复数据以及操作。
+</code></pre>
+</li>
+</ul>
+<h3 id="GS-9：定义并实现终结点安全策略"><a href="#GS-9：定义并实现终结点安全策略" class="headerlink" title="GS-9：定义并实现终结点安全策略"></a>GS-9：定义并实现终结点安全策略</h3><p>指导：建立云终结点安全策略，其中包括以下方面：</p>
+<ul>
+<li><pre><code>    将终结点检测和响应以及反恶意软件功能部署到终结点，并与威胁检测和 SIEM 解决方案及安全操作过程集成。
+</code></pre>
+</li>
+<li><pre><code>    遵循 Azure 安全基准，以确保其他各方面（如网络安全性、状态漏洞管理、标识和特权访问，以及日志记录和威胁检测）与终结点相关的安全设置已到位，从而能为终结点提供深度防御保护。
+</code></pre>
+</li>
+<li><pre><code>    为生产环境中的终结点安全性设置优先级，但要确保非生产环境（如 DevOps 过程中使用的测试和生成环境）也受到保护和监视，因为这些环境也可用于将恶意软件和漏洞引入到生产环境中。
+</code></pre>
+</li>
+</ul>
+<h3 id="GS-10：定义并实现-DevOps-安全策略"><a href="#GS-10：定义并实现-DevOps-安全策略" class="headerlink" title="GS-10：定义并实现 DevOps 安全策略"></a>GS-10：定义并实现 DevOps 安全策略</h3><p>指导：将安全控制强制作为组织 DevOps 工程和操作标准的一部分。 根据组织中的企业和云安全标准，定义安全目标、控制要求和工具规范。<br>建议将 DevOps 用作你组织中的基本操作模型，因为这样可以在整个 CI/CD 工作流中使用不同类型的自动化操作（例如基础结构即代码预配和 SAST 和 DAST 自动扫描）来快速识别和修复漏洞。 通过这种“左移”方法，还可以更多地了解部署管道中的情况并在其中强制执行一致的安全检查，从而提前将安全护栏有效地部署到环境中，以避免在将工作负载部署到生产环境中时出现最后一分钟的安全意外。<br>当将安全控制向左转移到预先部署阶段时，请实现安全护栏以确保在整个 DevOps 过程中部署和执行控制。 此技术可能包含 Azure ARM 模板，可用于定义 IaC（基础结构即代码）中的护栏、资源预配和 Azure Policy，从而审核和限制可在环境中预配的服务或配置。<br>对于工作负载的运行时安全控制，请遵循 Azure 安全基准，设计和实现有效的控制，如标识和特权访问、网络安全、终结点安全性，以及工作负载应用程序和服务中的数据保护。</p>
+<p>参考：<a class="link" target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/security/benchmark/azure/">https://docs.microsoft.com/zh-cn/security/benchmark/azure/<i class="fas fa-external-link-alt"></i></a></p>
+
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Mon Apr 04 2022 21:00:00 GMT+0800">2022-04-04</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/%E5%AE%89%E5%85%A8%E6%9E%B6%E6%9E%84/">安全架构</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/Cloud/">Cloud</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/%E4%BA%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%BA%BF/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+    </ul>
+
+    <div class="home-paginator">
+        <div class="paginator">
+    
+        <a class="prev btn"
+           href="/page/3/"
+        >Prev</a>
+    
+
+    
+        <a class="next btn"
+           href="/page/5/"
+        >Next</a>
+    
+</div>
+
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>&nbsp;-&nbsp;
+            
+            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a target="_blank" rel="noopener" href="//langu.xyz">AboutME:langu_xyz</a>
+        </div>
+        <!--
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        -->
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

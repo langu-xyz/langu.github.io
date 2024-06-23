@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="网络安全,黑客,JAVA安全,代码审计,渗透测试,入侵,SRC,扫描,WEB安全,移动安全,PHP">
+    <meta name="description" content="蓝骨, langu.xyz">
+    <meta name="author" content="langu_xyz">
+    
+        <title>
+            
+                基于token的认证 |
+                    
+                        langu_xyz
+        </title>
+        
+<link rel="stylesheet" href="/css/style.css">
+
+            <link rel="shortcut icon" href="/images/logo.jpeg">
+                
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+                    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"blog.langu.xyz","root":"/","language":"zh","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/logo.jpeg","favicon":"/images/logo.jpeg","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/shamo.jpg","description":"XYZ(无限未来)"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+
+                    <script>
+                        var _hmt = _hmt || [];
+                        (function() {
+                          var hm = document.createElement("script");
+                          hm.src = "https://hm.baidu.com/hm.js?1cd6e64ff252acf24b707985fcec8850";
+                          var s = document.getElementsByTagName("script")[0]; 
+                          s.parentNode.insertBefore(hm, s);
+                        })();
+                        </script>
+                        
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="langu_xyz" type="application/atom+xml">
+</head>
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                    <a class="logo-title" href="/">
+                        langu_xyz
+                    </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class="" href="/" >
+                                HOME
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class="" href="/tags/THINK/" >
+                                THINK
+                            </a>
+                        </li>
+                        
+                            
+                                <li class="menu-item search search-popup-trigger">
+                                    <i class="fas fa-search"></i>
+                                </li>
+                                
+                                
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                    
+                        <div class="icon-item menu-bar">
+                            <div class="menu-bar-middle"></div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/" >
+                        HOME
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/tags/THINK/" >
+                        THINK
+                    </a>
+                </li>
+                
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">基于token的认证</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/logo.jpeg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">langu_xyz</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2018-05-18 21:00:00
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%AE%89%E5%85%A8%E5%BC%80%E5%8F%91/">安全开发</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/DEV/">DEV</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>4 Mins</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h4 id="0x01-cookie-session"><a href="#0x01-cookie-session" class="headerlink" title="0x01 cookie/session"></a>0x01 cookie/session</h4><p>说到token就必然绕不开cookie和session。</p>
+<p><strong>cookie</strong>：由服务端给客户端颁发的一张通行证，用来验证客户端的身份，本质上是一段在浏览器上以KV形式存储的文本数据，包含了session相关信息。用于解决HTTP协议无状态的问题，所以cookie是一个会话跟踪机制，是有状态的。    </p>
+<p> <strong>session</strong>：当客户端请求服务端通过验证后，服务端会生成保存身份认证相关的session数据，并将session相关信息写入cookie返回给客户端，然后客户端将cookie保存到本地。之后两端就通过核对session信息来确认可信状态。session 可能会存储在内存、磁盘、数据库里，可能需要在服务端定期的去清理过期的 session。</p>
+<h4 id="0x02-token"><a href="#0x02-token" class="headerlink" title="0x02 token"></a>0x02 token</h4><p>既然有了cookie/session为啥还需要token呢    </p>
+<p><strong>优点</strong>：</p>
+<p>1、无状态、可扩展</p>
+<p>2、安全性</p>
+<p>3、可扩展性</p>
+<p>4、多平台跨域/单点登陆</p>
+<p>5、基于标准</p>
+<p>6、缓解服务器内存压力/增大服务器计算压力</p>
+<p><strong>格式</strong>：</p>
+<p><code>UID + TIME + SIGN [+ OTHER]</code></p>
+<h4 id="0x03-实施"><a href="#0x03-实施" class="headerlink" title="0x03 实施"></a>0x03 实施</h4><p><code>JSON Web Tokens（JWT）</code></p>
+<p><strong>组成</strong>：</p>
+<ul>
+<li>header</li>
+</ul>
+<p>用于描述关于该JWT的最基本的信息，例如其类型以及签名所用的算法等</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;typ&quot;</span>: <span class="string">&quot;JWT&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;alg&quot;</span>: <span class="string">&quot;HS256&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>base64一下</p>
+<p><code>ewogICJ0eXAiOiAidG9rZW7nsbvlnosiLAogICJhbGciOiAi562+5ZCN566X5rOVIgp9</code></p>
+<ul>
+<li>payload</li>
+</ul>
+<p>标准文档：<a class="link" target="_blank" rel="noopener" href="https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32#section-4.1">https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32#section-4.1<i class="fas fa-external-link-alt"></i></a></p>
+<p>可以在其中添加这些字段</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">iss：Issuer，发行者</span><br><span class="line">sub：Subject，主题</span><br><span class="line">aud：Audience，观众</span><br><span class="line">exp：Expiration time，过期时间</span><br><span class="line">nbf：Not before</span><br><span class="line">iat：Issued at，发行时间</span><br><span class="line">jti：JWT ID</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String , Object&gt; payload=<span class="keyword">new</span> HashMap&lt;String, Object&gt;();</span><br><span class="line">Date date=<span class="keyword">new</span> Date();</span><br><span class="line">payload.put(<span class="string">&quot;uid&quot;</span>, <span class="string">&quot;007&quot;</span>);</span><br><span class="line">payload.put(<span class="string">&quot;iat&quot;</span>, date.getTime());</span><br><span class="line">payload.put(<span class="string">&quot;ext&quot;</span>,date.getTime()+<span class="number">1000</span>*<span class="number">60</span>*<span class="number">60</span>);</span><br></pre></td></tr></table></figure>
+
+<p>上边代码中添加的字段如下</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;iat&quot;</span>: 当前时间,</span><br><span class="line">    <span class="attr">&quot;exp&quot;</span>: 过期时间,</span><br><span class="line">    <span class="attr">&quot;uid&quot;</span>: <span class="string">&quot;007&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>base64编码</p>
+<p><code>ewogICAgImlhdCI6IOW9k+WJjeaXtumXtCwKICAgICJleHAiOiDov4fmnJ/ml7bpl7QsCiAgICAidWlkIjogIjAwNyIKfQ==</code></p>
+<p>这样payload就生成好了</p>
+<ul>
+<li>signature</li>
+</ul>
+<p>将header和payload生成的base64编码通过<code>.</code>连接起来，如下</p>
+<p><code>ewogICJ0eXAiOiAidG9rZW7nsbvlnosiLAogICJhbGciOiAi562+5ZCN566X5rOVIgp9.ewogICAgImlhdCI6IOW9k+WJjeaXtumXtCwKICAgICJleHAiOiDov4fmnJ/ml7bpl7QsCiAgICAidWlkIjogIjAwNyIKfQ==</code></p>
+<p>然后再定义一个secret，如下</p>
+<p><code>secret</code></p>
+<p>通过header中定义的HS256算法以secret为密钥进行加密得到signature</p>
+<p><code>81faa5ef7b7596783cb3ed2f75618def367a9b7f8490047cb12880d895b794eb</code></p>
+<p>此时JWT就生成了，base64(header).base64(payload) .signature</p>
+<p>像这样<code>ewogICJ0eXAiOiAidG9rZW7nsbvlnosiLAogICJhbGciOiAi562+5ZCN566X5rOVIgp9.ewogICAgImlhdCI6IOW9k+WJjeaXtumXtCwKICAgICJleHAiOiDov4fmnJ/ml7bpl7QsCiAgICAidWlkIjogIjAwNyIKfQ==.81faa5ef7b7596783cb3ed2f75618def367a9b7f8490047cb12880d895b794eb</code></p>
+<p>当然这种方式不能在token中携带敏感信息，例如密码</p>
+<h4 id="0x04-应用"><a href="#0x04-应用" class="headerlink" title="0x04 应用"></a>0x04 应用</h4><ul>
+<li>单点登陆</li>
+</ul>
+<p><code>Set-Cookie: jwt=yyy.zzz.xxx; HttpOnly; max-age=980000; domain=.taobao.com </code></p>
+<ul>
+<li>API 调用/授权</li>
+</ul>
+<p><code>https://api.weixin.qq.com/cgi-bin/component/api_query_auth?component_access_token=xxxx</code></p>
+<ul>
+<li><p>支付验证（一次性）</p>
+</li>
+<li><p>串行服务调用</p>
+<p>  一次性有效，再次生成token时以用户账户和第一次token为key，update该记录来判断</p>
+</li>
+<li><p>敏感接口多次调用</p>
+</li>
+</ul>
+<h4 id="0x05-代码"><a href="#0x05-代码" class="headerlink" title="0x05 代码"></a>0x05 代码</h4><p><strong>生成代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">private static final JWSHeader header=new JWSHeader(JWSAlgorithm.HS256, JOSEObjectType.JWT, null, null, null, null, null, null, null, null, null, null, null);</span><br><span class="line">    </span><br><span class="line">	/**</span><br><span class="line">	 * 生成token，该方法只在用户登录成功后调用</span><br><span class="line">	 * </span><br><span class="line">	 * @param Map集合，可以存储用户id，token生成时间，token过期时间等自定义字段</span><br><span class="line">	 * @return token字符串,若失败则返回null</span><br><span class="line">	 */</span><br><span class="line">	public static String createToken(Map&lt;String, Object&gt; payload) &#123;</span><br><span class="line">		String tokenString=null;</span><br><span class="line">		// 创建一个 JWS object</span><br><span class="line">		JWSObject jwsObject = new JWSObject(header, new Payload(new JSONObject(payload)));</span><br><span class="line">		try &#123;</span><br><span class="line">			// 将jwsObject 进行HMAC签名</span><br><span class="line">			jwsObject.sign(new MACSigner(SECRET));</span><br><span class="line">			tokenString=jwsObject.serialize();</span><br><span class="line">		&#125; catch (JOSEException e) &#123;</span><br><span class="line">			System.err.println(&quot;签名失败:&quot; + e.getMessage());</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		return tokenString;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>校验代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">public static Map&lt;String, Object&gt; validToken(String token) &#123;</span><br><span class="line">		Map&lt;String, Object&gt; resultMap = new HashMap&lt;String, Object&gt;();</span><br><span class="line">		try &#123;</span><br><span class="line">			JWSObject jwsObject = JWSObject.parse(token);</span><br><span class="line">			Payload payload = jwsObject.getPayload();</span><br><span class="line">			JWSVerifier verifier = new MACVerifier(SECRET);</span><br><span class="line">			if (jwsObject.verify(verifier)) &#123;</span><br><span class="line">				JSONObject jsonOBj = payload.toJSONObject();</span><br><span class="line">				// token校验成功（此时没有校验是否过期）</span><br><span class="line">				resultMap.put(&quot;state&quot;, TokenState.VALID.toString());</span><br><span class="line">				// 若payload包含ext字段，则校验是否过期</span><br><span class="line">				if (jsonOBj.containsKey(&quot;ext&quot;)) &#123;</span><br><span class="line">					long extTime = Long.valueOf(jsonOBj.get(&quot;ext&quot;).toString());</span><br><span class="line">					long curTime = new Date().getTime();</span><br><span class="line">					// 过期了</span><br><span class="line">					if (curTime &gt; extTime) &#123;</span><br><span class="line">						resultMap.clear();</span><br><span class="line">						resultMap.put(&quot;state&quot;, TokenState.EXPIRED.toString());</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">				resultMap.put(&quot;data&quot;, jsonOBj);</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				// 校验失败</span><br><span class="line">				resultMap.put(&quot;state&quot;, TokenState.INVALID.toString());</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; catch (Exception e) &#123;</span><br><span class="line">			//e.printStackTrace();</span><br><span class="line">			// token格式不合法导致的异常</span><br><span class="line">			resultMap.clear();</span><br><span class="line">			resultMap.put(&quot;state&quot;, TokenState.INVALID.toString());</span><br><span class="line">		&#125;</span><br><span class="line">		return resultMap;</span><br><span class="line">	&#125;	</span><br></pre></td></tr></table></figure>
+
+
+
+<p>参考：<br><a class="link" target="_blank" rel="noopener" href="http://blog.leapoahead.com/2015/09/06/understanding-jwt/">http://blog.leapoahead.com/2015/09/06/understanding-jwt/<i class="fas fa-external-link-alt"></i></a><br><a class="link" target="_blank" rel="noopener" href="https://github.com/bigmeow/JWT">https://github.com/bigmeow/JWT<i class="fas fa-external-link-alt"></i></a></p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：基于token的认证</li>
+        <li>Post author：langu_xyz</li>
+        <li>Create time：2018-05-18 21:00:00</li>
+        <li>
+            Post link：https://blog.langu.xyz/基于token的认证/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/Groovy%20Deserialization(groovy.util.Expando)CVE-2015-3253/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Groovy Deserialization(groovy.util.Expando)CVE-2015-3253</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/XXE%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1%E5%92%8C%E9%98%B2%E5%BE%A1%E7%AD%96%E7%95%A5%20for%20Java/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">XXE代码审计和防御策略 for Java</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>&nbsp;-&nbsp;
+            
+            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a target="_blank" rel="noopener" href="//langu.xyz">AboutME:langu_xyz</a>
+        </div>
+        <!--
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        -->
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#0x01-cookie-session"><span class="nav-text">0x01 cookie&#x2F;session</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#0x02-token"><span class="nav-text">0x02 token</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#0x03-%E5%AE%9E%E6%96%BD"><span class="nav-text">0x03 实施</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#0x04-%E5%BA%94%E7%94%A8"><span class="nav-text">0x04 应用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#0x05-%E4%BB%A3%E7%A0%81"><span class="nav-text">0x05 代码</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

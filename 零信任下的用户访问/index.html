@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="网络安全,黑客,JAVA安全,代码审计,渗透测试,入侵,SRC,扫描,WEB安全,移动安全,PHP">
+    <meta name="description" content="蓝骨, langu.xyz">
+    <meta name="author" content="langu_xyz">
+    
+        <title>
+            
+                零信任下的用户访问 |
+                    
+                        langu_xyz
+        </title>
+        
+<link rel="stylesheet" href="/css/style.css">
+
+            <link rel="shortcut icon" href="/images/logo.jpeg">
+                
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+                    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"blog.langu.xyz","root":"/","language":"zh","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true},"style":{"primary_color":"#0066CC","avatar":"/images/logo.jpeg","favicon":"/images/logo.jpeg","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/shamo.jpg","description":"XYZ(无限未来)"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+
+                    <script>
+                        var _hmt = _hmt || [];
+                        (function() {
+                          var hm = document.createElement("script");
+                          hm.src = "https://hm.baidu.com/hm.js?1cd6e64ff252acf24b707985fcec8850";
+                          var s = document.getElementsByTagName("script")[0]; 
+                          s.parentNode.insertBefore(hm, s);
+                        })();
+                        </script>
+                        
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="langu_xyz" type="application/atom+xml">
+</head>
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                    <a class="logo-title" href="/">
+                        langu_xyz
+                    </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class="" href="/" >
+                                HOME
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class="" href="/tags/THINK/" >
+                                THINK
+                            </a>
+                        </li>
+                        
+                            
+                                <li class="menu-item search search-popup-trigger">
+                                    <i class="fas fa-search"></i>
+                                </li>
+                                
+                                
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                    
+                        <div class="icon-item menu-bar">
+                            <div class="menu-bar-middle"></div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/" >
+                        HOME
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class="" href="/tags/THINK/" >
+                        THINK
+                    </a>
+                </li>
+                
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">零信任下的用户访问</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/logo.jpeg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">langu_xyz</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2022-05-18 21:00:00
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%AE%89%E5%85%A8%E6%9E%B6%E6%9E%84/">安全架构</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E5%AE%89%E5%85%A8%E5%BB%BA%E8%AE%BE/">安全建设</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%9E%B6%E6%9E%84%E4%BD%93%E7%B3%BB%E5%8F%82%E8%80%83/">网络安全架构体系参考</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.1k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>3 Mins</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <blockquote>
+<blockquote>
+<p>用户访问通常是零信任的第一要务，因为它可以迅速带来生产力优势和关键漏洞的安全覆盖</p>
+</blockquote>
+</blockquote>
+<p><img lazyload src="/images/loading.svg" data-src="1.png"></p>
+<p>使用户能够在任何地方高效工作并确保安全需要使用高质量信号明确验证用户和设备的风险/可信度。
+  </p>
+<h2 id="用户风险"><a href="#用户风险" class="headerlink" title="用户风险"></a>用户风险</h2><p><img lazyload src="/images/loading.svg" data-src="2.png"></p>
+<p>衡量用户风险需要分析账户本身的风险、当前的访问请求会话，以及他们是否使用了 MFA：</p>
+<p>•用户/会话风险- Azure Active Directory (Azure AD) 身份保护分析用户帐户和当前访问请求，为 Azure AD 条件访问提供高/中/低风险等级。 此评级由机器学习计算确定，涉及众多个人风险因素，包括泄露的凭据、非典型旅行、恶意 IP 地址、恶意软件链接的 IP 地址和可疑的收件箱操纵规则</p>
+<p>•多因素身份验证 (MFA) - MFA 是合理的安全保证所必需的，因为攻击者可以（很容易）通过被盗或猜测的密码冒充受纯密码身份验证保护的帐户。
+  </p>
+<h2 id="设备风险"><a href="#设备风险" class="headerlink" title="设备风险"></a>设备风险</h2><p><img lazyload src="/images/loading.svg" data-src="3.png"></p>
+<p>设备风险是通过明确验证它是否符合组织的策略来衡量的，其中可以包括验证从已安装的端点检测和响应 (EDR) 功能中未检测到恶意活动。<br>  <br>•IsCompliant - Microsoft Endpoint Management Intune 提供对设备安全策略的管理，该策略评估来自 Intune 托管客户端、Microsoft Defender for Endpoint 和合作伙伴 MDM 的信号</p>
+<p>•设备属性 - 条件访问可以过滤策略，因此它们需要特定的设备属性（例如，识别高度安全的特权访问工作站或 PAW）。</p>
+<p>  </p>
+<h2 id="政策评估与MFA"><a href="#政策评估与MFA" class="headerlink" title="政策评估与MFA"></a>政策评估与MFA</h2><p><img lazyload src="/images/loading.svg" data-src="4.png"></p>
+<p><img lazyload src="/images/loading.svg" data-src="5.png"></p>
+<p>Azure AD 条件访问会根据您配置的策略评估这些信号。 静态策略和动态实时信息（威胁情报、会话上下文等）的这种组合提供了一种自适应方法来管理风险，这种方法既一致又通过不断变化的现实世界条件提供信息。<br>  <br>•初始访问+令牌刷新——对于所有使用条件访问的应用程序，策略验证发生在每次访问请求时+刷新令牌以延长到期时间时。</p>
+<p>• 安全态势的变化——此外，条件访问支持持续访问评估 (CAE)，以近乎实时地对不断变化的风险条件（例如网络位置更改、用户终止或潜在的凭据盗窃事件）提供更快的响应。
+  </p>
+<h2 id="高风险的补救"><a href="#高风险的补救" class="headerlink" title="高风险的补救"></a>高风险的补救</h2><p>  <br><img lazyload src="/images/loading.svg" data-src="6.png"></p>
+<p>如果用户/会话风险被评为高（表明凭据可能/已知被泄露），您可以将用户配置为自动重定向到自助服务密码重置 (SSPR) 站点以立即更改其密码。
+  </p>
+<h2 id="首次集成（Microsoft-应用程序和第-3-方-VPN-和网络设备）"><a href="#首次集成（Microsoft-应用程序和第-3-方-VPN-和网络设备）" class="headerlink" title="首次集成（Microsoft 应用程序和第 3 方 VPN 和网络设备）"></a>首次集成（Microsoft 应用程序和第 3 方 VPN 和网络设备）</h2><p><img lazyload src="/images/loading.svg" data-src="7.png"></p>
+<p><img lazyload src="/images/loading.svg" data-src="8.png"></p>
+<p>在明确验证用户/会话和设备风险足够低后，授予访问资源的访问权限。<br>  <br>最初的集成通常是：</p>
+<p>•Microsoft 应用程序，因为这些云应用程序本身就支持 Azure AD 和条件访问。</p>
+<p>• 第三方 VPN 和远程访问设备 - 快速提高远程访问应用程序和网络的安全性，以实现远程和混合工作场景。 这可以快速添加复杂的用户和设备风险验证身份验证，从而降低常见的密码和设备风险。
+  </p>
+<h2 id="启用您的企业资产"><a href="#启用您的企业资产" class="headerlink" title="启用您的企业资产"></a>启用您的企业资产</h2><p><img lazyload src="/images/loading.svg" data-src="9.png"><br>  <br>接下来，将扩展到跨云、移动和本地应用程序的企业应用程序的全部资产。
+  </p>
+<h2 id="遗留应用程序和会话监控"><a href="#遗留应用程序和会话监控" class="headerlink" title="遗留应用程序和会话监控"></a>遗留应用程序和会话监控</h2><p><img lazyload src="/images/loading.svg" data-src="10.png"></p>
+<p>Azure AD 应用程序代理提供发布传统本地应用程序的能力，以利用这些强大的保证（并简化用户体验），帮助你超越 VPN。<br>  <br>Microsoft Defender for Cloud Apps（条件访问应用控制）还启用了会话监控和限制。 可以根据来自条件访问的信号和会话中的其他 MDCA 检测来监控会话并使用会话策略限制功能，包括：</p>
+<p>•防止数据泄露<br>•保护下载<br>•防止上传未标记的文件<br>•监控用户会话以确保合规性<br>•阻止访问<br>•阻止自定义活动</p>
+<p>•较低的访问权限 - 可以使用本机应用程序功能（如下载、打印或同步文件的 SharePoint 网站限制）限制对应用程序或其中数据的访问 。</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：零信任下的用户访问</li>
+        <li>Post author：langu_xyz</li>
+        <li>Create time：2022-05-18 21:00:00</li>
+        <li>
+            Post link：https://blog.langu.xyz/零信任下的用户访问/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/%E5%85%B3%E4%BA%8EXDR%E7%9A%84%E4%B8%80%E7%82%B9%E7%AC%94%E8%AE%B0/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">关于XDR的一点笔记</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/%E4%BD%BF%E7%94%A8%E9%9B%B6%E4%BF%A1%E4%BB%BB%E5%BF%AB%E9%80%9F%E5%AE%9E%E7%8E%B0%E5%AE%89%E5%85%A8%E7%8E%B0%E4%BB%A3%E5%8C%96/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">使用零信任快速实现安全现代化</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>&nbsp;-&nbsp;
+            
+            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a target="_blank" rel="noopener" href="//langu.xyz">AboutME:langu_xyz</a>
+        </div>
+        <!--
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        -->
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E9%A3%8E%E9%99%A9"><span class="nav-text">用户风险</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E5%A4%87%E9%A3%8E%E9%99%A9"><span class="nav-text">设备风险</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%94%BF%E7%AD%96%E8%AF%84%E4%BC%B0%E4%B8%8EMFA"><span class="nav-text">政策评估与MFA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%AB%98%E9%A3%8E%E9%99%A9%E7%9A%84%E8%A1%A5%E6%95%91"><span class="nav-text">高风险的补救</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A6%96%E6%AC%A1%E9%9B%86%E6%88%90%EF%BC%88Microsoft-%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E5%92%8C%E7%AC%AC-3-%E6%96%B9-VPN-%E5%92%8C%E7%BD%91%E7%BB%9C%E8%AE%BE%E5%A4%87%EF%BC%89"><span class="nav-text">首次集成（Microsoft 应用程序和第 3 方 VPN 和网络设备）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%AF%E7%94%A8%E6%82%A8%E7%9A%84%E4%BC%81%E4%B8%9A%E8%B5%84%E4%BA%A7"><span class="nav-text">启用您的企业资产</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%81%97%E7%95%99%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E5%92%8C%E4%BC%9A%E8%AF%9D%E7%9B%91%E6%8E%A7"><span class="nav-text">遗留应用程序和会话监控</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>
